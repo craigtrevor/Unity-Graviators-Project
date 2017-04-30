@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: cf32bdd8699402c47956093049beac5e
+timeCreated: 1492317867
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm1-Path
+    100002: Arm1-Path_001
+    100004: Arm1-Path_002
+    100006: Arm1-Path_003
+    100008: Arm_Base_001
+    100010: Arm_Base_002
+    100012: Arm_Base_003
+    100014: Arm_Base_004
+    100016: Arm_Blade_001
+    100018: Arm_Blade_002
+    100020: Arm_Blade_003
+    100022: Arm_Blade_004
+    100024: Blades
+    100026: Body
+    100028: Body_Rig
+    100030: chest
+    100032: Cigar
+    100034: grill
+    100036: hips
+    100038: midwheel
+    100040: //RootNode
+    100042: ORG-chest
+    100044: ORG-foot_L
+    100046: ORG-foot_R
+    100048: ORG-head
+    100050: ORG-hips
+    100052: ORG-jaw
+    100054: ORG-neck
+    100056: ORG-shin_L
+    100058: ORG-shin_R
+    100060: ORG-spine
+    100062: ORG-thigh_L
+    100064: ORG-thigh_R
+    100066: ORG-toe_L
+    100068: ORG-toe_R
+    100070: Poncho
+    100072: root
+    100074: torso
+    400000: Arm1-Path
+    400002: Arm1-Path_001
+    400004: Arm1-Path_002
+    400006: Arm1-Path_003
+    400008: Arm_Base_001
+    400010: Arm_Base_002
+    400012: Arm_Base_003
+    400014: Arm_Base_004
+    400016: Arm_Blade_001
+    400018: Arm_Blade_002
+    400020: Arm_Blade_003
+    400022: Arm_Blade_004
+    400024: Blades
+    400026: Body
+    400028: Body_Rig
+    400030: chest
+    400032: Cigar
+    400034: grill
+    400036: hips
+    400038: midwheel
+    400040: //RootNode
+    400042: ORG-chest
+    400044: ORG-foot_L
+    400046: ORG-foot_R
+    400048: ORG-head
+    400050: ORG-hips
+    400052: ORG-jaw
+    400054: ORG-neck
+    400056: ORG-shin_L
+    400058: ORG-shin_R
+    400060: ORG-spine
+    400062: ORG-thigh_L
+    400064: ORG-thigh_R
+    400066: ORG-toe_L
+    400068: ORG-toe_R
+    400070: Poncho
+    400072: root
+    400074: torso
+    2300000: Arm1-Path
+    2300002: Arm1-Path_001
+    2300004: Arm1-Path_002
+    2300006: Arm1-Path_003
+    2300008: Poncho
+    3300000: Arm1-Path
+    3300002: Arm1-Path_001
+    3300004: Arm1-Path_002
+    3300006: Arm1-Path_003
+    3300008: Poncho
+    4300000: Cigar
+    4300002: Body
+    4300004: Blades
+    4300006: Arm1-Path_003
+    4300008: Arm1-Path_002
+    4300010: Arm1-Path_001
+    4300012: Arm1-Path
+    4300014: Poncho
+    7400000: Default Take
+    7400002: Arm_Spin
+    9500000: //RootNode
+    13700000: Blades
+    13700002: Body
+    13700004: Cigar
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
