@@ -3,14 +3,25 @@ using System.Collections;
 
 public class TPSCharacterController : MonoBehaviour {
 
-    const float SPEED_INITIAL = 10f;
-    const float SENSITIVITY_INITIAL = 2f;
+    //const float SPEED_INITIAL = 10f;
+    //const float SENSITIVITY_INITIAL = 2f;
 
-    const float JUMP_MULTIPLIER_INITIAL = 0.75f;
+    //const float JUMP_MULTIPLIER_INITIAL = 0.75f;
+
     const float GRAVITY = -15f;
 
+    public int EP; // enhancement points
+
+    public float attack;
+    public float health; 
     public float speed;
+
     public float sensitivity;
+
+    public float jumpMultiplier;
+    public float jumpForce;
+
+    public bool isGrounded;
 
     float moveFB;
     float moveLR;
@@ -19,10 +30,6 @@ public class TPSCharacterController : MonoBehaviour {
     float rotY;
     float vertVelocity;
 
-    public float jumpMultiplier;
-    public float jumpForce;
-    public bool isGrounded;
-
     GameObject cameraPivot;
     GameObject gravityAxis;
     GameObject rotationBlock;
@@ -30,16 +37,22 @@ public class TPSCharacterController : MonoBehaviour {
 
     GravityAxisScript gravityAxisScript;
     RotationBlockScript rotationBlockScript;
-
     CharacterController controller;
 
     // Use this for initialization
     void Start() {
 
-        speed = SPEED_INITIAL;
-        sensitivity = SENSITIVITY_INITIAL;
+        //speed = SPEED_INITIAL;
+        //sensitivity = SENSITIVITY_INITIAL;
 
-        jumpMultiplier = JUMP_MULTIPLIER_INITIAL;
+        //jumpMultiplier = JUMP_MULTIPLIER_INITIAL;
+
+        attack = 5f;
+        health = 20f;
+        speed = 10f;
+        sensitivity = 2f;
+        jumpMultiplier = 0.75f;
+
         isGrounded = false;
 
         cameraPivot = GameObject.Find("CameraPivot");
@@ -105,7 +118,6 @@ public class TPSCharacterController : MonoBehaviour {
         rotationBlockScript.UpdatePosition(); //Update rotation block position
     }
     
-
     //FixedUpdate
     void FixedUpdate() {
 
