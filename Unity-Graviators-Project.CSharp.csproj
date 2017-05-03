@@ -78,14 +78,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ArrowScript.cs" />
-    <Compile Include="Assets\Scripts\GravityAxisScript.cs" />
-    <Compile Include="Assets\Scripts\GravityAxisTextScript.cs" />
-    <Compile Include="Assets\Scripts\GravityRingRotator.cs" />
-    <Compile Include="Assets\Scripts\HorArrowsScript.cs" />
-    <Compile Include="Assets\Scripts\RotationBlockScript.cs" />
-    <Compile Include="Assets\Scripts\TPSCharacterController.cs" />
-    <Compile Include="Assets\Scripts\VertArrowsScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\ArrowScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\GravityAxisScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\GravityAxisTextScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\GravityRingRotator.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\HorArrowsScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\RotationBlockScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\TPSCharacterController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\VertArrowsScript.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
