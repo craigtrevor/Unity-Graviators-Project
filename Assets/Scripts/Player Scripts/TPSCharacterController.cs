@@ -103,6 +103,7 @@ public class TPSCharacterController : MonoBehaviour {
 
         //Calculate movement
         Vector3 movement = new Vector3(moveLR, vertVelocity, moveFB);
+
         if (!gravityAxisScript.gravityChanging) {
             transform.Rotate(0, rotX, 0);
             cameraPivot.transform.localRotation = Quaternion.Euler(rotY, 0, 0);

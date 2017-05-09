@@ -77,7 +77,7 @@ public class GravityAxisScript : MonoBehaviour {
         textBackward = GameObject.Find("TextBackward");
 
         gravityCamera = GameObject.Find("GravityCamera");
-        gravityCamera.GetComponent<Camera>().enabled = false;
+    
         gravityCameraRing = GameObject.Find("GravityCameraRing");
         gravityCameraRing.GetComponent<Camera>().enabled = false;
 
