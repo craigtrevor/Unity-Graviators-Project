@@ -11,6 +11,7 @@ public class WeaponSpawn : MonoBehaviour {
 	public int weaponLimit = 3;
 
 
+
 	public int thrust = 2000;
 
 	//firerate and bool to control firerate
