@@ -55,7 +55,7 @@ public class WeaponSpawn : MonoBehaviour {
 	void Spawn()
 	{
 		//var meelee = (GameObject)Instantiate (weaponPrefab, weaponSpawn.position, weaponSpawn.rotation);
-		var meelee = (GameObject)Instantiate(weaponPrefab,weaponSpawn.position,weaponSpawn.rotation,this.gameObject.transform);
+		//var meelee = (GameObject)Instantiate(weaponPrefab,weaponSpawn.position,weaponSpawn.rotation,this.gameObject.transform); // undo this to get a visual to spawn
 
 		numberofWeapons += 1;
 		Debug.Log ("i have gained a weapon and am now at"+ numberofWeapons);

@@ -50,12 +50,15 @@
      <Compile Include="Assets\Scripts\Player Scripts\GravityAxisScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\GravityAxisTextScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\GravityRingRotator.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\HorArrowsScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\RotationBlockScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\TPSCharacterController.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\VertArrowsScript.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Dash.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\WeaponOrbit.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\WeaponSpawn.cs" />
  <Reference Include="UnityEngine.UI">

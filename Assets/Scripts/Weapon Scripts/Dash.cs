@@ -8,7 +8,7 @@ public class Dash : MonoBehaviour {
 	int numberofdashes = 3;// change this for uses
 	public int thrust = 1; //change this for speed
 	public int distance = 10; // change this for distance travalled
-	private float waittime = 0.1f;// the delay between movements 
+	private float waittime = 0.01f;// the delay between movements 
 
 
 	public float firerate = 1.0f; // the smaller the faster
