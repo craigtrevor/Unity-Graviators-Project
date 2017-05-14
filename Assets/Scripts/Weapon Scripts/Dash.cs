@@ -5,13 +5,14 @@ using UnityEngine;
 public class Dash : MonoBehaviour {
 
 	public Transform cameraRotation;
+    [SerializeField]
 	int numberofdashes = 3;// change this for uses
 	public int thrust = 1; //change this for speed
 	public int distance = 10; // change this for distance travalled
-	private float waittime = 0.1f;// the delay between movements 
+	public float waittime = 0.05f;// the delay between movements 
 
 
-	public float firerate = 1.0f; // the smaller the faster
+	public float reActivationTime = 1.0f; // the smaller the faster
 	private float nextFire = 1.0f;
 
 	// Use this for initialization
@@ -24,7 +25,7 @@ public class Dash : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.F) && Time.time >nextFire)
 		{
-			nextFire = Time.time + firerate;
+			nextFire = Time.time + reActivationTime;
 			if (numberofdashes > 0) {
 				charge ();
 			}
