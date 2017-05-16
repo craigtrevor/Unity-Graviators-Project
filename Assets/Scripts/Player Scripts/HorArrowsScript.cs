@@ -3,17 +3,15 @@ using System.Collections;
 
 public class HorArrowsScript : MonoBehaviour {
 
-    GameObject rotationBlock;
+    public GameObject rotationBlock;
 
     // Use this for initialization
-    void Start () {
-        
-        rotationBlock = GameObject.Find("RotationBlock");
+    private void Start () {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
 
         //Rotate HorArrows relative to RotationBlock
         transform.rotation = Quaternion.LookRotation(rotationBlock.transform.forward, rotationBlock.transform.up);

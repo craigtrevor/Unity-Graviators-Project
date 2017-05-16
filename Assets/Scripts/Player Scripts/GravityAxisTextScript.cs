@@ -3,12 +3,10 @@ using System.Collections;
 
 public class GravityAxisTextScript : MonoBehaviour {
 
-    GameObject gravCam;
+    public GameObject gravCam;
 
     // Use this for initialization
     void Start() {
-
-        gravCam = GameObject.Find("GravityCamera");
 
     }
 

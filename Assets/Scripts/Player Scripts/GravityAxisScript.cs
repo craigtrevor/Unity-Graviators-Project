@@ -2,472 +2,411 @@
 using UnityEngine.UI;
 using System.Collections;
 
+//GravityAxisScript controls all the aspects of the gravity axis and gravity switching.
 public class GravityAxisScript : MonoBehaviour {
 
-    const int GRAVITY_MAX = 1000;
-    const int GRAVITY_COST = 250;
+    //Gravity charge constants
+    private const int GRAVITY_MAX = 10000;
+    private const int GRAVITY_COST = 2500;
+    private const int RECHARGE_RATE = 10;
 
-    string gravity;
-    public bool gravityChanging;
-    int gravityCharge;
-    int quadrant;
-    Quaternion playerRotation;
+    //Gravity variables
+    private string gravity;
+    private bool gravitySwitching;
+    private bool cameraSwitching;
 
-    public bool shiftPressed;
+    //Gravity charge variables
+    private int gravityCharge;
+    private int rechargeRate;
+    private bool haveCharge;
+    private bool rechargeOn;
 
-    GameObject arrowUp;
-    GameObject arrowRight;
-    GameObject arrowLeft;
-    GameObject arrowForward;
-    GameObject arrowBackward;
+    //Control variables
+    private bool shiftPressed;
+    private float jumpAxis;
+    private float verticalAxis;
+    private float horizontalAxis;
+    private int quadrant;
 
-    GameObject vertArrows;
-    GameObject player;
-    GameObject gravityBlock;
-    GameObject rotationBlock;
+    //Other Objects/Scripts
+    public GameObject controller;
+    public GameObject camera;
+    public GameObject vertArrows;
+    public GameObject gravityBlock;
+    public GameObject rotationBlock;
 
-    GameObject textUp;
-    GameObject textRight;
-    GameObject textLeft;
-    GameObject textForward;
-    GameObject textBackward;
+    private PlayerController playerControllerScript;
+    private PlayerCameraController cameraScript;
+    private VertArrowsScript vertArrowsScript;
 
-    GameObject gravityCamera;
-    GameObject gravityCameraRing;
-    GameObject UIGravityCharge;
+    private GravityAxisDisplayScript gravityAxisDisplayScript;
 
-    GameObject ring;
-    GameObject ringPivot;
-    GravityRingRotator gravityRingRotator;
 
-    public Material toY;
-    public Material toNY;
-    public Material toX;
-    public Material toNX;
-    public Material toZ;
-    public Material toNZ;
-    public Material noCharge;
+    //Start()
+    private void Start() {
 
-    // Use this for initialization
-    void Start() {
-
+        //Initialise gravity variables
         gravity = "-y";
-        gravityChanging = false;
+        gravitySwitching = false;
+        cameraSwitching = false;
+
+        //Initialise gravity charge variables
         gravityCharge = GRAVITY_MAX;
-        quadrant = 1;
-        playerRotation = transform.rotation;
+        rechargeRate = RECHARGE_RATE;
+        haveCharge = true;
+        rechargeOn = true;
 
+        //Initialise control variables
         shiftPressed = false;
+        jumpAxis = 0f;
+        verticalAxis = 0f;
+        horizontalAxis = 0f;
+        quadrant = 1;
 
-        arrowUp = GameObject.Find("ArrowUp");
-        arrowRight = GameObject.Find("ArrowRight");
-        arrowLeft = GameObject.Find("ArrowLeft");
-        arrowForward = GameObject.Find("ArrowForward");
-        arrowBackward = GameObject.Find("ArrowBackward");
+        //Get Scripts
+        playerControllerScript = controller.GetComponent<PlayerController>();
+        cameraScript = camera.GetComponent<PlayerCameraController>();
+        vertArrowsScript = vertArrows.GetComponent<VertArrowsScript>();
 
-        vertArrows = GameObject.Find("VertArrows");
-        player = GameObject.Find("PlayerModel");
-        gravityBlock = GameObject.Find("GravityBlock");
-        rotationBlock = GameObject.Find("RotationBlock");
+        gravityAxisDisplayScript = GetComponent<GravityAxisDisplayScript>();
 
-        textUp = GameObject.Find("TextUp");
-        textRight = GameObject.Find("TextRight");
-        textLeft = GameObject.Find("TextLeft");
-        textForward = GameObject.Find("TextForward");
-        textBackward = GameObject.Find("TextBackward");
+    } //End Start()
 
-        gravityCamera = GameObject.Find("GravityCamera");
-    
-        gravityCameraRing = GameObject.Find("GravityCameraRing");
-        gravityCameraRing.GetComponent<Camera>().enabled = false;
+    //Update()
+    private void Update() {
 
-        ring = GameObject.Find("Ring");
-        ring.GetComponent<MeshRenderer>().enabled = false;
-        ringPivot = GameObject.Find("RingPivot");
-        gravityRingRotator = ringPivot.GetComponent<GravityRingRotator>();
+        SetCharge();
+        gravityAxisDisplayScript.SetVariables(gravity, gravitySwitching, gravityCharge, haveCharge, shiftPressed, quadrant);
 
-        UIGravityCharge = GameObject.Find("UIGravityCharge");
-        UIGravityCharge.GetComponent<Text>().text = gravityCharge.ToString();
-        UIGravityCharge.GetComponent<Text>().color = Color.white;
+    } //End Update()
 
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-        if (gravityChanging) { //If gravity is changing
-            
-
-            //player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, gravityBlock.transform.rotation, 10); //Rotate player toward GravityBlock
-
-            playerRotation = Quaternion.Lerp(player.transform.rotation, gravityBlock.transform.rotation, Time.deltaTime * 10);
-
-            player.transform.rotation = playerRotation;
-
-            if (Mathf.Abs(player.transform.eulerAngles.x - gravityBlock.transform.eulerAngles.x) <= 1 &&
-                Mathf.Abs(player.transform.eulerAngles.y - gravityBlock.transform.eulerAngles.y) <= 1 &&
-                Mathf.Abs(player.transform.eulerAngles.z - gravityBlock.transform.eulerAngles.z) <= 1) { //If fully rotated
-                player.transform.rotation = gravityBlock.transform.rotation;
-                gravityChanging = false;
-            }
-
-            //gravityCamera.GetComponent<Camera>().enabled = false; //Hide gravity axis
-            //gravityCameraRing.GetComponent<Camera>().enabled = false;
-            //ring.GetComponent<MeshRenderer>().enabled = false;
-
-        } else { //If gravity is not changing
-
-            if (shiftPressed) { //If shift pressed
-
-                gravityCamera.GetComponent<Camera>().enabled = true; //Show gravity axis
-                gravityCameraRing.GetComponent<Camera>().enabled = true;
-                ring.GetComponent<MeshRenderer>().enabled = true;
-
-                if (gravityCharge >= GRAVITY_COST && (Input.GetButtonDown("Jump") || Input.GetButtonDown("Vertical") || Input.GetButtonDown("Horizontal"))) { //If enough gravity charge and button down
-
-                    ChangeGravity();
-                }
-
-                if (!(Input.GetButton("Jump") || Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
-                    gravityRingRotator.direction = -1;
-                }
-
-            } else { //If shift not pressed
-
-                gravityCamera.GetComponent<Camera>().enabled = false; //Hide gravity axis
-                gravityCameraRing.GetComponent<Camera>().enabled = false;
-                ring.GetComponent<MeshRenderer>().enabled = false;
-
-            } //End if shift pressed
-
-        } //End if gravity is changing        
-
-        gravityCharge = Mathf.Min(GRAVITY_MAX, gravityCharge + 1); //Recharge gravity
-        UIGravityCharge.GetComponent<Text>().text = gravityCharge.ToString();
-
-    } //End Update
-
-    //Fixed update
+    //FixedUpdate()
     private void FixedUpdate() {
 
-        RotateRotationBlock();
-        SetQuadrant();
-        ColourAxis(gravity, gravityCharge);
-        UpdateText();
         SetGravity();
-        gravityRingRotator.SetKeys(quadrant);
+        RotateGravityBlock();
+        RotatePlayer();
+        RotateCamera(); //print(cameraSwitching);
+        SetQuadrant();
 
-    }
+    } //End FixedUpdate()
 
-    //Colours the arrows on the gravity axis
-    void ColourAxis(string gravity, int gravityCharge) {
 
-        if (gravityCharge < GRAVITY_COST) { //If don't have gravity charge
+    //SetGravity() sets the gravity variable based on the rotation of rotationBlock
+    private void SetGravity() {
 
-            arrowUp.GetComponent<ArrowScript>().ChangeColour(noCharge);
-            arrowForward.GetComponent<ArrowScript>().ChangeColour(noCharge);
-            arrowBackward.GetComponent<ArrowScript>().ChangeColour(noCharge);
-            arrowRight.GetComponent<ArrowScript>().ChangeColour(noCharge);
-            arrowLeft.GetComponent<ArrowScript>().ChangeColour(noCharge);
+        //rotationBlockUp variables
+        int rotationBlockUpX = Mathf.RoundToInt(rotationBlock.transform.up.x);
+        int rotationBlockUpY = Mathf.RoundToInt(rotationBlock.transform.up.y);
+        int rotationBlockUpZ = Mathf.RoundToInt(rotationBlock.transform.up.z);
 
-            UIGravityCharge.GetComponent<Text>().color = Color.grey;
+        //Check rotationBlockUp
+        if (rotationBlockUpY == Vector3.up.y) {  //-y gravity
+            gravity = "-y";
+        } else if (rotationBlockUpY == Vector3.down.y) { //y gravity
+            gravity = "y";
+        } else if (rotationBlockUpX == Vector3.left.x) { //x gravity
+            gravity = "x";
+        } else if (rotationBlockUpX == Vector3.right.x) { //-x gravity
+            gravity = "-x";
+        } else if (rotationBlockUpZ == Vector3.back.z) { //z gravity
+            gravity = "z";
+        } else if (rotationBlockUpZ == Vector3.forward.z) { //-z gravity
+            gravity = "-z";
+        } else {
+            gravity = null;
+        } //End if (rotationBlockUp)
 
-        } else { //If have gravity charge
+    } //End SetGravity()
 
-            UIGravityCharge.GetComponent<Text>().color = Color.white;
+    //RotateGravityBlock() sets the rotation of gravityBlock which controls axis orientation
+    private void RotateGravityBlock() {
 
-            if (gravity == "-y") { //-y Gravity
+        //Check gravity
+        if (gravity == "-y") {
+            gravityBlock.transform.rotation = Quaternion.Euler(0, 0, 0);
+        } else if (gravity == "y") {
+            gravityBlock.transform.rotation = Quaternion.Euler(0, 0, 180);
+        } else if (gravity == "z") {
+            gravityBlock.transform.rotation = Quaternion.Euler(-90, 0, 0);
+        } else if (gravity == "-z") {
+            gravityBlock.transform.rotation = Quaternion.Euler(-90, -180, 0);
+        } else if (gravity == "x") {
+            gravityBlock.transform.rotation = Quaternion.Euler(-90, 90, 0);
+        } else if (gravity == "-x") {
+            gravityBlock.transform.rotation = Quaternion.Euler(-90, -90, 0);
+        } //End if (gravity)
 
-                arrowUp.GetComponent<ArrowScript>().ChangeColour(toY);
-                arrowForward.GetComponent<ArrowScript>().ChangeColour(toZ);
-                arrowBackward.GetComponent<ArrowScript>().ChangeColour(toNZ);
-                arrowRight.GetComponent<ArrowScript>().ChangeColour(toX);
-                arrowLeft.GetComponent<ArrowScript>().ChangeColour(toNX);
+    } //End RotateGravityBlock()
 
-            } else if (gravity == "y") { //y gravity
 
-                arrowUp.GetComponent<ArrowScript>().ChangeColour(toNY);
-                arrowForward.GetComponent<ArrowScript>().ChangeColour(toZ);
-                arrowBackward.GetComponent<ArrowScript>().ChangeColour(toNZ);
-                arrowRight.GetComponent<ArrowScript>().ChangeColour(toNX);
-                arrowLeft.GetComponent<ArrowScript>().ChangeColour(toX);
+    //ChangeGravity() calls checks for gravity charge and if gravity is switching and calls the appropriate gravity switching method
+    public void ChangeGravity() {
 
-            } else if (gravity == "z") { //z gravity
+        //Check haveCharge & gravitySwitching
+        if (haveCharge && !gravitySwitching) { //If player has gravity charge and gravity is not switching
 
-                arrowUp.GetComponent<ArrowScript>().ChangeColour(toNZ);
-                arrowForward.GetComponent<ArrowScript>().ChangeColour(toY);
-                arrowBackward.GetComponent<ArrowScript>().ChangeColour(toNY);
-                arrowRight.GetComponent<ArrowScript>().ChangeColour(toX);
-                arrowLeft.GetComponent<ArrowScript>().ChangeColour(toNX);
+            //Initialise rotation block rotation
+            rotationBlock.transform.rotation = controller.transform.rotation;
 
-            } else if (gravity == "-z") { //-z gravity
+            //Check input
+            if (jumpAxis > 0) { //If spacebar
+                GravityUp();
 
-                arrowUp.GetComponent<ArrowScript>().ChangeColour(toZ);
-                arrowForward.GetComponent<ArrowScript>().ChangeColour(toY);
-                arrowBackward.GetComponent<ArrowScript>().ChangeColour(toNY);
-                arrowRight.GetComponent<ArrowScript>().ChangeColour(toNX);
-                arrowLeft.GetComponent<ArrowScript>().ChangeColour(toX);
+            } else if (verticalAxis + horizontalAxis != 0) { //If vert/hor buttons                
+                int turnMod = -1;
 
-            } else if (gravity == "x") { //x gravity
+                //Check verticalAxis
+                if (verticalAxis != 0) { //If vertical buttons
+                    if (verticalAxis > 0) { //Forward button
+                        turnMod = 1;
+                    } else { //Backward button
+                        turnMod = 3;
+                    }
 
-                arrowUp.GetComponent<ArrowScript>().ChangeColour(toNX);
-                arrowForward.GetComponent<ArrowScript>().ChangeColour(toY);
-                arrowBackward.GetComponent<ArrowScript>().ChangeColour(toNY);
-                arrowRight.GetComponent<ArrowScript>().ChangeColour(toNZ);
-                arrowLeft.GetComponent<ArrowScript>().ChangeColour(toZ);
+                } else if (horizontalAxis != 0) { //If horizontal buttons
+                    if (horizontalAxis > 0) { //Right button
+                        turnMod = 2;
+                    } else { //Left button
+                        turnMod = 4;
+                    }
 
-            } else if (gravity == "-x") { //-x gravity
+                } //End if vert/hor button
 
-                arrowUp.GetComponent<ArrowScript>().ChangeColour(toX);
-                arrowForward.GetComponent<ArrowScript>().ChangeColour(toY);
-                arrowBackward.GetComponent<ArrowScript>().ChangeColour(toNY);
-                arrowRight.GetComponent<ArrowScript>().ChangeColour(toZ);
-                arrowLeft.GetComponent<ArrowScript>().ChangeColour(toNZ);
+                GravityHor(turnMod);
 
-            } //End if gravity
-        } //End if gravity charge
-    }
+            } //End if input
 
-    //Updates the button text on the gravity axis
-    void UpdateText() {
+            gravitySwitching = true; //Gravity switching is true
 
-        //Get button characters
-        string forwardButton = "W";
-        string rightButton = "D";
-        string backwardButton = "S";
-        string leftButton = "A";
+            gravityCharge -= GRAVITY_COST; //Decrease gravity charge
 
-        textUp.GetComponent<TextMesh>().text = "Space";
+        } //End If (haveCharge && !gravitySwitching)
 
-        if (quadrant == 1) { //Forward quadrant
+    } //End ChangeGravity()
 
-            textForward.GetComponent<TextMesh>().text = forwardButton;
-            textRight.GetComponent<TextMesh>().text = rightButton;
-            textBackward.GetComponent<TextMesh>().text = backwardButton;
-            textLeft.GetComponent<TextMesh>().text = leftButton;
+    //GravityUp() rotates the player "up" (180 degrees on relative z-axis)
+    private void GravityUp() {
 
-        } else if (quadrant == 2) { //Right quadrant
-
-            textForward.GetComponent<TextMesh>().text = leftButton;
-            textRight.GetComponent<TextMesh>().text = forwardButton;
-            textBackward.GetComponent<TextMesh>().text = rightButton;
-            textLeft.GetComponent<TextMesh>().text = backwardButton;
-
-        } else if (quadrant == 3) { //Backward quadrant
-
-            textForward.GetComponent<TextMesh>().text = backwardButton;
-            textRight.GetComponent<TextMesh>().text = leftButton;
-            textBackward.GetComponent<TextMesh>().text = forwardButton;
-            textLeft.GetComponent<TextMesh>().text = rightButton;
-
-        } else if (quadrant == 4) { //Left quadrant
-
-            textForward.GetComponent<TextMesh>().text = rightButton;
-            textRight.GetComponent<TextMesh>().text = backwardButton;
-            textBackward.GetComponent<TextMesh>().text = leftButton;
-            textLeft.GetComponent<TextMesh>().text = forwardButton;
-
-        }
-    }
-
-    //Change gravity upwards
-    void GravityUp() {
-
-        gravityBlock.transform.rotation = player.transform.rotation;
-
+        //Check qudarant
         if (quadrant == 1 || quadrant == 3) { //If facing forward/backward 
 
-            if (gravity == "-y" || gravity == "y") { //If on y gravities
-                gravityBlock.transform.Rotate(0, 0, 180, Space.World);
-            } else { //If on z or x gravities
-                gravityBlock.transform.Rotate(0, 180, 0, Space.World);
-            }
+            //Check gravity
+            if (gravity == "-y" || gravity == "y") { //If y gravities
+                rotationBlock.transform.Rotate(0, 0, 180, Space.World);
+            } else { //If z or x gravities
+                rotationBlock.transform.Rotate(0, 180, 0, Space.World);
+            } //End if (gravity)
 
         } else { //If facing left/right 
 
-            if (gravity == "-x" || gravity == "x") { //If on x gravities
-                gravityBlock.transform.Rotate(0, 0, 180, Space.World);
-            } else { //If on y or z gravities
-                gravityBlock.transform.Rotate(180, 0, 0, Space.World);
+            //Check gravity
+            if (gravity == "-x" || gravity == "x") { //If x gravities
+                rotationBlock.transform.Rotate(0, 0, 180, Space.World);
+            } else { //If y or z gravities
+                rotationBlock.transform.Rotate(180, 0, 0, Space.World);
             }
 
-        } //End if quadrant
+        } //End if (quadrant)
 
-    } //End GravityUp
+    } //End GravityUp()
 
-    //Change gravity horizontally
-    void GravityHor(int turnMod) {
 
-        //Wrap quadrant < 0 and > 4
+    //GravityHor() calls the respective method for rotating the player horizontally basied on button press and quadrant
+    private void GravityHor(int turnMod) {
 
+        //Apply turn Mod to quadrant
         quadrant += turnMod - 1;
 
+        //Wrap quadrant values <0 and >4
         if (quadrant > 4) {
             quadrant -= 4;
         } else if (quadrant < 1) {
             quadrant += 4;
         }
 
-        if (quadrant == 1) { //Forward quadrant
+        //Check quadrant
+        if (quadrant == 1) { //Facing forward
             GravityForward();
-        } else if (quadrant == 2) { //Right quadrant
+        } else if (quadrant == 2) { //Facing right
             GravityRight();
-        } else if (quadrant == 3) { //Backward quadrant
+        } else if (quadrant == 3) { //Facing backward
             GravityBackward();
-        } else if (quadrant == 4) { //Left quadrant
+        } else if (quadrant == 4) { //Facing left
             GravityLeft();
-        }
-    }
+        } //End if (quadrant)
 
-    //Change gravity forward
-    void GravityForward() {
+    } //End GravityHor()
 
+    //GravityForward() rotates the player "forward" (-90 degrees on relative x-axis)
+    private void GravityForward() {
+
+        //Check gravity
         if (gravity == "-y" || gravity == "z") { //If -y or z gravities
-            gravityBlock.transform.Rotate(-90, 0, 0, Space.World);
+            rotationBlock.transform.Rotate(-90, 0, 0, Space.World);
         } else if (gravity == "y" || gravity == "-z") { //If y or -z gravities
-            gravityBlock.transform.Rotate(90, 0, 0, Space.World);
+            rotationBlock.transform.Rotate(90, 0, 0, Space.World);
         } else if (gravity == "x") { //If x gravity
-            gravityBlock.transform.Rotate(0, 0, 90, Space.World);
+            rotationBlock.transform.Rotate(0, 0, 90, Space.World);
         } else if (gravity == "-x") { //If -x gravity
-            gravityBlock.transform.Rotate(0, 0, -90, Space.World);
-        }
+            rotationBlock.transform.Rotate(0, 0, -90, Space.World);
+        } //End if (gravity)
 
-    }
+    } //End GravityForward()
 
-    //Change gravity backward
-    void GravityBackward() {
+    //GravityBackward() rotates the player "backward" (90 degrees on relative x-axis)
+    private void GravityBackward() {
 
+        //Check gravity
         if (gravity == "-y" || gravity == "z") { //If -y or z gravities
-            gravityBlock.transform.Rotate(90, 0, 0, Space.World);
+            rotationBlock.transform.Rotate(90, 0, 0, Space.World);
         } else if (gravity == "y" || gravity == "-z") { //If y or -z gravities
-            gravityBlock.transform.Rotate(-90, 0, 0, Space.World);
+            rotationBlock.transform.Rotate(-90, 0, 0, Space.World);
         } else if (gravity == "x") { //If x gravity
-            gravityBlock.transform.Rotate(0, 0, -90, Space.World);
+            rotationBlock.transform.Rotate(0, 0, -90, Space.World);
         } else if (gravity == "-x") { //If -x gravity
-            gravityBlock.transform.Rotate(0, 0, 90, Space.World);
-        }
+            rotationBlock.transform.Rotate(0, 0, 90, Space.World);
+        } //End if (gravity)
 
-    }
+    } //End GravityBackward()
 
-    //Change gravity right
-    void GravityRight() {
+    //GravityRight() rotates the player "right" (90 degrees on relative z-axis)
+    private void GravityRight() {
 
+        //Check gravity
         if (gravity == "-y" || gravity == "y") { //If y gravities
-            gravityBlock.transform.Rotate(0, 0, 90, Space.World);
+            rotationBlock.transform.Rotate(0, 0, 90, Space.World);
         } else { //If x or z gravities
-            gravityBlock.transform.Rotate(0, 90, 0, Space.World);
-        }
+            rotationBlock.transform.Rotate(0, 90, 0, Space.World);
+        } //End if (gravity) 
 
-    }
+    } //End GravityRight()
 
-    //Change gravity left
-    void GravityLeft() {
+    //GravityRight() rotates the player "left" (-90 degrees on relative z-axis)
+    private void GravityLeft() {
 
+        //Check gravity
         if (gravity == "-y" || gravity == "y") { //If y gravities
-            gravityBlock.transform.Rotate(0, 0, -90, Space.World);
+            rotationBlock.transform.Rotate(0, 0, -90, Space.World);
         } else { //If x or z gravities
-            gravityBlock.transform.Rotate(0, -90, 0, Space.World);
-        }
+            rotationBlock.transform.Rotate(0, -90, 0, Space.World);
+        } //End if (gravity) 
 
+    } //End GravityLeft()
+
+
+    //RotatePlayer() will rotate the player when gravity is switching towards rotation block
+    private void RotatePlayer() {
+
+        //Player rotation as Quaternion
+        Quaternion playerRotation;
+        playerRotation = controller.transform.rotation;
+
+        if (gravitySwitching) { //If gravity is switching            
+
+            //Lerp playerRotation towards rotation block and apply it to player
+            playerRotation = Quaternion.Lerp(controller.transform.rotation, rotationBlock.transform.rotation, Time.deltaTime * 10);
+            //controller.transform.rotation = playerRotation;
+            playerControllerScript.targetRotation = playerRotation;
+
+            //Check if full rotated
+            if (Mathf.Abs(controller.transform.eulerAngles.x - rotationBlock.transform.eulerAngles.x) <= 1 &&
+                Mathf.Abs(controller.transform.eulerAngles.y - rotationBlock.transform.eulerAngles.y) <= 1 &&
+                Mathf.Abs(controller.transform.eulerAngles.z - rotationBlock.transform.eulerAngles.z) <= 1) {
+
+                controller.transform.rotation = rotationBlock.transform.rotation; //Completely rotate player
+
+                gravitySwitching = false; //Turn of gravitySwitching
+                //cameraSwitching = true;
+
+            } //End if (fully rotated)
+
+            Invoke("SetCameraSwitching", 0.5f);
+
+        } //End if (gravitySwitching)
+
+    } //end RotatePlayer()
+
+    private void SetCameraSwitching() {
+        cameraSwitching = true;
     }
 
-    //Overall change gravity method
-    void ChangeGravity() {
+    private void RotateCamera() {
 
-        gravityBlock.transform.rotation = player.transform.rotation; //Initialise gravity block rotation
+        if (cameraSwitching) {
 
-        if (Input.GetButtonDown("Jump")) { //Spacebar
+            Vector3 cameraUp, targetRot;
+            targetRot = new Vector3(Mathf.Round(gravityBlock.transform.up.x), Mathf.Round(gravityBlock.transform.up.y), Mathf.Round(gravityBlock.transform.up.z));
+            //targetRot = gravityBlock.transform.up;
+            cameraUp = camera.transform.up;
 
-            GravityUp();
+            cameraUp = Vector3.Lerp(cameraUp, targetRot, Time.deltaTime * 15);
+            //cameraUp = Vector3.MoveTowards(cameraUp, targetRot, Time.deltaTime * 20);
 
-            gravityRingRotator.direction = 0;
+            cameraScript.gravityUpwards = cameraUp;            
 
-        } else if (Input.GetButtonDown("Vertical")) { //Vertical buttons
+            if (Mathf.Abs(camera.transform.up.x - gravityBlock.transform.up.x) <= 0.05 &&
+                Mathf.Abs(camera.transform.up.y - gravityBlock.transform.up.y) <= 0.05 &&
+                Mathf.Abs(camera.transform.up.z - gravityBlock.transform.up.z) <= 0.05) {
 
-            if (Input.GetAxis("Vertical") > 0) { //Forward button
-                GravityHor(1);
-                gravityRingRotator.direction = 1;
-            } else { //Backward button
-                GravityHor(3);
-                gravityRingRotator.direction = 3;
+                cameraScript.gravityUpwards = targetRot;
+
+                cameraSwitching = false;
+
             }
-
-        } else if (Input.GetButtonDown("Horizontal")) { //Horizontal buttons
-
-            if (Input.GetAxis("Horizontal") > 0) { //Right button
-                GravityHor(2);
-                gravityRingRotator.direction = 2;
-            } else { //Left button
-                GravityHor(4);
-                gravityRingRotator.direction = 4;
-            }
-
-        } //End if (button)
-
-        gravityChanging = true; //Gravity changing is true
-
-        gravityCharge -= GRAVITY_COST; //Decrease gravity charge
-
-    } //End ChangeGravity()
-
-    //Set gravity string reading from gravityBlock
-    void SetGravity() {
-
-        int gravBlockUpX = Mathf.RoundToInt(gravityBlock.transform.up.x);
-        int gravBlockUpY = Mathf.RoundToInt(gravityBlock.transform.up.y);
-        int gravBlockUpZ = Mathf.RoundToInt(gravityBlock.transform.up.z);
-
-        if (gravBlockUpY == Vector3.up.y) {
-            gravity = "-y";
-        } else if (gravBlockUpY == Vector3.down.y) {
-            gravity = "y";
-        } else if (gravBlockUpZ == Vector3.back.z) {
-            gravity = "z";
-        } else if (gravBlockUpX == Vector3.left.x) {
-            gravity = "x";
-        } else if (gravBlockUpZ == Vector3.forward.z) {
-            gravity = "-z";
-        } else if (gravBlockUpX == Vector3.right.x) {
-            gravity = "-x";
-        } else {
-            gravity = null;
         }
-
     }
 
-    //Set quadrant (yRot)
-    void SetQuadrant() {
+    //SetQuadrant() sets the quadrant variable based on the relative y-rotation of the 
+    private void SetQuadrant() {
 
-        float yRot = vertArrows.GetComponent<VertArrowsScript>().yRot; //relative y-rotation
+        float yRot = vertArrowsScript.GetYRot(); //relative y-rotation
 
-        if (315 < yRot || yRot <= 45) { //Forward quadrant
+        //Check yRot
+        if (315 < yRot || yRot <= 45) { //Facing forward
             quadrant = 1;
-        } else if (45 < yRot && yRot <= 135) { //Right quadrant
+        } else if (45 < yRot && yRot <= 135) { //Facing right
             quadrant = 2;
-        } else if (135 < yRot && yRot <= 225) { //Backward quadrant
+        } else if (135 < yRot && yRot <= 225) { //Facing backward
             quadrant = 3;
-        } else if (225 < yRot && yRot <= 315) { //Left quadrant
+        } else if (225 < yRot && yRot <= 315) { //Facing left
             quadrant = 4;
-        }
-    }
+        } //End if (yRot)
 
-    //Rotate RotationBlock
-    void RotateRotationBlock() {
+    } //End SetQuadrant() 
 
-        if (gravity == "-y") {
-            rotationBlock.transform.rotation = Quaternion.Euler(0, 0, 0);
-        } else if (gravity == "y") {
-            rotationBlock.transform.rotation = Quaternion.Euler(0, 0, 180);
-        } else if (gravity == "z") {
-            rotationBlock.transform.rotation = Quaternion.Euler(-90, 0, 0);
-        } else if (gravity == "-z") {
-            rotationBlock.transform.rotation = Quaternion.Euler(-90, -180, 0);
-        } else if (gravity == "x") {
-            rotationBlock.transform.rotation = Quaternion.Euler(-90, 90, 0);
-        } else if (gravity == "-x") {
-            rotationBlock.transform.rotation = Quaternion.Euler(-90, -90, 0);
+
+    //SetCharge() recharges the gravity charge and sets haveCharge accordingly
+    private void SetCharge() {
+
+        if (rechargeOn) { //If recharge is on
+            gravityCharge = Mathf.Min(GRAVITY_MAX, gravityCharge + rechargeRate); //Recharge gravity charge
         }
 
-    }
+        if (gravityCharge < GRAVITY_COST) { //If gravity charge doesn't have enough for a gravity switch
+            haveCharge = false;
+        } else {
+            haveCharge = true;
+        }
 
-}
+    } //End SetCharge()
+
+
+    //SetShiftPressed() retrieves shiftPressed, called in ControllerScript
+    public void SetShiftPressed(bool thisShiftPressed) {
+        shiftPressed = thisShiftPressed;
+    } //End SetShiftPressed()
+
+    //SetAxes() retrieves input axes, called in ControllerScript
+    public void SetAxes(float thisJumpAxis, float thisVerticalAxis, float thisHorizontalAxis) {
+        jumpAxis = thisJumpAxis;
+        verticalAxis = thisVerticalAxis;
+        horizontalAxis = thisHorizontalAxis;
+    } //End GetAxes()
+
+    //GetGravitySwitching() returns gravitySwitching, called in ControllerScript
+    public bool GetGravitySwitching() {
+        return gravitySwitching;
+    } //End GetGravitySwitching()
+
+} //End GravityAxisScript

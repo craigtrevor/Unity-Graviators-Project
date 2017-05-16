@@ -3,25 +3,14 @@ using System.Collections;
 
 public class TPSCharacterController : MonoBehaviour {
 
-    //const float SPEED_INITIAL = 10f;
-    //const float SENSITIVITY_INITIAL = 2f;
+    const float SPEED_INITIAL = 10f;
+    const float SENSITIVITY_INITIAL = 2f;
 
-    //const float JUMP_MULTIPLIER_INITIAL = 0.75f;
-
+    const float JUMP_MULTIPLIER_INITIAL = 0.75f;
     const float GRAVITY = -15f;
 
-    public int EP; // enhancement points
-
-    public float attack;
-    public float health; 
     public float speed;
-
     public float sensitivity;
-
-    public float jumpMultiplier;
-    public float jumpForce;
-
-    public bool isGrounded;
 
     float moveFB;
     float moveLR;
@@ -30,38 +19,36 @@ public class TPSCharacterController : MonoBehaviour {
     float rotY;
     float vertVelocity;
 
+    public float jumpMultiplier;
+    public float jumpForce;
+    public bool isGrounded;
+
     GameObject cameraPivot;
     GameObject gravityAxis;
-    GameObject rotationBlock;
-    GameObject vertArrows;
+    GameObject gravityBlock;
+    //GameObject vertArrows;
 
     GravityAxisScript gravityAxisScript;
-    RotationBlockScript rotationBlockScript;
+    GravityBlockScript gravityBlockScript;
+
     CharacterController controller;
 
     // Use this for initialization
     void Start() {
 
-        //speed = SPEED_INITIAL;
-        //sensitivity = SENSITIVITY_INITIAL;
+        speed = SPEED_INITIAL;
+        sensitivity = SENSITIVITY_INITIAL;
 
-        //jumpMultiplier = JUMP_MULTIPLIER_INITIAL;
-
-        attack = 5f;
-        health = 20f;
-        speed = 10f;
-        sensitivity = 2f;
-        jumpMultiplier = 0.75f;
-
+        jumpMultiplier = JUMP_MULTIPLIER_INITIAL;
         isGrounded = false;
 
         cameraPivot = GameObject.Find("CameraPivot");
         gravityAxis = GameObject.Find("GravityAxis");
-        rotationBlock = GameObject.Find("RotationBlock");
-        vertArrows = GameObject.Find("VertArrows");
+        gravityBlock = GameObject.Find("GravityBlock");
+        //vertArrows = GameObject.Find("VertArrows");
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
-        rotationBlockScript = rotationBlock.GetComponent<RotationBlockScript>();
+        gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
 
         controller = GetComponent<CharacterController>(); //Assign controller
 
@@ -75,10 +62,15 @@ public class TPSCharacterController : MonoBehaviour {
         //If shift is pressed (gravity selection)
         if (Input.GetButton("Crouch")) {
 
-            gravityAxisScript.shiftPressed = true; ; //shiftPressed true
+            gravityAxisScript.SetShiftPressed(true); //shiftPressed true
+
+            if ((Input.GetButton("Jump") || Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+                gravityAxisScript.SetAxes(Input.GetAxis("Jump"), Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+                gravityAxisScript.ChangeGravity();
+            }
 
         } else {
-            gravityAxisScript.shiftPressed = false; ; //shiftPressed false
+            gravityAxisScript.SetShiftPressed(false); ; //shiftPressed false
 
             if (isGrounded == true) { //If on ground
 
@@ -103,10 +95,9 @@ public class TPSCharacterController : MonoBehaviour {
 
         //Calculate movement
         Vector3 movement = new Vector3(moveLR, vertVelocity, moveFB);
-
-        if (!gravityAxisScript.gravityChanging) {
+        if (!gravityAxisScript.GetGravitySwitching()) {
             transform.Rotate(0, rotX, 0);
-            cameraPivot.transform.localRotation = Quaternion.Euler(rotY, 0, 0);
+            //cameraPivot.transform.localRotation = Quaternion.Euler(rotY, 0, 0);
         }
 
         //Move player
@@ -114,11 +105,12 @@ public class TPSCharacterController : MonoBehaviour {
         controller.Move(movement * Time.deltaTime);
 
         //Update vertArrow rotation
-        vertArrows.transform.rotation = transform.rotation; //Set vertArrows to player rotation
+        //vertArrows.transform.rotation = transform.rotation; //Set vertArrows to player rotation
 
-        rotationBlockScript.UpdatePosition(); //Update rotation block position
+        gravityBlockScript.UpdatePosition(); //Update gravity block position
     }
     
+
     //FixedUpdate
     void FixedUpdate() {
 

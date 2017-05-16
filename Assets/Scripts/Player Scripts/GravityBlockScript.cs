@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RotationBlockScript : MonoBehaviour {
+public class GravityBlockScript : MonoBehaviour {
 
-    GameObject player;
+    public GameObject controller;
 
 	// Use this for initialization
 	void Start () {
-
-        player = GameObject.Find("PlayerModel");
 	
 	}
 	
@@ -19,10 +17,10 @@ public class RotationBlockScript : MonoBehaviour {
 	
 	}
 
-    //Update position to same as player position
+    //Update position to same as controller position
     public void UpdatePosition() {
 
-        transform.position = player.transform.position;
+        transform.position = controller.transform.position;
 
     }
 }
