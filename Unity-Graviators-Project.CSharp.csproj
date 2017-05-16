@@ -86,10 +86,16 @@
     <Compile Include="Assets\Scripts\Player Scripts\GravityAxisScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\GravityAxisTextScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\GravityBlockScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\HorArrowsScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\TPSCharacterController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\VertArrowsScript.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Dash.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponOrbit.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponSpawn.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
