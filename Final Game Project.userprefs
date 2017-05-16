@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" Line="61" Column="21" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" Line="9" Column="29" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs" Line="3" Column="19" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Dash.cs" Line="11" Column="64" />
+      <File FileName="Assets\Scripts\Weapon Scripts\WeaponSpawn.cs" Line="10" Column="33" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
