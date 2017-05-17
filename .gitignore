@@ -8,7 +8,6 @@ Library/EditorUserSettings.asset
 Library/InspectorExpandedItems.asset
 Library/LastSceneManagerSetup.txt
 Library/LibraryFormatVersion.txt
-Library/ProjectSettings.asset
 Library/metadata/00/00000000000000004000000000000000
 Library/metadata/00/00000000000000004000000000000000.info
 Library/metadata/00/00000000000000004100000000000000
@@ -116,7 +115,6 @@ Library/ShaderCache/d/db17636aceb8332c56fa0f341f1bc591.bin
 Library/ShaderCache/e/ec1a43e8b11629135a216c730f07811f.bin
 Library/UnityAssemblies/version.txt
 Library/assetDatabase3
-ProjectSettings/UnityConnectSettings.asset
 Unity-Graviators-Project.sln
 Library/metadata/00/00000000000000001000000000000000
 Library/metadata/00/00000000000000001000000000000000.info
