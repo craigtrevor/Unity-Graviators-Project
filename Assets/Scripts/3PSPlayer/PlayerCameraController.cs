@@ -171,7 +171,7 @@ public class PlayerCameraController : MonoBehaviour {
 
     void LookAtTarget() {
         Quaternion targetRotation = Quaternion.LookRotation(targetPos - transform.position, gravityUpwards);
-        print(gravityUpwards);
+        //print(gravityUpwards);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, position.lookSmooth * Time.deltaTime);
     }
 

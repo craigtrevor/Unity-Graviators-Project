@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(Network_PlayerStats))]
 public class Network_PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
@@ -8,6 +9,8 @@ public class Network_PlayerSetup : NetworkBehaviour
     [SerializeField]
     GameObject[] gameobjectsToDisable;
 
+    [SerializeField]
+    string remoteLayerName = "RemotePlayer";
 
     Camera sceneCamera;
 
@@ -15,15 +18,8 @@ public class Network_PlayerSetup : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            for (int i = 0; i < componentsToDisable.Length; i++)
-            {
-                componentsToDisable[i].enabled = false;
-            }
-
-            for (int i = 0; i < gameobjectsToDisable.Length; i++)
-            {
-                gameobjectsToDisable[i].SetActive(false);
-            }
+            DisableComponents();
+            AssignRemoteLayer();
         }
 
         else
@@ -37,11 +33,41 @@ public class Network_PlayerSetup : NetworkBehaviour
         }
     }
 
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        string _netID = GetComponent<NetworkIdentity>().netId.ToString();
+        Network_PlayerStats _player = GetComponent<Network_PlayerStats>();
+
+        Network_GameManager.RegisterPlayer(_netID, _player);
+    }
+
+    void AssignRemoteLayer()
+    {
+        gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
+    }
+
+    void DisableComponents()
+    {
+        for (int i = 0; i < componentsToDisable.Length; i++)
+        {
+            componentsToDisable[i].enabled = false;
+        }
+
+        for (int i = 0; i < gameobjectsToDisable.Length; i++)
+        {
+            gameobjectsToDisable[i].SetActive(false);
+        }
+    }
+
     void OnDisable()
     {
         if (sceneCamera != null)
         {
             sceneCamera.gameObject.SetActive(true);
         }
+
+        Network_GameManager.UnRegisterPlayer(transform.name);
     }
 }
