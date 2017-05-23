@@ -59,6 +59,9 @@ public class TPSCharacterController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        if (UI_PauseMenu.isOn)
+            return;
+
         //If shift is pressed (gravity selection)
         if (Input.GetButton("Crouch")) {
 

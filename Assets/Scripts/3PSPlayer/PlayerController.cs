@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void GetInput() {
+
         forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
         rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
         turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
@@ -100,6 +101,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+
+        if (UI_PauseMenu.isOn)
+            return;
+
         GetInput();
         Turn();
 

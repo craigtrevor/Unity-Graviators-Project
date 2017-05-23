@@ -81,8 +81,11 @@
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSetup.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
@@ -92,9 +95,10 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\VertArrowsScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" />
-    <Compile Include="Assets\Scripts\TrapScripts\ConfuseTrap.cs" />
-    <Compile Include="Assets\Scripts\TrapScripts\GravityTrap1prototype.cs" />
-    <Compile Include="Assets\Scripts\TrapScripts\spiketrap.cs" />
+    <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
+    <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
+    <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Dash.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
