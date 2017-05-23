@@ -43,11 +43,14 @@ public class PlayerController : MonoBehaviour {
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
 
+	public Animator playerAnimator;
+
     public Quaternion TargetRotation {
         get { return targetRotation; }
     }
 
     bool Grounded() {
+		playerAnimator.SetBool("InAir", false);
         return Physics.Raycast(transform.position, -transform.up, moveSettings.distToGrounded, moveSettings.ground);
     }
 
@@ -124,11 +127,17 @@ public class PlayerController : MonoBehaviour {
     void Run() {
 
         if (Mathf.Abs(forwardInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
+			
             // Walking - Alex
+			playerAnimator.SetBool("Moving", true);
+
             // move
             velocity.z = moveSettings.forwardVel * forwardInput;
         } else {
             // zero velocity
+
+			playerAnimator.SetBool("Moving", false);
+
             velocity.z = 0;
         }
     }
@@ -164,6 +173,7 @@ public class PlayerController : MonoBehaviour {
 
         if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
             // Jumping - Alex
+			playerAnimator.SetTrigger("Jump");
             // jump
             velocity.y = moveSettings.jumpVel;
         } else if (jumpInput == 0 && Grounded()) {
@@ -171,6 +181,7 @@ public class PlayerController : MonoBehaviour {
             velocity.y = 0;
         } else {
             // decrease velocity.y
+			playerAnimator.SetBool("InAir", true);
             velocity.y -= physSettings.downAccel;
         }
     }
