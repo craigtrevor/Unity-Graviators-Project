@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour {
             gravityAxisScript.SetShiftPressed(true); //shiftPressed true
 
             if ((Input.GetButton("Jump") || Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+                // Used Gravity || in the air - Alex
                 gravityAxisScript.SetAxes(Input.GetAxis("Jump"), Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
                 gravityAxisScript.ChangeGravity();
             }
@@ -112,18 +113,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+
         Run();
         Strafe();
         Jump();
-        //FreezeRotation();
 
         rBody.velocity = transform.TransformDirection(velocity);
-        //rBody.velocity = Vector3.zero;
-        //rBody.AddRelativeForce(velocity, ForceMode.VelocityChange);
     }
 
     void Run() {
+
         if (Mathf.Abs(forwardInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
+            // Walking - Alex
             // move
             velocity.z = moveSettings.forwardVel * forwardInput;
         } else {
@@ -160,7 +161,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Jump() {
+
         if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
+            // Jumping - Alex
             // jump
             velocity.y = moveSettings.jumpVel;
         } else if (jumpInput == 0 && Grounded()) {
