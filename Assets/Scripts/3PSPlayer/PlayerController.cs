@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour {
         rBody.velocity = transform.TransformDirection(velocity);
 
 		//Attack Placeholder ALEX
-		if (Input.GetButtonUp ("Fire1")) {
+		if (Input.GetButtonDown ("Fire1")) {
 			playerAnimator.SetTrigger ("Attack");
 		}
     }
