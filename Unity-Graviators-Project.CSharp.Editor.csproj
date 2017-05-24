@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CCBF56CB-2B4D-3104-D9C5-50035392F83B}</ProjectGuid>
+    <ProjectGuid>{002682DC-04D9-9772-C1A3-1A5264B1A334}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.6.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -52,11 +52,26 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
@@ -64,49 +79,60 @@
     <Reference Include="nunit.framework">
       <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
-    <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
-    <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
-    <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
-    <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
-    <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSetup.cs" />
-    <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerStats.cs" />
-    <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisTextScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\VertArrowsScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" />
-    <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
-    <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
-    <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Dash.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponOrbit.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponSpawn.cs" />
+    <ProjectReference Include="Unity-Graviators-Project.CSharp.csproj">
+      <Project>{CCBF56CB-2B4D-3104-D9C5-50035392F83B}</Project>
+      <Name>Unity-Graviators-Project.CSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\_MK\MKToon\Editor\MKToonEditor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
+    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
+    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonLighting.cginc" />
+    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonSurf.cginc" />
+    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonV.cginc" />
+    <None Include="Assets\_MK\MKToon\Shader\MKToonDefault.shader" />
+    <None Include="Assets\_MK\MKToon\Shader\MKToonDefaultOutline.shader" />
+    <None Include="Assets\_MK\MKToon\Shader\MKToonExt.shader" />
+    <None Include="Assets\_MK\MKToon\Shader\MKToonTransparent.shader" />
+    <None Include="Assets\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
