@@ -39,15 +39,16 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>f:/Program files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>f:/Program files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\IgnoreBones.cs" />
      <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
