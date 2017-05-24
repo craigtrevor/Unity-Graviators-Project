@@ -1,8 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TrapScripts\ConfuseTrap.cs">
     <Files>
       <File FileName="Assets\Scripts\TrapScripts\ConfuseTrap.cs" Line="1" Column="1" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\3PSPlayer\PlayerController.cs">
+    <Files>
+      <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="172" Column="18" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" Line="1" Column="1" />
+>>>>>>> c8ceadce2239ed2ca8d803ea111ec715f21958e1
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -20,6 +20,9 @@ public class GravityBlockScript : MonoBehaviour {
     //Update position to same as controller position
     public void UpdatePosition() {
 
+        if (UI_PauseMenu.isOn)
+            return;
+
         transform.position = controller.transform.position;
 
     }

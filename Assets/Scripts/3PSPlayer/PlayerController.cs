@@ -43,11 +43,14 @@ public class PlayerController : MonoBehaviour {
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
 
+	public Animator playerAnimator;
+
     public Quaternion TargetRotation {
         get { return targetRotation; }
     }
 
     bool Grounded() {
+		playerAnimator.SetBool("InAir", false);
         return Physics.Raycast(transform.position, -transform.up, moveSettings.distToGrounded, moveSettings.ground);
     }
 
@@ -78,6 +81,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void GetInput() {
+
         forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
         rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
         turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
@@ -89,6 +93,7 @@ public class PlayerController : MonoBehaviour {
             gravityAxisScript.SetShiftPressed(true); //shiftPressed true
 
             if ((Input.GetButton("Jump") || Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+                // Used Gravity || in the air - Alex
                 gravityAxisScript.SetAxes(Input.GetAxis("Jump"), Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
                 gravityAxisScript.ChangeGravity();
             }
@@ -100,6 +105,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+
+        if (UI_PauseMenu.isOn)
+            return;
+
         GetInput();
         Turn();
 
@@ -107,22 +116,33 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+
         Run();
         Strafe();
         Jump();
-        //FreezeRotation();
 
         rBody.velocity = transform.TransformDirection(velocity);
-        //rBody.velocity = Vector3.zero;
-        //rBody.AddRelativeForce(velocity, ForceMode.VelocityChange);
+
+		//Attack Placeholder ALEX
+		if (Input.GetButtonUp ("Fire1")) {
+			playerAnimator.SetTrigger ("Attack");
+		}
     }
 
     void Run() {
+
         if (Mathf.Abs(forwardInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
+			
+            // Walking - Alex
+			playerAnimator.SetBool("Moving", true);
+
             // move
             velocity.z = moveSettings.forwardVel * forwardInput;
         } else {
             // zero velocity
+
+			playerAnimator.SetBool("Moving", false);
+
             velocity.z = 0;
         }
     }
@@ -155,7 +175,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Jump() {
+
         if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
+            // Jumping - Alex
+			playerAnimator.SetTrigger("Jump");
             // jump
             velocity.y = moveSettings.jumpVel;
         } else if (jumpInput == 0 && Grounded()) {
@@ -163,6 +186,7 @@ public class PlayerController : MonoBehaviour {
             velocity.y = 0;
         } else {
             // decrease velocity.y
+			playerAnimator.SetBool("InAir", true);
             velocity.y -= physSettings.downAccel;
         }
     }

@@ -101,6 +101,7 @@ public class PlayerCameraController : MonoBehaviour {
     }
 
     void GetInput() {
+
         vOrbitInput = Input.GetAxisRaw(input.ORBIT_VERTICAL);
         hOrbitInput = Input.GetAxisRaw(input.ORBIT_HORIZONTAL);
         hOrbitSnapInput = Input.GetAxisRaw(input.ORBIT_HORIZONTAL_SNAP);
@@ -113,12 +114,17 @@ public class PlayerCameraController : MonoBehaviour {
     }
 
     void Update() {
+
         GetInput();
         OrbitTarget();
         ZoomInOnTarget();
     }
 
     void FixedUpdate() {
+
+        if (UI_PauseMenu.isOn)
+            return;
+
         // moving
         MoveToTarget();
         // rotating
@@ -171,7 +177,7 @@ public class PlayerCameraController : MonoBehaviour {
 
     void LookAtTarget() {
         Quaternion targetRotation = Quaternion.LookRotation(targetPos - transform.position, gravityUpwards);
-        print(gravityUpwards);
+        //print(gravityUpwards);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, position.lookSmooth * Time.deltaTime);
     }
 
