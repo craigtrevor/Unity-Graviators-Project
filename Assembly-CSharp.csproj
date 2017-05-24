@@ -39,16 +39,36 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
+<<<<<<< HEAD
       <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+=======
+<<<<<<< HEAD
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+=======
+      <HintPath>f:/Program files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>f:/Program files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+>>>>>>> c8ceadce2239ed2ca8d803ea111ec715f21958e1
+>>>>>>> 7d77b1dadf85429c40349ded71833973f3d3cb6a
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\Animation Scripts\IgnoreBones.cs" />
+=======
+<<<<<<< HEAD
+     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSetup.cs" />
+=======
+>>>>>>> 7d77b1dadf85429c40349ded71833973f3d3cb6a
      <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
@@ -56,6 +76,7 @@
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSetup.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
+>>>>>>> c8ceadce2239ed2ca8d803ea111ec715f21958e1
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
@@ -65,11 +86,17 @@
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\VertArrowsScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" />
+<<<<<<< HEAD
+     <Compile Include="Assets\Scripts\TrapScripts\ConfuseTrap.cs" />
+     <Compile Include="Assets\Scripts\TrapScripts\GravityTrap1prototype.cs" />
+     <Compile Include="Assets\Scripts\TrapScripts\spiketrap.cs" />
+=======
      <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
+>>>>>>> c8ceadce2239ed2ca8d803ea111ec715f21958e1
      <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Dash.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
@@ -77,6 +104,27 @@
      <Compile Include="Assets\Scripts\Weapon Scripts\WeaponOrbit.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\WeaponSpawn.cs" />
  <Reference Include="UnityEngine.UI">
+<<<<<<< HEAD
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TestRunner">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+=======
  <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
@@ -96,6 +144,7 @@
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+>>>>>>> c8ceadce2239ed2ca8d803ea111ec715f21958e1
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
