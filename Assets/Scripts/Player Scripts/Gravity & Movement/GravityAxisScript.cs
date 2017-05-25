@@ -86,7 +86,7 @@ public class GravityAxisScript : MonoBehaviour {
         SetGravity();
         RotateGravityBlock();
         RotatePlayer();
-        RotateCamera(); //print(cameraSwitching);
+        //RotateCamera(); //print(cameraSwitching);
         SetQuadrant();
 
     } //End FixedUpdate()

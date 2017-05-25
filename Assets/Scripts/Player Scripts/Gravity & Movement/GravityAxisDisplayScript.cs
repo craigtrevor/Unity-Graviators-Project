@@ -57,7 +57,8 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     private void Start() {
 
         //Get GravityChargeUI Text
-        UIGravityChargeText = UIGravityCharge.GetComponent<Text>();
+        UIGravityChargeText = GameObject.Find("UIGravityCharge").GetComponent<Text>();
+        //UIGravityChargeText = UIGravityCharge.GetComponent<Text>();
 
 
     } //End Start()
