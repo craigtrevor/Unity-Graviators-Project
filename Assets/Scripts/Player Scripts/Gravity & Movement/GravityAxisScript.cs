@@ -11,7 +11,7 @@ public class GravityAxisScript : MonoBehaviour {
     private const int RECHARGE_RATE = 10;
 
     //Gravity variables
-    private string gravity;
+    public string gravity;
     private bool gravitySwitching;
     private bool cameraSwitching;
 
@@ -30,13 +30,13 @@ public class GravityAxisScript : MonoBehaviour {
 
     //Other Objects/Scripts
     public GameObject controller;
-    public GameObject camera;
+    public GameObject cameraPos;
     public GameObject vertArrows;
     public GameObject gravityBlock;
     public GameObject rotationBlock;
 
     private PlayerController playerControllerScript;
-    private PlayerCameraController cameraScript;
+    //private CameraPosScript cameraPosScript;
     private VertArrowsScript vertArrowsScript;
 
     private GravityAxisDisplayScript gravityAxisDisplayScript;
@@ -65,7 +65,7 @@ public class GravityAxisScript : MonoBehaviour {
 
         //Get Scripts
         playerControllerScript = controller.GetComponent<PlayerController>();
-        cameraScript = camera.GetComponent<PlayerCameraController>();
+        //cameraPosScript = cameraPos.GetComponent<CameraPosScript>();
         vertArrowsScript = vertArrows.GetComponent<VertArrowsScript>();
 
         gravityAxisDisplayScript = GetComponent<GravityAxisDisplayScript>();
@@ -315,13 +315,12 @@ public class GravityAxisScript : MonoBehaviour {
                 Mathf.Abs(controller.transform.eulerAngles.z - rotationBlock.transform.eulerAngles.z) <= 1) {
 
                 controller.transform.rotation = rotationBlock.transform.rotation; //Completely rotate player
+                gravitySwitching = false;
 
-                gravitySwitching = false; //Turn of gravitySwitching
+                //Invoke("SetCameraSwitching", 0.1f);
                 //cameraSwitching = true;
 
             } //End if (fully rotated)
-
-            Invoke("SetCameraSwitching", 0.5f);
 
         } //End if (gravitySwitching)
 
@@ -329,31 +328,30 @@ public class GravityAxisScript : MonoBehaviour {
 
     private void SetCameraSwitching() {
         cameraSwitching = true;
+        gravitySwitching = false; //Turn of gravitySwitching
     }
 
     private void RotateCamera() {
 
+
         if (cameraSwitching) {
 
-            Vector3 cameraUp, targetRot;
-            targetRot = new Vector3(Mathf.Round(gravityBlock.transform.up.x), Mathf.Round(gravityBlock.transform.up.y), Mathf.Round(gravityBlock.transform.up.z));
-            //targetRot = gravityBlock.transform.up;
-            cameraUp = camera.transform.up;
+            Transform cameraTransform, targetTransform;
+            targetTransform = gravityBlock.transform;
+            cameraTransform = cameraPos.transform;
 
-            cameraUp = Vector3.Lerp(cameraUp, targetRot, Time.deltaTime * 15);
-            //cameraUp = Vector3.MoveTowards(cameraUp, targetRot, Time.deltaTime * 20);
+            cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, targetTransform.rotation, Time.deltaTime * 10);
 
-            cameraScript.gravityUpwards = cameraUp;            
+            if (Mathf.Abs(cameraPos.transform.up.x - gravityBlock.transform.up.x) <= 0.1 &&
+                Mathf.Abs(cameraPos.transform.up.y - gravityBlock.transform.up.y) <= 0.1 &&
+                Mathf.Abs(cameraPos.transform.up.z - gravityBlock.transform.up.z) <= 0.1) {
 
-            if (Mathf.Abs(camera.transform.up.x - gravityBlock.transform.up.x) <= 0.05 &&
-                Mathf.Abs(camera.transform.up.y - gravityBlock.transform.up.y) <= 0.05 &&
-                Mathf.Abs(camera.transform.up.z - gravityBlock.transform.up.z) <= 0.05) {
-
-                cameraScript.gravityUpwards = targetRot;
+                cameraTransform.rotation = targetTransform.rotation;
 
                 cameraSwitching = false;
 
             }
+            //cameraPosScript.gravityUp = cameraTransform.up;
         }
     }
 
