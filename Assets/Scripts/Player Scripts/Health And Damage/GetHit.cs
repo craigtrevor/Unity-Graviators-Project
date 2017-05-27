@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GetHit : MonoBehaviour {
 
-	private bool gothit = false;
+	public bool gothit = false;
 	public bool cangethit= true;
 
-	public int health = 100;
 
 
 
@@ -27,9 +26,9 @@ public class GetHit : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (cangethit == true) 
+		if (cangethit == true) // can the player get hit
 		{
-			if (gothit == true) 
+			if (gothit == true) // was the player hit
 			{
 				StartCoroutine (changeback ());
 				cangethit = false;
@@ -47,14 +46,17 @@ public class GetHit : MonoBehaviour {
 			{
 				if(col.transform.root != transform.root)
 				{
-					if (col.GetComponent<DamageStorage> ().Damage > this.GetComponentInChildren<DamageStorage> ().Damage) {
-						Debug.Log ("i am hurt");
-						transform.GetComponent<Renderer> ().material.color = Color.red;
-						health = health - col.GetComponent<DamageStorage> ().Damage;
-						gothit = true;
+					if (col.GetComponent<DamageStorage> ().Damage == this.GetComponentInChildren<DamageStorage> ().Damage && GetComponent<Attack>().Attaking == true) {
+						knockBack();
+
+
 					} else 
 					{
-						knockBack();
+						Debug.Log ("i am hurt");
+						transform.GetComponent<Renderer> ().material.color = Color.red;
+						GetComponent<Network_PlayerStats> ().maxHealth = GetComponent<Network_PlayerStats> ().maxHealth - col.GetComponent<DamageStorage> ().Damage;
+						//col.GetComponentInParent<Dash> ().chargePercent += col.GetComponent<DamageStorage> ().Damage;
+						gothit = true;
 					}
 				}
 			}
@@ -62,7 +64,7 @@ public class GetHit : MonoBehaviour {
 			{	
 				Debug.Log ("i am hurt");
 				transform.GetComponent<Renderer> ().material.color = Color.red;
-				health = health - col.GetComponent<DamageStorage> ().Damage;
+				GetComponent<Network_PlayerStats> ().maxHealth = GetComponent<Network_PlayerStats> ().maxHealth - col.GetComponent<DamageStorage> ().Damage;
 				gothit = true;
 			}
 		}

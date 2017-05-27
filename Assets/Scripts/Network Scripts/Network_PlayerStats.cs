@@ -3,8 +3,7 @@ using UnityEngine.Networking;
 
 public class Network_PlayerStats : NetworkBehaviour {
 
-    [SerializeField]
-    private int maxHealth = 100;
+    public int maxHealth = 100; // changed to public so script can access it
 
     [SyncVar]
     private int currentHealth;
