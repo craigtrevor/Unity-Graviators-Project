@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GetHit : MonoBehaviour {
 
+	[SerializeField]
+	private Rigidbody RB;
+
+
 	public bool gothit = false;
 	public bool cangethit= true;
 
@@ -20,6 +24,7 @@ public class GetHit : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		RB = GetComponentInChildren<Rigidbody> ();
 
 	}
 
@@ -46,10 +51,9 @@ public class GetHit : MonoBehaviour {
 			{
 				if(col.transform.root != transform.root)
 				{
-					if (col.GetComponent<DamageStorage> ().Damage == this.GetComponentInChildren<DamageStorage> ().Damage && GetComponent<Attack>().Attaking == true) {
+					if (col.GetComponent<DamageStorage> ().Damage == this.GetComponentInChildren<DamageStorage> ().Damage && GetComponent<Attack>().Attaking == true)
+					{
 						knockBack();
-
-
 					} else 
 					{
 						Debug.Log ("i am hurt");
@@ -60,12 +64,20 @@ public class GetHit : MonoBehaviour {
 					}
 				}
 			}
-			if (col.tag == "Weapon") 
+			if (col.tag == "ThrowingSword") 
 			{	
 				Debug.Log ("i am hurt");
 				transform.GetComponent<Renderer> ().material.color = Color.red;
-				GetComponent<Network_PlayerStats> ().maxHealth = GetComponent<Network_PlayerStats> ().maxHealth - col.GetComponent<DamageStorage> ().Damage;
+				GetComponent<Network_PlayerStats> ().maxHealth = GetComponent<Network_PlayerStats> ().maxHealth - col.GetComponent<damageRange> ().Damage;
 				gothit = true;
+			}
+
+			if (col.tag == "dashHitBox") 
+			{
+				if (col.transform.root != transform.root) 
+				{
+					GetComponent<Network_PlayerStats> ().maxHealth = GetComponent<Network_PlayerStats> ().maxHealth - col.GetComponent<DashDamage> ().damage;
+				}
 			}
 		}
 	}
@@ -89,13 +101,10 @@ public class GetHit : MonoBehaviour {
 
 	IEnumerator tinydelay()
 	{	
-		CharacterController controller = GetComponent<CharacterController> ();
-		for(int i=0; i<distance; i++){
-			controller.Move (cameraRotation.forward*-1 * thrust);
-			yield return new WaitForSeconds (waittime);
-			Debug.Log ("waited for " + waittime + " seconds");
-		}
-
+		GetComponent<PlayerController> ().enabled = false;
+		RB.AddForce(cameraRotation.forward*-thrust);
+		yield return new WaitForSeconds (waittime);
+		GetComponent<PlayerController> ().enabled = true;
 	}
 
 }

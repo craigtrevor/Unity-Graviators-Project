@@ -73,7 +73,9 @@
      <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DashDamage.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
      <None Include="Assets\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
      <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonSurf.cginc" />
      <None Include="Assets\_MK\MKToon\Shader\MKToonExt.shader" />

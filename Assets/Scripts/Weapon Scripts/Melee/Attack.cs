@@ -33,8 +33,6 @@ public class Attack : MonoBehaviour {
 
 	void startAttack()
 	{
-		//var melee = (GameObject)Instantiate (meleehitboxObject, MeleeSpawn.position, MeleeSpawn.rotation,this.gameObject.transform);
-		//melee =  (GameObject) Instantiate (meleehitboxObject,MeleeSpawn.position,MeleeSpawn.rotation); 
 		melee =  (GameObject) Instantiate (meleehitboxObject,MeleeSpawn.position,MeleeSpawn.rotation,this.gameObject.transform); 
 		CanAttack = false;
 		Attaking = false;

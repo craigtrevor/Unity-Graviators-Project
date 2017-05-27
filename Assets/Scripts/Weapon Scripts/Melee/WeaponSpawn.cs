@@ -7,8 +7,11 @@ public class WeaponSpawn : MonoBehaviour {
 	public GameObject weaponPrefab;
 	public Transform cameraRotation;
 	public Transform weaponSpawn;
-	private int numberofWeapons = 0;
+	[SerializeField]
+	private int numberofWeapons = 3;
 	public int weaponLimit = 3;
+	[SerializeField]
+	private bool canfire = true;
 
 
 
@@ -28,15 +31,11 @@ public class WeaponSpawn : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (numberofWeapons == 0)
-		{
-			StartCoroutine (spawnDelay ());	
-		}
 
 		if(Input.GetKeyDown(KeyCode.Mouse1) && Time.time >nextFire)
 		{
 			nextFire = Time.time + firerate;
-			if (numberofWeapons > 0) {
+			if (numberofWeapons > 0 && canfire == true) {
 				Fire ();
 			}
 		}
@@ -46,9 +45,11 @@ public class WeaponSpawn : MonoBehaviour {
 	{
 		for (int i = 0; i < weaponLimit; i++) 
 		{
-			Spawn ();
 			yield return new WaitForSeconds (1);
-		}		
+			Spawn ();
+		}	
+
+		canfire = true;
 
 	}
 
@@ -65,11 +66,18 @@ public class WeaponSpawn : MonoBehaviour {
 	void Fire()
 	{
 
-			var meelee = (GameObject)Instantiate (weaponPrefab, weaponSpawn.position, cameraRotation.rotation);
-			meelee.GetComponent<Rigidbody> ().AddForce (cameraRotation.forward * thrust);
+		var meelee = (GameObject)Instantiate (weaponPrefab, weaponSpawn.position, cameraRotation.rotation);
+		meelee.GetComponent<Rigidbody>().AddForce (cameraRotation.forward * thrust);
+
+
 			numberofWeapons -= 1;
 			Debug.Log ("i have fired a weapon and am now at"+ numberofWeapons);
 			Destroy (meelee, Life);
-		
+
+		if (numberofWeapons == 0)
+		{
+			canfire = false;
+			StartCoroutine (spawnDelay ());	
+		}
 	}
 }

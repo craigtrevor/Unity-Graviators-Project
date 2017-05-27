@@ -26,9 +26,6 @@ public class DamageStorage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Vector3 vel = (player.transform.position - oldpos) / Time.deltaTime;
-		//oldpos = player.transform.position;
-		//speed = vel.magnitude;
 		speed = RB.velocity.magnitude;
 
 		if (speed < lowdamagevelocity) {
