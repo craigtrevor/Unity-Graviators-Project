@@ -27,8 +27,6 @@ public class Attack : MonoBehaviour {
 		}
 
 		melee.transform.position = MeleeSpawn.transform.position;
-
-
 	}
 
 	void startAttack()

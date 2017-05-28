@@ -58,9 +58,9 @@ public class GetHit : MonoBehaviour {
 					{
 						Debug.Log ("i am hurt");
 						transform.GetComponent<Renderer> ().material.color = Color.red;
-						GetComponent<Network_PlayerStats> ().maxHealth = GetComponent<Network_PlayerStats> ().maxHealth - col.GetComponent<DamageStorage> ().Damage;
-						//col.GetComponentInParent<Dash> ().chargePercent += col.GetComponent<DamageStorage> ().Damage;
-						gothit = true;
+                        GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponent<DamageStorage>().Damage;
+                        //col.GetComponentInParent<Dash> ().chargePercent += col.GetComponent<DamageStorage> ().Damage;
+                        gothit = true;
 					}
 				}
 			}

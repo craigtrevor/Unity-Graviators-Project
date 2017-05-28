@@ -13,6 +13,8 @@ public class Network_PlayerSetup : NetworkBehaviour
     string remoteLayerName = "RemotePlayer";
 
     Camera sceneCamera;
+    public NetworkAnimator netAnim;
+
 
     void Start()
     {
@@ -30,6 +32,22 @@ public class Network_PlayerSetup : NetworkBehaviour
             {
                 sceneCamera.gameObject.SetActive(false);
             }
+        }
+    }
+
+    public override void PreStartClient()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            netAnim.SetParameterAutoSend(i, true);
+        }
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            netAnim.SetParameterAutoSend(i, true);
         }
     }
 
