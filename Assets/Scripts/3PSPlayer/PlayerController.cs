@@ -79,9 +79,9 @@ public class PlayerController : MonoBehaviour
     {
         targetRotation = transform.rotation;
 
-        if (GetComponent<Rigidbody>())
+        if (GetComponentInParent<Rigidbody>())
         {
-            rBody = GetComponent<Rigidbody>();
+            rBody = GetComponentInParent<Rigidbody>();
         }
         else
         {

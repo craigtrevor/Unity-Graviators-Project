@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour {
-	public GameObject meleehitboxObject;
+
+    public GameObject meleehitboxObject;
 	public Transform MeleeSpawn;
 	public bool Attaking = false;
 
@@ -21,23 +22,44 @@ public class Attack : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Mouse0) && CanAttack == true) 
 		{
-			Attaking = true;
+            Attaking = true;
 			Debug.Log ("i have started my attack");
-			startAttack ();
+            startAttack();
+            //CmdstartAttack();
 		}
 
-		melee.transform.position = MeleeSpawn.transform.position;
-	}
+        melee.transform.position = MeleeSpawn.transform.position;
+    }
 
-	void startAttack()
-	{
-		melee =  (GameObject) Instantiate (meleehitboxObject,MeleeSpawn.position,MeleeSpawn.rotation,this.gameObject.transform); 
-		CanAttack = false;
-		Attaking = false;
-		Destroy (melee, MeleeTime);
 
-		StartCoroutine (attackDelay());
-	}
+    //public void CmdSpawn()
+    //{
+    //    GameObject go = (GameObject)Instantiate(otherPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+    //    NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
+    //}
+
+    void startAttack()
+    {
+        CanAttack = false;
+        Attaking = false;
+        melee = Instantiate(meleehitboxObject, MeleeSpawn.position, MeleeSpawn.rotation, this.gameObject.transform);
+        Destroy(melee, MeleeTime);
+
+        StartCoroutine(attackDelay());
+    }
+
+ //   [Command]
+ //   void CmdstartAttack()
+	//{
+	//	melee = Instantiate(meleehitboxObject, MeleeSpawn.position, MeleeSpawn.rotation, this.gameObject.transform);
+ //       NetworkServer.SpawnWithClientAuthority(meleehitboxObject, connectionToClient);
+
+ //       CanAttack = false;
+	//	Attaking = false;
+	//	Destroy (melee, MeleeTime);
+
+	//	StartCoroutine (attackDelay());
+	//}
 
 	IEnumerator attackDelay()
 	{
