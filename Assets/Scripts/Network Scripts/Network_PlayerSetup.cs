@@ -35,31 +35,11 @@ public class Network_PlayerSetup : NetworkBehaviour
         }
     }
 
-    public override void PreStartClient()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            netAnim.SetParameterAutoSend(i, true);
-        }
-    }
-
-    public override void OnStartLocalPlayer()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            netAnim.SetParameterAutoSend(i, true);
-        }
-    }
-
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-
-        string _netID = GetComponent<NetworkIdentity>().netId.ToString();
-        Network_PlayerStats _player = GetComponent<Network_PlayerStats>();
-
-        Network_GameManager.RegisterPlayer(_netID, _player);
-    }
+    //void RegisterPlayer()
+    //{
+    //    string _ID = "Player " + GetComponent<NetworkIdentity>().netId;
+    //    transform.name = _ID;
+    //}
 
     void AssignRemoteLayer()
     {
@@ -87,5 +67,31 @@ public class Network_PlayerSetup : NetworkBehaviour
         }
 
         Network_GameManager.UnRegisterPlayer(transform.name);
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        string _netID = GetComponent<NetworkIdentity>().netId.ToString();
+        Network_PlayerStats _player = GetComponent<Network_PlayerStats>();
+
+        Network_GameManager.RegisterPlayer(_netID, _player);
+    }
+
+    public override void PreStartClient()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            netAnim.SetParameterAutoSend(i, true);
+        }
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            netAnim.SetParameterAutoSend(i, true);
+        }
     }
 }

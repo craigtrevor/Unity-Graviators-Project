@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿    using UnityEngine;
 using UnityEngine.Networking;
 
 public class Network_PlayerStats : NetworkBehaviour {
@@ -16,6 +16,8 @@ public class Network_PlayerStats : NetworkBehaviour {
 
     public void TakeDamage(int _amount)
     {
+        Debug.Log("Taken damage");
+
         currentHealth -= _amount;
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
