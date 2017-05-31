@@ -16,7 +16,7 @@ public class GravityAxisScript : MonoBehaviour {
     private bool cameraSwitching;
 
     //Gravity charge variables
-    private int gravityCharge;
+    public int gravityCharge;
     private int rechargeRate;
     private bool haveCharge;
     private bool rechargeOn;
