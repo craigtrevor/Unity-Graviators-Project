@@ -26,7 +26,7 @@ public class Network_TakeDamage : NetworkBehaviour {
         Debug.Log(_playerID + " has been hit.");
 
         Network_PlayerStats _networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-        _networkPlayerStats.TakeDamage(_damage);
+        //_networkPlayerStats.TakeDamage(_damage);
     }
 
     //[Command]

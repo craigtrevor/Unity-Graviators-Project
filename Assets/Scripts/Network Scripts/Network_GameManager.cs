@@ -3,6 +3,23 @@ using System.Collections.Generic;
 
 public class Network_GameManager : MonoBehaviour {
 
+    public static Network_GameManager instance;
+
+    public Network_MatchSettings networkMatchSettings;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("More than one Network GameManager in scene.");
+        } else
+        {
+            instance = this;
+        }
+    }
+
+    #region Player tracking
+
     private const string PLAYER_ID_PREFIX = "Player ";
 
     private static Dictionary<string, Network_PlayerStats> players = new Dictionary<string, Network_PlayerStats>();
@@ -24,18 +41,5 @@ public class Network_GameManager : MonoBehaviour {
         return players[_playerID];
     }
 
-    void OnGUI()
-    {
-        //GUILayout.BeginArea(new Rect(200, 200, 200, 500));
-        //GUILayout.BeginVertical();
-
-        //foreach (string _playerID in players.Keys)
-        //{
-        //    GUILayout.Label(_playerID + " - " + players[_playerID].transform.name);
-        //}
-
-        //GUILayout.EndVertical();
-        //GUILayout.EndArea();
-    }
-
+    #endregion
 }

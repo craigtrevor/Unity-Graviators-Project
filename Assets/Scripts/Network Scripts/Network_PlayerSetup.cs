@@ -33,6 +33,8 @@ public class Network_PlayerSetup : NetworkBehaviour
                 sceneCamera.gameObject.SetActive(false);
             }
         }
+
+        GetComponent<Network_PlayerStats>().SetupPlayer();
     }
 
     //void RegisterPlayer()

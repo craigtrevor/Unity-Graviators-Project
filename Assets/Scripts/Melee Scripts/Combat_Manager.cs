@@ -86,7 +86,7 @@ public class Combat_Manager : NetworkBehaviour {
 
         Network_PlayerStats networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.TakeDamage(_damage);
+        networkPlayerStats.RpcTakeDamage(_damage);
     }
 
     [Command]
@@ -98,7 +98,7 @@ public class Combat_Manager : NetworkBehaviour {
 
         if (isAttacking)
         {
-            networkPlayerStats.TakeDamage(_damage);
+            networkPlayerStats.RpcTakeDamage(_damage);
             isAttacking = false;
         }
     }
