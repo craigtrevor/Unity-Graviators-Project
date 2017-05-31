@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
+     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
@@ -75,6 +76,7 @@
      <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
@@ -84,6 +86,7 @@
      <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DashDamage.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
+     <Compile Include="Assets\Scripts\particle.cs" />
      <None Include="Assets\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
      <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonSurf.cginc" />
      <None Include="Assets\Shaders\ShieldShader.shader" />
