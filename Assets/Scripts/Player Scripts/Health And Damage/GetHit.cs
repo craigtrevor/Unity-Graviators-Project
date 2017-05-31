@@ -61,7 +61,7 @@ public class GetHit : NetworkBehaviour {
                     //transform.GetComponentInChildren<Renderer> ().material.color = Color.red;
 
                     playerID = col.transform.parent.parent.parent.gameObject.name;
-                    playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - GetComponentInChildren<DamageStorage>().Damage;
+                    //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - GetComponentInChildren<DamageStorage>().Damage;
 
                     CmdPlayerAttacked(playerID, playerDamage);
 
@@ -103,7 +103,7 @@ public class GetHit : NetworkBehaviour {
 
                     //networkTakeDamage.PlayerAttack();
 
-                    playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponentInChildren<DamageStorage>().Damage;
+                    //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponentInChildren<DamageStorage>().Damage;
 
                     playerID = col.name;
 
@@ -116,7 +116,7 @@ public class GetHit : NetworkBehaviour {
                 if (col.tag == "dashHitBox")
                 {
                     //networkTakeDamage.PlayerAttack();
-                    playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponentInChildren<DamageStorage>().Damage;
+                    //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponentInChildren<DamageStorage>().Damage;
                     playerID = col.name;
 
                     CmdPlayerAttacked(playerID, playerDamage);

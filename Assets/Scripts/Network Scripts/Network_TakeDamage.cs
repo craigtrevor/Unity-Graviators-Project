@@ -15,7 +15,7 @@ public class Network_TakeDamage : NetworkBehaviour {
     public void PlayerAttack()
     {
         Debug.Log("I'm being called!");
-        playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - GetComponent<DamageStorage>().Damage;
+        //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - GetComponent<DamageStorage>().Damage;
         CmdPlayerAttacked(getHit.playerID, playerDamage);
     }
 

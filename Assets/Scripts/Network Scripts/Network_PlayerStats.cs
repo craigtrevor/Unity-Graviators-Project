@@ -4,17 +4,17 @@ using UnityEngine.Networking;
 public class Network_PlayerStats : NetworkBehaviour {
 
     [SerializeField]
-    public int maxHealth = 100;
+    public float maxHealth = 100;
 
     [SyncVar]
-    private int currentHealth;
+    private float currentHealth;
 
     void Awake()
     {
         SetDefaults();
     }
 
-    public void TakeDamage(int _amount)
+    public void TakeDamage(float _amount)
     {
         Debug.Log("Taken damage");
 
