@@ -7,6 +7,9 @@ public class Network_GameManager : MonoBehaviour {
 
     public Network_MatchSettings networkMatchSettings;
 
+    [SerializeField]
+    private GameObject sceneCamera;
+
     void Awake()
     {
         if (instance != null)
@@ -16,6 +19,14 @@ public class Network_GameManager : MonoBehaviour {
         {
             instance = this;
         }
+    }
+
+    public void SetSceneCameraActive(bool isActive)
+    {
+        if (sceneCamera == null)
+            return;
+
+        sceneCamera.SetActive(isActive);
     }
 
     #region Player tracking

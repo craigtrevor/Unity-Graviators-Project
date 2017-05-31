@@ -24,15 +24,15 @@ public class Network_PlayerSetup : NetworkBehaviour
             AssignRemoteLayer();
         }
 
-        else
-        {
-            sceneCamera = Camera.main;
+        //else
+        //{
+        //    sceneCamera = Camera.main;
 
-            if (sceneCamera != null)
-            {
-                sceneCamera.gameObject.SetActive(false);
-            }
-        }
+        //    if (sceneCamera != null)
+        //    {
+        //        sceneCamera.gameObject.SetActive(false);
+        //    }
+        //}
 
         GetComponent<Network_PlayerStats>().SetupPlayer();
     }

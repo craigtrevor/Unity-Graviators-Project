@@ -33,7 +33,7 @@ public class Network_PlayerStats : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-
+            Network_GameManager.instance.SetSceneCameraActive(false);
         }
 
         CmdBroadCastNewPlayerSetup();
@@ -112,6 +112,12 @@ public class Network_PlayerStats : NetworkBehaviour
             _col.enabled = false;
 
         Debug.Log(transform.name + " is DEAD!");
+
+        //Switch cameras
+        if (isLocalPlayer)
+        {
+            Network_GameManager.instance.SetSceneCameraActive(true);
+        }
 
         StartCoroutine(Respawn());
     }
