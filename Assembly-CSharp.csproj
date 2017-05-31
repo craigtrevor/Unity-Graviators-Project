@@ -54,10 +54,11 @@
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
-     <Compile Include="Assets\Scripts\Melee Scripts\Melee_Player.cs" />
+     <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
+     <Compile Include="Assets\Scripts\Network Scripts\Network_MatchSettings.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSetup.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
