@@ -57,11 +57,11 @@ public class GravityCharge : MonoBehaviour {
 		}
 
 		if (gravCharge == 10000) {
-			GravFull4.gameObject.SetActive (false);
-			GravEmpty4.gameObject.SetActive (true);
-		} else {
 			GravFull4.gameObject.SetActive (true);
 			GravEmpty4.gameObject.SetActive (false);
+		} else {
+			GravFull4.gameObject.SetActive (false);
+			GravEmpty4.gameObject.SetActive (true);
 		}
 	}
 }
