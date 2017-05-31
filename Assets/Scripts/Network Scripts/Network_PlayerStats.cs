@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 [RequireComponent(typeof(Network_PlayerSetup))]
 public class Network_PlayerStats : NetworkBehaviour
 {
-
     [SyncVar]
     private bool _isDead = false;
     public bool isDead
@@ -28,6 +28,9 @@ public class Network_PlayerStats : NetworkBehaviour
     private GameObject[] disableGameObjectsOnDeath;
 
     private bool firstSetup = true;
+
+    [SerializeField]
+    private int deaths;
 
     public void SetupPlayer()
     {
@@ -62,16 +65,16 @@ public class Network_PlayerStats : NetworkBehaviour
         SetDefaults();
     }
 
-    void Update()
-    {
-        if (!isLocalPlayer)
-            return;
+    //void Update()
+    //{
+    //    if (!isLocalPlayer)
+    //        return;
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            RpcTakeDamage(100);
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        RpcTakeDamage(100);
+    //    }
+    //}
 
     [ClientRpc]
     public void RpcTakeDamage(float _amount)
@@ -94,6 +97,12 @@ public class Network_PlayerStats : NetworkBehaviour
     private void Die()
     {
         isDead = true;
+        deaths++;
+
+        if (deaths == 10)
+        {
+            CmdMatchEnd();
+        }
 
         //Disable components
         for (int i = 0; i < disableOnDeath.Length; i++)
@@ -124,14 +133,21 @@ public class Network_PlayerStats : NetworkBehaviour
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
+        if (deaths != 2)
+        {
+            yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
 
-        SetDefaults();
-        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-        transform.position = _spawnPoint.position;
-        transform.rotation = _spawnPoint.rotation;
+            SetDefaults();
+            Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+            transform.position = _spawnPoint.position;
+            transform.rotation = _spawnPoint.rotation;
 
-        Debug.Log(transform.name + " respawned.");
+            yield return new WaitForSeconds(0.1f);
+
+            SetupPlayer();
+
+            Debug.Log(transform.name + " respawned.");
+        }
     }
 
     public void SetDefaults()
@@ -154,5 +170,16 @@ public class Network_PlayerStats : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
+    }
+
+    [Command]
+    public void CmdMatchEnd()
+    {
+        Debug.Log("Match has finished");
+
+        //Switch cameras
+
+        NetworkManager.Shutdown();
+
     }
 }
