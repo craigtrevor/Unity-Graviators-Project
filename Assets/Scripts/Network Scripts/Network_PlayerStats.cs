@@ -19,6 +19,8 @@ public class Network_PlayerStats : NetworkBehaviour
 
     [SyncVar]
     private float currentHealth;
+    public GameObject healthBar;
+
 
     [SerializeField]
     private Behaviour[] disableOnDeath;
@@ -82,7 +84,10 @@ public class Network_PlayerStats : NetworkBehaviour
         Debug.Log("Taken damage");
 
         currentHealth -= _amount;
-
+        //calculates the players remaining health and updates health bar based on it
+        //calculation will result in between 1 and 0 (eg. 80/100 = 0.6)
+        float calculateHealth = currentHealth / maxHealth;
+        SetHealthBar(calculateHealth);
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
         if (currentHealth <= 0)
@@ -155,4 +160,11 @@ public class Network_PlayerStats : NetworkBehaviour
         if (_col != null)
             _col.enabled = true;
     }
+    public void SetHealthBar(float playerHealth)
+    {
+        //playerHealth value between 0-1
+        //adjusts scale of player health bar between 0-1 based on above calculation
+        healthBar.transform.localScale = new Vector3(playerHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+    }
+
 }

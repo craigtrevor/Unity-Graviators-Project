@@ -7,7 +7,7 @@ public class GravityAxisScript : MonoBehaviour {
 
     //Gravity charge constants
     private const int GRAVITY_MAX = 10000;
-    private const int GRAVITY_COST = 2500;
+    private const int GRAVITY_COST = 2000;
     private const int RECHARGE_RATE = 10;
 
     //Gravity variables
@@ -16,7 +16,7 @@ public class GravityAxisScript : MonoBehaviour {
     private bool cameraSwitching;
 
     //Gravity charge variables
-    private int gravityCharge;
+    public int gravityCharge;
     private int rechargeRate;
     private bool haveCharge;
     private bool rechargeOn;
@@ -34,6 +34,9 @@ public class GravityAxisScript : MonoBehaviour {
     public GameObject vertArrows;
     public GameObject gravityBlock;
     public GameObject rotationBlock;
+
+    
+
 
     private PlayerController playerControllerScript;
     //private CameraPosScript cameraPosScript;
