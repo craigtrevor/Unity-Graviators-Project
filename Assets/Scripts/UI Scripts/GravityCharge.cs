@@ -16,15 +16,27 @@ public class GravityCharge : MonoBehaviour {
     public RawImage GravEmpty2;
     public RawImage GravEmpty3;
     public RawImage GravEmpty4;
-    
+
+    public GameObject gravityAxis;
 	public int gravCharge;
+    //GravityAxisScript gravityAxisScript;
+
+    void Start()
+    {
+        GravityAxisScript gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
+
+        //canvasUI = GameObject.FindGameObjectWithTag("UI");
+        //GravityAxisScript gravityAxisScript = canvasUI.GetComponent<GravityAxisScript>();
+        gravCharge = gravityAxisScript.gravityCharge;
+    }
 
     public void Update()
 	{
-		//set the variable here
-		//gravCharge = 
+        //set the variable here
+        GravityAxisScript gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
+        gravCharge = gravityAxisScript.gravityCharge;
 
-		if (gravCharge < 2000) {
+        if (gravCharge < 2000) {
 			GravFull.gameObject.SetActive (false);
 			GravEmpty.gameObject.SetActive (true);
 		} else {

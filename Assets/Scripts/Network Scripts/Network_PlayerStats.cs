@@ -26,7 +26,6 @@ public class Network_PlayerStats : NetworkBehaviour
 
     [SerializeField]
     private GameObject[] disableGameObjectsOnDeath;
-    private Canvas deathCanvas;
 
     private bool firstSetup = true;
 
@@ -35,6 +34,7 @@ public class Network_PlayerStats : NetworkBehaviour
 
     public void SetupPlayer()
     {
+
         if (isLocalPlayer)
         {
             Network_GameManager.instance.SetSceneCameraActive(false);
@@ -66,16 +66,17 @@ public class Network_PlayerStats : NetworkBehaviour
         SetDefaults();
     }
 
-    //void Update()
-    //{
-    //    if (!isLocalPlayer)
-    //        return;
-
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        RpcTakeDamage(100);
-    //    }
-    //}
+    void Update()
+    {
+        if (isLocalPlayer)
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                RpcTakeDamage(100);
+                deaths--;
+            }
+        }
+    }
 
     [ClientRpc]
     public void RpcTakeDamage(float _amount)
@@ -86,17 +87,21 @@ public class Network_PlayerStats : NetworkBehaviour
         Debug.Log("Taken damage");
 
         currentHealth -= _amount;
-        //calculates the players remaining health and updates health bar based on it
-        //calculation will result in between 1 and 0 (eg. 80/100 = 0.6)
-        float calculateHealth = currentHealth / maxHealth;
-        SetHealthBar(calculateHealth);
+
+        if (isLocalPlayer)
+        {
+            //calculates the players remaining health and updates health bar based on it
+            //calculation will result in between 1 and 0 (eg. 80/100 = 0.6)
+
+            float calculateHealth = currentHealth / maxHealth;
+            SetHealthBar(calculateHealth);
+        }
+
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
         if (currentHealth <= 0)
         {
-            Die();
-            deathCanvas.enabled = true;
-            
+            Die();         
         }
     }
 
@@ -139,7 +144,7 @@ public class Network_PlayerStats : NetworkBehaviour
 
     private IEnumerator Respawn()
     {
-        if (deaths != 2)
+        if (deaths != 10)
         {
             yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
 
@@ -153,6 +158,7 @@ public class Network_PlayerStats : NetworkBehaviour
             SetupPlayer();
 
             Debug.Log(transform.name + " respawned.");
+
         }
     }
 
