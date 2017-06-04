@@ -57,7 +57,7 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     private void Start() {
 
         //Get GravityChargeUI Text
-        UIGravityChargeText = GameObject.Find("UIGravityCharge").GetComponent<Text>();
+        //UIGravityChargeText = GameObject.Find("UIGravityCharge").GetComponent<Text>();
         //UIGravityChargeText = UIGravityCharge.GetComponent<Text>();
 
 
@@ -208,13 +208,13 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     private void UpdateCharge() {
 
         //Update gravityCharge value on UI
-        UIGravityChargeText.text = gravityCharge.ToString();
+        // UIGravityChargeText.text = gravityCharge.ToString();
 
         //Check haveCharge
         if (haveCharge) { //If player does have gravity charge
-            UIGravityChargeText.color = Color.white;
+            //UIGravityChargeText.color = Color.white;
         } else { //If player does not have gravity charge
-            UIGravityChargeText.color = Color.grey;
+            //UIGravityChargeText.color = Color.grey;
         } //End if (haveCharge)
 
     } //End UpdateCharge()
