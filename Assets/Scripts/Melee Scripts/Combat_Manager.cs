@@ -84,7 +84,7 @@ public class Combat_Manager : NetworkBehaviour {
     {
         Debug.Log(_playerID + " has been attacked.");
 
-        Network_PlayerStats networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
         networkPlayerStats.RpcTakeDamage(_damage);
     }
@@ -94,7 +94,7 @@ public class Combat_Manager : NetworkBehaviour {
     {
         Debug.Log(_playerID + " has been attacked.");
 
-        Network_PlayerStats networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
         if (isAttacking)
         {

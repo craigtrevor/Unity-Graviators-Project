@@ -33,9 +33,9 @@ public class Network_GameManager : MonoBehaviour {
 
     private const string PLAYER_ID_PREFIX = "Player ";
 
-    private static Dictionary<string, Network_PlayerStats> players = new Dictionary<string, Network_PlayerStats>();
+    private static Dictionary<string, Network_PlayerManager> players = new Dictionary<string, Network_PlayerManager>();
 
-    public static void RegisterPlayer (string _netID, Network_PlayerStats _player)
+    public static void RegisterPlayer (string _netID, Network_PlayerManager _player)
     {
         string _playerID = PLAYER_ID_PREFIX + _netID;
         players.Add(_playerID, _player);
@@ -47,7 +47,7 @@ public class Network_GameManager : MonoBehaviour {
         players.Remove(_playerID);
     }
 
-    public static Network_PlayerStats GetPlayer (string _playerID)
+    public static Network_PlayerManager GetPlayer (string _playerID)
     {
         return players[_playerID];
     }

@@ -19,14 +19,12 @@ public class GetHit : NetworkBehaviour {
 	public int distance = 50 ; // change this for distance travalled
 	private float waittime = 0.01f;// the delay between movements 
 
-    Network_TakeDamage networkTakeDamage;
     public int playerDamage;
 
     // Use this for initialization
     void Start ()
     {
 		RB = GetComponentInChildren<Rigidbody> ();
-        networkTakeDamage = GetComponentInParent<Network_TakeDamage>();
 	}
 
 	// Update is called once per frame
@@ -61,13 +59,13 @@ public class GetHit : NetworkBehaviour {
                     //transform.GetComponentInChildren<Renderer> ().material.color = Color.red;
 
                     playerID = col.transform.parent.parent.parent.gameObject.name;
-                    //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - GetComponentInChildren<DamageStorage>().Damage;
+                    //playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - GetComponentInChildren<DamageStorage>().Damage;
 
                     CmdPlayerAttacked(playerID, playerDamage);
 
                     // networkTakeDamage.PlayerAttack();
 
-                    //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponent<DamageStorage>().Damage;
+                    //playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - col.GetComponent<DamageStorage>().Damage;
                     col.GetComponentInParent<Dash>().chargePercent += col.GetComponent<DamageStorage>().Damage;
 
                     gothit = true;
@@ -83,13 +81,13 @@ public class GetHit : NetworkBehaviour {
                     //    //transform.GetComponentInChildren<Renderer> ().material.color = Color.red;
 
                     //    playerID = col.transform.parent.parent.parent.gameObject.name;
-                    //    playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - GetComponentInChildren<DamageStorage>().Damage;
+                    //    playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - GetComponentInChildren<DamageStorage>().Damage;
 
                     //    CmdPlayerAttacked(playerID, playerDamage);
 
                     //    // networkTakeDamage.PlayerAttack();
 
-                    //    //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponent<DamageStorage>().Damage;
+                    //    //playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - col.GetComponent<DamageStorage>().Damage;
                     //    col.GetComponentInParent<Dash>().chargePercent += col.GetComponent<DamageStorage>().Damage;
 
                     //    gothit = true;
@@ -103,25 +101,25 @@ public class GetHit : NetworkBehaviour {
 
                     //networkTakeDamage.PlayerAttack();
 
-                    //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponentInChildren<DamageStorage>().Damage;
+                    //playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - col.GetComponentInChildren<DamageStorage>().Damage;
 
                     playerID = col.name;
 
                     CmdPlayerAttacked(playerID, playerDamage);
 
-                    //GetComponent<Network_PlayerStats> ().maxHealth = GetComponent<Network_PlayerStats> ().maxHealth - col.GetComponent<damageRange> ().Damage;
+                    //GetComponent<Network_PlayerManager> ().maxHealth = GetComponent<Network_PlayerManager> ().maxHealth - col.GetComponent<damageRange> ().Damage;
                     gothit = true;
                 }
 
                 if (col.tag == "dashHitBox")
                 {
                     //networkTakeDamage.PlayerAttack();
-                    //playerDamage = GetComponent<Network_PlayerStats>().maxHealth = GetComponent<Network_PlayerStats>().maxHealth - col.GetComponentInChildren<DamageStorage>().Damage;
+                    //playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - col.GetComponentInChildren<DamageStorage>().Damage;
                     playerID = col.name;
 
                     CmdPlayerAttacked(playerID, playerDamage);
 
-                    //GetComponent<Network_PlayerStats> ().maxHealth = GetComponent<Network_PlayerStats> ().maxHealth - col.GetComponent<DashDamage> ().damage;
+                    //GetComponent<Network_PlayerManager> ().maxHealth = GetComponent<Network_PlayerManager> ().maxHealth - col.GetComponent<DashDamage> ().damage;
             }					
         }
 	}
@@ -132,7 +130,7 @@ public class GetHit : NetworkBehaviour {
         Debug.Log("CMD");
         Debug.Log(_playerID + " has been hit.");
 
-        Network_PlayerStats _networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+        Network_PlayerManager _networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
        // _networkPlayerStats.TakeDamage(_damage);
     }
 

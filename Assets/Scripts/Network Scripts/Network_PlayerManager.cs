@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 [RequireComponent(typeof(Network_PlayerSetup))]
-public class Network_PlayerStats : NetworkBehaviour
+public class Network_PlayerManager : NetworkBehaviour
 {
     [SyncVar]
     private bool _isDead = false;
@@ -195,8 +195,6 @@ public class Network_PlayerStats : NetworkBehaviour
     public void CmdMatchEnd()
     {
         Debug.Log("Match has finished");
-
-        //Switch cameras
 
         NetworkManager.Shutdown();
 
