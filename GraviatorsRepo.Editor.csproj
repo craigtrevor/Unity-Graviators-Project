@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\MeleeWeaponTrail\README.txt" />
+    <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
