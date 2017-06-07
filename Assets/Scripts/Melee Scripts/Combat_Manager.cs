@@ -5,6 +5,9 @@ using UnityEngine.Networking;
 
 public class Combat_Manager : NetworkBehaviour {
 
+	//textures
+	public Renderer rend;
+
     // Rigidbody
     private Rigidbody playerRigidbody;
     private const string PLAYER_TAG = "Player";
@@ -17,9 +20,10 @@ public class Combat_Manager : NetworkBehaviour {
 
     // Float
     private float attackRadius;
-    private float lowDamageVelocity;
-    private float midDamageVelocity;
-    private float highDamageVelocity;
+	[SerializeField]
+	private float lowDamageVelocity = 10; 
+	[SerializeField]
+		private float highDamageVelocity = 25;
 
     // Boolean
     public bool isAttacking;
@@ -31,6 +35,9 @@ public class Combat_Manager : NetworkBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+
+
+
         playerRigidbody = transform.GetComponent<Rigidbody>();
 
         playerDamage = 5;

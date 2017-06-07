@@ -65,9 +65,9 @@ public class WeaponSpawn : MonoBehaviour {
 
 	void Fire()
 	{
-
 		var meelee = (GameObject)Instantiate (weaponPrefab, weaponSpawn.position, cameraRotation.rotation);
 		meelee.GetComponent<Rigidbody>().AddForce (cameraRotation.forward * thrust);
+
 
 
 			numberofWeapons -= 1;
