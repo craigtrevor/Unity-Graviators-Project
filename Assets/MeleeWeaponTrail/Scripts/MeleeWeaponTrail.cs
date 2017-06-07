@@ -14,6 +14,16 @@ using System.Collections.Generic;
 public class MeleeWeaponTrail : MonoBehaviour
 {
 	[SerializeField]
+	private Rigidbody playerRigidbody; //used to grab velcioty
+	private float speed; // used to grab velocity
+
+	[SerializeField]
+	private float lowDamageVelocity = 10; 
+	[SerializeField]
+	private float highDamageVelocity = 25;
+
+
+	[SerializeField]
 	bool _emit = true;
 	public bool Emit { set{_emit = value;} }
 
@@ -85,7 +95,8 @@ public class MeleeWeaponTrail : MonoBehaviour
 		_trailObject.transform.localScale = Vector3.one;
 		_trailObject.AddComponent(typeof(MeshFilter));
 		_trailObject.AddComponent(typeof(MeshRenderer));
-		_trailObject.GetComponent<Renderer>().material = _material;
+		_trailObject.GetComponent<Renderer>().material = _material; // use this to change 
+		playerRigidbody = transform.GetComponentInParent<Rigidbody>(); // get this to accesw the rigibody on network palyer 
 
 		_trailMesh = new Mesh();
 		_trailMesh.name = name + "TrailMesh";
@@ -102,6 +113,7 @@ public class MeleeWeaponTrail : MonoBehaviour
 
 	void Update()
 	{
+		PlayerVelocity ();
 		if (!_use)
 		{
 			return;
@@ -351,6 +363,34 @@ public class MeleeWeaponTrail : MonoBehaviour
 		foreach (Point p in remove)
 		{
 			pointList.Remove(p);
+		}
+	}
+
+	void PlayerVelocity()
+	{
+		speed = playerRigidbody.velocity.magnitude;
+
+		if (speed < lowDamageVelocity)
+		{
+			var color = Color.green;// set the color wanted
+			_trailObject.GetComponent<Renderer> ().material.SetColor ("_TintColor", color); // use this to change 
+			//transform.GetComponent<Renderer>().material.color = Color.green; //changes the color of the player
+		}
+		else if (lowDamageVelocity < speed && speed < highDamageVelocity)
+		{
+			var color = Color.yellow;// set the color wanted
+			_trailObject.GetComponent<Renderer> ().material.SetColor ("_TintColor", color); // use this to change 
+			//transform.GetComponent<Renderer>().material.color = Color.yellow;
+		}
+		else if (highDamageVelocity < speed)
+		{
+			var color = Color.red;// set the color wanted
+			_trailObject.GetComponent<Renderer> ().material.SetColor ("_TintColor", color); // use this to change 
+			//transform.GetComponent<Renderer>().material.color = Color.red;
+		}
+		else
+		{
+			//transform.GetComponent<Renderer>().material.color = Color.white;
 		}
 	}
 }

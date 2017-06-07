@@ -32,7 +32,7 @@ public class Dash : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		RB = GetComponent<Rigidbody> ();
+		RB = GetComponentInParent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
