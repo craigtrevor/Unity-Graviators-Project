@@ -12,7 +12,7 @@ public class GravityAxisScript : MonoBehaviour {
 
     //Gravity variables
     public string gravity;
-    private bool gravitySwitching;
+    public bool gravitySwitching;
     private bool cameraSwitching;
 
     //Gravity charge variables
