@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerStats.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />

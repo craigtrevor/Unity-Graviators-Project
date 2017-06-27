@@ -25,12 +25,12 @@ public class UI_UserAccountManager : MonoBehaviour {
     public static string LoggedIn_Username { get; protected set; } //stores username once logged in
     private static string LoggedIn_Password = ""; //stores the password once logged in
 
-    public static string LoggedIn_Data { get; protected set; }
-
     public static bool IsLoggedIn { get; protected set; }
 
     public string loggedInSceneName = "Lobby_Scene";
     public string loggedOutSceneName = "Network_Login";
+
+    public delegate void OnDataRecievedCallback(string data);
 
     public void LogOut()
     {
@@ -87,18 +87,18 @@ public class UI_UserAccountManager : MonoBehaviour {
         }
     }
 
-    public void GetData()
+    public void GetData(OnDataRecievedCallback onDataReceived)
     {
         // called when the 'Get Data' button on the data part is pressed
 
        if (IsLoggedIn)
         {
             //ready to send request
-            StartCoroutine(sendGetDataRequest(LoggedIn_Username, LoggedIn_Password));
+            StartCoroutine(sendGetDataRequest(LoggedIn_Username, LoggedIn_Password, onDataReceived));
         }
     }
 
-    IEnumerator sendGetDataRequest(string username, string password)
+    IEnumerator sendGetDataRequest(string username, string password, OnDataRecievedCallback onDataReceived)
     {
         string data = "Error";
 
@@ -125,6 +125,7 @@ public class UI_UserAccountManager : MonoBehaviour {
             // LoggedIn_DataOutputField.text = response;
         }
 
-        LoggedIn_Data = data;
+        if (onDataReceived != null)
+            onDataReceived.Invoke(data);
     }
 }
