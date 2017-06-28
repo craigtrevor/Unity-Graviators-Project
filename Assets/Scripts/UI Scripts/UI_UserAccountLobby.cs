@@ -8,7 +8,7 @@ public class UI_UserAccountLobby : MonoBehaviour {
     void Start()
     {
         if (UI_UserAccountManager.IsLoggedIn)
-            usernameText.text = "Logged in as: " + UI_UserAccountManager.LoggedIn_Username;
+            usernameText.text = UI_UserAccountManager.LoggedIn_Username;
     }
 
     public void LogOut()

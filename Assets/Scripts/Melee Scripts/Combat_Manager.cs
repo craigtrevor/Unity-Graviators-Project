@@ -35,9 +35,6 @@ public class Combat_Manager : NetworkBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-
-
-
         playerRigidbody = transform.GetComponent<Rigidbody>();
 
         playerDamage = 5;
@@ -80,24 +77,24 @@ public class Combat_Manager : NetworkBehaviour {
             {
                 Debug.Log("Hit Player!");
 
-                CmdTakeDamage(hitCol.gameObject.name, playerDamage);
+                CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
                 isAttacking = false;
             }
         }
     }
 
     [Command]
-    void CmdTakeDamage(string _playerID, float _damage)
+    void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
     {
         Debug.Log(_playerID + " has been attacked.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.RpcTakeDamage(_damage);
+        networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
     }
 
     [Command]
-    protected void CmdPlayerAttacked(string _playerID, int _damage)
+    protected void CmdPlayerAttacked(string _playerID, float _damage, string _sourceID)
     {
         Debug.Log(_playerID + " has been attacked.");
 
@@ -105,7 +102,7 @@ public class Combat_Manager : NetworkBehaviour {
 
         if (isAttacking)
         {
-            networkPlayerStats.RpcTakeDamage(_damage);
+            networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
             isAttacking = false;
         }
     }

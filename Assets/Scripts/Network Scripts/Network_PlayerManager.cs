@@ -16,9 +16,14 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     private float maxHealth = 100;
+
     public GameObject healthBar;
+
     [SyncVar]
     private float currentHealth;
+
+    public int killStats;
+    public int deathStats;
 
     [SerializeField]
     private Behaviour[] disableOnDeath;
@@ -66,20 +71,20 @@ public class Network_PlayerManager : NetworkBehaviour
         SetDefaults();
     }
 
-    void Update()
-    {
-        if (isLocalPlayer)
-        {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                RpcTakeDamage(100);
-                deaths--;
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    if (isLocalPlayer)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.K))
+    //        {
+    //            RpcTakeDamage(100);
+    //            deaths--;
+    //        }
+    //    }
+    //}
 
     [ClientRpc]
-    public void RpcTakeDamage(float _amount)
+    public void RpcTakeDamage(float _amount, string _sourceID)
     {
         if (isDead)
             return;
@@ -101,14 +106,23 @@ public class Network_PlayerManager : NetworkBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();         
+            Die(_sourceID);         
         }
     }
 
-    private void Die()
+    private void Die(string _sourceID)
     {
         isDead = true;
+
         deaths++;
+        deathStats++;
+
+        Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
+
+        if (sourcePlayer != null)
+        {
+            sourcePlayer.killStats++;
+        }
 
         if (deaths == 10)
         {
