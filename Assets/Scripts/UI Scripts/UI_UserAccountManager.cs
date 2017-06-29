@@ -20,6 +20,8 @@ public class UI_UserAccountManager : MonoBehaviour {
         DontDestroyOnLoad(this);
 
         uiLoginMenu = GameObject.Find("Login Menu").GetComponent<UI_LoginMenu>();
+
+
     }
 
     public static string LoggedIn_Username { get; protected set; } //stores username once logged in
@@ -59,7 +61,17 @@ public class UI_UserAccountManager : MonoBehaviour {
     public void SendData(string data)
     {
         //called when the 'Send Data' button on the data part is pressed
-        if (IsLoggedIn)
+
+        // Create a temporary reference to the current scene.
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Retrieve the name of this scene.
+        string sceneName = currentScene.name;
+
+        // Retrieve the index of the scene in the project's build settings.
+        int buildIndex = currentScene.buildIndex;
+
+        if (sceneName == "Network_Login" && IsLoggedIn)
         {
             StartCoroutine(sendSendDataRequest(LoggedIn_Username, LoggedIn_Password, data));
         }

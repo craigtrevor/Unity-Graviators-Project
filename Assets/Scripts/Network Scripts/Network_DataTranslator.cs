@@ -6,6 +6,11 @@ public class Network_DataTranslator : MonoBehaviour {
     private static string KILLS_SYMBOL = "[KILLS]";
     private static string DEATHS_SYMBOL = "[DEATHS]";
 
+    public static string ValuesToData (int killStats, int deathStats)
+    {
+        return KILLS_SYMBOL + killStats + "/" + DEATHS_SYMBOL + deathStats;
+    }
+
     public static int DataToKills (string data)
     {
         return int.Parse(DataToValue(data, KILLS_SYMBOL));

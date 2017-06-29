@@ -31,7 +31,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     private GameObject[] disableGameObjectsOnDeath;
-
+   
     private bool firstSetup = true;
 
     [SerializeField]
@@ -114,10 +114,10 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         isDead = true;
 
+        Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
+
         deaths++;
         deathStats++;
-
-        Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
 
         if (sourcePlayer != null)
         {
@@ -162,7 +162,6 @@ public class Network_PlayerManager : NetworkBehaviour
         {
             yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
 
-            SetDefaults();
             Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
             transform.position = _spawnPoint.position;
             transform.rotation = _spawnPoint.rotation;
