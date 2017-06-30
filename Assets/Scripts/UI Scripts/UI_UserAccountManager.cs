@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UI_UserAccountManager : MonoBehaviour {
 
     public static UI_UserAccountManager instance;
-    public UI_LoginMenu uiLoginMenu;
+    UI_LoginMenu uiLoginMenu;
 
     void Awake()
     {
@@ -19,9 +19,14 @@ public class UI_UserAccountManager : MonoBehaviour {
         instance = this;
         DontDestroyOnLoad(this);
 
-        uiLoginMenu = GameObject.Find("Login Menu").GetComponent<UI_LoginMenu>();
+    }
 
-
+    void Start()
+    {
+        if (Network_SceneChecker.instance.sceneName == loggedOutSceneName)
+        {
+            uiLoginMenu = gameObject.GetComponent<UI_LoginMenu>();
+        }
     }
 
     public static string LoggedIn_Username { get; protected set; } //stores username once logged in
@@ -62,16 +67,7 @@ public class UI_UserAccountManager : MonoBehaviour {
     {
         //called when the 'Send Data' button on the data part is pressed
 
-        // Create a temporary reference to the current scene.
-        Scene currentScene = SceneManager.GetActiveScene();
-
-        // Retrieve the name of this scene.
-        string sceneName = currentScene.name;
-
-        // Retrieve the index of the scene in the project's build settings.
-        int buildIndex = currentScene.buildIndex;
-
-        if (sceneName == "Network_Login" && IsLoggedIn)
+        if (IsLoggedIn)
         {
             StartCoroutine(sendSendDataRequest(LoggedIn_Username, LoggedIn_Password, data));
         }
@@ -86,7 +82,7 @@ public class UI_UserAccountManager : MonoBehaviour {
         }
         string response = e.Current as string; // << The returned string from the request
 
-        if (response == "Success")
+        if (response == "Success" && Network_SceneChecker.instance.sceneName == loggedOutSceneName)
         {
             uiLoginMenu.SendDataRequestSuccess();
         }
@@ -95,7 +91,11 @@ public class UI_UserAccountManager : MonoBehaviour {
             //There was another error. Automatically logs player out. This error message should never appear, but is here just in case.
             username = "";
             password = "";
-            uiLoginMenu.SendDataRequestError();
+
+            if (Network_SceneChecker.instance.sceneName == loggedOutSceneName)
+            {
+                uiLoginMenu.SendDataRequestError();
+            }
         }
     }
 
@@ -121,7 +121,7 @@ public class UI_UserAccountManager : MonoBehaviour {
         }
         string response = e.Current as string; // << The returned string from the request
 
-        if (response == "Error")
+        if (response == "Error" && Network_SceneChecker.instance.sceneName == loggedOutSceneName)
         {
             //There was another error. Automatically logs player out. This error message should never appear, but is here just in case.
             username = "";

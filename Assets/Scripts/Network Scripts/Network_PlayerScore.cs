@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Network_PlayerManager))]
 public class Network_PlayerScore : MonoBehaviour {
 
+    int lastKills = 0;
+    int lastDeaths = 0;
+
     Network_PlayerManager networkPlayerManager;
 
     void Start()
@@ -39,21 +42,24 @@ public class Network_PlayerScore : MonoBehaviour {
 
     void OnDataRecieved(string data)
     {
-        if (networkPlayerManager.killStats == 0 && networkPlayerManager.deathStats == 0)
+        if (networkPlayerManager.killStats <= lastKills && networkPlayerManager.deathStats <= lastDeaths)
             return;
+
+        int killsSinceLast = networkPlayerManager.killStats - lastKills;
+        int deathsSinceLast = networkPlayerManager.deathStats - lastDeaths;
 
         int killStats = Network_DataTranslator.DataToKills(data);
         int deathStats = Network_DataTranslator.DataToDeaths(data);
 
-        int newKillsStats = networkPlayerManager.killStats + killStats;
-        int newDeathStats = networkPlayerManager.deathStats + deathStats;
+        int newKillsStats = killsSinceLast + killStats;
+        int newDeathStats = deathsSinceLast + deathStats;
 
         string newData = Network_DataTranslator.ValuesToData(newKillsStats, newDeathStats);
 
         Debug.Log("Syncing: " + newData);
 
-        networkPlayerManager.killStats = 0;
-        networkPlayerManager.deathStats = 0;
+        lastKills = networkPlayerManager.killStats;
+        lastDeaths = networkPlayerManager.deathStats;
 
         UI_UserAccountManager.instance.SendData(newData);
     }
