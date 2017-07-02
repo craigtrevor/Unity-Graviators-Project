@@ -122,9 +122,6 @@ public class PlayerCameraController : MonoBehaviour {
 
     void FixedUpdate() {
 
-        if (UI_PauseMenu.isOn)
-            return;
-
         // moving
         MoveToTarget();
         // rotating

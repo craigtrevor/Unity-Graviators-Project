@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
     public PhysSettings physSettings = new PhysSettings();
     public InputSettings inputSettings = new InputSettings();
 
-    Vector3 velocity = Vector3.zero; // variable to easily control player movement
+    public Vector3 velocity = Vector3.zero; // variable to easily control player movement
     public Quaternion targetRotation; // holds the next rotation
     Rigidbody rBody; // rigidbody of the player
     float forwardInput, turnInput, rightInput, jumpInput; // input recieved from player
@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void GetInput() {
-        Cursor.lockState = CursorLockMode.Locked;
 
         forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
         rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
@@ -110,6 +109,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject eyes;
 
     void Update() {
+
+
         GetInput();
         Turn();
 
@@ -117,6 +118,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+
         Run();
         Strafe();
         Jump();
@@ -169,13 +171,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Turn() {
-        if (true) {
 
-            //if (Mathf.Abs(turnInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
-            //    targetRotation *= Quaternion.AngleAxis(moveSettings.rotateVel * turnInput * Time.deltaTime, Vector3.up);
-            //}
+        if (UI_PauseMenu.IsOn == true)
+            return;
 
-        }
         if (!gravityAxisScript.GetGravitySwitching()) {
             targetRotation *= Quaternion.AngleAxis(moveSettings.rotateVel * Input.GetAxisRaw("Mouse X") * Time.deltaTime * 2, Vector3.up);
             rotY -= Input.GetAxis("Mouse Y") * 2f;

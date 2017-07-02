@@ -4,34 +4,63 @@ using UnityEngine.Networking.Match;
 
 public class UI_PauseMenu : MonoBehaviour {
 
-    public static bool isOn = false;
+    public static bool IsOn = false;
 
-    [SerializeField]
-    private GameObject pauseMenu;
+    //[SerializeField]
+    //private GameObject pauseMenu;
+
+    //[SerializeField]
+    //private GameObject playerMenu;
+
+    //[SerializeField]
+    //private Canvas playerHUD;
 
     private NetworkManager networkManager;
 
-	// Use this for initialization
-	void Start ()
-    {
-        isOn = false;
-        networkManager = NetworkManager.singleton;
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePauseMenu();
-        }
-	}
+    //void Awake()
+    //{
+    //    isOn = false;
+    //    networkManager = NetworkManager.singleton;
+    //    Cursor.visible = false;
+    //    Cursor.lockState = CursorLockMode.Locked;
+    //}
 
-    void TogglePauseMenu()
+    void Start()
     {
-        pauseMenu.SetActive(!pauseMenu.activeSelf);
-        isOn = pauseMenu.activeSelf;
+        networkManager = NetworkManager.singleton;
     }
+	
+	//// Update is called once per frame
+	//void Update ()
+ //   {
+ //       if (Input.GetKeyDown(KeyCode.Escape))
+ //       {
+ //           TogglePauseMenu();
+ //       }
+ //   }
+
+    //void TogglePauseMenu()
+    //{
+    //    playerMenu = GameObject.FindWithTag("PlayerHUD");
+    //    playerHUD = playerMenu.GetComponent<Canvas>();
+
+    //    isOn = pauseMenu.activeSelf;
+    //    pauseMenu.SetActive(!pauseMenu.activeSelf);
+
+    //    if (pauseMenu.activeSelf)
+    //    {
+    //        playerHUD.enabled = false;
+    //        Cursor.visible = true;
+    //        Cursor.lockState = CursorLockMode.None;
+    //    }
+
+    //    if (!pauseMenu.activeSelf)
+    //    {
+    //        playerHUD.enabled = true;
+    //        Cursor.visible = false;
+    //        Cursor.lockState = CursorLockMode.Locked;
+    //    }
+    //}
 
     public void LeaveRoom()
     {
