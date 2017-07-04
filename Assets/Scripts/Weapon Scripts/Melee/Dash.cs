@@ -5,6 +5,8 @@ using UnityEngine;
 public class Dash : MonoBehaviour {
 	[SerializeField]
 	private Rigidbody RB;
+	[SerializeField]
+	private Transform PR; // player Rotation
 
 	//stuff for dashHitBox
 	public GameObject dashHitBoxObject;
@@ -18,6 +20,8 @@ public class Dash : MonoBehaviour {
 	public double chargeMax = 100; // the amount of charge needed
 	public double passiveCharge = 0.01; // the amount of charge gained passivly;
 	public bool canUseUlt = false; // turns true when charge max has been reached and turns false after the 3 charges have been used.
+	[SerializeField]
+	private bool isDashing = false; // turns true when the player dashes and off when the player stops, used for raycast collision detection to avoid getting stuck in walls
 
 	public float useTimer = 2;// time between uses before it runs out
 
@@ -32,11 +36,31 @@ public class Dash : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		RB = GetComponentInParent<Rigidbody> ();
+		//RB = GetComponentInParent<Rigidbody> ();//this if in child
+		RB = GetComponent<Rigidbody> (); // when on parent object
+		PR = GetComponent<Transform> ();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		PR.localEulerAngles = new Vector3 (0, 0, 0);// stops the palyer from rotating wildly
+		Vector3 front = cameraRotation.forward; // used to deterine forward
+		Debug.DrawRay (MeleeSpawn.position, front *3, Color.green); // debungging raycast to see direction
+		if (isDashing == true) 
+		{
+			//Vector3 front = transform.TransformDirection (Vector3.forward);
+
+			if(Physics.Raycast(MeleeSpawn.position,front,3)) // is ray hits an object
+				{
+				
+					print("There is an object in Front of me");
+					RB.constraints = RigidbodyConstraints.FreezePosition; // does not allow the player to collide with object
+				}
+			//check in a object is in front
+			// check if object is a player
+			//if not a player freeze momentum
+		}
 		if (chargePercent < chargeMax && numberOfDashes == 0) {
 			chargePercent += passiveCharge;
 		} else if (chargePercent >= chargeMax)
@@ -63,6 +87,7 @@ public class Dash : MonoBehaviour {
 
 	void charge()
 	{
+		
 		RB.constraints = RigidbodyConstraints.None;
 		StartCoroutine (tinydelay ());
 		numberOfDashes -= 1;
@@ -72,11 +97,16 @@ public class Dash : MonoBehaviour {
 	IEnumerator tinydelay()
 	{	
 		dash =  (GameObject) Instantiate (dashHitBoxObject,MeleeSpawn.position,MeleeSpawn.rotation,this.gameObject.transform); 
-		GetComponent<PlayerController> ().enabled = false;
+		GetComponentInChildren<PlayerController> ().enabled = false; // for when in parent
+		//GetComponent<PlayerController> ().enabled = false; // for when in child
+		isDashing = true;
 		RB.AddForce(cameraRotation.forward*thrust);
 		yield return new WaitForSeconds (waitTime);
-		GetComponent<PlayerController> ().enabled = true;
+		GetComponentInChildren<PlayerController> ().enabled = true; // for when in parent
+		//GetComponent<PlayerController> ().enabled = true; for when in child
 		RB.constraints = RigidbodyConstraints.FreezePosition;
+		isDashing = false;
+
 		Destroy (dash, waitTime);
 		Debug.Log ("i have charged and am now frozen");
 		if (numberOfDashes == 2) 

@@ -6,10 +6,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DDFBC18F-9396-3137-9CFE-DEB2CDB74636}</ProjectGuid>
+    <ProjectGuid>{CFE3DA37-8482-B5E3-F5DB-AC8EBCE34763}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-UnityScript</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -46,61 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Database Control Free\Demos\C#\Scripts\DCF_DemoScene_ManagerScript_CSharp.cs" />
-     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\LookAtTarget.cs" />
-     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\MouseMove.cs" />
-     <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
-     <Compile Include="Assets\MeleeWeaponTrail\Scripts\Interpolate.cs" />
-     <Compile Include="Assets\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
-     <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
-     <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
-     <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
-     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
-     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
-     <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_MatchSettings.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerScore.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSetup.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
-     <Compile Include="Assets\Scripts\Network Scripts\Network_SceneChecker.cs" />
-     <Compile Include="Assets\Scripts\Particle Scripts\particle.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisTextScript.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\VertArrowsScript.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" />
-     <Compile Include="Assets\Scripts\Soundscape Scripts\AudioFadeOut.cs" />
-     <Compile Include="Assets\Scripts\Soundscape Scripts\MusicPlayer.cs" />
-     <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
-     <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
-     <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerStats.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
-     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DashDamage.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
+     <Compile Include="Assets\Database Control Free\Demos\UnityScript\Scripts\DCF_DemoScene_ManagerScript_UnityScript.js" />
+     <Compile Include="Assets\Database Control Free\Demos\UnityScript\Scripts\DCF_DemoScene_ManagerScript_UnityScript1.js" />
      <None Include="Assets\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
      <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonSurf.cginc" />
      <None Include="Assets\Shaders\ShieldShader.shader" />

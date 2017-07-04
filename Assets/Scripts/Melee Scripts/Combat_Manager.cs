@@ -23,7 +23,11 @@ public class Combat_Manager : NetworkBehaviour {
 	[SerializeField]
 	private float lowDamageVelocity = 10; 
 	[SerializeField]
-		private float highDamageVelocity = 25;
+	private float highDamageVelocity = 25;
+
+	//dash damage storage
+	[SerializeField]
+	private float dashDamage = 500;
 
     // Boolean
     public bool isAttacking;
@@ -114,21 +118,21 @@ public class Combat_Manager : NetworkBehaviour {
         if (speed < lowDamageVelocity)
         {
             //transform.GetComponent<Renderer>().material.color = Color.green;
-            playerDamage = 2.5f;
+            playerDamage = 25.0f;
         }
         else if (lowDamageVelocity < speed && speed < highDamageVelocity)
         {
             //transform.GetComponent<Renderer>().material.color = Color.yellow;
-            playerDamage = 5;
+            playerDamage = 50.0f;
         }
         else if (highDamageVelocity < speed)
         {
             //transform.GetComponent<Renderer>().material.color = Color.red;
-            playerDamage = 7.5f;
+            playerDamage = 70.0f;
         }
         else
         {
-            playerDamage = 2.5f;
+            playerDamage = 25.0f;
         }
     }
 }
