@@ -16,6 +16,9 @@ public class UI_PlayerStats : MonoBehaviour {
 
     void OnReceivedData (string data)
     {
+        if (killCount == null || deathCount == null)
+            return;
+
         killCount.text = Network_DataTranslator.DataToKills(data).ToString() + " KILLS";
         deathCount.text = Network_DataTranslator.DataToDeaths(data).ToString() + " DEATHS";
     }

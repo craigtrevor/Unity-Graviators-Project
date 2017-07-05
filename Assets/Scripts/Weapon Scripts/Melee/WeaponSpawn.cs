@@ -13,8 +13,6 @@ public class WeaponSpawn : MonoBehaviour {
 	[SerializeField]
 	private bool canfire = true;
 
-
-
 	public int thrust = 2000;
 
 	//firerate and bool to control firerate
@@ -32,7 +30,10 @@ public class WeaponSpawn : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetKeyDown(KeyCode.Mouse1) && Time.time >nextFire)
+        if (UI_PauseMenu.IsOn == true)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && Time.time >nextFire)
 		{
 			nextFire = Time.time + firerate;
 			if (numberofWeapons > 0 && canfire == true) {

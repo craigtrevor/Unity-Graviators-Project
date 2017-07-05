@@ -14,7 +14,6 @@ public class Dash : MonoBehaviour {
 
 	private GameObject dash;
 
-
 	public Transform cameraRotation;
 	public double chargePercent = 0; // the amount of charge
 	public double chargeMax = 100; // the amount of charge needed
@@ -44,9 +43,14 @@ public class Dash : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		PR.localEulerAngles = new Vector3 (0, 0, 0);// stops the palyer from rotating wildly
+
+        if (UI_PauseMenu.IsOn == true)
+            return;
+
+        PR.localEulerAngles = new Vector3 (0, 0, 0);// stops the palyer from rotating wildly
 		Vector3 front = cameraRotation.forward; // used to deterine forward
 		Debug.DrawRay (MeleeSpawn.position, front *3, Color.green); // debungging raycast to see direction
+
 		if (isDashing == true) 
 		{
 			//Vector3 front = transform.TransformDirection (Vector3.forward);
@@ -74,8 +78,7 @@ public class Dash : MonoBehaviour {
 			canUseUlt = false;
 		}
 			
-
-		if(Input.GetKeyDown(KeyCode.F) && Time.time >nextFire)
+		if (Input.GetKeyDown(KeyCode.F) && Time.time >nextFire)
 		{
 			nextFire = Time.time + fireRate;
 			if (numberOfDashes > 0 && canUseUlt == true) {
@@ -86,8 +89,7 @@ public class Dash : MonoBehaviour {
 	}
 
 	void charge()
-	{
-		
+	{		
 		RB.constraints = RigidbodyConstraints.None;
 		StartCoroutine (tinydelay ());
 		numberOfDashes -= 1;
@@ -125,12 +127,6 @@ public class Dash : MonoBehaviour {
 			RB.constraints = RigidbodyConstraints.None;
 
 		}
-
-
-
-
-
-
 	}
 
 	IEnumerator setimer2() // a timer to set how long the player can sit for

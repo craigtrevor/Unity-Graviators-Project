@@ -7,6 +7,9 @@ public class UI_PlayerHUD : MonoBehaviour {
     GameObject pauseMenu;
 
     [SerializeField]
+    GameObject scoreboard;
+
+    [SerializeField]
     GameObject[] playerHUD;
 
     [SerializeField]
@@ -19,7 +22,13 @@ public class UI_PlayerHUD : MonoBehaviour {
     Animator playerAnimator;
 
     private Network_PlayerManager networkPlayerManager;
+
     private PlayerController playerController;
+
+    public void SetController(PlayerController _controller)
+    {
+        playerController = _controller;
+    }
 
     public void SetPlayer(Network_PlayerManager _networkPlayerManager)
     {
@@ -39,6 +48,16 @@ public class UI_PlayerHUD : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            scoreboard.SetActive(true);
+        }
+
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            scoreboard.SetActive(false);
         }
 
         if (pauseMenu.activeSelf)

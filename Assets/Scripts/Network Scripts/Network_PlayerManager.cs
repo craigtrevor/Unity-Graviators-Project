@@ -22,6 +22,9 @@ public class Network_PlayerManager : NetworkBehaviour
     [SyncVar]
     private float currentHealth;
 
+    [SyncVar]
+    public string username = "Loading...";
+
     public int killStats;
     public int deathStats;
 
@@ -117,17 +120,20 @@ public class Network_PlayerManager : NetworkBehaviour
         Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
 
         deaths++;
-        deathStats++;
 
         if (sourcePlayer != null)
         {
             sourcePlayer.killStats++;
         }
 
+        deathStats++;
+
         if (deaths == 10)
         {
             CmdMatchEnd();
         }
+
+
 
         //Disable components
         for (int i = 0; i < disableOnDeath.Length; i++)
@@ -210,7 +216,5 @@ public class Network_PlayerManager : NetworkBehaviour
         Debug.Log("Match has finished");
 
         NetworkManager.Shutdown();
-
     }
-
 }

@@ -115,11 +115,11 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="DatabaseControl">
-      <HintPath>Assets\Database Control Free\Scripts\DatabaseControl.dll</HintPath>
-    </Reference>
     <Reference Include="DatabaseControlEditor">
       <HintPath>Assets\Database Control Free\Scripts\Editor\DatabaseControlEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DatabaseControl">
+      <HintPath>Assets\Database Control Free\Scripts\DatabaseControl.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-UnityScript">
       <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>

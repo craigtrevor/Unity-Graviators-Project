@@ -18,7 +18,6 @@ public class UI_UserAccountManager : MonoBehaviour {
 
         instance = this;
         DontDestroyOnLoad(this);
-
     }
 
     void Start()

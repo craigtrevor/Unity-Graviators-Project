@@ -90,6 +90,9 @@ public class PlayerController : MonoBehaviour {
         jumpInput = Input.GetAxisRaw(inputSettings.JUMP_AXIS); // non-interpolated
 
         //If shift is pressed (gravity selection)
+        if (UI_PauseMenu.IsOn == true)
+            return;
+
         if (Input.GetButton("Crouch")) {
 
             gravityAxisScript.SetShiftPressed(true); //shiftPressed true
@@ -110,7 +113,6 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
 
-
         GetInput();
         Turn();
 
@@ -123,11 +125,16 @@ public class PlayerController : MonoBehaviour {
         Strafe();
         Jump();
         Attack();
+        CheckPause();
 
         rBody.velocity = transform.TransformDirection(velocity);
     }
 
     void Attack() {
+
+        if (UI_PauseMenu.IsOn == true)
+            return;
+
         //Attack Placeholder ALEX
 
         if (Input.GetButton("Fire1")) {
@@ -144,6 +151,9 @@ public class PlayerController : MonoBehaviour {
 
         if (Mathf.Abs(forwardInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
 
+            if (UI_PauseMenu.IsOn == true)
+                return;
+
             // Walking - Alex
             playerAnimator.SetBool("Moving", true);
 
@@ -156,11 +166,25 @@ public class PlayerController : MonoBehaviour {
 
             velocity.z = 0;
         }
+
+        if (UI_PauseMenu.IsOn == true)
+        {
+            // zero velocity
+
+            playerAnimator.SetBool("Moving", false);
+
+            velocity.z = 0;
+        }
+
     }
 
     void Strafe() {
+
         if (true) {
             if (Mathf.Abs(rightInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
+
+                if (UI_PauseMenu.IsOn == true)
+                    return;
                 // move
                 velocity.x = moveSettings.rightVel * rightInput;
             } else {
@@ -189,10 +213,14 @@ public class PlayerController : MonoBehaviour {
 
     void Jump() {
 
+        if (UI_PauseMenu.IsOn == true)
+            return;
+
         if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
             // Jumping - Alex
             StartCoroutine(JumpTime());
             velocity.y = moveSettings.jumpVel;
+
         } else if (jumpInput == 0 && Grounded()) {
             // zero out our velociy.y
             velocity.y = 0;
@@ -201,6 +229,28 @@ public class PlayerController : MonoBehaviour {
             playerAnimator.SetBool("InAir", true);
             velocity.y -= physSettings.downAccel;
             velocity.y = Mathf.Max(velocity.y, -100);
+        }
+    }
+
+    void CheckPause()
+    {
+        if (UI_PauseMenu.IsOn)
+        {
+            if (!Grounded())
+            {
+                playerAnimator.SetBool("InAir", true);
+                velocity.y -= physSettings.downAccel;
+                velocity.y = Mathf.Max(velocity.y, -100);
+            }
+
+            else
+            {
+                if (jumpInput == 0 && Grounded())
+                {
+                    playerAnimator.SetBool("Moving", false);
+                    velocity.z = 0;
+                }
+            }
         }
     }
 

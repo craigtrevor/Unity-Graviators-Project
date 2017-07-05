@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Network_GameManager : MonoBehaviour {
 
@@ -50,6 +51,11 @@ public class Network_GameManager : MonoBehaviour {
     public static Network_PlayerManager GetPlayer (string _playerID)
     {
         return players[_playerID];
+    }
+
+    public static Network_PlayerManager[] GetAllPlayers()
+    {
+        return players.Values.ToArray();
     }
 
     #endregion
