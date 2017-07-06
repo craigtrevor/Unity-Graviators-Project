@@ -42,7 +42,6 @@ public class Network_PlayerManager : NetworkBehaviour
 
     public void SetupPlayer()
     {
-
         if (isLocalPlayer)
         {
             Network_GameManager.instance.SetSceneCameraActive(false);
@@ -124,6 +123,7 @@ public class Network_PlayerManager : NetworkBehaviour
         if (sourcePlayer != null)
         {
             sourcePlayer.killStats++;
+            Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
         }
 
         deathStats++;

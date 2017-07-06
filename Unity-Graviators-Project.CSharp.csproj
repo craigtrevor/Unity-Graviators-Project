@@ -122,11 +122,14 @@
     <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerStats.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Scoreboard.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_ScoreboardItem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
@@ -137,7 +140,6 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
-    <Compile Include="Assets\UI_ScoreboardItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
