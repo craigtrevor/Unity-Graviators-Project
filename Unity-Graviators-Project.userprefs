@@ -1,15 +1,8 @@
-﻿<Properties StartupItem="Unity-Graviators-Project.CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon Scripts\Melee\Dash.cs">
     <Files>
-      <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI Scripts\GravityCharge.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Shaders\ShieldShader.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" Line="1" Column="1" />
-      <File FileName="Assets\Shaders\Dissolve.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Camera Scripts\FreeCamScript.cs" Line="28" Column="33" />
-      <File FileName="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" Line="154" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

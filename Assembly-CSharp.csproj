@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DDFBC18F-9396-3137-9CFE-DEB2CDB74636}</ProjectGuid>
+    <ProjectGuid>{D0940433-02C6-52CB-5F16-A434F2F85B82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -87,10 +87,14 @@
      <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_Scoreboard.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_ScoreboardItem.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
@@ -138,7 +142,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="DatabaseControl">
- <HintPath>E:/Timothy/Documents/Game/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
+ <HintPath>C:/Users/Timothy/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

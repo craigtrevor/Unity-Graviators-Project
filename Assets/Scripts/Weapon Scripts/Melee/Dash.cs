@@ -8,19 +8,30 @@ public class Dash : MonoBehaviour {
 	[SerializeField]
 	private Transform PR; // player Rotation
 
+
+	public float aim;
+
+	public GameObject visualAngleObject;// the object to grab the player model angle when they are dashing
+	private Transform dashAngle; // the angle to match the camera when dashing
+
 	//stuff for dashHitBox
 	public GameObject dashHitBoxObject;
 	public Transform MeleeSpawn;
 
 	private GameObject dash;
 
+
 	public Transform cameraRotation;
+
 	public double chargePercent = 0; // the amount of charge
 	public double chargeMax = 100; // the amount of charge needed
 	public double passiveCharge = 0.01; // the amount of charge gained passivly;
 	public bool canUseUlt = false; // turns true when charge max has been reached and turns false after the 3 charges have been used.
+
 	[SerializeField]
 	private bool isDashing = false; // turns true when the player dashes and off when the player stops, used for raycast collision detection to avoid getting stuck in walls
+	[SerializeField]
+	private bool dashingRotate = false;
 
 	public float useTimer = 2;// time between uses before it runs out
 
@@ -40,27 +51,37 @@ public class Dash : MonoBehaviour {
 		PR = GetComponent<Transform> ();
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+		dashAngle = visualAngleObject.transform;
 
-        if (UI_PauseMenu.IsOn == true)
-            return;
+		aim = cameraRotation.transform.eulerAngles.y;
+		if (isDashing == false){
+			PR.localEulerAngles = new Vector3 (0, 0, 0);// stops the player from rotating wildly
+		}
 
-        PR.localEulerAngles = new Vector3 (0, 0, 0);// stops the palyer from rotating wildly
+		if (dashingRotate == true) {
+			dashAngle.eulerAngles = cameraRotation.transform.eulerAngles;
+
+			//PR.localEulerAngles = cameraRotation.transform.eulerAngles; // 
+
+
+			// get the noname rigidbody
+			// rotate to mach the cameraRotation
+		}
 		Vector3 front = cameraRotation.forward; // used to deterine forward
 		Debug.DrawRay (MeleeSpawn.position, front *3, Color.green); // debungging raycast to see direction
-
 		if (isDashing == true) 
 		{
 			//Vector3 front = transform.TransformDirection (Vector3.forward);
 
 			if(Physics.Raycast(MeleeSpawn.position,front,3)) // is ray hits an object
-				{
-				
-					print("There is an object in Front of me");
-					RB.constraints = RigidbodyConstraints.FreezePosition; // does not allow the player to collide with object
-				}
+			{
+
+				print("There is an object in Front of me");
+				RB.constraints = RigidbodyConstraints.FreezePosition; // does not allow the player to collide with object
+			}
 			//check in a object is in front
 			// check if object is a player
 			//if not a player freeze momentum
@@ -77,19 +98,22 @@ public class Dash : MonoBehaviour {
 		if (numberOfDashes == 0) {
 			canUseUlt = false;
 		}
-			
-		if (Input.GetKeyDown(KeyCode.F) && Time.time >nextFire)
+
+
+		if(Input.GetKeyDown(KeyCode.F) && Time.time >nextFire)
 		{
 			nextFire = Time.time + fireRate;
 			if (numberOfDashes > 0 && canUseUlt == true) {
+				dashingRotate = true;
 				charge ();
 			}
 		}
-		
+
 	}
 
 	void charge()
-	{		
+	{
+
 		RB.constraints = RigidbodyConstraints.None;
 		StartCoroutine (tinydelay ());
 		numberOfDashes -= 1;
@@ -125,6 +149,7 @@ public class Dash : MonoBehaviour {
 		{
 			yield return new WaitForSeconds (waitTime);
 			RB.constraints = RigidbodyConstraints.None;
+			dashingRotate = false;
 
 		}
 	}
@@ -136,6 +161,7 @@ public class Dash : MonoBehaviour {
 		{
 			numberOfDashes = 0;
 			RB.constraints = RigidbodyConstraints.None;
+			dashingRotate = false;
 			Debug.Log ("i did not use my charge in time");
 		} 
 
@@ -149,6 +175,7 @@ public class Dash : MonoBehaviour {
 		{
 			numberOfDashes = 0;
 			RB.constraints = RigidbodyConstraints.None;
+			dashingRotate = false;
 			Debug.Log ("i did not use my charge in time");
 		} 
 

@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{196F3426-96BD-E564-A156-57572DB80A48}</ProjectGuid>
+    <ProjectGuid>{CCBC46D6-ED91-C326-9489-2AC06D423D04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -116,18 +116,18 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="DatabaseControl">
- <HintPath>E:/Timothy/Documents/Game/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
- </Reference>
  <Reference Include="DatabaseControlEditor">
- <HintPath>E:/Timothy/Documents/Game/Assets/Database Control Free/Scripts/Editor/DatabaseControlEditor.dll</HintPath>
+ <HintPath>C:/Users/Timothy/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/Editor/DatabaseControlEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="DatabaseControl">
+ <HintPath>C:/Users/Timothy/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{DDFBC18F-9396-3137-9CFE-DEB2CDB74636}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{D0940433-02C6-52CB-5F16-A434F2F85B82}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
-      <Project>{CFE3DA37-8482-B5E3-F5DB-AC8EBCE34763}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
+      <Project>{31BAE3C3-CBA9-3FE5-0BE9-8B63F0A230E4}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
