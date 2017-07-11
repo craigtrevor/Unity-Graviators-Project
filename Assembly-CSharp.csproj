@@ -84,14 +84,17 @@
      <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
+     <Compile Include="Assets\Scripts\Trap Scripts\SlowTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerNameplate.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerStats.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_Scoreboard.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ScoreboardItem.cs" />
@@ -140,6 +143,9 @@
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="DatabaseControl">
+ <HintPath>C:/Users/New/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
