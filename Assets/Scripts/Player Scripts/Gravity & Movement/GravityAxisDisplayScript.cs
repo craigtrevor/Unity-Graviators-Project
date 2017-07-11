@@ -43,7 +43,8 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     public Material matNoCharge;
 
     //Ring Visibility Objects
-    public GameObject gravityCamera;
+    public GameObject playerCamera;
+    public Transform gravityCamera;
     public GameObject gravityCameraRing;
     public GameObject ring;
 
@@ -52,9 +53,17 @@ public class GravityAxisDisplayScript : MonoBehaviour {
 
     private Text UIGravityChargeText;
 
+    //Scripts
+    UI_PlayerHUD UIPlayerHUD;
 
     //Start()
     private void Start() {
+
+        playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        gravityCamera = playerCamera.gameObject.transform.GetChild(0);
+        UIPlayerHUD = GetComponentInParent<UI_PlayerHUD>();
+
+        UIGravityCharge = UIPlayerHUD.playerHUD[0].gameObject;
 
         //Get GravityChargeUI Text
         //UIGravityChargeText = GameObject.Find("UIGravityCharge").GetComponent<Text>();

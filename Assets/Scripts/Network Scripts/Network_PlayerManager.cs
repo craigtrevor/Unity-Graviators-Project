@@ -138,8 +138,6 @@ public class Network_PlayerManager : NetworkBehaviour
             CmdMatchEnd();
         }
 
-
-
         //Disable components
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
@@ -147,10 +145,10 @@ public class Network_PlayerManager : NetworkBehaviour
         }
 
         //Disable GameObjects
-        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
-        {
-            disableGameObjectsOnDeath[i].SetActive(false);
-        }
+        //for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        //{
+        //    disableGameObjectsOnDeath[i].SetActive(false);
+        //}
 
         Collider _col = GetComponent<Collider>();
         if (_col != null)
@@ -197,11 +195,11 @@ public class Network_PlayerManager : NetworkBehaviour
             disableOnDeath[i].enabled = wasEnabled[i];
         }
 
-        //Enable the gameobjects
-        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
-        {
-            disableGameObjectsOnDeath[i].SetActive(true);
-        }
+        ////Enable the gameobjects
+        //for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        //{
+        //    disableGameObjectsOnDeath[i].SetActive(true);
+        //}
 
         Collider _col = GetComponent<Collider>();
         if (_col != null)

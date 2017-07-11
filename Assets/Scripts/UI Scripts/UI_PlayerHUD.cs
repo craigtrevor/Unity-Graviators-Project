@@ -9,20 +9,13 @@ public class UI_PlayerHUD : MonoBehaviour {
     [SerializeField]
     GameObject scoreboard;
 
-    [SerializeField]
-    GameObject[] playerHUD;
+    public GameObject[] playerHUD;
 
     [SerializeField]
     RectTransform healthBarFill;
 
     [SerializeField]
     MonoBehaviour[] playerScripts;
-
-    [SerializeField]
-    Rigidbody playerRigidbody;
-
-    [SerializeField]
-    Animator playerAnimator;
 
     [SerializeField]
     Network_PlayerManager networkPlayerManager;
@@ -71,10 +64,10 @@ public class UI_PlayerHUD : MonoBehaviour {
                 playerHUD[i].SetActive(false);
             }
 
-            for (int i = 0; i < playerScripts.Length; i++)
-            {
-                playerScripts[i].enabled = false;
-            }
+            //////for (int i = 0; i < playerScripts.Length; i++)
+            //////{
+            //////    playerScripts[i].enabled = false;
+            //////}
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -91,10 +84,10 @@ public class UI_PlayerHUD : MonoBehaviour {
                 playerHUD[i].SetActive(true);
             }
 
-            for (int i = 0; i < playerScripts.Length; i++)
-            {
-                playerScripts[i].enabled = true;
-            }
+            //for (int i = 0; i < playerScripts.Length; i++)
+            //{
+            //    playerScripts[i].enabled = true;
+            //}
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

@@ -39,13 +39,14 @@ public class PlayerController : MonoBehaviour {
     bool turnMode; // horizontal mode turns (true) or strafe (false)
 
     public Animator playerAnimator;
-
-    public GameObject gravityAxis;
-    public GameObject gravityBlock;
+    
+    [SerializeField]
+    GameObject gravityBlock;
 
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
-
+    
+    UI_PlayerHUD UIPlayerHUD;
 
     public Quaternion TargetRotation {
         get { return targetRotation; }
@@ -66,6 +67,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Start() {
+
+        UIPlayerHUD = GameObject.FindGameObjectWithTag("PlayerHUD").GetComponent<UI_PlayerHUD>();
+        gravityBlock = UIPlayerHUD.playerHUD[3];
+        gravityAxisScript = gravityBlock.GetComponentInChildren<GravityAxisScript>();
+        gravityBlockScript = gravityBlock.GetComponentInChildren<GravityBlockScript>();
+
         targetRotation = transform.rotation;
 
         if (GetComponentInParent<Rigidbody>()) {
@@ -77,9 +84,6 @@ public class PlayerController : MonoBehaviour {
         forwardInput = turnInput = jumpInput = 0;
 
         turnMode = false;
-
-        gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
-        gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
     }
 
     void GetInput() {
@@ -104,7 +108,7 @@ public class PlayerController : MonoBehaviour {
             }
 
         } else {
-            gravityAxisScript.SetShiftPressed(false); ; //shiftPressed false
+            gravityAxisScript.SetShiftPressed(false); //shiftPressed false
         } //End if shift
     }
 

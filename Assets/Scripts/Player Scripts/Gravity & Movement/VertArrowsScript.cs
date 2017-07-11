@@ -5,10 +5,13 @@ public class VertArrowsScript : MonoBehaviour {
 
     private float yRot = 0;
 
-    public GameObject cameraPivot;
+    [SerializeField]
+    GameObject cameraPivot;
 
     // Use this for initialization
     void Start() {
+
+        cameraPivot = GameObject.FindGameObjectWithTag("MainCamera");
 
     }
 

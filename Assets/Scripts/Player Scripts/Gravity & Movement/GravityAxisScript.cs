@@ -45,6 +45,11 @@ public class GravityAxisScript : MonoBehaviour {
     //Start()
     private void Start() {
 
+        //Initialise gameobjects
+        controller = GameObject.FindGameObjectWithTag("PlayerController");
+        cameraPos = GameObject.FindGameObjectWithTag("MainCamera");
+        rotationBlock = GameObject.Find("RotationBlock");
+
         //Initialise gravity variables
         gravity = "-y";
         gravitySwitching = false;
