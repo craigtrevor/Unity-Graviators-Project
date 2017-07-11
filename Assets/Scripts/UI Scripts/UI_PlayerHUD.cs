@@ -13,6 +13,9 @@ public class UI_PlayerHUD : MonoBehaviour {
     GameObject[] playerHUD;
 
     [SerializeField]
+    RectTransform healthBarFill;
+
+    [SerializeField]
     MonoBehaviour[] playerScripts;
 
     [SerializeField]
@@ -21,14 +24,10 @@ public class UI_PlayerHUD : MonoBehaviour {
     [SerializeField]
     Animator playerAnimator;
 
-    private Network_PlayerManager networkPlayerManager;
+    [SerializeField]
+    Network_PlayerManager networkPlayerManager;
 
-    private PlayerController playerController;
-
-    public void SetController(PlayerController _controller)
-    {
-        playerController = _controller;
-    }
+    PlayerController playerController;
 
     public void SetPlayer(Network_PlayerManager _networkPlayerManager)
     {
@@ -45,6 +44,8 @@ public class UI_PlayerHUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        SetHealthAmount(networkPlayerManager.GetHealthPct());
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
@@ -104,5 +105,10 @@ public class UI_PlayerHUD : MonoBehaviour {
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         UI_PauseMenu.IsOn = pauseMenu.activeSelf;
+    }
+
+    void SetHealthAmount (float _amount)
+    {
+        healthBarFill.localScale = new Vector3(_amount, 0.3f, 1f);
     }
 }

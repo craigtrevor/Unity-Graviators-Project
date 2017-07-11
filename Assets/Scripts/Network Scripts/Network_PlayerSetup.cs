@@ -14,11 +14,12 @@ public class Network_PlayerSetup : NetworkBehaviour
 
     [SerializeField]
     string dontDrawLayerName = "DontDraw";
-    [SerializeField]
-    GameObject playerGraphics;
 
-    [SerializeField]
-    GameObject playerUIPrefab;
+    //[SerializeField]
+    //GameObject playerGraphics;
+
+    //[SerializeField]
+    //GameObject playerUIPrefab;
 
     [HideInInspector]
     public GameObject playerUIInstance;
@@ -36,18 +37,18 @@ public class Network_PlayerSetup : NetworkBehaviour
 
         else
         {
-            // Disable player graphics for local player
+            //Disable player graphics for local player
             //SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
 
-            //// Create PlayerUI
+           // Create PlayerUI
             //playerUIInstance = Instantiate(playerUIPrefab);
             //playerUIInstance.name = playerUIPrefab.name;
 
-            //// Configure PlayerUI
+            ////Configure PlayerUI
             //UI_PlayerHUD ui = playerUIInstance.GetComponent<UI_PlayerHUD>();
             //if (ui == null)
             //    Debug.LogError("No PlayerUI component on PlayerUI prefab.");
-            //ui.SetController(GetComponent<PlayerController>());
+            //ui.SetPlayer(GetComponent<Network_PlayerManager>());
 
             GetComponent<Network_PlayerManager>().SetupPlayer();
 

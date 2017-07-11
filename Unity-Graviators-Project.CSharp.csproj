@@ -122,11 +122,13 @@
     <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerNameplate.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerStats.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Scoreboard.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ScoreboardItem.cs" />

@@ -15,12 +15,17 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     [SerializeField]
-    private float maxHealth = 100;
+    public float maxHealth = 100;
 
     public GameObject healthBar;
 
     [SyncVar]
     private float currentHealth;
+
+    public float GetHealthPct()
+    {
+        return currentHealth / maxHealth;
+    }
 
     [SyncVar]
     public string username = "Loading...";
@@ -95,14 +100,14 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth -= _amount;
 
-        if (isLocalPlayer)
-        {
-            //calculates the players remaining health and updates health bar based on it
-            //calculation will result in between 1 and 0 (eg. 80/100 = 0.6)
+        //if (isLocalPlayer)
+        //{
+        //    //calculates the players remaining health and updates health bar based on it
+        //    //calculation will result in between 1 and 0 (eg. 80/100 = 0.6)
 
-            float calculateHealth = currentHealth / maxHealth;
-            SetHealthBar(calculateHealth);
-        }
+        //    float calculateHealth = currentHealth / maxHealth;
+        //    SetHealthBar(calculateHealth);
+        //}
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
