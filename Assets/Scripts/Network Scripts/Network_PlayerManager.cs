@@ -17,8 +17,6 @@ public class Network_PlayerManager : NetworkBehaviour
     [SerializeField]
     public float maxHealth = 100;
 
-    public GameObject healthBar;
-
     [SyncVar]
     private float currentHealth;
 
@@ -145,10 +143,10 @@ public class Network_PlayerManager : NetworkBehaviour
         }
 
         //Disable GameObjects
-        //for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
-        //{
-        //    disableGameObjectsOnDeath[i].SetActive(false);
-        //}
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        {
+            disableGameObjectsOnDeath[i].SetActive(false);
+        }
 
         Collider _col = GetComponent<Collider>();
         if (_col != null)
@@ -195,22 +193,15 @@ public class Network_PlayerManager : NetworkBehaviour
             disableOnDeath[i].enabled = wasEnabled[i];
         }
 
-        ////Enable the gameobjects
-        //for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
-        //{
-        //    disableGameObjectsOnDeath[i].SetActive(true);
-        //}
+        //Enable the gameobjects
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        {
+            disableGameObjectsOnDeath[i].SetActive(true);
+        }
 
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
-    }
-
-    public void SetHealthBar(float playerHealth)
-    {
-        //playerHealth value between 0-1
-        //adjusts scale of player health bar between 0-1 based on above calculation
-        healthBar.transform.localScale = new Vector3(playerHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 
     [Command]

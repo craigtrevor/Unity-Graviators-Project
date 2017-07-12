@@ -6,7 +6,6 @@ public class Network_PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
     Behaviour[] componentsToDisable;
-
     [SerializeField]
     GameObject[] gameobjectsToDisable;
 
@@ -19,8 +18,8 @@ public class Network_PlayerSetup : NetworkBehaviour
     [SerializeField]
     GameObject playerGraphics;
 
-    [SerializeField]
-    GameObject playerUIPrefab;
+    //[SerializeField]
+    //GameObject playerUIPrefab;
 
     [HideInInspector]
     public GameObject playerUIInstance;
@@ -38,18 +37,23 @@ public class Network_PlayerSetup : NetworkBehaviour
 
         else
         {
-            //Disable player graphics for local player
-            //SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
+            if (isLocalPlayer)
+            {
+                //Disable player graphics for local player
+                SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
+            }
 
             // Create PlayerUI
-            playerUIInstance = Instantiate(playerUIPrefab);
-            playerUIInstance.name = playerUIPrefab.name;
+            //playerUIInstance = Instantiate(playerUIPrefab);
+            //playerUIInstance.name = playerUIPrefab.name;
 
             ////Configure PlayerUI
-            UI_PlayerHUD ui = playerUIInstance.GetComponent<UI_PlayerHUD>();
-            if (ui == null)
-                Debug.LogError("No PlayerUI component on PlayerUI prefab.");
-            ui.SetPlayer(GetComponent<Network_PlayerManager>());
+            //UI_PlayerHUD ui = playerUIInstance.GetComponent<UI_PlayerHUD>();
+            //if (ui == null)
+            //    Debug.LogError("No PlayerUI component on PlayerUI prefab.");
+            //ui.SetPlayer(GetComponent<Network_PlayerManager>());
+
+            GetComponent<Network_PlayerManager>().SetupPlayer();
 
             string _username = "Loading...";
             if (UI_UserAccountManager.IsLoggedIn)
@@ -63,12 +67,30 @@ public class Network_PlayerSetup : NetworkBehaviour
         GetComponent<Network_PlayerManager>().SetupPlayer();
     }
 
+    void AssignRemoteLayer()
+    {
+        gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
+    }
+
+    void DisableComponents()
+    {
+        for (int i = 0; i < componentsToDisable.Length; i++)
+        {
+            componentsToDisable[i].enabled = false;
+        }
+
+        for (int i = 0; i < gameobjectsToDisable.Length; i++)
+        {
+            gameobjectsToDisable[i].SetActive(false);
+        }
+    }
+
     void OnDisable()
     {
-        Destroy(playerUIInstance);
-
-        if (isLocalPlayer)
-            Network_GameManager.instance.SetSceneCameraActive(true);
+        if (sceneCamera != null)
+        {
+            sceneCamera.gameObject.SetActive(true);
+        }
 
         Network_GameManager.UnRegisterPlayer(transform.name);
     }
@@ -117,24 +139,6 @@ public class Network_PlayerSetup : NetworkBehaviour
         for (int i = 0; i < 5; i++)
         {
             netAnim.SetParameterAutoSend(i, true);
-        }
-    }
-
-    void AssignRemoteLayer()
-    {
-        gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
-    }
-
-    void DisableComponents()
-    {
-        for (int i = 0; i < componentsToDisable.Length; i++)
-        {
-            componentsToDisable[i].enabled = false;
-        }
-
-        for (int i = 0; i < gameobjectsToDisable.Length; i++)
-        {
-            gameobjectsToDisable[i].SetActive(false);
         }
     }
 }

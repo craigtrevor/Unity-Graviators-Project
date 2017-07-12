@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class UI_CameraFacingBillboard : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        Camera cam = Camera.main;
+
+        transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward,
+            cam.transform.rotation * Vector3.up);
 		
 	}
 }

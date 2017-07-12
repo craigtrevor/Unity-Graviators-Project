@@ -3,13 +3,18 @@ using System.Collections;
 
 public class GravityBlockScript : MonoBehaviour {
 
-    [SerializeField]
-    GameObject controller;
+    public GameObject controller;
 
 	// Use this for initialization
 	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
 
-        controller = GameObject.FindGameObjectWithTag("PlayerController");	
+        //transform.position = player.transform.position; //Move rotation block to player position
+	
 	}
 
     //Update position to same as controller position
