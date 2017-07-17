@@ -23,10 +23,14 @@ public class Network_SyncRot : NetworkBehaviour {
     private float lerpRate = 15;
     private float threshold = 5;
 
+    void Update()
+    {
+        LerpRotations();
+    }
+
     void FixedUpdate()
     {
         TransmitRotations();
-        LerpRotations();
     }
 
     void LerpRotations()
