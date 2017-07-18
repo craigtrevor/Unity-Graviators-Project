@@ -57,6 +57,7 @@ public class Dash : MonoBehaviour {
 		if (dashingRotate == true) {
 			dashAngle.eulerAngles = cameraRotation.transform.eulerAngles;
 		}
+
 		Vector3 front = cameraRotation.forward; // used to deterine forward
 		Debug.DrawRay (MeleeSpawn.position, front *3, Color.green); // debungging raycast to see direction
 		if (isDashing == true) 
@@ -81,12 +82,14 @@ public class Dash : MonoBehaviour {
 			chargePercent = 0;
 		}
 
-		if (numberOfDashes == 0) {
-			playerRigidBody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
-			playerRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
-			canUseUlt = false;
-			dashingRotate = false;
-		}
+//		if (numberOfDashes == 0) {
+//			playerRigidBody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
+//			playerRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+//			canUseUlt = false;
+//			dashingRotate = false;
+//			// place code here to reset player rotation
+//			visualAngleObject.transform.localRotation = Quaternion.Euler(0,0,0);
+//		}
 
 
 		if(Input.GetKeyDown(KeyCode.F) && Time.time >nextFire)
@@ -134,6 +137,15 @@ public class Dash : MonoBehaviour {
 				playerRigidBody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
 				playerRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
 			} 
+		}
+
+		if (numberOfDashes == 0) {
+			playerRigidBody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
+			playerRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+			canUseUlt = false;
+			dashingRotate = false;
+			// place code here to reset player rotation
+			visualAngleObject.transform.localRotation = Quaternion.Euler(0,0,0);
 		}
 	}
 }

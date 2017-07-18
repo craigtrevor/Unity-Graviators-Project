@@ -18,8 +18,7 @@ public class damageRange : MonoBehaviour {
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.tag != "Player") {
-			Debug.Log ("i have hit something and am now dissapering");
-			Debug.Log(col.tag);
+			Debug.Log ("i have hit "+ col.tag+ " and am now dissapering");
 			Destroy (this.gameObject);
 		}
 	}
