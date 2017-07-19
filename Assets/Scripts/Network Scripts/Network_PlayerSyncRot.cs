@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 
-public class Network_PlayerSyncRot : NetworkBehaviour {
+public class Network_SyncRot : NetworkBehaviour {
 
     [SerializeField]
     private Transform playerTransform;

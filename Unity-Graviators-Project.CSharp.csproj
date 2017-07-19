@@ -100,9 +100,12 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_MatchSettings.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerOldSyncPos.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerOldSyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerScore.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSetup.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSyncPos.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SceneChecker.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
