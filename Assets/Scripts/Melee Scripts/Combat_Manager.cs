@@ -11,6 +11,7 @@ public class Combat_Manager : NetworkBehaviour {
     // Rigidbody
     private Rigidbody playerRigidbody;
     private const string PLAYER_TAG = "Player";
+
     private Collider[] hitColliders;
 
     // Int
@@ -25,9 +26,7 @@ public class Combat_Manager : NetworkBehaviour {
 	[SerializeField]
 	private float highDamageVelocity = 25;
 
-	//dash damage storage
-	[SerializeField]
-	private float dashDamage = 500;
+
 
     // Boolean
     public bool isAttacking;
