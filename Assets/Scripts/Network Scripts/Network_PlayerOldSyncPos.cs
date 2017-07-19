@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 using System.Collections.Generic;
 
 [NetworkSettings(channel = 0, sendInterval = 0.1f)]
-public class Network_PlayerSyncPos : NetworkBehaviour {
+public class Network_PlayerOldSyncPos : NetworkBehaviour {
 
     [SyncVar (hook = "SyncPositionValues")]
     private Vector3 syncPos;
@@ -104,7 +104,5 @@ public class Network_PlayerSyncPos : NetworkBehaviour {
                 lerpRate = normalLerpRate;
             }
         }
-
-        //Debug.Log(syncPostList.Count.ToString());
     }
 }
