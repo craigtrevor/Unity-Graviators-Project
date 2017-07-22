@@ -1,9 +1,20 @@
-﻿using UnityEngine;
+﻿//THIS IS THE OLD ONE
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 //GravityAxisScript controls all the aspects of the gravity axis and gravity switching.
 public class GravityAxisScript : MonoBehaviour {
+
+    enum Orientation {
+        Up,
+        Down,
+        Right,
+        Left,
+        Forward,
+        Backward
+    }
 
     //Gravity charge constants
     private const int GRAVITY_MAX = 10000;
@@ -430,5 +441,75 @@ public class GravityAxisScript : MonoBehaviour {
     public bool GetGravitySwitching() {
         return gravitySwitching;
     } //End GetGravitySwitching()
+
+    private class Gravity {
+        private static float velocity = 15.0f;
+        private static Vector3 Up = new Vector3(0, 1, 0);        // y+
+        private static Vector3 Down = new Vector3(0, -1, 0);     // y-
+        private static Vector3 Right = new Vector3(1, 0, 0);     // x+
+        private static Vector3 Left = new Vector3(-1, 0, 0);     // x-
+        private static Vector3 Forward = new Vector3(0, 0, 1);   // z+
+        private static Vector3 Backward = new Vector3(0, 0, -1); // z-
+
+        private Orientation currentOrientation;
+        private Vector3 currentGravityDirection;
+        private string gravityString;
+
+        public Gravity(Orientation orientation) {
+            this.setOrientation(orientation);
+        }
+
+        public Vector3 getDistanceTravelled(float deltaTime) {
+            return this.currentGravityDirection * Gravity.velocity * deltaTime;
+        }
+
+        public Vector3 getGravityDirection() {
+            return this.currentGravityDirection;
+        }
+
+        public Orientation getOrientation() {
+            return this.currentOrientation;
+        }
+
+        public void setOrientation(Orientation orientation) {
+            Vector3 gravityDirection = new Vector3(0, 0, 0);
+            this.currentOrientation = orientation;
+
+            switch (currentOrientation) {
+                case Orientation.Up:
+                    gravityDirection = Gravity.Down;
+                    this.gravityString = "y";
+                    break;
+                case Orientation.Down:
+                    gravityDirection = Gravity.Up;
+                    this.gravityString = "y-";
+                    break;
+                case Orientation.Right:
+                    gravityDirection = Gravity.Left;
+                    this.gravityString = "x";
+                    break;
+                case Orientation.Left:
+                    gravityDirection = Gravity.Right;
+                    this.gravityString = "x-";
+                    break;
+                case Orientation.Forward:
+                    gravityDirection = Gravity.Backward;
+                    this.gravityString = "z";
+                    break;
+                case Orientation.Backward:
+                    gravityDirection = Gravity.Forward;
+                    this.gravityString = "z-";
+                    break;
+                default:
+                    break;
+            }
+
+            this.currentGravityDirection = gravityDirection;
+        }
+
+        public override string ToString() {
+            return this.gravityString;
+        }
+    }
 
 } //End GravityAxisScript
