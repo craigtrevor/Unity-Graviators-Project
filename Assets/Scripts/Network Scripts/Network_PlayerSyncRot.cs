@@ -3,21 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 
-public class Network_SyncRot : NetworkBehaviour {
-
+public class Network_PlayerSyncRot : NetworkBehaviour
+{
     [SerializeField]
     private Transform playerTransform;
 
     [SerializeField]
     private Transform camTransform;
 
-    [SyncVar(hook = "OnPlayerRotSynced")]
-    private Quaternion syncPlayerRotation;
+    [SyncVar(hook = "OnPlayerRotXSynced")]
+    private float syncPlayerRotationX;
+
+    [SyncVar(hook = "OnPlayerRotYSynced")]
+    private float syncPlayerRotationY;
+
+    [SyncVar(hook = "OnPlayerRotZSynced")]
+    private float syncPlayerRotationZ;
 
     [SyncVar(hook = "OnCamRotSynced")]
     private float syncCamRotation;
 
-    private Quaternion lastPlayerRot;
+    private float lastPlayerRotX;
+    private float lastPlayerRotY;
+    private float lastPlayerRotZ;
     private float lastCamRot;
     private float lerpRate = 20;
     private float threshold = 1;
@@ -26,9 +34,10 @@ public class Network_SyncRot : NetworkBehaviour {
     [SerializeField]
     private bool useHistoricalInterpolation;
 
-    private List<Quaternion> syncPlayerRotList = new List<Quaternion>();
+    private List<float> syncPlayerRotXList = new List<float>();
+    private List<float> syncPlayerRotYList = new List<float>();
+    private List<float> syncPlayerRotZList = new List<float>();
     private List<float> syncCamRotList = new List<float>();
-
 
     void Update()
     {
@@ -55,19 +64,30 @@ public class Network_SyncRot : NetworkBehaviour {
             }
         }
     }
-   
+
     void HistoricalInterpolation()
     {
-        if(syncPlayerRotList.Count > 0)
+        if (syncPlayerRotXList.Count > 0 && syncPlayerRotYList.Count > 0 && syncPlayerRotZList.Count > 0)
         {
-            LerpPlayerRot(syncPlayerRotList[0]);
+            LerpPlayerRot(syncPlayerRotXList[0], syncPlayerRotYList[0], syncPlayerRotZList[0]);
 
-            //if ((playerTransform.rotation == syncPlayerRotList[0]) < closeEnough)
-            //{
+            if (Mathf.Abs(playerTransform.localEulerAngles.x - syncPlayerRotXList[0]) < closeEnough)
+            {
+                syncPlayerRotXList.RemoveAt(0);
+            }
 
-            //}
+            if (Mathf.Abs(playerTransform.localEulerAngles.y - syncPlayerRotYList[0]) < closeEnough)
+            {
+                syncPlayerRotYList.RemoveAt(0);
+            }
 
-            //Debug.Log(syncPlayerRotList.Count.ToString() + " syncPlayerRotList Count");
+            if (Mathf.Abs(playerTransform.localEulerAngles.z - syncPlayerRotZList[0]) < closeEnough)
+            {
+                syncPlayerRotZList.RemoveAt(0);
+            }
+
+            Debug.Log(playerTransform.localEulerAngles.x);
+            //Debug.Log(syncPlayerRotXList.Count.ToString() + " syncPlayerRotXList Count");
         }
 
         if (syncCamRotList.Count > 0)
@@ -85,13 +105,14 @@ public class Network_SyncRot : NetworkBehaviour {
 
     void OrdinaryLerping()
     {
-        LerpPlayerRot(syncPlayerRotation);
+        LerpPlayerRot(syncPlayerRotationX, syncPlayerRotationY, syncPlayerRotationZ);
         LerpCamRot(syncCamRotation);
     }
 
-    void LerpPlayerRot(Quaternion rotAngle)
+    void LerpPlayerRot(float rotAngleX, float rotAngleY, float rotAngleZ)
     {
-        playerTransform.rotation = Quaternion.Lerp(playerTransform.rotation, rotAngle, Time.deltaTime * lerpRate);
+        Vector3 playerNewRot = new Vector3(rotAngleX, rotAngleY, rotAngleZ);
+        playerTransform.localRotation = Quaternion.Lerp(playerTransform.localRotation, Quaternion.Euler(playerNewRot), lerpRate * Time.deltaTime);
     }
 
     void LerpCamRot(float rotAngle)
@@ -100,10 +121,12 @@ public class Network_SyncRot : NetworkBehaviour {
         camTransform.localRotation = Quaternion.Lerp(camTransform.localRotation, Quaternion.Euler(camNewRot), lerpRate * Time.deltaTime);
     }
 
-   [Command]
-   void CmdProvideRotationsToServer(Quaternion playerRot, float camRot)
+    [Command]
+    void CmdProvideRotationsToServer(float playerRotX, float playerRotY, float playerRotZ, float camRot)
     {
-        syncPlayerRotation = playerRot;
+        syncPlayerRotationX = playerRotX;
+        syncPlayerRotationY = playerRotY;
+        syncPlayerRotationZ = playerRotZ;
         syncCamRotation = camRot;
     }
 
@@ -112,18 +135,20 @@ public class Network_SyncRot : NetworkBehaviour {
     {
         if (isLocalPlayer)
         {
-            if (Quaternion.Angle(playerTransform.rotation, lastPlayerRot) > threshold || CheckIfBeyondThreshold(camTransform.localEulerAngles.x , lastCamRot))
+            if (CheckIfBeyondThreshold(playerTransform.localEulerAngles.x, lastPlayerRotX) || CheckIfBeyondThreshold(playerTransform.localEulerAngles.y, lastPlayerRotY) || CheckIfBeyondThreshold(playerTransform.localEulerAngles.z, lastPlayerRotZ) || CheckIfBeyondThreshold(camTransform.localEulerAngles.x, lastCamRot))
             {
-                lastPlayerRot = playerTransform.rotation;
+                lastPlayerRotX = playerTransform.localEulerAngles.x;
+                lastPlayerRotY = playerTransform.localEulerAngles.y;
+                lastPlayerRotZ = playerTransform.localEulerAngles.z;
                 lastCamRot = camTransform.localEulerAngles.x;
-                CmdProvideRotationsToServer(lastPlayerRot, lastCamRot);
+                CmdProvideRotationsToServer(lastPlayerRotX, lastPlayerRotY, lastPlayerRotZ, lastCamRot);
             }
         }
     }
 
-    bool CheckIfBeyondThreshold (float rot1, float rot2)
+    bool CheckIfBeyondThreshold(float rot1, float rot2)
     {
-        if(Mathf.Abs(rot1 - rot2) > threshold)
+        if (Mathf.Abs(rot1 - rot2) > threshold)
         {
             return true;
         }
@@ -135,10 +160,24 @@ public class Network_SyncRot : NetworkBehaviour {
     }
 
     [Client]
-    void OnPlayerRotSynced(Quaternion latestPlayerRot)
+    void OnPlayerRotXSynced(float latestPlayerRotX)
     {
-        syncPlayerRotation = lastPlayerRot;
-        syncPlayerRotList.Add(syncPlayerRotation);
+        syncPlayerRotationX = latestPlayerRotX;
+        syncPlayerRotXList.Add(syncPlayerRotationX);
+    }
+
+    [Client]
+    void OnPlayerRotYSynced(float latestPlayerRotY)
+    {
+        syncPlayerRotationY = latestPlayerRotY;
+        syncPlayerRotYList.Add(syncPlayerRotationY);
+    }
+
+    [Client]
+    void OnPlayerRotZSynced(float latestPlayerRotZ)
+    {
+        syncPlayerRotationZ = latestPlayerRotZ;
+        syncPlayerRotZList.Add(syncPlayerRotationZ);
     }
 
     [Client]
