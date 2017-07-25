@@ -76,18 +76,6 @@ public class Network_PlayerManager : NetworkBehaviour
         SetDefaults();
     }
 
-    //void Update()
-    //{
-    //    if (isLocalPlayer)
-    //    {
-    //        if (Input.GetKeyDown(KeyCode.K))
-    //        {
-    //            RpcTakeDamage(100);
-    //            deaths--;
-    //        }
-    //    }
-    //}
-
     [ClientRpc]
     public void RpcTakeDamage(float _amount, string _sourceID)
     {

@@ -18,6 +18,9 @@ public class Network_PlayerSetup : NetworkBehaviour
     [SerializeField]
     GameObject playerGraphics;
 
+    [SerializeField]
+    GameObject gravityBlock;
+
     //[SerializeField]
     //GameObject playerUIPrefab;
 
@@ -32,7 +35,9 @@ public class Network_PlayerSetup : NetworkBehaviour
         if (!isLocalPlayer)
         {
             DisableComponents();
+            DisableGameObjects();
             AssignRemoteLayer();
+            SetLayerRecursively(gravityBlock, LayerMask.NameToLayer(dontDrawLayerName));
         }
 
         else
@@ -78,7 +83,10 @@ public class Network_PlayerSetup : NetworkBehaviour
         {
             componentsToDisable[i].enabled = false;
         }
+    }
 
+    void DisableGameObjects()
+    {
         for (int i = 0; i < gameobjectsToDisable.Length; i++)
         {
             gameobjectsToDisable[i].SetActive(false);
