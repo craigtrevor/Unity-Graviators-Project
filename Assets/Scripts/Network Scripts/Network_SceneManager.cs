@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Network_SceneChecker : MonoBehaviour
+public class Network_SceneManager : MonoBehaviour
 {
-    public static Network_SceneChecker instance;
+    public static Network_SceneManager instance;
 
     private Scene currentScene;
     public string sceneName;
