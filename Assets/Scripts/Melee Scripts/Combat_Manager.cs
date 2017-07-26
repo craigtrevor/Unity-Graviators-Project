@@ -18,8 +18,8 @@ public class Combat_Manager : NetworkBehaviour {
 
     // Int
     public float playerDamage;
-	public int thrust = 1000; //change this for speed of knock back
-	public float delay = 5.00f; 
+	public int thrust = 2000; //change this for speed of knock back
+	public float delay = 0.2f; 
     //private int attackMask;
     private Vector3 attackOffset;
 
@@ -102,14 +102,12 @@ public class Combat_Manager : NetworkBehaviour {
 		Debug.Log ("knock Back");
 		GetComponentInChildren<PlayerController> ().enabled = false; // turn off player controls
 		playerRigidbody.constraints = RigidbodyConstraints.None; // allows the player to move around the 3 axis's
-		//playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation; // stops the player from rotating
+		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation; // stops the player from rotating
 		playerRigidbody.AddForce(cameraRotation.forward * -thrust);
 		yield return new WaitForSeconds (delay);
 		playerRigidbody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
 		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 		GetComponentInChildren<PlayerController> ().enabled = true; // turn on player controls
-		//playerRigidBody.AddForce (cameraRotation.forward * thrust);// push the player forward
-		// get the palyer rigidbody and push it back
 	}
 
     [Command]
