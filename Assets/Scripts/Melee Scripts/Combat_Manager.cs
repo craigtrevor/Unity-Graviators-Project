@@ -30,6 +30,8 @@ public class Combat_Manager : NetworkBehaviour {
 	[SerializeField]
 	private float highDamageVelocity = 25;
 
+	private double ultGain;
+
 
 
     // Boolean
@@ -88,6 +90,7 @@ public class Combat_Manager : NetworkBehaviour {
 
 					CmdTakeDamage (hitCol.gameObject.name, playerDamage, transform.name);
 					isAttacking = false;
+					GetComponent<Dash> ().chargePercent += ultGain;
 				} else 
 				{
 					
@@ -142,20 +145,24 @@ public class Combat_Manager : NetworkBehaviour {
         {
             //transform.GetComponent<Renderer>().material.color = Color.green;
             playerDamage = 25.0f;
+			ultGain = 5;
         }
         else if (lowDamageVelocity < speed && speed < highDamageVelocity)
         {
             //transform.GetComponent<Renderer>().material.color = Color.yellow;
             playerDamage = 50.0f;
+			ultGain = 10;
         }
         else if (highDamageVelocity < speed)
         {
             //transform.GetComponent<Renderer>().material.color = Color.red;
             playerDamage = 70.0f;
+			ultGain = 20;
         }
         else
         {
             playerDamage = 25.0f;
+			ultGain = 5;
         }
     }
 }

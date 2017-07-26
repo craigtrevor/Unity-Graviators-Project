@@ -4,8 +4,8 @@
     <Files>
       <File FileName="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Melee Scripts\Combat_Manager.cs" Line="110" Column="89" />
-      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" Line="191" Column="4" />
+      <File FileName="Assets\Scripts\Melee Scripts\Combat_Manager.cs" Line="93" Column="53" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
