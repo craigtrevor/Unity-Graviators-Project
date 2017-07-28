@@ -33,6 +33,34 @@ public class Network_GameManager : MonoBehaviour {
         sceneCamera.SetActive(isActive);
     }
 
+    #region Trap Tracking
+    private const string TRAP_ID_PREFIX = "Trap ";
+    private static Dictionary<string, Network_TrapManager> traps = new Dictionary<string, Network_TrapManager>();
+
+    public static void RegisterTrap(string _netID, Network_TrapManager _trap)
+    {
+        string _trapID = TRAP_ID_PREFIX + _netID;
+        traps.Add(_trapID, _trap);
+        _trap.transform.name = _trapID;
+    }
+
+    public static void UnRegisterTrap(string _trapID)
+    {
+        traps.Remove(_trapID);
+    }
+
+    public static Network_TrapManager GetTrap(string _trapID)
+    {
+        return traps[_trapID];
+    }
+
+    public static Network_TrapManager[] GetAllTraps()
+    {
+        return traps.Values.ToArray();
+    }
+
+    #endregion
+
     #region Player tracking
 
     private const string PLAYER_ID_PREFIX = "Player ";

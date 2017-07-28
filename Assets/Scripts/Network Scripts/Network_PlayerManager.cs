@@ -86,27 +86,34 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth -= _amount;
 
-        //if (isLocalPlayer)
-        //{
-        //    //calculates the players remaining health and updates health bar based on it
-        //    //calculation will result in between 1 and 0 (eg. 80/100 = 0.6)
+        Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
-        //    float calculateHealth = currentHealth / maxHealth;
-        //    SetHealthBar(calculateHealth);
-        //}
+        if (currentHealth <= 0)
+        {
+            DieFromTrap(_sourceID);
+        }
+    }
+
+    [ClientRpc]
+    public void RpcTakeTrapDamage(float _amount, string _sourceID)
+    {
+        if (isDead)
+            return;
+
+        Debug.Log("Taken damage");
+
+        currentHealth -= _amount;
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
         if (currentHealth <= 0)
         {
-            Die(_sourceID);         
+            DieFromTrap(_sourceID);
         }
     }
 
     private void Die(string _sourceID)
     {
-        isDead = true;
-
         Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
 
         deaths++;
@@ -124,6 +131,26 @@ public class Network_PlayerManager : NetworkBehaviour
             CmdMatchEnd();
         }
 
+        DisablePlayer();
+    }
+
+    private void DieFromTrap(string _sourceID)
+    {
+        isDead = true;
+
+        deaths++;
+        deathStats++;
+
+        if (deaths == 10)
+        {
+            CmdMatchEnd();
+        }
+
+        DisablePlayer();
+    }
+
+    private void DisablePlayer()
+    {
         //Disable components
         for (int i = 0; i < disableOnDeath.Length; i++)
         {

@@ -111,6 +111,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SceneManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
     <Compile Include="Assets\Scripts\Particle Scripts\particle.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />

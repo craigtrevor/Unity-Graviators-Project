@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class SlowTrap : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		float Forward = GetComponent<PlayerController> ().moveSettings.forwardVel;
-		float Right = GetComponent<PlayerController> ().moveSettings.rightVel;
-		float RotateVel = GetComponent<PlayerController> ().moveSettings.rotateVel;
-		float Jump = GetComponent<PlayerController> ().moveSettings.jumpVel;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+    private const string PLAYER_TAG = "Player";
+    PlayerController playerController;
+
+    [SerializeField]
+    private int reducedWalkSpeed = 6;
+    [SerializeField]
+    private int normalWalkSpeed = 12;
+
+    [SerializeField]
+    private int reducedJumpSpeed = 7;
+    [SerializeField]
+    private int normalJumpSpeed = 15;
+
+	void OnTriggerEnter(Collider other)
+    {
+		if (other.tag == PLAYER_TAG)
+        {
+            playerController = other.GetComponentInChildren<PlayerController>();
+            playerController.moveSettings.forwardVel = reducedWalkSpeed;
+            playerController.moveSettings.rightVel = reducedWalkSpeed;
+            playerController.moveSettings.jumpVel = reducedJumpSpeed;
+        }
 	}
 
-	void OnTriggerEnter(Collider other){
-		if (other.tag == "Player") {
-			print ("Hi");
-
-			//float Jump / 2;
-		}
-	}
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == PLAYER_TAG)
+        {
+            playerController = other.GetComponentInChildren<PlayerController>();
+            playerController.moveSettings.forwardVel = normalWalkSpeed;
+            playerController.moveSettings.rightVel = normalWalkSpeed;
+            playerController.moveSettings.jumpVel = normalJumpSpeed;
+        }
+    }
 }

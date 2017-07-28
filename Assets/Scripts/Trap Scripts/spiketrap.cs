@@ -1,23 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class spiketrap : MonoBehaviour {
+public class spiketrap : NetworkBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private const string PLAYER_TAG = "Player";
 
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Player") {
-			print ("Ouch!");
-			Destroy (other.gameObject);
-		}
-	}
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private float trapDamage = 100;
+
+    [Client]
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == PLAYER_TAG)
+        {
+            Debug.Log(other.gameObject.name);
+            Debug.Log(transform.name);
+            CmdTakeDamage(other.gameObject.name, trapDamage, other.gameObject.transform.name); 
+        }
+    }
+
+    [Command]
+    void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
+    {
+        Debug.Log(_playerID + " has been attacked.");
+
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+
+        networkPlayerStats.RpcTakeDamage(_damage, _playerID);
+    }
+
 }
