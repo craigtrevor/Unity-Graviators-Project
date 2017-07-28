@@ -44,7 +44,7 @@ public class GravityAxisDisplayScript : MonoBehaviour {
 
     //Ring Visibility Objects
     public GameObject gravityCamera;
-    public GameObject gravityCameraRing;
+    public GameObject gravityCameraFront        ;
     public GameObject ring;
 
     //UI Objects/Components
@@ -86,12 +86,12 @@ public class GravityAxisDisplayScript : MonoBehaviour {
         if (shiftPressed && !gravitySwitching) { //If shift is pressed and not switching gravity
             //Hide axis
             gravityCamera.GetComponent<Camera>().enabled = true;
-            //gravityCameraRing.GetComponent<Camera>().enabled = true;
+            gravityCameraFront.GetComponent<Camera>().enabled = true;
             ring.GetComponent<MeshRenderer>().enabled = true;
         } else {
             //Hide axis
             gravityCamera.GetComponent<Camera>().enabled = false;
-            //gravityCameraRing.GetComponent<Camera>().enabled = false;
+            gravityCameraFront.GetComponent<Camera>().enabled = false;
             ring.GetComponent<MeshRenderer>().enabled = false;
         } //End if(shiftPressed && !gravityChanging)
 
