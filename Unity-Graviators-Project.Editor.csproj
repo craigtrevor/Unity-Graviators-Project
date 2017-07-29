@@ -112,6 +112,15 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="DatabaseControl">
+      <HintPath>Assets\Database Control Free\Scripts\DatabaseControl.dll</HintPath>
+    </Reference>
+    <Reference Include="DatabaseControlEditor">
+      <HintPath>Assets\Database Control Free\Scripts\Editor\DatabaseControlEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-UnityScript">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity-Graviators-Project.csproj">
@@ -123,7 +132,10 @@
     <Compile Include="Assets\_MK\MKToon\Editor\MKToonEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
+    <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
     <None Include="Assets\MeleeWeaponTrail\README.txt" />
+    <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
