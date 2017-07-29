@@ -110,6 +110,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_Soundscape.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
     <Compile Include="Assets\Scripts\Particle Scripts\particle.cs" />

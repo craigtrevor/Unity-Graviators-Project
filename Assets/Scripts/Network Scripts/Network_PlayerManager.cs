@@ -90,7 +90,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
         if (currentHealth <= 0)
         {
-            DieFromTrap(_sourceID);
+            Die(_sourceID);
         }
     }
 
