@@ -15,7 +15,8 @@ public class particle : MonoBehaviour {
 	void Update () {
 		
 	}
-    void OnTriggerEnter(Collider collider)
+
+  /*  void OnTriggerEnter(Collider collider)
     {
         if(collider.tag == "collider")
         {
@@ -24,5 +25,14 @@ public class particle : MonoBehaviour {
             GravityLand.Play();
         }
        
+    }*/
+
+    void OnCollisionEnter(Collision collision)
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            //Instantiate your particle system here.
+            Instantiate(GravityLand, contact.point, Quaternion.identity);
+        }
     }
 }
