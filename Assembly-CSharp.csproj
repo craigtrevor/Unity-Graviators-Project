@@ -80,7 +80,9 @@
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSyncRot.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_SceneManager.cs" />
+     <Compile Include="Assets\Scripts\Network Scripts\Network_Soundscape.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
+     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
      <Compile Include="Assets\Scripts\Particle Scripts\particle.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
@@ -101,6 +103,7 @@
      <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_InputNavigator.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
@@ -157,7 +160,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="DatabaseControl">
- <HintPath>C:/Users/Timothy/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
+ <HintPath>C:/Users/n9482521/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
