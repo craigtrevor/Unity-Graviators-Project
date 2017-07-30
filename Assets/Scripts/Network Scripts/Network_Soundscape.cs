@@ -5,58 +5,47 @@ using UnityEngine.Networking;
 
 public class Network_Soundscape : NetworkBehaviour {
 
-    #region 
-    //[SerializeField]
-    //private AudioSource[] playerMasterSource;
-    //[SerializeField]
-    //private AudioSource playerMovementSource;
-    //[SerializeField]
-    //private AudioSource playerCombatSource;
-    //[SerializeField]
-    //private AudioSource playerFallSource;
+    //// Player Audio Source
 
     //[SerializeField]
-    //private AudioClip[] playerMetalFootsteps;
+    //private AudioSource[] playerAudioSources;
+
+    //// Player Audio Clips
+
     //[SerializeField]
-    //private AudioClip[] playerWoodFootsteps;
-    //[SerializeField]
-    //private AudioClip[] playerGravity;
-    //[SerializeField]
-    //private AudioClip[] playerWeapon;
-    //[SerializeField]
-    //private AudioClip[] playerHit;
-    //[SerializeField]
-    //private AudioClip[] playerJump;
+    //private AudioClip[] playerAudioClips;
 
-    #endregion
+    //// Booleans
+    //private bool soundPlayed = false;
 
-    // Player Audio Source
+    //public void PlaySound(int clipID, int audioSourceID, float soundDealy)
+    //{
+    //    if (clipID >= 0 && audioSourceID >= 0 && clipID < playerAudioClips.Length && audioSourceID < playerAudioSources.Length)
+    //    {
+    //        CmdSendServerSoundID(clipID, audioSourceID, soundDealy);
+    //    }
+    //}
 
-    [SerializeField]
-    private AudioSource playerAudioSource;
+    //[Command]
+    //void CmdSendServerSoundID(int clipID, int audioSourceID, float soundDealy)
+    //{
+    //    RpcSendSoundIDToClient(clipID, audioSourceID, soundDealy);
+    //}
 
-    // Player Audio Clips
+    //[ClientRpc]
+    //void RpcSendSoundIDToClient(int clipID, int audioSourceID, float soundDealy)
+    //{
+    //    if (!soundPlayed)
+    //    {
+    //        playerAudioSources[audioSourceID].PlayOneShot(playerAudioClips[clipID]);
+    //        StartCoroutine(WaitForSound(soundDealy));
+    //    }
+    //}
 
-    [SerializeField]
-    private AudioClip[] playerAudioClips;
-
-    public void PlaySound(int id)
-    {
-        if (id >= 0 && id < playerAudioClips.Length)
-        {
-            CmdSendServerSoundID(id);
-        }
-    }
-
-    [Command]
-    void CmdSendServerSoundID(int id)
-    {
-        RpcSendSoundIDToClient(id);
-    }
-
-    [ClientRpc]
-    void RpcSendSoundIDToClient(int id)
-    {
-        playerAudioSource.PlayOneShot(playerAudioClips[id]);
-    }
+    //private IEnumerator WaitForSound(float soundDealy)
+    //{
+    //    soundPlayed = true;
+    //    yield return new WaitForSeconds(soundDealy);
+    //    soundPlayed = false;
+    //}
 }

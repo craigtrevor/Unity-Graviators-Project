@@ -133,6 +133,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_InputNavigator.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />

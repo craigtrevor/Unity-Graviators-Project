@@ -5,8 +5,12 @@ using UnityEngine.Networking;
 
 public class Combat_Manager : NetworkBehaviour {
 
-	//textures
-	public Renderer rend;
+    // Player Animator
+    [SerializeField]
+    private Animator anim;
+
+    //textures
+    public Renderer rend;
 
     // Rigidbody
     private Rigidbody playerRigidbody;
@@ -32,8 +36,6 @@ public class Combat_Manager : NetworkBehaviour {
 
 	private double ultGain;
 
-
-
     // Boolean
     public bool isAttacking;
     private bool canAttack;
@@ -41,9 +43,13 @@ public class Combat_Manager : NetworkBehaviour {
     // Floats
     private float speed;
 
+    // Scripts
+    Network_Soundscape networkSoundscape;
+
 	// Use this for initialization
 	void Start ()
     {
+        networkSoundscape = transform.GetComponent<Network_Soundscape>();
         playerRigidbody = transform.GetComponent<Rigidbody>();
 
         playerDamage = 5;
@@ -78,6 +84,11 @@ public class Combat_Manager : NetworkBehaviour {
     [Client]
      public void Attack()
     {
+        if ((anim.GetBool("Attack") == true && isAttacking && !anim.GetCurrentAnimatorStateInfo(1).IsName("Attack")))
+        {
+           // networkSoundscape.PlaySound(0, 0, 0.0f);
+        }
+
         hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
 
         foreach (Collider hitCol in hitColliders)
@@ -116,6 +127,11 @@ public class Combat_Manager : NetworkBehaviour {
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
     {
+        if (isLocalPlayer)
+        {
+           // networkSoundscape.PlaySound(1, 1, 0f);
+        }
+
         Debug.Log(_playerID + " has been attacked.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
