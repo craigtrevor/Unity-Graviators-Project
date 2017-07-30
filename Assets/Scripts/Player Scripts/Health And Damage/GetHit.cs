@@ -19,6 +19,10 @@ public class GetHit : NetworkBehaviour {
 	public int distance = 50 ; // change this for distance travalled
 	private float waittime = 0.01f;// the delay between movements 
 
+    private ParticleSystem playHitParticle;
+    public ParticleSystem hitParticle;
+    bool hitParticleSystemPlayed = false;
+
     public int playerDamage;
 
     // Use this for initialization
@@ -43,16 +47,16 @@ public class GetHit : NetworkBehaviour {
 	}
 
     [Client]
-	void OnTriggerEnter (Collider col)
-	{
+    void OnTriggerEnter(Collider col)
+    {
         if (gothit == false)
-		{
-			if (col.tag == "MeleeWeapon")
-			{
+        {
+            if (col.tag == "MeleeWeapon")
+            {
                 Debug.Log("I'm hitting it");
 
-				if(col.transform.root != transform.root)
-				{
+                if (col.transform.root != transform.root)
+                {
                     Debug.Log("TRANSFORMERS");
 
                     Debug.Log("i am hurt");
@@ -67,32 +71,44 @@ public class GetHit : NetworkBehaviour {
 
                     //playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - col.GetComponent<DamageStorage>().Damage;
                     col.GetComponentInParent<Dash>().chargePercent += col.GetComponent<DamageStorage>().Damage;
-
                     gothit = true;
+                    if (gothit == true)
+                    {
+                        ParticleSystem playHitParticle = (ParticleSystem)Instantiate(hitParticle, this.transform.position, this.transform.rotation);
+                        if (!hitParticleSystemPlayed)
+                        {
+                            playHitParticle.Emit(0);
+                            hitParticleSystemPlayed = true;
+                        }
+                        if (hitParticleSystemPlayed == true)
+                        {
+                            Destroy(playHitParticle);
 
-                    //if (col.GetComponentInChildren<DamageStorage>().Damage == GetComponentInChildren<DamageStorage>().Damage && col.GetComponent<Attack>().Attaking == true)
-                    //{
-                    //    Debug.Log("Knockback!");
-                    //    knockBack();
-                    //}
-                    //else
-                    //{
-                    //    Debug.Log("i am hurt");
-                    //    //transform.GetComponentInChildren<Renderer> ().material.color = Color.red;
+                        }
 
-                    //    playerID = col.transform.parent.parent.parent.gameObject.name;
-                    //    playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - GetComponentInChildren<DamageStorage>().Damage;
+                        //if (col.GetComponentInChildren<DamageStorage>().Damage == GetComponentInChildren<DamageStorage>().Damage && col.GetComponent<Attack>().Attaking == true)
+                        //{
+                        //    Debug.Log("Knockback!");
+                        //    knockBack();
+                        //}
+                        //else
+                        //{
+                        //    Debug.Log("i am hurt");
+                        //    //transform.GetComponentInChildren<Renderer> ().material.color = Color.red;
 
-                    //    CmdPlayerAttacked(playerID, playerDamage);
+                        //    playerID = col.transform.parent.parent.parent.gameObject.name;
+                        //    playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - GetComponentInChildren<DamageStorage>().Damage;
 
-                    //    // networkTakeDamage.PlayerAttack();
+                        //    CmdPlayerAttacked(playerID, playerDamage);
 
-                    //    //playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - col.GetComponent<DamageStorage>().Damage;
-                    //    col.GetComponentInParent<Dash>().chargePercent += col.GetComponent<DamageStorage>().Damage;
+                        //    // networkTakeDamage.PlayerAttack();
 
-                    //    gothit = true;
-                    //}
-                }
+                        //    //playerDamage = GetComponent<Network_PlayerManager>().maxHealth = GetComponent<Network_PlayerManager>().maxHealth - col.GetComponent<DamageStorage>().Damage;
+                        //    col.GetComponentInParent<Dash>().chargePercent += col.GetComponent<DamageStorage>().Damage;
+
+                        //    gothit = true;
+                        //}
+                    }
                 }
                 if (col.tag == "ThrowingSword")
                 {
@@ -120,9 +136,10 @@ public class GetHit : NetworkBehaviour {
                     CmdPlayerAttacked(playerID, playerDamage);
 
                     //GetComponent<Network_PlayerManager> ().maxHealth = GetComponent<Network_PlayerManager> ().maxHealth - col.GetComponent<DashDamage> ().damage;
-            }					
+                }
+            }
         }
-	}
+    }
 
     [Command]
     void CmdPlayerAttacked(string _playerID, int _damage)

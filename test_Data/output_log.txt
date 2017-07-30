@@ -25,51 +25,63 @@ Platform assembly: C:\Users\n9457828\Documents\Unity-Graviators-Project\test_Dat
 Loading C:\Users\n9457828\Documents\Unity-Graviators-Project\test_Data\Managed\DatabaseControl.dll into Unity Child Domain
 Platform assembly: C:\Users\n9457828\Documents\Unity-Graviators-Project\test_Data\Managed\System.dll (this message is harmless)
 Platform assembly: C:\Users\n9457828\Documents\Unity-Graviators-Project\test_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.190 seconds
+- Completed reload, in  0.184 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.010282 ms
+UnloadTime: 1.748160 ms
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 1c4c -> priority: 1 
-  Thread -> id: 2b2c -> priority: 1 
-  Thread -> id: 21c4 -> priority: 1 
-  Thread -> id: 2f68 -> priority: 1 
+  Thread -> id: 288c -> priority: 1 
+  Thread -> id: 3660 -> priority: 1 
+  Thread -> id: 3b90 -> priority: 1 
+  Thread -> id: 3d70 -> priority: 1 
 Please wait as the scene changes
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.968767 ms
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.998984 ms
 
-Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 529.
-Total: 0.648278 ms (FindLiveObjects: 0.026352 ms CreateObjectMapping: 0.018863 ms MarkObjects: 0.269353 ms  DeleteObjects: 0.333154 ms)
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 530.
+Total: 0.751193 ms (FindLiveObjects: 0.050486 ms CreateObjectMapping: 0.043551 ms MarkObjects: 0.384473 ms  DeleteObjects: 0.271572 ms)
 
 Logged in as Indigo
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.699319 ms
+UnloadTime: 0.687114 ms
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 401.
-Total: 0.519288 ms (FindLiveObjects: 0.041054 ms CreateObjectMapping: 0.028849 ms MarkObjects: 0.415541 ms  DeleteObjects: 0.032455 ms)
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 400.
+Total: 0.496264 ms (FindLiveObjects: 0.042441 ms CreateObjectMapping: 0.029126 ms MarkObjects: 0.395291 ms  DeleteObjects: 0.027184 ms)
 
 Please wait as the scene changes
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.900433 ms
+The referenced script on this Behaviour (Game Object 'NetworkPlayer_Sparkus') is missing!
+ 
+(Filename:  Line: 1758)
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3275.
-Total: 1.294892 ms (FindLiveObjects: 0.076284 ms CreateObjectMapping: 0.117339 ms MarkObjects: 1.092392 ms  DeleteObjects: 0.007767 ms)
+The referenced script on this Behaviour (Game Object 'NetworkPlayer_UnitD1') is missing!
+ 
+(Filename:  Line: 1758)
+
+The referenced script on this Behaviour (Game Object 'NetworkPlayer_ErrorNoName') is missing!
+ 
+(Filename:  Line: 1758)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.693494 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3293.
+Total: 2.506288 ms (FindLiveObjects: 0.145911 ms CreateObjectMapping: 0.221918 ms MarkObjects: 2.116822 ms  DeleteObjects: 0.020250 ms)
 
 MatchMakingClient ListMatches :https://mm.unet.unity3d.com/json/reply/ListMatchRequest
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Creating Room: d with room for 8 players.
+Creating Room: 69 with room for 8 players.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -77,204 +89,65 @@ MatchMakingClient Create :https://mm.unet.unity3d.com/json/reply/CreateMatchRequ
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-The file 'C:/Users/n9457828/Documents/Unity-Graviators-Project/test_Data/level6' is corrupted! Remove it and launch unity again!
-[Position out of bounds!]
- 
-(Filename:  Line: 221)
-
-The file 'C:/Users/n9457828/Documents/Unity-Graviators-Project/test_Data/level6' is corrupted! Remove it and launch unity again!
-[Position out of bounds!]
- 
-(Filename:  Line: 221)
-
-The file 'C:/Users/n9457828/Documents/Unity-Graviators-Project/test_Data/level6' is corrupted! Remove it and launch unity again!
-[Position out of bounds!]
- 
-(Filename:  Line: 221)
-
 Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.157359 ms
+UnloadTime: 2.902135 ms
+The referenced script on this Behaviour (Game Object '<null>') is missing!
+ 
+(Filename:  Line: 1758)
+
+The referenced script on this Behaviour (Game Object 'NetworkPlayer_ErrorNoName') is missing!
+ 
+(Filename:  Line: 1758)
+
+The referenced script on this Behaviour (Game Object 'NetworkPlayer_ErrorNoName') is missing!
+ 
+(Filename:  Line: 1758)
+
 Indigo has joined!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 
-Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 7017.
-Total: 4.195918 ms (FindLiveObjects: 0.551189 ms CreateObjectMapping: 0.332877 ms MarkObjects: 2.719884 ms  DeleteObjects: 0.590579 ms)
+Unloading 30 unused Assets to reduce memory usage. Loaded Objects now: 7033.
+Total: 2.118209 ms (FindLiveObjects: 0.316510 ms CreateObjectMapping: 0.157561 ms MarkObjects: 1.373118 ms  DeleteObjects: 0.270462 ms)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+The referenced script on this Behaviour (Game Object '<null>') is missing!
  
-(Filename:  Line: -1)
+(Filename:  Line: 1758)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+The referenced script on this Behaviour (Game Object 'NetworkPlayer_ErrorNoName') is missing!
  
-(Filename:  Line: -1)
+(Filename:  Line: 1758)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+The referenced script on this Behaviour (Game Object 'NetworkPlayer_ErrorNoName') is missing!
  
-(Filename:  Line: -1)
+(Filename:  Line: 1758)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 has joined!
  
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Hit Player!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Player 1 has been attacked.
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player 2 has been attacked.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Hit Player!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player 2 has been attacked.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -282,871 +155,125 @@ Taken damage
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Player 1 now has 95 health.
+Player 2 now has 75 health.
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Taken damage
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 now has 50 health.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Hit Player!
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+0
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 has been attacked.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Hit Player!
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+0
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 has been attacked.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Taken damage
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 now has 25 health.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Taken damage
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 now has 0 health.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 is DEAD!
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Hit Player!
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+0
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 has been attacked.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Taken damage
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 now has -25 health.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 is DEAD!
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 respawned.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Hit Player!
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+0
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 has been attacked.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Taken damage
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+Player 2 now has 75 health.
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+MatchMakingClient DropConnection :https://mm.unet.unity3d.com/json/reply/DropConnectionRequest
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+MatchMakingClient DropConnection :https://mm.unet.unity3d.com/json/reply/DropConnectionRequest
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.631653 ms
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
+Unloading 450 unused Assets to reduce memory usage. Loaded Objects now: 3314.
+Total: 3.819212 ms (FindLiveObjects: 0.107352 ms CreateObjectMapping: 0.122887 ms MarkObjects: 1.138440 ms  DeleteObjects: 2.449422 ms)
 
-ArgumentException: The Object you want to instantiate is null.
-  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at UnityEngine.Object.Instantiate[GameObject] (UnityEngine.GameObject original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
-  at DeathExplosion.Update () [0x00000] in <filename unknown>:0 
+MatchMakingClient ListMatches :https://mm.unet.unity3d.com/json/reply/ListMatchRequest
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 

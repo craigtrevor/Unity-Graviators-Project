@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class Combat_Manager : NetworkBehaviour {
-
-	//textures
-	public Renderer rend;
+    //Particles
+    private ParticleSystem playHitParticle;
+    public ParticleSystem hitParticle;
+    
+    //textures
+    public Renderer rend;
 
     // Rigidbody
     private Rigidbody playerRigidbody;
@@ -37,7 +40,7 @@ public class Combat_Manager : NetworkBehaviour {
     // Boolean
     public bool isAttacking;
     private bool canAttack;
-
+    bool hitParticleSystemPlayed = false;
     // Floats
     private float speed;
 
@@ -116,12 +119,26 @@ public class Combat_Manager : NetworkBehaviour {
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
     {
+        ParticleSystem playHitParticle = (ParticleSystem)Instantiate(hitParticle, this.transform.position, this.transform.rotation);
+        if (!hitParticleSystemPlayed)
+        {
+            {
+                playHitParticle.Emit(0);
+                hitParticleSystemPlayed = true;
+            }
+            if (hitParticleSystemPlayed == true)
+            {
+                Destroy(playHitParticle);
+
+            }
+        }
         Debug.Log(_playerID + " has been attacked.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
         networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
     }
+    
 
     [Command]
     protected void CmdPlayerAttacked(string _playerID, float _damage, string _sourceID)

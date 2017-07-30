@@ -113,7 +113,6 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_Soundscape.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
-    <Compile Include="Assets\Scripts\Particle Scripts\particle.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
@@ -155,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
+    <None Include="Assets\Downloaded Particles\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
     <None Include="Assets\MeleeWeaponTrail\README.txt" />
     <None Include="Assets\Shaders\Dissolve.shader" />
