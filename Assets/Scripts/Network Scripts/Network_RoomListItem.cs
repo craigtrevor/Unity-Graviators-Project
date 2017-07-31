@@ -14,6 +14,8 @@ public class Network_RoomListItem : MonoBehaviour {
 
     public void Setup (MatchInfoSnapshot _match, JoinRoomDelegate _joinRoomCallback)
     {
+        transform.localScale = new Vector3(1, 1, 1);
+
         match = _match;
         joinRoomCallback = _joinRoomCallback;
 

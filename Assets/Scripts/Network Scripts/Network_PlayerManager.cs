@@ -116,6 +116,8 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
 
+        isDead = true;
+
         deaths++;
 
         if (sourcePlayer != null)
