@@ -43,6 +43,11 @@ public class Network_PlayerManager : NetworkBehaviour
     [SerializeField]
     private int deaths;
 
+    //Particles
+    private ParticleSystem playHitParticle;
+    public ParticleSystem hitParticle;
+    bool hitParticleSystemPlayed = false;
+
     public void SetupPlayer()
     {
         if (isLocalPlayer)
@@ -87,6 +92,23 @@ public class Network_PlayerManager : NetworkBehaviour
         currentHealth -= _amount;
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
+
+
+        ParticleSystem playHitParticle = (ParticleSystem)Instantiate(hitParticle, this.transform.position, this.transform.rotation);
+        if (!hitParticleSystemPlayed)
+       {
+           {
+              playHitParticle.Emit(0);
+              hitParticleSystemPlayed = true;
+                Debug.Log("Fly free my pretties");
+           }
+           if (hitParticleSystemPlayed == true)
+          {
+               Destroy(playHitParticle);
+               Debug.Log("Bye felicia!");
+
+         }
+        }
 
         if (currentHealth <= 0)
         {
