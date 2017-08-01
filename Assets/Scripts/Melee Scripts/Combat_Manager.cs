@@ -9,7 +9,6 @@ public class Combat_Manager : NetworkBehaviour {
     [SerializeField]
     private Animator anim;
 
-    
     //textures
     public Renderer rend;
 

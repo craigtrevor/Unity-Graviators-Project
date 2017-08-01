@@ -121,27 +121,27 @@ public class Network_PlayerSetup : NetworkBehaviour
             Debug.Log(username + " has joined!");
             player.username = username;
 
-            JoinedGame(username);
+            //JoinedGame(username);
         }
     }
 
-    void JoinedGame(string username)
-    {
-        if (!isLocalPlayer)
-        {
-            StartCoroutine(JoiningGame(username));
-        }
-    }
+    //void JoinedGame(string username)
+    //{
+    //    if (!isLocalPlayer)
+    //    {
+    //        StartCoroutine(JoiningGame(username));
+    //    }
+    //}
 
-    IEnumerator JoiningGame(string username)
-    {
-        joinedGameText = GameObject.FindGameObjectWithTag("JoinedGame").GetComponent<Text>();
-        joinedGameText.enabled = true;
-        joinedGameString = username + " has joined!";
-        joinedGameText.text = joinedGameString;
-        yield return new WaitForSeconds(2f);
-        joinedGameText.enabled = false;
-    }
+    //IEnumerator JoiningGame(string username)
+    //{
+    //    joinedGameText = GameObject.FindGameObjectWithTag("JoinedGame").GetComponent<Text>();
+    //    joinedGameText.enabled = true;
+    //    joinedGameString = username + " has joined!";
+    //    joinedGameText.text = joinedGameString;
+    //    yield return new WaitForSeconds(2f);
+    //    joinedGameText.enabled = false;
+    //}
 
 
 

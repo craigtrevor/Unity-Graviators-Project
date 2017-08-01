@@ -54,7 +54,7 @@ public class Dash : NetworkBehaviour {
 	private bool isDashing = false; // turns true when the player dashes and off when the player stops, used for raycast collision detection to avoid getting stuck in walls
 	[SerializeField]
 	private bool dashingRotate = false;
-
+    private bool dashPause = false;
 
 	// Use this for initialization
 	void Start () {
@@ -176,12 +176,14 @@ public class Dash : NetworkBehaviour {
 
 	IEnumerator charge()
 	{
+        dashPause = true; // alex put dash start here
 		Vector3 front = cameraRotation.forward; // used to deterine forward
 		if (Physics.Raycast (headSensor.position, front, 2,mask) || Physics.Raycast (legSensor.position, front, 2,mask) || Physics.Raycast (leftSensor.position, front, 2,mask) || Physics.Raycast (rightSensor.position, front, 2,mask)) { // is ray hits an object
 			print ("i cannot go forward as i will stuff up");
 			playerRigidBody.constraints = RigidbodyConstraints.FreezePosition; // does not allow the player to collide with object
 			dashingRotate = true;
 		}else {
+            dashPause = false; // alex end dash pause
 			isDashing = true;
 			dash =  (GameObject) Instantiate (dashHitBoxObject,MeleeSpawn.position,MeleeSpawn.rotation,this.gameObject.transform); 
 			playerRigidBody.constraints = RigidbodyConstraints.None; // turn off constraints
@@ -192,7 +194,8 @@ public class Dash : NetworkBehaviour {
 			playerRigidBody.constraints = RigidbodyConstraints.FreezePosition; // freeze the players location
 			dashingRotate = true;
 			Destroy (dash, waitTime);
-			isDashing = false;
+			isDashing = false; // alex end dash 
+            dashPause = true; // alex start dash pause
 		}
 
 
