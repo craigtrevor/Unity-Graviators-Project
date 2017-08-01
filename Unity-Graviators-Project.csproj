@@ -121,14 +121,11 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\VertArrowsScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\AudioFadeOut.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
-    <Compile Include="Assets\Scripts\Trap Scripts\SlowTrap.cs" />
-    <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
@@ -147,9 +144,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DashDamage.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
   </ItemGroup>

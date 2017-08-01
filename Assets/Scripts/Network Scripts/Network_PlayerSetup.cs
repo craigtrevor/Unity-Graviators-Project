@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Network_PlayerManager))]
 public class Network_PlayerSetup : NetworkBehaviour
@@ -8,6 +11,12 @@ public class Network_PlayerSetup : NetworkBehaviour
     Behaviour[] componentsToDisable;
     [SerializeField]
     GameObject[] gameobjectsToDisable;
+
+    [SerializeField]
+    string joinedGameString;
+
+    [SerializeField]
+    Text joinedGameText;
 
     [SerializeField]
     string remoteLayerName = "RemotePlayer";
@@ -111,8 +120,30 @@ public class Network_PlayerSetup : NetworkBehaviour
         {
             Debug.Log(username + " has joined!");
             player.username = username;
+
+            JoinedGame(username);
         }
     }
+
+    void JoinedGame(string username)
+    {
+        if (!isLocalPlayer)
+        {
+            StartCoroutine(JoiningGame(username));
+        }
+    }
+
+    IEnumerator JoiningGame(string username)
+    {
+        joinedGameText = GameObject.FindGameObjectWithTag("JoinedGame").GetComponent<Text>();
+        joinedGameText.enabled = true;
+        joinedGameString = username + " has joined!";
+        joinedGameText.text = joinedGameString;
+        yield return new WaitForSeconds(2f);
+        joinedGameText.enabled = false;
+    }
+
+
 
     void SetLayerRecursively(GameObject obj, int newLayer)
     {
