@@ -9,9 +9,6 @@ public class Combat_Manager : NetworkBehaviour {
     [SerializeField]
     private Animator anim;
 
-    //Particles
-    private ParticleSystem playHitParticle;
-    public ParticleSystem hitParticle;
     
     //textures
     public Renderer rend;
@@ -43,7 +40,7 @@ public class Combat_Manager : NetworkBehaviour {
     // Boolean
     public bool isAttacking;
     private bool canAttack;
-    bool hitParticleSystemPlayed = false;
+
     // Floats
     private float speed;
 
@@ -136,19 +133,6 @@ public class Combat_Manager : NetworkBehaviour {
            // networkSoundscape.PlaySound(1, 1, 0f);
         }
 
-        //ParticleSystem playHitParticle = (ParticleSystem)Instantiate(hitParticle, this.transform.position, this.transform.rotation);
-        //if (!hitParticleSystemPlayed)
-        //{
-        //    {
-        //        playHitParticle.Emit(0);
-        //        hitParticleSystemPlayed = true;
-        //    }
-        //    if (hitParticleSystemPlayed == true)
-        //    {
-        //        Destroy(playHitParticle);
-
-        //    }
-        //}
 
         Debug.Log(_playerID + " has been attacked.");
 
