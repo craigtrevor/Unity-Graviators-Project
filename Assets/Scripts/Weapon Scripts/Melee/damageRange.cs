@@ -4,48 +4,110 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class damageRange : NetworkBehaviour {
-	public int Damage = 5;
+
+
+
+
+	// Sword Stats
+	public int SwordDamage = 30;
 	public float rotateSpeed = 500;
+	//slow Variables
+	[SerializeField]
+	private int reducedWalkSpeed = 6;
+	[SerializeField]
+	private int normalWalkSpeed = 12;
+
+	[SerializeField]
+	private int reducedJumpSpeed = 7;
+	[SerializeField]
+	private int normalJumpSpeed = 15;
+
+
+	//UnitD1 Ranged stats
+
 
 	private Collider[] hitColliders;
 	private Vector3 attackOffset;
 	private float attackRadius;
 	private const string PLAYER_TAG = "Player";
-	// Use this for initialization
+	private const string THROWINGSWORD_TAG = "ThrowingSword";
+	private const string UNITD1RANGEWEAPON_TAG = "UnitD1_RangedWeapon";
+
+	// scripts
+	Network_PlayerManager networkPlayerManager;
+	PlayerController playerController;
+
+
+
+
 	void Start () {
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		transform.Rotate (Vector3.down, rotateSpeed * Time.deltaTime);
-		ThrowDamage();
-	}
 
-	void OnTriggerEnter(Collider col)
-	{
-		if (col.tag != "Player") {
-			Debug.Log ("i have hit "+ col.tag+ " and am now dissapering");
-			Destroy (this.gameObject);
+	void Update () {
+		if (this.gameObject.tag == THROWINGSWORD_TAG) {
+			transform.Rotate (Vector3.down, rotateSpeed * Time.deltaTime);
 		}
+		//ThrowDamage();
 	}
 
 	[Client]
-	public void ThrowDamage()
+	void OnTriggerEnter(Collider other)
 	{
-		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
-
-		foreach (Collider hitCol in hitColliders)
+		if (other.tag != "Player") {
+			Debug.Log ("i have hit " + other.tag + " and am now dissapering");
+			Destroy (this.gameObject);
+		} else 
 		{
-			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
-			{
-				Debug.Log("Hit Player!");
+			Physics.IgnoreLayerCollision (10, 30); // the ranged object will ignore the local player layer
+			hitColliders = Physics.OverlapSphere (transform.TransformPoint (attackOffset), attackRadius);
 
-				CmdTakeDamage(hitCol.gameObject.name, Damage, transform.name);
+			foreach (Collider hitCol in hitColliders) {
+				if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
+					Debug.Log ("Hit Player!");
 
-				Destroy (this.gameObject);
+					if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
+					{
+						CmdTakeDamage (hitCol.gameObject.name, SwordDamage, transform.name);
+						playerController = other.GetComponentInChildren<PlayerController>();         
+						playerController.moveSettings.forwardVel = reducedWalkSpeed;
+						playerController.moveSettings.rightVel = reducedWalkSpeed;
+						playerController.moveSettings.jumpVel = reducedJumpSpeed;
+					}
+
+
+					if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
+					{
+						//playerController = other.GetComponentInChildren<PlayerController>(); 
+						other.GetComponentInChildren<PlayerController>().enabled = false;// turn off player controls
+						CmdTakeDamage (hitCol.gameObject.name, SwordDamage, transform.name);
+						// stop the disable the player controller
+						
+					}
+					Destroy (this.gameObject);
+				}
 			}
 		}
 	}
+
+//	[Client]
+//	public void ThrowDamage()
+//	{
+//		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+//
+//		foreach (Collider hitCol in hitColliders)
+//		{
+//			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
+//			{
+//				Debug.Log("Hit Player!");
+//
+//				if (this.gameObject.tag == THROWINGSWORD_TAG) {
+//					CmdTakeDamage (hitCol.gameObject.name, SwordDamage, transform.name);
+//				}
+//
+//				Destroy (this.gameObject);
+//			}
+//		}
+//	}
 
 	[Command]
 	void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
@@ -54,7 +116,8 @@ public class damageRange : NetworkBehaviour {
 
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-		networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+		//networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+		networkPlayerStats.RpcTakeTrapDamage(_damage, _sourceID);
 	}
 
 	[Command]
