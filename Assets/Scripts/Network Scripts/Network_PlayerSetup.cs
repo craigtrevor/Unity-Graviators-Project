@@ -116,32 +116,36 @@ public class Network_PlayerSetup : NetworkBehaviour
     void CmdSetUsername(string playerID, string username)
     {
         Network_PlayerManager player = Network_GameManager.GetPlayer(playerID);
+
         if (player != null)
         {
             Debug.Log(username + " has joined!");
             player.username = username;
 
+            RpcJoinedGame(playerID, username);
+
             //JoinedGame(username);
         }
     }
 
-    //void JoinedGame(string username)
-    //{
-    //    if (!isLocalPlayer)
-    //    {
-    //        StartCoroutine(JoiningGame(username));
-    //    }
-    //}
+    [ClientRpc]
+    void RpcJoinedGame(string playerID, string username)
+    {
+        if (!isLocalPlayer)
+        {
+            joinedGameText = GameObject.FindWithTag("JoinedGame").GetComponent<Text>() as Text;
+            joinedGameString = username + " has joined!";
+            joinedGameText.text = joinedGameString;
 
-    //IEnumerator JoiningGame(string username)
-    //{
-    //    joinedGameText = GameObject.FindGameObjectWithTag("JoinedGame").GetComponent<Text>();
-    //    joinedGameText.enabled = true;
-    //    joinedGameString = username + " has joined!";
-    //    joinedGameText.text = joinedGameString;
-    //    yield return new WaitForSeconds(2f);
-    //    joinedGameText.enabled = false;
-    //}
+            StartCoroutine(UpdateJoinGameText(username));
+        }
+    }
+
+    IEnumerator UpdateJoinGameText(string username)
+    {
+        yield return new WaitForSeconds(5f);
+        joinedGameText.text = "";
+    }
 
 
 
