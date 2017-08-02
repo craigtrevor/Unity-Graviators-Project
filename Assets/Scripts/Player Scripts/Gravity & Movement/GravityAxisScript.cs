@@ -1,4 +1,4 @@
-﻿//THIS IS THE OLD ONE
+﻿//THIS IS THE IN-GAME ONE
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,12 +8,12 @@ using System.Collections;
 public class GravityAxisScript : MonoBehaviour {
 
     enum Orientation {
-        Up,
-        Down,
-        Right,
-        Left,
-        Forward,
-        Backward
+        Right,   //0
+        Left,    //1
+        Up,      //2
+        Down,    //3
+        Forward, //4
+        Backward //5
     }
 
     //Gravity charge constants
@@ -444,16 +444,17 @@ public class GravityAxisScript : MonoBehaviour {
 
     private class Gravity {
         private static float velocity = 15.0f;
-        private static Vector3 Up = new Vector3(0, 1, 0);        // y+
-        private static Vector3 Down = new Vector3(0, -1, 0);     // y-
+
         private static Vector3 Right = new Vector3(1, 0, 0);     // x+
         private static Vector3 Left = new Vector3(-1, 0, 0);     // x-
+        private static Vector3 Up = new Vector3(0, 1, 0);        // y+
+        private static Vector3 Down = new Vector3(0, -1, 0);     // y-
         private static Vector3 Forward = new Vector3(0, 0, 1);   // z+
         private static Vector3 Backward = new Vector3(0, 0, -1); // z-
 
-        private Orientation currentOrientation;
-        private Vector3 currentGravityDirection;
-        private string gravityString;
+        private Orientation currentOrientation; //Current orientation
+        private Vector3 currentGravityDirection; //Current direction of gravity
+        private string gravityString; //Worded representation of current direction of gravity 
 
         public Gravity(Orientation orientation) {
             this.setOrientation(orientation);
@@ -476,14 +477,7 @@ public class GravityAxisScript : MonoBehaviour {
             this.currentOrientation = orientation;
 
             switch (currentOrientation) {
-                case Orientation.Up:
-                    gravityDirection = Gravity.Down;
-                    this.gravityString = "y";
-                    break;
-                case Orientation.Down:
-                    gravityDirection = Gravity.Up;
-                    this.gravityString = "y-";
-                    break;
+
                 case Orientation.Right:
                     gravityDirection = Gravity.Left;
                     this.gravityString = "x";
@@ -492,6 +486,16 @@ public class GravityAxisScript : MonoBehaviour {
                     gravityDirection = Gravity.Right;
                     this.gravityString = "x-";
                     break;
+
+                case Orientation.Up:
+                    gravityDirection = Gravity.Down;
+                    this.gravityString = "y";
+                    break;
+                case Orientation.Down:
+                    gravityDirection = Gravity.Up;
+                    this.gravityString = "y-";
+                    break;    
+                    
                 case Orientation.Forward:
                     gravityDirection = Gravity.Backward;
                     this.gravityString = "z";
@@ -500,6 +504,7 @@ public class GravityAxisScript : MonoBehaviour {
                     gravityDirection = Gravity.Forward;
                     this.gravityString = "z-";
                     break;
+
                 default:
                     break;
             }
