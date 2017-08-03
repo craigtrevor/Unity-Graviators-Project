@@ -24,7 +24,10 @@ public class Network_Manager : NetworkManager {
     // Update is called once per frame
     void Update () {
 
-        IntializeUI();
+        if (Network_SceneManager.instance.sceneName == "Character_Select")
+        {
+            IntializeUI();
+        }
     }
 
     void IntializeUI()
@@ -101,6 +104,7 @@ public class Network_Manager : NetworkManager {
 
         GameObject player;
         Transform startPos = GetStartPosition();
+
         if (startPos != null)
         {
             player = (GameObject)Instantiate(playerPrefab, startPos.position, startPos.rotation);

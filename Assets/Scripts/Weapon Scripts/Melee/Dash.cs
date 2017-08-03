@@ -185,7 +185,7 @@ public class Dash : NetworkBehaviour {
 		}else {
             dashPause = false; // alex end dash pause
 			isDashing = true;
-			dash =  (GameObject) Instantiate (dashHitBoxObject,MeleeSpawn.position,MeleeSpawn.rotation,this.gameObject.transform); 
+			//dash =  (GameObject) Instantiate (dashHitBoxObject,MeleeSpawn.position,MeleeSpawn.rotation,this.gameObject.transform); 
 			playerRigidBody.constraints = RigidbodyConstraints.None; // turn off constraints
 			GetComponentInChildren<PlayerController> ().enabled = false; // turn off player controls
 			playerRigidBody.AddForce (cameraRotation.forward * thrust);// push the player forward
