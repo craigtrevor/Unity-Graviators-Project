@@ -9,11 +9,10 @@ public class GravityAxisTextScript : MonoBehaviour {
     void Start() {
 
     }
-
-    // Update is called once per frame
+        
     void Update() {
 
-        transform.rotation = gravCam.transform.rotation; //Set rotation of text to grav cam
+        transform.rotation = Quaternion.Lerp(transform.rotation, gravCam.transform.rotation, Time.deltaTime*10); //Set rotation of text to grav cam
 
     }
 }

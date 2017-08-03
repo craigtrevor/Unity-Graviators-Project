@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
 
+    public float cameraDisplacement;
 
     public Quaternion TargetRotation {
         get { return targetRotation; }
@@ -127,6 +128,9 @@ public class PlayerController : MonoBehaviour {
         Attack();
         CheckPause();
 
+        cameraDisplacement = Mathf.Min((velocity.y + 20f) / 30f, 0f);
+        //print(cameraDisplacement);
+
         rBody.velocity = transform.TransformDirection(velocity);
     }
 
@@ -167,8 +171,7 @@ public class PlayerController : MonoBehaviour {
             velocity.z = 0;
         }
 
-        if (UI_PauseMenu.IsOn == true)
-        {
+        if (UI_PauseMenu.IsOn == true) {
             // zero velocity
 
             playerAnimator.SetBool("Moving", false);
@@ -201,10 +204,11 @@ public class PlayerController : MonoBehaviour {
 
         if (!gravityAxisScript.GetGravitySwitching()) {
             targetRotation *= Quaternion.AngleAxis(moveSettings.rotateVel * Input.GetAxisRaw("Mouse X") * Time.deltaTime * 2, Vector3.up);
-            rotY -= Input.GetAxis("Mouse Y") * 2f;
-            rotY = Mathf.Clamp(rotY, -60f, 60f);
-            eyes.transform.localRotation = Quaternion.Euler(rotY, 0, 0);
+
         }
+        rotY -= Input.GetAxis("Mouse Y") * 2f;
+        rotY = Mathf.Clamp(rotY, -60f, 60f);
+        eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(rotY - cameraDisplacement * 15, 0, 0), Time.deltaTime * 30);
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no
 
@@ -232,21 +236,14 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void CheckPause()
-    {
-        if (UI_PauseMenu.IsOn)
-        {
-            if (!Grounded())
-            {
+    void CheckPause() {
+        if (UI_PauseMenu.IsOn) {
+            if (!Grounded()) {
                 playerAnimator.SetBool("InAir", true);
                 velocity.y -= physSettings.downAccel;
                 velocity.y = Mathf.Max(velocity.y, -100);
-            }
-
-            else
-            {
-                if (jumpInput == 0 && Grounded())
-                {
+            } else {
+                if (jumpInput == 0 && Grounded()) {
                     playerAnimator.SetBool("Moving", false);
                     velocity.z = 0;
                 }

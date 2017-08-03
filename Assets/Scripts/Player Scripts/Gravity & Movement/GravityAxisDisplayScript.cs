@@ -6,7 +6,7 @@ using UnityEngine.UI;
 //GravityAxisDisplayScript controls all the visual aspects of the gravity axis including text, colour and whether or not it is visible.
 //It also controls the UI that displays the current gravity charge.
 public class GravityAxisDisplayScript : MonoBehaviour {
-    
+
     //Gravity variables
     private string gravity;
     private bool gravitySwitching;
@@ -44,8 +44,7 @@ public class GravityAxisDisplayScript : MonoBehaviour {
 
     //Ring Visibility Objects
     public GameObject gravityCamera;
-    public GameObject gravityCameraFront        ;
-    public GameObject ring;
+    public GameObject gravityCameraFront;
 
     //UI Objects/Components
     public GameObject UIGravityCharge;
@@ -59,6 +58,8 @@ public class GravityAxisDisplayScript : MonoBehaviour {
         //Get GravityChargeUI Text
         //UIGravityChargeText = GameObject.Find("UIGravityCharge").GetComponent<Text>();
         //UIGravityChargeText = UIGravityCharge.GetComponent<Text>();
+        gravityCamera.GetComponent<Camera>().enabled = false;
+        gravityCameraFront.GetComponent<Camera>().enabled = false;
 
 
     } //End Start()
@@ -84,15 +85,18 @@ public class GravityAxisDisplayScript : MonoBehaviour {
 
         //Check gravityChanging && shiftPressed  
         if (shiftPressed && !gravitySwitching) { //If shift is pressed and not switching gravity
-            //Hide axis
+            //Show axis    
             gravityCamera.GetComponent<Camera>().enabled = true;
             gravityCameraFront.GetComponent<Camera>().enabled = true;
-            ring.GetComponent<MeshRenderer>().enabled = true;
+            this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.one, Time.deltaTime * 15);
         } else {
             //Hide axis
-            gravityCamera.GetComponent<Camera>().enabled = false;
-            gravityCameraFront.GetComponent<Camera>().enabled = false;
-            ring.GetComponent<MeshRenderer>().enabled = false;
+            if (this.transform.localScale.magnitude < 0.2f) {
+                gravityCamera.GetComponent<Camera>().enabled = false;
+                gravityCameraFront.GetComponent<Camera>().enabled = false;
+            }
+            this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10);
+
         } //End if(shiftPressed && !gravityChanging)
 
     } //End DisplayAxis()

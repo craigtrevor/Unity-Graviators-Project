@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
+    <Compile Include="Assets\Scripts\Melee Scripts\UnitD1Combat_Manager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_CharacterSelect.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
@@ -110,28 +111,27 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_Soundscape.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
-    <Compile Include="Assets\Scripts\Particle Scripts\particle.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScriptNew.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisTextScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\VertArrowsScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Health And Damage\GetHit.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\AudioFadeOut.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
-    <Compile Include="Assets\Scripts\Trap Scripts\SlowTrap.cs" />
-    <Compile Include="Assets\Scripts\Trap Scripts\spiketrap.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_InputNavigator.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
@@ -146,14 +146,14 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DamageStorage.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DashDamage.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_Ult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
+    <None Include="Assets\Downloaded Particles\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
     <None Include="Assets\MeleeWeaponTrail\README.txt" />
     <None Include="Assets\Shaders\Dissolve.shader" />

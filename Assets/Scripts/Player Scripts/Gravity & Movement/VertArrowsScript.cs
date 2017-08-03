@@ -16,11 +16,12 @@ public class VertArrowsScript : MonoBehaviour {
     void Update() {
 
         yRot = transform.localRotation.eulerAngles.y; //Set yRot to local rotation on y-axis
-        
+
     }
 
     private void FixedUpdate() {
-        transform.rotation = cameraPivot.transform.rotation; //Set vertArrows to cameraPivot rotation
+        //transform.rotation = cameraPivot.transform.rotation; //Set vertArrows to cameraPivot rotation
+        //transform.localRotation = Quaternion.Euler(0f, cameraPivot.transform.localRotation.y, 0f);
     }
 
     public float GetYRot() {
