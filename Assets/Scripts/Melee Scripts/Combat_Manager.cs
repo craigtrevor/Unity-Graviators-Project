@@ -21,7 +21,7 @@ public class Combat_Manager : NetworkBehaviour {
 	public Transform cameraRotation; // the camerasrotation, assign in game editor
 
     // Int
-    public float playerDamage;
+	public float playerDamage = 25;
 	public int thrust = 2000; //change this for speed of knock back
 	public float delay = 0.2f; 
     //private int attackMask;
@@ -93,21 +93,35 @@ public class Combat_Manager : NetworkBehaviour {
 
         foreach (Collider hitCol in hitColliders)
         {
-            if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
-            {
-				if (hitCol.GetComponent<Combat_Manager> ().playerDamage < this.GetComponent<Combat_Manager> ().playerDamage) { // checks to see if the other player has a smaller damage
-					Debug.Log ("Hit Player!");
+			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) 
+			{
+				Debug.Log ("Hit Player!");
+				hitCol.GetComponent<Combat_Manager> ().enabled = true; // enables the combat nmanager to get correct attack damage values
+				if (hitCol.GetComponent<Combat_Manager> ().isAttacking == true) { // check to see if the other player is attacking
+					if (hitCol.GetComponent<Combat_Manager> ().playerDamage == this.GetComponent<Combat_Manager> ().playerDamage) {  // if the player has equal damage as oppenent
+						Debug.Log ("knockedback");
+						StartCoroutine (knockBack ());
+					} else if (hitCol.GetComponent<Combat_Manager> ().playerDamage < this.GetComponent<Combat_Manager> ().playerDamage) { // if the player has more damage then oponent
+						Debug.Log ("won clash");
+						Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
+
+						CmdTakeDamage (hitCol.gameObject.name, playerDamage, transform.name);
+						isAttacking = false;
+						GetComponent<Dash> ().chargePercent += ultGain;
+					} else {
+						Debug.Log ("i had less damage and loss the clash");	
+					}
+				} else 
+				{
+					Debug.Log ("did damage");
 					Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
 					CmdTakeDamage (hitCol.gameObject.name, playerDamage, transform.name);
 					isAttacking = false;
 					GetComponent<Dash> ().chargePercent += ultGain;
-				} else 
-				{
-					
-					StartCoroutine (knockBack ());
 				}
-            }
+				hitCol.GetComponent<Combat_Manager> ().enabled = false; 
+			}
         }
     }
 
