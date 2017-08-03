@@ -20,7 +20,7 @@ public class VertArrowsScript : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        //transform.rotation = cameraPivot.transform.rotation; //Set vertArrows to cameraPivot rotation
+        transform.rotation = cameraPivot.transform.rotation; //Set vertArrows to cameraPivot rotation
         //transform.localRotation = Quaternion.Euler(0f, cameraPivot.transform.localRotation.y, 0f);
     }
 
