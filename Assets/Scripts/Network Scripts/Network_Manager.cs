@@ -22,8 +22,16 @@ public class Network_Manager : NetworkManager {
     }
     
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
+        if (Network_SceneManager.instance.sceneName == "Lobby_Scene")
+        {
+            Array.Clear(characterButtonArray, 0, characterButtonArray.Length);
+        }
+    }
 
+    void LateUpdate()
+    {
         if (Network_SceneManager.instance.sceneName == "Character_Select")
         {
             IntializeUI();
@@ -32,17 +40,10 @@ public class Network_Manager : NetworkManager {
 
     void IntializeUI()
     {
-        if (Network_SceneManager.instance.sceneName == "Character_Select")
-        {
-            buttonUI = GameObject.FindGameObjectWithTag("UI");
-            characterButtonArray = buttonUI.GetComponentsInChildren<Button>();
-            AddListeners();
-        }
+        buttonUI = GameObject.FindGameObjectWithTag("UI");
+        characterButtonArray = buttonUI.GetComponentsInChildren<Button>();
 
-        if (Network_SceneManager.instance.sceneName != "Character_Select")
-        {
-            Array.Clear(characterButtonArray, 0, characterButtonArray.Length);
-        }
+        AddListeners();
     }
 
     void AddListeners()
@@ -75,47 +76,45 @@ public class Network_Manager : NetworkManager {
         playerPrefab = spawnPrefabs[characterIndex];
     }
 
-    public override void OnClientConnect(NetworkConnection conn)
-    {
+    //public override void OnClientConnect(NetworkConnection conn)
+    //{
 
-        IntegerMessage msg = new IntegerMessage(characterIndex);
+    //    IntegerMessage msg = new IntegerMessage(characterIndex);
 
-        if (!clientLoadedScene)
-        {
-            // Ready/AddPlayer is usually triggered by a scene load completing. if no scene was loaded, then Ready/AddPlayer it here instead.
-            ClientScene.Ready(conn);
-            if (autoCreatePlayer)
-            {
-                ClientScene.AddPlayer(conn, 0, msg);
-            }
-        }
-    }
+    //    if (!clientLoadedScene)
+    //    {
+    //        // Ready/AddPlayer is usually triggered by a scene load completing. if no scene was loaded, then Ready/AddPlayer it here instead.
+    //        ClientScene.Ready(conn);
+    //        if (autoCreatePlayer)
+    //        {
+    //            ClientScene.AddPlayer(conn, 0, msg);
+    //        }
+    //    }
+    //}
 
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
-    {
-        int id = 0;
+    //public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
+    //{
+    //    int id = 0;
 
-        if (extraMessageReader != null)
-        {
-            IntegerMessage i = extraMessageReader.ReadMessage<IntegerMessage>();
-        }
+    //    if (extraMessageReader != null)
+    //    {
+    //        IntegerMessage i = extraMessageReader.ReadMessage<IntegerMessage>();
+    //    }
 
-        GameObject playerPrefab = spawnPrefabs[id];
+    //    GameObject playerPrefab = spawnPrefabs[id];
 
-        GameObject player;
-        Transform startPos = GetStartPosition();
+    //    GameObject player;
+    //    Transform startPos = GetStartPosition();
 
-        if (startPos != null)
-        {
-            player = (GameObject)Instantiate(playerPrefab, startPos.position, startPos.rotation);
-        }
-        else
-        {
-            player = (GameObject)Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        }
+    //    if (startPos != null)
+    //    {
+    //        player = (GameObject)Instantiate(playerPrefab, startPos.position, startPos.rotation);
+    //    }
+    //    else
+    //    {
+    //        player = (GameObject)Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+    //    }
 
-        NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-    }
-
-
+    //    NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+    //}
 }
