@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Network_Manager : NetworkManager {
 
     private GameObject buttonUI;
+    Text characterTitle; 
     public string characterName;
 
     [SerializeField]
@@ -43,6 +44,8 @@ public class Network_Manager : NetworkManager {
         buttonUI = GameObject.FindGameObjectWithTag("UI");
         characterButtonArray = buttonUI.GetComponentsInChildren<Button>();
 
+        characterTitle = GameObject.Find("Character_Text").GetComponent<Text>();
+
         AddListeners();
     }
 
@@ -56,7 +59,7 @@ public class Network_Manager : NetworkManager {
     void CharacterSelector(string buttonName)
     {
         switch (buttonName)
-        {
+        { 
             case "ErrNoName_btn":
                 characterIndex = 0;
                 characterName = "Err:NoName";
@@ -73,6 +76,7 @@ public class Network_Manager : NetworkManager {
                 break;
         }
 
+        characterTitle.text = characterName;
         playerPrefab = spawnPrefabs[characterIndex];
     }
 

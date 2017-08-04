@@ -95,7 +95,6 @@
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\UnitD1Combat_Manager.cs" />
-    <Compile Include="Assets\Scripts\Network Scripts\Network_CharacterSelect.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
