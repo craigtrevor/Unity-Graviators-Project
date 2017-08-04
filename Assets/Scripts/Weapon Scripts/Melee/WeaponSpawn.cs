@@ -5,8 +5,7 @@ using UnityEngine.Networking;
 
 public class WeaponSpawn : NetworkBehaviour {
 
-
-	private string _sourceID; //set the source id to the player that throws it. this is set by transform.name
+	public string _sourceID; //set the source id to the player that throws it. this is set by transform.name
 
 	public int m_PlayerNumber = 1;
 	public Rigidbody weapon; // prefab of the weapon
@@ -21,20 +20,13 @@ public class WeaponSpawn : NetworkBehaviour {
 	[SerializeField]
 	private bool m_Fired = false;          // Whether or not the weapon has been launched with this button press.
 
-	private void Awake()
-	{
-		//set up the refences.
-		m_Rigidbody = GetComponent<Rigidbody>();
-		// find the source id of the player and assign it the the sourceID 
-	}
+    private void Start()
+    {
+        m_Rigidbody = GetComponent<Rigidbody>();
+        _sourceID = transform.name;
+    }
 
-	// Use this for initialization
-	void Start () 
-	{
-
-	}
-
-	[ClientCallback]
+    [ClientCallback]
 	private void Update()
 	{
 		if (!isLocalPlayer)
@@ -49,6 +41,7 @@ public class WeaponSpawn : NetworkBehaviour {
 		} 
 	}
 
+    [Client]
 	private void Fire()
 	{
 		m_Fired = true; // set the fire flag so that fire is only called once
@@ -62,6 +55,8 @@ public class WeaponSpawn : NetworkBehaviour {
 		Rigidbody weaponInstance = Instantiate (weapon, position, rotation) as Rigidbody;
 		// Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
 		Vector3 velocity = rigidbodyVelocity + launchForce * forward;
+
+        weaponInstance.SendMessage("SetInitialReferences", _sourceID);
 
 		// Set the shell's velocity to this velocity.
 		weaponInstance.velocity = velocity;

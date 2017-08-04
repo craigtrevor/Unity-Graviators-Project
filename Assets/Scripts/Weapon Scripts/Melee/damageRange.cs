@@ -5,8 +5,7 @@ using UnityEngine.Networking;
 
 public class damageRange : NetworkBehaviour {
 
-
-
+    private string sourceID;
 
 	// Sword Stats
 	public int SwordDamage = 30;
@@ -37,13 +36,13 @@ public class damageRange : NetworkBehaviour {
 	Network_PlayerManager networkPlayerManager;
 	PlayerController playerController;
 
-
-
-
-	void Start () {
-	}
+    void SetInitialReferences(string _sourceID)
+    {
+        sourceID = _sourceID;
+    }
 
 	void Update () {
+
 		if (this.gameObject.tag == THROWINGSWORD_TAG) {
 			transform.Rotate (Vector3.down, rotateSpeed * Time.deltaTime);
 		}
@@ -58,20 +57,22 @@ public class damageRange : NetworkBehaviour {
 			Destroy (this.gameObject);
 		} else 
 		{
-			Physics.IgnoreLayerCollision (10, 30); // the ranged object will ignore the local player layer
+
+            //Physics.IgnoreLayerCollision (10, 30); // the ranged object will ignore the local player layer
 			hitColliders = Physics.OverlapSphere (transform.TransformPoint (attackOffset), attackRadius);
 
 			foreach (Collider hitCol in hitColliders) {
-				if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
+				if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG && hitCol.transform.name != sourceID) {
 					Debug.Log ("Hit Player!");
 
 					if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
 					{
-						CmdTakeDamage (hitCol.gameObject.name, SwordDamage, transform.name);
-						playerController = other.GetComponentInChildren<PlayerController>();         
-						playerController.moveSettings.forwardVel = reducedWalkSpeed;
-						playerController.moveSettings.rightVel = reducedWalkSpeed;
-						playerController.moveSettings.jumpVel = reducedJumpSpeed;
+                        CmdTakeDamage(hitCol.gameObject.name, SwordDamage, sourceID);
+						playerController = other.GetComponentInChildren<PlayerController>();
+
+                        //playerController.moveSettings.forwardVel = reducedWalkSpeed;
+						//playerController.moveSettings.rightVel = reducedWalkSpeed;
+						//playerController.moveSettings.jumpVel = reducedJumpSpeed;
 					}
 
 
@@ -79,7 +80,7 @@ public class damageRange : NetworkBehaviour {
 					{
 						//playerController = other.GetComponentInChildren<PlayerController>(); 
 						other.GetComponentInChildren<PlayerController>().enabled = false;// turn off player controls
-						CmdTakeDamage (hitCol.gameObject.name, SwordDamage, transform.name);
+                        CmdTakeDamage(hitCol.gameObject.name, SwordDamage, sourceID);
 						// stop the disable the player controller
 						
 					}
@@ -89,39 +90,8 @@ public class damageRange : NetworkBehaviour {
 		}
 	}
 
-//	[Client]
-//	public void ThrowDamage()
-//	{
-//		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
-//
-//		foreach (Collider hitCol in hitColliders)
-//		{
-//			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
-//			{
-//				Debug.Log("Hit Player!");
-//
-//				if (this.gameObject.tag == THROWINGSWORD_TAG) {
-//					CmdTakeDamage (hitCol.gameObject.name, SwordDamage, transform.name);
-//				}
-//
-//				Destroy (this.gameObject);
-//			}
-//		}
-//	}
-
 	[Command]
 	void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
-	{
-		Debug.Log(_playerID + " has been attacked.");
-
-		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-
-		//networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
-		networkPlayerStats.RpcTakeTrapDamage(_damage, _sourceID);
-	}
-
-	[Command]
-	protected void CmdPlayerAttacked(string _playerID, float _damage, string _sourceID)
 	{
 		Debug.Log(_playerID + " has been attacked.");
 
