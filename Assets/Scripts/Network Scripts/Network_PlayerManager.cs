@@ -98,7 +98,7 @@ public class Network_PlayerManager : NetworkBehaviour
         if (!hitParticleSystemPlayed)
        {
            {
-              playHitParticle.Emit(0);
+              playHitParticle.Emit(1);
               hitParticleSystemPlayed = true;
                 Debug.Log("Fly free my pretties");
            }

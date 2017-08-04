@@ -6,7 +6,7 @@ using UnityEngine;
 public class DeathExplosion : MonoBehaviour {
 	public GameObject death;
 	private GameObject deathExplosion;
-    private ParticleSystem playdDeathParticle;
+    private ParticleSystem playDeathParticle;
     public ParticleSystem deathParticle;
     bool particleSystemPlayed = false;
 	// Use this for initialization
@@ -54,8 +54,8 @@ void OnTriggerEnter (Collider col)
 		GameObject deathExplosion =  (GameObject) Instantiate (death,this.transform.position,this.transform.rotation); 
 		Destroy (deathExplosion, 5);
 		Destroy (this.gameObject);
-       // ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
-        //playDeathParticle.Emit(0);
+        ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
+        playDeathParticle.Emit(0);
         particleSystemPlayed = true;
 
         //		if (col.tag == "dashHitbox") 

@@ -39,9 +39,18 @@ public class Combat_Manager : NetworkBehaviour {
     // Boolean
     public bool isAttacking;
     private bool canAttack;
+	private bool gravParticleSystemPlayed = false;
 
     // Floats
     private float speed;
+
+	//particles
+	private ParticleSystem playGravLandSmall;
+	private ParticleSystem playGravLandMed;
+	private ParticleSystem playGravLandLarge;
+	public ParticleSystem gravLandParticleSmall;
+	public ParticleSystem gravLandParticleMed;
+	public ParticleSystem gravLandParticleLarge;
 
     // Scripts
     Network_Soundscape networkSoundscape;
@@ -168,23 +177,59 @@ public class Combat_Manager : NetworkBehaviour {
             isAttacking = false;
         }
     }
+		
 
-    void PlayerVelocity()
+   void PlayerVelocity()
     {
         speed = playerRigidbody.velocity.magnitude;
 
-        if (speed < lowDamageVelocity)
-        {
-            //transform.GetComponent<Renderer>().material.color = Color.green;
-            playerDamage = 25.0f;
-			ultGain = 5;
-        }
-        else if (lowDamageVelocity < speed && speed < highDamageVelocity)
-        {
-            //transform.GetComponent<Renderer>().material.color = Color.yellow;
-            playerDamage = 50.0f;
+		if (speed < lowDamageVelocity) {
+			//This does not work, collider check needs to be in OnTrigger
+			/*if (collider.tag == "collider" ) {
+				ParticleSystem playGravLandSmall = (ParticleSystem)Instantiate (gravLandParticleSmall, this.transform.position, this.transform.rotation);
+
+				if (!gravParticleSystemPlayed) {
+					{
+						playGravLandSmall.Emit (1);
+						gravParticleSystemPlayed = true;
+						Debug.Log ("gravPlayed");
+					}
+
+					if (gravParticleSystemPlayed == true) {
+						Destroy (playGravLandSmall);
+						Debug.Log ("gravDead");
+					}
+					}
+					}*/ //End ParticleScript
+					//transform.GetComponent<Renderer>().material.color = Color.green;
+					playerDamage = 25.0f;
+					ultGain = 5;
+				
+			
+		}//end low velocity
+        else if (lowDamageVelocity < speed && speed < highDamageVelocity) {
+			/*if (collider.tag == "collider") {
+				ParticleSystem playGravLandMed = (ParticleSystem)Instantiate (gravLandParticleMed, this.transform.position, this.transform.rotation);
+
+				if (!gravParticleSystemPlayed) {
+					{
+						playGravLandMed.Emit (1);
+						gravParticleSystemPlayed = true;
+						Debug.Log ("gravPlayed");
+					}
+
+					if (gravParticleSystemPlayed == true) {
+						Destroy (playGravLandMed);
+						Debug.Log ("gravDead");
+					}
+				}
+			}*/ //End Particle script\
+
+
+			//transform.GetComponent<Renderer>().material.color = Color.yellow;
+			playerDamage = 50.0f;
 			ultGain = 10;
-        }
+		}
         else if (highDamageVelocity < speed)
         {
             //transform.GetComponent<Renderer>().material.color = Color.red;
