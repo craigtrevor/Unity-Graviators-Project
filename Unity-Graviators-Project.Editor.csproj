@@ -133,9 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
-    <None Include="Assets\Downloaded Particles\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
-    <None Include="Assets\MeleeWeaponTrail\README.txt" />
+    <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
+    <None Include="Assets\Materials\particles\SurfaceShader_VC.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />

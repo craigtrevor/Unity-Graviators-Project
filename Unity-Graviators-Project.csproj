@@ -82,11 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Database Control Free\Demos\C#\Scripts\DCF_DemoScene_ManagerScript_CSharp.cs" />
-    <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\LookAtTarget.cs" />
-    <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\MouseMove.cs" />
-    <Compile Include="Assets\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
-    <Compile Include="Assets\MeleeWeaponTrail\Scripts\Interpolate.cs" />
-    <Compile Include="Assets\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
+    <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\LookAtTarget.cs" />
+    <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\MouseMove.cs" />
+    <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
+    <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\Interpolate.cs" />
+    <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
+    <Compile Include="Assets\Scripts\Melee Scripts\UnitD1Combat_Manager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_CharacterSelect.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScriptNew.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisTextScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
@@ -147,12 +149,13 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_Ult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
-    <None Include="Assets\Downloaded Particles\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
-    <None Include="Assets\MeleeWeaponTrail\README.txt" />
+    <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
+    <None Include="Assets\Materials\particles\SurfaceShader_VC.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
