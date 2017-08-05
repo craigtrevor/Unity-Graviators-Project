@@ -12,8 +12,8 @@ public class WeaponSpawn : NetworkBehaviour {
 	public Transform fireTransform; // a child of the player where the weapon is spawned
 	public float force = 2000; // the force to be applied to the weapon
 	public float reloadTime = 1f;
-	[SyncVar]
-	public int m_localID;
+//	[SyncVar]
+//	public int m_localID;
 
 	//private string m_FireButton; // the input axis that is used for firing
 	private Rigidbody m_Rigidbody; // reference to the rigidbody
