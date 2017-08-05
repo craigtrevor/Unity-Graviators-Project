@@ -48,7 +48,7 @@ public class GravityAxisScript : MonoBehaviour {
 
     private PlayerController playerControllerScript;
     //private CameraPosScript cameraPosScript;
-    private VertArrowsScript vertArrowsScript;
+    private YRotScript yRotScript;
 
     private GravityAxisDisplayScript gravityAxisDisplayScript;
 
@@ -77,7 +77,7 @@ public class GravityAxisScript : MonoBehaviour {
         //Get Scripts
         playerControllerScript = controller.GetComponent<PlayerController>();
         //cameraPosScript = cameraPos.GetComponent<CameraPosScript>();
-        vertArrowsScript = vertArrows.GetComponent<VertArrowsScript>();
+        yRotScript = vertArrows.GetComponent<YRotScript>();
 
         gravityAxisDisplayScript = GetComponent<GravityAxisDisplayScript>();
 
@@ -393,7 +393,7 @@ public class GravityAxisScript : MonoBehaviour {
     //SetQuadrant() sets the quadrant variable based on the relative y-rotation of the 
     private void SetQuadrant() {
 
-        float yRot = vertArrowsScript.GetYRot(); //relative y-rotation
+        float yRot = yRotScript.GetYRot(); //relative y-rotation
 
         //Check yRot
         if (315 < yRot || yRot <= 45) { //Facing forward

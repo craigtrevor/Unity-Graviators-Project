@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class VertArrowsScript : MonoBehaviour {
+public class YRotScript : MonoBehaviour {
 
     private float yRot = 0;
 
