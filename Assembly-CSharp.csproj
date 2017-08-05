@@ -93,7 +93,7 @@
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" />
-     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\VertArrowsScript.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
      <Compile Include="Assets\Scripts\Soundscape Scripts\AudioFadeOut.cs" />
      <Compile Include="Assets\Scripts\Soundscape Scripts\MusicPlayer.cs" />
      <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
