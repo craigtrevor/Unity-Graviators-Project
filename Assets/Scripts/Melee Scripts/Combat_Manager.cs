@@ -34,7 +34,11 @@ public class Combat_Manager : NetworkBehaviour {
 	[SerializeField]
 	private float highDamageVelocity = 25;
 
-	private double ultGain;
+	public float ultGain;
+
+    public float CurrentUltGain() {
+        return ultGain;
+    }
 
     // Boolean
     public bool isAttacking;

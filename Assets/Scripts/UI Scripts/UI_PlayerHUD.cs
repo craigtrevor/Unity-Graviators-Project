@@ -16,10 +16,16 @@ public class UI_PlayerHUD : MonoBehaviour {
     RectTransform healthBarFill;
 
     [SerializeField]
+    RectTransform ultBarFill;
+
+    [SerializeField]
     MonoBehaviour[] playerScripts;
 
     [SerializeField]
     Network_PlayerManager networkPlayerManager;
+
+    [SerializeField]
+    Combat_Manager combatManager;
 
     PlayerController playerController;
 
@@ -39,6 +45,7 @@ public class UI_PlayerHUD : MonoBehaviour {
 	void Update ()
     {
         SetHealthAmount(networkPlayerManager.GetHealthPct());
+       // SetUltBar(combatManager.CurrentUltGain());
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -104,5 +111,10 @@ public class UI_PlayerHUD : MonoBehaviour {
     void SetHealthAmount (float _amount)
     {
         healthBarFill.localScale = new Vector3(_amount, 0.3f, 1f);
+
+    }
+    void SetUltBar (float _ultAmount ) {
+
+        ultBarFill.localScale = new Vector3(_ultAmount, 0.3f, 1f);
     }
 }
