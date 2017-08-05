@@ -14,7 +14,6 @@ public class Dash : NetworkBehaviour {
 	private Transform dashAngle; // the angle to match the camera when dashing
 
 	//stuff for dashHitBox
-	public GameObject dashHitBoxObject;
 	public Transform MeleeSpawn;
 	private GameObject dash;
 
