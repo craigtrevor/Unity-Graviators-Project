@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graviators-Project", "Unity-Graviators-Project.csproj", "{6E56245A-59A6-A167-9609-15C594F89998}"
 EndProject
-<<<<<<< HEAD
-Project("{EF348CC9-AA6F-D154-3267-50845D62961D}") = "Unity-Graviators-Project", "Assembly-UnityScript.unityproj", "{31BAE3C3-CBA9-3FE5-0BE9-8B63F0A230E4}"
-=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graviators-Project.Editor", "Unity-Graviators-Project.Editor.csproj", "{5A315C4E-D34C-9A9C-42C8-C850599803C3}"
->>>>>>> fcec6e4ac2f2f44149adad0901809595dbcb0f6e
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graviators-Project", "Assembly-CSharp-Editor.csproj", "{CCBC46D6-ED91-C326-9489-2AC06D423D04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,20 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-<<<<<<< HEAD
-		{D0940433-02C6-52CB-5F16-A434F2F85B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0940433-02C6-52CB-5F16-A434F2F85B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0940433-02C6-52CB-5F16-A434F2F85B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0940433-02C6-52CB-5F16-A434F2F85B82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31BAE3C3-CBA9-3FE5-0BE9-8B63F0A230E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31BAE3C3-CBA9-3FE5-0BE9-8B63F0A230E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31BAE3C3-CBA9-3FE5-0BE9-8B63F0A230E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31BAE3C3-CBA9-3FE5-0BE9-8B63F0A230E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCBC46D6-ED91-C326-9489-2AC06D423D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCBC46D6-ED91-C326-9489-2AC06D423D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCBC46D6-ED91-C326-9489-2AC06D423D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCBC46D6-ED91-C326-9489-2AC06D423D04}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{6E56245A-59A6-A167-9609-15C594F89998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E56245A-59A6-A167-9609-15C594F89998}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E56245A-59A6-A167-9609-15C594F89998}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,7 +19,6 @@ Global
 		{5A315C4E-D34C-9A9C-42C8-C850599803C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A315C4E-D34C-9A9C-42C8-C850599803C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A315C4E-D34C-9A9C-42C8-C850599803C3}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> fcec6e4ac2f2f44149adad0901809595dbcb0f6e
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

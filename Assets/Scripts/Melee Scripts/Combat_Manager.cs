@@ -72,30 +72,34 @@ public class Combat_Manager : NetworkBehaviour {
         PlayerVelocity();
     }
 
-    [Client]
     void AttackPlayer()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (isLocalPlayer)
         {
-            if (isAttacking == false)
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                isAttacking = true;
-                Attack();
+                if (isAttacking == false)
+                {
+                    networkSoundscape.PlaySound(0, 0, 0.0f);
+                    isAttacking = true;
+                    Attack();
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                isAttacking = false;
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            isAttacking = false;
-        }
     }
 
     [Client]
      public void Attack()
     {
-        if ((anim.GetBool("Attack") == true && isAttacking && !anim.GetCurrentAnimatorStateInfo(1).IsName("Attack")))
+        //if ((anim.GetBool("Attack") == true && isAttacking && !anim.GetCurrentAnimatorStateInfo(1).IsName("Attack")))
         {
-           // networkSoundscape.PlaySound(0, 0, 0.0f);
+           networkSoundscape.PlaySound(0, 0, 0.0f);
         }
 
         hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
@@ -114,7 +118,8 @@ public class Combat_Manager : NetworkBehaviour {
 						Debug.Log ("won clash");
 						Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
-						CmdTakeDamage (hitCol.gameObject.name, playerDamage, transform.name);
+                        networkSoundscape.PlaySound(1, 1, 0f);
+                        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 						isAttacking = false;
 						GetComponent<Dash> ().chargePercent += ultGain;
 					} else {
@@ -125,7 +130,8 @@ public class Combat_Manager : NetworkBehaviour {
 					Debug.Log ("did damage");
 					Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
-					CmdTakeDamage (hitCol.gameObject.name, playerDamage, transform.name);
+                    networkSoundscape.PlaySound(1, 1, 0f);
+                    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 					isAttacking = false;
 					GetComponent<Dash> ().chargePercent += ultGain;
 				}
@@ -150,12 +156,6 @@ public class Combat_Manager : NetworkBehaviour {
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
     {
-        if (isLocalPlayer)
-        {
-           // networkSoundscape.PlaySound(1, 1, 0f);
-        }
-
-
         Debug.Log(_playerID + " has been attacked.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
