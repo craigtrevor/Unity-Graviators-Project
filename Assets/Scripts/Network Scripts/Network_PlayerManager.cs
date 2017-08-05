@@ -134,6 +134,19 @@ public class Network_PlayerManager : NetworkBehaviour
         }
     }
 
+	[ClientRpc]
+	public void RpcHealthRegenerate(float _amount, string _sourceID)
+	{
+		Debug.Log ("Healing!");
+
+		currentHealth += _amount;
+
+		if (currentHealth >= maxHealth) 
+		{
+			currentHealth = maxHealth;	
+		}
+	}
+
     private void Die(string _sourceID)
     {
         Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);

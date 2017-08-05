@@ -90,4 +90,34 @@ public class Network_GameManager : MonoBehaviour {
     }
 
     #endregion
-}
+
+
+	#region Aid Tracking
+
+	private const string AID_ID_PREFIX = "Aid ";
+
+	private static Dictionary<string, Network_AidManager> generators = new Dictionary<string, Network_AidManager>();
+
+	public static void RegisterGenerator(string _netID, Network_AidManager _aid)
+	{
+		string _aidID = AID_ID_PREFIX + _netID;
+		generators.Add(_aidID, _aid);
+		_aid.transform.name = _aidID;
+	}
+
+	public static void UnRegisterGenerator(string _aidID)
+	{
+		generators.Remove(_aidID);
+	}
+
+	public static Network_AidManager GetGenerator(string _aidID)
+	{
+		return generators[_aidID];
+	}
+
+	public static Network_AidManager[] GetAllGenerators()
+	{
+		return generators.Values.ToArray();
+	}
+		#endregion
+	}
