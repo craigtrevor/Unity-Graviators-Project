@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: 30ce1f60bdda3ea48939e372b55c6eb9
+timeCreated: 1501903118
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: accecories
+    100002: body
+    100004: body_bottom
+    100006: body_bottom_back
+    100008: body_front
+    100010: body_roof
+    100012: bumpers001
+    100014: bumpers002
+    100016: doors
+    100018: glass
+    100020: interior
+    100022: knalpot
+    100024: lamp002
+    100026: lamps001
+    100028: mirror
+    100030: rims
+    100032: stuff
+    100034: tail light
+    100036: //RootNode
+    100038: wheel
+    400000: accecories
+    400002: body
+    400004: body_bottom
+    400006: body_bottom_back
+    400008: body_front
+    400010: body_roof
+    400012: bumpers001
+    400014: bumpers002
+    400016: doors
+    400018: glass
+    400020: interior
+    400022: knalpot
+    400024: lamp002
+    400026: lamps001
+    400028: mirror
+    400030: rims
+    400032: stuff
+    400034: tail light
+    400036: //RootNode
+    400038: wheel
+    2300000: accecories
+    2300002: body
+    2300004: body_bottom
+    2300006: body_bottom_back
+    2300008: body_front
+    2300010: body_roof
+    2300012: bumpers001
+    2300014: bumpers002
+    2300016: doors
+    2300018: glass
+    2300020: interior
+    2300022: knalpot
+    2300024: lamp002
+    2300026: lamps001
+    2300028: mirror
+    2300030: rims
+    2300032: stuff
+    2300034: tail light
+    2300036: wheel
+    3300000: accecories
+    3300002: body
+    3300004: body_bottom
+    3300006: body_bottom_back
+    3300008: body_front
+    3300010: body_roof
+    3300012: bumpers001
+    3300014: bumpers002
+    3300016: doors
+    3300018: glass
+    3300020: interior
+    3300022: knalpot
+    3300024: lamp002
+    3300026: lamps001
+    3300028: mirror
+    3300030: rims
+    3300032: stuff
+    3300034: tail light
+    3300036: wheel
+    4300000: stuff
+    4300002: glass
+    4300004: mirror
+    4300006: knalpot
+    4300008: interior
+    4300010: accecories
+    4300012: tail light
+    4300014: lamp002
+    4300016: body_bottom_back
+    4300018: lamps001
+    4300020: bumpers002
+    4300022: bumpers001
+    4300024: body_bottom
+    4300026: rims
+    4300028: wheel
+    4300030: body_roof
+    4300032: doors
+    4300034: body
+    4300036: body_front
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
