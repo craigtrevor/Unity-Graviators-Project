@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
+    Network_Soundscape networkSoundscape;
 
     public float cameraDisplacement;
 
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour {
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
+        networkSoundscape = GetComponentInParent<Network_Soundscape>();
     }
 
     void GetInput() {
@@ -224,6 +226,7 @@ public class PlayerController : MonoBehaviour {
             // Jumping - Alex
             StartCoroutine(JumpTime());
             velocity.y = moveSettings.jumpVel;
+            networkSoundscape.PlaySound(2, 1, 0.0f);    
 
         } else if (jumpInput == 0 && Grounded()) {
             // zero out our velociy.y

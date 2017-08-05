@@ -74,14 +74,17 @@ public class Combat_Manager : NetworkBehaviour {
 
     void AttackPlayer()
     {
-        if (isLocalPlayer)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 if (isAttacking == false)
                 {
-                    networkSoundscape.PlaySound(0, 0, 0.0f);
                     isAttacking = true;
+
+                    if (isLocalPlayer && anim.GetBool("Attack") == true && isAttacking && !anim.GetCurrentAnimatorStateInfo(1).IsName("Attack"))
+                    {
+                        networkSoundscape.PlaySound(0, 0, 0.0f);
+                    }
+
                     Attack();
                 }
             }
@@ -90,18 +93,11 @@ public class Combat_Manager : NetworkBehaviour {
             {
                 isAttacking = false;
             }
-        }
-
     }
 
     [Client]
      public void Attack()
     {
-        //if ((anim.GetBool("Attack") == true && isAttacking && !anim.GetCurrentAnimatorStateInfo(1).IsName("Attack")))
-        {
-           networkSoundscape.PlaySound(0, 0, 0.0f);
-        }
-
         hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
 
         foreach (Collider hitCol in hitColliders)
@@ -109,7 +105,9 @@ public class Combat_Manager : NetworkBehaviour {
 			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) 
 			{
 				Debug.Log ("Hit Player!");
-				hitCol.GetComponent<Combat_Manager> ().enabled = true; // enables the combat nmanager to get correct attack damage values
+                networkSoundscape.PlaySound(1, 1, 0f);
+
+                hitCol.GetComponent<Combat_Manager> ().enabled = true; // enables the combat nmanager to get correct attack damage values
 				if (hitCol.GetComponent<Combat_Manager> ().isAttacking == true) { // check to see if the other player is attacking
 					if (hitCol.GetComponent<Combat_Manager> ().playerDamage == this.GetComponent<Combat_Manager> ().playerDamage) {  // if the player has equal damage as oppenent
 						Debug.Log ("knockedback");
@@ -118,7 +116,6 @@ public class Combat_Manager : NetworkBehaviour {
 						Debug.Log ("won clash");
 						Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
-                        networkSoundscape.PlaySound(1, 1, 0f);
                         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 						isAttacking = false;
 						GetComponent<Dash> ().chargePercent += ultGain;
@@ -130,7 +127,6 @@ public class Combat_Manager : NetworkBehaviour {
 					Debug.Log ("did damage");
 					Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
-                    networkSoundscape.PlaySound(1, 1, 0f);
                     CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 					isAttacking = false;
 					GetComponent<Dash> ().chargePercent += ultGain;
