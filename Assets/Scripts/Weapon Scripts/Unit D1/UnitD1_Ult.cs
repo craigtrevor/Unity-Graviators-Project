@@ -28,11 +28,18 @@ public class UnitD1_Ult : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		_sourceID = transform.name;
 		
 	}
 	
 	// Update is called once per frame
+	[ClientCallback]
 	void Update () {
+
+		if (!isLocalPlayer)
+		{
+			return;
+		}
 
 		if (chargePercent < chargeMax && canUseUlt == false) {
 			chargePercent += passiveCharge; // charges the ult
@@ -67,15 +74,20 @@ public class UnitD1_Ult : NetworkBehaviour {
 			if (isFalling == true)
 			{
 			//ultsizewanted = this.GetComponent<Combat_Manager> ().playerDamage; // stores the palyer damage to send off to the object 
-				ultsizewanted = playerYVelocity;
+				ultsizewanted = playerYVelocity *-1;
 			} else 
 			{
-				CmdSpawnUlt (ultSpawnLocationTransform.position, ultSpawnLocationTransform.rotation, playerYVelocity);
+				CmdSpawnUlt (ultSpawnLocationTransform.position, ultSpawnLocationTransform.rotation, ultsizewanted);
 				UltActive = false;
 			}
 
 
 		}
+	}
+
+	private void Fire ()
+	{
+		CmdSpawnUlt (ultSpawnLocationTransform.position, ultSpawnLocationTransform.rotation, ultsizewanted);
 	}
 
 	[Command]
@@ -84,9 +96,12 @@ public class UnitD1_Ult : NetworkBehaviour {
 		// create an instance of the weapon and store a reference to its rigibody
 		Rigidbody weaponInstance = Instantiate (weapon, position, rotation) as Rigidbody;
 
-		weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+//		weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+//		weaponInstance.SendMessage("getUltSize", SizeMeasurement);
 
 		NetworkServer.Spawn(weaponInstance.gameObject);
+		weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+		weaponInstance.SendMessage("RpcgetUltSize", SizeMeasurement);
 		Destroy (weaponInstance, 3);
 	}
 }

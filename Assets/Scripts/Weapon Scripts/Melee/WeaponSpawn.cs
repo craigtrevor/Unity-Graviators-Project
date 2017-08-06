@@ -56,12 +56,13 @@ public class WeaponSpawn : NetworkBehaviour {
 		// Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
 		Vector3 velocity = rigidbodyVelocity + launchForce * forward;
 
-        weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+//        weaponInstance.SendMessage("SetInitialReferences", _sourceID);
 
-		// Set the shell's velocity to this velocity.
+		// Set the weapons velocity to this velocity.
 		weaponInstance.velocity = velocity;
 
 		NetworkServer.Spawn(weaponInstance.gameObject);
+		weaponInstance.SendMessage("SetInitialReferences", _sourceID);
 		Destroy (weaponInstance, 3);
 	}
 
