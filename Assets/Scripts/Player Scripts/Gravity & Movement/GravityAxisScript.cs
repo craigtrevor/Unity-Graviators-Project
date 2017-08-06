@@ -22,7 +22,8 @@ public class GravityAxisScript : MonoBehaviour {
     private const int RECHARGE_RATE = 10;
 
     //Gravity variables
-    public string gravity;
+    private string oldgravity;
+    private Gravity gravity;
     public bool gravitySwitching;
     private bool cameraSwitching;
 
@@ -34,9 +35,6 @@ public class GravityAxisScript : MonoBehaviour {
 
     //Control variables
     private bool shiftPressed;
-    private float jumpAxis;
-    private float verticalAxis;
-    private float horizontalAxis;
     private int quadrant;
 
     //Other Objects/Scripts
@@ -47,17 +45,18 @@ public class GravityAxisScript : MonoBehaviour {
     public GameObject rotationBlock;
 
     private PlayerController playerControllerScript;
-    //private CameraPosScript cameraPosScript;
     private YRotScript yRotScript;
 
     private GravityAxisDisplayScript gravityAxisDisplayScript;
 
+    public float degRotated;
+    public Vector3 rotation = Vector3.zero;
 
     //Start()
     private void Start() {
 
         //Initialise gravity variables
-        gravity = "-y";
+        oldgravity = "-y";
         gravitySwitching = false;
         cameraSwitching = false;
 
@@ -69,24 +68,25 @@ public class GravityAxisScript : MonoBehaviour {
 
         //Initialise control variables
         shiftPressed = false;
-        jumpAxis = 0f;
-        verticalAxis = 0f;
-        horizontalAxis = 0f;
         quadrant = 1;
 
         //Get Scripts
         playerControllerScript = controller.GetComponent<PlayerController>();
-        //cameraPosScript = cameraPos.GetComponent<CameraPosScript>();
         yRotScript = vertArrows.GetComponent<YRotScript>();
 
         gravityAxisDisplayScript = GetComponent<GravityAxisDisplayScript>();
 
+        degRotated = 0;
     } //End Start()
 
     //Update()
     private void Update() {
+
+        degRotated += playerControllerScript.moveSettings.rotateVel * Input.GetAxisRaw("Mouse X") * Time.deltaTime * 2;
+        degRotated %= 360;
+
         SetCharge();
-        gravityAxisDisplayScript.SetVariables(gravity, gravitySwitching, gravityCharge, haveCharge, shiftPressed, quadrant);
+        gravityAxisDisplayScript.SetVariables(oldgravity, gravitySwitching, gravityCharge, haveCharge, shiftPressed, this.GetQuadrant());
 
     } //End Update()
 
@@ -96,7 +96,6 @@ public class GravityAxisScript : MonoBehaviour {
         SetGravity();
         RotateGravityBlock();
         RotatePlayer();
-        //RotateCamera(); //print(cameraSwitching);
         SetQuadrant();
 
     } //End FixedUpdate()
@@ -104,7 +103,7 @@ public class GravityAxisScript : MonoBehaviour {
     //FixSkew()
     private void FixSkew() {
         if (!gravitySwitching) {
-            if (gravity == "-y" || gravity == "y") {
+            if (oldgravity == "-y" || oldgravity == "y") {
                 rotationBlock.transform.eulerAngles = new Vector3(RoundNum(rotationBlock.transform.eulerAngles.x, 90),
                                                                   rotationBlock.transform.eulerAngles.y,
                                                                   RoundNum(rotationBlock.transform.eulerAngles.z, 90));
@@ -112,7 +111,7 @@ public class GravityAxisScript : MonoBehaviour {
                 //rotationBlock.transform.rotation = Quaternion.Euler(RoundNum(rotationBlock.transform.eulerAngles.x, 90),
                 //                                                    rotationBlock.transform.eulerAngles.y,
                 //                                                    RoundNum(rotationBlock.transform.eulerAngles.z, 90));
-            } else if (gravity == "z" || gravity == "-z") {
+            } else if (oldgravity == "z" || oldgravity == "-z") {
                 //I don't know why this works - it should be z
                 rotationBlock.transform.eulerAngles = new Vector3(rotationBlock.transform.eulerAngles.x,
                                                                   RoundNum(rotationBlock.transform.eulerAngles.y, 90),
@@ -121,7 +120,7 @@ public class GravityAxisScript : MonoBehaviour {
                 //rotationBlock.transform.rotation = Quaternion.Euler(RoundNum(rotationBlock.transform.eulerAngles.x, 90),
                 //                                                    RoundNum(rotationBlock.transform.eulerAngles.y, 90),
                 //                                                    rotationBlock.transform.eulerAngles.z);
-            } else if (gravity == "x" || gravity == "-x") {
+            } else if (oldgravity == "x" || oldgravity == "-x") {
                 rotationBlock.transform.eulerAngles = new Vector3(rotationBlock.transform.eulerAngles.x,
                                                                   RoundNum(rotationBlock.transform.eulerAngles.y, 90),
                                                                   RoundNum(rotationBlock.transform.eulerAngles.z, 90));
@@ -136,6 +135,39 @@ public class GravityAxisScript : MonoBehaviour {
     //SetGravity() sets the gravity variable based on the rotation of rotationBlock
     private void SetGravity() {
 
+        string printthis = "null";
+
+        float smallestAngle = Vector3.Angle(Vector3.up, rotationBlock.transform.up); //The angle between up vector and rotation block up 
+        print(smallestAngle);
+        printthis = "down";
+
+        if (smallestAngle > Vector3.Angle(Vector3.up, -rotationBlock.transform.up)) {
+            smallestAngle = Vector3.Angle(Vector3.up, -rotationBlock.transform.up);
+            printthis = "up";
+        }
+
+        if (smallestAngle > Vector3.Angle(Vector3.up, rotationBlock.transform.right)) {
+            smallestAngle = Vector3.Angle(Vector3.up, rotationBlock.transform.right);
+            printthis = "right";
+        }
+
+        if (smallestAngle > Vector3.Angle(Vector3.up, -rotationBlock.transform.right)) {
+            smallestAngle = Vector3.Angle(Vector3.up, -rotationBlock.transform.right);
+            printthis = "left";
+        }
+
+        if (smallestAngle > Vector3.Angle(Vector3.up, rotationBlock.transform.forward)) {
+            smallestAngle = Vector3.Angle(Vector3.up, rotationBlock.transform.forward);
+            printthis = "forward";
+        }
+
+        if (smallestAngle > Vector3.Angle(Vector3.up, -rotationBlock.transform.forward)) {
+            smallestAngle = Vector3.Angle(Vector3.up, -rotationBlock.transform.forward);
+            printthis = "backward";
+        }
+
+        print(printthis);
+
         //rotationBlockUp variables
         int rotationBlockUpX = Mathf.RoundToInt(rotationBlock.transform.up.x);
         int rotationBlockUpY = Mathf.RoundToInt(rotationBlock.transform.up.y);
@@ -143,19 +175,19 @@ public class GravityAxisScript : MonoBehaviour {
 
         //Check rotationBlockUp
         if (rotationBlockUpY == Vector3.up.y) {  //-y gravity
-            gravity = "-y";
+            oldgravity = "-y";
         } else if (rotationBlockUpY == Vector3.down.y) { //y gravity
-            gravity = "y";
+            oldgravity = "y";
         } else if (rotationBlockUpX == Vector3.left.x) { //x gravity
-            gravity = "x";
+            oldgravity = "x";
         } else if (rotationBlockUpX == Vector3.right.x) { //-x gravity
-            gravity = "-x";
+            oldgravity = "-x";
         } else if (rotationBlockUpZ == Vector3.back.z) { //z gravity
-            gravity = "z";
+            oldgravity = "z";
         } else if (rotationBlockUpZ == Vector3.forward.z) { //-z gravity
-            gravity = "-z";
+            oldgravity = "-z";
         } else {
-            gravity = null;
+            oldgravity = null;
         } //End if (rotationBlockUp)
 
     } //End SetGravity()
@@ -164,25 +196,46 @@ public class GravityAxisScript : MonoBehaviour {
     private void RotateGravityBlock() {
 
         //Check gravity
-        if (gravity == "-y") {
+        if (oldgravity == "-y") {
             gravityBlock.transform.rotation = Quaternion.Euler(0, 0, 0);
-        } else if (gravity == "y") {
+        } else if (oldgravity == "y") {
             gravityBlock.transform.rotation = Quaternion.Euler(0, 0, 180);
-        } else if (gravity == "z") {
+        } else if (oldgravity == "z") {
             gravityBlock.transform.rotation = Quaternion.Euler(-90, 0, 0);
-        } else if (gravity == "-z") {
+        } else if (oldgravity == "-z") {
             gravityBlock.transform.rotation = Quaternion.Euler(-90, -180, 0);
-        } else if (gravity == "x") {
+        } else if (oldgravity == "x") {
             gravityBlock.transform.rotation = Quaternion.Euler(-90, 90, 0);
-        } else if (gravity == "-x") {
+        } else if (oldgravity == "-x") {
             gravityBlock.transform.rotation = Quaternion.Euler(-90, -90, 0);
         } //End if (gravity)
 
     } //End RotateGravityBlock()
 
+    public int GetQuadrant() {
+        //Check degRotated
+        if (315 < degRotated || degRotated <= 45) {
+            //Facing forward
+            return 1;
+
+        } else if (45 < degRotated && degRotated <= 135) {
+            //Facing right
+            return 2;
+
+        } else if (135 < degRotated && degRotated <= 225) {
+            //Facing backward
+            return 3;
+        } else if (225 < degRotated && degRotated <= 315) {
+            //Facing left
+            return 4;
+        } //End if (yRot)
+
+        return -1;
+    }
+
 
     //ChangeGravity() calls checks for gravity charge and if gravity is switching and calls the appropriate gravity switching method
-    public void ChangeGravity() {
+    public void ChangeGravity(float jumpAxis, float horizontalAxis, float verticalAxis) {
 
         //Check haveCharge & gravitySwitching
         if (haveCharge && !gravitySwitching) { //If player has gravity charge and gravity is not switching
@@ -235,11 +288,11 @@ public class GravityAxisScript : MonoBehaviour {
     private void GravityUp() {
 
         //Check gravity
-        if (gravity == "-y" || gravity == "y" || true) { //If y gravities
+        if (oldgravity == "-y" || oldgravity == "y" || true) { //If y gravities
             rotationBlock.transform.Rotate(0, 0, 180, Space.Self);
-        } else if (gravity == "z" || gravity == "-z") { //If z gravities
+        } else if (oldgravity == "z" || oldgravity == "-z") { //If z gravities
             rotationBlock.transform.Rotate(0, 0, 180, Space.Self);
-        } else if (gravity == "x" || gravity == "-x") { //If x gravities
+        } else if (oldgravity == "x" || oldgravity == "-x") { //If x gravities
             rotationBlock.transform.Rotate(0, 0, 180, Space.Self);
         } //End if (gravity)
 
@@ -277,13 +330,13 @@ public class GravityAxisScript : MonoBehaviour {
     private void GravityForward() {
 
         //Check gravity
-        if (gravity == "-y" || gravity == "z") { //If -y or z gravities
+        if (oldgravity == "-y" || oldgravity == "z") { //If -y or z gravities
             rotationBlock.transform.Rotate(-90, 0, 0, Space.World);
-        } else if (gravity == "y" || gravity == "-z") { //If y or -z gravities
+        } else if (oldgravity == "y" || oldgravity == "-z") { //If y or -z gravities
             rotationBlock.transform.Rotate(90, 0, 0, Space.World);
-        } else if (gravity == "x") { //If x gravity
+        } else if (oldgravity == "x") { //If x gravity
             rotationBlock.transform.Rotate(0, 0, 90, Space.World);
-        } else if (gravity == "-x") { //If -x gravity
+        } else if (oldgravity == "-x") { //If -x gravity
             rotationBlock.transform.Rotate(0, 0, -90, Space.World);
         } //End if (gravity)
 
@@ -293,13 +346,13 @@ public class GravityAxisScript : MonoBehaviour {
     private void GravityBackward() {
 
         //Check gravity
-        if (gravity == "-y" || gravity == "z") { //If -y or z gravities
+        if (oldgravity == "-y" || oldgravity == "z") { //If -y or z gravities
             rotationBlock.transform.Rotate(90, 0, 0, Space.World);
-        } else if (gravity == "y" || gravity == "-z") { //If y or -z gravities
+        } else if (oldgravity == "y" || oldgravity == "-z") { //If y or -z gravities
             rotationBlock.transform.Rotate(-90, 0, 0, Space.World);
-        } else if (gravity == "x") { //If x gravity
+        } else if (oldgravity == "x") { //If x gravity
             rotationBlock.transform.Rotate(0, 0, -90, Space.World);
-        } else if (gravity == "-x") { //If -x gravity
+        } else if (oldgravity == "-x") { //If -x gravity
             rotationBlock.transform.Rotate(0, 0, 90, Space.World);
         } //End if (gravity)
 
@@ -309,7 +362,7 @@ public class GravityAxisScript : MonoBehaviour {
     private void GravityRight() {
 
         //Check gravity
-        if (gravity == "-y" || gravity == "y") { //If y gravities
+        if (oldgravity == "-y" || oldgravity == "y") { //If y gravities
             rotationBlock.transform.Rotate(0, 0, 90, Space.World);
         } else { //If x or z gravities
             rotationBlock.transform.Rotate(0, 90, 0, Space.World);
@@ -321,7 +374,7 @@ public class GravityAxisScript : MonoBehaviour {
     private void GravityLeft() {
 
         //Check gravity
-        if (gravity == "-y" || gravity == "y") { //If y gravities
+        if (oldgravity == "-y" || oldgravity == "y") { //If y gravities
             rotationBlock.transform.Rotate(0, 0, -90, Space.World);
         } else { //If x or z gravities
             rotationBlock.transform.Rotate(0, -90, 0, Space.World);
@@ -428,14 +481,7 @@ public class GravityAxisScript : MonoBehaviour {
     //SetShiftPressed() retrieves shiftPressed, called in ControllerScript
     public void SetShiftPressed(bool thisShiftPressed) {
         shiftPressed = thisShiftPressed;
-    } //End SetShiftPressed()
-
-    //SetAxes() retrieves input axes, called in ControllerScript
-    public void SetAxes(float thisJumpAxis, float thisVerticalAxis, float thisHorizontalAxis) {
-        jumpAxis = thisJumpAxis;
-        verticalAxis = thisVerticalAxis;
-        horizontalAxis = thisHorizontalAxis;
-    } //End GetAxes()
+    } //End SetShiftPressed()    
 
     //GetGravitySwitching() returns gravitySwitching, called in ControllerScript
     public bool GetGravitySwitching() {

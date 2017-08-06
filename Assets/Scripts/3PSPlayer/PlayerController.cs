@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour {
 
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
-    Network_Soundscape networkSoundscape;
 
     public float cameraDisplacement;
 
@@ -82,7 +81,6 @@ public class PlayerController : MonoBehaviour {
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
-        networkSoundscape = GetComponentInParent<Network_Soundscape>();
     }
 
     void GetInput() {
@@ -100,10 +98,9 @@ public class PlayerController : MonoBehaviour {
 
             gravityAxisScript.SetShiftPressed(true); //shiftPressed true
 
-            if ((Input.GetButton("Jump") || Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) {
+            if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))) {
                 // Used Gravity || in the air - Alex
-                gravityAxisScript.SetAxes(Input.GetAxis("Jump"), Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
-                gravityAxisScript.ChangeGravity();
+                gravityAxisScript.ChangeGravity(Input.GetAxis("Jump"), Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             }
 
         } else {
@@ -226,7 +223,6 @@ public class PlayerController : MonoBehaviour {
             // Jumping - Alex
             StartCoroutine(JumpTime());
             velocity.y = moveSettings.jumpVel;
-            networkSoundscape.PlaySound(2, 1, 0.0f);    
 
         } else if (jumpInput == 0 && Grounded()) {
             // zero out our velociy.y
