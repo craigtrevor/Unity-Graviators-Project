@@ -1,11 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Network Scripts\Network_PlayerManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\CrossSection.shader">
     <Files>
-      <File FileName="Assets\Scripts\Network Scripts\Network_TrapManager.cs" Line="10" Column="27" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_AidManager.cs" Line="16" Column="33" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="142" Column="27" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_GameManager.cs" Line="110" Column="29" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_TrapManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_AidManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\ShieldShader.shader" Line="12" Column="43" />
+      <File FileName="Assets\Shaders\CrossSection.shader" Line="23" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
