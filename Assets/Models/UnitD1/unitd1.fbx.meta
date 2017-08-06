@@ -1,0 +1,2757 @@
+fileFormatVersion: 2
+guid: 6e2e40a51128d404eb0bb3d7d9b4d0fc
+timeCreated: 1501995040
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Body
+    100004: Con..MidTorso
+    100006: Con..MidTorso_end
+    100008: Con.IK.Foot.Back
+    100010: Con.IK.Foot.Back_end
+    100012: Con.IK.Foot.Forward
+    100014: Con.IK.Foot.Forward_end
+    100016: Con.IK.Foot.Left
+    100018: Con.IK.Foot.Left_end
+    100020: Con.IK.Foot.Right
+    100022: Con.IK.Foot.Right_end
+    100024: Con.IK.Head
+    100026: Con.IK.Head_end
+    100028: Con.IK.HipSphere
+    100030: Con.IK.HipSphere.FixedLegs
+    100032: Con.IK.KneeTarget.Back
+    100034: Con.IK.KneeTarget.Back_end
+    100036: Con.IK.KneeTarget.Forward
+    100038: Con.IK.KneeTarget.Forward_end
+    100040: Con.IK.KneeTarget.Left
+    100042: Con.IK.KneeTarget.Left_end
+    100044: Con.IK.KneeTarget.Right
+    100046: Con.IK.KneeTarget.Right_end
+    100048: Con.UpperTorso
+    100050: Con.UpperTorso_end
+    100052: Con.Wing.Left
+    100054: Con.Wing.Left.001
+    100056: Con.Wing.Left.001_end
+    100058: Con.Wing.Left.Right
+    100060: Con.Wing.Left.Rotator
+    100062: Con.Wing.Left.RotatorMarker
+    100064: Con.Wing.Left.RotatorMarker_end
+    100066: Con.Wing.Right
+    100068: Con.Wing.Right.001
+    100070: Con.Wing.Right.001_end
+    100072: Con.Wing.Right.RotatorMarker
+    100074: Con.Wing.Right.RotatorMarker_end
+    100076: Con.WingRing
+    100078: Def.Calf.Back
+    100080: Def.Calf.Forward
+    100082: Def.Calf.Left
+    100084: Def.Calf.Right
+    100086: Def.Foot.Back
+    100088: Def.Foot.Forward
+    100090: Def.Foot.Left
+    100092: Def.Foot.Right
+    100094: Def.Head
+    100096: Def.Head_end
+    100098: Def.HipJointBack
+    100100: Def.HipJointForward
+    100102: Def.HipJointLeft
+    100104: Def.HipJointRight
+    100106: Def.HipSphere
+    100108: Def.LowerLegSupport.Back
+    100110: Def.LowerLegSupport.Forward
+    100112: Def.LowerLegSupport.Left
+    100114: Def.LowerLegSupport.Right
+    100116: Def.LowerNeck
+    100118: Def.LowerTorso
+    100120: Def.MidTorso
+    100122: Def.Thigh.Back
+    100124: Def.Thigh.Forward
+    100126: Def.Thigh.Left
+    100128: Def.Thigh.Right
+    100130: Def.UpperLegSupport.Back
+    100132: Def.UpperLegSupport.Back_end
+    100134: Def.UpperLegSupport.Forward
+    100136: Def.UpperLegSupport.Forward_end
+    100138: Def.UpperLegSupport.Left
+    100140: Def.UpperLegSupport.Left_end
+    100142: Def.UpperLegSupport.Right
+    100144: Def.UpperLegSupport.Right_end
+    100146: Def.UpperNeck
+    100148: Def.UpperTorso
+    100150: Def.Wing.Left
+    100152: Def.Wing.Right
+    100154: Hipsphere
+    100156: Knee.Back
+    100158: Knee.Forward
+    100160: Knee.Left
+    100162: Knee.Right
+    100164: Leg.Back
+    100166: Leg.Forward
+    100168: Leg.Left
+    100170: Leg.Right
+    100172: Root
+    100174: Thigh.Back
+    100176: Thigh.Forward
+    100178: Thigh.Left
+    100180: Thigh.Right
+    100182: //RootNode
+    100184: Wing Ring
+    100186: Wing.L.000
+    100188: Wing.L.001
+    100190: Wing.L.002
+    100192: Wing.L.003
+    100194: Wing.L.004
+    100196: Wing.L.005
+    100198: Wing.L.Casing
+    100200: Wing.Left.Blade.001
+    100202: Wing.Left.Blade.001_end
+    100204: Wing.Left.Blade.002
+    100206: Wing.Left.Blade.002_end
+    100208: Wing.Left.Blade.003
+    100210: Wing.Left.Blade.003_end
+    100212: Wing.Left.Blade.004
+    100214: Wing.Left.Blade.004_end
+    100216: Wing.Left.Blade.005
+    100218: Wing.Left.Blade.005_end
+    100220: Wing.Left.Blade.006
+    100222: Wing.Left.Blade.006_end
+    100224: Wing.R.000
+    100226: Wing.R.001
+    100228: Wing.R.002
+    100230: Wing.R.003
+    100232: Wing.R.004
+    100234: Wing.R.005
+    100236: Wing.R.Casing
+    100238: Wing.Right.Blade.001
+    100240: Wing.Right.Blade.001_end
+    100242: Wing.Right.Blade.002
+    100244: Wing.Right.Blade.002_end
+    100246: Wing.Right.Blade.003
+    100248: Wing.Right.Blade.003_end
+    100250: Wing.Right.Blade.004
+    100252: Wing.Right.Blade.004_end
+    100254: Wing.Right.Blade.005
+    100256: Wing.Right.Blade.005_end
+    100258: Wing.Right.Blade.006
+    100260: Wing.Right.Blade.006_end
+    400000: Armature
+    400002: Body
+    400004: Con..MidTorso
+    400006: Con..MidTorso_end
+    400008: Con.IK.Foot.Back
+    400010: Con.IK.Foot.Back_end
+    400012: Con.IK.Foot.Forward
+    400014: Con.IK.Foot.Forward_end
+    400016: Con.IK.Foot.Left
+    400018: Con.IK.Foot.Left_end
+    400020: Con.IK.Foot.Right
+    400022: Con.IK.Foot.Right_end
+    400024: Con.IK.Head
+    400026: Con.IK.Head_end
+    400028: Con.IK.HipSphere
+    400030: Con.IK.HipSphere.FixedLegs
+    400032: Con.IK.KneeTarget.Back
+    400034: Con.IK.KneeTarget.Back_end
+    400036: Con.IK.KneeTarget.Forward
+    400038: Con.IK.KneeTarget.Forward_end
+    400040: Con.IK.KneeTarget.Left
+    400042: Con.IK.KneeTarget.Left_end
+    400044: Con.IK.KneeTarget.Right
+    400046: Con.IK.KneeTarget.Right_end
+    400048: Con.UpperTorso
+    400050: Con.UpperTorso_end
+    400052: Con.Wing.Left
+    400054: Con.Wing.Left.001
+    400056: Con.Wing.Left.001_end
+    400058: Con.Wing.Left.Right
+    400060: Con.Wing.Left.Rotator
+    400062: Con.Wing.Left.RotatorMarker
+    400064: Con.Wing.Left.RotatorMarker_end
+    400066: Con.Wing.Right
+    400068: Con.Wing.Right.001
+    400070: Con.Wing.Right.001_end
+    400072: Con.Wing.Right.RotatorMarker
+    400074: Con.Wing.Right.RotatorMarker_end
+    400076: Con.WingRing
+    400078: Def.Calf.Back
+    400080: Def.Calf.Forward
+    400082: Def.Calf.Left
+    400084: Def.Calf.Right
+    400086: Def.Foot.Back
+    400088: Def.Foot.Forward
+    400090: Def.Foot.Left
+    400092: Def.Foot.Right
+    400094: Def.Head
+    400096: Def.Head_end
+    400098: Def.HipJointBack
+    400100: Def.HipJointForward
+    400102: Def.HipJointLeft
+    400104: Def.HipJointRight
+    400106: Def.HipSphere
+    400108: Def.LowerLegSupport.Back
+    400110: Def.LowerLegSupport.Forward
+    400112: Def.LowerLegSupport.Left
+    400114: Def.LowerLegSupport.Right
+    400116: Def.LowerNeck
+    400118: Def.LowerTorso
+    400120: Def.MidTorso
+    400122: Def.Thigh.Back
+    400124: Def.Thigh.Forward
+    400126: Def.Thigh.Left
+    400128: Def.Thigh.Right
+    400130: Def.UpperLegSupport.Back
+    400132: Def.UpperLegSupport.Back_end
+    400134: Def.UpperLegSupport.Forward
+    400136: Def.UpperLegSupport.Forward_end
+    400138: Def.UpperLegSupport.Left
+    400140: Def.UpperLegSupport.Left_end
+    400142: Def.UpperLegSupport.Right
+    400144: Def.UpperLegSupport.Right_end
+    400146: Def.UpperNeck
+    400148: Def.UpperTorso
+    400150: Def.Wing.Left
+    400152: Def.Wing.Right
+    400154: Hipsphere
+    400156: Knee.Back
+    400158: Knee.Forward
+    400160: Knee.Left
+    400162: Knee.Right
+    400164: Leg.Back
+    400166: Leg.Forward
+    400168: Leg.Left
+    400170: Leg.Right
+    400172: Root
+    400174: Thigh.Back
+    400176: Thigh.Forward
+    400178: Thigh.Left
+    400180: Thigh.Right
+    400182: //RootNode
+    400184: Wing Ring
+    400186: Wing.L.000
+    400188: Wing.L.001
+    400190: Wing.L.002
+    400192: Wing.L.003
+    400194: Wing.L.004
+    400196: Wing.L.005
+    400198: Wing.L.Casing
+    400200: Wing.Left.Blade.001
+    400202: Wing.Left.Blade.001_end
+    400204: Wing.Left.Blade.002
+    400206: Wing.Left.Blade.002_end
+    400208: Wing.Left.Blade.003
+    400210: Wing.Left.Blade.003_end
+    400212: Wing.Left.Blade.004
+    400214: Wing.Left.Blade.004_end
+    400216: Wing.Left.Blade.005
+    400218: Wing.Left.Blade.005_end
+    400220: Wing.Left.Blade.006
+    400222: Wing.Left.Blade.006_end
+    400224: Wing.R.000
+    400226: Wing.R.001
+    400228: Wing.R.002
+    400230: Wing.R.003
+    400232: Wing.R.004
+    400234: Wing.R.005
+    400236: Wing.R.Casing
+    400238: Wing.Right.Blade.001
+    400240: Wing.Right.Blade.001_end
+    400242: Wing.Right.Blade.002
+    400244: Wing.Right.Blade.002_end
+    400246: Wing.Right.Blade.003
+    400248: Wing.Right.Blade.003_end
+    400250: Wing.Right.Blade.004
+    400252: Wing.Right.Blade.004_end
+    400254: Wing.Right.Blade.005
+    400256: Wing.Right.Blade.005_end
+    400258: Wing.Right.Blade.006
+    400260: Wing.Right.Blade.006_end
+    2300000: Wing Ring
+    2300002: Wing.L.000
+    2300004: Wing.L.001
+    2300006: Wing.L.002
+    2300008: Wing.L.003
+    2300010: Wing.L.004
+    2300012: Wing.L.005
+    2300014: Wing.L.Casing
+    2300016: Wing.R.000
+    2300018: Wing.R.001
+    2300020: Wing.R.002
+    2300022: Wing.R.003
+    2300024: Wing.R.004
+    2300026: Wing.R.005
+    2300028: Wing.R.Casing
+    3300000: Wing Ring
+    3300002: Wing.L.000
+    3300004: Wing.L.001
+    3300006: Wing.L.002
+    3300008: Wing.L.003
+    3300010: Wing.L.004
+    3300012: Wing.L.005
+    3300014: Wing.L.Casing
+    3300016: Wing.R.000
+    3300018: Wing.R.001
+    3300020: Wing.R.002
+    3300022: Wing.R.003
+    3300024: Wing.R.004
+    3300026: Wing.R.005
+    3300028: Wing.R.Casing
+    4300000: Wing Ring
+    4300002: Wing.L.Casing
+    4300004: Wing.L.001
+    4300006: Wing.L.000
+    4300008: Wing.L.002
+    4300010: Wing.L.005
+    4300012: Wing.L.004
+    4300014: Wing.L.003
+    4300016: Wing.R.Casing
+    4300018: Wing.R.004
+    4300020: Wing.R.005
+    4300022: Wing.R.003
+    4300024: Wing.R.002
+    4300026: Wing.R.001
+    4300028: Wing.R.000
+    4300030: Thigh.Right
+    4300032: Knee.Right
+    4300034: Body
+    4300036: Hipsphere
+    4300038: Knee.Left
+    4300040: Thigh.Left
+    4300042: Leg.Forward
+    4300044: Thigh.Forward
+    4300046: Knee.Forward
+    4300048: Leg.Left
+    4300050: Knee.Back
+    4300052: Thigh.Back
+    4300054: Leg.Back
+    4300056: Leg.Right
+    7400000: Armature|CircleAction
+    7400002: Armature|Idle
+    7400004: Armature|Jump
+    7400006: Armature|Melee
+    7400008: Armature|Ranged
+    7400010: Armature|Run
+    7400012: Armature|Standing
+    7400014: Armature|T-Pose
+    7400016: Armature|Ultimate
+    7400018: Wing.R.000|CircleAction
+    7400020: Wing.R.001|CircleAction
+    7400022: Wing.R.002|CircleAction
+    7400024: Wing.R.003|CircleAction
+    7400026: Wing.R.004|CircleAction
+    7400028: Wing.R.005|CircleAction
+    7400030: Wing.R.Casing|CircleAction
+    7400032: Wing.L.000|CircleAction
+    7400034: Wing.L.001|CircleAction
+    7400036: Wing.L.002|CircleAction
+    7400038: Wing.L.005|CircleAction
+    7400040: Wing.L.004|CircleAction
+    7400042: Wing.L.003|CircleAction
+    7400044: Wing.L.Casing|CircleAction
+    7400046: Wing Ring|CircleAction
+    9500000: //RootNode
+    13700000: Body
+    13700002: Hipsphere
+    13700004: Knee.Back
+    13700006: Knee.Forward
+    13700008: Knee.Left
+    13700010: Knee.Right
+    13700012: Leg.Back
+    13700014: Leg.Forward
+    13700016: Leg.Left
+    13700018: Leg.Right
+    13700020: Thigh.Back
+    13700022: Thigh.Forward
+    13700024: Thigh.Left
+    13700026: Thigh.Right
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Idle
+      takeName: Armature|Idle
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.L.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.Left.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.L.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.Left.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.L.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.Left.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.L.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.Left.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.L.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.Left.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.L.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.Left.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker/Con.Wing.Left.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Wing.L.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001/Con.Wing.Left.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.R.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.Right.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.R.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.Right.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.R.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.Right.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.R.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.Right.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.R.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.Right.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.R.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.Right.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker/Con.Wing.Right.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Wing.R.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001/Con.Wing.Right.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hipsphere
+        weight: 1
+      - path: Knee.Back
+        weight: 1
+      - path: Knee.Forward
+        weight: 1
+      - path: Knee.Left
+        weight: 1
+      - path: Knee.Right
+        weight: 1
+      - path: Leg.Back
+        weight: 1
+      - path: Leg.Forward
+        weight: 1
+      - path: Leg.Left
+        weight: 1
+      - path: Leg.Right
+        weight: 1
+      - path: Thigh.Back
+        weight: 1
+      - path: Thigh.Forward
+        weight: 1
+      - path: Thigh.Left
+        weight: 1
+      - path: Thigh.Right
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Jump
+      takeName: Armature|Jump
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.L.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.Left.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.L.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.Left.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.L.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.Left.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.L.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.Left.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.L.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.Left.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.L.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.Left.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker/Con.Wing.Left.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Wing.L.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001/Con.Wing.Left.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.R.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.Right.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.R.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.Right.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.R.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.Right.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.R.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.Right.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.R.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.Right.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.R.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.Right.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker/Con.Wing.Right.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Wing.R.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001/Con.Wing.Right.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hipsphere
+        weight: 1
+      - path: Knee.Back
+        weight: 1
+      - path: Knee.Forward
+        weight: 1
+      - path: Knee.Left
+        weight: 1
+      - path: Knee.Right
+        weight: 1
+      - path: Leg.Back
+        weight: 1
+      - path: Leg.Forward
+        weight: 1
+      - path: Leg.Left
+        weight: 1
+      - path: Leg.Right
+        weight: 1
+      - path: Thigh.Back
+        weight: 1
+      - path: Thigh.Forward
+        weight: 1
+      - path: Thigh.Left
+        weight: 1
+      - path: Thigh.Right
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Melee
+      takeName: Armature|Melee
+      firstFrame: 0
+      lastFrame: 36
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.L.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.Left.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.L.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.Left.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.L.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.Left.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.L.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.Left.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.L.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.Left.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.L.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.Left.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker/Con.Wing.Left.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Wing.L.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001/Con.Wing.Left.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.R.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.Right.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.R.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.Right.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.R.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.Right.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.R.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.Right.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.R.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.Right.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.R.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.Right.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker/Con.Wing.Right.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Wing.R.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001/Con.Wing.Right.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hipsphere
+        weight: 1
+      - path: Knee.Back
+        weight: 1
+      - path: Knee.Forward
+        weight: 1
+      - path: Knee.Left
+        weight: 1
+      - path: Knee.Right
+        weight: 1
+      - path: Leg.Back
+        weight: 1
+      - path: Leg.Forward
+        weight: 1
+      - path: Leg.Left
+        weight: 1
+      - path: Leg.Right
+        weight: 1
+      - path: Thigh.Back
+        weight: 1
+      - path: Thigh.Forward
+        weight: 1
+      - path: Thigh.Left
+        weight: 1
+      - path: Thigh.Right
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Ranged
+      takeName: Armature|Ranged
+      firstFrame: 0
+      lastFrame: 36
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.L.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.Left.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.L.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.Left.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.L.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.Left.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.L.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.Left.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.L.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.Left.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.L.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.Left.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker/Con.Wing.Left.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Wing.L.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001/Con.Wing.Left.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.R.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.Right.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.R.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.Right.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.R.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.Right.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.R.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.Right.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.R.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.Right.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.R.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.Right.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker/Con.Wing.Right.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Wing.R.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001/Con.Wing.Right.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hipsphere
+        weight: 1
+      - path: Knee.Back
+        weight: 1
+      - path: Knee.Forward
+        weight: 1
+      - path: Knee.Left
+        weight: 1
+      - path: Knee.Right
+        weight: 1
+      - path: Leg.Back
+        weight: 1
+      - path: Leg.Forward
+        weight: 1
+      - path: Leg.Left
+        weight: 1
+      - path: Leg.Right
+        weight: 1
+      - path: Thigh.Back
+        weight: 1
+      - path: Thigh.Forward
+        weight: 1
+      - path: Thigh.Left
+        weight: 1
+      - path: Thigh.Right
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Run
+      takeName: Armature|Run
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.L.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.Left.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.L.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.Left.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.L.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.Left.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.L.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.Left.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.L.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.Left.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.L.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.Left.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker/Con.Wing.Left.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Wing.L.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001/Con.Wing.Left.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.R.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.Right.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.R.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.Right.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.R.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.Right.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.R.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.Right.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.R.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.Right.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.R.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.Right.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker/Con.Wing.Right.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Wing.R.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001/Con.Wing.Right.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hipsphere
+        weight: 1
+      - path: Knee.Back
+        weight: 1
+      - path: Knee.Forward
+        weight: 1
+      - path: Knee.Left
+        weight: 1
+      - path: Knee.Right
+        weight: 1
+      - path: Leg.Back
+        weight: 1
+      - path: Leg.Forward
+        weight: 1
+      - path: Leg.Left
+        weight: 1
+      - path: Leg.Right
+        weight: 1
+      - path: Thigh.Back
+        weight: 1
+      - path: Thigh.Forward
+        weight: 1
+      - path: Thigh.Left
+        weight: 1
+      - path: Thigh.Right
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Standing
+      takeName: Armature|Standing
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.L.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.Left.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.L.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.Left.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.L.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.Left.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.L.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.Left.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.L.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.Left.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.L.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.Left.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker/Con.Wing.Left.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Wing.L.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001/Con.Wing.Left.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.R.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.Right.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.R.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.Right.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.R.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.Right.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.R.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.Right.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.R.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.Right.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.R.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.Right.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker/Con.Wing.Right.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Wing.R.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001/Con.Wing.Right.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hipsphere
+        weight: 1
+      - path: Knee.Back
+        weight: 1
+      - path: Knee.Forward
+        weight: 1
+      - path: Knee.Left
+        weight: 1
+      - path: Knee.Right
+        weight: 1
+      - path: Leg.Back
+        weight: 1
+      - path: Leg.Forward
+        weight: 1
+      - path: Leg.Left
+        weight: 1
+      - path: Leg.Right
+        weight: 1
+      - path: Thigh.Back
+        weight: 1
+      - path: Thigh.Forward
+        weight: 1
+      - path: Thigh.Left
+        weight: 1
+      - path: Thigh.Right
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|T-Pose
+      takeName: Armature|T-Pose
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.L.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.Left.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.L.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.Left.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.L.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.Left.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.L.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.Left.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.L.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.Left.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.L.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.Left.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker/Con.Wing.Left.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Wing.L.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001/Con.Wing.Left.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.R.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.Right.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.R.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.Right.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.R.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.Right.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.R.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.Right.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.R.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.Right.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.R.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.Right.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker/Con.Wing.Right.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Wing.R.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001/Con.Wing.Right.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hipsphere
+        weight: 1
+      - path: Knee.Back
+        weight: 1
+      - path: Knee.Forward
+        weight: 1
+      - path: Knee.Left
+        weight: 1
+      - path: Knee.Right
+        weight: 1
+      - path: Leg.Back
+        weight: 1
+      - path: Leg.Forward
+        weight: 1
+      - path: Leg.Left
+        weight: 1
+      - path: Leg.Right
+        weight: 1
+      - path: Thigh.Back
+        weight: 1
+      - path: Thigh.Forward
+        weight: 1
+      - path: Thigh.Left
+        weight: 1
+      - path: Thigh.Right
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Ultimate
+      takeName: Armature|Ultimate
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.L.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.001/Wing.Left.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.L.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.002/Wing.Left.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.L.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.003/Wing.Left.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.L.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.004/Wing.Left.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.L.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.005/Wing.Left.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.L.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.Rotator/Wing.Left.Blade.006/Wing.Left.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Con.Wing.Left.RotatorMarker/Con.Wing.Left.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left/Def.Wing.Left/Wing.L.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left.001/Con.Wing.Left.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.R.000
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.001/Wing.Right.Blade.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.R.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.002/Wing.Right.Blade.002_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.R.002
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.003/Wing.Right.Blade.003_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.R.003
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.004/Wing.Right.Blade.004_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.R.004
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.005/Wing.Right.Blade.005_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.R.005
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Left.Right/Wing.Right.Blade.006/Wing.Right.Blade.006_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Con.Wing.Right.RotatorMarker/Con.Wing.Right.RotatorMarker_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right/Def.Wing.Right/Wing.R.Casing
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Right.001/Con.Wing.Right.001_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
+        weight: 1
+      - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hipsphere
+        weight: 1
+      - path: Knee.Back
+        weight: 1
+      - path: Knee.Forward
+        weight: 1
+      - path: Knee.Left
+        weight: 1
+      - path: Knee.Right
+        weight: 1
+      - path: Leg.Back
+        weight: 1
+      - path: Leg.Forward
+        weight: 1
+      - path: Leg.Left
+        weight: 1
+      - path: Leg.Right
+        weight: 1
+      - path: Thigh.Back
+        weight: 1
+      - path: Thigh.Forward
+        weight: 1
+      - path: Thigh.Left
+        weight: 1
+      - path: Thigh.Right
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
