@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
         public string TURN_AXIS = "Horizontal"; // string for horizontal
         public string RIGHT_AXIS = "Horizontal"; // string for horizontal
         public string JUMP_AXIS = "Jump"; // string for jump
+        public bool GRAVITY_RELEASE = false;
     }
 
     public MoveSettings moveSettings = new MoveSettings();
@@ -47,6 +48,8 @@ public class PlayerController : MonoBehaviour {
     GravityBlockScript gravityBlockScript;
 
     public float cameraDisplacement;
+
+    bool recieveInput = true;
 
     public Quaternion TargetRotation {
         get { return targetRotation; }
@@ -81,30 +84,84 @@ public class PlayerController : MonoBehaviour {
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
+
+        recieveInput = true;
+        inputSettings.GRAVITY_RELEASE = false;
     }
 
     void GetInput() {
 
-        forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
-        rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
-        turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
-        jumpInput = Input.GetAxisRaw(inputSettings.JUMP_AXIS); // non-interpolated
+        if (recieveInput) {
+            forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
+            rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
+            turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
+            jumpInput = Input.GetAxisRaw(inputSettings.JUMP_AXIS); // non-interpolated
+        } else {
+            forwardInput = rightInput = turnInput = jumpInput = 0f;
+        }
 
+        GravityInput(inputSettings.GRAVITY_RELEASE);
+
+    }
+
+    void GravityInput(bool gravityRelease) {
         //If shift is pressed (gravity selection)
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (Input.GetButton("Crouch")) {
 
+        if (Input.GetButton("Crouch")) {
             gravityAxisScript.SetShiftPressed(true); //shiftPressed true
 
-            if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))) {
-                // Used Gravity || in the air - Alex
-                gravityAxisScript.ChangeGravity(Input.GetAxis("Jump"), Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            if (!gravityRelease) {//If gravity release is off
+
+                if (Input.GetButtonDown("Jump")) {
+                    // Used Gravity || in the air - Alex
+                    gravityAxisScript.ChangeGravity(Input.GetAxis("Jump"), 0f, 0f);
+                }
+
+                if (Input.GetButtonDown("Horizontal")) {
+                    // Used Gravity || in the air - Alex
+                    gravityAxisScript.ChangeGravity(0f, Input.GetAxis("Horizontal"), 0f);
+                }
+
+                if (Input.GetButtonDown("Vertical")) {
+                    // Used Gravity || in the air - Alex
+                    gravityAxisScript.ChangeGravity(0f, 0f, Input.GetAxis("Vertical"));
+                }
+
+            } else { //If gravity release is on
+
+                recieveInput = false;
+
+                if (Input.GetButtonUp("Jump")) {
+                    // Used Gravity || in the air - Alex
+                    gravityAxisScript.ChangeGravity(1f, 0f, 0f);
+                }
+
+                if (Input.GetButtonUp("Horizontal")) {
+                    // Used Gravity || in the air - Alex
+                    if (Input.GetAxis("Horizontal") > 0) {
+                        gravityAxisScript.ChangeGravity(0f, 1f, 0f);
+                    } else {
+                        gravityAxisScript.ChangeGravity(0f, -1f, 0f);
+                    }
+                }
+
+                if (Input.GetButtonUp("Vertical")) {
+                    // Used Gravity || in the air - Alex
+                    if (Input.GetAxis("Vertical") > 0) {
+                        gravityAxisScript.ChangeGravity(0f, 0f, 1f);
+                    } else {
+                        gravityAxisScript.ChangeGravity(0f, 0, -1f);
+                    }
+                }
+
             }
 
         } else {
             gravityAxisScript.SetShiftPressed(false); ; //shiftPressed false
+            recieveInput = true;
         } //End if shift
     }
 
