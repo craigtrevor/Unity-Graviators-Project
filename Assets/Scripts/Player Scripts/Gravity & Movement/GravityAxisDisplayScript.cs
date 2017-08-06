@@ -42,7 +42,15 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     public Material matNZ;
     public Material matNoCharge;
 
-    //Ring Visibility Objects
+    //Arena walls materials
+    public Material wallY;
+    public Material wallNY;
+    public Material wallX;
+    public Material wallNX;
+    public Material wallZ;
+    public Material wallNZ;
+
+    //Visibility Objects
     public GameObject gravityCamera;
     public GameObject gravityCameraFront;
 
@@ -61,16 +69,39 @@ public class GravityAxisDisplayScript : MonoBehaviour {
         gravityCamera.GetComponent<Camera>().enabled = false;
         gravityCameraFront.GetComponent<Camera>().enabled = false;
 
-
     } //End Start()
+
+    private void DebugStuff() {
+
+    }
+
+    private void ChangeWalls(bool on) {
+        if (on) {
+            wallY.color = Color.Lerp(wallY.color, Color.green, Time.deltaTime * 10);
+            wallNY.color = Color.Lerp(wallNY.color, Color.magenta, Time.deltaTime * 10);
+            wallX.color = Color.Lerp(wallX.color, Color.red, Time.deltaTime * 10);
+            wallNX.color = Color.Lerp(wallNX.color, Color.cyan, Time.deltaTime * 10);
+            wallZ.color = Color.Lerp(wallZ.color, Color.blue, Time.deltaTime * 10);
+            wallNZ.color = Color.Lerp(wallNZ.color, Color.yellow, Time.deltaTime * 10);
+        } else {
+            wallY.color = Color.Lerp(wallY.color, Color.white, Time.deltaTime * 10);
+            wallNY.color = Color.Lerp(wallNY.color, Color.white, Time.deltaTime * 10);
+            wallX.color = Color.Lerp(wallX.color, Color.white, Time.deltaTime * 10);
+            wallNX.color = Color.Lerp(wallNX.color, Color.white, Time.deltaTime * 10);
+            wallZ.color = Color.Lerp(wallZ.color, Color.white, Time.deltaTime * 10);
+            wallNZ.color = Color.Lerp(wallNZ.color, Color.white, Time.deltaTime * 10);
+        }
+    }
 
     //Update() is called once per frame
     private void Update() {
 
+        DebugStuff();
+
         DisplayAxis();
         ColourAxis();
         UpdateText();
-        UpdateCharge();
+        //UpdateCharge();
 
     } //End Update()
 
@@ -89,6 +120,7 @@ public class GravityAxisDisplayScript : MonoBehaviour {
             gravityCamera.GetComponent<Camera>().enabled = true;
             gravityCameraFront.GetComponent<Camera>().enabled = true;
             this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.one, Time.deltaTime * 15);
+            ChangeWalls(true);
         } else {
             //Hide axis
             if (this.transform.localScale.magnitude < 0.2f) {
@@ -96,6 +128,7 @@ public class GravityAxisDisplayScript : MonoBehaviour {
                 gravityCameraFront.GetComponent<Camera>().enabled = false;
             }
             this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10);
+            ChangeWalls(false);
 
         } //End if(shiftPressed && !gravityChanging)
 
@@ -212,13 +245,13 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     private void UpdateCharge() {
 
         //Update gravityCharge value on UI
-        // UIGravityChargeText.text = gravityCharge.ToString();
+        UIGravityChargeText.text = gravityCharge.ToString();
 
         //Check haveCharge
         if (haveCharge) { //If player does have gravity charge
-            //UIGravityChargeText.color = Color.white;
+            UIGravityChargeText.color = Color.white;
         } else { //If player does not have gravity charge
-            //UIGravityChargeText.color = Color.grey;
+            UIGravityChargeText.color = Color.grey;
         } //End if (haveCharge)
 
     } //End UpdateCharge()

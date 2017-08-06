@@ -93,9 +93,9 @@
     <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
-    <Compile Include="Assets\Scripts\GravLandParticle.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\UnitD1Combat_Manager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
@@ -114,6 +114,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_Soundscape.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
+    <Compile Include="Assets\Scripts\Particle Scripts\GravLandParticle.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
@@ -121,7 +122,6 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisTextScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\TPSCharacterController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\AudioFadeOut.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\MusicPlayer.cs" />
