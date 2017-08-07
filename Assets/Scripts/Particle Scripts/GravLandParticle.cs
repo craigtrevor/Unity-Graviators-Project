@@ -21,7 +21,7 @@ public class GravLandParticle : MonoBehaviour {
 	void OnTriggerEnter (Collider col)
 	{
 		if(col.tag == "collider"){
-			ParticleSystem playGravLand = (ParticleSystem)Instantiate(gravLandParticle,this.transform.position, this.transform.rotation);
+			ParticleSystem playGravLand = (ParticleSystem)Instantiate(gravLandParticle,this.transform.position + Vector3.down, this.transform.rotation);
 
 			if (!gravParticleSystemPlayed)
 			{
