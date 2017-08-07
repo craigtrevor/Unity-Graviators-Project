@@ -36,7 +36,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     private GameObject[] disableGameObjectsOnDeath;
-   
+
     private bool firstSetup = true;
 
     [SerializeField]
@@ -49,7 +49,12 @@ public class Network_PlayerManager : NetworkBehaviour
     //Particles
     private ParticleSystem playHitParticle;
     public ParticleSystem hitParticle;
-    bool hitParticleSystemPlayed = false;
+    private bool hitParticleSystemPlayed = false;
+
+    private ParticleSystem playSlowParticle;
+    public ParticleSystem slowParticle;
+    private bool slowParticlePlayed;
+
 
     public void SetupPlayer()
     {
@@ -99,18 +104,18 @@ public class Network_PlayerManager : NetworkBehaviour
 
         ParticleSystem playHitParticle = (ParticleSystem)Instantiate(hitParticle, this.transform.position, this.transform.rotation);
         if (!hitParticleSystemPlayed)
-       {
-           {
-              playHitParticle.Emit(1);
-              hitParticleSystemPlayed = true;
+        {
+            {
+                playHitParticle.Emit(1);
+                hitParticleSystemPlayed = true;
                 Debug.Log("Fly free my pretties");
-           }
-           if (hitParticleSystemPlayed == true)
-          {
-               Destroy(playHitParticle);
-               Debug.Log("Bye felicia!");
+            }
+            if (hitParticleSystemPlayed == true)
+            {
+                Destroy(playHitParticle);
+                Debug.Log("Bye felicia!");
 
-         }
+            }
         }
 
         if (currentHealth <= 0)
@@ -137,18 +142,18 @@ public class Network_PlayerManager : NetworkBehaviour
         }
     }
 
-	[ClientRpc]
-	public void RpcHealthRegenerate(float _amount, string _sourceID)
-	{
-		Debug.Log ("Healing!");
+    [ClientRpc]
+    public void RpcHealthRegenerate(float _amount, string _sourceID)
+    {
+        Debug.Log("Healing!");
 
-		currentHealth += _amount;
+        currentHealth += _amount;
 
-		if (currentHealth >= maxHealth) 
-		{
-			currentHealth = maxHealth;	
-		}
-	}
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 
     private void Die(string _sourceID)
     {
@@ -265,5 +270,30 @@ public class Network_PlayerManager : NetworkBehaviour
         Debug.Log("Match has finished");
 
         NetworkManager.Shutdown();
+    }
+
+
+    void OnTriggerStay(Collider col)
+    {
+        if (col.tag == "SlowTrap")
+        {
+            ParticleSystem playSlowParticle = (ParticleSystem)Instantiate(slowParticle, this.transform.position + Vector3.down, this.transform.rotation);
+            playSlowParticle.Emit(1);
+            if (!slowParticlePlayed)
+            {
+                {
+                    playSlowParticle.Emit(1);
+                    slowParticlePlayed = true;
+                    Debug.Log("slowPlayed");
+                }
+                if (slowParticlePlayed == true)
+                {
+                    Destroy(playSlowParticle);
+                    Debug.Log("slowDead");
+
+                }
+            }
+        }
+
     }
 }

@@ -1,9 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: fee73cc01522053448c620b9912db71b
 timeCreated: 1502069751
 licenseType: Free
 NativeFormatImporter:
   mainObjectFileID: 2100000
+=======
+guid: 2f8014775ebdc58408ec40951b200295
+timeCreated: 1502000831
+licenseType: Pro
+NativeFormatImporter:
+>>>>>>> origin/IndigoSunday
   userData: 
   assetBundleName: 
   assetBundleVariant: 

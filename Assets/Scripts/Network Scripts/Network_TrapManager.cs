@@ -30,6 +30,8 @@ public class Network_TrapManager : NetworkBehaviour {
     [SerializeField]
     private int normalJumpSpeed = 15;
 
+   
+
     //Spike Trap Variables
 
     [SerializeField]
@@ -68,6 +70,13 @@ public class Network_TrapManager : NetworkBehaviour {
 			playerController.moveSettings.jumpVel = increasedJumpSpeed;
 		}
     }
+
+  /*private void OnTriggerStay(Collider other)
+    {
+        if (this.gameObject.tag == SLOWTRAP_TAG && other.gameObject.tag == PLAYER_TAG){
+           ParticleSystem playSlowParticle = (ParticleSystem)Instantiate(slowParticle, playerController.transform.position, playerController.transform.rotation)
+        }
+    }*/
 
     void OnTriggerExit(Collider other)
     {
