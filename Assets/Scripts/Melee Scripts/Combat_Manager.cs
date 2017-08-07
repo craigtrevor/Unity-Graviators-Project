@@ -37,15 +37,13 @@ public class Combat_Manager : NetworkBehaviour {
 	[SerializeField]
 	private float highDamageVelocity = 25;
 
-<<<<<<< HEAD
-	public double ultGain;
-=======
+	//public double ultGain;
+
 	public float ultGain;
 
     public float CurrentUltGain() {
         return ultGain;
     }
->>>>>>> 12d76f62dc37f7452f1bc249bcdc14c3b7753bb7
 
     // Boolean
     public bool isAttacking;
@@ -97,8 +95,6 @@ public class Combat_Manager : NetworkBehaviour {
             playerModel.localEulerAngles = new Vector3(-90, 0, 0);
         }
     }
-
-
 
     void AttackPlayer()
     {
