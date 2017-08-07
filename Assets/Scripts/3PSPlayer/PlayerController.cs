@@ -41,9 +41,6 @@ public class PlayerController : MonoBehaviour {
 
     public Animator playerAnimator;
 
-    [SerializeField]
-    Transform playerModel;
-
     public GameObject gravityAxis;
     public GameObject gravityBlock;
 
@@ -187,35 +184,10 @@ public class PlayerController : MonoBehaviour {
         Jump();
         CheckPause();
 
-        if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            Attack();
-        }
-
         cameraDisplacement = Mathf.Min((velocity.y + 20f) / 30f, 0f);
         //print(cameraDisplacement);
 
         rBody.velocity = transform.TransformDirection(velocity);
-    }
-
-    void Attack() {
-
-        if (UI_PauseMenu.IsOn == true)
-            return;
-
-        //Attack Placeholder ALEX
-
-        if (Input.GetButton("Fire1"))
-        {
-            StartCoroutine(AttackTime());
-        }
-
-        playerModel.localEulerAngles = new Vector3(-90, 0, 0);
-
-        //if (Input.GetButtonUp("Fire1"))
-        //{
-        //    playerAnimator.SetBool("Attack", false);
-        //}
     }
 
     void Run() {
@@ -322,11 +294,5 @@ public class PlayerController : MonoBehaviour {
         playerAnimator.SetBool("Jump", true);
         yield return new WaitForSeconds(0.1f);
         playerAnimator.SetBool("Jump", false);
-    }
-
-    IEnumerator AttackTime() {
-        playerAnimator.SetBool("Attack", true);
-        yield return new WaitForSeconds(0.1f);
-        playerAnimator.SetBool("Attack", false);
     }
 }

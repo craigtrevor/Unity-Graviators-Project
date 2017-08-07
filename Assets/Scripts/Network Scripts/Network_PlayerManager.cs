@@ -14,7 +14,6 @@ public class Network_PlayerManager : NetworkBehaviour
         protected set { _isDead = value; }
     }
 
-    [SerializeField]
     public float maxHealth = 100;
 
     [SyncVar]
@@ -42,6 +41,10 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     private int deaths;
+
+    // Player Animator & Model
+    public Animator playerAnim;
+    public Transform playerModelTransform;
 
     //Particles
     private ParticleSystem playHitParticle;

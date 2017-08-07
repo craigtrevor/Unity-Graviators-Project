@@ -135,10 +135,28 @@
     <Compile Include="Assets\_MK\MKToon\Editor\MKToonEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Clip_Box.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Clip_Plane.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Clip_Radius.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\DiffuseBumped_UnlitRimColorBumped.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Diffuse_Outline_Edges.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Diffuse_UnlitRimColor.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Color.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim_Bumped.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Texture.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim_Bumped.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\Portal.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\burnThrough.shader" />
+    <None Include="Assets\BLINDED_AM_ME package\Shaders\def.shader" />
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
-    <None Include="Assets\Downloaded Particles\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
-    <None Include="Assets\MeleeWeaponTrail\README.txt" />
+    <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
+    <None Include="Assets\Materials\particles\SurfaceShader_VC.shader" />
+    <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
+    <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />

@@ -9,6 +9,9 @@ public class Combat_Manager : NetworkBehaviour {
     [SerializeField]
     private Animator anim;
 
+    [SerializeField]
+    Transform playerModel;
+
     //textures
     public Renderer rend;
 
@@ -34,11 +37,11 @@ public class Combat_Manager : NetworkBehaviour {
 	[SerializeField]
 	private float highDamageVelocity = 25;
 
-	private double ultGain;
+	public double ultGain;
 
     // Boolean
     public bool isAttacking;
-    private bool canAttack;
+    private bool animationPlaying;
 	private bool gravParticleSystemPlayed = false;
 
     // Floats
@@ -70,34 +73,53 @@ public class Combat_Manager : NetworkBehaviour {
     {
         AttackPlayer();
         PlayerVelocity();
+        CheckAnimation();
     }
+
+    void CheckAnimation()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            animationPlaying = true;
+        }
+
+        else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            animationPlaying = false;
+            playerModel.localEulerAngles = new Vector3(-90, 0, 0);
+        }
+    }
+
+
 
     void AttackPlayer()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                if (isAttacking == false)
-                {
-                    isAttacking = true;
+        if (UI_PauseMenu.IsOn == true)
+            return;
 
-                    if (isLocalPlayer && anim.GetBool("Attack") == true && isAttacking && !anim.GetCurrentAnimatorStateInfo(1).IsName("Attack"))
-                    {
-                        networkSoundscape.PlaySound(0, 0, 0.0f);
-                    }
+        if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false && anim.GetBool("Attack") == false && !animationPlaying)
+        {
+            StartCoroutine(AttackTime());
+            Attack();
 
-                    Attack();
-                }
-            }
-
-            if (Input.GetKeyUp(KeyCode.Mouse0))
-            {
-                isAttacking = false;
-            }
+            //if (isLocalPlayer)
+            //{
+            //    networkSoundscape.PlaySound(0, 0, 0.0f);
+            //}
+        }
     }
+
+    IEnumerator AttackTime()
+    {
+        anim.SetBool("Attack", true);
+        yield return new WaitForSeconds(0.0001f);
+        anim.SetBool("Attack", false);
+    }
+
 
     [Client]
      public void Attack()
-    {
+     {
         hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
 
         foreach (Collider hitCol in hitColliders)
@@ -105,7 +127,7 @@ public class Combat_Manager : NetworkBehaviour {
 			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) 
 			{
 				Debug.Log ("Hit Player!");
-                networkSoundscape.PlaySound(1, 1, 0f);
+                //networkSoundscape.PlaySound(1, 1, 0f);
 
                 hitCol.GetComponent<Combat_Manager> ().enabled = true; // enables the combat nmanager to get correct attack damage values
 				if (hitCol.GetComponent<Combat_Manager> ().isAttacking == true) { // check to see if the other player is attacking
