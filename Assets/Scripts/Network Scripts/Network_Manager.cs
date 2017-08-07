@@ -15,6 +15,15 @@ public class Network_Manager : NetworkManager {
     [SerializeField]
     private Button[] characterButtonArray;
 
+    [SerializeField]
+    GameObject ErrorNoName;
+
+    [SerializeField]
+    GameObject Sparkus;
+
+    [SerializeField]
+    GameObject unitD1;
+
     int characterIndex = 0;
 
     void Start()
@@ -63,16 +72,31 @@ public class Network_Manager : NetworkManager {
             case "ErrNoName_btn":
                 characterIndex = 0;
                 characterName = "Err:NoName";
+
+                ErrorNoName.SetActive(true);
+                Sparkus.SetActive(false);
+                unitD1.SetActive(false);
+
                 break;
 
             case "Sparkus_btn":
+
                 characterIndex = 1;
                 characterName = "Sparkus";
+
+                ErrorNoName.SetActive(false);
+                Sparkus.SetActive(true);
+                unitD1.SetActive(false);
+
                 break;
 
             case "UnitD1_btn":
                 characterIndex = 2;
                 characterName = "Unit-D1";
+
+                ErrorNoName.SetActive(false);
+                Sparkus.SetActive(false);
+                unitD1.SetActive(true);
                 break;
         }
 
