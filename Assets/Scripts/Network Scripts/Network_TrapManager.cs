@@ -9,6 +9,7 @@ public class Network_TrapManager : NetworkBehaviour {
     private const string PLAYER_TAG = "Player";
     private const string SPIKETRAP_TAG = "SpikeTrap";
     private const string SLOWTRAP_TAG = "SlowTrap";
+	private const string SPEEDTRAP_TAG = "SpeedTrap";
 
     // Scripts
     Network_PlayerManager networkPlayerManager;
@@ -17,11 +18,15 @@ public class Network_TrapManager : NetworkBehaviour {
     //Slow Trap Variables
     [SerializeField]
     private int reducedWalkSpeed = 6;
+	[SerializeField]
+	private int increasedWalkSpeed = 50;
     [SerializeField]
     private int normalWalkSpeed = 12;
 
     [SerializeField]
     private int reducedJumpSpeed = 7;
+	[SerializeField]
+	private int increasedJumpSpeed = 100;
     [SerializeField]
     private int normalJumpSpeed = 15;
 
@@ -52,6 +57,16 @@ public class Network_TrapManager : NetworkBehaviour {
             playerController.moveSettings.rightVel = reducedWalkSpeed;
             playerController.moveSettings.jumpVel = reducedJumpSpeed;
         }
+
+		// Player collides with Speed Trap
+
+		if (this.gameObject.tag == SPEEDTRAP_TAG && other.tag == PLAYER_TAG)
+		{
+			playerController = other.GetComponentInChildren<PlayerController>();         
+			playerController.moveSettings.forwardVel = increasedWalkSpeed;
+			playerController.moveSettings.rightVel = increasedWalkSpeed;
+			playerController.moveSettings.jumpVel = increasedJumpSpeed;
+		}
     }
 
     void OnTriggerExit(Collider other)
@@ -65,6 +80,17 @@ public class Network_TrapManager : NetworkBehaviour {
             playerController.moveSettings.rightVel = normalWalkSpeed;
             playerController.moveSettings.jumpVel = normalJumpSpeed;
         }
+
+		// Player leaves the Speed Trap's collision
+
+		if (this.gameObject.tag == SPEEDTRAP_TAG && other.tag == PLAYER_TAG)
+		{
+			Debug.Log("I'm making someone fast as fuck boiiii");
+			playerController = other.GetComponentInChildren<PlayerController>();
+			playerController.moveSettings.forwardVel = normalWalkSpeed;
+			playerController.moveSettings.rightVel = normalWalkSpeed;
+			playerController.moveSettings.jumpVel = normalJumpSpeed;
+		}
     }
 
     // Spike Trap sends damage to Player 
