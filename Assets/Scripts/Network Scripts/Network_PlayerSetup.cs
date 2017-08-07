@@ -28,6 +28,9 @@ public class Network_PlayerSetup : NetworkBehaviour
     GameObject playerGraphics;
 
     [SerializeField]
+    Transform playerModel;
+
+    [SerializeField]
     GameObject gravityBlock;
 
     //[SerializeField]
@@ -41,6 +44,8 @@ public class Network_PlayerSetup : NetworkBehaviour
 
     void Start()
     {
+        playerModel.Rotate(-90, 0, 0);
+
         if (!isLocalPlayer)
         {
             DisableComponents();
@@ -146,8 +151,6 @@ public class Network_PlayerSetup : NetworkBehaviour
         yield return new WaitForSeconds(5f);
         joinedGameText.text = "";
     }
-
-
 
     void SetLayerRecursively(GameObject obj, int newLayer)
     {
