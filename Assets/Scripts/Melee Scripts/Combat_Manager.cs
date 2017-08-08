@@ -47,7 +47,8 @@ public class Combat_Manager : NetworkBehaviour {
 
     // Boolean
     public bool isAttacking;
-    private bool animationPlaying;
+    [SerializeField]
+    public bool animationPlaying;
 	private bool gravParticleSystemPlayed = false;
 
     // Floats
@@ -73,13 +74,17 @@ public class Combat_Manager : NetworkBehaviour {
         playerDamage = 5;
         attackRadius = 5;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    void Update()
     {
-        AttackPlayer();
-        PlayerVelocity();
         CheckAnimation();
+
+        if (isLocalPlayer)
+        {
+            AttackPlayer();
+        }
+
+        PlayerVelocity();
     }
 
     void CheckAnimation()
@@ -92,7 +97,6 @@ public class Combat_Manager : NetworkBehaviour {
         else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             animationPlaying = false;
-            playerModel.localEulerAngles = new Vector3(-90, 0, 0);
         }
     }
 
@@ -101,25 +105,33 @@ public class Combat_Manager : NetworkBehaviour {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false && anim.GetBool("Attack") == false && !animationPlaying)
+        if (!animationPlaying)
         {
-            StartCoroutine(AttackTime());
-            Attack();
-
-            //if (isLocalPlayer)
-            //{
-            //    networkSoundscape.PlaySound(0, 0, 0.0f);
-            //}
+            if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false && anim.GetBool("Attack") == false)
+            {
+                StartCoroutine(AttackTime());
+                Attack();
+            }
         }
     }
 
     IEnumerator AttackTime()
     {
+        animationPlaying = true;
         anim.SetBool("Attack", true);
-        yield return new WaitForSeconds(0.0001f);
+        yield return new WaitForSeconds(0.04f);
         anim.SetBool("Attack", false);
     }
 
+    //IEnumerator ThreeAttacks()
+    //{
+    //    yield return new WaitForSeconds(25f);
+    //    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+    //    yield return new WaitForSeconds(25f);
+    //    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+    //    yield return new WaitForSeconds(25f);
+    //    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+    //}
 
     [Client]
      public void Attack()
@@ -142,8 +154,12 @@ public class Combat_Manager : NetworkBehaviour {
 						Debug.Log ("won clash");
 						Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
-                        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-						isAttacking = false;
+                        if (animationPlaying)
+                        {
+                            CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+                        }
+
+                        isAttacking = false;
 						GetComponent<Dash> ().chargePercent += ultGain;
 					} else {
 						Debug.Log ("i had less damage and loss the clash");	
@@ -153,8 +169,12 @@ public class Combat_Manager : NetworkBehaviour {
 					Debug.Log ("did damage");
 					Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
-                    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-					isAttacking = false;
+                    if (animationPlaying)
+                    {
+                        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+                    }
+
+                    isAttacking = false;
 					GetComponent<Dash> ().chargePercent += ultGain;
 				}
 				hitCol.GetComponent<Combat_Manager> ().enabled = false; 
