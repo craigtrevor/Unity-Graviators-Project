@@ -54,8 +54,8 @@ public class damageRange : NetworkBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.tag != "Player") {
-			Debug.Log ("i have hit " + other.tag + " and am now dissapering");
-			Destroy (this.gameObject);
+				Debug.Log ("i have hit " + other.tag + " and am now dissapering");
+				Destroy (this.gameObject);
 		} else 
 		{
 
@@ -69,9 +69,6 @@ public class damageRange : NetworkBehaviour {
 					if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
 					{
                         CmdTakeDamage(hitCol.gameObject.name, SwordDamage, sourceID);
-                        //playerController.moveSettings.forwardVel = reducedWalkSpeed;
-						//playerController.moveSettings.rightVel = reducedWalkSpeed;
-						//playerController.moveSettings.jumpVel = reducedJumpSpeed;
 					}
 
 
