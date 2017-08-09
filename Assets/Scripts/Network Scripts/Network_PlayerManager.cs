@@ -177,23 +177,6 @@ public class Network_PlayerManager : NetworkBehaviour
 
         deathStats++;
 
-		// spawn corpse on death
-		GameObject corpseobject = Instantiate (corpse, this.transform.position, this.transform.rotation) as GameObject;
-		NetworkServer.Spawn(corpseobject);
-		ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
-		if (!particleSystemPlayed) 
-		{ 
-			playDeathParticle.Emit(0);
-			particleSystemPlayed = true;
-		}
-		if (particleSystemPlayed == true)
-		{
-			Destroy(playDeathParticle);
-		}
-		Destroy(corpseobject, 5);
-		// end of spawn corpse on death
-
-
         if (deaths == 10)
         {
             CmdMatchEnd();
@@ -252,6 +235,12 @@ public class Network_PlayerManager : NetworkBehaviour
             _col.enabled = false;
 
         Debug.Log(transform.name + " is DEAD!");
+
+        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+        NetworkServer.Spawn(corpseobject);
+        Destroy(corpseobject, 5);
+
+        ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
 
         //Switch cameras
         if (isLocalPlayer)
