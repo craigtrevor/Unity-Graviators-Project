@@ -56,6 +56,12 @@ public class Network_PlayerManager : NetworkBehaviour
     private bool slowParticlePlayed;
 
 
+	public GameObject corpse; // the player exploding on thier death, assigned in editor
+	private ParticleSystem playDeathParticle;
+	public ParticleSystem deathParticle;
+	bool particleSystemPlayed = false;
+
+
     public void SetupPlayer()
     {
         if (isLocalPlayer)
@@ -171,6 +177,23 @@ public class Network_PlayerManager : NetworkBehaviour
 
         deathStats++;
 
+		// spawn corpse on death
+		GameObject corpseobject = Instantiate (corpse, this.transform.position, this.transform.rotation) as GameObject;
+		NetworkServer.Spawn(corpseobject);
+		ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
+		if (!particleSystemPlayed) 
+		{ 
+			playDeathParticle.Emit(0);
+			particleSystemPlayed = true;
+		}
+		if (particleSystemPlayed == true)
+		{
+			Destroy(playDeathParticle);
+		}
+		Destroy(corpseobject, 5);
+		// end of spawn corpse on death
+
+
         if (deaths == 10)
         {
             CmdMatchEnd();
@@ -185,6 +208,22 @@ public class Network_PlayerManager : NetworkBehaviour
 
         deaths++;
         deathStats++;
+
+		// spawn corpse on death
+		GameObject corpseobject = Instantiate (corpse, this.transform.position, this.transform.rotation) as GameObject;
+		NetworkServer.Spawn(corpseobject);
+		//ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
+//		if (!particleSystemPlayed) 
+//		{ 
+//			playDeathParticle.Emit(0);
+//			particleSystemPlayed = true;
+//		}
+//		if (particleSystemPlayed == true)
+//		{
+//			Destroy(playDeathParticle);
+//		}
+		//Destroy(corpseobject, 5);
+		// end of spawn corpse on death
 
         if (deaths == 10)
         {
