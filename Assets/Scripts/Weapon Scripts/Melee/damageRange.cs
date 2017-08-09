@@ -21,6 +21,8 @@ public class damageRange : NetworkBehaviour {
 	[SerializeField]
 	private int normalJumpSpeed = 15;
 
+	public float stunTime = 2f;
+
 
 	//UnitD1 Ranged stats
 
@@ -46,7 +48,6 @@ public class damageRange : NetworkBehaviour {
 		if (this.gameObject.tag == THROWINGSWORD_TAG) {
 			transform.Rotate (Vector3.down, rotateSpeed * Time.deltaTime);
 		}
-		//ThrowDamage();
 	}
 
 	[Client]
@@ -68,8 +69,6 @@ public class damageRange : NetworkBehaviour {
 					if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
 					{
                         CmdTakeDamage(hitCol.gameObject.name, SwordDamage, sourceID);
-						playerController = other.GetComponentInChildren<PlayerController>();
-
                         //playerController.moveSettings.forwardVel = reducedWalkSpeed;
 						//playerController.moveSettings.rightVel = reducedWalkSpeed;
 						//playerController.moveSettings.jumpVel = reducedJumpSpeed;
@@ -78,11 +77,7 @@ public class damageRange : NetworkBehaviour {
 
 					if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
 					{
-						//playerController = other.GetComponentInChildren<PlayerController>(); 
-						other.GetComponentInChildren<PlayerController>().enabled = false;// turn off player controls
                         CmdTakeDamage(hitCol.gameObject.name, SwordDamage, sourceID);
-						// stop the disable the player controller
-						
 					}
 					Destroy (this.gameObject);
 				}

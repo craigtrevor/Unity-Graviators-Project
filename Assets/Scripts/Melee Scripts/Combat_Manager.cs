@@ -42,6 +42,18 @@ public class Combat_Manager : NetworkBehaviour {
     [SerializeField]
     private float highDamageVelocity = 25;
 
+	//stun timers
+	public float stunTime = 2f;
+
+
+	// slow info
+	public float slowTime = 2f;
+	private int reducedWalkSpeed = 6;
+	private int normalWalkSpeed = 12;
+
+	private int reducedJumpSpeed = 7;
+	private int normalJumpSpeed = 15;
+
     //public double ultGain;
 
     public float ultGain;
@@ -69,6 +81,8 @@ public class Combat_Manager : NetworkBehaviour {
 
     // Scripts
     Network_Soundscape networkSoundscape;
+	PlayerController playerControllermodifier;
+
 
 	// Use this for initialization
 	void Start ()
@@ -86,6 +100,50 @@ public class Combat_Manager : NetworkBehaviour {
         AttackPlayer();
         PlayerVelocity();
     }
+		
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "UnitD1_RangedWeapon") 
+		{
+			StartCoroutine (stunTimer());
+		}
+		if (other.tag == "ThrowingSword") 
+		{
+			StartCoroutine (slowTimer());
+		}
+	}
+
+	IEnumerator stunTimer()
+	{
+
+		//play stun particles
+		this.gameObject.GetComponentInChildren<PlayerController>().enabled = false;
+		Debug.Log (" A player has been stunned");
+		yield return new WaitForSeconds (stunTime);
+		if (isLocalPlayer) // if they are the local player enable so they they can move agian whuile not ebalaing it for other players
+		{
+			this.gameObject.GetComponentInChildren<PlayerController>().enabled = true;
+		}
+		Debug.Log ("the player can move agian");
+	}
+
+	IEnumerator slowTimer()
+	{
+		playerControllermodifier = this.gameObject.GetComponentInChildren<PlayerController> ();
+		//play stun particles
+		playerControllermodifier.moveSettings.forwardVel = reducedWalkSpeed;
+		playerControllermodifier.moveSettings.rightVel = reducedWalkSpeed;
+		playerControllermodifier.moveSettings.jumpVel = reducedJumpSpeed;
+		Debug.Log (" A player has been slowed");
+		yield return new WaitForSeconds (slowTime);
+		if (isLocalPlayer) // if they are the local player enable so they they can move agian whuile not ebalaing it for other players
+		{
+			playerControllermodifier.moveSettings.forwardVel = normalWalkSpeed;
+			playerControllermodifier.moveSettings.rightVel = normalWalkSpeed;
+			playerControllermodifier.moveSettings.jumpVel = normalJumpSpeed;
+		}
+		Debug.Log ("the player is running at normal speed agian");
+	}
 
     void CheckAnimation()
     {
@@ -280,4 +338,5 @@ public class Combat_Manager : NetworkBehaviour {
 			ultGain = 5;
         }
     }
+		
 }
