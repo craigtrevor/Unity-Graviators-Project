@@ -10,7 +10,12 @@ public class Combat_Manager : NetworkBehaviour {
     private Animator anim;
 
     [SerializeField]
+    private NetworkAnimator netanim;
+
+    [SerializeField]
     Transform playerModel;
+
+    string stateName;
 
     //textures
     public Renderer rend;
@@ -21,25 +26,25 @@ public class Combat_Manager : NetworkBehaviour {
 
     private Collider[] hitColliders;
 
-	public Transform cameraRotation; // the camerasrotation, assign in game editor
+    public Transform cameraRotation; // the camerasrotation, assign in game editor
 
     // Int
-	public float playerDamage = 25;
-	public int thrust = 2000; //change this for speed of knock back
-	public float delay = 0.2f; 
+    public float playerDamage = 25;
+    public int thrust = 2000; //change this for speed of knock back
+    public float delay = 0.2f;
     //private int attackMask;
     private Vector3 attackOffset;
 
     // Float
     private float attackRadius;
-	[SerializeField]
-	private float lowDamageVelocity = 10; 
-	[SerializeField]
-	private float highDamageVelocity = 25;
+    [SerializeField]
+    private float lowDamageVelocity = 10;
+    [SerializeField]
+    private float highDamageVelocity = 25;
 
-	//public double ultGain;
+    //public double ultGain;
 
-	public float ultGain;
+    public float ultGain;
 
     public float CurrentUltGain() {
         return ultGain;
@@ -49,7 +54,7 @@ public class Combat_Manager : NetworkBehaviour {
     public bool isAttacking;
     [SerializeField]
     public bool animationPlaying;
-	private bool gravParticleSystemPlayed = false;
+    private bool gravParticleSystemPlayed = false;
 
     // Floats
     private float speed;
@@ -78,25 +83,25 @@ public class Combat_Manager : NetworkBehaviour {
     void Update()
     {
         CheckAnimation();
-
-        if (isLocalPlayer)
-        {
-            AttackPlayer();
-        }
-
+        AttackPlayer();
         PlayerVelocity();
     }
 
     void CheckAnimation()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            animationPlaying = true;
+            anim.SetBool("Attacking", false);
         }
 
-        else if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            animationPlaying = false;
+            anim.SetBool("Jump", false);
+        }
+
+        if (anim.GetBool("Moving"))
+        {
+            anim.SetBool("Attacking", false);
         }
     }
 
@@ -105,23 +110,21 @@ public class Combat_Manager : NetworkBehaviour {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (!animationPlaying)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false)
         {
-            if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false && anim.GetBool("Attack") == false)
-            {
-                StartCoroutine(AttackTime());
-                Attack();
-            }
+            anim.SetBool("Attacking", true);
+            netanim.SetTrigger("Attack");
+            Attacking();
         }
     }
 
-    IEnumerator AttackTime()
-    {
-        animationPlaying = true;
-        anim.SetBool("Attack", true);
-        yield return new WaitForSeconds(0.04f);
-        anim.SetBool("Attack", false);
-    }
+    //IEnumerator AttackTime()
+    //{
+    //    animationPlaying = true;
+    //    anim.SetBool("Attack", true);
+    //    yield return new WaitForSeconds(0.04f);
+    //    anim.SetBool("Attack", false);
+    //}
 
     //IEnumerator ThreeAttacks()
     //{
@@ -134,7 +137,7 @@ public class Combat_Manager : NetworkBehaviour {
     //}
 
     [Client]
-     public void Attack()
+     public void Attacking()
      {
         hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
 
@@ -154,10 +157,7 @@ public class Combat_Manager : NetworkBehaviour {
 						Debug.Log ("won clash");
 						Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
-                        if (animationPlaying)
-                        {
-                            CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-                        }
+                        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 
                         isAttacking = false;
 						GetComponent<Dash> ().chargePercent += ultGain;
@@ -169,11 +169,7 @@ public class Combat_Manager : NetworkBehaviour {
 					Debug.Log ("did damage");
 					Debug.Log (hitCol.GetComponent<Combat_Manager> ().playerDamage);
 
-                    if (animationPlaying)
-                    {
-                        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-                    }
-
+                    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
                     isAttacking = false;
 					GetComponent<Dash> ().chargePercent += ultGain;
 				}
