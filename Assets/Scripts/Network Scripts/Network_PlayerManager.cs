@@ -30,6 +30,8 @@ public class Network_PlayerManager : NetworkBehaviour
     public int killStats;
     public int deathStats;
 
+    public string playerCharacterID;
+
     [SerializeField]
     private Behaviour[] disableOnDeath;
     private bool[] wasEnabled;
@@ -55,12 +57,14 @@ public class Network_PlayerManager : NetworkBehaviour
     public ParticleSystem slowParticle;
     private bool slowParticlePlayed;
 
-
 	public GameObject corpse; // the player exploding on thier death, assigned in editor
 	private ParticleSystem playDeathParticle;
 	public ParticleSystem deathParticle;
 	bool particleSystemPlayed = false;
 
+    [SerializeField]
+    GameObject netManagerGameObject;
+    Network_Manager networkManagerScript;
 
     public void SetupPlayer()
     {
@@ -71,6 +75,19 @@ public class Network_PlayerManager : NetworkBehaviour
 
         CmdBroadCastNewPlayerSetup();
     }
+
+    //void FixRotations()
+    //{
+    //    netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
+    //    networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
+    //    playerCharacterID = networkManagerScript.characterID;
+
+    //    if (playerCharacterID == "ERNN")
+    //    {
+    //        Debug.Log("ROTATING!");
+    //        playerModelTransform.Rotate(90, 0, 0);
+    //    }
+    //}
 
     [Command]
     private void CmdBroadCastNewPlayerSetup()

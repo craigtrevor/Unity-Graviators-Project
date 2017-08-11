@@ -42,9 +42,10 @@ public class Network_PlayerSetup : NetworkBehaviour
     Camera sceneCamera;
     public NetworkAnimator netAnim;
 
+    Network_Manager networkManagerScript;
+
     void Start()
     {
-        playerModel.Rotate(-90, 0, 0);
 
         if (!isLocalPlayer)
         {
@@ -61,16 +62,6 @@ public class Network_PlayerSetup : NetworkBehaviour
                 //Disable player graphics for local player
                 SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
             }
-
-            // Create PlayerUI
-            //playerUIInstance = Instantiate(playerUIPrefab);
-            //playerUIInstance.name = playerUIPrefab.name;
-
-            ////Configure PlayerUI
-            //UI_PlayerHUD ui = playerUIInstance.GetComponent<UI_PlayerHUD>();
-            //if (ui == null)
-            //    Debug.LogError("No PlayerUI component on PlayerUI prefab.");
-            //ui.SetPlayer(GetComponent<Network_PlayerManager>());
 
             GetComponent<Network_PlayerManager>().SetupPlayer();
 
