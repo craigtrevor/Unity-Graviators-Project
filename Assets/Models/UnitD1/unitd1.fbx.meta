@@ -3,7 +3,7 @@ guid: 6e2e40a51128d404eb0bb3d7d9b4d0fc
 timeCreated: 1502511269
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: Armature
     100002: Body
@@ -389,6 +389,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: D1|T-Pose
@@ -998,43 +999,43 @@ ModelImporter:
       - path: 
         weight: 1
       - path: Armature
-        weight: 1
+        weight: 0
       - path: Armature/Root
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.Foot.Back
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.Foot.Back/Con.IK.Foot.Back_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.Foot.Forward
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.Foot.Forward/Con.IK.Foot.Forward_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.Foot.Left
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.Foot.Left/Con.IK.Foot.Left_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.Foot.Right
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.Foot.Right/Con.IK.Foot.Right_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Back/Con.IK.KneeTarget.Back_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Forward/Con.IK.KneeTarget.Forward_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Left/Con.IK.KneeTarget.Left_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.IK.KneeTarget.Right/Con.IK.KneeTarget.Right_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Con.WingRing
         weight: 1
       - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Con.Wing.Left
@@ -1144,119 +1145,119 @@ ModelImporter:
       - path: Armature/Root/Con.IK.HipSphere/Con.WingRing/Wing Ring
         weight: 1
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con..MidTorso/Con..MidTorso_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Con.IK.Head/Con.IK.Head_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Con.UpperTorso/Con.UpperTorso_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere/Def.HipSphere/Def.LowerTorso/Def.MidTorso/Def.UpperTorso/Def.LowerNeck/Def.UpperNeck/Def.Head/Def.Head_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointBack/Def.Thigh.Back/Def.Calf.Back/Def.Foot.Back/Def.LowerLegSupport.Back/Def.UpperLegSupport.Back/Def.UpperLegSupport.Back_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointForward/Def.Thigh.Forward/Def.Calf.Forward/Def.Foot.Forward/Def.LowerLegSupport.Forward/Def.UpperLegSupport.Forward/Def.UpperLegSupport.Forward_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointLeft/Def.Thigh.Left/Def.Calf.Left/Def.Foot.Left/Def.LowerLegSupport.Left/Def.UpperLegSupport.Left/Def.UpperLegSupport.Left_end
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right
-        weight: 1
+        weight: 0
       - path: Armature/Root/Con.IK.HipSphere.FixedLegs/Def.HipJointRight/Def.Thigh.Right/Def.Calf.Right/Def.Foot.Right/Def.LowerLegSupport.Right/Def.UpperLegSupport.Right/Def.UpperLegSupport.Right_end
-        weight: 1
+        weight: 0
       - path: Body
-        weight: 1
+        weight: 0
       - path: Hipsphere
-        weight: 1
+        weight: 0
       - path: Knee.Back
-        weight: 1
+        weight: 0
       - path: Knee.Forward
-        weight: 1
+        weight: 0
       - path: Knee.Left
-        weight: 1
+        weight: 0
       - path: Knee.Right
-        weight: 1
+        weight: 0
       - path: Leg.Back
-        weight: 1
+        weight: 0
       - path: Leg.Forward
-        weight: 1
+        weight: 0
       - path: Leg.Left
-        weight: 1
+        weight: 0
       - path: Leg.Right
-        weight: 1
+        weight: 0
       - path: Thigh.Back
-        weight: 1
+        weight: 0
       - path: Thigh.Forward
-        weight: 1
+        weight: 0
       - path: Thigh.Left
-        weight: 1
+        weight: 0
       - path: Thigh.Right
-        weight: 1
+        weight: 0
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
@@ -3296,7 +3297,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -3312,6 +3316,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
