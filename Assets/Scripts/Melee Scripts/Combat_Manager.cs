@@ -54,14 +54,6 @@ public class Combat_Manager : NetworkBehaviour {
 	private int reducedJumpSpeed = 7;
 	private int normalJumpSpeed = 15;
 
-    //public double ultGain;
-
-    public float ultGain;
-
-    public float CurrentUltGain() {
-        return ultGain;
-    }
-
     // Boolean
     public bool isAttacking;
     [SerializeField]
@@ -70,6 +62,8 @@ public class Combat_Manager : NetworkBehaviour {
 
     // Floats
     private float speed;
+    [SerializeField]
+    private float ultGain;
 
 	//particles
 	private ParticleSystem playGravLandSmall;
@@ -82,13 +76,16 @@ public class Combat_Manager : NetworkBehaviour {
     // Scripts
     Network_Soundscape networkSoundscape;
 	PlayerController playerControllermodifier;
-
+    Network_PlayerManager networkPlayerManager;
+    Dash dashScript;
 
 	// Use this for initialization
 	void Start ()
     {
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         playerRigidbody = transform.GetComponent<Rigidbody>();
+        networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
+        dashScript = transform.GetComponent<Dash>();
 
         playerDamage = 5;
         attackRadius = 5;
@@ -218,8 +215,8 @@ public class Combat_Manager : NetworkBehaviour {
                         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 
                         isAttacking = false;
-						GetComponent<Dash> ().chargePercent += ultGain;
-					} else {
+                        dashScript.chargePercent += ultGain;
+                    } else {
 						Debug.Log ("i had less damage and loss the clash");	
 					}
 				} else 
@@ -230,7 +227,7 @@ public class Combat_Manager : NetworkBehaviour {
                     CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
                     isAttacking = false;
 					GetComponent<Dash> ().chargePercent += ultGain;
-				}
+                }
 				hitCol.GetComponent<Combat_Manager> ().enabled = false; 
 			}
         }
@@ -257,8 +254,7 @@ public class Combat_Manager : NetworkBehaviour {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
         networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
-    }
-    
+    }    
 
     [Command]
     protected void CmdPlayerAttacked(string _playerID, float _damage, string _sourceID)
@@ -299,10 +295,11 @@ public class Combat_Manager : NetworkBehaviour {
 					}*/ //End ParticleScript
 					//transform.GetComponent<Renderer>().material.color = Color.green;
 					playerDamage = 25.0f;
-					ultGain = 5;
-				
-			
-		}//end low velocity
+                    ultGain = 5;
+
+
+
+        }//end low velocity
         else if (lowDamageVelocity < speed && speed < highDamageVelocity) {
 			/*if (collider.tag == "collider") {
 				ParticleSystem playGravLandMed = (ParticleSystem)Instantiate (gravLandParticleMed, this.transform.position, this.transform.rotation);
@@ -324,18 +321,18 @@ public class Combat_Manager : NetworkBehaviour {
 
 			//transform.GetComponent<Renderer>().material.color = Color.yellow;
 			playerDamage = 50.0f;
-			ultGain = 10;
-		}
+            ultGain = 10;
+        }
         else if (highDamageVelocity < speed)
         {
             //transform.GetComponent<Renderer>().material.color = Color.red;
             playerDamage = 70.0f;
-			ultGain = 20;
+            ultGain = 20;
         }
         else
         {
             playerDamage = 25.0f;
-			ultGain = 5;
+            ultGain = 5;
         }
     }
 		

@@ -45,7 +45,7 @@ public class UI_PlayerHUD : MonoBehaviour {
 	void Update ()
     {
         SetHealthAmount(networkPlayerManager.GetHealthPct());
-       // SetUltBar(combatManager.CurrentUltGain());
+        SetUltBar(networkPlayerManager.GetUltimatePct());
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

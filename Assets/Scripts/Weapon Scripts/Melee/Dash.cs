@@ -19,9 +19,9 @@ public class Dash : NetworkBehaviour {
 
 	// numbers 
 	//charging
-	public double chargePercent = 0; // the amount of charge
-	public double chargeMax = 100; // the amount of charge needed
-	public double passiveCharge = 0.01; // the amount of charge gained passivly;
+	public float chargePercent = 0; // the amount of charge
+	public float chargeMax = 100; // the amount of charge needed
+	public float passiveCharge = 0.01f; // the amount of charge gained passivly;
 	public int numberOfDashes = 0;// change this for uses
 
 	//stats
@@ -55,14 +55,19 @@ public class Dash : NetworkBehaviour {
 	private bool dashingRotate = false;
     private bool dashPause = false;
 
-	// Use this for initialization
-	void Start () {
+    // Scripts
+    Network_PlayerManager networkPlayerManager;
+
+    // Use this for initialization
+    void Start () {
 		playerRigidBody = GetComponent<Rigidbody> (); // when on parent object
-		PR = GetComponent<Transform> ();
+        networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
+        PR = GetComponent<Transform> ();
 		attackRadius = 5;
+        chargePercent = 0;
+        canUseUlt = false;
 
-
-	}
+    }
 
 	// Update is called once per frame
 	void Update () 
@@ -102,7 +107,9 @@ public class Dash : NetworkBehaviour {
 			
 		if (chargePercent < chargeMax && numberOfDashes == 0) {
 			chargePercent += passiveCharge;
-		} else if (chargePercent >= chargeMax)
+            CmdChargeUltimate(passiveCharge);
+        }
+        else if (chargePercent >= chargeMax)
 		{
 			numberOfDashes = 3;
 			canUseUlt = true;
@@ -172,8 +179,13 @@ public class Dash : NetworkBehaviour {
 		}
 	}
 
+    [Command]
+    void CmdChargeUltimate(float _ultimatePoints)
+    {
+        networkPlayerManager.RpcUltimateCharging(_ultimatePoints);
+    }
 
-	IEnumerator charge()
+    IEnumerator charge()
 	{
         dashPause = true; // alex put dash start here
 		Vector3 front = cameraRotation.forward; // used to deterine forward
