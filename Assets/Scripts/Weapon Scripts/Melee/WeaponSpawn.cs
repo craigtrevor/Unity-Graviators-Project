@@ -11,7 +11,7 @@ public class WeaponSpawn : NetworkBehaviour {
 	public Rigidbody weapon; // prefab of the weapon
 	public Transform fireTransform; // a child of the player where the weapon is spawned
 	public float force = 2000; // the force to be applied to the weapon
-	public float reloadTime = 1f;
+	public float reloadTime = 15f;
 //	[SyncVar]
 //	public int m_localID;
 
@@ -19,6 +19,10 @@ public class WeaponSpawn : NetworkBehaviour {
 	private Rigidbody m_Rigidbody; // reference to the rigidbody
 	[SerializeField]
 	private bool m_Fired = false;          // Whether or not the weapon has been launched with this button press.
+
+	public Animator playerAnimator;
+	public GameObject weaponToHide;
+	public MonoBehaviour trailToHide;
 
     private void Start()
     {
@@ -45,6 +49,16 @@ public class WeaponSpawn : NetworkBehaviour {
 	private void Fire()
 	{
 		m_Fired = true; // set the fire flag so that fire is only called once
+		playerAnimator.SetTrigger("Ranged Attack");
+		StartCoroutine (WaitForCurrentAnim());
+	}
+
+	private IEnumerator WaitForCurrentAnim ()
+	{
+		print ("start wait");
+		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
+		print ("end wait");
+		weaponToHide.SetActive (false);
 		CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
 	}
 
@@ -70,5 +84,9 @@ public class WeaponSpawn : NetworkBehaviour {
 		// delay before the player can fire agian
 		yield return new  WaitForSeconds (reloadTime); 
 		m_Fired = false;
+		playerAnimator.SetTrigger("Ranged Attack Reload");
+		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
+		weaponToHide.SetActive (true);
+		print ("reloaded");
 	}
 }
