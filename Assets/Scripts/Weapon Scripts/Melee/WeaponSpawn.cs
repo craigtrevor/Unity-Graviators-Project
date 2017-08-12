@@ -55,9 +55,7 @@ public class WeaponSpawn : NetworkBehaviour {
 
 	private IEnumerator WaitForCurrentAnim ()
 	{
-		print ("start wait");
 		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
-		print ("end wait");
 		weaponToHide.SetActive (false);
 		CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
 	}
@@ -87,6 +85,5 @@ public class WeaponSpawn : NetworkBehaviour {
 		playerAnimator.SetTrigger("Ranged Attack Reload");
 		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
 		weaponToHide.SetActive (true);
-		print ("reloaded");
 	}
 }

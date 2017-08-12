@@ -23,6 +23,8 @@ public class damageRange : NetworkBehaviour {
 
 	public float stunTime = 2f;
 
+	public bool dying = false;
+	public float deathCount;
 
 	//UnitD1 Ranged stats
 
@@ -44,8 +46,10 @@ public class damageRange : NetworkBehaviour {
     }
 
 	void Update () {
-
-		if (this.gameObject.tag == THROWINGSWORD_TAG) {
+		if (dying) {
+			Die ();
+		}
+		if (this.gameObject.tag == THROWINGSWORD_TAG && !dying) {
 			transform.Rotate (Vector3.down, rotateSpeed * Time.deltaTime);
 		}
 	}
@@ -55,7 +59,9 @@ public class damageRange : NetworkBehaviour {
 	{
 		if (other.tag != "Player") {
 				Debug.Log ("i have hit " + other.tag + " and am now dissapering");
-				Destroy (this.gameObject);
+				
+			transform.SetParent (other.gameObject.transform);
+			Die();
 		} else 
 		{
 
@@ -76,7 +82,8 @@ public class damageRange : NetworkBehaviour {
 					{
                         CmdTakeDamage(hitCol.gameObject.name, SwordDamage, sourceID);
 					}
-					Destroy (this.gameObject);
+					transform.SetParent (hitCol.gameObject.transform);
+					Die();
 				}
 			}
 		}
@@ -91,4 +98,20 @@ public class damageRange : NetworkBehaviour {
 
 		networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
 	}
+
+	public void Die()
+	{
+		if (!dying) {
+			Destroy (GetComponent<Rigidbody> ());
+			Destroy (GetComponent<MeleeWeaponTrail> ());
+			dying = true;
+			deathCount = 0.25f;
+		}
+		deathCount += Time.time * 0.0005f;
+
+		if (deathCount >= 1) {
+			Destroy (this.gameObject);
+		}
+	}
+
 }

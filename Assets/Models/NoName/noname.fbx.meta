@@ -6594,7 +6594,7 @@ ModelImporter:
     - serializedVersion: 16
       name: rig|UltimateStatis
       takeName: rig|Ultimate
-      firstFrame: 35
+      firstFrame: 40
       lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
