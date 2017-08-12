@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+guid: 48c4e0e9a7f9b2645947a48c976986f8
+timeCreated: 1502518529
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Body
+    100002: Body.001
+    100004: Hipsphere
+    100006: Knee.Back
+    100008: Knee.Forward
+    100010: Knee.Left
+    100012: Knee.Right
+    100014: Leg.Back
+    100016: Leg.Forward
+    100018: Leg.Left
+    100020: Leg.Right
+    100022: Thigh.Back
+    100024: Thigh.Forward
+    100026: Thigh.Left
+    100028: Thigh.Right
+    100030: //RootNode
+    100032: Wing Ring
+    100034: Wing.L.000
+    100036: Wing.L.001
+    100038: Wing.L.002
+    100040: Wing.L.003
+    100042: Wing.L.004
+    100044: Wing.L.005
+    100046: Wing.L.Casing
+    100048: Wing.R.000
+    100050: Wing.R.001
+    100052: Wing.R.002
+    100054: Wing.R.003
+    100056: Wing.R.004
+    100058: Wing.R.005
+    100060: Wing.R.Casing
+    400000: Body
+    400002: Body.001
+    400004: Hipsphere
+    400006: Knee.Back
+    400008: Knee.Forward
+    400010: Knee.Left
+    400012: Knee.Right
+    400014: Leg.Back
+    400016: Leg.Forward
+    400018: Leg.Left
+    400020: Leg.Right
+    400022: Thigh.Back
+    400024: Thigh.Forward
+    400026: Thigh.Left
+    400028: Thigh.Right
+    400030: //RootNode
+    400032: Wing Ring
+    400034: Wing.L.000
+    400036: Wing.L.001
+    400038: Wing.L.002
+    400040: Wing.L.003
+    400042: Wing.L.004
+    400044: Wing.L.005
+    400046: Wing.L.Casing
+    400048: Wing.R.000
+    400050: Wing.R.001
+    400052: Wing.R.002
+    400054: Wing.R.003
+    400056: Wing.R.004
+    400058: Wing.R.005
+    400060: Wing.R.Casing
+    2300000: Body
+    2300002: Body.001
+    2300004: Hipsphere
+    2300006: Knee.Back
+    2300008: Knee.Forward
+    2300010: Knee.Left
+    2300012: Knee.Right
+    2300014: Leg.Back
+    2300016: Leg.Forward
+    2300018: Leg.Left
+    2300020: Leg.Right
+    2300022: Thigh.Back
+    2300024: Thigh.Forward
+    2300026: Thigh.Left
+    2300028: Thigh.Right
+    2300030: Wing Ring
+    2300032: Wing.L.000
+    2300034: Wing.L.001
+    2300036: Wing.L.002
+    2300038: Wing.L.003
+    2300040: Wing.L.004
+    2300042: Wing.L.005
+    2300044: Wing.L.Casing
+    2300046: Wing.R.000
+    2300048: Wing.R.001
+    2300050: Wing.R.002
+    2300052: Wing.R.003
+    2300054: Wing.R.004
+    2300056: Wing.R.005
+    2300058: Wing.R.Casing
+    3300000: Body
+    3300002: Body.001
+    3300004: Hipsphere
+    3300006: Knee.Back
+    3300008: Knee.Forward
+    3300010: Knee.Left
+    3300012: Knee.Right
+    3300014: Leg.Back
+    3300016: Leg.Forward
+    3300018: Leg.Left
+    3300020: Leg.Right
+    3300022: Thigh.Back
+    3300024: Thigh.Forward
+    3300026: Thigh.Left
+    3300028: Thigh.Right
+    3300030: Wing Ring
+    3300032: Wing.L.000
+    3300034: Wing.L.001
+    3300036: Wing.L.002
+    3300038: Wing.L.003
+    3300040: Wing.L.004
+    3300042: Wing.L.005
+    3300044: Wing.L.Casing
+    3300046: Wing.R.000
+    3300048: Wing.R.001
+    3300050: Wing.R.002
+    3300052: Wing.R.003
+    3300054: Wing.R.004
+    3300056: Wing.R.005
+    3300058: Wing.R.Casing
+    4300000: Body.001
+    4300002: Wing.R.000
+    4300004: Wing.R.001
+    4300006: Wing.R.002
+    4300008: Wing.R.003
+    4300010: Wing.R.004
+    4300012: Wing.R.005
+    4300014: Wing.R.Casing
+    4300016: Thigh.Right
+    4300018: Knee.Right
+    4300020: Body
+    4300022: Hipsphere
+    4300024: Wing.L.000
+    4300026: Wing.L.001
+    4300028: Wing.L.002
+    4300030: Wing.L.005
+    4300032: Wing.L.004
+    4300034: Wing.L.003
+    4300036: Knee.Left
+    4300038: Thigh.Left
+    4300040: Leg.Forward
+    4300042: Thigh.Forward
+    4300044: Knee.Forward
+    4300046: Leg.Left
+    4300048: Knee.Back
+    4300050: Thigh.Back
+    4300052: Leg.Back
+    4300054: Leg.Right
+    4300056: Wing.L.Casing
+    4300058: Wing Ring
+    7400000: Wing.R.000|CircleAction
+    7400002: Wing.R.001|CircleAction
+    7400004: Wing.R.002|CircleAction
+    7400006: Wing.R.003|CircleAction
+    7400008: Wing.R.004|CircleAction
+    7400010: Wing.R.005|CircleAction
+    7400012: Wing.R.Casing|CircleAction
+    7400014: Wing.L.000|CircleAction
+    7400016: Wing.L.001|CircleAction
+    7400018: Wing.L.002|CircleAction
+    7400020: Wing.L.005|CircleAction
+    7400022: Wing.L.004|CircleAction
+    7400024: Wing.L.003|CircleAction
+    7400026: Wing.L.Casing|CircleAction
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
