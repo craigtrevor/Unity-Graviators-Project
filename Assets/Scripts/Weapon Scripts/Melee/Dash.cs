@@ -58,8 +58,10 @@ public class Dash : NetworkBehaviour {
     // Scripts
     Network_PlayerManager networkPlayerManager;
 
-    // Use this for initialization
-    void Start () {
+	public Animator playerAnimator;
+
+	// Use this for initialization
+	void Start () {
 		playerRigidBody = GetComponent<Rigidbody> (); // when on parent object
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
         PR = GetComponent<Transform> ();
@@ -135,6 +137,8 @@ public class Dash : NetworkBehaviour {
 			nextFire = Time.time + fireRate;
 			if (numberOfDashes > 0 && canUseUlt == true) {
 				StartCoroutine (charge());
+				playerAnimator.SetBool ("UltimateLoop", true);
+				playerAnimator.SetTrigger ("StartUltimate");
 				numberOfDashes -= 1; // use a dash
 			}
 		}
@@ -233,6 +237,7 @@ public class Dash : NetworkBehaviour {
 		}
 
 		if (numberOfDashes == 0) {
+			playerAnimator.SetBool ("UltimateLoop", false);
 			playerRigidBody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
 			playerRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
 			canUseUlt = false;
