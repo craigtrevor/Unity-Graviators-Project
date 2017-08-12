@@ -3,7 +3,7 @@ guid: 3d233e3e2d6c78641a4cbb734d7a09a4
 timeCreated: 1501993220
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: Body
     100002: chest
@@ -540,19 +540,19 @@ ModelImporter:
     4300012: Sword.Back.R
     4300014: Sword.Forward.R
     7400000: rig|DynamicPose
-    7400002: rig|Idle
-    7400004: rig|Jump
-    7400006: rig|Melee Attack
-    7400008: rig|Run
-    7400010: rig|T-Pose
-    7400012: rig|Land
-    7400014: rig|Float
-    7400016: rig|Strafe left
-    7400018: rig|Strafe Right
-    7400020: rig|UltimatePrepAndDash
-    7400022: rig|Ranged Attack Start
-    7400024: rig|UltimateStatis
-    7400026: rig|Ranged Attack Finish
+    7400002: NoName|Idle
+    7400004: NoName|Jump
+    7400006: NoName|Melee Attack
+    7400008: NoName|Run
+    7400010: NoName|T-Pose
+    7400012: NoName|Land
+    7400014: NoName|Float
+    7400016: NoName|Strafe left
+    7400018: NoName|Strafe Right
+    7400020: NoName|UltimatePrepAndDash
+    7400022: NoName|Ranged Attack Start
+    7400024: NoName|UltimateStatis
+    7400026: NoName|Ranged Attack Finish
     9500000: //RootNode
     13700000: Body
     13700002: cigar
@@ -584,9 +584,10 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: rig|Idle
+      name: NoName|Idle
       takeName: rig|Idle
       firstFrame: 1
       lastFrame: 59
@@ -1132,7 +1133,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Jump
+      name: NoName|Jump
       takeName: rig|Jump
       firstFrame: 10
       lastFrame: 38
@@ -1678,7 +1679,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Melee Attack
+      name: NoName|Melee Attack
       takeName: rig|Melee Attack
       firstFrame: 0
       lastFrame: 46
@@ -2224,7 +2225,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Run
+      name: NoName|Run
       takeName: rig|Run
       firstFrame: 10
       lastFrame: 41
@@ -2770,7 +2771,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|T-Pose
+      name: NoName|T-Pose
       takeName: rig|T-Pose
       firstFrame: 0
       lastFrame: 1
@@ -3316,7 +3317,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Land
+      name: NoName|Land
       takeName: rig|Jump
       firstFrame: 40
       lastFrame: 56
@@ -3862,7 +3863,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Float
+      name: NoName|Float
       takeName: rig|Jump
       firstFrame: 70
       lastFrame: 89
@@ -4408,7 +4409,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Strafe left
+      name: NoName|Strafe left
       takeName: rig|Strafe left
       firstFrame: 0
       lastFrame: 49
@@ -4954,7 +4955,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Strafe Right
+      name: NoName|Strafe Right
       takeName: rig|Strafe Right
       firstFrame: 0
       lastFrame: 49
@@ -5500,7 +5501,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|UltimatePrepAndDash
+      name: NoName|UltimatePrepAndDash
       takeName: rig|Ultimate
       firstFrame: 7
       lastFrame: 34
@@ -6046,7 +6047,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Ranged Attack Start
+      name: NoName|Ranged Attack Start
       takeName: rig|Ranged Attack
       firstFrame: 0
       lastFrame: 15
@@ -6592,7 +6593,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|UltimateStatis
+      name: NoName|UltimateStatis
       takeName: rig|Ultimate
       firstFrame: 40
       lastFrame: 60
@@ -7138,7 +7139,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|Ranged Attack Finish
+      name: NoName|Ranged Attack Finish
       takeName: rig|Ranged Attack
       firstFrame: 15
       lastFrame: 43
@@ -7689,7 +7690,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -7705,6 +7709,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
