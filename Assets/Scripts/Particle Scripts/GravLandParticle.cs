@@ -28,12 +28,12 @@ public class GravLandParticle : MonoBehaviour {
 				{
 					playGravLand.Emit(1);
 					gravParticleSystemPlayed = true;
-					Debug.Log("gravPlayed");
+					//Debug.Log("gravPlayed");
 				}
 				if (gravParticleSystemPlayed == true)
 				{
 					Destroy(playGravLand);
-					Debug.Log("gravDead");
+					//Debug.Log("gravDead");
 
 				}
 		}
