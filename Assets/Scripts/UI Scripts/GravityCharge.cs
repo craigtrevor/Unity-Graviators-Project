@@ -36,7 +36,7 @@ public class GravityCharge : MonoBehaviour {
         GravityAxisScript gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravCharge = gravityAxisScript.gravityCharge;
 
-        if (gravCharge < 2000) {
+        if (gravCharge < 1) {
 			GravFull.gameObject.SetActive (false);
 			GravEmpty.gameObject.SetActive (true);
 		} else {
@@ -44,7 +44,7 @@ public class GravityCharge : MonoBehaviour {
 			GravEmpty.gameObject.SetActive (false);
 		}
 
-		if (gravCharge < 4000) {
+		if (gravCharge < 2) {
 			GravFull1.gameObject.SetActive (false);
 			GravEmpty1.gameObject.SetActive (true);
 		} else {
@@ -52,7 +52,7 @@ public class GravityCharge : MonoBehaviour {
 			GravEmpty1.gameObject.SetActive (false);
 		}
 
-		if (gravCharge < 6000) {
+		if (gravCharge < 3) {
 			GravFull2.gameObject.SetActive (false);
 			GravEmpty2.gameObject.SetActive (true);
 		} else {
@@ -60,7 +60,7 @@ public class GravityCharge : MonoBehaviour {
 			GravEmpty2.gameObject.SetActive (false);
 		}
 
-		if (gravCharge < 8000) {
+		if (gravCharge < 4) {
 			GravFull3.gameObject.SetActive (false);
 			GravEmpty3.gameObject.SetActive (true);
 		} else {
@@ -68,7 +68,7 @@ public class GravityCharge : MonoBehaviour {
 			GravEmpty3.gameObject.SetActive (false);
 		}
 
-		if (gravCharge == 10000) {
+		if (gravCharge == 5) {
 			GravFull4.gameObject.SetActive (true);
 			GravEmpty4.gameObject.SetActive (false);
 		} else {

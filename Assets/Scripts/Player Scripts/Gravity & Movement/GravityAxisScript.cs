@@ -17,9 +17,10 @@ public class GravityAxisScript : MonoBehaviour {
     }
 
     //Gravity charge constants
-    private const int GRAVITY_MAX = 10000;
-    private const int GRAVITY_COST = 2500;
-    private const int RECHARGE_RATE = 10;
+    private const int GRAVITY_MAX = 5;
+    private const int GRAVITY_COST = 1;
+    private const int RECHARGE_RATE = 1;
+    private const float RECHARGE_SPEED = 4f;
 
     //Gravity variables
     private string gravity;
@@ -47,10 +48,7 @@ public class GravityAxisScript : MonoBehaviour {
     private PlayerController playerControllerScript;
     private YRotScript yRotScript;
 
-    private GravityAxisDisplayScript gravityAxisDisplayScript;
-
-    public float degRotated;
-    public Vector3 rotation = Vector3.zero;
+    private GravityAxisDisplayScript gravityAxisDisplayScript;    
 
     //Start()
     private void Start() {
@@ -76,17 +74,14 @@ public class GravityAxisScript : MonoBehaviour {
 
         gravityAxisDisplayScript = GetComponent<GravityAxisDisplayScript>();
 
-        degRotated = 0;
+        InvokeRepeating("Recharge", 0f, RECHARGE_SPEED);
     } //End Start()
 
     //Update()
     private void Update() {
 
-        degRotated += playerControllerScript.moveSettings.rotateVel * Input.GetAxisRaw("Mouse X") * Time.deltaTime * 2;
-        degRotated %= 360;
-
         SetCharge();
-        gravityAxisDisplayScript.SetVariables(gravity, gravitySwitching, gravityCharge, haveCharge, shiftPressed, this.GetQuadrant());
+        gravityAxisDisplayScript.SetVariables(gravity, gravitySwitching, gravityCharge, haveCharge, shiftPressed, quadrant);
 
     } //End Update()
 
@@ -122,39 +117,6 @@ public class GravityAxisScript : MonoBehaviour {
 
     //SetGravity() sets the gravity variable based on the rotation of rotationBlock
     private void SetGravity() {
-
-        string printthis = "null";
-
-        float smallestAngle = Vector3.Angle(Vector3.up, rotationBlock.transform.up); //The angle between up vector and rotation block up 
-        print(smallestAngle);
-        printthis = "down";
-
-        if (smallestAngle > Vector3.Angle(Vector3.up, -rotationBlock.transform.up)) {
-            smallestAngle = Vector3.Angle(Vector3.up, -rotationBlock.transform.up);
-            printthis = "up";
-        }
-
-        if (smallestAngle > Vector3.Angle(Vector3.up, rotationBlock.transform.right)) {
-            smallestAngle = Vector3.Angle(Vector3.up, rotationBlock.transform.right);
-            printthis = "right";
-        }
-
-        if (smallestAngle > Vector3.Angle(Vector3.up, -rotationBlock.transform.right)) {
-            smallestAngle = Vector3.Angle(Vector3.up, -rotationBlock.transform.right);
-            printthis = "left";
-        }
-
-        if (smallestAngle > Vector3.Angle(Vector3.up, rotationBlock.transform.forward)) {
-            smallestAngle = Vector3.Angle(Vector3.up, rotationBlock.transform.forward);
-            printthis = "forward";
-        }
-
-        if (smallestAngle > Vector3.Angle(Vector3.up, -rotationBlock.transform.forward)) {
-            smallestAngle = Vector3.Angle(Vector3.up, -rotationBlock.transform.forward);
-            printthis = "backward";
-        }
-
-        print(printthis);
 
         //rotationBlockUp variables
         int rotationBlockUpX = Mathf.RoundToInt(rotationBlock.transform.up.x);
@@ -199,28 +161,6 @@ public class GravityAxisScript : MonoBehaviour {
         } //End if (gravity)
 
     } //End RotateGravityBlock()
-
-    public int GetQuadrant() {
-        //Check degRotated
-        if (315 < degRotated || degRotated <= 45) {
-            //Facing forward
-            return 1;
-
-        } else if (45 < degRotated && degRotated <= 135) {
-            //Facing right
-            return 2;
-
-        } else if (135 < degRotated && degRotated <= 225) {
-            //Facing backward
-            return 3;
-        } else if (225 < degRotated && degRotated <= 315) {
-            //Facing left
-            return 4;
-        } //End if (yRot)
-
-        return -1;
-    }
-
 
     //ChangeGravity() calls checks for gravity charge and if gravity is switching and calls the appropriate gravity switching method
     public void ChangeGravity(float jumpAxis, float horizontalAxis, float verticalAxis) {
@@ -421,12 +361,8 @@ public class GravityAxisScript : MonoBehaviour {
     } //End SetQuadrant() 
 
 
-    //SetCharge() recharges the gravity charge and sets haveCharge accordingly
+    //SetCharge() sets haveCharge accordingly
     private void SetCharge() {
-
-        if (rechargeOn) { //If recharge is on
-            gravityCharge = Mathf.Min(GRAVITY_MAX, gravityCharge + rechargeRate); //Recharge gravity charge
-        }
 
         if (gravityCharge < GRAVITY_COST) { //If gravity charge doesn't have enough for a gravity switch
             haveCharge = false;
@@ -435,6 +371,12 @@ public class GravityAxisScript : MonoBehaviour {
         }
 
     } //End SetCharge()
+
+    private void Recharge() {
+        if (rechargeOn) { //If recharge is on
+            gravityCharge = Mathf.Min(GRAVITY_MAX, gravityCharge + rechargeRate); //Recharge gravity charge
+        }
+    }
 
 
     //SetShiftPressed() retrieves shiftPressed, called in ControllerScript
