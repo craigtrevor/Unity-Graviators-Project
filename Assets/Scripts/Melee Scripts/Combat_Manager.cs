@@ -91,7 +91,7 @@ public class Combat_Manager : NetworkBehaviour {
         dashScript = transform.GetComponent<Dash>();
 
         playerDamage = 5;
-        attackRadius = 5;
+        attackRadius = 20;
     }
 
     void Update()
@@ -149,14 +149,12 @@ public class Combat_Manager : NetworkBehaviour {
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             anim.SetBool("Attacking", false);
-            isAttacking = false;
             attackCounter = 0;
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             anim.SetBool("Jump", false);
-            isAttacking = true;
             attackCounter = 1;
         }
 
@@ -175,48 +173,22 @@ public class Combat_Manager : NetworkBehaviour {
         {
             anim.SetBool("Attacking", true);
             netanim.SetTrigger("Attack");
+            isAttacking = true;
+        }
+
+        if (isAttacking)
+        {
             Attacking();
         }
     }
 
-    //IEnumerator AttackTime()
-    //{
-    //    animationPlaying = true;
-    //    anim.SetBool("Attack", true);
-    //    yield return new WaitForSeconds(0.04f);
-    //    anim.SetBool("Attack", false);
-    //}
-
-    //IEnumerator ThreeAttacks()
-    //{
-    //    yield return new WaitForSeconds(25f);
-    //    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-    //    yield return new WaitForSeconds(25f);
-    //    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-    //    yield return new WaitForSeconds(25f);
-    //    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-    //}
-
     [Client]
      public void Attacking()
-     {
-        if (networkPlayerManager.playerCharacterID == "ERNN")
-        {
-            AttackedByERNN();
-        }
-
-        else if (networkPlayerManager.playerCharacterID == "SPKS")
-        {
-            AttackedBySPKS();
-        }
-
-        else if (networkPlayerManager.playerCharacterID == "UT-D1")
-        {
-            AttackedByUTD1();
-        }
+    {
+        CheckCollision();
     }
 
-    void AttackedByERNN()
+    void CheckCollision()
     {
         hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
 
@@ -228,139 +200,60 @@ public class Combat_Manager : NetworkBehaviour {
                 //networkSoundscape.PlaySound(1, 1, 0f);
 
                 hitCol.GetComponent<Combat_Manager>().enabled = true; // enables the combat nmanager to get correct attack damage values
+
                 if (hitCol.GetComponent<Combat_Manager>().isAttacking == true)
                 { // check to see if the other player is attacking
                     if (hitCol.GetComponent<Combat_Manager>().playerDamage == this.GetComponent<Combat_Manager>().playerDamage)
                     {  // if the player has equal damage as oppenent
-                        Debug.Log("knockedback");
+                        //Debug.Log("knockedback");
                         StartCoroutine(knockBack());
                     }
-                    else if (hitCol.GetComponent<Combat_Manager>().playerDamage < this.GetComponent<Combat_Manager>().playerDamage)
-                    { // if the player has more damage then oponent
-                        Debug.Log("won clash");
-                        Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
+                }
 
+                else if (hitCol.GetComponent<Combat_Manager>().playerDamage < this.GetComponent<Combat_Manager>().playerDamage)
+                { // if the player has more damage then oponent
+
+                   // Debug.Log("won clash");
+
+                    if (networkPlayerManager.playerCharacterID == "ERNN")
+                    {
                         StartCoroutine(ERNNAttacking(hitCol));
-
-                        //CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-
-                        dashScript.chargePercent += ultGain;
                     }
-                    else
+
+                    else if (networkPlayerManager.playerCharacterID == "SPKS")
                     {
-                        Debug.Log("i had less damage and loss the clash");
+                        SendDamage(hitCol);
                     }
-                }
-                else
-                {
-                    Debug.Log("did damage");
-                    Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
 
-                    StartCoroutine(ERNNAttacking(hitCol));
-
-                    //CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+                    else if (networkPlayerManager.playerCharacterID == "UT-D1")
+                    {
+                        SendDamage(hitCol);
+                    }
 
                     GetComponent<Dash>().chargePercent += ultGain;
+                    isAttacking = false;
                 }
+
+                else
+                {
+                   // Debug.Log("i had less damage and loss the clash");
+                }
+
                 hitCol.GetComponent<Combat_Manager>().enabled = false;
+            }
+
+            if (hitCol.transform.root != transform.root && hitCol.gameObject.tag != PLAYER_TAG)
+            {
+                isAttacking = false;
             }
         }
     }
 
-    void AttackedBySPKS()
+    void SendDamage(Collider hitCol)
     {
-        hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+        Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
+        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 
-        foreach (Collider hitCol in hitColliders)
-        {
-            if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
-            {
-                Debug.Log("Hit Player!");
-                //networkSoundscape.PlaySound(1, 1, 0f);
-
-                hitCol.GetComponent<Combat_Manager>().enabled = true; // enables the combat nmanager to get correct attack damage values
-                if (hitCol.GetComponent<Combat_Manager>().isAttacking == true)
-                { // check to see if the other player is attacking
-                    if (hitCol.GetComponent<Combat_Manager>().playerDamage == this.GetComponent<Combat_Manager>().playerDamage)
-                    {  // if the player has equal damage as oppenent
-                        Debug.Log("knockedback");
-                        StartCoroutine(knockBack());
-                    }
-                    else if (hitCol.GetComponent<Combat_Manager>().playerDamage < this.GetComponent<Combat_Manager>().playerDamage)
-                    { // if the player has more damage then oponent
-                        Debug.Log("won clash");
-                        Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
-
-                        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-
-                        isAttacking = false;
-                        dashScript.chargePercent += ultGain;
-                    }
-                    else
-                    {
-                        Debug.Log("i had less damage and loss the clash");
-                    }
-                }
-                else
-                {
-                    Debug.Log("did damage");
-                    Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
-
-                    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-                    isAttacking = false;
-                    GetComponent<Dash>().chargePercent += ultGain;
-                }
-                hitCol.GetComponent<Combat_Manager>().enabled = false;
-            }
-        }
-    }
-
-    void AttackedByUTD1()
-    {
-        hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
-
-        foreach (Collider hitCol in hitColliders)
-        {
-            if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
-            {
-                Debug.Log("Hit Player!");
-                //networkSoundscape.PlaySound(1, 1, 0f);
-
-                hitCol.GetComponent<Combat_Manager>().enabled = true; // enables the combat nmanager to get correct attack damage values
-                if (hitCol.GetComponent<Combat_Manager>().isAttacking == true)
-                { // check to see if the other player is attacking
-                    if (hitCol.GetComponent<Combat_Manager>().playerDamage == this.GetComponent<Combat_Manager>().playerDamage)
-                    {  // if the player has equal damage as oppenent
-                        Debug.Log("knockedback");
-                        StartCoroutine(knockBack());
-                    }
-                    else if (hitCol.GetComponent<Combat_Manager>().playerDamage < this.GetComponent<Combat_Manager>().playerDamage)
-                    { // if the player has more damage then oponent
-                        Debug.Log("won clash");
-                        Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
-
-                        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-
-                        isAttacking = false;
-                        dashScript.chargePercent += ultGain;
-                    }
-                    else
-                    {
-                        Debug.Log("i had less damage and loss the clash");
-                    }
-                }
-                else
-                {
-                    Debug.Log("did damage");
-                    Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
-
-                    CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-                    isAttacking = false;
-                    GetComponent<Dash>().chargePercent += ultGain;
-                }
-                hitCol.GetComponent<Combat_Manager>().enabled = false;
-            }
-        }
     }
 
     IEnumerator ERNNAttacking(Collider hitCol)
@@ -371,6 +264,7 @@ public class Combat_Manager : NetworkBehaviour {
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
         yield return new WaitForSeconds(0.36f);
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+
     }
 
     IEnumerator knockBack()
@@ -394,22 +288,7 @@ public class Combat_Manager : NetworkBehaviour {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
         networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
-    }    
-
-    [Command]
-    protected void CmdPlayerAttacked(string _playerID, float _damage, string _sourceID)
-    {
-        Debug.Log(_playerID + " has been attacked.");
-
-        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-
-        if (isAttacking)
-        {
-            networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
-            isAttacking = false;
-        }
-    }
-		
+    }    		
 
    void PlayerVelocity()
     {
