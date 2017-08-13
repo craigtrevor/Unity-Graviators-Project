@@ -16,12 +16,23 @@ public class Network_PlayerManager : NetworkBehaviour
 
     public float maxHealth = 100;
 
+
     [SyncVar]
     private float currentHealth;
 
     public float GetHealthPct()
     {
         return currentHealth / maxHealth;
+    }
+
+    public float maxUltimateGain = 100;
+
+    [SyncVar]
+    public float currentUltimateGain;
+
+    public float GetUltimatePct()
+    {
+        return currentUltimateGain / maxUltimateGain;
     }
 
     [SyncVar]
@@ -175,6 +186,19 @@ public class Network_PlayerManager : NetworkBehaviour
         if (currentHealth >= maxHealth)
         {
             currentHealth = maxHealth;
+        }
+    }
+
+    [ClientRpc]
+    public void RpcUltimateCharging(float _amount)
+    {
+        Debug.Log("Charging Ultimate!");
+
+        currentUltimateGain += _amount;
+
+        if (currentUltimateGain >= maxUltimateGain)
+        {
+            currentUltimateGain = maxUltimateGain;
         }
     }
 
