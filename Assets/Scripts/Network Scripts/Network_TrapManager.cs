@@ -15,6 +15,14 @@ public class Network_TrapManager : NetworkBehaviour {
     Network_PlayerManager networkPlayerManager;
     PlayerController playerController;
 
+	// Player Animator & Model
+	public Animator playerAnim;
+	public Transform playerModelTransform;
+	public Animation anim;
+
+	[SerializeField]
+	private float animSpeed = 0.1f;
+
     //Slow Trap Variables
     [SerializeField]
     private int reducedWalkSpeed = 6;
@@ -58,6 +66,13 @@ public class Network_TrapManager : NetworkBehaviour {
             playerController.moveSettings.forwardVel = reducedWalkSpeed;
             playerController.moveSettings.rightVel = reducedWalkSpeed;
             playerController.moveSettings.jumpVel = reducedJumpSpeed;
+
+			playerAnim = other.GetComponent<Animator>();
+			//playerAnim.Animator.speed = 0.6f;
+			//playerAnim["Moving"].speed = animSpeed;
+			//playerAnim["Moving"].speed = animSpeed;
+			//anim["Moving"].speed = 0.2f;
+			Debug.Log("I should be slowed down...");
         }
 
 		// Player collides with Speed Trap
