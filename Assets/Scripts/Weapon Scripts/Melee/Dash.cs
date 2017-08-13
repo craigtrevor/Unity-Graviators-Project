@@ -109,7 +109,7 @@ public class Dash : NetworkBehaviour {
 			
 		if (chargePercent < chargeMax && numberOfDashes == 0) {
 			chargePercent += passiveCharge;
-            CmdChargeUltimate(passiveCharge);
+            CmdChargeUltimate(passiveCharge, transform.name);
         }
         else if (chargePercent >= chargeMax)
 		{
@@ -184,9 +184,11 @@ public class Dash : NetworkBehaviour {
 	}
 
     [Command]
-    void CmdChargeUltimate(float _ultimatePoints)
+    void CmdChargeUltimate(float _ultimatePoints, string _playerID)
     {
-        networkPlayerManager.RpcUltimateCharging(_ultimatePoints);
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+
+        networkPlayerStats.RpcUltimateCharging(_ultimatePoints, _playerID);
     }
 
     IEnumerator charge()
