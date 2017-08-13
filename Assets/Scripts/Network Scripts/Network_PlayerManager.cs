@@ -337,11 +337,15 @@ public class Network_PlayerManager : NetworkBehaviour
         {
             ParticleSystem playSlowParticle = (ParticleSystem)Instantiate(slowParticle, this.transform.position + Vector3.down, this.transform.rotation);
             playSlowParticle.Emit(1);
-       
-                }
-               
-            }
-        
 
-    
+			/*playerAnim = GetComponent<Animator>();
+
+
+			playerAnim.speed = 0.0f;*/
+
+			Debug.Log("My animation should be slowed down...");
+
+           
+	}
+}
 }
