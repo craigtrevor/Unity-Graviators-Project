@@ -77,6 +77,13 @@ public class Network_PlayerManager : NetworkBehaviour
     GameObject netManagerGameObject;
     Network_Manager networkManagerScript;
 
+    void Start()
+    {
+        netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
+        networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
+        playerCharacterID = networkManagerScript.characterID;
+    }
+
     public void SetupPlayer()
     {
         if (isLocalPlayer)
@@ -89,9 +96,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     //void FixRotations()
     //{
-    //    netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
-    //    networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
-    //    playerCharacterID = networkManagerScript.characterID;
+
 
     //    if (playerCharacterID == "ERNN")
     //    {
@@ -190,10 +195,8 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcUltimateCharging(float _amount)
+    public void RpcUltimateCharging(float _amount, string _sourceID)
     {
-        // Debug.Log("Charging Ultimate!");
-
         currentUltimateGain += _amount;
 
         if (currentUltimateGain >= maxUltimateGain)
