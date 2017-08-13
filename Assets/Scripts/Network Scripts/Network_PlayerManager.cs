@@ -62,20 +62,26 @@ public class Network_PlayerManager : NetworkBehaviour
     //Particles
     private ParticleSystem playHitParticle;
     public ParticleSystem hitParticle;
-    private bool hitParticleSystemPlayed = false;
+
 
     private ParticleSystem playSlowParticle;
     public ParticleSystem slowParticle;
-    private bool slowParticlePlayed;
+
 
 	public GameObject corpse; // the player exploding on thier death, assigned in editor
 	private ParticleSystem playDeathParticle;
 	public ParticleSystem deathParticle;
-	bool particleSystemPlayed = false;
 
     [SerializeField]
     GameObject netManagerGameObject;
     Network_Manager networkManagerScript;
+
+    void Start()
+    {
+        netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
+        networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
+        playerCharacterID = networkManagerScript.characterID;
+    }
 
     public void SetupPlayer()
     {
@@ -89,9 +95,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     //void FixRotations()
     //{
-    //    netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
-    //    networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
-    //    playerCharacterID = networkManagerScript.characterID;
+
 
     //    if (playerCharacterID == "ERNN")
     //    {
@@ -135,22 +139,9 @@ public class Network_PlayerManager : NetworkBehaviour
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
-
+		//particles
         ParticleSystem playHitParticle = (ParticleSystem)Instantiate(hitParticle, this.transform.position, this.transform.rotation);
-        if (!hitParticleSystemPlayed)
-        {
-            {
-                playHitParticle.Emit(1);
-                hitParticleSystemPlayed = true;
-                Debug.Log("Fly free my pretties");
-            }
-            if (hitParticleSystemPlayed == true)
-            {
-                Destroy(playHitParticle);
-                Debug.Log("Bye felicia!");
-
-            }
-        }
+		hitParticle.Emit(1);
 
         if (currentHealth <= 0)
         {
@@ -190,10 +181,8 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcUltimateCharging(float _amount)
+    public void RpcUltimateCharging(float _amount, string _sourceID)
     {
-        // Debug.Log("Charging Ultimate!");
-
         currentUltimateGain += _amount;
 
         if (currentUltimateGain >= maxUltimateGain)
@@ -349,27 +338,14 @@ public class Network_PlayerManager : NetworkBehaviour
             ParticleSystem playSlowParticle = (ParticleSystem)Instantiate(slowParticle, this.transform.position + Vector3.down, this.transform.rotation);
             playSlowParticle.Emit(1);
 
-			playerAnim = GetComponent<Animator>();
+			/*playerAnim = GetComponent<Animator>();
 
-			playerAnim.speed = 0.0f;
+
+			playerAnim.speed = 0.0f;*/
 
 			Debug.Log("My animation should be slowed down...");
 
-            if (!slowParticlePlayed)
-            {
-                {
-                    playSlowParticle.Emit(1);
-                    slowParticlePlayed = true;
-                    Debug.Log("slowPlayed");
-                }
-                if (slowParticlePlayed == true)
-                {
-                    Destroy(playSlowParticle);
-                    Debug.Log("slowDead");
-
-                }
-            }
-        }
-
-    }
+           
+	}
+}
 }

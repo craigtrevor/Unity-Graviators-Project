@@ -144,10 +144,10 @@
  <HintPath>W:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="DatabaseControl">
- <HintPath>C:/Users/n9482521/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
+ <HintPath>C:/Users/n9457828/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
  <Reference Include="DatabaseControlEditor">
- <HintPath>C:/Users/n9482521/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/Editor/DatabaseControlEditor.dll</HintPath>
+ <HintPath>C:/Users/n9457828/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/Editor/DatabaseControlEditor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
