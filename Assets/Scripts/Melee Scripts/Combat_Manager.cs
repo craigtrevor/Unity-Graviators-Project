@@ -91,7 +91,10 @@ public class Combat_Manager : NetworkBehaviour {
         dashScript = transform.GetComponent<Dash>();
 
         playerDamage = 5;
-        attackRadius = 20;
+        attackRadius = 5;
+
+		//anim = GetComponent<Animator>();
+		//anim.speed = 0.2f;
     }
 
     void Update()
@@ -111,6 +114,11 @@ public class Combat_Manager : NetworkBehaviour {
 		{
 			StartCoroutine (slowTimer());
 		}
+
+		ParticleSystem playGravLandMed = (ParticleSystem)Instantiate(gravLandParticleMed,this.transform.position + Vector3.down, this.transform.rotation);
+		gravLandParticleMed.Emit(1);
+
+
 	}
 
 	IEnumerator stunTimer()
@@ -253,7 +261,6 @@ public class Combat_Manager : NetworkBehaviour {
     {
         Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-
     }
 
     IEnumerator ERNNAttacking(Collider hitCol)
