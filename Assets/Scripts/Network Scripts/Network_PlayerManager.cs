@@ -192,7 +192,7 @@ public class Network_PlayerManager : NetworkBehaviour
     [ClientRpc]
     public void RpcUltimateCharging(float _amount)
     {
-        Debug.Log("Charging Ultimate!");
+        // Debug.Log("Charging Ultimate!");
 
         currentUltimateGain += _amount;
 
