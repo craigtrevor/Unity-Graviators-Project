@@ -111,6 +111,11 @@ public class Combat_Manager : NetworkBehaviour {
 		{
 			StartCoroutine (slowTimer());
 		}
+
+		ParticleSystem playGravLandMed = (ParticleSystem)Instantiate(gravLandParticleMed,this.transform.position + Vector3.down, this.transform.rotation);
+		gravLandParticleMed.Emit(1);
+
+
 	}
 
 	IEnumerator stunTimer()
