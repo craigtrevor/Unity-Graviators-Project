@@ -4,6 +4,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+
+
     [System.Serializable]
     public class MoveSettings {
         public float forwardVel = 12; // speed of forward movement
@@ -40,6 +42,10 @@ public class PlayerController : MonoBehaviour {
     bool turnMode; // horizontal mode turns (true) or strafe (false)
 
     public Animator playerAnimator;
+
+	//Player and trap tags
+	//private const string PLAYER_TAG = "Player";
+	//private const string SLOWTRAP_TAG = "SlowTrap";
 
     public GameObject gravityAxis;
     public GameObject gravityBlock;
@@ -92,6 +98,17 @@ public class PlayerController : MonoBehaviour {
         inputSettings.GRAVITY_RELEASE = false;
     }
 
+	/*
+	void OnTriggerEnter(Collider other)
+	{
+		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == SLOWTRAP_TAG) 
+		{
+			playerAnimator = GetComponent<Animator>();
+			playerAnimator.speed = 0.2f;
+		}
+			
+	}
+	*/
     void GetInput() {
 
         if (recieveInput) {

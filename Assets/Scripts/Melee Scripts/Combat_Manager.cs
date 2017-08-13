@@ -89,6 +89,9 @@ public class Combat_Manager : NetworkBehaviour {
 
         playerDamage = 5;
         attackRadius = 5;
+
+		//anim = GetComponent<Animator>();
+		//anim.speed = 0.2f;
     }
 
     void Update()

@@ -16,12 +16,11 @@ public class Network_TrapManager : NetworkBehaviour {
     PlayerController playerController;
 
 	// Player Animator & Model
-	public Animator playerAnim;
+	public Animator anim;
 	public Transform playerModelTransform;
-	public Animation anim;
 
 	[SerializeField]
-	private float animSpeed = 0.1f;
+	private float animSpeed = 0f;
 
     //Slow Trap Variables
     [SerializeField]
@@ -45,6 +44,7 @@ public class Network_TrapManager : NetworkBehaviour {
     [SerializeField]
     private float trapDamage = 100;
 
+
     [Client]
     void OnTriggerEnter(Collider other)
     {
@@ -64,15 +64,24 @@ public class Network_TrapManager : NetworkBehaviour {
         {
             playerController = other.GetComponentInChildren<PlayerController>();         
             playerController.moveSettings.forwardVel = reducedWalkSpeed;
-            playerController.moveSettings.rightVel = reducedWalkSpeed;
+			playerController.moveSettings.rightVel = reducedWalkSpeed;
             playerController.moveSettings.jumpVel = reducedJumpSpeed;
 
-			playerAnim = other.GetComponent<Animator>();
+
+			//anim = other.GetComponent<Animator>();
 			//playerAnim.Animator.speed = 0.6f;
+			//playerAnimator.speed = 0.2f;
 			//playerAnim["Moving"].speed = animSpeed;
 			//playerAnim["Moving"].speed = animSpeed;
 			//anim["Moving"].speed = 0.2f;
-			Debug.Log("I should be slowed down...");
+			//anim["Walking"].speed = 0.2f;
+			//anim["Moving"].speed = 0.2f;
+			//other.GetComponent<Animator>().speed = 0.1f;
+
+			//anim.speed = animSpeed;
+
+			//Debug.Log("My animation should be slowed down...");
+
         }
 
 		// Player collides with Speed Trap
@@ -92,6 +101,12 @@ public class Network_TrapManager : NetworkBehaviour {
            ParticleSystem playSlowParticle = (ParticleSystem)Instantiate(slowParticle, playerController.transform.position, playerController.transform.rotation)
         }
     }*/
+
+	[Client]
+	void OnTriggerStay(Collider other)
+	{
+		anim.speed = animSpeed;
+	}
 
     void OnTriggerExit(Collider other)
     {
