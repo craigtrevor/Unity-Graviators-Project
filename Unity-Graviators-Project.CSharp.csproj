@@ -76,6 +76,9 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
+    </Reference>
     <Reference Include="DatabaseControl">
       <HintPath>Assets\Database Control Free\Scripts\DatabaseControl.dll</HintPath>
     </Reference>
@@ -89,12 +92,13 @@
     <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
-    <Compile Include="Assets\Scripts\Melee Scripts\UnitD1Combat_Manager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
@@ -151,6 +155,7 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_Ult.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_UltDamaging.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
