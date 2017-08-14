@@ -1,0 +1,234 @@
+fileFormatVersion: 2
+guid: 759a859e853bebb46a526eabe8a6e02a
+timeCreated: 1502671167
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Armour
+    100002: Calf
+    100004: Calf.001
+    100006: Core
+    100008: Foot
+    100010: Foot.001
+    100012: Head
+    100014: Leg
+    100016: Leg.001
+    100018: ShoulderPadsLeatherUV
+    100020: ShoulderPadsLeatherUV.001
+    100022: ShoulderPadsLeatherUV.002
+    100024: ShoulderPadsLeatherUV.003
+    100026: ShoulderPadsLeatherUV.004
+    100028: ShoulderPadsLeatherUV.005
+    100030: ShoulderPadsLeatherUV.006
+    100032: ShoulderPadsLeatherUV.007
+    100034: ShoulderPadsLeatherUV.008
+    100036: Skirt Piece
+    100038: Skirt Piece.001
+    100040: Skirt Piece.002
+    100042: Skirt Piece.003
+    100044: Skirt Piece.004
+    100046: Skirt Piece.005
+    100048: Skirt Piece.006
+    100050: Skirt Piece.007
+    100052: Skirt Piece.008
+    100054: //RootNode
+    100056: Sword
+    100058: SwordJoint
+    100060: SwordJoint.001
+    400000: Armour
+    400002: Calf
+    400004: Calf.001
+    400006: Core
+    400008: Foot
+    400010: Foot.001
+    400012: Head
+    400014: Leg
+    400016: Leg.001
+    400018: ShoulderPadsLeatherUV
+    400020: ShoulderPadsLeatherUV.001
+    400022: ShoulderPadsLeatherUV.002
+    400024: ShoulderPadsLeatherUV.003
+    400026: ShoulderPadsLeatherUV.004
+    400028: ShoulderPadsLeatherUV.005
+    400030: ShoulderPadsLeatherUV.006
+    400032: ShoulderPadsLeatherUV.007
+    400034: ShoulderPadsLeatherUV.008
+    400036: Skirt Piece
+    400038: Skirt Piece.001
+    400040: Skirt Piece.002
+    400042: Skirt Piece.003
+    400044: Skirt Piece.004
+    400046: Skirt Piece.005
+    400048: Skirt Piece.006
+    400050: Skirt Piece.007
+    400052: Skirt Piece.008
+    400054: //RootNode
+    400056: Sword
+    400058: SwordJoint
+    400060: SwordJoint.001
+    2300000: Armour
+    2300002: Calf
+    2300004: Calf.001
+    2300006: Core
+    2300008: Foot
+    2300010: Foot.001
+    2300012: Head
+    2300014: Leg
+    2300016: Leg.001
+    2300018: ShoulderPadsLeatherUV
+    2300020: ShoulderPadsLeatherUV.001
+    2300022: ShoulderPadsLeatherUV.002
+    2300024: ShoulderPadsLeatherUV.003
+    2300026: ShoulderPadsLeatherUV.004
+    2300028: ShoulderPadsLeatherUV.005
+    2300030: ShoulderPadsLeatherUV.006
+    2300032: ShoulderPadsLeatherUV.007
+    2300034: ShoulderPadsLeatherUV.008
+    2300036: Skirt Piece
+    2300038: Skirt Piece.001
+    2300040: Skirt Piece.002
+    2300042: Skirt Piece.003
+    2300044: Skirt Piece.004
+    2300046: Skirt Piece.005
+    2300048: Skirt Piece.006
+    2300050: Skirt Piece.007
+    2300052: Skirt Piece.008
+    2300054: Sword
+    2300056: SwordJoint
+    2300058: SwordJoint.001
+    3300000: Armour
+    3300002: Calf
+    3300004: Calf.001
+    3300006: Core
+    3300008: Foot
+    3300010: Foot.001
+    3300012: Head
+    3300014: Leg
+    3300016: Leg.001
+    3300018: ShoulderPadsLeatherUV
+    3300020: ShoulderPadsLeatherUV.001
+    3300022: ShoulderPadsLeatherUV.002
+    3300024: ShoulderPadsLeatherUV.003
+    3300026: ShoulderPadsLeatherUV.004
+    3300028: ShoulderPadsLeatherUV.005
+    3300030: ShoulderPadsLeatherUV.006
+    3300032: ShoulderPadsLeatherUV.007
+    3300034: ShoulderPadsLeatherUV.008
+    3300036: Skirt Piece
+    3300038: Skirt Piece.001
+    3300040: Skirt Piece.002
+    3300042: Skirt Piece.003
+    3300044: Skirt Piece.004
+    3300046: Skirt Piece.005
+    3300048: Skirt Piece.006
+    3300050: Skirt Piece.007
+    3300052: Skirt Piece.008
+    3300054: Sword
+    3300056: SwordJoint
+    3300058: SwordJoint.001
+    4300000: Foot.001
+    4300002: Calf.001
+    4300004: Leg.001
+    4300006: SwordJoint.001
+    4300008: ShoulderPadsLeatherUV
+    4300010: Sword
+    4300012: ShoulderPadsLeatherUV.001
+    4300014: Armour
+    4300016: SwordJoint
+    4300018: Core
+    4300020: Leg
+    4300022: Head
+    4300024: Calf
+    4300026: Foot
+    4300028: ShoulderPadsLeatherUV.002
+    4300030: ShoulderPadsLeatherUV.003
+    4300032: ShoulderPadsLeatherUV.004
+    4300034: ShoulderPadsLeatherUV.005
+    4300036: ShoulderPadsLeatherUV.006
+    4300038: ShoulderPadsLeatherUV.007
+    4300040: ShoulderPadsLeatherUV.008
+    4300042: Skirt Piece
+    4300044: Skirt Piece.001
+    4300046: Skirt Piece.002
+    4300048: Skirt Piece.003
+    4300050: Skirt Piece.004
+    4300052: Skirt Piece.005
+    4300054: Skirt Piece.006
+    4300056: Skirt Piece.007
+    4300058: Skirt Piece.008
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
