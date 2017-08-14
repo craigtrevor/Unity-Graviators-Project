@@ -67,10 +67,10 @@ public class UnitD1_Ult : NetworkBehaviour {
 			if (isFalling == true)
 			{
 			//ultsizewanted = this.GetComponent<Combat_Manager> ().playerDamage; // stores the palyer damage to send off to the object 
-				ultsizewanted = playerYVelocity;
+				ultsizewanted = playerYVelocity *-1; // time by negative to make the ult size posotive
 			} else 
 			{
-				CmdSpawnUlt (ultSpawnLocationTransform.position, ultSpawnLocationTransform.rotation, playerYVelocity);
+				CmdSpawnUlt (ultSpawnLocationTransform.position, ultSpawnLocationTransform.rotation, ultsizewanted);
 				UltActive = false;
 			}
 
@@ -84,9 +84,14 @@ public class UnitD1_Ult : NetworkBehaviour {
 		// create an instance of the weapon and store a reference to its rigibody
 		Rigidbody weaponInstance = Instantiate (weapon, position, rotation) as Rigidbody;
 
-		weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+
+
+
+
 
 		NetworkServer.Spawn(weaponInstance.gameObject);
+		weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+		weaponInstance.SendMessage ("getUltSize", SizeMeasurement);
 		Destroy (weaponInstance, 3);
 	}
 }
