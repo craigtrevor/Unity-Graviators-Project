@@ -188,6 +188,12 @@ public class Combat_Manager : NetworkBehaviour {
         {
             Attacking();
         }
+
+        if (isLocalPlayer && Input.GetKeyUp(KeyCode.K))
+        {
+            playerDamage = 100;
+            CmdTakeDamage(transform.name, playerDamage, transform.name);
+        }
     }
 
     [Client]
