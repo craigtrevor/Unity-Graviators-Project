@@ -4,8 +4,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-
-
     [System.Serializable]
     public class MoveSettings {
         public float forwardVel = 12; // speed of forward movement
@@ -43,10 +41,6 @@ public class PlayerController : MonoBehaviour {
 
     public Animator playerAnimator;
 
-	//Player and trap tags
-	//private const string PLAYER_TAG = "Player";
-	//private const string SLOWTRAP_TAG = "SlowTrap";
-
     public GameObject gravityAxis;
     public GameObject gravityBlock;
 
@@ -56,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 
     public float cameraDisplacement;
 
-    bool recieveInput = true;
+    bool recieveInput, stunned;
 
     public Quaternion TargetRotation {
         get { return targetRotation; }
@@ -95,23 +89,17 @@ public class PlayerController : MonoBehaviour {
         combatManager = GetComponentInParent<Combat_Manager>();
 
         recieveInput = true;
+        stunned = false;
         inputSettings.GRAVITY_RELEASE = false;
     }
 
-	/*
-	void OnTriggerEnter(Collider other)
-	{
-		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == SLOWTRAP_TAG) 
-		{
-			playerAnimator = GetComponent<Animator>();
-			playerAnimator.speed = 0.2f;
-		}
-			
-	}
-	*/
     void GetInput() {
 
-        if (recieveInput) {
+        if (Input.GetKeyDown(KeyCode.B)) {
+            StartStun(2f);
+        }
+
+        if (recieveInput && !stunned) {
             forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
             turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
@@ -121,6 +109,21 @@ public class PlayerController : MonoBehaviour {
         }
 
         GravityInput(inputSettings.GRAVITY_RELEASE);
+
+    }
+
+    public void StartStun(float time) {
+        StartCoroutine(Stun(Time.time + time));
+    }
+
+    IEnumerator Stun(float time) {
+        while (Time.time < time) {
+            stunned = true;
+            //Debug.Log("I am stunning");
+            yield return null;
+        }
+        stunned = false;
+        //Debug.Log("I'm free");
 
     }
 
@@ -280,8 +283,7 @@ public class PlayerController : MonoBehaviour {
 
         if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
             // Jumping - Alex
-            if (!combatManager.animationPlaying)
-            {
+            if (!combatManager.animationPlaying) {
                 StartCoroutine(JumpTime());
                 velocity.y = moveSettings.jumpVel;
             }
