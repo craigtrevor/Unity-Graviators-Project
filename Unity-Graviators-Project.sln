@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
+<<<<<<< HEAD
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graviators-Project", "Unity-Graviators-Project.csproj", "{6E56245A-59A6-A167-9609-15C594F89998}"
+=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graviators-Project.CSharp", "Unity-Graviators-Project.CSharp.csproj", "{CCBF56CB-2B4D-3104-D9C5-50035392F83B}"
+>>>>>>> edd1efed8b6f7b477ba3328be7c8074c206b0252
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graviators-Project.CSharp.Editor", "Unity-Graviators-Project.CSharp.Editor.csproj", "{002682DC-04D9-9772-C1A3-1A5264B1A334}"
 EndProject
