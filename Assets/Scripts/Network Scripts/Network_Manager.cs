@@ -32,18 +32,26 @@ public class Network_Manager : NetworkManager {
     [SerializeField]
     GameObject unitD1;
 
+    [SerializeField]
+    GameObject[] ERNNCustomization;
+    [SerializeField]
+    GameObject[] SPKSCustomization;
+    [SerializeField]
+    GameObject[] UT_D1Customization;
+
+    int arrayCount;
+    int arrayMax;
+
     void Start()
     {
         characterIndex = 0;
+        arrayMax = 3;
         characterName = "Err:NoName";
         characterID = "ERNN";
 
         characterButtonArray[0].onClick.AddListener(delegate { CharacterSelector(characterButtonArray[0].name); });
         characterButtonArray[1].onClick.AddListener(delegate { CharacterSelector(characterButtonArray[1].name); });
         characterButtonArray[2].onClick.AddListener(delegate { CharacterSelector(characterButtonArray[2].name); });
-
-
-
     }
 
     void Update()
@@ -56,6 +64,7 @@ public class Network_Manager : NetworkManager {
         if (Network_SceneManager.instance.sceneName == "Character_Select")
         {
             characterSelectHUD.SetActive(true);
+            ChooseCustomization();
         }
 
         if (Network_SceneManager.instance.sceneName == "Lobby_Scene")
@@ -101,6 +110,59 @@ public class Network_Manager : NetworkManager {
 
         characterTitle.text = characterName;
         playerPrefab = spawnPrefabs[characterIndex];
+    }
+
+    void ChooseCustomization()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            ERNNCustomization[arrayCount].SetActive(false);
+            SPKSCustomization[arrayCount].SetActive(false);
+            UT_D1Customization[arrayCount].SetActive(false);
+
+            arrayCount++;
+
+            if (arrayCount >= arrayMax)
+            {
+                arrayCount = 0;
+            }
+
+            UpdateCustomization();
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            ERNNCustomization[arrayCount].SetActive(false);
+            SPKSCustomization[arrayCount].SetActive(false);
+            UT_D1Customization[arrayCount].SetActive(false);
+
+            arrayCount--;
+
+            if (arrayCount <= 0)
+            {
+                arrayCount = 0;
+            }
+
+            UpdateCustomization();
+        }
+    }
+
+    void UpdateCustomization()
+    {
+        if (characterID == "ERNN")
+        {
+            ERNNCustomization[arrayCount].SetActive(true);
+        }
+
+        else if (characterID == "SPKS")
+        {
+            SPKSCustomization[arrayCount].SetActive(true);
+        }
+
+        else if (characterID == "UT-D1")
+        {
+            UT_D1Customization[arrayCount].SetActive(true);
+        }
     }
 
     public override void OnClientConnect(NetworkConnection conn)
