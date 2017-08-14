@@ -49,6 +49,12 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     private GameObject[] disableGameObjectsOnDeath;
+    [SerializeField]
+    GameObject[] ERNNCustomization;
+    [SerializeField]
+    GameObject[] SPKSCustomization;
+    [SerializeField]
+    GameObject[] UT_D1Customization;
 
     private bool firstSetup = true;
 
@@ -63,10 +69,8 @@ public class Network_PlayerManager : NetworkBehaviour
     private ParticleSystem playHitParticle;
     public ParticleSystem hitParticle;
 
-
     private ParticleSystem playSlowParticle;
     public ParticleSystem slowParticle;
-
 
 	public GameObject corpse; // the player exploding on thier death, assigned in editor
 	private ParticleSystem playDeathParticle;
@@ -306,6 +310,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth = maxHealth;
 
+        CheckCustomizations();
+
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
             disableOnDeath[i].enabled = wasEnabled[i];
@@ -320,6 +326,63 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
+    }
+
+    void CheckCustomizations()
+    {
+        if (playerCharacterID == "ERNN")
+        {
+            if (networkManagerScript.customzationName == "empty hat")
+            {
+                ERNNCustomization[0].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "samurai hat")
+            {
+                ERNNCustomization[1].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "cowboy hat")
+            {
+                ERNNCustomization[2].SetActive(true);
+            }
+        }
+
+        else if (playerCharacterID == "SPKS")
+        {
+            if (networkManagerScript.customzationName == "empty hat")
+            {
+                SPKSCustomization[0].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "centurion")
+            {
+                SPKSCustomization[1].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "fez")
+            {
+                SPKSCustomization[2].SetActive(true);
+            }
+        }
+
+        else if (playerCharacterID == "UT-D1")
+        {
+            if (networkManagerScript.customzationName == "empty hat")
+            {
+                UT_D1Customization[0].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "flower")
+            {
+                UT_D1Customization[1].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "santa hat")
+            {
+                UT_D1Customization[2].SetActive(true);
+            }
+        }
     }
 
     [Command]

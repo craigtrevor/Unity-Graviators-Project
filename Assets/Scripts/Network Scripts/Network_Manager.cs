@@ -12,7 +12,7 @@ public class Network_Manager : NetworkManager {
     GameObject characterSelectHUD;
 
     [SerializeField]
-    Text characterTitle; 
+    Text characterTitle;
 
     [SerializeField]
     private Button[] characterButtonArray;
@@ -39,15 +39,21 @@ public class Network_Manager : NetworkManager {
     [SerializeField]
     GameObject[] UT_D1Customization;
 
+    public string customzationName;
+
     int arrayCount;
     int arrayMax;
+    int arrayMin;
 
     void Start()
     {
         characterIndex = 0;
-        arrayMax = 3;
+        arrayMax = 4;
+        arrayMin = 0;
+        arrayCount = 0;
         characterName = "Err:NoName";
         characterID = "ERNN";
+        customzationName = "empty hat";
 
         characterButtonArray[0].onClick.AddListener(delegate { CharacterSelector(characterButtonArray[0].name); });
         characterButtonArray[1].onClick.AddListener(delegate { CharacterSelector(characterButtonArray[1].name); });
@@ -76,9 +82,12 @@ public class Network_Manager : NetworkManager {
     void CharacterSelector(string buttonName)
     {
         switch (buttonName)
-        { 
+        {
             case "ErrNoName_btn":
                 characterIndex = 0;
+                RemoveCustomization();
+                arrayCount = 0;
+                customzationName = "empty hat";
                 characterName = "Err:NoName";
                 characterID = "ERNN";
                 ErrorNoName.SetActive(true);
@@ -90,6 +99,9 @@ public class Network_Manager : NetworkManager {
             case "Sparkus_btn":
 
                 characterIndex = 1;
+                RemoveCustomization();
+                arrayCount = 0;
+                customzationName = "empty hat";
                 characterName = "Sparkus";
                 characterID = "SPKS";
                 ErrorNoName.SetActive(false);
@@ -100,6 +112,9 @@ public class Network_Manager : NetworkManager {
 
             case "UnitD1_btn":
                 characterIndex = 2;
+                RemoveCustomization();
+                arrayCount = 0;
+                customzationName = "empty hat";
                 characterName = "Unit-D1";
                 characterID = "UT-D1";
                 ErrorNoName.SetActive(false);
@@ -114,37 +129,41 @@ public class Network_Manager : NetworkManager {
 
     void ChooseCustomization()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            ERNNCustomization[arrayCount].SetActive(false);
-            SPKSCustomization[arrayCount].SetActive(false);
-            UT_D1Customization[arrayCount].SetActive(false);
+            RemoveCustomization();
 
             arrayCount++;
 
             if (arrayCount >= arrayMax)
             {
-                arrayCount = 0;
+                arrayCount = 1;
+                customzationName = "empty hat";
             }
 
             UpdateCustomization();
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            ERNNCustomization[arrayCount].SetActive(false);
-            SPKSCustomization[arrayCount].SetActive(false);
-            UT_D1Customization[arrayCount].SetActive(false);
+            RemoveCustomization();
 
             arrayCount--;
 
-            if (arrayCount <= 0)
+            if (arrayCount <= arrayMin)
             {
-                arrayCount = 0;
+                arrayCount = 3;
             }
 
             UpdateCustomization();
         }
+    }
+
+    void RemoveCustomization()
+    {
+        ERNNCustomization[arrayCount].SetActive(false);
+        SPKSCustomization[arrayCount].SetActive(false);
+        UT_D1Customization[arrayCount].SetActive(false);
     }
 
     void UpdateCustomization()
@@ -152,16 +171,19 @@ public class Network_Manager : NetworkManager {
         if (characterID == "ERNN")
         {
             ERNNCustomization[arrayCount].SetActive(true);
+            customzationName = ERNNCustomization[arrayCount].transform.name;
         }
 
         else if (characterID == "SPKS")
         {
             SPKSCustomization[arrayCount].SetActive(true);
+            customzationName = SPKSCustomization[arrayCount].transform.name;
         }
 
         else if (characterID == "UT-D1")
         {
             UT_D1Customization[arrayCount].SetActive(true);
+            customzationName = UT_D1Customization[arrayCount].transform.name;
         }
     }
 
