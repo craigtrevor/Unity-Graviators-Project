@@ -30,9 +30,10 @@ public class UnitD1_UltDamaging : NetworkBehaviour {
 		sourceID = _sourceID;
 	}
 		
-	public void RpcgetUltSize (float sizeMeasurement)
+	public void getUltSize (float sizeMeasurement)
 	{
-		MaxSize = sizeMeasurement;
+		Debug.Log("i have reciced info and the size measurement is " +  sizeMeasurement);
+		MaxSize = sizeMeasurement / 2;
 	}
 
 	// Use this for initialization
@@ -42,17 +43,18 @@ public class UnitD1_UltDamaging : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.localScale.x < MinSize) 
+		if (transform.localScale.x < MaxSize) 
 		{
-			GrowFactor = Mathf.Abs (GrowFactor);	
+			GrowFactor = Mathf.Abs (GrowFactor);
+			ApplyScaleRate (); // only grow bigger if smaller then max size
 		}
-			else if (transform.localScale.x > MaxSize/2) 
+			else if (transform.localScale.x > MaxSize) 
 		{
-			Debug.Log ("i have reached max size at " + MaxSize/2);
-			//Destroy (this.gameObject);
+			Debug.Log ("i have reached max size at " + MaxSize);
+			//Destroy (this.gameObject); // not destorying for testing
 		}
 
-		ApplyScaleRate ();
+		//ApplyScaleRate ();
 	}
 
 
@@ -82,10 +84,7 @@ public class UnitD1_UltDamaging : NetworkBehaviour {
 
 		networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
 	}
-
-
-
-
+		
 	void ApplyScaleRate()
 	{
 		transform.localScale += Vector3.one * GrowFactor;
