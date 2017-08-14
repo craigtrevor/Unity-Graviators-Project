@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject gravityAxis;
     public GameObject gravityBlock;
+    
+    public GameObject stunParticle;
 
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
@@ -96,7 +98,7 @@ public class PlayerController : MonoBehaviour {
     void GetInput() {
 
         if (Input.GetKeyDown(KeyCode.B)) {
-            StartStun(2f);
+            StartStun(4f);
         }
 
         if (recieveInput && !stunned) {
@@ -117,11 +119,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator Stun(float time) {
+        GameObject playStun = (GameObject)Instantiate(stunParticle, this.transform.position + Vector3.up*1.5f, Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z), this.transform);
+        playStun.GetComponent<ParticleSystem>().Play();
         while (Time.time < time) {
             stunned = true;
             //Debug.Log("I am stunning");
             yield return null;
         }
+        //playStun.GetComponent<ParticleSystem>().Stop();
+        //playStun.GetComponent<ParticleSystem>().Clear();
+        Destroy(playStun);
         stunned = false;
         //Debug.Log("I'm free");
 
