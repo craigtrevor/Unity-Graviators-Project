@@ -115,6 +115,6 @@ public class UI_PlayerHUD : MonoBehaviour {
     }
     void SetUltBar (float _ultAmount ) {
 
-        ultBarFill.localScale = new Vector3(_ultAmount, 0.3f, 1f);
+		ultBarFill.localScale = new Vector3(_ultAmount, 0.3f, 1f);
     }
 }
