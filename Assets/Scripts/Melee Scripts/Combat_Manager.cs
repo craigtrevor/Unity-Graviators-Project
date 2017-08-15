@@ -117,8 +117,6 @@ public class Combat_Manager : NetworkBehaviour {
 
 		ParticleSystem playGravLandMed = (ParticleSystem)Instantiate(gravLandParticleMed,this.transform.position + Vector3.down, this.transform.rotation);
 		gravLandParticleMed.Emit(1);
-
-
 	}
 
 	IEnumerator stunTimer()
@@ -232,6 +230,7 @@ public class Combat_Manager : NetworkBehaviour {
                     if (networkPlayerManager.playerCharacterID == "ERNN")
                     {
                         StartCoroutine(ERNNAttacking(hitCol));
+                        GetComponent<Dash>().chargePercent += ultGain;
                     }
 
                     else if (networkPlayerManager.playerCharacterID == "SPKS")
@@ -244,7 +243,6 @@ public class Combat_Manager : NetworkBehaviour {
                         SendDamage(hitCol);
                     }
 
-                    GetComponent<Dash>().chargePercent += ultGain;
                     isAttacking = false;
                 }
 
@@ -272,10 +270,13 @@ public class Combat_Manager : NetworkBehaviour {
     IEnumerator ERNNAttacking(Collider hitCol)
     {
         yield return new WaitForSeconds(0.36f);
+        playerDamage = 8;
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
         yield return new WaitForSeconds(0.36f);
+        playerDamage = 8;
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
         yield return new WaitForSeconds(0.36f);
+        playerDamage = 8;
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 
     }

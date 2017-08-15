@@ -97,17 +97,6 @@ public class Network_PlayerManager : NetworkBehaviour
         CmdBroadCastNewPlayerSetup();
     }
 
-    //void FixRotations()
-    //{
-
-
-    //    if (playerCharacterID == "ERNN")
-    //    {
-    //        Debug.Log("ROTATING!");
-    //        playerModelTransform.Rotate(90, 0, 0);
-    //    }
-    //}
-
     [Command]
     private void CmdBroadCastNewPlayerSetup()
     {
@@ -310,7 +299,10 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth = maxHealth;
 
-        CheckCustomizations();
+        if (isLocalPlayer)
+        {
+            CheckCustomizations();
+        }
 
         for (int i = 0; i < disableOnDeath.Length; i++)
         {

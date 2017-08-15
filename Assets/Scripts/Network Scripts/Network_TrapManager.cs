@@ -37,8 +37,6 @@ public class Network_TrapManager : NetworkBehaviour {
     [SerializeField]
     private int normalJumpSpeed = 15;
 
-   
-
     //Spike Trap Variables
 
     [SerializeField]
@@ -102,11 +100,11 @@ public class Network_TrapManager : NetworkBehaviour {
         }
     }*/
 
-	[Client]
-	void OnTriggerStay(Collider other)
-	{
-		anim.speed = animSpeed;
-	}
+	//[Client]
+	//void OnTriggerStay(Collider other)
+	//{
+	//	anim.speed = animSpeed;
+	//}
 
     void OnTriggerExit(Collider other)
     {

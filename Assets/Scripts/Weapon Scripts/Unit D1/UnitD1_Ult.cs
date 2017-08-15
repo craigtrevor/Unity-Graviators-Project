@@ -44,7 +44,6 @@ public class UnitD1_Ult : NetworkBehaviour {
 
 		if(canUseUlt = true)
 		{
-			playerYVelocity = this.GetComponentInChildren<PlayerController> ().velocity.y; // storing the player jump velocity
 			if (playerYVelocity < 0) { // if they are falling
 				isFalling = true;
 			} else 
