@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 27a25c0cdf1f6f2429526728a5ba0f8f
+timeCreated: 1502776171
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Tiza
+  fontNames:
+  - Tiza
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
