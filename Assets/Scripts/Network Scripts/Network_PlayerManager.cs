@@ -3,7 +3,7 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-//[RequireComponent(typeof(Network_PlayerSetup))]
+[RequireComponent(typeof(Network_PlayerSetup))]
 public class Network_PlayerManager : NetworkBehaviour
 {
     [SyncVar]
@@ -15,7 +15,6 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     public float maxHealth = 100;
-
 
     [SyncVar]
     private float currentHealth;

@@ -8,12 +8,12 @@ public class Network_Soundscape : NetworkBehaviour {
     //Player Audio Source
 
    [SerializeField]
-    private AudioSource[] playerAudioSources;
+   private AudioSource[] playerAudioSources;
 
     //Player Audio Clips
 
    [SerializeField]
-    private AudioClip[] playerAudioClips;
+   private AudioClip[] playerAudioClips;
 
     //Booleans
     private bool soundPlayed = false;
@@ -37,15 +37,15 @@ public class Network_Soundscape : NetworkBehaviour {
     {
         if (!soundPlayed)
         {
-            playerAudioSources[audioSourceID].PlayOneShot(playerAudioClips[clipID]);
-            StartCoroutine(WaitForSound(soundDealy));
+            StartCoroutine(WaitForSound(clipID, audioSourceID, soundDealy));
         }
     }
 
-    private IEnumerator WaitForSound(float soundDealy)
+    private IEnumerator WaitForSound(int clipID, int audioSourceID, float soundDealy)
     {
         soundPlayed = true;
         yield return new WaitForSeconds(soundDealy);
+        playerAudioSources[audioSourceID].PlayOneShot(playerAudioClips[clipID]);
         soundPlayed = false;
     }
 }

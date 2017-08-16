@@ -170,6 +170,25 @@ public class Network_CombatManager : NetworkBehaviour {
         }
     }
 
+    void PlayMeleeSound()
+    {
+        if (networkPlayerManager.playerCharacterID == "ERNN")
+        {
+            networkSoundscape.PlaySound(0, 0, 0f);
+        }
+
+        else if (networkPlayerManager.playerCharacterID == "SPKS")
+        {
+            networkSoundscape.PlaySound(1, 0, 0f);
+        }
+
+        else if (networkPlayerManager.playerCharacterID == "UT-D1")
+        {
+            networkSoundscape.PlaySound(2, 0, 0f);
+        }
+
+    }
+
     void AttackPlayer()
     {
         if (UI_PauseMenu.IsOn == true)
@@ -179,6 +198,7 @@ public class Network_CombatManager : NetworkBehaviour {
         {
             anim.SetBool("Attacking", true);
             netanim.SetTrigger("Attack");
+            PlayMeleeSound();
             isAttacking = true;
         }
 
@@ -209,7 +229,9 @@ public class Network_CombatManager : NetworkBehaviour {
             if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
             {
                 Debug.Log("Hit Player!");
-                //networkSoundscape.PlaySound(1, 1, 0f);
+
+                // Metallic Hit SFX
+                networkSoundscape.PlaySound(3, 3, 0f);
 
                 hitCol.GetComponent<Network_CombatManager>().enabled = true; // enables the combat nmanager to get correct attack damage values
 
@@ -263,9 +285,22 @@ public class Network_CombatManager : NetworkBehaviour {
 
     void SendDamage(Collider hitCol)
     {
+        // Sparkus Melee Attack Sound
+        if (networkPlayerManager.playerCharacterID == "SPKS")
+        {
+            networkSoundscape.PlaySound(2, 1, 0f);
+        }
+
+        // Unit-D1's Melee Attack Sound
+        else if (networkPlayerManager.playerCharacterID == "UT-D1")
+        {
+            networkSoundscape.PlaySound(3, 1, 0f);
+        }
+
         Debug.Log(hitCol.GetComponent<Network_CombatManager>().playerDamage);
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
     }
+
 
     IEnumerator ERNNAttacking(Collider hitCol)
     {

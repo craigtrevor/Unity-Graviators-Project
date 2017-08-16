@@ -24,10 +24,22 @@ public class WeaponSpawn : NetworkBehaviour {
 	public GameObject weaponToHide;
 	public MonoBehaviour trailToHide;
 
+    // Scripts
+    Network_Soundscape networkSoundscape;
+
     private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         _sourceID = transform.name;
+        networkSoundscape = transform.GetComponent<Network_Soundscape>();
+    }
+
+    void PlayThrowSound()
+    {
+        if (m_Fired == true)
+        {
+            networkSoundscape.PlaySound(3, 1, 0.5f);
+        }
     }
 
     [ClientCallback]
@@ -41,7 +53,8 @@ public class WeaponSpawn : NetworkBehaviour {
 		if (Input.GetKeyDown (KeyCode.Mouse1) && m_Fired == false) 
 		{
 			Fire ();
-			StartCoroutine (reload ());
+            PlayThrowSound();
+            StartCoroutine (reload ());
 		} 
 	}
 

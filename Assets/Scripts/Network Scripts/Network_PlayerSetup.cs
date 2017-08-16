@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-//[RequireComponent(typeof(Network_PlayerManager))]
+[RequireComponent(typeof(Network_PlayerManager))]
 public class Network_PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
