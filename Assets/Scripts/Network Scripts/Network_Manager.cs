@@ -223,4 +223,9 @@ public class Network_Manager : NetworkManager {
 
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
+
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        //base.OnClientSceneChanged(conn);
+    }
 }
