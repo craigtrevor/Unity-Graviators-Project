@@ -31,7 +31,6 @@ public class Soundscape_PlayerController : MonoBehaviour {
     private bool playerStep;
     private float audioStepLength = 0.45f;
 
-    Combat_Manager combatManager;
     PlayerController playerController;
 
     void Awake()
@@ -54,7 +53,6 @@ public class Soundscape_PlayerController : MonoBehaviour {
         fallSoundPlayed = false;
         playerStep = true;
 
-        combatManager = GetComponent<Combat_Manager>();
         playerController = GetComponentInChildren<PlayerController>();
     }
 	

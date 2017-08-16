@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
-    Combat_Manager combatManager;
+    Network_CombatManager netCombatManager;
 
     public float cameraDisplacement;
 
@@ -88,7 +88,6 @@ public class PlayerController : MonoBehaviour {
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
-        combatManager = GetComponentInParent<Combat_Manager>();
 
         recieveInput = true;
         stunned = false;
@@ -290,10 +289,9 @@ public class PlayerController : MonoBehaviour {
 
         if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
             // Jumping - Alex
-            if (!combatManager.animationPlaying) {
                 StartCoroutine(JumpTime());
                 velocity.y = moveSettings.jumpVel;
-            }
+
         } else if (jumpInput == 0 && Grounded()) {
             // zero out our velociy.y
             velocity.y = 0;

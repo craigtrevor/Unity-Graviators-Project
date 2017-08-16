@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Combat_Manager : NetworkBehaviour {
+public class Network_CombatManager : NetworkBehaviour {
 
     // Player Animator
     [SerializeField]
@@ -211,18 +211,18 @@ public class Combat_Manager : NetworkBehaviour {
                 Debug.Log("Hit Player!");
                 //networkSoundscape.PlaySound(1, 1, 0f);
 
-                hitCol.GetComponent<Combat_Manager>().enabled = true; // enables the combat nmanager to get correct attack damage values
+                hitCol.GetComponent<Network_CombatManager>().enabled = true; // enables the combat nmanager to get correct attack damage values
 
-                if (hitCol.GetComponent<Combat_Manager>().isAttacking == true)
+                if (hitCol.GetComponent<Network_CombatManager>().isAttacking == true)
                 { // check to see if the other player is attacking
-                    if (hitCol.GetComponent<Combat_Manager>().playerDamage == this.GetComponent<Combat_Manager>().playerDamage)
+                    if (hitCol.GetComponent<Network_CombatManager>().playerDamage == this.GetComponent<Network_CombatManager>().playerDamage)
                     {  // if the player has equal damage as oppenent
                         //Debug.Log("knockedback");
                         StartCoroutine(knockBack());
                     }
                 }
 
-                else if (hitCol.GetComponent<Combat_Manager>().playerDamage < this.GetComponent<Combat_Manager>().playerDamage)
+                else if (hitCol.GetComponent<Network_CombatManager>().playerDamage < this.GetComponent<Network_CombatManager>().playerDamage)
                 { // if the player has more damage then oponent
 
                    // Debug.Log("won clash");
@@ -251,7 +251,7 @@ public class Combat_Manager : NetworkBehaviour {
                    // Debug.Log("i had less damage and loss the clash");
                 }
 
-                hitCol.GetComponent<Combat_Manager>().enabled = false;
+                hitCol.GetComponent<Network_CombatManager>().enabled = false;
             }
 
             if (hitCol.transform.root != transform.root && hitCol.gameObject.tag != PLAYER_TAG)
@@ -263,7 +263,7 @@ public class Combat_Manager : NetworkBehaviour {
 
     void SendDamage(Collider hitCol)
     {
-        Debug.Log(hitCol.GetComponent<Combat_Manager>().playerDamage);
+        Debug.Log(hitCol.GetComponent<Network_CombatManager>().playerDamage);
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
     }
 

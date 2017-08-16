@@ -25,7 +25,7 @@ public class UI_PlayerHUD : MonoBehaviour {
     Network_PlayerManager networkPlayerManager;
 
     [SerializeField]
-    Combat_Manager combatManager;
+    Network_CombatManager combatManager;
 
     PlayerController playerController;
 

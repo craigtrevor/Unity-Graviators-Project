@@ -95,7 +95,8 @@
     <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
-    <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
+    <Compile Include="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" />
+    <Compile Include="Assets\Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\deathScreenCountdown.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerStats.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Scoreboard.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ScoreboardItem.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_SinglePlayerPauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
@@ -150,7 +153,11 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\SinglePlayer_WeaponSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusRanged.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusRangeSpawn.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusUlt.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_Ult.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_UltDamaging.cs" />
   </ItemGroup>
