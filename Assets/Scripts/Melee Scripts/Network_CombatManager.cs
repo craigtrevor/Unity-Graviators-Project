@@ -55,6 +55,7 @@ public class Network_CombatManager : NetworkBehaviour {
 
     // Boolean
     public bool isAttacking;
+    public bool isHitting;
     [SerializeField]
     public bool animationPlaying;
     private bool gravParticleSystemPlayed = false;
@@ -91,10 +92,11 @@ public class Network_CombatManager : NetworkBehaviour {
         dashScript = transform.GetComponent<Dash>();
 
         playerDamage = 5;
-        attackRadius = 5;
+        attackRadius = 3;
+        attackCounter = 0;
 
-		//anim = GetComponent<Animator>();
-		//anim.speed = 0.2f;
+        //anim = GetComponent<Animator>();
+        //anim.speed = 0.2f;
     }
 
     void Update()
@@ -155,13 +157,11 @@ public class Network_CombatManager : NetworkBehaviour {
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             anim.SetBool("Attacking", false);
-            attackCounter = 0;
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             anim.SetBool("Jump", false);
-            attackCounter = 1;
         }
 
         if (anim.GetBool("Moving"))
@@ -194,10 +194,11 @@ public class Network_CombatManager : NetworkBehaviour {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false && attackCounter == 0)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false)
         {
             anim.SetBool("Attacking", true);
             netanim.SetTrigger("Attack");
+            StartCoroutine(meleeAnimationPlaying());
             PlayMeleeSound();
             isAttacking = true;
         }
@@ -212,6 +213,14 @@ public class Network_CombatManager : NetworkBehaviour {
             playerDamage = 100;
             CmdTakeDamage(transform.name, playerDamage, transform.name);
         }
+    }
+
+    IEnumerator meleeAnimationPlaying()
+    {
+        yield return new WaitForSeconds(1.5f);
+        attackCounter = 0;
+        StopAllCoroutines();
+        isAttacking = false;
     }
 
     [Client]
@@ -229,9 +238,10 @@ public class Network_CombatManager : NetworkBehaviour {
             if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
             {
                 Debug.Log("Hit Player!");
+                isHitting = true;
 
                 // Metallic Hit SFX
-                networkSoundscape.PlaySound(3, 3, 0f);
+                //networkSoundscape.PlaySound(3, 3, 0f);
 
                 hitCol.GetComponent<Network_CombatManager>().enabled = true; // enables the combat nmanager to get correct attack damage values
 
@@ -247,25 +257,14 @@ public class Network_CombatManager : NetworkBehaviour {
                 else if (hitCol.GetComponent<Network_CombatManager>().playerDamage < this.GetComponent<Network_CombatManager>().playerDamage)
                 { // if the player has more damage then oponent
 
-                   // Debug.Log("won clash");
+                    // Debug.Log("won clash");
 
-                    if (networkPlayerManager.playerCharacterID == "ERNN")
-                    {
-                        StartCoroutine(ERNNAttacking(hitCol));
-                        GetComponent<Dash>().chargePercent += ultGain;
-                    }
-
-                    else if (networkPlayerManager.playerCharacterID == "SPKS")
+                    if (attackCounter == 0)
                     {
                         SendDamage(hitCol);
+                        attackCounter = 1;
                     }
 
-                    else if (networkPlayerManager.playerCharacterID == "UT-D1")
-                    {
-                        SendDamage(hitCol);
-                    }
-
-                    isAttacking = false;
                 }
 
                 else
@@ -278,42 +277,43 @@ public class Network_CombatManager : NetworkBehaviour {
 
             if (hitCol.transform.root != transform.root && hitCol.gameObject.tag != PLAYER_TAG)
             {
-                isAttacking = false;
+                isHitting = false;
+                StopCoroutine(ERNNAttacking(hitCol));
             }
         }
     }
 
     void SendDamage(Collider hitCol)
     {
-        // Sparkus Melee Attack Sound
-        if (networkPlayerManager.playerCharacterID == "SPKS")
+        if (isHitting)
         {
-            networkSoundscape.PlaySound(2, 1, 0f);
-        }
+            if (networkPlayerManager.playerCharacterID == "ERNN")
+            {
+                StartCoroutine(ERNNAttacking(hitCol));
+                GetComponent<Dash>().chargePercent += ultGain;
+            }
 
-        // Unit-D1's Melee Attack Sound
-        else if (networkPlayerManager.playerCharacterID == "UT-D1")
-        {
-            networkSoundscape.PlaySound(3, 1, 0f);
-        }
+            else if (networkPlayerManager.playerCharacterID == "SPKS")
+            {
+                CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+            }
 
-        Debug.Log(hitCol.GetComponent<Network_CombatManager>().playerDamage);
-        CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+            else if (networkPlayerManager.playerCharacterID == "UT-D1")
+            {
+                CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+            }
+        }
     }
 
 
     IEnumerator ERNNAttacking(Collider hitCol)
     {
         yield return new WaitForSeconds(0.36f);
-        playerDamage = 8;
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
         yield return new WaitForSeconds(0.36f);
-        playerDamage = 8;
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
         yield return new WaitForSeconds(0.36f);
-        playerDamage = 8;
         CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
-
     }
 
     IEnumerator knockBack()

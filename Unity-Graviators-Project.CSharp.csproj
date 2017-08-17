@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
@@ -185,6 +186,7 @@
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
     <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
+    <None Include="Assets\Shaders\Hologram.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
