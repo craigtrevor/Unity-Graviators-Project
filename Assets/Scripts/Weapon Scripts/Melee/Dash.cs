@@ -5,6 +5,9 @@ using UnityEngine.Networking;
 
 public class Dash : NetworkBehaviour
 {
+
+	private const string ULTCHARGER_TAG = "UltCharger";
+
     // objects
     private Rigidbody playerRigidBody; // the rigibody of the player. Is assigned in start
     public Transform cameraRotation; // the camerasrotation, assign in game editor
@@ -140,6 +143,33 @@ public class Dash : NetworkBehaviour
             */
 
     }
+
+
+	//******Ultimate Charger******\\
+	[Client]
+	void OnTriggerEnter(Collider other)
+	{
+		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG)
+		{
+			//networkPlayerManager = other.GetComponent<Network_PlayerManager>();
+			networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
+			Debug.Log(this.gameObject.name);
+			Debug.Log(transform.name);
+			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
+		}
+	}
+
+	[Command]
+	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
+	{
+		Debug.Log(_playerID + " is charging up teh lazor.");
+
+		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+
+		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
+	}
+	//******Ultimate Charger******\\
+
 
     [Client]
     void DashAttack()

@@ -149,7 +149,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
         Debug.Log("Taken damage");
 
-        currentHealth -= _amount;
+		currentHealth -= _amount;
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
@@ -164,7 +164,7 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         Debug.Log("Healing!");
 
-        currentHealth += _amount;
+		currentHealth += _amount /** Time.deltaTime*/;
 
         if (currentHealth >= maxHealth)
         {

@@ -143,4 +143,6 @@ public class Network_TrapManager : NetworkBehaviour {
 
         networkPlayerStats.RpcTakeTrapDamage(_damage, transform.name);
     }
+
+
 }

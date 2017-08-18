@@ -8,12 +8,14 @@ public class Network_AidManager : NetworkBehaviour {
 	//GameObject tags
 	private const string PLAYER_TAG = "Player";
 	private const string HEALTHREGEN_TAG = "HealthRegen";
+	private const string ULTCHARGER_TAG = "UltCharger";
 
 	//Scripts
 	Network_PlayerManager networkPlayerManager;
 
 	[SerializeField]
 	private float healAmount = 100;
+	private float chargeAmount = 100;
 
 	[Client]
 	void OnTriggerEnter (Collider other)
@@ -25,6 +27,14 @@ public class Network_AidManager : NetworkBehaviour {
 			Debug.Log(transform.name);
 			CmdHealthRegen(other.gameObject.name, healAmount, transform.name);
 		}
+		/*
+		if (this.gameObject.tag == ULTCHARGER_TAG && other.gameObject.tag == PLAYER_TAG)
+		{
+			networkPlayerManager = other.GetComponent<Network_PlayerManager>();
+			Debug.Log(other.gameObject.name);
+			Debug.Log(transform.name);
+			CmdUltCharger(other.gameObject.name, chargeAmount, transform.name);
+		}*/
 	}
 
 	[Command]
@@ -36,4 +46,15 @@ public class Network_AidManager : NetworkBehaviour {
 
 		networkPlayerStats.RpcHealthRegenerate(_heal, transform.name);
 	}
+	/*
+	[Command]
+	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
+	{
+		Debug.Log(_playerID + "is charging up teh lazor.");
+
+		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+
+		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
+	}
+	*/
 }
