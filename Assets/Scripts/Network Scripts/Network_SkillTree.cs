@@ -34,7 +34,7 @@ public class Network_SkillTree : NetworkBehaviour {
 	{
 		killStats = playerManagerScript.killStats;
 
-		if (playerCharacterID = "ERNN") 
+		if (playerCharacterID == "ERNN") 
 		{
 			if (killStats >= 3) 
 			{
@@ -55,7 +55,7 @@ public class Network_SkillTree : NetworkBehaviour {
 			}
 		}
 
-		if (playerCharacterID = "SPKS")
+		if (playerCharacterID == "SPKS")
 		{
 			if (killStats >= 3) 
 			{
@@ -75,7 +75,7 @@ public class Network_SkillTree : NetworkBehaviour {
 			}
 		}
 
-		if (playerCharacterID = "UT-D1")
+		if (playerCharacterID == "UT-D1")
 		{
 			if (killStats >= 3) 
 			{
