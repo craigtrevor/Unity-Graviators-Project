@@ -23,7 +23,7 @@ public class UnitD1_Ult : NetworkBehaviour {
 	public Rigidbody weapon; // prefab of the unitD1 ult hitbox
 	public Transform ultSpawnLocationTransform; // a child of the player where the ult object is spawned
 
-
+	public Animator playerAnimator;
 
 
 	// Use this for initialization
@@ -57,6 +57,8 @@ public class UnitD1_Ult : NetworkBehaviour {
 		{
 			UltActive = true;	
 			canUseUlt = false;
+			playerAnimator.SetTrigger("StartUltimate");
+			playerAnimator.SetBool("UltimateLoop", true);
 		}
 
 		if (UltActive == true)
@@ -71,6 +73,7 @@ public class UnitD1_Ult : NetworkBehaviour {
 			{
 				CmdSpawnUlt (ultSpawnLocationTransform.position, ultSpawnLocationTransform.rotation, ultsizewanted);
 				UltActive = false;
+				playerAnimator.SetBool("UltimateLoop", false);
 			}
 
 
