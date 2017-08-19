@@ -14,11 +14,11 @@ public class Network_AidManager : NetworkBehaviour {
 	Network_PlayerManager networkPlayerManager;
 
 	[SerializeField]
-	private float healAmount = 100;
+	private float healAmount = 1;
 	private float chargeAmount = 100;
 
 	[Client]
-	void OnTriggerEnter (Collider other)
+	void OnTriggerStay (Collider other)
 	{
 		if (this.gameObject.tag == HEALTHREGEN_TAG && other.gameObject.tag == PLAYER_TAG)
 		{

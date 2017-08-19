@@ -167,7 +167,7 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         Debug.Log("Healing!");
 
-		currentHealth += _amount /** Time.deltaTime*/;
+		currentHealth += _amount * Time.deltaTime / 10;
 
         if (currentHealth >= maxHealth)
         {
