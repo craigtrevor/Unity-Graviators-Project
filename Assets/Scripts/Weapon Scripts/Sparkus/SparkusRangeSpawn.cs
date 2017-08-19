@@ -74,7 +74,7 @@ public class SparkusRangeSpawn : NetworkBehaviour {
         yield return new WaitForSeconds(reloadTime);
         m_Fired = false;
         //playerAnimator.SetTrigger("Ranged Attack Reload");
-        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitForSeconds(0.1f);
         //weaponToHide.SetActive(true);
     }
 }

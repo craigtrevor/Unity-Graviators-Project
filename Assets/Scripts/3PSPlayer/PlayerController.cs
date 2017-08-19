@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 
     [System.Serializable]
     public class PhysSettings {
-        public float downAccel = 0.75f; // speed of falling (not grounded) GRAVITY ~~~~~~~~~~~~
+        public float downAccel = 0.75f; // LOOK HOW I AM DEFINING GRAVITY
     }
 
     [System.Serializable]
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour {
     void GetInput() {
 
         if (Input.GetKeyDown(KeyCode.B)) {
-            StartStun(4f);
+            StartStun(5f);
         }
 
         if (recieveInput && !stunned) {
@@ -109,16 +109,19 @@ public class PlayerController : MonoBehaviour {
             forwardInput = rightInput = turnInput = jumpInput = 0f;
         }
 
-        GravityInput(inputSettings.GRAVITY_RELEASE);
-
+        if (!stunned) {
+            GravityInput(inputSettings.GRAVITY_RELEASE);
+        }
     }
 
     public void StartStun(float time) {
         StartCoroutine(Stun(Time.time + time));
     }
+    
+    
 
     IEnumerator Stun(float time) {
-        GameObject playStun = (GameObject)Instantiate(stunParticle, this.transform.position + Vector3.up*1.5f, Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z), this.transform);
+        GameObject playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up*2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
         playStun.GetComponent<ParticleSystem>().Play();
         while (Time.time < time) {
             stunned = true;

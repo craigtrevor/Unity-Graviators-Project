@@ -92,10 +92,12 @@
     <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
-    <Compile Include="Assets\Scripts\Melee Scripts\Combat_Manager.cs" />
+    <Compile Include="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" />
+    <Compile Include="Assets\Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_SkillTree.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_Soundscape.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
@@ -144,6 +147,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerStats.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_Scoreboard.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ScoreboardItem.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_SinglePlayerPauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
@@ -151,6 +155,7 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\SinglePlayer_WeaponSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusRanged.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusRangeSpawn.cs" />
@@ -182,6 +187,7 @@
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
     <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
+    <None Include="Assets\Shaders\Hologram.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
