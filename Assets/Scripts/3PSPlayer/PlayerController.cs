@@ -111,19 +111,7 @@ public class PlayerController : MonoBehaviour {
             GravityInput(inputSettings.GRAVITY_RELEASE);
         }
     }
-
-    public void Stun(bool on) {
-        if (on) {            
-            //playStun.GetComponent<ParticleSystem>().Play();
-            stunned = true;
-        } else {
-            //playStun.GetComponent<ParticleSystem>().Stop();
-            //playStun.GetComponent<ParticleSystem>().Clear();
-            //Destroy(playStun);
-            stunned = false;
-        }
-    }
-
+    
     public void StartStun(float time) {
         StartCoroutine(Stun(Time.time + time));
     }        

@@ -124,7 +124,7 @@ public class Network_CombatManager : NetworkBehaviour {
 
 	void stunTimer()	{
         
-		if (!isLocalPlayer) // if they are the local player enable so they they can move agian whuile not ebalaing it for other players
+		if (!isLocalPlayer) //
 		{
             this.gameObject.GetComponentInChildren<PlayerController>().StartStun(stunTime);
             Debug.Log(" A player has been stunned");

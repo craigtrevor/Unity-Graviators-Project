@@ -58,7 +58,7 @@ public class UnitD1_Ranged : NetworkBehaviour {
     }
 
     private IEnumerator WaitForCurrentAnim() {
-        yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
+        yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime * 0.5f);
         CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
     }
 
