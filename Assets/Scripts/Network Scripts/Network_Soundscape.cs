@@ -18,6 +18,11 @@ public class Network_Soundscape : NetworkBehaviour {
     //Booleans
     private bool soundPlayed = false;
 
+    public void PlayNonNetworkedSound(int clipID, int audioSource)
+    {
+        playerAudioSources[audioSource].PlayOneShot(playerAudioClips[clipID]);
+    }
+
     public void PlaySound(int clipID, int audioSourceID, float soundDealy)
     {
         if (clipID >= 0 && audioSourceID >= 0 && clipID < playerAudioClips.Length && audioSourceID < playerAudioSources.Length)

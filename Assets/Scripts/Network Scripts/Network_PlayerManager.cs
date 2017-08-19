@@ -37,8 +37,10 @@ public class Network_PlayerManager : NetworkBehaviour
     [SyncVar]
     public string username = "Loading...";
 
+    [SerializeField]
     public int killStats;
     public int deathStats;
+    private int randomSound;
 
     public string playerCharacterID;
 
@@ -57,9 +59,6 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private bool firstSetup = true;
 
-    [SerializeField]
-    private int deaths;
-
     // Player Animator & Model
     public Animator playerAnim;
     public Transform playerModelTransform;
@@ -77,10 +76,14 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     GameObject netManagerGameObject;
+
+    // Scripts
+    Network_Soundscape networkSoundscape;
     Network_Manager networkManagerScript;
 
     void Start()
     {
+        networkSoundscape = transform.GetComponent<Network_Soundscape>();
         netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
         playerCharacterID = networkManagerScript.characterID;
@@ -189,20 +192,35 @@ public class Network_PlayerManager : NetworkBehaviour
 
         isDead = true;
 
-        deaths++;
-
         if (sourcePlayer != null)
         {
             sourcePlayer.killStats++;
             Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
         }
 
-        deathStats++;
-
-        if (deaths == 10)
+        if (sourcePlayer.killStats == 10)
         {
-            CmdMatchEnd();
+            Debug.Log("YAY!");
+
+            if (playerCharacterID == "ERNN")
+            {
+                networkSoundscape.PlayNonNetworkedSound(4, 4);
+            }
+
+            if (playerCharacterID == "SPKS")
+            {
+                networkSoundscape.PlayNonNetworkedSound(5, 4);
+            }
+
+            if (playerCharacterID == "UT-D1")
+            {
+                networkSoundscape.PlayNonNetworkedSound(6, 4);
+            }
+
+            StartCoroutine(EndGame());
         }
+
+        deathStats++;
 
         DisablePlayer();
     }
@@ -211,7 +229,6 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         isDead = true;
 
-        deaths++;
         deathStats++;
 
 		// spawn corpse on death
@@ -229,11 +246,6 @@ public class Network_PlayerManager : NetworkBehaviour
 //		}
 		//Destroy(corpseobject, 5);
 		// end of spawn corpse on death
-
-        if (deaths == 10)
-        {
-            CmdMatchEnd();
-        }
 
         DisablePlayer();
     }
@@ -275,21 +287,21 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private IEnumerator Respawn()
     {
-        if (deaths != 10)
-        {
-            yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
+        yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
 
-            Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-            transform.position = _spawnPoint.position;
-            transform.rotation = _spawnPoint.rotation;
+        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+        transform.position = _spawnPoint.position;
+        transform.rotation = _spawnPoint.rotation;
 
-            yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f);
 
-            SetupPlayer();
+        SetupPlayer();
 
-            Debug.Log(transform.name + " respawned.");
+        Debug.Log(transform.name + " respawned.");
 
-        }
+        randomSound = Random.Range(7, 9);
+
+        networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
     }
 
     public void SetDefaults()
@@ -374,6 +386,12 @@ public class Network_PlayerManager : NetworkBehaviour
                 UT_D1Customization[2].SetActive(true);
             }
         }
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(5);
+        CmdMatchEnd();
     }
 
     [Command]
