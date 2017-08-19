@@ -167,7 +167,7 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         Debug.Log("Healing!");
 
-		currentHealth += _amount * Time.deltaTime / 10;
+		currentHealth += _amount /** Time.deltaTime*/;
 
         if (currentHealth >= maxHealth)
         {
@@ -299,7 +299,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
         Debug.Log(transform.name + " respawned.");
 
-        randomSound = Random.Range(7, 9);
+        randomSound = Random.Range(7, 13);
 
         networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
     }
@@ -329,6 +329,8 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
+
+        networkSoundscape.PlayNonNetworkedSound(16, 4);
     }
 
     void CheckCustomizations()

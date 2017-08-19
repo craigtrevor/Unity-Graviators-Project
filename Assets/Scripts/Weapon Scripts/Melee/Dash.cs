@@ -61,6 +61,7 @@ public class Dash : NetworkBehaviour
 
     // Scripts
     Network_PlayerManager networkPlayerManager;
+    Network_Soundscape networkSoundscape;
 
     public Animator playerAnimator;
 
@@ -68,13 +69,12 @@ public class Dash : NetworkBehaviour
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody>(); // when on parent object
+        networkSoundscape = transform.GetComponent<Network_Soundscape>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
         PR = GetComponent<Transform>();
         attackRadius = 5;
         chargePercent = 0;
         canUseUlt = false;
-
-
     }
 
     // Update is called once per frame
@@ -183,6 +183,7 @@ public class Dash : NetworkBehaviour
                 numberOfDashes -= 1; // use a dash
                 playerAnimator.SetBool("UltimateLoop", true);
                 playerAnimator.SetTrigger("StartUltimate");
+                networkSoundscape.PlayNonNetworkedSound(13, 4);
             }
         }
     }
