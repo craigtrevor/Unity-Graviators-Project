@@ -76,8 +76,8 @@ public class SparkusRanged : NetworkBehaviour {
 
         //Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
         //networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
-
-        player.GetComponent<PlayerController>().StartStun(5f);
+        
+        //player.GetComponent<PlayerController>().StartStun(5f);
     }
 
 

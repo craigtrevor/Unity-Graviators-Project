@@ -6,25 +6,41 @@ using UnityEngine.Networking;
 public class SparkusUlt : NetworkBehaviour {
 
     public GameObject electricBeam;
-    Transform playerTransform;
+    public Transform targetTransform;
+
+    GameObject playStun;
 
     // Use this for initialization
     void Start() {
-        playerTransform = transform.GetChild(3);
+        playStun = (GameObject)Instantiate(electricBeam, targetTransform.position + targetTransform.forward, Quaternion.Euler(targetTransform.eulerAngles.x, targetTransform.eulerAngles.y, targetTransform.eulerAngles.z), targetTransform);
     }
 
     // Update is called once per frame
     void Update() {
-        ultInput(); //HEAD STUFF (UP DOWN) ALSO DESTORY PARTICLE
+        ultInput();
     }
 
     void ultInput() {
-        GameObject playStun = (GameObject)Instantiate(electricBeam, playerTransform.position + playerTransform.forward, Quaternion.Euler(playerTransform.rotation.eulerAngles + new Vector3(0f, -90f, 0f)), playerTransform);
+
+
         if (Input.GetKey(KeyCode.F)) {
-            playStun.GetComponent<ParticleSystem>().Emit(5);
-        } else {
-            Debug.Log("rip");
+            playStun.GetComponent<ParticleSystem>().Emit(5); // destory particles please
+            ultDamage();
+        }
+        else {
+
         }
 
+    }
+
+
+
+    void ultDamage() {
+        if (Physics.Raycast(targetTransform.position, targetTransform.forward, 17f)) {
+            Debug.Log(">:3");
+        }
+        else {
+            Debug.Log("<:Ɛ");
+        }
     }
 }

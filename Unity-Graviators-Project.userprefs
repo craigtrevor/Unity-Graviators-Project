@@ -1,14 +1,15 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Network Scripts\Network_AidManager.cs">
+﻿<Properties StartupItem="Unity-Graviators-Project.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon Scripts\Sparkus\SparkusUlt.cs">
     <Files>
-      <File FileName="Assets\Scripts\Network Scripts\Network_Manager.cs" Line="2" Column="24" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_TrapManager.cs" Line="148" Column="2" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="167" Column="48" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_Manager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_TrapManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Network Scripts\Network_AidManager.cs" Line="17" Column="32" />
-      <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="99" Column="43" />
+      <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Network Scripts\Network_GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" Line="147" Column="2" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Sparkus\SparkusUlt.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -82,7 +82,7 @@ public class damageRange : NetworkBehaviour {
 					{
                         CmdTakeDamage(hitCol.gameObject.name, SwordDamage, sourceID);
 					}
-					transform.SetParent (hitCol.gameObject.transform);
+					//transform.SetParent(hitCol.gameObject.transform);
 					Die();
 				}
 			}

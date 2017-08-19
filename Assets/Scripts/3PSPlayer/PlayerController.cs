@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject gravityBlock;
     
     public GameObject stunParticle;
+    //GameObject playStun;
 
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
@@ -74,6 +75,8 @@ public class PlayerController : MonoBehaviour {
 
     void Start() {
 
+        //  playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up * 2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
+
         targetRotation = transform.rotation;
 
         if (GetComponentInParent<Rigidbody>()) {
@@ -95,11 +98,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void GetInput() {
-
-        if (Input.GetKeyDown(KeyCode.B)) {
-            StartStun(5f);
-        }
-
         if (recieveInput && !stunned) {
             forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
@@ -114,11 +112,21 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void Stun(bool on) {
+        if (on) {            
+            //playStun.GetComponent<ParticleSystem>().Play();
+            stunned = true;
+        } else {
+            //playStun.GetComponent<ParticleSystem>().Stop();
+            //playStun.GetComponent<ParticleSystem>().Clear();
+            //Destroy(playStun);
+            stunned = false;
+        }
+    }
+
     public void StartStun(float time) {
         StartCoroutine(Stun(Time.time + time));
-    }
-    
-    
+    }        
 
     IEnumerator Stun(float time) {
         GameObject playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up*2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
@@ -128,13 +136,13 @@ public class PlayerController : MonoBehaviour {
             //Debug.Log("I am stunning");
             yield return null;
         }
-        //playStun.GetComponent<ParticleSystem>().Stop();
-        //playStun.GetComponent<ParticleSystem>().Clear();
-        Destroy(playStun);
+        playStun.GetComponent<ParticleSystem>().Stop();
+        playStun.GetComponent<ParticleSystem>().Clear();
+        //Destroy(playStun);
         stunned = false;
         //Debug.Log("I'm free");
 
-    }
+    } 
 
     void GravityInput(bool gravityRelease) {
         //If shift is pressed (gravity selection)
@@ -277,7 +285,7 @@ public class PlayerController : MonoBehaviour {
 
         }
         rotY -= Input.GetAxis("Mouse Y") * 2f;
-        rotY = Mathf.Clamp(rotY, -60f, 60f);
+        rotY = Mathf.Clamp(rotY, -90f, 40f);
         eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(rotY - cameraDisplacement * 15, 0, 0), Time.deltaTime * 30);
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no
