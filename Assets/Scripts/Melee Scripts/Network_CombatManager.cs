@@ -63,7 +63,7 @@ public class Network_CombatManager : NetworkBehaviour {
     // Floats
     private float speed;
     [SerializeField]
-    private float ultGain;
+	public float ultGain;
 
     // Ints
     [SerializeField]
