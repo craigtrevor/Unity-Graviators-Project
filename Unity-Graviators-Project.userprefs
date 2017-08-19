@@ -3,6 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs">
     <Files>
       <File FileName="Assets\Scripts\Network Scripts\Network_Manager.cs" Line="1" Column="1" />
+<<<<<<< HEAD
       <File FileName="Assets\Scripts\Network Scripts\Network_TrapManager.cs" Line="148" Column="2" />
       <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="32" Column="24" />
       <File FileName="Assets\Scripts\Network Scripts\Network_AidManager.cs" Line="17" Column="31" />
@@ -12,6 +13,15 @@
       <File FileName="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" Line="110" Column="2" />
       <File FileName="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScriptNew.cs" Line="217" Column="1" />
+=======
+      <File FileName="Assets\Scripts\Network Scripts\Network_TrapManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="167" Column="48" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_AidManager.cs" Line="17" Column="32" />
+      <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" Line="92" Column="1" />
+>>>>>>> fef1958239bff83aa8da03c153a3839d7fef3748
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
