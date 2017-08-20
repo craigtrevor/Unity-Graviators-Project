@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 
     [System.Serializable]
     public class PhysSettings {
-        public float downAccel = 0.75f; // speed of falling (not grounded) GRAVITY ~~~~~~~~~~~~
+        public float downAccel = 0.75f; // LOOK HOW I AM DEFINING GRAVITY
     }
 
     [System.Serializable]
@@ -43,19 +43,18 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject gravityAxis;
     public GameObject gravityBlock;
-    
+
     public GameObject stunParticle;
+    //GameObject playStun;
 
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
     Network_CombatManager netCombatManager;
-    Network_Soundscape networkSoundScape;
 
     public float cameraDisplacement;
+    public bool stunned;
 
-    bool recieveInput, stunned;
-    [SerializeField]
-    bool isPlaying;
+    private bool recieveInput;
 
     public Quaternion TargetRotation {
         get { return targetRotation; }
@@ -77,8 +76,9 @@ public class PlayerController : MonoBehaviour {
 
     void Start() {
 
+        //  playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up * 2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
+
         targetRotation = transform.rotation;
-        isPlaying = false;
 
         if (GetComponentInParent<Rigidbody>()) {
             rBody = GetComponentInParent<Rigidbody>();
@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour {
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
-        networkSoundScape = GetComponentInParent<Network_Soundscape>();
 
         recieveInput = true;
         stunned = false;
@@ -100,11 +99,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void GetInput() {
-
-        if (Input.GetKeyDown(KeyCode.B)) {
-            StartStun(4f);
-        }
-
         if (recieveInput && !stunned) {
             forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
@@ -114,8 +108,9 @@ public class PlayerController : MonoBehaviour {
             forwardInput = rightInput = turnInput = jumpInput = 0f;
         }
 
-        GravityInput(inputSettings.GRAVITY_RELEASE);
-
+        if (!stunned) {
+            GravityInput(inputSettings.GRAVITY_RELEASE);
+        }
     }
 
     public void StartStun(float time) {
@@ -123,16 +118,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator Stun(float time) {
-        GameObject playStun = (GameObject)Instantiate(stunParticle, this.transform.position + Vector3.up*1.5f, Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z), this.transform);
+        GameObject playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up * 2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
         playStun.GetComponent<ParticleSystem>().Play();
         while (Time.time < time) {
             stunned = true;
             //Debug.Log("I am stunning");
             yield return null;
         }
-        //playStun.GetComponent<ParticleSystem>().Stop();
-        //playStun.GetComponent<ParticleSystem>().Clear();
-        Destroy(playStun);
+        playStun.GetComponent<ParticleSystem>().Stop();
+        playStun.GetComponent<ParticleSystem>().Clear();
+        //Destroy(playStun);
         stunned = false;
         //Debug.Log("I'm free");
 
@@ -206,7 +201,6 @@ public class PlayerController : MonoBehaviour {
 
         GetInput();
         Turn();
-        PlaySound();
 
         gravityBlockScript.UpdatePosition(); //Update gravity block position
     }
@@ -280,7 +274,7 @@ public class PlayerController : MonoBehaviour {
 
         }
         rotY -= Input.GetAxis("Mouse Y") * 2f;
-        rotY = Mathf.Clamp(rotY, -60f, 60f);
+        rotY = Mathf.Clamp(rotY, -90f, 40f);
         eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(rotY - cameraDisplacement * 15, 0, 0), Time.deltaTime * 30);
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no
@@ -295,8 +289,8 @@ public class PlayerController : MonoBehaviour {
 
         if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
             // Jumping - Alex
-                StartCoroutine(JumpTime());
-                velocity.y = moveSettings.jumpVel;
+            StartCoroutine(JumpTime());
+            velocity.y = moveSettings.jumpVel;
 
         } else if (jumpInput == 0 && Grounded()) {
             // zero out our velociy.y
@@ -322,23 +316,6 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-    }
-
-    void PlaySound()
-    {
-        //Debug.Log(velocity.y);
-
-        //if (velocity.y <= -40 && !isPlaying)
-        //{
-        //   networkSoundScape.PlayNonNetworkedSound(17, 5);
-        //   isPlaying = true;
-        //}
-
-        //if (velocity.y >= -40)
-        //{
-        //    networkSoundScape.StopNonNetworkedSound(17, 5);
-        //    isPlaying = false;
-        //}
     }
 
     IEnumerator JumpTime() {

@@ -55,9 +55,9 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     public GameObject gravityCameraFront;
 
     //UI Objects/Components
-    public GameObject UIGravityCharge;
+    //public GameObject UIGravityCharge;
 
-    private Text UIGravityChargeText;
+    //private Text UIGravityChargeText;
 
 
     //Start()
@@ -242,7 +242,7 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     } //End UpdateText()
 
     //UpdateCharge changes the text on the UI to show current gravity charge and changes colour based on value
-    private void UpdateCharge() {
+    private void UpdateCharge() {/*
 
         //Update gravityCharge value on UI
         UIGravityChargeText.text = gravityCharge.ToString();
@@ -253,7 +253,7 @@ public class GravityAxisDisplayScript : MonoBehaviour {
         } else { //If player does not have gravity charge
             UIGravityChargeText.color = Color.grey;
         } //End if (haveCharge)
-
+        */
     } //End UpdateCharge()
 
 
