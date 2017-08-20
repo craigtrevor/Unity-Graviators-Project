@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0f741888423910a45a1291524d217570
+timeCreated: 1503204181
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - healthPadParticle: {fileID: 198779392292996220, guid: bcf45c50878af2c48983b86a0f950922,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

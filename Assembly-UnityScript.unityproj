@@ -120,10 +120,10 @@
  <HintPath>W:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="DatabaseControl">
- <HintPath>C:/Users/n9482521/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
+ <HintPath>C:/Users/n9457828/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
  <Reference Include="VacuumShaders.Beast">
- <HintPath>C:/Users/n9482521/Documents/Unity-Graviators-Project/Assets/VacuumShaders/Beast/Scripts/VacuumShaders.Beast.dll</HintPath>
+ <HintPath>C:/Users/n9457828/Documents/Unity-Graviators-Project/Assets/VacuumShaders/Beast/Scripts/VacuumShaders.Beast.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

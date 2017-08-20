@@ -91,6 +91,7 @@
      <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
      <Compile Include="Assets\Scripts\Particle Scripts\DestroyParticle.cs" />
      <Compile Include="Assets\Scripts\Particle Scripts\GravLandParticle.cs" />
+     <Compile Include="Assets\Scripts\Particle Scripts\PlaySceneParticles.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
@@ -106,6 +107,7 @@
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\deathScreenCountdown.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\streamVideo.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_InputNavigator.cs" />
@@ -200,10 +202,10 @@
  <HintPath>W:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="DatabaseControl">
- <HintPath>C:/Users/n9482521/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
+ <HintPath>C:/Users/n9457828/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
  <Reference Include="VacuumShaders.Beast">
- <HintPath>C:/Users/n9482521/Documents/Unity-Graviators-Project/Assets/VacuumShaders/Beast/Scripts/VacuumShaders.Beast.dll</HintPath>
+ <HintPath>C:/Users/n9457828/Documents/Unity-Graviators-Project/Assets/VacuumShaders/Beast/Scripts/VacuumShaders.Beast.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -24,6 +24,10 @@ public class WeaponSpawn : NetworkBehaviour {
 	public GameObject weaponToHide;
 	public MonoBehaviour trailToHide;
 
+	private ParticleSystem playSwordThrowParticle;
+	public ParticleSystem swordThrowParticle;
+
+
     // Scripts
     Network_Soundscape networkSoundscape;
 
@@ -65,7 +69,6 @@ public class WeaponSpawn : NetworkBehaviour {
 		playerAnimator.SetTrigger("Ranged Attack");
 		StartCoroutine (WaitForCurrentAnim());
 	}
-
 	private IEnumerator WaitForCurrentAnim ()
 	{
 		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
@@ -78,6 +81,10 @@ public class WeaponSpawn : NetworkBehaviour {
 	{
 		// create an instance of the weapon and store a reference to its rigibody
 		Rigidbody weaponInstance = Instantiate (weapon, position, rotation) as Rigidbody;
+		//instantiate particle system
+
+
+
 		// Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
 		Vector3 velocity = rigidbodyVelocity + launchForce * forward;
 
@@ -99,4 +106,10 @@ public class WeaponSpawn : NetworkBehaviour {
 		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
 		weaponToHide.SetActive (true);
 	}
+	void onTriggerStay() {
+		if (m_Fired == false) {
+			ParticleSystem playSwordThrowParticle = (ParticleSystem)Instantiate (swordThrowParticle, this.transform.position, this.transform.rotation);
+			playSwordThrowParticle.Play ();
+	}
+}
 }

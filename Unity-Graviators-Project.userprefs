@@ -1,27 +1,11 @@
-﻿<Properties StartupItem="Unity-Graviators-Project.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs">
     <Files>
-      <File FileName="Assets\Scripts\Network Scripts\Network_Manager.cs" Line="1" Column="1" />
-<<<<<<< HEAD
-      <File FileName="Assets\Scripts\Network Scripts\Network_TrapManager.cs" Line="148" Column="2" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="32" Column="24" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_AidManager.cs" Line="17" Column="31" />
-      <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="121" Column="126" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_GameManager.cs" Line="19" Column="28" />
-      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" Line="148" Column="13" />
-      <File FileName="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" Line="110" Column="2" />
-      <File FileName="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScriptNew.cs" Line="217" Column="1" />
-=======
-      <File FileName="Assets\Scripts\Network Scripts\Network_TrapManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="167" Column="48" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_AidManager.cs" Line="17" Column="32" />
-      <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Network Scripts\Network_GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" Line="92" Column="1" />
->>>>>>> fef1958239bff83aa8da03c153a3839d7fef3748
+      <File FileName="Assets\Scripts\Particle Scripts\GravLandParticle.cs" Line="24" Column="144" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" Line="112" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
