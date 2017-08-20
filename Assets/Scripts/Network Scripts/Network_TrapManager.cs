@@ -94,12 +94,12 @@ public class Network_TrapManager : NetworkBehaviour {
 		}
     }
 
-  /*private void OnTriggerStay(Collider other)
-    {
-        if (this.gameObject.tag == SLOWTRAP_TAG && other.gameObject.tag == PLAYER_TAG){
-           ParticleSystem playSlowParticle = (ParticleSystem)Instantiate(slowParticle, playerController.transform.position, playerController.transform.rotation)
-        }
-    }*/
+  //private void OnTriggerStay(Collider other)
+  //  {
+  //      if (this.gameObject.tag == SLOWTRAP_TAG && other.gameObject.tag == PLAYER_TAG){
+		//	ParticleSystem playSlowParticle = (ParticleSystem)Instantiate (slowParticle, playerController.transform.position, playerController.transform.rotation);
+  //      }
+  //  }
 
 	//[Client]
 	//void OnTriggerStay(Collider other)
