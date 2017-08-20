@@ -315,6 +315,8 @@ ModelImporter:
     100614: VIS-thigh_pole.ik.L_end
     100616: VIS-thigh_pole.ik.R
     100618: VIS-thigh_pole.ik.R_end
+    100620: Def.Sword
+    100622: Def.Sword_end
     400000: Armour
     400002: Calf
     400004: chest
@@ -625,6 +627,8 @@ ModelImporter:
     400614: VIS-thigh_pole.ik.L_end
     400616: VIS-thigh_pole.ik.R
     400618: VIS-thigh_pole.ik.R_end
+    400620: Def.Sword
+    400622: Def.Sword_end
     2300000: ShoulderPadsLeatherUV
     2300002: ShoulderPadsLeatherUV.001
     2300004: ShoulderPadsLeatherUV.002
@@ -700,7 +704,9 @@ ModelImporter:
     7400006: Sparkus|Ranged
     7400008: Sparkus|Run
     7400010: Sparkus|T-Pose
-    7400012: Sparkus|Ultimate
+    7400012: Sparkus|UltimateStart
+    7400014: Sparkus|Melee
+    7400016: Sparkus|UltimateLoop
     9500000: //RootNode
     13700000: Armour
     13700002: Calf
@@ -708,6 +714,27 @@ ModelImporter:
     13700006: Foot
     13700008: Head
     13700010: Leg
+    13700012: ShoulderPadsLeatherUV
+    13700014: ShoulderPadsLeatherUV.002
+    13700016: ShoulderPadsLeatherUV.003
+    13700018: ShoulderPadsLeatherUV.004
+    13700020: ShoulderPadsLeatherUV.005
+    13700022: ShoulderPadsLeatherUV.006
+    13700024: ShoulderPadsLeatherUV.007
+    13700026: ShoulderPadsLeatherUV.008
+    13700028: Skirt Piece
+    13700030: Skirt Piece.001
+    13700032: Skirt Piece.002
+    13700034: Skirt Piece.003
+    13700036: Skirt Piece.004
+    13700038: Skirt Piece.005
+    13700040: Skirt Piece.006
+    13700042: Skirt Piece.007
+    13700044: Skirt Piece.008
+    13700046: Sword
+    13700048: SwordJoint
+    13700050: SwordJoint.001
+    13700052: ShoulderPadsLeatherUV.001
   materials:
     importMaterials: 1
     materialName: 0
@@ -764,7 +791,7 @@ ModelImporter:
       name: Sparkus|Jump
       takeName: rig|Jump
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -792,7 +819,7 @@ ModelImporter:
       name: Sparkus|Melee
       takeName: rig|Melee
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 43
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -820,7 +847,7 @@ ModelImporter:
       name: Sparkus|Ranged
       takeName: rig|Ranged
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -847,15 +874,15 @@ ModelImporter:
     - serializedVersion: 16
       name: Sparkus|Run
       takeName: rig|Run
-      firstFrame: 0
-      lastFrame: 120
+      firstFrame: 10
+      lastFrame: 41
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -901,10 +928,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Sparkus|Ultimate
+      name: Sparkus|UltimateStart
       takeName: rig|Ultimate
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -912,6 +939,34 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Sparkus|UltimateLoop
+      takeName: rig|Ultimate
+      firstFrame: 20
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
