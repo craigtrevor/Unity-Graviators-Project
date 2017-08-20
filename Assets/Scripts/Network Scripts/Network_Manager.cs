@@ -205,8 +205,6 @@ public class Network_Manager : NetworkManager {
             characterIndex = i.value;
         }
 
-        Debug.Log(characterIndex);
-
         GameObject playerPrefab = spawnPrefabs[characterIndex];
 
         GameObject player;

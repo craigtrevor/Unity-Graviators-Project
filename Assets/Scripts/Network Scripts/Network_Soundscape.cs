@@ -23,6 +23,11 @@ public class Network_Soundscape : NetworkBehaviour {
         playerAudioSources[audioSource].PlayOneShot(playerAudioClips[clipID]);
     }
 
+    public void StopNonNetworkedSound(int clipID, int audioSource)
+    {
+        playerAudioSources[audioSource].Stop();
+    }
+
     public void PlaySound(int clipID, int audioSourceID, float soundDealy)
     {
         if (clipID >= 0 && audioSourceID >= 0 && clipID < playerAudioClips.Length && audioSourceID < playerAudioSources.Length)

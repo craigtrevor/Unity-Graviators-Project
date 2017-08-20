@@ -49,10 +49,13 @@ public class PlayerController : MonoBehaviour {
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
     Network_CombatManager netCombatManager;
+    Network_Soundscape networkSoundScape;
 
     public float cameraDisplacement;
 
     bool recieveInput, stunned;
+    [SerializeField]
+    bool isPlaying;
 
     public Quaternion TargetRotation {
         get { return targetRotation; }
@@ -75,6 +78,7 @@ public class PlayerController : MonoBehaviour {
     void Start() {
 
         targetRotation = transform.rotation;
+        isPlaying = false;
 
         if (GetComponentInParent<Rigidbody>()) {
             rBody = GetComponentInParent<Rigidbody>();
@@ -88,6 +92,7 @@ public class PlayerController : MonoBehaviour {
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
+        networkSoundScape = GetComponentInParent<Network_Soundscape>();
 
         recieveInput = true;
         stunned = false;
@@ -201,6 +206,7 @@ public class PlayerController : MonoBehaviour {
 
         GetInput();
         Turn();
+        PlaySound();
 
         gravityBlockScript.UpdatePosition(); //Update gravity block position
     }
@@ -316,6 +322,23 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
+    }
+
+    void PlaySound()
+    {
+        //Debug.Log(velocity.y);
+
+        //if (velocity.y <= -40 && !isPlaying)
+        //{
+        //   networkSoundScape.PlayNonNetworkedSound(17, 5);
+        //   isPlaying = true;
+        //}
+
+        //if (velocity.y >= -40)
+        //{
+        //    networkSoundScape.StopNonNetworkedSound(17, 5);
+        //    isPlaying = false;
+        //}
     }
 
     IEnumerator JumpTime() {
