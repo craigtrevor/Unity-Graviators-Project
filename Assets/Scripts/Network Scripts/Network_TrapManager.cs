@@ -86,6 +86,7 @@ public class Network_TrapManager : NetworkBehaviour {
 
 		if (this.gameObject.tag == SPEEDTRAP_TAG && other.tag == PLAYER_TAG)
 		{
+			Debug.Log("I'm making someone fast as fuck boiiii");
 			playerController = other.GetComponentInChildren<PlayerController>();         
 			playerController.moveSettings.forwardVel = increasedWalkSpeed;
 			playerController.moveSettings.rightVel = increasedWalkSpeed;
@@ -122,7 +123,7 @@ public class Network_TrapManager : NetworkBehaviour {
 
 		if (this.gameObject.tag == SPEEDTRAP_TAG && other.tag == PLAYER_TAG)
 		{
-			Debug.Log("I'm making someone fast as fuck boiiii");
+			
 			playerController = other.GetComponentInChildren<PlayerController>();
 			playerController.moveSettings.forwardVel = normalWalkSpeed;
 			playerController.moveSettings.rightVel = normalWalkSpeed;
