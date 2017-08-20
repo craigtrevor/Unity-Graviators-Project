@@ -186,7 +186,6 @@ public class Network_CombatManager : NetworkBehaviour {
         {
             networkSoundscape.PlaySound(2, 0, 0f);
         }
-
     }
 
     void AttackPlayer()
@@ -217,7 +216,7 @@ public class Network_CombatManager : NetworkBehaviour {
 
     IEnumerator meleeAnimationPlaying()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
         attackCounter = 0;
         StopAllCoroutines();
         isAttacking = false;
@@ -304,7 +303,6 @@ public class Network_CombatManager : NetworkBehaviour {
             }
         }
     }
-
 
     IEnumerator ERNNAttacking(Collider hitCol)
     {

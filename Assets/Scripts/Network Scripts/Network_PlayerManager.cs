@@ -58,6 +58,7 @@ public class Network_PlayerManager : NetworkBehaviour
     GameObject[] UT_D1Customization;
 
     private bool firstSetup = true;
+    private bool firstPlay = false;
 
     // Player Animator & Model
     public Animator playerAnim;
@@ -83,7 +84,6 @@ public class Network_PlayerManager : NetworkBehaviour
 
     void Start()
     {
-        networkSoundscape = transform.GetComponent<Network_Soundscape>();
         netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
         playerCharacterID = networkManagerScript.characterID;
@@ -94,6 +94,13 @@ public class Network_PlayerManager : NetworkBehaviour
         if (isLocalPlayer)
         {
             Network_GameManager.instance.SetSceneCameraActive(false);
+        }
+
+        if (!firstPlay)
+        {
+            networkSoundscape = transform.GetComponent<Network_Soundscape>();
+            networkSoundscape.PlayNonNetworkedSound(16, 4);
+            firstPlay = true;
         }
 
         CmdBroadCastNewPlayerSetup();
@@ -194,14 +201,18 @@ public class Network_PlayerManager : NetworkBehaviour
 
         if (sourcePlayer != null)
         {
+            if (isLocalPlayer)
+            {
+                randomSound = Random.Range(9, 13);
+                networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+            }
+
             sourcePlayer.killStats++;
             Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
         }
 
         if (sourcePlayer.killStats == 10)
         {
-            Debug.Log("YAY!");
-
             if (playerCharacterID == "ERNN")
             {
                 networkSoundscape.PlayNonNetworkedSound(4, 4);
@@ -299,9 +310,11 @@ public class Network_PlayerManager : NetworkBehaviour
 
         Debug.Log(transform.name + " respawned.");
 
-        randomSound = Random.Range(7, 13);
-
-        networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+        if (isLocalPlayer)
+        {
+            randomSound = Random.Range(7, 9);
+            networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+        }
     }
 
     public void SetDefaults()
@@ -329,8 +342,6 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
-
-        networkSoundscape.PlayNonNetworkedSound(16, 4);
     }
 
     void CheckCustomizations()
@@ -403,7 +414,6 @@ public class Network_PlayerManager : NetworkBehaviour
 
         NetworkManager.Shutdown();
     }
-
 
     void OnTriggerStay(Collider col)
     {
