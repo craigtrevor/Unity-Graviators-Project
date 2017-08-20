@@ -43,10 +43,11 @@ public class Network_CombatManager : NetworkBehaviour {
     private float highDamageVelocity = 25;
 
 	//stun timers
-	public float stunTime = 2f;
+	private float d1StunTime = 2f;
+    private float sparkusStunTime = 5f;
 
-	// slow info
-	public float slowTime = 2f;
+    // slow info
+    public float slowTime = 2f;
 	private int reducedWalkSpeed = 6;
 	private int normalWalkSpeed = 12;
 
@@ -111,20 +112,23 @@ public class Network_CombatManager : NetworkBehaviour {
 		if (other.tag == "UnitD1_RangedWeapon") 
 		{
             //StartCoroutine (stunTimer());
-            stunTimer();
+            stunTimer(d1StunTime);
 		}
 		if (other.tag == "ThrowingSword") 
 		{
 			StartCoroutine (slowTimer());
-		}
+		} 
+        if (other.tag =="Sparkus_Ranged") {
+            stunTimer(sparkusStunTime);
+        }
 
 		ParticleSystem playGravLandMed = (ParticleSystem)Instantiate(gravLandParticleMed,this.transform.position + Vector3.down, this.transform.rotation);
 		gravLandParticleMed.Emit(1);
 	}
 
-	void stunTimer()	{
+	void stunTimer(float stunTime)	{
         
-		if (!isLocalPlayer) //
+		if (!isLocalPlayer) 
 		{
             this.gameObject.GetComponentInChildren<PlayerController>().StartStun(stunTime);
             Debug.Log(" A player has been stunned");
@@ -137,19 +141,15 @@ public class Network_CombatManager : NetworkBehaviour {
 	IEnumerator slowTimer()
 	{
 		playerControllermodifier = this.gameObject.GetComponentInChildren<PlayerController> ();
-		//play stun particles
-		playerControllermodifier.moveSettings.forwardVel = reducedWalkSpeed;
-		playerControllermodifier.moveSettings.rightVel = reducedWalkSpeed;
-		playerControllermodifier.moveSettings.jumpVel = reducedJumpSpeed;
-		Debug.Log (" A player has been slowed");
-		yield return new WaitForSeconds (slowTime);
-		if (isLocalPlayer) // if they are the local player enable so they they can move agian whuile not ebalaing it for other players
-		{
-			playerControllermodifier.moveSettings.forwardVel = normalWalkSpeed;
-			playerControllermodifier.moveSettings.rightVel = normalWalkSpeed;
-			playerControllermodifier.moveSettings.jumpVel = normalJumpSpeed;
-		}
-		Debug.Log ("the player is running at normal speed agian");
+        //play stun particles
+        if (!isLocalPlayer)
+        {
+            playerControllermodifier.moveSettings.forwardVel = reducedWalkSpeed;
+            playerControllermodifier.moveSettings.rightVel = reducedWalkSpeed;
+            playerControllermodifier.moveSettings.jumpVel = reducedJumpSpeed;
+            yield return new WaitForSeconds(slowTime);
+        }
+		
 	}
 
     void CheckAnimation()

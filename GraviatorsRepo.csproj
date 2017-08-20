@@ -121,10 +121,10 @@
     <Compile Include="Assets\Scripts\Particle Scripts\DestroyParticle.cs" />
     <Compile Include="Assets\Scripts\Particle Scripts\GravLandParticle.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\FaceCamera.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScriptNew.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisTextScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
@@ -160,6 +160,7 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusRanged.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusRangeSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusUlt.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_Ranged.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_Ult.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_UltDamaging.cs" />
   </ItemGroup>

@@ -28,10 +28,9 @@ public class SparkusRanged : NetworkBehaviour {
         transform.Translate(Vector3.forward * 0.2f);
         transform.localScale += new Vector3(0.2f, 0.2f, 0f);
 
-        if (timeSinceCreation > 2f) {
-            Destroy(this.gameObject);
-        }
+        Destroy(this.gameObject, 2f);
 
+        /*
         //Physics.IgnoreLayerCollision (10, 30); // the ranged object will ignore the local player layer
         hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
 
@@ -44,7 +43,7 @@ public class SparkusRanged : NetworkBehaviour {
                 CmdStun(hitCol.gameObject, stunTime, sourceID);
 
             }
-        }
+        }*/
 
     }
 
@@ -76,7 +75,7 @@ public class SparkusRanged : NetworkBehaviour {
 
         //Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
         //networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
-        
+
         //player.GetComponent<PlayerController>().StartStun(5f);
     }
 
