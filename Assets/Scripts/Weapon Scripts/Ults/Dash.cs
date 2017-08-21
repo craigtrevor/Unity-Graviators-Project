@@ -20,6 +20,7 @@ public class Dash : NetworkBehaviour
     public Transform MeleeSpawn;
     private GameObject dash;
 
+
     // numbers 
     //charging
     public float chargePercent = 0; // the amount of charge
@@ -28,7 +29,7 @@ public class Dash : NetworkBehaviour
     public int numberOfDashes = 0;// change this for uses
 
     //stats
-    public int thrust = 9000; //change this for speed
+	public int thrust = 9001; //change this for speed (IT'S OVER 9000)
     public float waitTime = 0.25f;// the time the dash goes before the dash stops;
     public float fireRate = 0.25f; // the smaller the faster
     private float nextFire = 1.00f; // the time between firing
@@ -58,6 +59,9 @@ public class Dash : NetworkBehaviour
     private bool dashingRotate = false;
     [SerializeField]
     private bool dashPause = false;
+
+	private ParticleSystem playNoNameDashParticle;
+	public ParticleSystem noNameDashParticle;
 
     // Scripts
     Network_PlayerManager networkPlayerManager;
@@ -145,7 +149,7 @@ public class Dash : NetworkBehaviour
     }
 
 
-	//******Ultimate Charger******\\
+
 	[Client]
 	void OnTriggerEnter(Collider other)
 	{
@@ -168,7 +172,7 @@ public class Dash : NetworkBehaviour
 
 		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
 	}
-	//******Ultimate Charger******\\
+
 
 
     [Client]
@@ -185,8 +189,12 @@ public class Dash : NetworkBehaviour
                 playerAnimator.SetTrigger("StartUltimate");
                 networkSoundscape.PlayNonNetworkedSound(13, 4);
             }
-        }
+
+			ParticleSystem playNoNameDashParticle = (ParticleSystem)Instantiate (noNameDashParticle, this.transform.position, this.transform.rotation);
+				playNoNameDashParticle.Emit (1); 
+        
     }
+	}
 
     [Client]
     public void DashDamageing()
