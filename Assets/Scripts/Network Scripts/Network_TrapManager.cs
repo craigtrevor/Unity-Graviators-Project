@@ -37,6 +37,9 @@ public class Network_TrapManager : NetworkBehaviour {
     [SerializeField]
     private int normalJumpSpeed = 15;
 
+	public ParticleSystem healthPadParticle;
+	private ParticleSystem playHealthPadParticle;
+
     //Spike Trap Variables
 
     [SerializeField]
@@ -66,6 +69,8 @@ public class Network_TrapManager : NetworkBehaviour {
             playerController.moveSettings.jumpVel = reducedJumpSpeed;
 
 
+
+
 			//anim = other.GetComponent<Animator>();
 			//playerAnim.Animator.speed = 0.6f;
 			//playerAnimator.speed = 0.2f;
@@ -91,6 +96,7 @@ public class Network_TrapManager : NetworkBehaviour {
 			playerController.moveSettings.rightVel = increasedWalkSpeed;
 			playerController.moveSettings.jumpVel = increasedJumpSpeed;
 		}
+
     }
 
   /*private void OnTriggerStay(Collider other)

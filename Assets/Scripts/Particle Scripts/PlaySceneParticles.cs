@@ -6,6 +6,7 @@ public class PlaySceneParticles : MonoBehaviour {
 
 	public ParticleSystem healthPadParticle;
 	private ParticleSystem playHealthPadParticle;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,7 +18,9 @@ public class PlaySceneParticles : MonoBehaviour {
 
 }
 	void PlayHealthParticle () {
-		ParticleSystem playHealthPadParticle = (ParticleSystem)Instantiate(healthPadParticle,this.transform.position, this.transform.rotation);
+
+		ParticleSystem playHealthPadParticle = (ParticleSystem)Instantiate(healthPadParticle,this.transform.position + Vector3.zero, healthPadParticle.transform.rotation);
 		playHealthPadParticle.Emit(1);
 }
+
 }

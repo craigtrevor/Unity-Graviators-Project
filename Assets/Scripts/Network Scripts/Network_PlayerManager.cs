@@ -71,6 +71,9 @@ public class Network_PlayerManager : NetworkBehaviour
     private ParticleSystem playSlowParticle;
     public ParticleSystem slowParticle;
 
+	public ParticleSystem healthPadParticle;
+	private ParticleSystem playHealthPadParticle;
+
 	public GameObject corpse; // the player exploding on thier death, assigned in editor
 	private ParticleSystem playDeathParticle;
 	public ParticleSystem deathParticle;
@@ -428,8 +431,10 @@ public class Network_PlayerManager : NetworkBehaviour
 			playerAnim.speed = 0.0f;*/
 
 			Debug.Log("My animation should be slowed down...");
-
-           
+			    
 	}
 }
+	void onTriggerEnter(Collider col){
+		
+	}
 }
