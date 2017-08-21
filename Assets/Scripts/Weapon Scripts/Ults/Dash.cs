@@ -111,7 +111,8 @@ public class Dash : NetworkBehaviour
         Debug.DrawRay(legSensor.position, front * 2, Color.green); // debungging raycast to see direction
         Debug.DrawRay(leftSensor.position, front * 2, Color.green); // debungging raycast to see direction
         Debug.DrawRay(rightSensor.position, front * 2, Color.green); // debungging raycast to see direction
-        if (isDashing == true)
+      
+		if (isDashing == true)
         {
 
             if (Physics.Raycast(headSensor.position, front, 2, mask) || Physics.Raycast(legSensor.position, front, 2, mask) || Physics.Raycast(leftSensor.position, front, 2, mask) || Physics.Raycast(rightSensor.position, front, 2, mask)) // is ray hits an object
@@ -147,8 +148,7 @@ public class Dash : NetworkBehaviour
             */
 
     }
-
-
+		
 
 	[Client]
 	void OnTriggerEnter(Collider other)
@@ -188,11 +188,11 @@ public class Dash : NetworkBehaviour
                 playerAnimator.SetBool("UltimateLoop", true);
                 playerAnimator.SetTrigger("StartUltimate");
                 networkSoundscape.PlayNonNetworkedSound(13, 4);
+				ParticleSystem playNoNameDashParticle = (ParticleSystem)Instantiate (noNameDashParticle, this.transform.position + Vector3.back, this.transform.rotation);
+				playNoNameDashParticle.Emit (1); 
             }
 
-			ParticleSystem playNoNameDashParticle = (ParticleSystem)Instantiate (noNameDashParticle, this.transform.position, this.transform.rotation);
-				playNoNameDashParticle.Emit (1); 
-        
+	
     }
 	}
 
