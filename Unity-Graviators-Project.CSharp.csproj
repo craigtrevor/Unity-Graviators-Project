@@ -79,6 +79,9 @@
     <Reference Include="DatabaseControl">
       <HintPath>Assets\Database Control Free\Scripts\DatabaseControl.dll</HintPath>
     </Reference>
+    <Reference Include="VacuumShaders.Beast">
+      <HintPath>Assets\VacuumShaders\Beast\Scripts\VacuumShaders.Beast.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Database Control Free\Demos\C#\Scripts\DCF_DemoScene_ManagerScript_CSharp.cs" />
@@ -92,6 +95,8 @@
     <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
@@ -114,16 +119,17 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerSyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_RoomListItem.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_SkillTree.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_Soundscape.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_SyncRot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
     <Compile Include="Assets\Scripts\Particle Scripts\DestroyParticle.cs" />
     <Compile Include="Assets\Scripts\Particle Scripts\GravLandParticle.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\FaceCamera.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScriptNew.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisTextScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
@@ -151,16 +157,15 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\damageRange.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Dash.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\SinglePlayer_WeaponSpawn.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\WeaponSpawn.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusRanged.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusRangeSpawn.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Sparkus\SparkusUlt.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_Ult.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Unit D1\UnitD1_UltDamaging.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\damageRange.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\SinglePlayer_WeaponSpawn.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Dash.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_Ult.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_UltDamaging.cs" />
+    <Compile Include="Assets\SpawnParticleEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
@@ -188,6 +193,16 @@
     <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\Hologram.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Example Scene\Files\Unity Tessellation.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\Beast.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\CompilationTargetLevel.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\Resources\Internal-DepthNormalsTexture.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\Standard.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\StandardSpecular.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardCore.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardCoreForward.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardInput.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardShadow.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonLighting.cginc" />

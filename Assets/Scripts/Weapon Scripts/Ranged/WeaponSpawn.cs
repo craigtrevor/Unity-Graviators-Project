@@ -31,19 +31,37 @@ public class WeaponSpawn : NetworkBehaviour {
 	private ParticleSystem playSparkusRanged;
 	public ParticleSystem sparkusRanged;
 
+    private string playerCharacterID;
+
     // Scripts
     Network_Soundscape networkSoundscape;
+    Network_PlayerManager networkPlayerManagerScript;
 
     private void Start() {
+
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Collider2D = GetComponent<Collider2D>();
         _sourceID = transform.name;
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
+        networkPlayerManagerScript = transform.GetComponent<Network_PlayerManager>();
+        playerCharacterID = networkPlayerManagerScript.playerCharacterID;
     }
 
-    void PlayThrowSound() {
-        if (m_Fired == true) {
+    void PlayThrowSound()
+    {
+        if (m_Fired == true && playerCharacterID == "ERNN")
+        {
             networkSoundscape.PlaySound(3, 1, 0.5f);
+        }
+
+        else if (m_Fired == true && playerCharacterID == "SPKS")
+        {
+            networkSoundscape.PlaySound(17, 1, 0.5f);
+        }
+
+        else if (m_Fired == true && playerCharacterID == "UT-D1")
+        {
+            networkSoundscape.PlaySound(18, 1, 0.5f);
         }
     }
 

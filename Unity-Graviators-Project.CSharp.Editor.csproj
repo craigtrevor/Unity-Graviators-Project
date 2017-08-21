@@ -121,6 +121,18 @@
     <Reference Include="DatabaseControlEditor">
       <HintPath>Assets\Database Control Free\Scripts\Editor\DatabaseControlEditor.dll</HintPath>
     </Reference>
+    <Reference Include="VacuumShaders.BeastVC">
+      <HintPath>Assets\VacuumShaders\Beast\Editor\VacuumShaders.BeastVC.dll</HintPath>
+    </Reference>
+    <Reference Include="VacuumShaders.Beast_Editor">
+      <HintPath>Assets\VacuumShaders\Beast\Editor\VacuumShaders.Beast_Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="VacuumShaders.Beast">
+      <HintPath>Assets\VacuumShaders\Beast\Scripts\VacuumShaders.Beast.dll</HintPath>
+    </Reference>
+    <Reference Include="VacuumShaders">
+      <HintPath>Assets\VacuumShaders\Editor\VacuumShaders.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-UnityScript">
       <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
     </Reference>
@@ -160,6 +172,16 @@
     <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\Hologram.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Example Scene\Files\Unity Tessellation.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\Beast.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\CompilationTargetLevel.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\Resources\Internal-DepthNormalsTexture.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\Standard.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\StandardSpecular.shader" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardCore.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardCoreForward.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardInput.cginc" />
+    <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardShadow.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
     <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonLighting.cginc" />
