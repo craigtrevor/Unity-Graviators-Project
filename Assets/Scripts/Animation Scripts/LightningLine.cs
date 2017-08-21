@@ -2,19 +2,21 @@
 using  System.Collections.Generic;
 using  UnityEngine;
 
-public class  Lightingline:  MonoBehaviour  {
+public class  LightningLine :  MonoBehaviour  {
 
-	public  Vector3  target;
-	public  LineRenderer LR;
+	public Vector3 target;
+	public Vector3 startPoint;
+	public LineRenderer LR;
 	public float  arcLength =  2.0f;
 	public float  arcVariation =  2.0f;
 	public float  inaccuracy =  1.0f;
 
 	void  Update()  {
+
 		Vector3  lastPoint =  Vector3.zero;
 		int  i =  1;
-		LR.SetPosition(0, Vector3.zero); //make the origin of the LR the same as the transform
-		while  (Vector3.Distance(target,  lastPoint)  >.5)  { //was the Last arc not touching the target?
+		LR.SetPosition(0, startPoint); //make the origin of the LR the same as the transform
+		while  (Vector3.Distance(target,  lastPoint)  > 1f)  { //was the Last arc not touching the target?
 			LR.positionCount  = i +  1; //then we need a new vertex in our Line renderer
 			Vector3  fwd = target - lastPoint; //gives the direction to our target from the end of the Last arc
 			fwd.Normalize(); //makes the direction to scaLe
@@ -28,6 +30,7 @@ public class  Lightingline:  MonoBehaviour  {
 	}
 
 	void  OnValidate()  {
+		LR.SetPosition (0, startPoint);
 		LR.SetPosition(1, target);
 	}
 
