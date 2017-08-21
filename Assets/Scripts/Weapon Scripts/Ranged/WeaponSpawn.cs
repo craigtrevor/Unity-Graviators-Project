@@ -28,6 +28,9 @@ public class WeaponSpawn : NetworkBehaviour {
     public GameObject weaponToHide;
     //public MonoBehaviour trailToHide;
 
+	private ParticleSystem playSparkusRanged;
+	public ParticleSystem sparkusRanged;
+
     // Scripts
     Network_Soundscape networkSoundscape;
 
@@ -81,6 +84,10 @@ public class WeaponSpawn : NetworkBehaviour {
         if (!notRigid) {
             // create an instance of the weapon and store a reference to its rigibody
             Rigidbody weaponInstance = Instantiate(weapon, position, rotation) as Rigidbody;
+
+			//ParticleSystem playSparkusRanged = (ParticleSystem)Instantiate (sparkusRanged, this.transform.position, this.transform.rotation);
+			//playSparkusRanged.Emit (1);
+
             // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
             Vector3 velocity = rigidbodyVelocity + launchForce * forward;
 
@@ -95,8 +102,12 @@ public class WeaponSpawn : NetworkBehaviour {
             NetworkServer.Spawn(weaponInstance.gameObject);
             Destroy(weaponInstance, 3);
         } else {
+			
             // create an instance of the weapon and store a reference to its collider
             Collider2D weaponInstance = Instantiate(colliderWeapon, position, rotation) as Collider2D;
+			ParticleSystem playSparkusRanged = (ParticleSystem)Instantiate (sparkusRanged, position, rotation);
+			playSparkusRanged.Emit (1);
+
 
             NetworkServer.Spawn(weaponInstance.gameObject);
         }

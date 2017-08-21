@@ -116,9 +116,10 @@ public class Network_CombatManager : NetworkBehaviour {
         if (other.tag == "Sparkus_Ranged") {
             StartCoroutine(stunTimer(sparkusStunTime));
         }
-
-        ParticleSystem playGravLandMed = (ParticleSystem)Instantiate(gravLandParticleMed, this.transform.position + Vector3.down, this.transform.rotation);
-        gravLandParticleMed.Emit(1);
+		if (other.tag == "collider") {
+			ParticleSystem playGravLandMed = (ParticleSystem)Instantiate (gravLandParticleMed, this.transform.position + Vector3.down, this.transform.rotation);
+			gravLandParticleMed.Emit (1);
+		}
     }
 
     IEnumerator stunTimer(float stunTime) {
