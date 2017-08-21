@@ -6,11 +6,18 @@ public class Network_SceneManager : MonoBehaviour
 {
     public static Network_SceneManager instance;
 
+    [SerializeField]
+    AudioSource musicSource;
+
+    bool isPlaying;
+
     private Scene currentScene;
     public string sceneName;
 
     void Awake()
     {
+        isPlaying = true;
+
         if (instance != null)
         {
             Destroy(gameObject);
@@ -28,5 +35,34 @@ public class Network_SceneManager : MonoBehaviour
 
         // Retrieve the name of this scene.
         sceneName = currentScene.name;
+
+        PlaySong();
+    }
+
+    void PlaySong()
+    {
+        if (sceneName == "Online_Scene" && isPlaying == true)
+        {
+            musicSource.Pause();
+            isPlaying = false;
+        }
+
+        else if (sceneName == "Tutorial_Arena" && isPlaying == true)
+        {
+            musicSource.Pause();
+            isPlaying = false;
+        }
+
+        else if (sceneName == "Lobby_Scene" && !isPlaying)
+        {
+            musicSource.UnPause();
+            isPlaying = true;
+        }
+
+        else if (sceneName == "Main_Menu" && !isPlaying)
+        {
+            musicSource.UnPause();
+            isPlaying = true;
+        }
     }
 }
