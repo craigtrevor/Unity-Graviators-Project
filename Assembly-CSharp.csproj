@@ -176,6 +176,7 @@
      <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Texture.shader" />
      <None Include="Assets\VacuumShaders\Beast\Shaders\StandardSpecular.shader" />
      <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim.shader" />
+     <None Include="Assets\Shaders\Gem.shader" />
      <None Include="Assets\_MK\MKToon\Shader\MKToonTransparent.shader" />
      <None Include="Assets\VacuumShaders\Beast\Shaders\Standard.shader" />
  <Reference Include="UnityEngine.UI">
