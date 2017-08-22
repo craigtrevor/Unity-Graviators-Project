@@ -47,12 +47,6 @@ public class Network_SceneManager : MonoBehaviour
             isPlaying = false;
         }
 
-        else if (sceneName == "Tutorial_Arena" && isPlaying == true)
-        {
-            musicSource.Pause();
-            isPlaying = false;
-        }
-
         else if (sceneName == "Lobby_Scene" && !isPlaying)
         {
             musicSource.UnPause();

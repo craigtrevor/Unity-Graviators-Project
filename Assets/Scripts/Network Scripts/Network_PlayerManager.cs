@@ -95,6 +95,13 @@ public class Network_PlayerManager : NetworkBehaviour
         netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
         playerCharacterID = networkManagerScript.characterID;
+
+        if (isLocalPlayer && !firstPlay)
+        {
+            networkSoundscape = transform.GetComponent<Network_Soundscape>();
+            networkSoundscape.PlayNonNetworkedSound(16, 4);
+            firstPlay = true;
+        }
     }
 
     private void Update()
@@ -107,13 +114,6 @@ public class Network_PlayerManager : NetworkBehaviour
         if (isLocalPlayer)
         {
             Network_GameManager.instance.SetSceneCameraActive(false);
-        }
-
-        if (!firstPlay)
-        {
-            networkSoundscape = transform.GetComponent<Network_Soundscape>();
-            networkSoundscape.PlayNonNetworkedSound(16, 4);
-            firstPlay = true;
         }
 
         CmdBroadCastNewPlayerSetup();
