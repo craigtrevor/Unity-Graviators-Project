@@ -9,8 +9,6 @@ public class deathScreenCountdown : MonoBehaviour {
 
 	public Text countdownText;
 
-
-
 	void Update()
 	{
 		timeLeft -= Time.deltaTime;
@@ -18,6 +16,7 @@ public class deathScreenCountdown : MonoBehaviour {
 		if(timeLeft < 0)
 		{
 			countdownText.text = "Respawning";
+            timeLeft = 5.00f;
 		}
 	}
 }

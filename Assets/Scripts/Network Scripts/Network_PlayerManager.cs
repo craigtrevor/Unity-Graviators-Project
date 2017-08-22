@@ -51,6 +51,8 @@ public class Network_PlayerManager : NetworkBehaviour
     [SerializeField]
     private GameObject[] disableGameObjectsOnDeath;
     [SerializeField]
+    GameObject[] deathCanvas;
+    [SerializeField]
     GameObject[] ERNNCustomization;
     [SerializeField]
     GameObject[] SPKSCustomization;
@@ -59,6 +61,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private bool firstSetup = true;
     private bool firstPlay = false;
+    private bool deathbyPlayer;
+    private bool deathbyTrap;
 
     // Player Animator & Model
     public Animator playerAnim;
@@ -76,6 +80,9 @@ public class Network_PlayerManager : NetworkBehaviour
 	public ParticleSystem deathParticle;
 
     [SerializeField]
+    AudioSource narrationAudio;
+
+    [SerializeField]
     GameObject netManagerGameObject;
 
     // Scripts
@@ -87,6 +94,11 @@ public class Network_PlayerManager : NetworkBehaviour
         netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
         playerCharacterID = networkManagerScript.characterID;
+    }
+
+    private void Update()
+    {
+        MuteNarration();
     }
 
     public void SetupPlayer()
@@ -198,6 +210,8 @@ public class Network_PlayerManager : NetworkBehaviour
         Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
 
         isDead = true;
+        deathbyPlayer = true;
+        deathbyTrap = false;
 
         if (sourcePlayer != null)
         {
@@ -239,6 +253,8 @@ public class Network_PlayerManager : NetworkBehaviour
     private void DieFromTrap(string _sourceID)
     {
         isDead = true;
+        deathbyPlayer = false;
+        deathbyTrap = true;
 
         deathStats++;
 
@@ -298,22 +314,52 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
-
-        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-        transform.position = _spawnPoint.position;
-        transform.rotation = _spawnPoint.rotation;
-
-        yield return new WaitForSeconds(0.1f);
-
-        SetupPlayer();
-
-        Debug.Log(transform.name + " respawned.");
-
-        if (isLocalPlayer)
+        if (isLocalPlayer && deathbyPlayer)
         {
-            randomSound = Random.Range(7, 9);
-            networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+            deathCanvas[0].SetActive(true);
+            yield return new WaitForSeconds(5f);
+            //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
+            deathCanvas[0].SetActive(false);
+
+            Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+            transform.position = _spawnPoint.position;
+            transform.rotation = _spawnPoint.rotation;
+
+            yield return new WaitForSeconds(0.1f);
+
+            SetupPlayer();
+
+            Debug.Log(transform.name + " respawned.");
+
+            if (isLocalPlayer)
+            {
+                randomSound = Random.Range(7, 9);
+                networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+            }
+        }
+
+        else if (isLocalPlayer && deathbyTrap)
+        {
+            deathCanvas[1].SetActive(true);
+            yield return new WaitForSeconds(5f);
+            //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
+            deathCanvas[1].SetActive(false);
+
+            Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+            transform.position = _spawnPoint.position;
+            transform.rotation = _spawnPoint.rotation;
+
+            yield return new WaitForSeconds(0.1f);
+
+            SetupPlayer();
+
+            Debug.Log(transform.name + " respawned.");
+
+            if (isLocalPlayer)
+            {
+                randomSound = Random.Range(7, 9);
+                networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+            }
         }
     }
 
@@ -422,14 +468,22 @@ public class Network_PlayerManager : NetworkBehaviour
             ParticleSystem playSlowParticle = (ParticleSystem)Instantiate(slowParticle, this.transform.position + Vector3.down, this.transform.rotation);
             playSlowParticle.Emit(1);
 
-			/*playerAnim = GetComponent<Animator>();
+            /*playerAnim = GetComponent<Animator>();
 
 
 			playerAnim.speed = 0.0f;*/
 
-			Debug.Log("My animation should be slowed down...");
+            Debug.Log("My animation should be slowed down...");
 
-           
-	}
-}
+
+        }
+    }
+
+    void MuteNarration()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            narrationAudio.Stop();
+        }
+    }
 }
