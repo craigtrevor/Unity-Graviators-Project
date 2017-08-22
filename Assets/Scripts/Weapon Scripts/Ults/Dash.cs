@@ -145,9 +145,9 @@ public class Dash : NetworkBehaviour
     }
 
 
-	//******Ultimate Charger******\\
+
 	[Client]
-	void OnTriggerEnter(Collider other)
+	void OnTriggerStay(Collider other) //Ultimate charger - CB
 	{
 		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG)
 		{
@@ -168,7 +168,6 @@ public class Dash : NetworkBehaviour
 
 		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
 	}
-	//******Ultimate Charger******\\
 
 
     [Client]
