@@ -24,14 +24,15 @@ public class Network_PlayerManager : NetworkBehaviour
         return currentHealth / maxHealth;
     }
 
-    public float maxUltimateGain = 100;
+    public float maxChargeGain = 50;
+	public float maxUltCharge = 100;
 
     [SyncVar]
     public float currentUltimateGain;
 
     public float GetUltimatePct()
     {
-        return currentUltimateGain / maxUltimateGain;
+		return currentUltimateGain / maxUltCharge;
     }
 
     [SyncVar]
@@ -197,11 +198,11 @@ public class Network_PlayerManager : NetworkBehaviour
     [ClientRpc]
     public void RpcUltimateCharging(float _amount, string _sourceID)
     {
-        currentUltimateGain += _amount;
+		currentUltimateGain += _amount * Time.deltaTime / 3;
 
-        if (currentUltimateGain >= maxUltimateGain)
+		if (currentUltimateGain >= maxUltCharge)
         {
-            currentUltimateGain = maxUltimateGain;
+			currentUltimateGain = maxUltCharge;
         }
     }
 
