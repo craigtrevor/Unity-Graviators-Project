@@ -170,6 +170,7 @@
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
     <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
+    <None Include="Assets\Shaders\Gem.shader" />
     <None Include="Assets\Shaders\Hologram.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\VacuumShaders\Beast\Example Scene\Files\Unity Tessellation.shader" />

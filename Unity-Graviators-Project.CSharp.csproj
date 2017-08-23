@@ -125,6 +125,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
     <Compile Include="Assets\Scripts\Particle Scripts\DestroyParticle.cs" />
     <Compile Include="Assets\Scripts\Particle Scripts\GravLandParticle.cs" />
+    <Compile Include="Assets\Scripts\Particle Scripts\SpawnParticleEffect.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\FaceCamera.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
@@ -165,7 +166,6 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_Ult.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_UltDamaging.cs" />
-    <Compile Include="Assets\SpawnParticleEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
@@ -191,6 +191,7 @@
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
     <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
+    <None Include="Assets\Shaders\Gem.shader" />
     <None Include="Assets\Shaders\Hologram.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
     <None Include="Assets\VacuumShaders\Beast\Example Scene\Files\Unity Tessellation.shader" />
