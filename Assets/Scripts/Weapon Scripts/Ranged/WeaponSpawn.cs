@@ -120,12 +120,14 @@ public class WeaponSpawn : NetworkBehaviour {
             NetworkServer.Spawn(weaponInstance.gameObject);
             Destroy(weaponInstance, 3);
         } else {
-			
+
             // create an instance of the weapon and store a reference to its collider
             Collider2D weaponInstance = Instantiate(colliderWeapon, position, rotation) as Collider2D;
-			ParticleSystem playSparkusRanged = (ParticleSystem)Instantiate (sparkusRanged, position, rotation);
-			playSparkusRanged.Emit (1);
 
+            weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+
+            ParticleSystem playSparkusRanged = (ParticleSystem)Instantiate (sparkusRanged, position, rotation);
+			playSparkusRanged.Emit (1);
 
             NetworkServer.Spawn(weaponInstance.gameObject);
         }
