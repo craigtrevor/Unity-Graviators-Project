@@ -29,8 +29,10 @@ public class WeaponSpawn : NetworkBehaviour {
     //public MonoBehaviour trailToHide;
 
 	private ParticleSystem playSparkusRanged;
-	public ParticleSystem sparkusRanged;
+	public GameObject sparkusRanged;
 
+	private ParticleSystem playD1Ranged;
+	public ParticleSystem D1Ranged;
     private string playerCharacterID;
 
     // Scripts
@@ -103,8 +105,8 @@ public class WeaponSpawn : NetworkBehaviour {
             // create an instance of the weapon and store a reference to its rigibody
             Rigidbody weaponInstance = Instantiate(weapon, position, rotation) as Rigidbody;
 
-			//ParticleSystem playSparkusRanged = (ParticleSystem)Instantiate (sparkusRanged, this.transform.position, this.transform.rotation);
-			//playSparkusRanged.Emit (1);
+			ParticleSystem playD1Ranged = (ParticleSystem)Instantiate (D1Ranged, this.transform.position, this.transform.rotation);
+			playD1Ranged.Emit (1);
 
             // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
             Vector3 velocity = rigidbodyVelocity + launchForce * forward;
@@ -126,8 +128,7 @@ public class WeaponSpawn : NetworkBehaviour {
 
             weaponInstance.SendMessage("SetInitialReferences", _sourceID);
 
-            ParticleSystem playSparkusRanged = (ParticleSystem)Instantiate (sparkusRanged, position, rotation);
-			playSparkusRanged.Emit (1);
+
 
             NetworkServer.Spawn(weaponInstance.gameObject);
         }
