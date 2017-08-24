@@ -138,7 +138,12 @@ public class WeaponSpawn : NetworkBehaviour {
         // delay before the player can fire agian
         yield return new WaitForSeconds(reloadTime);
         m_Fired = false;
-        playerAnimator.SetTrigger("Ranged Attack Reload");
+
+        if (playerCharacterID == "ERNN")
+        {
+            playerAnimator.SetTrigger("Ranged Attack Reload");
+        }
+
         yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
         if (weaponToHide != null) {
             weaponToHide.SetActive(true);
