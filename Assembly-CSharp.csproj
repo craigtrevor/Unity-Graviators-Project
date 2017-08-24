@@ -59,6 +59,7 @@
      <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\BlastWaveDie.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
@@ -92,6 +93,7 @@
      <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
      <Compile Include="Assets\Scripts\Particle Scripts\DestroyParticle.cs" />
      <Compile Include="Assets\Scripts\Particle Scripts\GravLandParticle.cs" />
+     <Compile Include="Assets\Scripts\Particle Scripts\SpawnParticleEffect.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\ArrowScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\FaceCamera.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisDisplayScript.cs" />
@@ -132,7 +134,6 @@
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_Ult.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_UltDamaging.cs" />
-     <Compile Include="Assets\SpawnParticleEffect.cs" />
      <None Include="Assets\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
      <None Include="Assets\BLINDED_AM_ME package\Shaders\def.shader" />
      <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />

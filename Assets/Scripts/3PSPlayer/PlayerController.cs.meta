@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 6c6b2c245026d9e41bdc36e5cfa16565
-timeCreated: 1492558702
+timeCreated: 1503536019
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerAnimator: {instanceID: 0}
+  - blastWave: {fileID: 1560943978641148, guid: 6aa654a00229de1419b09101a6612f82,
+      type: 2}
+  - gravityAxis: {instanceID: 0}
+  - gravityBlock: {instanceID: 0}
+  - stunParticle: {instanceID: 0}
+  - eyes: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
