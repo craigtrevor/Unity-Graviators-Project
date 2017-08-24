@@ -80,6 +80,7 @@ public class Network_PlayerManager : NetworkBehaviour
 	private ParticleSystem playDeathParticle;
 	public ParticleSystem deathParticle;
 
+
     [SerializeField]
     AudioSource narrationAudio;
 
@@ -479,8 +480,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
             Debug.Log("My animation should be slowed down...");
 
-
         }
+
     }
 
     void MuteNarration()
