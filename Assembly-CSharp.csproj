@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_Manager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_MatchSettings.cs" />
+     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerLatency.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerOldSyncPos.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerOldSyncRot.cs" />

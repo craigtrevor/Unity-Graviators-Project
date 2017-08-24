@@ -59,12 +59,12 @@ public class Network_CombatManager : NetworkBehaviour {
     public bool isHitting;
     [SerializeField]
     public bool animationPlaying;
-    private bool gravParticleSystemPlayed = false;
+
 
     // Floats
     private float speed;
     [SerializeField]
-    private float ultGain;
+	public float ultGain;
 
     // Ints
     [SerializeField]
@@ -74,6 +74,7 @@ public class Network_CombatManager : NetworkBehaviour {
     private ParticleSystem playGravLandSmall;
     private ParticleSystem playGravLandMed;
     private ParticleSystem playGravLandLarge;
+
     public ParticleSystem gravLandParticleSmall;
     public ParticleSystem gravLandParticleMed;
     public ParticleSystem gravLandParticleLarge;
@@ -116,10 +117,12 @@ public class Network_CombatManager : NetworkBehaviour {
         if (other.tag == "Sparkus_Ranged") {
             StartCoroutine(stunTimer(sparkusStunTime));
         }
-		if (other.tag == "collider") {
+	 if (other.tag == "collider") {
+			
 			ParticleSystem playGravLandMed = (ParticleSystem)Instantiate (gravLandParticleMed, this.transform.position + Vector3.down, this.transform.rotation);
 			gravLandParticleMed.Emit (1);
-		}
+		} 
+		
     }
 
     IEnumerator stunTimer(float stunTime) {
@@ -202,7 +205,7 @@ public class Network_CombatManager : NetworkBehaviour {
         }
 
         if (isLocalPlayer && Input.GetKeyUp(KeyCode.K)) {
-            playerDamage = 100;
+            playerDamage = 10;
             CmdTakeDamage(transform.name, playerDamage, transform.name);
         }
     }

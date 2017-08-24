@@ -11,6 +11,7 @@ public class CompactHud : MonoBehaviour {
 
 	public GameObject healthMask;
 	public GameObject damageMask;
+	public GameObject ultMask;
 
 	//The following references are for the gravity charge UI system
 	public List<GameObject> gravPips = new List<GameObject>();
@@ -45,10 +46,18 @@ public class CompactHud : MonoBehaviour {
 		playerHealth = networkPlayerManager.GetHealthPct();
 		playerUlt = networkPlayerManager.GetUltimatePct();
 
+		//set health and damage ticker
 		healthMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((playerHealth * 600),100);
 		if (damageMask.GetComponent<RectTransform> ().sizeDelta.x > healthMask.GetComponent<RectTransform> ().sizeDelta.x) {
-			damageMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (damageMask.GetComponent<RectTransform> ().sizeDelta.x - 1, damageMask.GetComponent<RectTransform> ().sizeDelta.y);
+			damageMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (damageMask.GetComponent<RectTransform> ().sizeDelta.x - 3, damageMask.GetComponent<RectTransform> ().sizeDelta.y);
 		}
+
+		if (damageMask.GetComponent<RectTransform> ().sizeDelta.x < healthMask.GetComponent<RectTransform> ().sizeDelta.x) {
+			damageMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (healthMask.GetComponent<RectTransform> ().sizeDelta.x, damageMask.GetComponent<RectTransform> ().sizeDelta.y);
+		}
+
+		//set ultimate charge
+		ultMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerUlt * 300, 100);
 
 		// set grav charges
 		gravCharge = gravityAxis.GetComponent<GravityAxisScript>().gravityCharge;
