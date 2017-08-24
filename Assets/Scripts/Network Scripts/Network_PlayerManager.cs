@@ -90,13 +90,16 @@ public class Network_PlayerManager : NetworkBehaviour
     Network_Soundscape networkSoundscape;
     Network_Manager networkManagerScript;
 
-    void Start()
+    public override void PreStartClient()
     {
         netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
         playerCharacterID = networkManagerScript.characterID;
+    }
 
-        if (isLocalPlayer && !firstPlay)
+    public override void OnStartLocalPlayer()
+    {
+        if (!firstPlay)
         {
             networkSoundscape = transform.GetComponent<Network_Soundscape>();
             networkSoundscape.PlayNonNetworkedSound(16, 4);
