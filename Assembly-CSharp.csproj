@@ -107,6 +107,7 @@
      <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\CompactHud.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\deathScreenCountdown.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
