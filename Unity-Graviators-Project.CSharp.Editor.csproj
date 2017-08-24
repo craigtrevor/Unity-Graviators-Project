@@ -121,6 +121,9 @@
     <Reference Include="DatabaseControlEditor">
       <HintPath>Assets\Database Control Free\Scripts\Editor\DatabaseControlEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Thunder">
+      <HintPath>Assets\Plugins\Thunder.dll</HintPath>
+    </Reference>
     <Reference Include="VacuumShaders.BeastVC">
       <HintPath>Assets\VacuumShaders\Beast\Editor\VacuumShaders.BeastVC.dll</HintPath>
     </Reference>
@@ -145,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_MK\MKToon\Editor\MKToonEditor.cs" />
+    <Compile Include="Assets\PhotonThunderPackage\Editor\ThunderInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
@@ -167,6 +171,9 @@
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
     <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
     <None Include="Assets\Materials\particles\SurfaceShader_VC.shader" />
+    <None Include="Assets\PhotonThunderPackage\PhotonThunderVersion.txt" />
+    <None Include="Assets\PhotonThunderPackage\changelog_56.txt" />
+    <None Include="Assets\Plugins\Photon3Unity3D.xml" />
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
     <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />

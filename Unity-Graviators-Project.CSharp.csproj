@@ -79,6 +79,9 @@
     <Reference Include="DatabaseControl">
       <HintPath>Assets\Database Control Free\Scripts\DatabaseControl.dll</HintPath>
     </Reference>
+    <Reference Include="Thunder">
+      <HintPath>Assets\Plugins\Thunder.dll</HintPath>
+    </Reference>
     <Reference Include="VacuumShaders.Beast">
       <HintPath>Assets\VacuumShaders\Beast\Scripts\VacuumShaders.Beast.dll</HintPath>
     </Reference>
@@ -190,6 +193,9 @@
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
     <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
     <None Include="Assets\Materials\particles\SurfaceShader_VC.shader" />
+    <None Include="Assets\PhotonThunderPackage\PhotonThunderVersion.txt" />
+    <None Include="Assets\PhotonThunderPackage\changelog_56.txt" />
+    <None Include="Assets\Plugins\Photon3Unity3D.xml" />
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
     <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
