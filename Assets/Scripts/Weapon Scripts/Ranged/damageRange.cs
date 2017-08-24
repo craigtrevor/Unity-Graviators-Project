@@ -73,9 +73,13 @@ public class damageRange : NetworkBehaviour {
     }
 
     [Client]
-    void OnTriggerEnter(Collider other) {
-        if (other.tag != "Player" && this.tag != SPARKUSRANGEWEAPON_TAG) {
+   // void OnTriggerEnter(Collider other) {
+	void OnCollisionEnter(Collision other) {
+		if (other.gameObject.tag != "Player" && this.tag != SPARKUSRANGEWEAPON_TAG) {
             transform.SetParent(other.gameObject.transform);
+			transform.position = other.contacts [0].point;
+			GameObject temp = Instantiate (NoNameCollideParticle, this.gameObject.transform);
+			temp.transform.position = other.contacts [0].point;
             Die();
         } else {
 
@@ -88,7 +92,10 @@ public class damageRange : NetworkBehaviour {
                     if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
                     {
                         CmdTakeDamage(hitCol.gameObject.name, swordDamage, sourceID);
-                        transform.SetParent(hitCol.gameObject.transform);
+						transform.SetParent(other.gameObject.transform);
+						transform.position = other.contacts [0].point;
+						GameObject temp = Instantiate (NoNameCollideParticle, this.gameObject.transform);
+						temp.transform.position = other.contacts [0].point;
 						Die();
                     }
 
@@ -121,15 +128,13 @@ public class damageRange : NetworkBehaviour {
         if (!dying) {
             Destroy(GetComponent<Rigidbody>());
             Destroy(GetComponent<MeleeWeaponTrail>());
-			Instantiate (NoNameCollideParticle, this.transform);
             dying = true;
-            deathCount = 0.25f;
-        }
-        deathCount += Time.time * 0.0005f;
-
-        if (deathCount >= 1 || true) {
-            Destroy(this.gameObject);
+			StartCoroutine(DieNow ());
         }
     }
 
+	private IEnumerator DieNow() {
+		yield return new WaitForSeconds (5f);
+		Destroy(this.gameObject);
+	}
 }
