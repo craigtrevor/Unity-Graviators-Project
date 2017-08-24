@@ -25,6 +25,7 @@ public class damageRange : NetworkBehaviour {
 
     public bool dying = false;
     public float deathCount;
+	public GameObject NoNameCollideParticle;
 
     // D1
     public int d1Damage;
@@ -87,21 +88,21 @@ public class damageRange : NetworkBehaviour {
                     if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
                     {
                         CmdTakeDamage(hitCol.gameObject.name, swordDamage, sourceID);
-                        Die();
                         transform.SetParent(hitCol.gameObject.transform);
+						Die();
                     }
 
 
                     if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
                     {
                         CmdTakeDamage(hitCol.gameObject.name, d1Damage, sourceID);
-                        Die();
-                        transform.SetParent(hitCol.gameObject.transform);
+						Die();
                     }
 
                     if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
                     {
                         CmdTakeDamage(hitCol.gameObject.name, sparkusDamage, sourceID);
+						Die();
                     }
                 }
             }
@@ -120,6 +121,7 @@ public class damageRange : NetworkBehaviour {
         if (!dying) {
             Destroy(GetComponent<Rigidbody>());
             Destroy(GetComponent<MeleeWeaponTrail>());
+			Instantiate (NoNameCollideParticle, this.transform);
             dying = true;
             deathCount = 0.25f;
         }

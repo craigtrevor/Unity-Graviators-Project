@@ -37,6 +37,7 @@ ModelImporter:
     7400000: Blast|1T-Pose
     7400002: Blast|Wave1
     7400004: Blast|Wave1End
+    7400006: Blast|WaveSmall
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -122,6 +123,34 @@ ModelImporter:
       name: Blast|Wave1End
       takeName: Armature|1T-Pose
       firstFrame: 10
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Blast|WaveSmall
+      takeName: Armature|WaveSmall
+      firstFrame: 0
       lastFrame: 11
       wrapMode: 0
       orientationOffsetY: 0
