@@ -147,26 +147,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_MK\MKToon\Editor\MKToonEditor.cs" />
     <Compile Include="Assets\PhotonThunderPackage\Editor\ThunderInstaller.cs" />
+    <Compile Include="Assets\Shaders\_MK\MKToon\Editor\MKToonEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Clip_Box.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Clip_Plane.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Clip_Radius.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\DiffuseBumped_UnlitRimColorBumped.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Diffuse_Outline_Edges.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Diffuse_UnlitRimColor.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Color.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim_Bumped.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Texture.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim_Bumped.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\Portal.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\burnThrough.shader" />
-    <None Include="Assets\BLINDED_AM_ME package\Shaders\def.shader" />
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
     <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
@@ -175,11 +159,37 @@
     <None Include="Assets\PhotonThunderPackage\changelog_56.txt" />
     <None Include="Assets\Plugins\Photon3Unity3D.xml" />
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Box.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Plane.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Radius.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\DiffuseBumped_UnlitRimColorBumped.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Diffuse_Outline_Edges.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Diffuse_UnlitRimColor.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Color.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim_Bumped.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Texture.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim_Bumped.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Portal.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\burnThrough.shader" />
+    <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\def.shader" />
     <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
     <None Include="Assets\Shaders\Gem.shader" />
     <None Include="Assets\Shaders\Hologram.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonLighting.cginc" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonSurf.cginc" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonV.cginc" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonDefault.shader" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonDefaultOutline.shader" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonExt.shader" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparent.shader" />
+    <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
     <None Include="Assets\VacuumShaders\Beast\Example Scene\Files\Unity Tessellation.shader" />
     <None Include="Assets\VacuumShaders\Beast\Shaders\Beast.cginc" />
     <None Include="Assets\VacuumShaders\Beast\Shaders\CompilationTargetLevel.cginc" />
@@ -190,16 +200,6 @@
     <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardCoreForward.cginc" />
     <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardInput.cginc" />
     <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardShadow.cginc" />
-    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
-    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
-    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonLighting.cginc" />
-    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonSurf.cginc" />
-    <None Include="Assets\_MK\MKToon\Shader\Inc\MKToonV.cginc" />
-    <None Include="Assets\_MK\MKToon\Shader\MKToonDefault.shader" />
-    <None Include="Assets\_MK\MKToon\Shader\MKToonDefaultOutline.shader" />
-    <None Include="Assets\_MK\MKToon\Shader\MKToonExt.shader" />
-    <None Include="Assets\_MK\MKToon\Shader\MKToonTransparent.shader" />
-    <None Include="Assets\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
