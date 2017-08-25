@@ -303,9 +303,6 @@ public class Network_PlayerManager : NetworkBehaviour
         Debug.Log(transform.name + " is DEAD!");
 
         GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-        NetworkServer.Spawn(corpseobject);
-        Destroy(corpseobject, 5);
-
         ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
 
         //Switch cameras
@@ -315,6 +312,12 @@ public class Network_PlayerManager : NetworkBehaviour
         }
 
         StartCoroutine(Respawn());
+
+        if (!isServer)
+            return;
+
+        NetworkServer.Spawn(corpseobject);
+        Destroy(corpseobject, 5);
     }
 
     private IEnumerator Respawn()

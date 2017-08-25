@@ -25,7 +25,7 @@ public class damageRange : NetworkBehaviour {
 
     public bool dying = false;
     public float deathCount;
-	public GameObject NoNameCollideParticle;
+	public GameObject collideParticle;
 
     // D1
     public int d1Damage;
@@ -35,6 +35,7 @@ public class damageRange : NetworkBehaviour {
 
     private Collider[] hitColliders;
     private Vector3 attackOffset;
+
     private float attackRadius;
     private const string PLAYER_TAG = "Player";
     private const string THROWINGSWORD_TAG = "ThrowingSword";
@@ -45,96 +46,122 @@ public class damageRange : NetworkBehaviour {
     Network_PlayerManager networkPlayerManager;
     PlayerController playerController;
 
-    void SetInitialReferences(string _sourceID) {
+    void SetInitialReferences(string _sourceID)
+    {
         sourceID = _sourceID;
     }
 
-    void SetRight() {
+    void SetRight()
+    {
         rotateSpeed *= -1;
     }
 
-    void transformSparkusRanged() {
+    void transformSparkusRanged()
+    {
         transform.Translate(Vector3.forward * 0.2f);
         transform.localScale += new Vector3(0.2f, 0.2f, 0f);
 
-        Destroy(this.gameObject, 2f);
+        Destroy(this.gameObject, 10f);
     }
 
-    void Update() {
-        if (dying) {
+    void Update()
+    {
+        if (dying)
+        {
             Die();
         }
-        if (this.gameObject.tag == THROWINGSWORD_TAG && !dying) {
+
+        if (this.gameObject.tag == THROWINGSWORD_TAG && !dying)
+        {
             transform.Rotate(Vector3.down, rotateSpeed * Time.deltaTime);
         }
-        if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) {
+
+        if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG)
+        {
             transformSparkusRanged();
         }
     }
 
     [Client]
-   // void OnTriggerEnter(Collider other) {
-	void OnCollisionEnter(Collision other) {
-		if (other.gameObject.tag != "Player" && this.tag != SPARKUSRANGEWEAPON_TAG) {
-            transform.SetParent(other.gameObject.transform);
-			transform.position = other.contacts [0].point;
-			GameObject temp = Instantiate (NoNameCollideParticle, this.gameObject.transform);
-			temp.transform.position = other.contacts [0].point;
-            Die();
-        } else {
+	void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.name != sourceID)
+        {
+            if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
+            {
+                Debug.Log("I hit something!");
 
-            //Physics.IgnoreLayerCollision (10, 30); // the ranged object will ignore the local player layer
-            hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+                CmdTakeDamage(other.gameObject.name, swordDamage, sourceID);
+                transform.SetParent(other.gameObject.transform);
+                transform.position = other.contacts[0].point;
+                GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
+                temp.transform.position = other.contacts[0].point;
+                Die();
+            }
 
-            foreach (Collider hitCol in hitColliders) {
-                if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG && hitCol.transform.name != sourceID) {
+            if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
+            {
+                transform.SetParent(other.gameObject.transform);
+                transform.position = other.contacts[0].point;
+                GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
+                temp.transform.position = other.contacts[0].point;
+                CmdTakeDamage(other.gameObject.name, d1Damage, sourceID);
+                Die();
+            }
 
-                    if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
-                    {
-                        CmdTakeDamage(hitCol.gameObject.name, swordDamage, sourceID);
-						transform.SetParent(other.gameObject.transform);
-						transform.position = other.contacts [0].point;
-						GameObject temp = Instantiate (NoNameCollideParticle, this.gameObject.transform);
-						temp.transform.position = other.contacts [0].point;
-						Die();
-                    }
+            if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
+            {
+                CmdTakeDamage(other.gameObject.name, sparkusDamage, sourceID);
+                Die();
+            }
+        }
 
+        else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG && other.transform.name != sourceID)
+        {
+            if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
+            {
+                transform.SetParent(other.gameObject.transform);
+                transform.position = other.contacts[0].point;
+                GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
+                temp.transform.position = other.contacts[0].point;
+                Die();
+            }
 
-                    if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
-                    {
-                        CmdTakeDamage(hitCol.gameObject.name, d1Damage, sourceID);
-						Die();
-                    }
-
-                    if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
-                    {
-                        CmdTakeDamage(hitCol.gameObject.name, sparkusDamage, sourceID);
-						Die();
-                    }
-                }
+            if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
+            {
+                transform.SetParent(other.gameObject.transform);
+                transform.position = other.contacts[0].point;
+                GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
+                temp.transform.position = other.contacts[0].point;
+                Die();
             }
         }
     }
 
     [Command]
-    void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
-
+    void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
+    {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-
         networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
     }
 
-    public void Die() {
-        if (!dying) {
-            Destroy(GetComponent<Rigidbody>());
+    public void Die()
+    {
+        if (!dying)
+        {
             Destroy(GetComponent<MeleeWeaponTrail>());
+            Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<BoxCollider>());
+
             dying = true;
-			StartCoroutine(DieNow ());
+            StartCoroutine(DieNow());
         }
     }
 
-	private IEnumerator DieNow() {
+	private IEnumerator DieNow()
+    {
 		yield return new WaitForSeconds (5f);
-		Destroy(this.gameObject);
+        Debug.Log("Destory!");
+		Destroy(gameObject);
 	}
 }

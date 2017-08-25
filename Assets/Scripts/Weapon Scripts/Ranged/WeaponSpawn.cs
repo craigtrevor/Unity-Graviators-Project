@@ -120,7 +120,7 @@ public class WeaponSpawn : NetworkBehaviour {
             weaponInstance.velocity = velocity;
 
             NetworkServer.Spawn(weaponInstance.gameObject);
-            Destroy(weaponInstance, 3);
+     //     Destroy(weaponInstance, 3);
         } else {
 
             // create an instance of the weapon and store a reference to its collider
