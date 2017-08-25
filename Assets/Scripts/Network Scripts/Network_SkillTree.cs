@@ -12,17 +12,45 @@ public class Network_SkillTree : NetworkBehaviour {
 
 
 
+	[SerializeField]
+	private GameObject SkillUI;
+	[SerializeField]
+	private GameObject Level1Text;
+	[SerializeField]
+	private GameObject Level2Text;
+	[SerializeField]
+	private GameObject Level3Text;
+	[SerializeField]
+	private GameObject SpeedUpgradeText;
+	[SerializeField]
+	private GameObject damageUpgradeText;
+	[SerializeField]
+	private GameObject HpUpgradeText;
+	[SerializeField]
+	private GameObject UltGainUpgradeText;
+	[SerializeField]
+	private GameObject UltUpradeText;
+	[SerializeField]
+	private GameObject UltMaxText;
+
+
+
+
+
+
+
+
+
 
 	public int killStats;
 	public string playerCharacterID;
 
-	[SerializeField]
-	GameObject Skill_UI;
 
 
 
 	public int UpgradedJump = 1; // upgrades the speed by increments of 1 unitl it reaches max speed
 	public int Upgradedwalk = 1;
+
 	[SerializeField]
 	private int skillLevel = 1; // used to detemine what skill level will be chosen
 
@@ -34,6 +62,7 @@ public class Network_SkillTree : NetworkBehaviour {
 	public bool skill2B = false;
 	public bool skill3A = false; 
 	public bool skill3B = false;
+
 
 
 	// Use this for initialization
@@ -62,17 +91,20 @@ public class Network_SkillTree : NetworkBehaviour {
 		// this section is to see what skill are active
 		if (killStats >= 3) 
 		{
+			Level1Text.SetActive(false);	
 			// have player hold down and press button to choose power up
 			if(SkillUIactive == true)
 			{
 				if(Input.GetKeyUp(KeyCode.Q) && skill1B == false && skillLevel == 1)
 				{
 					skill1A = true;
+					SpeedUpgradeText.SetActive (false);
 					StartCoroutine(upgradeDelay());
 				}
 				if(Input.GetKeyUp(KeyCode.E) && skill1A == false && skillLevel == 1)
 				{
 					skill1B = true;
+					damageUpgradeText.SetActive (false);
 					StartCoroutine(upgradeDelay());
 				}
 			}
@@ -81,17 +113,20 @@ public class Network_SkillTree : NetworkBehaviour {
 
 		if (killStats >= 5) 
 		{
+			Level2Text.SetActive(false);
 			// have player hold down and press button to choose power up
 			if(SkillUIactive == true)
 			{
 				if(Input.GetKeyUp(KeyCode.Q) && skill2B == false && skillLevel == 2)
 				{
 					skill2A = true;
+					HpUpgradeText.SetActive (false);
 					StartCoroutine(upgradeDelay());
 				}
 				if(Input.GetKeyUp(KeyCode.E) && skill2A == false && skillLevel == 2)
 				{
 					skill2B = true;
+					UltGainUpgradeText.SetActive (false);
 					StartCoroutine(upgradeDelay());
 				}
 			}
@@ -99,15 +134,18 @@ public class Network_SkillTree : NetworkBehaviour {
 
 		if (killStats >= 8) 
 		{
+			Level3Text.SetActive (false);
 			// have player hold down and press button to choose power up
 			if(SkillUIactive == true)
 			{
 				if(Input.GetKeyUp(KeyCode.Q) && skill3B == false && skillLevel == 3)
 				{
+					UltUpradeText.SetActive (false);
 					skill3A = true;
 				}
 				if(Input.GetKeyUp(KeyCode.E) && skill3A == false && skillLevel == 3)
 				{
+					UltMaxText.SetActive (false);
 					skill3B = true;
 				}
 			}

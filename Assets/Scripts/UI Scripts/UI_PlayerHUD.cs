@@ -9,6 +9,9 @@ public class UI_PlayerHUD : MonoBehaviour {
     [SerializeField]
     GameObject scoreboard;
 
+	[SerializeField]
+	GameObject SkillUI;
+
     [SerializeField]
     GameObject[] playerHUD;
 
@@ -61,6 +64,16 @@ public class UI_PlayerHUD : MonoBehaviour {
         {
             scoreboard.SetActive(false);
         }
+
+		if (Input.GetKeyDown(KeyCode.X))
+		{
+			SkillUI.SetActive(true);
+		}
+
+		else if (Input.GetKeyUp(KeyCode.X))
+		{
+			SkillUI.SetActive(false);
+		}
 
         if (pauseMenu.activeSelf)
         {
