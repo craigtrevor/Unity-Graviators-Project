@@ -8,6 +8,8 @@ public class PlayerCamera : MonoBehaviour {
     public GameObject vertArrows;
     float cameraDisplacement;
 
+    public Vector3 raycastPoint;
+
     // Use this for initialization
     void Start() {
         cameraDisplacement = 0f;
@@ -34,6 +36,21 @@ public class PlayerCamera : MonoBehaviour {
             this.transform.position = Vector3.Lerp(hit.point, playerPosition, 0.2f);
         } else {
             this.transform.localPosition = this.desiredLocalPosition;
+        }
+
+
+        TestStuff();
+    }
+
+    void TestStuff() {
+        RaycastHit hit;
+        LayerMask mask = ~(1 << 30);
+        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, mask.value)) {
+            //Debug.Log(hit.transform.gameObject.layer);
+            LayerMask musk = hit.transform.gameObject.layer;
+            Debug.Log(LayerMask.LayerToName(musk));
+            raycastPoint = hit.point;
+
         }
     }
 }
