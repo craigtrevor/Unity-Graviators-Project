@@ -23,7 +23,9 @@ public class CompactHud : MonoBehaviour {
 
 	public GameObject gravityAxis;
 	public int gravCharge;
-	//GravityAxisScript gravityAxisScript;
+
+	public WeaponSpawn rangedManager;
+	public GameObject reloadMask;
 
 	public void SetPlayer(Network_PlayerManager _networkPlayerManager) {
 		networkPlayerManager = _networkPlayerManager;
@@ -31,7 +33,6 @@ public class CompactHud : MonoBehaviour {
 
 	void Start()
 	{
-
 		gravCharge = gravityAxis.GetComponent<GravityAxisScript>().gravityCharge;
 		gravPips.Add (GravFull5);
 		gravPips.Add (GravFull4);
@@ -67,6 +68,13 @@ public class CompactHud : MonoBehaviour {
 			} else {
 				gravPips [i].SetActive (false);	
 			}
+		}
+
+		if (rangedManager.reloading == true) {
+			print ("workin");
+			reloadMask.SetActive(false);
+		} else if (rangedManager.reloading == false) {
+			reloadMask.SetActive(true);
 		}
 	}
 }

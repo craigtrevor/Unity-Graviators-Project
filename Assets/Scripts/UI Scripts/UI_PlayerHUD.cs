@@ -15,6 +15,12 @@ public class UI_PlayerHUD : MonoBehaviour {
     [SerializeField]
     GameObject[] playerHUD;
 
+	[SerializeField]
+	GameObject compactHUD;
+
+	[SerializeField]
+	GameObject gravityBlock;
+
     [SerializeField]
     RectTransform healthBarFill;
 
@@ -32,6 +38,8 @@ public class UI_PlayerHUD : MonoBehaviour {
 
     PlayerController playerController;
 
+	public bool newHUD;
+
     public void SetPlayer(Network_PlayerManager _networkPlayerManager)
     {
         networkPlayerManager = _networkPlayerManager;
@@ -42,13 +50,24 @@ public class UI_PlayerHUD : MonoBehaviour {
     void Start ()
     {
         UI_PauseMenu.IsOn = false;
+		if (newHUD) {
+			for (int i = 0; i < playerHUD.Length; i++) {
+				playerHUD [i].SetActive (false);
+			}
+		}
+
+		if (!newHUD) {
+			compactHUD.SetActive (false);
+		}
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        SetHealthAmount(networkPlayerManager.GetHealthPct());
-        SetUltBar(networkPlayerManager.GetUltimatePct());
+		if (!newHUD) {
+			SetHealthAmount (networkPlayerManager.GetHealthPct ());
+			SetUltBar (networkPlayerManager.GetUltimatePct ());
+		}
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -80,15 +99,23 @@ public class UI_PlayerHUD : MonoBehaviour {
             //playerAnimator.enabled = false;
             //playerRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
-            for (int i = 0; i < playerHUD.Length; i++)
-            {
-                playerHUD[i].SetActive(false);
-            }
+			if (newHUD) {
+				compactHUD.SetActive(false);
+			}
 
-            for (int i = 0; i < playerScripts.Length; i++)
-            {
-                playerScripts[i].enabled = false;
-            }
+			if (!newHUD) {
+				for (int i = 0; i < playerHUD.Length; i++) {
+					playerHUD [i].SetActive (false);
+				}
+			}
+
+			//disable controls
+			for (int i = 0; i < playerScripts.Length; i++) {
+					playerScripts [i].enabled = false;
+				}
+			gravityBlock.SetActive (false);
+
+
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -100,15 +127,21 @@ public class UI_PlayerHUD : MonoBehaviour {
             //playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             //playerAnimator.enabled = true;
 
-            for (int i = 0; i < playerHUD.Length; i++)
-            {
-                playerHUD[i].SetActive(true);
-            }
+			if (newHUD) {
+				compactHUD.SetActive(true);
+			}
 
-            for (int i = 0; i < playerScripts.Length; i++)
-            {
-                playerScripts[i].enabled = true;
-            }
+			if (!newHUD) {
+				for (int i = 0; i < playerHUD.Length; i++) {
+					playerHUD [i].SetActive (true);
+				}
+			}
+
+			//enable controls
+			for (int i = 0; i < playerScripts.Length; i++) {
+				playerScripts [i].enabled = true;
+			}
+			gravityBlock.SetActive (true);
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

@@ -76,11 +76,11 @@ public class WeaponSpawn : NetworkBehaviour {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && m_Fired == false) {
-            Fire();
-            PlayThrowSound();
+		if (Input.GetButtonDown("Fire2") && m_Fired == false) {
 			reloading = true;
-            StartCoroutine(reload());
+			StartCoroutine(reload());
+			Fire();
+            PlayThrowSound();
         }
     }
 
