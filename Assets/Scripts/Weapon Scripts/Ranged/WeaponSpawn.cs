@@ -27,15 +27,20 @@ public class WeaponSpawn : NetworkBehaviour {
     private bool m_Fired = false;          // Whether or not the weapon has been launched with this button press.
 
     public Animator playerAnimator;
-    public GameObject weaponToHide;
+   
+	//nonames weapons
+	public GameObject weaponToHide;
 	public GameObject weaponToHide2;
     //public MonoBehaviour trailToHide;
 
 	private ParticleSystem playSparkusRanged;
 	public GameObject sparkusRanged;
+	public GameObject sparkusReloadBall;
 
 	private ParticleSystem playD1Ranged;
 	public ParticleSystem D1Ranged;
+	public GameObject wingRing;
+
     private string playerCharacterID;
 
     // Scripts
@@ -43,7 +48,6 @@ public class WeaponSpawn : NetworkBehaviour {
     Network_PlayerManager networkPlayerManagerScript;
 
     private void Start() {
-
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Collider2D = GetComponent<Collider2D>();
         _sourceID = transform.name;
@@ -92,23 +96,33 @@ public class WeaponSpawn : NetworkBehaviour {
     }
 
     private IEnumerator WaitForCurrentAnim() {
-        yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime * 0.7f);
-        if (!notRigid) {
-            CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
-			if (playerCharacterID == "ERNN") {
-				right = true;
-				CmdFire(m_Rigidbody.velocity, force, secondaryFireTransform.forward, secondaryFireTransform.position, secondaryFireTransform.rotation);
-				right = false;
-			}
-        } else {
-            CmdFire(Vector3.zero, 0f, fireTransform.forward, fireTransform.position, fireTransform.rotation);
-        }
-        if (weaponToHide != null) {
-            weaponToHide.SetActive(false);
-        }
-		if (weaponToHide2 != null) {
+        //wait for anim to finish
+		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime * 0.7f);
+
+		//Nonames Attack
+		if (playerCharacterID == "ERNN") {
+			CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
+			right = true;
+			CmdFire(m_Rigidbody.velocity, force, secondaryFireTransform.forward, secondaryFireTransform.position, secondaryFireTransform.rotation);
+			right = false;
+			weaponToHide.SetActive(false);
 			weaponToHide2.SetActive(false);
 		}
+
+		//D1s Attack
+		if (playerCharacterID == "UT-D1") {
+            CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
+			wingRing.GetComponent<Renderer> ().material.color = Color.black;
+			ParticleSystem playD1Ranged = (ParticleSystem)Instantiate (D1Ranged, this.transform.position, this.transform.rotation);
+			playD1Ranged.transform.parent = this.transform;
+			playD1Ranged.Emit (1);
+			}
+
+		//Sparkus Attack
+		if (playerCharacterID == "SPKS") {
+            CmdFire(Vector3.zero, 0f, fireTransform.forward, fireTransform.position, fireTransform.rotation);
+			sparkusReloadBall.SetActive (false);
+        }
     }
 
     [Command]
@@ -117,12 +131,13 @@ public class WeaponSpawn : NetworkBehaviour {
             // create an instance of the weapon and store a reference to its rigibody
             Rigidbody weaponInstance = Instantiate(weapon, position, rotation) as Rigidbody;
 
-			ParticleSystem playD1Ranged = (ParticleSystem)Instantiate (D1Ranged, this.transform.position, this.transform.rotation);
-			playD1Ranged.Emit (1);
-
             // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
             Vector3 velocity = rigidbodyVelocity + launchForce * forward;
 
+			if (playerCharacterID == "UT-D1") {
+				velocity = new Vector3 (velocity.x * 3, velocity.y * 3, velocity.z * 3);
+			}
+				
             weaponInstance.SendMessage("SetInitialReferences", _sourceID);
             if (right) {
                 weaponInstance.SendMessage("SetRight");
@@ -147,21 +162,28 @@ public class WeaponSpawn : NetworkBehaviour {
     IEnumerator reload() {
         // delay before the player can fire agian
         yield return new WaitForSeconds(reloadTime);
-        m_Fired = false;
 
-        if (playerCharacterID == "ERNN")
-        {
+        if (playerCharacterID == "ERNN") {
+
+			//play reload anim and wait for it to finish
             playerAnimator.SetTrigger("Ranged Attack Reload");
-        }
+			yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
 
-        yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
-        if (weaponToHide != null) {
-            weaponToHide.SetActive(true);
-        }
-		if (weaponToHide2 != null) {
+			//show the weapons again
+			weaponToHide.SetActive(true);
 			weaponToHide2.SetActive(true);
 		}
 
+		if (playerCharacterID == "SPKS") {
+			sparkusReloadBall.SetActive (true);
+		}
+
+		if (playerCharacterID == "UT-D1") {
+			wingRing.GetComponent<Renderer> ().material.color = Color.cyan;
+		}
+
+		// allow the player to fire again
+		m_Fired = false;
 		reloading = false;
     }
 }
