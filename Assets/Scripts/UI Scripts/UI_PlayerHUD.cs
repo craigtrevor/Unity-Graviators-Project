@@ -58,7 +58,9 @@ public class UI_PlayerHUD : MonoBehaviour {
 
 		if (newHUD) {
 			for (int i = 0; i < playerHUD.Length; i++) {
-				playerHUD [i].SetActive (false);
+                if (i != 2) {
+                    playerHUD[i].SetActive(false);
+                }
 			}
 			compactHUD.SetActive (true);
 		}

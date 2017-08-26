@@ -61,7 +61,7 @@ public class damageRange : NetworkBehaviour {
         transform.Translate(Vector3.forward * 0.2f);
         transform.localScale += new Vector3(0.2f, 0.2f, 0f);
 
-        Destroy(this.gameObject, 10f);
+        Destroy(this.gameObject, 2f);
     }
 
     void Update()

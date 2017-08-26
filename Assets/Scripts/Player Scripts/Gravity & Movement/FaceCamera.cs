@@ -20,7 +20,7 @@ public class FaceCamera : MonoBehaviour {
             Vector3 relativePos = raycastPoint - transform.position;
 
             transform.rotation = Quaternion.LookRotation(relativePos);
-            Debug.DrawLine(this.transform.position, raycastPoint);
+            //Debug.DrawLine(this.transform.position, raycastPoint);
         } else {
             transform.rotation = Quaternion.Lerp(transform.rotation, cameraToFace.transform.rotation, Time.deltaTime * 10); //Set rotation of text to grav cam
         }

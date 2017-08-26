@@ -40,8 +40,8 @@ public class PlayerController : MonoBehaviour {
     bool turnMode; // horizontal mode turns (true) or strafe (false)
 
     public Animator playerAnimator;
-	public GameObject blastWave;
-	public bool hasLanded;
+    public GameObject blastWave;
+    public bool hasLanded;
 
     public GameObject gravityAxis;
     public GameObject gravityBlock;
@@ -58,12 +58,24 @@ public class PlayerController : MonoBehaviour {
 
     private bool recieveInput;
 
+    public GameObject sphere;
+
     public Quaternion TargetRotation {
         get { return targetRotation; }
     }
 
     bool Grounded() {
-        return Physics.Raycast(transform.position, -transform.up, moveSettings.distToGrounded, moveSettings.ground);
+        //return Physics.Raycast(transform.position, -transform.up, moveSettings.distToGrounded, moveSettings.ground);
+        CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
+        float radius = capsuleCollider.radius * 0.65f;
+        Vector3 pos = capsuleCollider.transform.position + -capsuleCollider.transform.up /** radius * 1.7f */* (capsuleCollider.height / 2 - 0.25f);
+
+        if (sphere != null) {
+            sphere.transform.position = pos;
+            sphere.transform.localScale = Vector3.one * radius * 2f;
+        }
+
+        return Physics.CheckSphere(pos, radius, moveSettings.ground);
     }
 
     public void FreezeRotation() {
@@ -77,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start() {
 
-		hasLanded = true; // setup animation variable
+        hasLanded = true; // setup animation variable
 
         //  playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up * 2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
 
@@ -297,12 +309,12 @@ public class PlayerController : MonoBehaviour {
 
         } else if (jumpInput == 0 && Grounded()) {
 
-			//set the anim to not jumping and spawn a blast wave
-			playerAnimator.SetBool("InAir", false);
-			if (!hasLanded && velocity.y <= -25) {
-				Instantiate (blastWave, this.gameObject.transform);
-			}
-			hasLanded = true;
+            //set the anim to not jumping and spawn a blast wave
+            playerAnimator.SetBool("InAir", false);
+            if (!hasLanded && velocity.y <= -25) {
+                Instantiate(blastWave, this.gameObject.transform);
+            }
+            hasLanded = true;
 
             // zero out our velociy.y
             velocity.y = 0;
@@ -310,7 +322,7 @@ public class PlayerController : MonoBehaviour {
         } else {
             // decrease velocity.y
             playerAnimator.SetBool("InAir", true);
-			hasLanded = false;
+            hasLanded = false;
             velocity.y -= physSettings.downAccel;
             velocity.y = Mathf.Max(velocity.y, -100);
         }

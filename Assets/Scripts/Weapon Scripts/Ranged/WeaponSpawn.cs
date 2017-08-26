@@ -97,7 +97,7 @@ public class WeaponSpawn : NetworkBehaviour {
 
     private IEnumerator WaitForCurrentAnim() {
         //wait for anim to finish
-		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime * 0.7f);
+		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime * 0.7f*0f);
 
 		//Nonames Attack
 		if (playerCharacterID == "ERNN") {

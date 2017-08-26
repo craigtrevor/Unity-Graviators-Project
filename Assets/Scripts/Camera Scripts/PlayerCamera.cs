@@ -48,7 +48,7 @@ public class PlayerCamera : MonoBehaviour {
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, mask.value)) {
             //Debug.Log(hit.transform.gameObject.layer);
             LayerMask musk = hit.transform.gameObject.layer;
-            Debug.Log(LayerMask.LayerToName(musk));
+            //Debug.Log(LayerMask.LayerToName(musk));
             raycastPoint = hit.point;
 
         }
