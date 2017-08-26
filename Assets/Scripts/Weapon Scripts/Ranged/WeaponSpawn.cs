@@ -12,9 +12,11 @@ public class WeaponSpawn : NetworkBehaviour {
     public Collider2D colliderWeapon;
     public bool notRigid;
     public Transform fireTransform; // a child of the player where the weapon is spawned
+	public Transform secondaryFireTransform; // second position for no name
     public bool right;
     public float force = 2000; // the force to be applied to the weapon
     public float reloadTime = 15f;
+	public bool reloading;
     //	[SyncVar]
     //	public int m_localID;
 
@@ -26,6 +28,7 @@ public class WeaponSpawn : NetworkBehaviour {
 
     public Animator playerAnimator;
     public GameObject weaponToHide;
+	public GameObject weaponToHide2;
     //public MonoBehaviour trailToHide;
 
 	private ParticleSystem playSparkusRanged;
@@ -76,6 +79,7 @@ public class WeaponSpawn : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse1) && m_Fired == false) {
             Fire();
             PlayThrowSound();
+			reloading = true;
             StartCoroutine(reload());
         }
     }
@@ -91,12 +95,20 @@ public class WeaponSpawn : NetworkBehaviour {
         yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime * 0.7f);
         if (!notRigid) {
             CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
+			if (playerCharacterID == "ERNN") {
+				right = true;
+				CmdFire(m_Rigidbody.velocity, force, secondaryFireTransform.forward, secondaryFireTransform.position, secondaryFireTransform.rotation);
+				right = false;
+			}
         } else {
             CmdFire(Vector3.zero, 0f, fireTransform.forward, fireTransform.position, fireTransform.rotation);
         }
         if (weaponToHide != null) {
             weaponToHide.SetActive(false);
         }
+		if (weaponToHide2 != null) {
+			weaponToHide2.SetActive(false);
+		}
     }
 
     [Command]
@@ -128,8 +140,6 @@ public class WeaponSpawn : NetworkBehaviour {
 
             weaponInstance.SendMessage("SetInitialReferences", _sourceID);
 
-
-
             NetworkServer.Spawn(weaponInstance.gameObject);
         }
     }
@@ -148,5 +158,10 @@ public class WeaponSpawn : NetworkBehaviour {
         if (weaponToHide != null) {
             weaponToHide.SetActive(true);
         }
+		if (weaponToHide2 != null) {
+			weaponToHide2.SetActive(true);
+		}
+
+		reloading = false;
     }
 }
