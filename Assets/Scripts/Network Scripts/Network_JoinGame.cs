@@ -47,7 +47,10 @@ public class Network_JoinGame : MonoBehaviour {
 
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
     {
-        status.text = "";
+        if (Network_SceneManager.instance.sceneName == "Lobby_Scene")
+        {
+            status.text = "";
+        }
 
         if (!success || matchList == null)
         {

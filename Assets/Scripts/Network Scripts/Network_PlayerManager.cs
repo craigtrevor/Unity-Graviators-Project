@@ -264,8 +264,7 @@ public class Network_PlayerManager : NetworkBehaviour
         deathStats++;
 
 		// spawn corpse on death
-		GameObject corpseobject = Instantiate (corpse, this.transform.position, this.transform.rotation) as GameObject;
-		NetworkServer.Spawn(corpseobject);
+
 		//ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
 //		if (!particleSystemPlayed) 
 //		{ 
@@ -280,6 +279,12 @@ public class Network_PlayerManager : NetworkBehaviour
 		// end of spawn corpse on death
 
         DisablePlayer();
+
+        if (!isServer)
+            return;
+
+        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+        NetworkServer.Spawn(corpseobject);
     }
 
     private void DisablePlayer()
@@ -302,9 +307,6 @@ public class Network_PlayerManager : NetworkBehaviour
 
         Debug.Log(transform.name + " is DEAD!");
 
-        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-        ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
-
         //Switch cameras
         if (isLocalPlayer)
         {
@@ -315,6 +317,9 @@ public class Network_PlayerManager : NetworkBehaviour
 
         if (!isServer)
             return;
+
+        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+        ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
 
         NetworkServer.Spawn(corpseobject);
         Destroy(corpseobject, 5);
@@ -467,24 +472,6 @@ public class Network_PlayerManager : NetworkBehaviour
         Debug.Log("Match has finished");
 
         NetworkManager.Shutdown();
-    }
-
-    void OnTriggerStay(Collider col)
-    {
-        if (col.tag == "SlowTrap")
-        {
-            ParticleSystem playSlowParticle = (ParticleSystem)Instantiate(slowParticle, this.transform.position + Vector3.down, this.transform.rotation);
-            playSlowParticle.Emit(1);
-
-            /*playerAnim = GetComponent<Animator>();
-
-
-			playerAnim.speed = 0.0f;*/
-
-            Debug.Log("My animation should be slowed down...");
-
-        }
-
     }
 
     void MuteNarration()
