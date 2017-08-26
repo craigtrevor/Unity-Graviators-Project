@@ -89,8 +89,6 @@ public class damageRange : NetworkBehaviour {
         {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
-                Debug.Log("I hit something!");
-
                 CmdTakeDamage(other.gameObject.name, swordDamage, sourceID);
                 transform.SetParent(other.gameObject.transform);
                 transform.position = other.contacts[0].point;
@@ -161,7 +159,6 @@ public class damageRange : NetworkBehaviour {
 	private IEnumerator DieNow()
     {
 		yield return new WaitForSeconds (5f);
-        Debug.Log("Destory!");
 		Destroy(gameObject);
 	}
 }
