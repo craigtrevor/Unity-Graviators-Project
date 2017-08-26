@@ -50,20 +50,26 @@ public class UI_PlayerHUD : MonoBehaviour {
     void Start ()
     {
         UI_PauseMenu.IsOn = false;
-		if (newHUD) {
-			for (int i = 0; i < playerHUD.Length; i++) {
-				playerHUD [i].SetActive (false);
-			}
-		}
-
-		if (!newHUD) {
-			compactHUD.SetActive (false);
-		}
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+
+		if (newHUD) {
+			for (int i = 0; i < playerHUD.Length; i++) {
+				playerHUD [i].SetActive (false);
+			}
+			compactHUD.SetActive (true);
+		}
+
+		if (!newHUD) {
+			for (int i = 0; i < playerHUD.Length; i++) {
+				playerHUD [i].SetActive (true);
+			}
+			compactHUD.SetActive (false);
+		}
+
 		if (!newHUD) {
 			SetHealthAmount (networkPlayerManager.GetHealthPct ());
 			SetUltBar (networkPlayerManager.GetUltimatePct ());
@@ -92,6 +98,16 @@ public class UI_PlayerHUD : MonoBehaviour {
 		else if (Input.GetKeyUp(KeyCode.X))
 		{
 			SkillUI.SetActive(false);
+		}
+
+		if (Input.GetKeyDown(KeyCode.O))
+		{
+			if (newHUD == false) {
+				newHUD = true;
+			} else {
+				newHUD = false;
+			}
+
 		}
 
         if (pauseMenu.activeSelf)
