@@ -203,7 +203,7 @@ public class Network_PlayerManager : NetworkBehaviour
     public void RpcUltimateCharging(float _amount, string _sourceID)
     {
 		currentUltimateGain += _amount * Time.deltaTime / 3;
-
+        
 		if (currentUltimateGain >= maxUltCharge)
         {
 			currentUltimateGain = maxUltCharge;

@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
 
     public float cameraDisplacement;
     public bool stunned;
-
+    public bool isDashing;
     private bool recieveInput;
 
     public GameObject sphere;
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void GetInput() {
-        if (recieveInput && !stunned) {
+        if (recieveInput && !stunned && !isDashing) {
             forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
             turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
@@ -123,9 +123,17 @@ public class PlayerController : MonoBehaviour {
             forwardInput = rightInput = turnInput = jumpInput = 0f;
         }
 
-        if (!stunned) {
+        if (!stunned && !isDashing) {
             GravityInput(inputSettings.GRAVITY_RELEASE);
         }
+
+        if (isDashing) {
+            CancelVelocity();
+        }
+    }
+
+    void CancelVelocity() {
+        velocity = Vector3.zero;
     }
 
     public void StartStun(float time) {
@@ -323,7 +331,9 @@ public class PlayerController : MonoBehaviour {
             // decrease velocity.y
             playerAnimator.SetBool("InAir", true);
             hasLanded = false;
-            velocity.y -= physSettings.downAccel;
+            if (!isDashing) {
+                velocity.y -= physSettings.downAccel;
+            }
             velocity.y = Mathf.Max(velocity.y, -100);
         }
     }
@@ -332,7 +342,9 @@ public class PlayerController : MonoBehaviour {
         if (UI_PauseMenu.IsOn) {
             if (!Grounded()) {
                 playerAnimator.SetBool("InAir", true);
-                velocity.y -= physSettings.downAccel;
+                if (!isDashing) {
+                    velocity.y -= physSettings.downAccel;
+                }
                 velocity.y = Mathf.Max(velocity.y, -100);
             } else {
                 if (jumpInput == 0 && Grounded()) {

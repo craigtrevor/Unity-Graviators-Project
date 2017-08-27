@@ -24,7 +24,7 @@ public class Dash : NetworkBehaviour
     //charging
     public float chargePercent = 0; // the amount of charge
     public float chargeMax = 100; // the amount of charge needed
-    public float passiveCharge = 0.01f; // the amount of charge gained passivly;
+    public float passiveCharge = 1f; // the amount of charge gained passivly;
     public int numberOfDashes = 0;// change this for uses
 
     //stats
