@@ -44,6 +44,7 @@ public class damageRange : NetworkBehaviour {
 
     // scripts
     Network_PlayerManager networkPlayerManager;
+    Network_Soundscape networkSoundscape;
     PlayerController playerController;
 
     void SetInitialReferences(string _sourceID)
@@ -94,6 +95,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
                 GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
+                PlayImpactSound();
                 Die();
             }
 
@@ -122,6 +124,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
                 GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
+                PlayImpactSound();
                 Die();
             }
 
@@ -133,6 +136,21 @@ public class damageRange : NetworkBehaviour {
                 temp.transform.position = other.contacts[0].point;
                 Die();
             }
+        }
+    }
+
+    void PlayImpactSound()
+    {
+        networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
+
+        if (this.gameObject.tag == THROWINGSWORD_TAG)
+        {
+            networkSoundscape.PlayNonNetworkedSound(20, 1);
+        }
+
+        if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG)
+        {
+            networkSoundscape.PlayNonNetworkedSound(21, 1);
         }
     }
 

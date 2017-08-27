@@ -62,10 +62,10 @@ public class UI_PauseMenu : MonoBehaviour {
     //    }
     //}
 
-    public void LeaveRoom()
+    public void LeaveRoom() 
     {
         MatchInfo matchInfo = networkManager.matchInfo;
         networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
-        networkManager.StopHost();
+        networkManager.StopClient();
     }
 }
