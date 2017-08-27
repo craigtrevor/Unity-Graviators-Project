@@ -6050,7 +6050,7 @@ ModelImporter:
       name: NoName|Ranged Attack Start
       takeName: rig|Ranged Attack
       firstFrame: 0
-      lastFrame: 15
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -7141,7 +7141,7 @@ ModelImporter:
     - serializedVersion: 16
       name: NoName|Ranged Attack Finish
       takeName: rig|Ranged Attack
-      firstFrame: 15
+      firstFrame: 25
       lastFrame: 43
       wrapMode: 0
       orientationOffsetY: 0
