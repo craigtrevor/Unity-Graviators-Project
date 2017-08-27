@@ -6050,7 +6050,7 @@ ModelImporter:
       name: NoName|Ranged Attack Start
       takeName: rig|Ranged Attack
       firstFrame: 0
-      lastFrame: 25
+      lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
