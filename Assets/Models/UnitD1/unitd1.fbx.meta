@@ -975,8 +975,8 @@ ModelImporter:
     - serializedVersion: 16
       name: D1|Melee
       takeName: Armature|Melee
-      firstFrame: 7
-      lastFrame: 35
+      firstFrame: 6
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

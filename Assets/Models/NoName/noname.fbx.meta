@@ -589,7 +589,7 @@ ModelImporter:
     - serializedVersion: 16
       name: NoName|Idle
       takeName: rig|Idle
-      firstFrame: 1
+      firstFrame: 2
       lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
@@ -598,7 +598,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1682,7 +1682,7 @@ ModelImporter:
       name: NoName|Melee Attack
       takeName: rig|Melee Attack
       firstFrame: 0
-      lastFrame: 46
+      lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -2236,7 +2236,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -3874,7 +3874,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -5503,8 +5503,8 @@ ModelImporter:
     - serializedVersion: 16
       name: NoName|UltimatePrepAndDash
       takeName: rig|Ultimate
-      firstFrame: 7
-      lastFrame: 34
+      firstFrame: 1
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -6595,7 +6595,7 @@ ModelImporter:
     - serializedVersion: 16
       name: NoName|UltimateStatis
       takeName: rig|Ultimate
-      firstFrame: 40
+      firstFrame: 28
       lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
@@ -7142,7 +7142,7 @@ ModelImporter:
       name: NoName|Ranged Attack Finish
       takeName: rig|Ranged Attack
       firstFrame: 25
-      lastFrame: 43
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
