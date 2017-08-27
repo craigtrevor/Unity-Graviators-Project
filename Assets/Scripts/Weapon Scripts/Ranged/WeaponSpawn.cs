@@ -92,12 +92,11 @@ public class WeaponSpawn : NetworkBehaviour {
     private void Fire() {
         m_Fired = true; // set the fire flag so that fire is only called once
         playerAnimator.SetTrigger("Ranged Attack");
-        StartCoroutine(WaitForCurrentAnim());
+        //StartCoroutine(WaitForCurrentAnim());
     }
 
-    private IEnumerator WaitForCurrentAnim() {
-        //wait for anim to finish
-		yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime * 0.7f*0f);
+	//Ranged attack is called by the animation at the appropriate time, check AnimationEventPassalong.cs
+	public void RangedAttack(AnimationEvent animEvent) {
 
 		//Nonames Attack
 		if (playerCharacterID == "ERNN") {
@@ -111,19 +110,19 @@ public class WeaponSpawn : NetworkBehaviour {
 
 		//D1s Attack
 		if (playerCharacterID == "UT-D1") {
-            CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
+			CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
 			wingRing.GetComponent<Renderer> ().material.color = Color.black;
 			ParticleSystem playD1Ranged = (ParticleSystem)Instantiate (D1Ranged, this.transform.position, this.transform.rotation);
 			playD1Ranged.transform.parent = this.transform;
 			playD1Ranged.Emit (1);
-			}
+		}
 
 		//Sparkus Attack
 		if (playerCharacterID == "SPKS") {
-            CmdFire(Vector3.zero, 0f, fireTransform.forward, fireTransform.position, fireTransform.rotation);
+			CmdFire(Vector3.zero, 0f, fireTransform.forward, fireTransform.position, fireTransform.rotation);
 			sparkusReloadBall.SetActive (false);
-        }
-    }
+		}
+	}
 
     [Command]
     private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation) {
@@ -164,14 +163,8 @@ public class WeaponSpawn : NetworkBehaviour {
         yield return new WaitForSeconds(reloadTime);
 
         if (playerCharacterID == "ERNN") {
-
-			//play reload anim and wait for it to finish
+			//play reload anim and wait for it to trigger
             playerAnimator.SetTrigger("Ranged Attack Reload");
-			yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
-
-			//show the weapons again
-			weaponToHide.SetActive(true);
-			weaponToHide2.SetActive(true);
 		}
 
 		if (playerCharacterID == "SPKS") {
@@ -189,4 +182,10 @@ public class WeaponSpawn : NetworkBehaviour {
         m_Fired = false;
 		reloading = false;
     }
+
+	public void NoNameShowWeapons (AnimationEvent animEvent) {
+		//show nonames the weapons again
+		weaponToHide.SetActive (true);
+		weaponToHide2.SetActive (true);
+	}
 }

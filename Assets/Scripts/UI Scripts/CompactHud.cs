@@ -71,7 +71,6 @@ public class CompactHud : MonoBehaviour {
 		}
 
 		if (rangedManager.reloading == true) {
-			print ("workin");
 			reloadMask.SetActive(false);
 		} else if (rangedManager.reloading == false) {
 			reloadMask.SetActive(true);

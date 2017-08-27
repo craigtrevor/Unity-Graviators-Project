@@ -59,6 +59,7 @@
      <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\BlastWaveDie.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
@@ -133,6 +134,7 @@
      <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\SinglePlayer_WeaponSpawn.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Dash.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\NoName_Ult.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_Ult.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_UltDamaging.cs" />
