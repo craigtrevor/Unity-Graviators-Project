@@ -313,7 +313,7 @@ public class PlayerController : MonoBehaviour {
         if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
             // Jumping - Alex
             StartCoroutine(JumpTime());
-            velocity.y = moveSettings.jumpVel;
+			velocity.y = moveSettings.jumpVel;
 
         } else if (jumpInput == 0 && Grounded()) {
 
@@ -360,4 +360,7 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         playerAnimator.SetBool("Jump", false);
     }
+
+	public void ActualJump () {
+	}
 }

@@ -1155,7 +1155,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.61886305
+        functionName: ActualJump
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: cf5d9481889ae12409d35b8271e57655,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

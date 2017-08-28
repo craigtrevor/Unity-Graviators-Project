@@ -60,11 +60,14 @@
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
      <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterController.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterSpawner.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\BlastWaveDie.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
      <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
