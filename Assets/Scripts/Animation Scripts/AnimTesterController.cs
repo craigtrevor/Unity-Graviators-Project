@@ -57,7 +57,9 @@ public class AnimTesterController : MonoBehaviour {
 
 	public void RangedAttack() {
 		if (!preventOtherAnim) {
+			preventOtherAnim = true;
 			activeModel.GetComponent<Animator> ().SetTrigger ("Ranged Attack");
+			StartCoroutine (Reload ());
 		}
 	}
 
@@ -81,7 +83,6 @@ public class AnimTesterController : MonoBehaviour {
 		preventOtherAnim = true;
 		activeModel.GetComponent<Animator> ().SetBool ("Jump", Toggle (activeModel.GetComponent<Animator> ().GetBool ("Jump")));
 		activeModel.GetComponent<Animator> ().SetBool ("InAir", Toggle (activeModel.GetComponent<Animator> ().GetBool ("InAir")));
-		activeModel.GetComponent<Rigidbody> ().velocity = new Vector3(0,5,0);
 		yield return new WaitForSeconds(1); 
 		activeModel.GetComponent<Animator> ().SetBool ("Jump", Toggle (activeModel.GetComponent<Animator> ().GetBool ("Jump")));
 		activeModel.GetComponent<Animator> ().SetBool ("InAir", Toggle (activeModel.GetComponent<Animator> ().GetBool ("InAir")));
@@ -93,8 +94,17 @@ public class AnimTesterController : MonoBehaviour {
 		preventOtherAnim = true;
 		activeModel.GetComponent<Animator> ().SetTrigger ("StartUltimate");
 		activeModel.GetComponent<Animator> ().SetBool ("UltimateLoop", Toggle (activeModel.GetComponent<Animator> ().GetBool ("UltimateLoop")));
+		if (activeModel == d1Model) {
+			StartCoroutine (Jump ());
+		}
 		yield return new WaitForSeconds(1); 
 		activeModel.GetComponent<Animator> ().SetBool ("UltimateLoop", Toggle (activeModel.GetComponent<Animator> ().GetBool ("UltimateLoop")));
+		preventOtherAnim = false;
+	}
+
+	public IEnumerator Reload() {
+		yield return new WaitForSeconds(1); 
+		activeModel.GetComponent<Animator> ().SetTrigger ("Ranged Attack Reload");
 		preventOtherAnim = false;
 	}
 }
