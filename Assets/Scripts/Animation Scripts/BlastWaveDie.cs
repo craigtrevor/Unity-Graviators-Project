@@ -7,7 +7,7 @@ public class BlastWaveDie : MonoBehaviour {
 	public Animator playerAnimator;
 
 	void Update () {
-		if (playerAnimator.GetCurrentAnimatorStateInfo (0).IsName ("Wave1End")) {
+		if (playerAnimator.GetCurrentAnimatorStateInfo (0).IsName ("End")) {
 			Destroy(this.gameObject);
 		}
 	}

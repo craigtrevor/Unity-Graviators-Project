@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour {
 
         Run();
         Strafe();
-        Jump();
+        ActualJump();
         CheckPause();
 
         cameraDisplacement = Mathf.Min((velocity.y + 20f) / 30f, 0f);
@@ -305,39 +305,6 @@ public class PlayerController : MonoBehaviour {
         transform.localRotation = targetRotation;
     }
 
-    void Jump() {
-
-        if (UI_PauseMenu.IsOn == true)
-            return;
-
-        if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
-            // Jumping - Alex
-            StartCoroutine(JumpTime());
-			velocity.y = moveSettings.jumpVel;
-
-        } else if (jumpInput == 0 && Grounded()) {
-
-            //set the anim to not jumping and spawn a blast wave
-            playerAnimator.SetBool("InAir", false);
-            if (!hasLanded && velocity.y <= -25) {
-                Instantiate(blastWave, this.gameObject.transform);
-            }
-            hasLanded = true;
-
-            // zero out our velociy.y
-            velocity.y = 0;
-
-        } else {
-            // decrease velocity.y
-            playerAnimator.SetBool("InAir", true);
-            hasLanded = false;
-            if (!isDashing) {
-                velocity.y -= physSettings.downAccel;
-            }
-            velocity.y = Mathf.Max(velocity.y, -100);
-        }
-    }
-
     void CheckPause() {
         if (UI_PauseMenu.IsOn) {
             if (!Grounded()) {
@@ -355,12 +322,49 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void ActualJump()
+    {
+        if (UI_PauseMenu.IsOn == true)
+            return;
+
+        if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching())
+        {
+            // Jumping - Alex
+            StartCoroutine(JumpTime());
+            velocity.y = moveSettings.jumpVel;
+
+        }
+        else if (jumpInput == 0 && Grounded())
+        {
+
+            //set the anim to not jumping and spawn a blast wave
+            playerAnimator.SetBool("InAir", false);
+            if (!hasLanded && velocity.y <= -25)
+            {
+                Instantiate(blastWave, this.gameObject.transform);
+            }
+            hasLanded = true;
+
+            // zero out our velociy.y
+            velocity.y = 0;
+
+        }
+        else
+        {
+            // decrease velocity.y
+            playerAnimator.SetBool("InAir", true);
+            hasLanded = false;
+            if (!isDashing)
+            {
+                velocity.y -= physSettings.downAccel;
+            }
+            velocity.y = Mathf.Max(velocity.y, -100);
+        }
+    }
+
     IEnumerator JumpTime() {
         playerAnimator.SetBool("Jump", true);
         yield return new WaitForSeconds(0.1f);
         playerAnimator.SetBool("Jump", false);
     }
-
-	public void ActualJump () {
-	}
 }
