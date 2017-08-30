@@ -15,7 +15,7 @@ public class Network_AidManager : NetworkBehaviour {
 
 	[SerializeField]
 	private float healAmount = 1;
-	private float chargeAmount = 100;
+	private float chargeAmount = 10f;
 
 	[Client]
 	void OnTriggerStay (Collider other)
@@ -23,30 +23,30 @@ public class Network_AidManager : NetworkBehaviour {
 		if (this.gameObject.tag == HEALTHREGEN_TAG && other.gameObject.tag == PLAYER_TAG)
 		{
 			networkPlayerManager = other.GetComponent<Network_PlayerManager>();
-			Debug.Log(other.gameObject.name);
-			Debug.Log(transform.name);
+			//Debug.Log(other.gameObject.name);
+			//Debug.Log(transform.name);
 			CmdHealthRegen(other.gameObject.name, healAmount, transform.name);
 		}
-		/*
+		
 		if (this.gameObject.tag == ULTCHARGER_TAG && other.gameObject.tag == PLAYER_TAG)
 		{
 			networkPlayerManager = other.GetComponent<Network_PlayerManager>();
 			Debug.Log(other.gameObject.name);
 			Debug.Log(transform.name);
 			CmdUltCharger(other.gameObject.name, chargeAmount, transform.name);
-		}*/
+		}
 	}
 
 	[Command]
 	void CmdHealthRegen(string _playerID, float _heal, string _sourceID)
 	{
-		Debug.Log(_playerID + "is regenerating.");
+		//Debug.Log(_playerID + "is regenerating.");
 
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
 		networkPlayerStats.RpcHealthRegenerate(_heal, transform.name);
 	}
-	/*
+	
 	[Command]
 	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
 	{
@@ -56,5 +56,5 @@ public class Network_AidManager : NetworkBehaviour {
 
 		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
 	}
-	*/
+	
 }

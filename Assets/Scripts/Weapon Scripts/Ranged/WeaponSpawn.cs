@@ -183,6 +183,28 @@ public class WeaponSpawn : NetworkBehaviour {
 		reloading = false;
     }
 
+    public void InstantReload() {
+        if (playerCharacterID == "ERNN") {
+            //play reload anim and wait for it to trigger
+            playerAnimator.SetTrigger("Ranged Attack Reload");
+        }
+
+        if (playerCharacterID == "SPKS") {
+            sparkusReloadBall.SetActive(true);
+        }
+
+        if (playerCharacterID == "UT-D1") {
+            wingRing.GetComponent<Renderer>().material.color = Color.cyan;
+        }
+
+        networkSoundscape.PlayNonNetworkedSound(19, 1);
+
+        // allow the player to fire again
+
+        m_Fired = false;
+        reloading = false;
+    }
+
 	public void NoNameShowWeapons (AnimationEvent animEvent) {
 		//show nonames the weapons again
 		weaponToHide.SetActive (true);

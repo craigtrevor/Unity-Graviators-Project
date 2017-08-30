@@ -92,11 +92,15 @@
     <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterController.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterSpawner.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BlastWaveDie.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
     <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="Assets\Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_DevKeys.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
@@ -135,6 +140,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityAxisScriptNew.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\KeyMat.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\AudioFadeOut.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\MusicPlayer.cs" />

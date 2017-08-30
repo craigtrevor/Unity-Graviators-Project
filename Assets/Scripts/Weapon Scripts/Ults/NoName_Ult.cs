@@ -33,7 +33,6 @@ public class NoName_Ult : NetworkBehaviour {
     
     float charge = 0; // the amount of charge
     public float passiveCharge; // the amount of charge gained passively;
-    public float padCharge; // the amount of charge gained through the ult pad;
 
     // Scripts
     Network_PlayerManager networkPlayerManager;
@@ -59,8 +58,6 @@ public class NoName_Ult : NetworkBehaviour {
 
     // Update is called once per frame
     void Update() {
-
-        Debug.Log(passiveCharge + " " + padCharge);
 
         DashInput();
         Dashing();

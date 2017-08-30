@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour {
     public bool isDashing;
     private bool recieveInput;
 
+    public int retainFallOnGrav;
+
     public GameObject sphere;
 
     public Quaternion TargetRotation {
@@ -309,7 +311,7 @@ public class PlayerController : MonoBehaviour {
         if (UI_PauseMenu.IsOn) {
             if (!Grounded()) {
                 playerAnimator.SetBool("InAir", true);
-                if (!isDashing) {
+                if (CanFall()) {
                     velocity.y -= physSettings.downAccel;
                 }
                 velocity.y = Mathf.Max(velocity.y, -100);
@@ -345,7 +347,7 @@ public class PlayerController : MonoBehaviour {
             }
             hasLanded = true;
 
-            // zero out our velociy.y
+            // zero out our velocity.y
             velocity.y = 0;
 
         }
@@ -354,7 +356,7 @@ public class PlayerController : MonoBehaviour {
             // decrease velocity.y
             playerAnimator.SetBool("InAir", true);
             hasLanded = false;
-            if (!isDashing)
+            if (CanFall())
             {
                 velocity.y -= physSettings.downAccel;
             }
@@ -366,5 +368,14 @@ public class PlayerController : MonoBehaviour {
         playerAnimator.SetBool("Jump", true);
         yield return new WaitForSeconds(0.1f);
         playerAnimator.SetBool("Jump", false);
+    }
+
+    bool CanFall() {
+        if (!isDashing && !gravityAxisScript.GetGravitySwitching()) {
+            return true;
+        } else {
+            velocity.y *= retainFallOnGrav;
+            return false;
+        }
     }
 }
