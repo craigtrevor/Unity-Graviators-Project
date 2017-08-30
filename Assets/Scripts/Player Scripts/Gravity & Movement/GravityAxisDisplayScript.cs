@@ -137,6 +137,8 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     //ColourAxis() changes the colours of the arrows on the axis according to the current gravity and gravity charge
     private void ColourAxis() {
 
+        GameObject[] arrows = { arrowUp, arrowForward, arrowBackward, arrowRight, arrowLeft };
+
         //Check haveCharge
         if (haveCharge) { //If player does have gravity charge            
 
@@ -192,11 +194,17 @@ public class GravityAxisDisplayScript : MonoBehaviour {
 
         } else { //If player doesn't have gravity charge
 
+            /*
             arrowUp.GetComponent<ArrowScript>().ChangeColour(matNoCharge);
             arrowForward.GetComponent<ArrowScript>().ChangeColour(matNoCharge);
             arrowBackward.GetComponent<ArrowScript>().ChangeColour(matNoCharge);
             arrowRight.GetComponent<ArrowScript>().ChangeColour(matNoCharge);
             arrowLeft.GetComponent<ArrowScript>().ChangeColour(matNoCharge);
+            */
+
+            foreach (GameObject arrow in arrows) {
+                arrow.GetComponent<ArrowScript>().ChangeColour(matNoCharge);
+            }
 
         } //End if (haveCharge)
     } //End ColorAxis()

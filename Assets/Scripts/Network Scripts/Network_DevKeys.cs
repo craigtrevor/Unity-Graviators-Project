@@ -30,36 +30,50 @@ public class Network_DevKeys : NetworkBehaviour {
 
 	void Update () 
 	{
-		if (Input.GetKey (KeyCode.Backslash))
+		if (Input.GetKey (KeyCode.Backslash) || Input.GetKey(KeyCode.Slash))
 		{
 			devmodeenabled = true;
-		}
-		if (Input.GetKeyUp (KeyCode.Backslash)) 
-		{
-			devmodeenabled = false;
-		}
+		} else {
+            devmodeenabled = false;
+        }
 
 		if (devmodeenabled == true) 
 		{
-			if(Input.GetKeyDown(KeyCode.Alpha1)) // key 1 to take damage
+			if(Input.GetKeyDown(KeyCode.Alpha1)) // key 1 to partial heal/damage
 			{
-				CmdTakeDamage(gameObject.name, 50, transform.name);
+                if (Input.GetKey(KeyCode.LeftAlt)) {
+                    CmdTakeDamage(gameObject.name, 10, transform.name);
+                } else {
+                    CmdHealthRegen(gameObject.name, 10*10f/Time.deltaTime, transform.name);
+                }
 			}
-			if (Input.GetKey (KeyCode.Alpha2)) // hold 2 to regen health
+			if (Input.GetKey (KeyCode.Alpha2)) // hold 2 to full regen health/die
 			{
-				CmdHealthRegen(gameObject.name, 300, transform.name); 
+                if (Input.GetKey(KeyCode.LeftAlt)) {
+                    CmdTakeDamage(gameObject.name, 100, transform.name);
+                } else {
+                    CmdHealthRegen(gameObject.name, 100 * 10f / Time.deltaTime, transform.name);
+                }
 			}
-			if (Input.GetKeyDown (KeyCode.Alpha3)) // key 3 to gain ult
+			if (Input.GetKeyDown (KeyCode.Alpha3)) // key 3 to replenish/deplete ult
 			{
-				networkPlayerManager.currentUltimateGain += 100;
+                if (Input.GetKey(KeyCode.LeftAlt)) {
+                    networkPlayerManager.currentUltimateGain -= 100;
+                } else {
+                    networkPlayerManager.currentUltimateGain += 100;
+                }
 			}
-			if (Input.GetKeyDown (KeyCode.Alpha4)) // key 4 to to change range cool down to 0
+			if (Input.GetKeyDown (KeyCode.Alpha4)) // key 4 to reload ranged
 			{
-				gameObject.GetComponent<WeaponSpawn> ().reloadTime = 0;
+                gameObject.GetComponent<WeaponSpawn>().InstantReload();
 			}
-			if (Input.GetKeyDown (KeyCode.Alpha5)) // key 5 to fill gravity vharges
+			if (Input.GetKeyDown (KeyCode.Alpha5)) // key 5 to fill/empty gravity charges
 			{
-				gameObject.GetComponentInChildren<GravityAxisScript> ().gravityCharge = 5;
+                if (Input.GetKey(KeyCode.LeftAlt)) {
+                    gameObject.GetComponentInChildren<GravityAxisScript>().gravityCharge = 0;
+                } else {
+                    gameObject.GetComponentInChildren<GravityAxisScript>().gravityCharge = 5;
+                }                
 			}
 			if (Input.GetKeyDown (KeyCode.Alpha6)) // key 6 to go to spawn;
 			{
