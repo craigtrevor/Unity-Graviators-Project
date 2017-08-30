@@ -19,17 +19,10 @@ public class MeleeWeaponTrail : MonoBehaviour
 	private Rigidbody playerRigidbody; //used to grab velcioty
 	private float speed; // used to grab velocity
 
-    /*	[SerializeField]
-        private float lowDamageVelocity = 10; 
-        [SerializeField]
-        private float highDamageVelocity = 25;
-        */
     [SerializeField]
-	private float lowDamageVelocity = 10;
-
+    private float lowDamageVelocity = 20; 
     [SerializeField]
-    private float highDamageVelocity = 25;
-
+    private float highDamageVelocity = 50;
 
     [SerializeField]
 	bool _emit = true;
@@ -95,8 +88,8 @@ public class MeleeWeaponTrail : MonoBehaviour
 
 	void Start()
 	{
-		lowDamageVelocity = GetComponentInParent<Network_CombatManager> ().lowDamageVelocity;
-		highDamageVelocity = GetComponentInParent<Network_CombatManager> ().highDamageVelocity;
+		//lowDamageVelocity = GetComponentInParent<Network_CombatManager> ().lowDamageVelocity;
+		//highDamageVelocity = GetComponentInParent<Network_CombatManager> ().highDamageVelocity;
         ResetTrails();
 	}
 
