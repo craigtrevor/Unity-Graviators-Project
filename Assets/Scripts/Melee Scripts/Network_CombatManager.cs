@@ -38,9 +38,9 @@ public class Network_CombatManager : NetworkBehaviour {
     // Float
     private float attackRadius;
     [SerializeField]
-    private float lowDamageVelocity = 10;
+	public float lowDamageVelocity = 40;
     [SerializeField]
-    private float highDamageVelocity = 25;
+	public float highDamageVelocity = 80;
 
     //stun timers
     private float d1StunTime = 2f;

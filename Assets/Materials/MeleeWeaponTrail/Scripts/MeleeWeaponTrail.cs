@@ -13,17 +13,25 @@ using System.Collections.Generic;
 
 public class MeleeWeaponTrail : MonoBehaviour
 {
+
+    
 	[SerializeField]
 	private Rigidbody playerRigidbody; //used to grab velcioty
 	private float speed; // used to grab velocity
 
-	[SerializeField]
-	private float lowDamageVelocity = 10; 
-	[SerializeField]
-	private float highDamageVelocity = 25;
+    /*	[SerializeField]
+        private float lowDamageVelocity = 10; 
+        [SerializeField]
+        private float highDamageVelocity = 25;
+        */
+    [SerializeField]
+	private float lowDamageVelocity = 10;
+
+    [SerializeField]
+    private float highDamageVelocity = 25;
 
 
-	[SerializeField]
+    [SerializeField]
 	bool _emit = true;
 	public bool Emit { set{_emit = value;} }
 
@@ -87,6 +95,8 @@ public class MeleeWeaponTrail : MonoBehaviour
 
 	void Start()
 	{
+		lowDamageVelocity = GetComponentInParent<Network_CombatManager> ().lowDamageVelocity;
+		highDamageVelocity = GetComponentInParent<Network_CombatManager> ().highDamageVelocity;
         ResetTrails();
 	}
 
