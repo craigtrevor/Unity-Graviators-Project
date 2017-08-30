@@ -8,7 +8,6 @@ public class Bot_Script : MonoBehaviour {
 
 	private bool dead = false;
 
-	public GameObject deathprefab;
 	public Component[] Renders;
 	public Behaviour[] DisableOnDeath;
 
