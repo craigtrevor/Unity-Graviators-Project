@@ -42,7 +42,7 @@ public class UnitD1_Ult : NetworkBehaviour {
 			chargePercent = 0;
 		}
 
-		if(canUseUlt = true)
+		if(canUseUlt == true)
 		{
 			if (playerYVelocity < 0) { // if they are falling
 				isFalling = true;
