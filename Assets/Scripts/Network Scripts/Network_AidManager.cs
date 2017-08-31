@@ -15,7 +15,7 @@ public class Network_AidManager : NetworkBehaviour {
 
 	[SerializeField]
 	private float healAmount = 1;
-	private float chargeAmount = 10f;
+	private float chargeAmount = 15f;
 
 	[Client]
 	void OnTriggerStay (Collider other)
