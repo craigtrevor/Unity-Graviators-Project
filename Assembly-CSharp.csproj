@@ -70,6 +70,8 @@
      <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
+     <Compile Include="Assets\Scripts\Bot Scripts\Bot_Melee.cs" />
+     <Compile Include="Assets\Scripts\Bot Scripts\Bot_Range.cs" />
      <Compile Include="Assets\Scripts\Bot Scripts\Bot_Script.cs" />
      <Compile Include="Assets\Scripts\Bot Scripts\Patrol_Bot.cs" />
      <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />

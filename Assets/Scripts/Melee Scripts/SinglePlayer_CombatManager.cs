@@ -76,6 +76,10 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
     PlayerController playerControllermodifier;
     Dash dashScript;
 
+	public bool isDashing;
+	public GravityAxisScript gravityAxisScript;
+
+
     // Use this for initialization
     void Start()
     {
@@ -299,4 +303,16 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
             ultGain = 5;
         }
     }
+
+	public void ActualJump() {
+	}
+
+	bool CanFall() {
+		if (!isDashing && !gravityAxisScript.GetGravitySwitching()) {
+			return true;
+		} else {
+			//velocity.y *= retainFallOnGrav;
+			return false;
+		}
+	}
 }

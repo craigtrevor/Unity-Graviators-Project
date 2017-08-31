@@ -9,6 +9,7 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
     public int m_PlayerNumber = 1;
     public Rigidbody weapon; // prefab of the weapon
     public Transform fireTransform; // a child of the player where the weapon is spawned
+	public Transform fireTransformSecondary;
     public float force = 2000; // the force to be applied to the weapon
     public float reloadTime = 15f;
     //	[SyncVar]
@@ -21,6 +22,7 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
 
     public Animator playerAnimator;
     public GameObject weaponToHide;
+	public GameObject weaponToHide2;
     public MonoBehaviour trailToHide;
 
     private void Start()
@@ -42,14 +44,13 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
     {
         m_Fired = true; // set the fire flag so that fire is only called once
         playerAnimator.SetTrigger("Ranged Attack");
-        StartCoroutine(WaitForCurrentAnim());
     }
 
-    private IEnumerator WaitForCurrentAnim()
+	public void RangedAttack()
     {
-        yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
         weaponToHide.SetActive(false);
         ThrowWeapon(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
+		ThrowWeapon(m_Rigidbody.velocity, force, fireTransformSecondary.forward, fireTransformSecondary.position, fireTransformSecondary.rotation);
     }
 
     void ThrowWeapon(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation)
@@ -71,7 +72,10 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
         yield return new WaitForSeconds(reloadTime);
         m_Fired = false;
         playerAnimator.SetTrigger("Ranged Attack Reload");
-        yield return new WaitForSeconds(playerAnimator.GetCurrentAnimatorStateInfo(1).normalizedTime);
-        weaponToHide.SetActive(true);
     }
+
+	public void NoNameShowWeapons() {
+		weaponToHide.SetActive(true);
+		weaponToHide2.SetActive(true);
+	}
 }

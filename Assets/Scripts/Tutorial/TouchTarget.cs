@@ -6,8 +6,7 @@ public class TouchTarget : MonoBehaviour {
 
 	public GameObject tutManager;
 
-	// Use this for initialization
-	void OnCollisonEnter () {
+	void OnTriggerEnter () {
 		tutManager.GetComponent<TutorialManager> ().tutProgression += 1;
 		gameObject.SetActive (false);
 	}
