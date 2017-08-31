@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour {
     public bool stunned;
     public bool isDashing;
     private bool recieveInput;
+    private bool isShiftPressed;
 
     public int retainFallOnGrav;
 
@@ -111,6 +112,7 @@ public class PlayerController : MonoBehaviour {
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
 
         recieveInput = true;
+        isShiftPressed = false;
         stunned = false;
         inputSettings.GRAVITY_RELEASE = false;
     }
@@ -124,6 +126,8 @@ public class PlayerController : MonoBehaviour {
         } else {
             forwardInput = rightInput = turnInput = jumpInput = 0f;
         }
+
+        shiftPressed();
 
         if (!stunned && !isDashing) {
             GravityInput(inputSettings.GRAVITY_RELEASE);
@@ -158,13 +162,27 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    void shiftPressed()
+    {
+        if (Input.GetButtonDown("Crouch"))
+        {
+            isShiftPressed = true;
+        }
+
+        if (Input.GetButtonUp("Crouch"))
+        {
+            isShiftPressed = false;
+        }
+
+    }
+
     void GravityInput(bool gravityRelease) {
         //If shift is pressed (gravity selection)
         if (UI_PauseMenu.IsOn == true)
             return;
 
 
-        if (Input.GetButton("Crouch")) {
+        if (/*Input.GetButton("Crouch")*/isShiftPressed) {
             gravityAxisScript.SetShiftPressed(true); //shiftPressed true
 
             if (!gravityRelease) {//If gravity release is off
@@ -172,16 +190,19 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetButtonDown("Jump")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(Input.GetAxis("Jump"), 0f, 0f);
+                    //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonDown("Horizontal")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(0f, Input.GetAxis("Horizontal"), 0f);
+                    //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonDown("Vertical")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(0f, 0f, Input.GetAxis("Vertical"));
+                    //isShiftPressed = false;
                 }
 
             } else { //If gravity release is on
@@ -191,6 +212,7 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetButtonUp("Jump")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(1f, 0f, 0f);
+                    //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonUp("Horizontal")) {
@@ -200,6 +222,7 @@ public class PlayerController : MonoBehaviour {
                     } else {
                         gravityAxisScript.ChangeGravity(0f, -1f, 0f);
                     }
+                    //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonUp("Vertical")) {
@@ -209,6 +232,7 @@ public class PlayerController : MonoBehaviour {
                     } else {
                         gravityAxisScript.ChangeGravity(0f, 0, -1f);
                     }
+                    //isShiftPressed = false;
                 }
 
             }

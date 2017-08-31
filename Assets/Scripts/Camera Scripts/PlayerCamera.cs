@@ -50,6 +50,7 @@ public class PlayerCamera : MonoBehaviour {
             LayerMask musk = hit.transform.gameObject.layer;
             //Debug.Log(LayerMask.LayerToName(musk));
             raycastPoint = hit.point;
+            //Debug.DrawLine(player.transform.position, hit.point);
 
         }
     }

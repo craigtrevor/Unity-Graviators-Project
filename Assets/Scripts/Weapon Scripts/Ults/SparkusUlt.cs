@@ -3,42 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class SparkusUlt : NetworkBehaviour {
+public class SparkusUlt : NetworkBehaviour
+{
 
-    public GameObject electricBeam;
-    public Transform targetTransform;
+    public Transform spawnTransform;
+    public Camera camera;
 
-    GameObject playStun;
+    RaycastHit hit;
+    LayerMask mask = ~(1 << 30);
+
+    Vector3 target;
 
     // Use this for initialization
-    void Start() {
-        playStun = (GameObject)Instantiate(electricBeam, targetTransform.position + targetTransform.forward, Quaternion.Euler(targetTransform.eulerAngles.x, targetTransform.eulerAngles.y, targetTransform.eulerAngles.z), targetTransform);
+    void Start()
+    {
+        if (Physics.Raycast(spawnTransform.position, spawnTransform.forward, out hit, 15f * Mathf.Infinity, mask.value))
+        {
+            target = hit.point;
+
+        }
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
+        setTarget();
         ultInput();
     }
 
-    void ultInput() {
-
-
-        if (Input.GetKey(KeyCode.F)) {
-            playStun.GetComponent<ParticleSystem>().Emit(5); // destory particles please
-            ultDamage();
-        } else {
-
-        }
+    void setTarget()
+    {
+        Physics.Raycast(spawnTransform.position, spawnTransform.forward, out hit, 15f * Mathf.Infinity, mask.value);
 
     }
 
-
-
-    void ultDamage() {
-        if (Physics.Raycast(targetTransform.position, targetTransform.forward, 17f)) {
-            Debug.Log(">:3");
-        } else {
-            Debug.Log("<:Ɛ");
+    void ultInput()
+    {
+        Debug.DrawLine(spawnTransform.position, hit.point);
+        if (Input.GetKey(KeyCode.F))
+        {
+            target = Vector3.Lerp(target, hit.point, Time.deltaTime * 5f);
         }
+        else
+        {
+            target = hit.point;
+        }
+
+
     }
+
 }
