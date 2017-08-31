@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Bot_Script : MonoBehaviour {
 
+	public GameObject tutorialManager;
+
 	public float health = 100;
 
 	private bool dead = false;
+	private bool respawnEnabled = false;
+
+	public bool isAttacking = false;
+	public float playerDamage = 0; 
 
 	public Component[] Renders;
 	public Behaviour[] DisableOnDeath;
@@ -30,6 +36,10 @@ public class Bot_Script : MonoBehaviour {
 		}
 	}
 
+	public void TakeDamage (int damage) {
+		health -= damage;
+	}
+
 	public void die()
 	{
 		dead = true;
@@ -42,7 +52,12 @@ public class Bot_Script : MonoBehaviour {
 			DisableOnDeath[i].enabled = false;
 		}
 		Instantiate(corpse, this.transform.position, this.transform.rotation);
-		StartCoroutine (RespawnTimer());
+		tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
+		if (!respawnEnabled) {
+			Destroy (this.gameObject);
+		} else {
+			StartCoroutine (RespawnTimer ());
+		}
 
 	}
 

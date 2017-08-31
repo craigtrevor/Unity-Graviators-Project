@@ -185,36 +185,32 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
         {
             if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
             {
-                Debug.Log("Hit Player!");
-                //networkSoundscape.PlaySound(1, 1, 0f);
-
-                hitCol.GetComponent<SinglePlayer_CombatManager>().enabled = true; // enables the combat nmanager to get correct attack damage values
-
-                if (hitCol.GetComponent<SinglePlayer_CombatManager>().isAttacking == true)
+				if (hitCol.gameObject.GetComponent<Bot_Script>().isAttacking == true)
                 { // check to see if the other player is attacking
-                    if (hitCol.GetComponent<SinglePlayer_CombatManager>().playerDamage == this.GetComponent<SinglePlayer_CombatManager>().playerDamage)
+					if (hitCol.gameObject.GetComponent<Bot_Script>().playerDamage == this.GetComponent<SinglePlayer_CombatManager>().playerDamage)
                     {  // if the player has equal damage as oppenent
                         //Debug.Log("knockedback");
                         StartCoroutine(knockBack());
+						hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (100);
                     }
                 }
 
-                else if (hitCol.GetComponent<SinglePlayer_CombatManager>().playerDamage < this.GetComponent<SinglePlayer_CombatManager>().playerDamage)
+				else if (hitCol.gameObject.GetComponent<Bot_Script>().playerDamage < this.GetComponent<SinglePlayer_CombatManager>().playerDamage)
                 { // if the player has more damage then oponent
 
                     // Debug.Log("won clash");
 
-                    GetComponent<Dash>().chargePercent += ultGain;
+                    //GetComponent<Dash>().chargePercent += ultGain;
 
                     isAttacking = false;
+
+					hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (100);
                 }
 
                 else
                 {
                     // Debug.Log("i had less damage and loss the clash");
                 }
-
-                hitCol.GetComponent<SinglePlayer_CombatManager>().enabled = false;
             }
 
             if (hitCol.transform.root != transform.root && hitCol.gameObject.tag != PLAYER_TAG)
