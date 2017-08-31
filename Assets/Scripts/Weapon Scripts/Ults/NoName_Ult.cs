@@ -104,14 +104,18 @@ public class NoName_Ult : NetworkBehaviour {
 
     //Runs actual dash stuff and damage
     void Dashing() {
-        if (isDashing) {
-            if (isCharging) {
-                StartCoroutine(Dash(target));
-                DashDamaging(dashDamage+10f);
-            } else {
-                DashDamaging(dashDamage);
-            }
-        }
+		if (isDashing) {
+			playerAnimator.SetBool ("UltimateLoop", true);
+			if (isCharging) {
+				StartCoroutine (Dash (target));
+				DashDamaging (dashDamage + 10f);
+				playerAnimator.SetTrigger ("StartUltimate");
+			} else {
+				DashDamaging (dashDamage);
+			}
+		} else {
+			playerAnimator.SetBool ("UltimateLoop", false);
+		}
     }
 
 

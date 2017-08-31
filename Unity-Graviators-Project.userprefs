@@ -1,15 +1,20 @@
-﻿<Properties StartupItem="Unity-Graviators-Project.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Misc\TestScript.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Network Scripts\Network_AidManager.cs">
     <Files>
       <File FileName="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Animation Scripts\AnimTesterController.cs" Line="13" Column="31" />
+      <File FileName="Assets\Scripts\Animation Scripts\AnimTesterController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Animation Scripts\OrbitCam.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Animation Scripts\AnimTesterSpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Misc\TestScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" Line="77" Column="59" />
+      <File FileName="Assets\Scripts\Camera Scripts\PlayerCamera.cs" Line="46" Column="7" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Ults\NoName_Ult.cs" Line="117" Column="49" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Ults\Dash.cs" Line="182" Column="51" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_AidManager.cs" Line="32" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
