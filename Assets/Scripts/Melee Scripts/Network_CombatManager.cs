@@ -267,7 +267,7 @@ public class Network_CombatManager : NetworkBehaviour {
         if (isHitting) {
             if (networkPlayerManager.playerCharacterID == "ERNN") {
                 StartCoroutine(ERNNAttacking(hitCol));
-                GetComponent<Dash>().chargePercent += ultGain;
+                //GetComponent<Dash>().chargePercent += ultGain;
             } else if (networkPlayerManager.playerCharacterID == "SPKS") {
                 CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
             } else if (networkPlayerManager.playerCharacterID == "UT-D1") {
