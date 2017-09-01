@@ -21,6 +21,12 @@ public class TutorialManager : MonoBehaviour {
 	public GameObject chump3;
 	public GameObject chump4;
 
+	public GameObject camDrone1;
+	public GameObject camDrone2;
+	public GameObject camDrone3;
+	public GameObject camDrone4;
+	public GameObject camDrone5;
+
 	public int botsMurdered = 0;
 
 	public int tutProgression = 1;
@@ -28,15 +34,8 @@ public class TutorialManager : MonoBehaviour {
 
 	void Start() {
 		indicator.SetActive (false);
-		target1.SetActive (false);
-		target2.SetActive (false);
-		target3.SetActive (false);
-		chump1.SetActive (false);
-		chump2.SetActive (false);
-		chump3.SetActive (false);
-		chump4.SetActive (false);
 		tutProgression = 1;
-		overallProgression = 1;
+		overallProgression = 3;
 	}
 
 	// overallProgression
@@ -152,6 +151,7 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("Looks like your good to go four arms, lets see now..."));
 			overallProgression = 2;
 			tutProgression = 1;
+			indicator.SetActive (false);
 		}
 	}
 
@@ -159,6 +159,7 @@ public class TutorialManager : MonoBehaviour {
 		//Melee combat
 		if (tutProgression <= 2 && !textNotDone) {
 			chump1.SetActive (true);
+			indicator.SetActive (true);
 			indicator.GetComponent<DirectionIndicator> ().targetObject = chump1;
 			StartCoroutine (AnimateText ("Ahh! Perfect timing, this chump is headed for the scrap heap."));
 		}
@@ -177,6 +178,8 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("Ah...Relaxing"));
 			overallProgression = 3;
 			tutProgression = 1;
+			botsMurdered = 0;
+			indicator.SetActive (false);
 		}
 	}
 
@@ -185,7 +188,37 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	void tutRanged () {
-		overallProgression = 5;
+		if (tutProgression <= 2 && !textNotDone) {
+			StartCoroutine (AnimateText ("I think that's enough socializing for now. Lets try for something with some distance"));
+			tutProgression = 2;
+		}
+		if (tutProgression == 3 && !textNotDone) {
+			camDrone1.SetActive (true);
+			camDrone2.SetActive (true);
+			camDrone3.SetActive (true);
+			camDrone4.SetActive (true);
+			camDrone5.SetActive (true);
+			StartCoroutine (AnimateText ("See these little camera drones? They'd love to hear from you,"));
+		}
+		if (tutProgression == 4 && !textNotDone) {
+			StartCoroutine (AnimateText ("line 'em up in your sights and Right Click to deliver your message!"));
+		}
+		if (tutProgression == 5 && !textNotDone && botsMurdered >= 1) {
+			StartCoroutine (AnimateText ("That'll teach those little sneaks, finish off the rest so my dressing room is safe again"));
+		}
+		if (tutProgression == 6 && !textNotDone) {
+			StartCoroutine (AnimateText ("So, this will only still a proper fighter, but it should delay them long enough for you"));
+		}
+		if (tutProgression == 7 && !textNotDone) {
+			StartCoroutine (AnimateText ("to get up in their face and deliver the finishing blow"));
+		}
+	
+		if (tutProgression == 8 && !textNotDone && botsMurdered == 5) {
+			StartCoroutine (AnimateText ("I love the smell of buring drones in the morning"));
+			overallProgression = 5;
+			tutProgression = 1;
+			botsMurdered = 0;
+		}
 	}
 
 	void tutTraps () {
@@ -199,16 +232,16 @@ public class TutorialManager : MonoBehaviour {
 
 
 	public void tutFinish() {
-		if (tutProgression == 19 && !textNotDone) {
+		if (tutProgression <= 2 && !textNotDone) {
 			StartCoroutine (AnimateText ("Well, thats all we have time for today!"));
 		}
-		if (tutProgression == 20 && !textNotDone) {
+		if (tutProgression == 3 && !textNotDone) {
 			StartCoroutine (AnimateText ("You can run around here all you like, or you can go and play a real game"));
 		}
-		if (tutProgression == 21 && !textNotDone) {
+		if (tutProgression == 4 && !textNotDone) {
 			StartCoroutine (AnimateText ("See you next time, graviator!"));
 		}
-		if (tutProgression == 22 && !textNotDone) {
+		if (tutProgression == 5 && !textNotDone) {
 			chatBox.SetActive (false);
 		}
 	}

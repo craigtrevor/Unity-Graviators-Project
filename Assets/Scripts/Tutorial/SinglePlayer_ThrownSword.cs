@@ -65,9 +65,12 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 		
 	void CmdTakeDamage(GameObject robot, float _damage)
 	{
-		robot.GetComponent<Bot_Script> ().RangedHit ();
-		//Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-		//networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+		if (robot.GetComponent<Drone_bot> () != null) {
+			robot.GetComponent<Drone_bot> ().RangedHit ();
+		}
+		if (robot.GetComponent<Bot_Script> () != null) {
+			robot.GetComponent<Bot_Script> ().RangedHit ();
+		}
 	}
 
 	public void Die()
