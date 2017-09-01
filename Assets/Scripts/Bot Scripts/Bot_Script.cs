@@ -40,6 +40,9 @@ public class Bot_Script : MonoBehaviour {
 		health -= damage;
 	}
 
+	public void RangedHit() {
+	}
+
 	public void die()
 	{
 		dead = true;

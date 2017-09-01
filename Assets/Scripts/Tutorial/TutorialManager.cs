@@ -24,6 +24,7 @@ public class TutorialManager : MonoBehaviour {
 	public int botsMurdered = 0;
 
 	public int tutProgression = 1;
+	public int overallProgression = 1;
 
 	void Start() {
 		indicator.SetActive (false);
@@ -35,30 +36,60 @@ public class TutorialManager : MonoBehaviour {
 		chump3.SetActive (false);
 		chump4.SetActive (false);
 		tutProgression = 1;
+		overallProgression = 1;
 	}
-		
+
+	// overallProgression
+	// 1 Movement
+	// 2 Melee attacks
+	// 3 clashes
+	// 4 Ranged attacks
+	// 5 Traps
+	// 6 ultimates
 	void Update() {
 		textObject.text = str;
-		if (tutProgression >= 19) {
+		if (overallProgression == 0) {
 			tutFinish ();
 		}
-		if (tutProgression < 19) {
-			tutProgress ();
+
+		if (overallProgression == 1) {
+			tutMovement ();
 		}
 
-		if (tutProgression == 3) {
+		if (overallProgression == 2) {
+			tutMelee ();
+		}
+
+		if (overallProgression == 3) {
+			tutClash ();
+		}
+
+		if (overallProgression == 4) {
+			tutRanged ();
+		}
+
+		if (overallProgression == 5) {
+			tutTraps ();
+		}
+
+		if (overallProgression == 6) {
+			tutUlt ();
+		}
+
+
+		if (overallProgression == 1 && tutProgression == 3) {
 			if (Input.GetKey ("w") || Input.GetKey ("s") || Input.GetKey ("a") || Input.GetKey ("d")) {
 				tutProgression = 4;
 			}
 		}
 
-		if (tutProgression == 5) {
+		if (overallProgression == 1 && tutProgression == 5) {
 			if (Input.GetKey ("left shift")) {
 				tutProgression = 6;
 			}
 		}
 
-		if (tutProgression == 7) {
+		if (overallProgression == 1 && tutProgression == 7) {
 			if (Input.GetKey ("w") || Input.GetKey ("s") || Input.GetKey ("a") || Input.GetKey ("d") || Input.GetKey ("space")) {
 				tutProgression = 8;
 			}
@@ -79,7 +110,7 @@ public class TutorialManager : MonoBehaviour {
 		tutProgression += 1;
 	}
 
-	void tutProgress () {
+	void tutMovement () {
 
 		//Basic movement
 		if (tutProgression == 1 && !textNotDone) {
@@ -105,41 +136,67 @@ public class TutorialManager : MonoBehaviour {
 		}
 
 		if (tutProgression == 10 && !textNotDone) {
-			indicator.GetComponent<DirectionIndicator>().targetObject = target2;
+			indicator.GetComponent<DirectionIndicator> ().targetObject = target2;
 			target2.SetActive (true);
 			StartCoroutine (AnimateText ("I knew you wern't ready for the scrap heap yet, one more now"));
 		}
 
 		if (tutProgression == 12 && !textNotDone) {
-			indicator.GetComponent<DirectionIndicator>().targetObject = target3;
+			indicator.GetComponent<DirectionIndicator> ().targetObject = target3;
 			target3.SetActive (true);
 			StartCoroutine (AnimateText ("Okay, one more and you'll be ready to murder again"));
 		}
 
-		//Melee combat
+		//Next tut progression
 		if (tutProgression == 14 && !textNotDone) {
 			StartCoroutine (AnimateText ("Looks like your good to go four arms, lets see now..."));
+			overallProgression = 2;
+			tutProgression = 1;
 		}
-		if (tutProgression == 15 && !textNotDone) {
+	}
+
+	void tutMelee () {
+		//Melee combat
+		if (tutProgression <= 2 && !textNotDone) {
 			chump1.SetActive (true);
 			indicator.GetComponent<DirectionIndicator> ().targetObject = chump1;
 			StartCoroutine (AnimateText ("Ahh! Perfect timing, this chump is headed for the scrap heap."));
 		}
-		if (tutProgression == 16 && !textNotDone) {
+		if (tutProgression == 3 && !textNotDone) {
 			StartCoroutine (AnimateText ("Run over there and left click to finish the job"));
 		}
 
-		if (tutProgression == 17 && !textNotDone && botsMurdered == 1) {
+		if (tutProgression == 4 && !textNotDone && botsMurdered == 1) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = chump3;
 			chump2.SetActive (true);
 			chump3.SetActive (true);
 			chump4.SetActive (true);
 			StartCoroutine (AnimateText ("Yes! Yes! Do it again!"));
 		}
-		if (tutProgression == 18 && !textNotDone && botsMurdered == 4) {
+		if (tutProgression == 5 && !textNotDone && botsMurdered == 4) {
 			StartCoroutine (AnimateText ("Ah...Relaxing"));
+			overallProgression = 3;
+			tutProgression = 1;
 		}
 	}
+
+	void tutClash () {
+		overallProgression = 4;
+	}
+
+	void tutRanged () {
+		overallProgression = 5;
+	}
+
+	void tutTraps () {
+		overallProgression = 6;
+	}
+
+	void tutUlt () {
+		overallProgression = 0;
+	}
+
+
 
 	public void tutFinish() {
 		if (tutProgression == 19 && !textNotDone) {

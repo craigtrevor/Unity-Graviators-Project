@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\Bot Scripts\Bot_Melee.cs" />
      <Compile Include="Assets\Scripts\Bot Scripts\Bot_Range.cs" />
      <Compile Include="Assets\Scripts\Bot Scripts\Bot_Script.cs" />
+     <Compile Include="Assets\Scripts\Bot Scripts\Grav_bot.cs" />
      <Compile Include="Assets\Scripts\Bot Scripts\Patrol_Bot.cs" />
      <Compile Include="Assets\Scripts\Camera Scripts\FreeCamScript.cs" />
      <Compile Include="Assets\Scripts\Camera Scripts\OrbitCamera.cs" />
@@ -86,6 +87,8 @@
      <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
+     <Compile Include="Assets\Scripts\Network Scripts\Network_LANClient.cs" />
+     <Compile Include="Assets\Scripts\Network Scripts\Network_LANServer.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_Manager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_MatchSettings.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerLatency.cs" />
@@ -120,6 +123,8 @@
      <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
      <Compile Include="Assets\Scripts\Tutorial\DirectionIndicator.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\SinglePlayer_ThrownSword.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\SP_CompactHud.cs" />
      <Compile Include="Assets\Scripts\Tutorial\TouchTarget.cs" />
      <Compile Include="Assets\Scripts\Tutorial\TutorialManager.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\CompactHud.cs" />
