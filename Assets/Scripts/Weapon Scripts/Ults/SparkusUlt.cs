@@ -57,14 +57,18 @@ public class SparkusUlt : NetworkBehaviour {
             if (charge >= ULT_MAX) {
                 isLasering = true;
                 laser = Instantiate(laserParticle, spawnTransform.position, spawnTransform.rotation, spawnTransform);
+                spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = true;
             }
         }
-        
-        laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, hit.distance/2f);
+
+        if (laser != null) {
+            laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, hit.distance / 2f);
+        }
 
         if (charge <= 0) {
             isLasering = false;
             Destroy(laser);
+            spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = false;
         }
     }
 
