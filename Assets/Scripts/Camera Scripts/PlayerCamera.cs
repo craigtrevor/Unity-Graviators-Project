@@ -9,6 +9,7 @@ public class PlayerCamera : MonoBehaviour {
     float cameraDisplacement;
 
     public Vector3 raycastPoint;
+    public LayerMask mask;
 
     // Use this for initialization
     void Start() {
@@ -44,7 +45,6 @@ public class PlayerCamera : MonoBehaviour {
 
     void TestStuff() {
         RaycastHit hit;
-        LayerMask mask = ~(1 << 30);
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, mask.value)) {
             //Debug.Log(hit.transform.gameObject.layer);
             LayerMask musk = hit.transform.gameObject.layer;
