@@ -11,8 +11,8 @@ public class TestScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Every3Seconds(this.gameObject);
-	}
+        Application.LoadLevel("Lobby_Scene");
+    }
 
     void Every3Seconds(GameObject thisObject)
     {

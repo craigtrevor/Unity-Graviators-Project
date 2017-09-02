@@ -14,7 +14,8 @@ public class NoName_Ult : NetworkBehaviour {
     public const float DASH_SPEED = 50f;
     public const float MAX_DISTANCE = 40f; 
     public const float TARGET_THRESH = 2f; //distance considered "close enough" to target
-    public const float DASH_COST = 100f / 3f;
+    public const float DASH_MAX = 100f;
+    public const float DASH_COST = DASH_MAX / 3f;
 
     [SerializeField]
     private bool isDashing = false;
@@ -22,6 +23,8 @@ public class NoName_Ult : NetworkBehaviour {
     private bool isCharging = false;
     [SerializeField]
     private bool onPause = false;
+    [SerializeField]
+    private bool canDash = false;
 
     //dash damage storage
     [SerializeField]
@@ -72,7 +75,7 @@ public class NoName_Ult : NetworkBehaviour {
 
         Debug.DrawLine(startSpot, target);
     }  
-
+    
     void ChargeUlt() { //deals with charging the ult bar
         if (!isDashing) {
             CmdChargeUltimate(passiveCharge, transform.name);
@@ -84,9 +87,17 @@ public class NoName_Ult : NetworkBehaviour {
     //Checks for dash input
     void DashInput() {
 
+        if (charge >= DASH_MAX) {
+            canDash = true;
+        } else if (!isDashing) {
+            canDash = false;
+        }
+
+        
+
         playerScript.isDashing = isDashing;
 
-        if (Input.GetKeyDown(KeyCode.F) && !isCharging && charge > DASH_COST) {
+        if (Input.GetKeyDown(KeyCode.F) && !isCharging && charge >= DASH_COST && canDash) {
             startSpot = player.transform.position;
             target = cameraScript.raycastPoint;
             isCharging = true;
