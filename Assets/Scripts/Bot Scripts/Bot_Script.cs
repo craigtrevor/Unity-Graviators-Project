@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Bot_Script : MonoBehaviour {
 
-	public float health = 100;
+	public GameObject tutorialManager;
+
+	public float health = 10;
 
 	private bool dead = false;
+	public bool respawnEnabled = false;
+	public bool DieOnlyonHighDamage = false;
+
+	public bool isAttacking = false;
 
 	public Component[] Renders;
 	public Behaviour[] DisableOnDeath;
@@ -21,13 +27,21 @@ public class Bot_Script : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (health == 0 && dead == false) 
+		if (health <= 0 && dead == false) 
 		{
-			
 			die ();
-
-			// after 10 seconds un hide the bot and give full health
 		}
+		if (DieOnlyonHighDamage && dead == false) {
+			//Debug.Log("not enough to kill me");
+			health = 100;
+		}
+	}
+
+	public void TakeDamage (int damage) {
+		health -= damage;
+	}
+
+	public void RangedHit() {
 	}
 
 	public void die()
@@ -42,8 +56,11 @@ public class Bot_Script : MonoBehaviour {
 			DisableOnDeath[i].enabled = false;
 		}
 		Instantiate(corpse, this.transform.position, this.transform.rotation);
-		StartCoroutine (RespawnTimer());
+		if (!respawnEnabled) {
+			tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
 
+		}
+		StartCoroutine (RespawnTimer ());
 	}
 
 	public void respawn()
@@ -57,6 +74,9 @@ public class Bot_Script : MonoBehaviour {
 		for (int i = 0; i < DisableOnDeath.Length; i++) 
 		{
 			DisableOnDeath [i].enabled = true;;
+		}
+		if (!respawnEnabled) {
+			gameObject.SetActive(false);
 		}
 	}
 
