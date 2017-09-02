@@ -123,8 +123,10 @@
      <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
      <Compile Include="Assets\Scripts\Tutorial\DirectionIndicator.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\Drone_bot.cs" />
      <Compile Include="Assets\Scripts\Tutorial\SinglePlayer_ThrownSword.cs" />
      <Compile Include="Assets\Scripts\Tutorial\SP_CompactHud.cs" />
+     <Compile Include="Assets\Scripts\Tutorial\SP_TrapPads.cs" />
      <Compile Include="Assets\Scripts\Tutorial\TouchTarget.cs" />
      <Compile Include="Assets\Scripts\Tutorial\TutorialManager.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\CompactHud.cs" />

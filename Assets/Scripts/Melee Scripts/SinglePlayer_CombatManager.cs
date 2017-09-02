@@ -102,18 +102,13 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "UnitD1_RangedWeapon")
-        {
-            StartCoroutine(stunTimer());
-        }
-        if (other.tag == "ThrowingSword")
-        {
-            StartCoroutine(slowTimer());
-        }
-
         ParticleSystem playGravLandMed = (ParticleSystem)Instantiate(gravLandParticleMed, this.transform.position + Vector3.down, this.transform.rotation);
         gravLandParticleMed.Emit(1);
     }
+
+	public void Slow() {
+		StartCoroutine (slowTimer ());
+	}
 
     IEnumerator stunTimer()
     {
@@ -134,7 +129,9 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
         playerControllermodifier.moveSettings.jumpVel = reducedJumpSpeed;
         Debug.Log(" A player has been slowed");
         yield return new WaitForSeconds(slowTime);
-
+		playerControllermodifier.moveSettings.forwardVel = normalWalkSpeed;
+		playerControllermodifier.moveSettings.rightVel = normalWalkSpeed;
+		playerControllermodifier.moveSettings.jumpVel = normalJumpSpeed;
         Debug.Log("the player is running at normal speed agian");
     }
 

@@ -27,6 +27,11 @@ public class TutorialManager : MonoBehaviour {
 	public GameObject camDrone4;
 	public GameObject camDrone5;
 
+	public GameObject slowTrap;
+	public GameObject spikeTrap;
+	public GameObject healthPad;
+	public GameObject ultPad;
+
 	public int botsMurdered = 0;
 
 	public int tutProgression = 1;
@@ -39,10 +44,11 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	// overallProgression
-	// 1 Movement
-	// 2 Melee attacks
+	// 0 finished
+	// 1 Movement - done
+	// 2 Melee attacks - done
 	// 3 clashes
-	// 4 Ranged attacks
+	// 4 Ranged attacks - done
 	// 5 Traps
 	// 6 ultimates
 	void Update() {
@@ -235,6 +241,15 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	void tutTraps () {
+		if (tutProgression == 1 && !textNotDone) {
+			StartCoroutine (AnimateText ("I can't belive I'm saying this, but, thats enough killing for now"));
+			tutProgression = 2;
+		}
+		if (tutProgression == 2 && !textNotDone) {
+			StartCoroutine (AnimateText ("There are a few I need to show you, so you dont kill yourself"));
+			tutProgression = 3;
+		}
+
 		overallProgression = 6;
 	}
 

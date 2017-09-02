@@ -24,6 +24,17 @@ public class SP_CompactHud : MonoBehaviour {
 
 	public SinglePlayer_WeaponSpawn rangedManager;
 	public GameObject reloadMask;
+	public SinglePlayer_CombatManager combatManager;
+
+	public bool healTrigger;
+	public bool ultTrigger;
+	public bool spikeTrigger;
+	public bool slowTrigger;
+
+	public bool onHealthPad;
+	public bool onUltPad;
+	public bool onSpikeTrap;
+	public bool onSlowTrap;
 
 	void Start()
 	{
@@ -39,6 +50,28 @@ public class SP_CompactHud : MonoBehaviour {
 
 	public void Update()
 	{
+		if (onHealthPad) {
+			if (!healTrigger) {
+				StartCoroutine (SlowHeal ());
+			}
+		}
+		if (onUltPad) {
+			if (!ultTrigger) {
+				StartCoroutine (SlowUlt ());
+			}
+		}
+		if (onSpikeTrap) {
+			if (!spikeTrigger) {
+				StartCoroutine (SlowSpike ());
+			}
+		}
+		if (onSlowTrap) {
+			if (!slowTrigger) {
+				StartCoroutine (SlowSlow ());
+			}
+		}
+
+
 		//set health and damage ticker
 		healthMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((playerHealth * 600),100);
 		if (damageMask.GetComponent<RectTransform> ().sizeDelta.x > healthMask.GetComponent<RectTransform> ().sizeDelta.x) {
@@ -67,5 +100,35 @@ public class SP_CompactHud : MonoBehaviour {
 		} else if (rangedManager.reloading == false) {
 			reloadMask.SetActive(true);
 		}
+	}
+
+	private IEnumerator SlowHeal() {
+		healTrigger = true;
+		playerHealth += 0.05f;
+		yield return new WaitForSeconds (0.25f);
+		healTrigger = false;
+	}
+
+	private IEnumerator SlowUlt() {
+		ultTrigger = true;
+		playerUlt += 0.05f;
+		yield return new WaitForSeconds (0.25f);
+		ultTrigger = false;
+	}
+
+	private IEnumerator SlowSpike() {
+		spikeTrigger = true;
+		if (playerHealth > 0.1) {
+			playerHealth -= 0.05f;
+		}
+		yield return new WaitForSeconds (0.25f);
+		spikeTrigger = false;
+	}
+
+	private IEnumerator SlowSlow() {
+		slowTrigger = true;
+		combatManager.Slow ();
+		yield return new WaitForSeconds (2f);
+		slowTrigger = false;
 	}
 }
