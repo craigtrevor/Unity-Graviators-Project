@@ -80,7 +80,8 @@ public class TutorialManager : MonoBehaviour {
 		}
 
 		if (overallProgression == 3) {
-			tutClash ();
+			//tutClash ();
+			overallProgression = 4;
 		}
 
 		if (overallProgression == 4) {
