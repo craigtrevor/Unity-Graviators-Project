@@ -9,7 +9,7 @@ public class Bot_Script : MonoBehaviour {
 	public float health = 100;
 
 	private bool dead = false;
-	private bool respawnEnabled = false;
+	public bool respawnEnabled = false;
 
 	public bool isAttacking = false;
 	public float playerDamage = 0; 
@@ -55,13 +55,11 @@ public class Bot_Script : MonoBehaviour {
 			DisableOnDeath[i].enabled = false;
 		}
 		Instantiate(corpse, this.transform.position, this.transform.rotation);
-		tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
 		if (!respawnEnabled) {
-			Destroy (this.gameObject);
-		} else {
-			StartCoroutine (RespawnTimer ());
-		}
+			tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
 
+		}
+		StartCoroutine (RespawnTimer ());
 	}
 
 	public void respawn()
@@ -75,6 +73,9 @@ public class Bot_Script : MonoBehaviour {
 		for (int i = 0; i < DisableOnDeath.Length; i++) 
 		{
 			DisableOnDeath [i].enabled = true;;
+		}
+		if (!respawnEnabled) {
+			gameObject.SetActive(false);
 		}
 	}
 

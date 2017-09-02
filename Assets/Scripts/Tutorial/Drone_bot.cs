@@ -15,6 +15,14 @@ public class Drone_bot : MonoBehaviour {
 	//adjust this to change how high it goes
 	public float height = 0.5f;
 
+	public bool respawn = false;
+
+	public MeshRenderer[] mrList;
+
+	void Start(){
+		mrList = gameObject.GetComponentsInChildren<MeshRenderer> ();
+	}
+
 	public void RangedHit () {
 		StartCoroutine (DieNow ());
 	}
@@ -24,10 +32,28 @@ public class Drone_bot : MonoBehaviour {
 		Instantiate (explosion1, transform.position, Quaternion.identity);
 		yield return new WaitForSeconds (1f);
 		Instantiate (explosion2, transform.position, Quaternion.identity);
-		tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
-		Destroy(gameObject);
+		if (!respawn) {
+			tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
+			gameObject.SetActive(false);
+		}
+
+		if (respawn) {
+			foreach (MeshRenderer mr in mrList) {
+				mr.enabled = false;
+			}
+			gameObject.GetComponent<BoxCollider> ().enabled = false;
+			StartCoroutine (respawnTimer ());
+		}
 	}
-		
+
+	private IEnumerator respawnTimer() {
+		yield return new WaitForSeconds (5f);
+		foreach (MeshRenderer mr in mrList) {
+			mr.enabled = true;
+		}
+		gameObject.GetComponent<BoxCollider> ().enabled = true;
+	}
+
 	void Update() {
 		transform.LookAt (player.transform);
 		transform.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y + 90, transform.eulerAngles.z);
