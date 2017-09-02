@@ -10,9 +10,9 @@ public class Bot_Script : MonoBehaviour {
 
 	private bool dead = false;
 	public bool respawnEnabled = false;
+	public bool DieOnlyonHighDamage = false;
 
 	public bool isAttacking = false;
-	public float playerDamage = 0; 
 
 	public Component[] Renders;
 	public Behaviour[] DisableOnDeath;
@@ -27,12 +27,13 @@ public class Bot_Script : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (health == 0 && dead == false) 
+		if (health <= 0 && dead == false) 
 		{
-			
 			die ();
-
-			// after 10 seconds un hide the bot and give full health
+		}
+		if (DieOnlyonHighDamage && dead == false) {
+			//Debug.Log("not enough to kill me");
+			health = 100;
 		}
 	}
 
