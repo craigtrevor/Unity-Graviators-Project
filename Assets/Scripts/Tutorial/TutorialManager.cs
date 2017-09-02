@@ -45,7 +45,7 @@ public class TutorialManager : MonoBehaviour {
 	void Start() {
 		indicator.SetActive (false);
 		tutProgression = 1;
-		overallProgression = 2;
+		overallProgression = 1;
 	}
 
 	// overallProgression
