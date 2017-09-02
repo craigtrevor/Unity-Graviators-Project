@@ -77,7 +77,6 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 	{
 		if (!dying)
 		{
-			Destroy(GetComponent<MeleeWeaponTrail>());
 			Destroy(GetComponent<Rigidbody>());
 			Destroy(GetComponent<BoxCollider>());
 

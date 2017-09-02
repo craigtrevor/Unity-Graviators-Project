@@ -165,7 +165,6 @@ public class damageRange : NetworkBehaviour {
     {
         if (!dying)
         {
-            Destroy(GetComponent<MeleeWeaponTrail>());
             Destroy(GetComponent<Rigidbody>());
             Destroy(GetComponent<BoxCollider>());
 

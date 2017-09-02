@@ -207,7 +207,7 @@ public class TutorialManager : MonoBehaviour {
 			chump2.SetActive (true);
 			chump3.SetActive (true);
 			chump4.SetActive (true);
-			StartCoroutine (AnimateText ("Yes! Yes! Do it again!"));
+			StartCoroutine (AnimateText ("Yes! Yes! Do it again! Kill these 3 as well"));
 			tutProgression = 4;
 		}
 		if (tutProgression == 4 && !textNotDone && botsMurdered == 4) {
@@ -220,6 +220,10 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	void tutClash () {
+		if (tutProgression == 1 && !textNotDone) {
+			StartCoroutine (AnimateText ("So, it "));
+			tutProgression = 2;
+		}
 		overallProgression = 4;
 	}
 
@@ -268,7 +272,7 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 2;
 		}
 		if (tutProgression == 2 && !textNotDone) {
-			StartCoroutine (AnimateText ("There are a few I need to show you, so you dont kill yourself"));
+			StartCoroutine (AnimateText ("There are a few things I need to show you, so you dont kill yourself"));
 			tutProgression = 3;
 		}
 		if (tutProgression == 3 && !textNotDone) {

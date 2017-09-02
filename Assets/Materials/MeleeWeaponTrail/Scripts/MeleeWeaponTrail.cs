@@ -114,6 +114,10 @@ public class MeleeWeaponTrail : MonoBehaviour
         _maxVertexDistanceSqr = _maxVertexDistance * _maxVertexDistance;
     }
 
+	void OnDestroy() {
+		Destroy(_trailObject);
+	}
+
 	void OnDisable()
 	{
 		Destroy(_trailObject);
