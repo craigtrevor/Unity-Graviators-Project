@@ -91,7 +91,9 @@ public class damageRange : NetworkBehaviour {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
                 CmdTakeDamage(other.gameObject.name, swordDamage, sourceID);
-                transform.SetParent(other.gameObject.transform);
+				GameObject temp2 = new GameObject ();
+				temp2.transform.SetParent(other.gameObject.transform);
+				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
                 GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
@@ -101,7 +103,9 @@ public class damageRange : NetworkBehaviour {
 
             if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
             {
-                transform.SetParent(other.gameObject.transform);
+				GameObject temp2 = new GameObject ();
+				temp2.transform.SetParent(other.gameObject.transform);
+				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
                 GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
@@ -120,7 +124,9 @@ public class damageRange : NetworkBehaviour {
         {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
-                transform.SetParent(other.gameObject.transform);
+				GameObject temp2 = new GameObject ();
+				temp2.transform.SetParent(other.gameObject.transform);
+				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
                 GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
@@ -130,7 +136,9 @@ public class damageRange : NetworkBehaviour {
 
             if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
             {
-                transform.SetParent(other.gameObject.transform);
+				GameObject temp2 = new GameObject ();
+				temp2.transform.SetParent(other.gameObject.transform);
+				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
                 GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
@@ -165,8 +173,8 @@ public class damageRange : NetworkBehaviour {
     {
         if (!dying)
         {
-            Destroy(GetComponent<Rigidbody>());
-            Destroy(GetComponent<BoxCollider>());
+			GetComponent<Rigidbody> ().isKinematic = true;
+			Destroy(GetComponent<BoxCollider>());
 
             dying = true;
             StartCoroutine(DieNow());

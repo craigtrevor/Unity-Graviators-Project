@@ -100,6 +100,9 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		CheckAnimation();
 		AttackPlayer();
 		PlayerVelocity();
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Attack")) {
+			CheckCollision ();
+		}
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -194,11 +197,13 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	void CheckCollision()
 	{
 		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+		print (hitColliders.Length);
 
 		foreach (Collider hitCol in hitColliders)
 		{
 			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
 			{
+
 				if (hitCol.gameObject.GetComponent<Bot_Melee>().isAttacking == true)
 				{ // check to see if the other player is attacking
 					if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage == this.GetComponent<SinglePlayer_CombatManager>().playerDamage)
@@ -245,6 +250,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	void SendDamage(Collider hitCol) {
 		if (isHitting) 
 		{
+			print (isHitting);
 			StartCoroutine(ERNNAttacking(hitCol));
 			//GetComponent<Dash>().chargePercent += ultGain;
 		}
@@ -252,11 +258,11 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
 	IEnumerator ERNNAttacking(Collider hitCol) {
 		yield return new WaitForSeconds(0.36f);
-		hitCol.GetComponent<Bot_Script> ().health = hitCol.GetComponent<Bot_Script> ().health - playerDamage;
+		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
 		yield return new WaitForSeconds(0.36f);
-		hitCol.GetComponent<Bot_Script> ().health = hitCol.GetComponent<Bot_Script> ().health - playerDamage;
+		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
 		yield return new WaitForSeconds(0.36f);
-		hitCol.GetComponent<Bot_Script> ().health = hitCol.GetComponent<Bot_Script> ().health - playerDamage;
+		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
 	}
 
 	IEnumerator knockBack()

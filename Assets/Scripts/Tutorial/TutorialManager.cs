@@ -21,6 +21,10 @@ public class TutorialManager : MonoBehaviour {
 	public GameObject chump3;
 	public GameObject chump4;
 
+	public GameObject champ1;
+	public GameObject champ2;
+	public GameObject champ3;
+
 	public GameObject camDrone1;
 	public GameObject camDrone2;
 	public GameObject camDrone3;
@@ -36,6 +40,8 @@ public class TutorialManager : MonoBehaviour {
 	public bool spikeTrapTouched;
 	public bool healthPadTouched;
 	public bool ultPadTouched;
+
+	public bool clashBounced;
 
 	public int botsMurdered = 0;
 
@@ -74,7 +80,8 @@ public class TutorialManager : MonoBehaviour {
 		}
 
 		if (overallProgression == 3) {
-			tutClash ();
+			//tutClash ();
+			overallProgression = 4;
 		}
 
 		if (overallProgression == 4) {
@@ -108,6 +115,11 @@ public class TutorialManager : MonoBehaviour {
 					tutProgression = 8;
 				}
 			}
+		}
+
+		//Clash check
+		if (clashBounced && tutProgression == 2 && overallProgression == 3) {
+			tutProgression = 3;
 		}
 
 		//trap progression triggers
@@ -221,10 +233,53 @@ public class TutorialManager : MonoBehaviour {
 
 	void tutClash () {
 		if (tutProgression == 1 && !textNotDone) {
-			StartCoroutine (AnimateText ("So, it "));
+			StartCoroutine (AnimateText ("Of course, real opponents aren't going to stand and take it, lets see,"));
 			tutProgression = 2;
 		}
-		overallProgression = 4;
+		if (tutProgression == 2 && !textNotDone) {
+			champ1.SetActive (true);
+			indicator.SetActive (true);
+			indicator.GetComponent<DirectionIndicator> ().targetObject = champ1;
+			StartCoroutine (AnimateText ("This guy seems to have a bit of fight left in him, try and take him down"));
+		}
+		if (tutProgression == 3 && !textNotDone) {
+			StartCoroutine (AnimateText ("Like before, run over and left click to attack"));
+		}
+		if (botsMurdered == 0 && clashBounced && !textNotDone) {
+			StartCoroutine (AnimateText ("Well that didn't work, looks like you were attack at the same speed, and just bounced off each other"));
+			tutProgression = 4;
+		}
+		if (tutProgression == 4 && !textNotDone) {
+			StartCoroutine (AnimateText ("See the trails your weapons are leaving? The change colour the faster you go, green, yellow, then red"));
+			tutProgression = 5;
+		}
+		if (tutProgression == 5 && !textNotDone) {
+			StartCoroutine (AnimateText ("Running, that'll only ever be slow, but falling, thats where it's at"));
+			tutProgression = 6;
+		}
+		if (tutProgression == 6 && !textNotDone) {
+			StartCoroutine (AnimateText ("So, using your gravity switching powers, fall at him and attack with speed!"));
+		}
+
+
+		//if they kill before bouncing
+		if (botsMurdered == 1 && !textNotDone) {
+			StartCoroutine (AnimateText ("Your either better at this than you let or, or are very lucky"));
+			tutProgression = 7;
+		}
+
+		if (botsMurdered == 1 && clashBounced && !textNotDone) {
+			champ2.SetActive (true);
+			champ3.SetActive (true);
+			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remeber, falls are faster!"));
+			tutProgression = 7;
+		}
+
+		if (botsMurdered == 7 && tutProgression == 7 && !textNotDone ) {
+			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remeber, move faster than your opponent to hurt them good"));
+			overallProgression = 4;
+			tutProgression = 1;
+		}
 	}
 
 	void tutRanged () {

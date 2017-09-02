@@ -121,18 +121,13 @@ public class Bot_Melee : MonoBehaviour {
 
 		foreach (Collider hitCol in hitColliders) {
 			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
-				Debug.Log("Hit Player!");
 				isHitting = true;
-
-
-				hitCol.GetComponent<SinglePlayer_CombatManager>().enabled = true; // enables the combat nmanager to get correct attack damage values
-
-				if (hitCol.GetComponent<SinglePlayer_CombatManager>().isAttacking == true) { // check to see if the other player is attacking
-					if (hitCol.GetComponent<SinglePlayer_CombatManager>().playerDamage == this.GetComponent<Bot_Melee>().BotDamage) {  // if the player has equal damage as oppenent
+				if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().isAttacking == true) { // check to see if the other player is attacking
+					if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().playerDamage == this.GetComponent<Bot_Melee>().BotDamage) {  // if the player has equal damage as oppenent
 						//Debug.Log("knockedback");
-						//StartCoroutine(knockBack());
+						StartCoroutine(knockBack());
 					}
-				} else if (hitCol.GetComponent<SinglePlayer_CombatManager>().playerDamage < this.GetComponent<Bot_Melee>().BotDamage) { // if the player has more damage then oponent
+				} else if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().playerDamage < this.GetComponent<Bot_Melee>().BotDamage) { // if the player has more damage then oponent
 
 					// Debug.Log("won clash");
 
