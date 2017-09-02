@@ -24,7 +24,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	public Transform cameraRotation; // the camerasrotation, assign in game editor
 
 	// Int
-	public float playerDamage = 25;
+	public int playerDamage = 25;
 	public int thrust = 2000; //change this for speed of knock back
 	public float delay = 0.2f;
 	//private int attackMask;
@@ -104,22 +104,26 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "UnitD1_RangedWeapon")
-		{
-			StartCoroutine(stunTimer(unitD1StunTime));
-		}
-		if (other.tag == "ThrowingSword")
-		{
-			StartCoroutine(slowTimer());
-		}
-		if (other.tag == "Sparkus_Ranged") {
-			StartCoroutine(stunTimer(sparkusStunTime));
-		}
-
+//		if (other.tag == "UnitD1_RangedWeapon")
+//		{
+//			StartCoroutine(stunTimer(unitD1StunTime));
+//		}
+//		if (other.tag == "ThrowingSword")
+//		{
+//			StartCoroutine(slowTimer());
+//		}
+//		if (other.tag == "Sparkus_Ranged") {
+//			StartCoroutine(stunTimer(sparkusStunTime));
+//		}
+//
 		if (other.tag == "collider") {
 			ParticleSystem playGravLandMed = (ParticleSystem)Instantiate (gravLandParticleMed, this.transform.position + Vector3.down, this.transform.rotation);
 			gravLandParticleMed.Emit (1);
 		} 
+	}
+
+	public void Slow() {
+		StartCoroutine (slowTimer ());
 	}
 
 	IEnumerator stunTimer(float stunTime)
@@ -174,7 +178,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		if (UI_PauseMenu.IsOn == true)
 			return;
 
-		if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false && attackCounter == 0)
+		if (Input.GetKeyDown(KeyCode.Mouse0) && isAttacking == false && attackCounter == 0)
 		{
 			anim.SetBool("Attacking", true);
 			anim.SetTrigger("Attack");
@@ -183,13 +187,8 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
 		if (isAttacking)
 		{
-			Attacking();
+			CheckCollision();
 		}
-	}
-
-	public void Attacking()
-	{
-		CheckCollision();
 	}
 
 	void CheckCollision()
@@ -228,6 +227,10 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 				else
 				{
 					// Debug.Log("i had less damage and loss the clash");
+				}
+
+				if (!hitCol.gameObject.GetComponent<Bot_Melee> ().isAttacking) {
+					hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
 				}
 			}
 
@@ -293,7 +296,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 					}
 					}*/ //End ParticleScript
 			//transform.GetComponent<Renderer>().material.color = Color.green;
-			playerDamage = 25.0f;
+			playerDamage = 25;
 			ultGain = 5;
 
 
@@ -320,18 +323,18 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
 
 			//transform.GetComponent<Renderer>().material.color = Color.yellow;
-			playerDamage = 50.0f;
+			playerDamage = 50;
 			ultGain = 10;
 		}
 		else if (highDamageVelocity < speed)
 		{
 			//transform.GetComponent<Renderer>().material.color = Color.red;
-			playerDamage = 70.0f;
+			playerDamage = 70;
 			ultGain = 20;
 		}
 		else
 		{
-			playerDamage = 25.0f;
+			playerDamage = 25;
 			ultGain = 5;
 		}
 	}

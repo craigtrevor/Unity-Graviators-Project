@@ -52,6 +52,8 @@ public class Bot_Melee : MonoBehaviour {
 	[SerializeField]
 	private int attackCounter;
 
+	public bool attackerBot;
+
 
 
 
@@ -66,7 +68,9 @@ public class Bot_Melee : MonoBehaviour {
 
 	void Update() {
 		CheckAnimation();
-		AttackPlayer();
+		if (attackerBot) {
+			AttackPlayer ();
+		}
 		PlayerVelocity();
 	}
 
