@@ -95,7 +95,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
                 GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                PlayImpactSound();
+                //PlayImpactSound();
                 Die();
             }
 
@@ -124,7 +124,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
                 GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                PlayImpactSound();
+                //PlayImpactSound();
                 Die();
             }
 
