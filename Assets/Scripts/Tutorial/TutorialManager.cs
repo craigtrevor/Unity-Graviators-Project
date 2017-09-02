@@ -32,6 +32,11 @@ public class TutorialManager : MonoBehaviour {
 	public GameObject healthPad;
 	public GameObject ultPad;
 
+	public bool slowTrapTouched;
+	public bool spikeTrapTouched;
+	public bool healthPadTouched;
+	public bool ultPadTouched;
+
 	public int botsMurdered = 0;
 
 	public int tutProgression = 1;
@@ -40,7 +45,7 @@ public class TutorialManager : MonoBehaviour {
 	void Start() {
 		indicator.SetActive (false);
 		tutProgression = 1;
-		overallProgression = 0;
+		overallProgression = 5;
 	}
 
 	// overallProgression
@@ -52,7 +57,10 @@ public class TutorialManager : MonoBehaviour {
 	// 5 Traps
 	// 6 ultimates
 	void Update() {
+		//update the chatbox
 		textObject.text = str;
+
+		// overall progression triggers
 		if (overallProgression == 0) {
 			tutFinish ();
 		}
@@ -81,7 +89,7 @@ public class TutorialManager : MonoBehaviour {
 			tutUlt ();
 		}
 
-
+		//movement progression triggers
 		if (overallProgression == 1 && tutProgression == 3) {
 			if (Input.GetKey ("w") || Input.GetKey ("s") || Input.GetKey ("a") || Input.GetKey ("d")) {
 				tutProgression = 4;
@@ -100,6 +108,20 @@ public class TutorialManager : MonoBehaviour {
 					tutProgression = 8;
 				}
 			}
+		}
+
+		//trap progression triggers
+		if (healthPadTouched && tutProgression == 4 && overallProgression == 5) {
+			tutProgression = 5;
+		}
+		if (ultPadTouched && tutProgression == 5 && overallProgression == 5) {
+			tutProgression = 6;
+		}
+		if (spikeTrapTouched && tutProgression == 6 && overallProgression == 5) {
+			tutProgression = 7;
+		}
+		if (slowTrapTouched && tutProgression == 7 && overallProgression == 5) {
+			tutProgression = 8;
 		}
 	}
 
@@ -249,8 +271,40 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("There are a few I need to show you, so you dont kill yourself"));
 			tutProgression = 3;
 		}
+		if (tutProgression == 3 && !textNotDone) {
+			//turn on pads and indicate to them
+			indicator.SetActive (true);
+			indicator.GetComponent<DirectionIndicator> ().targetObject = healthPad;
+			healthPad.SetActive (true);
+			ultPad.SetActive (true);
+			spikeTrap.SetActive (true);
+			slowTrap.SetActive (true);
+			StartCoroutine (AnimateText ("Waddle on over to the pads that have just appeared, and touch them when I say so"));
+			tutProgression = 4;
+		}
+		if (tutProgression == 4 && !textNotDone) {
+			StartCoroutine (AnimateText ("There are 4 types of pads, the small green one will heal you, touch it now"));
+		}
+		if (tutProgression == 5 && !textNotDone) {
+			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack, which is doesnt work at the moment, but all the same, tooouch it!"));
+		}
+		if (tutProgression == 6 && !textNotDone) {
+			StartCoroutine (AnimateText ("the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definately touch this one!"));
+		}
+		if (tutProgression == 7 && !textNotDone) {
+			StartCoroutine (AnimateText ("the big green one will slow you down, annoying, but not fatal, so touch it too"));
+		}
+		if (tutProgression == 8 && !textNotDone) {
+			StartCoroutine (AnimateText ("So watch out for these, some will help, some will harm"));
+			overallProgression = 6;
+			tutProgression = 0;
+			healthPad.SetActive (false);
+			ultPad.SetActive (false);
+			spikeTrap.SetActive (false);
+			slowTrap.SetActive (false);
+			indicator.SetActive (false);
+		}
 
-		overallProgression = 6;
 	}
 
 	void tutUlt () {
@@ -273,6 +327,7 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 4;
 		}
 		if (tutProgression == 4 && !textNotDone) {
+			//turn everything on for muckabout
 			chatBox.SetActive (false);
 			chump1.SetActive (true);
 			chump1.GetComponent<Bot_Script> ().respawnEnabled = true;
@@ -292,6 +347,10 @@ public class TutorialManager : MonoBehaviour {
 			camDrone4.GetComponent<Drone_bot> ().respawn = true;
 			camDrone5.SetActive (true);
 			camDrone5.GetComponent<Drone_bot> ().respawn = true;
+			healthPad.SetActive (true);
+			ultPad.SetActive (true);
+			spikeTrap.SetActive (true);
+			slowTrap.SetActive (true);
 			tutProgression = 5;
 		}
 	}

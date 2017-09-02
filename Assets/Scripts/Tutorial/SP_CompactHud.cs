@@ -25,6 +25,7 @@ public class SP_CompactHud : MonoBehaviour {
 	public SinglePlayer_WeaponSpawn rangedManager;
 	public GameObject reloadMask;
 	public SinglePlayer_CombatManager combatManager;
+	public TutorialManager tutorialManager;
 
 	public bool healTrigger;
 	public bool ultTrigger;
@@ -51,21 +52,25 @@ public class SP_CompactHud : MonoBehaviour {
 	public void Update()
 	{
 		if (onHealthPad) {
+			tutorialManager.healthPadTouched = true;
 			if (!healTrigger) {
 				StartCoroutine (SlowHeal ());
 			}
 		}
 		if (onUltPad) {
+			tutorialManager.ultPadTouched = true;
 			if (!ultTrigger) {
 				StartCoroutine (SlowUlt ());
 			}
 		}
 		if (onSpikeTrap) {
+			tutorialManager.spikeTrapTouched = true;
 			if (!spikeTrigger) {
 				StartCoroutine (SlowSpike ());
 			}
 		}
 		if (onSlowTrap) {
+			tutorialManager.slowTrapTouched = true;
 			if (!slowTrigger) {
 				StartCoroutine (SlowSlow ());
 			}
