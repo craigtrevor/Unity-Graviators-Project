@@ -30,17 +30,15 @@ public class CorpseDissolve : MonoBehaviour {
 	void Update () {
 		if (health <= 0) 
 		{
-			Death(new Vector3 (0,0,0));			
+			Death(new Vector3 (0,0,0));
+			Destroy (this.gameObject, 10f);
 		}
 		if (dying) {
 			rbodies = GetComponentsInChildren<Rigidbody> ();
-			deathCount += Time.time * 0.001f;
+			deathCount += Time.time * 0.0001f;
 			foreach (Renderer mat in materials) {
 				mat.material.SetFloat ("_Cutoff", deathCount);
 			}
-		}
-		if (deathCount >= 1) {
-			Destroy (this.gameObject);
 		}
 	}
 		

@@ -52,6 +52,8 @@ public class Bot_Melee : MonoBehaviour {
 	[SerializeField]
 	private int attackCounter;
 
+	public bool attackerBot;
+
 
 
 
@@ -66,7 +68,9 @@ public class Bot_Melee : MonoBehaviour {
 
 	void Update() {
 		CheckAnimation();
-		AttackPlayer();
+		if (attackerBot) {
+			AttackPlayer ();
+		}
 		PlayerVelocity();
 	}
 
@@ -168,17 +172,15 @@ public class Bot_Melee : MonoBehaviour {
 		TakeDamage(hitCol.gameObject.name, BotDamage, transform.name);
 	}
 
-//	IEnumerator knockBack() {
-//		Debug.Log("knock Back");
-//		GetComponentInChildren<PlayerController>().enabled = false; // turn off player controls
-//		BotRigidbody.constraints = RigidbodyConstraints.None; // allows the player to move around the 3 axis's
-//		BotRigidbody.constraints = RigidbodyConstraints.FreezeRotation; // stops the player from rotating
-//		BotRigidbody.AddForce(cameraRotation.forward * -thrust);
-//		yield return new WaitForSeconds(delay);
-//		BotRigidbody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
-//		BotRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-//		GetComponentInChildren<PlayerController>().enabled = true; // turn on player controls
-//	}
+	IEnumerator knockBack() {
+		Debug.Log("knock Back"); 
+		BotRigidbody.constraints = RigidbodyConstraints.None; // allows the player to move around the 3 axis's
+		BotRigidbody.constraints = RigidbodyConstraints.FreezeRotation; // stops the player from rotating
+		BotRigidbody.AddForce(transform.forward * -thrust);
+		yield return new WaitForSeconds(delay);
+		BotRigidbody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
+		BotRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+	}
 
 	void TakeDamage(string _playerID, float _damage, string _sourceID) {
 		Debug.Log(_playerID + " has been attacked.");

@@ -46,9 +46,9 @@ public class Network_PlayerSetup : NetworkBehaviour
 
     void Start()
     {
-
         if (!isLocalPlayer)
         {
+            Debug.Log("Yay");
             DisableComponents();
             DisableGameObjects();
             AssignRemoteLayer();
