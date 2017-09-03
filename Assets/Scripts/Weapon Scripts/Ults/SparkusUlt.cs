@@ -53,7 +53,7 @@ public class SparkusUlt : NetworkBehaviour {
 
     void UltInput() {
 
-        if (Input.GetKeyDown(KeyCode.F)) {
+        if (Input.GetButtonDown("Ultimate")) {
             if (charge >= ULT_MAX) {
                 isLasering = true;
                 laser = Instantiate(laserParticle, spawnTransform.position, spawnTransform.rotation, spawnTransform);
@@ -121,7 +121,7 @@ public class SparkusUlt : NetworkBehaviour {
     [Client]
     void UltDamage() {
 
-        if (target != null) {
+        if (target != null && isLasering) {
             if (target.transform.root != transform.root && target.gameObject.tag == PLAYER_TAG) {
                 Debug.Log("Hit Player!");
 

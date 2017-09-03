@@ -20,7 +20,7 @@ public class Attack : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Mouse0) && CanAttack == true) 
+		if (Input.GetButtonDown ("Fire1") && CanAttack == true) 
 		{
             Attaking = true;
 			Debug.Log ("i have started my attack");

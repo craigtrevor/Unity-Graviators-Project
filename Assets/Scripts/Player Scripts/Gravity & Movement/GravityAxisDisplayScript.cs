@@ -213,7 +213,7 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     private void UpdateText() {
 
         //Get button characters
-        string buttonUp = "Space";
+        string buttonUp = "SPACE";
         string buttonForward = "W";
         string buttonRight = "D";
         string buttonBackward = "S";

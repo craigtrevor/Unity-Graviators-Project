@@ -53,7 +53,7 @@ public class UnitD1_Ult : NetworkBehaviour {
 
 		}
 
-		if(Input.GetKeyDown(KeyCode.F)&& isFalling == true) // if f is pressed while the player is in air set is falling to true
+		if(Input.GetButtonDown("Ultimate")&& isFalling == true) // if f is pressed while the player is in air set is falling to true
 		{
 			UltActive = true;	
 			canUseUlt = false;
