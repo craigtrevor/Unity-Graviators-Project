@@ -97,7 +97,6 @@
     <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterSpawner.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BlastWaveDie.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
-    <Compile Include="Assets\Scripts\Animation Scripts\ButtonAnimate.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
