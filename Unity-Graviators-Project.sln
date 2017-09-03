@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graviators-Project", "Unity-Graviators-Project.csproj", "{6E56245A-59A6-A167-9609-15C594F89998}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graviators-Project.Editor", "Unity-Graviators-Project.Editor.csproj", "{5A315C4E-D34C-9A9C-42C8-C850599803C3}"
