@@ -97,7 +97,7 @@ public class NoName_Ult : NetworkBehaviour {
 
         playerScript.isDashing = isDashing;
 
-        if (Input.GetKeyDown(KeyCode.F) && !isCharging && charge >= DASH_COST && canDash) {
+        if (Input.GetButtonDown("Ultimate") && !isCharging && charge >= DASH_COST && canDash) {
             startSpot = player.transform.position;
             target = cameraScript.raycastPoint;
             isCharging = true;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestScript : MonoBehaviour {
 
@@ -11,7 +12,8 @@ public class TestScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Application.LoadLevel("Lobby_Scene");
+        //Application.LoadLevel("Lobby_Scene");
+        SceneManager.LoadScene("JoinLAN_Scene");
     }
 
     void Every3Seconds(GameObject thisObject)
