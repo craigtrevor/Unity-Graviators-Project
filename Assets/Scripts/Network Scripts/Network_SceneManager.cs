@@ -12,7 +12,10 @@ public class Network_SceneManager : MonoBehaviour
     bool isPlaying;
 
     private Scene currentScene;
+    int sceneChange;
+
     public string sceneName;
+    public string serverScene;
 
     void Awake()
     {
@@ -26,9 +29,21 @@ public class Network_SceneManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this);
+
+        PlaySong();
     }
 
-    void Update()
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Create a reference to the current scene.
         currentScene = SceneManager.GetActiveScene();
@@ -36,7 +51,15 @@ public class Network_SceneManager : MonoBehaviour
         // Retrieve the name of this scene.
         sceneName = currentScene.name;
 
-        PlaySong();
+        if (sceneName == "JoinLAN_Scene")
+        {
+            serverScene = currentScene.name;
+        }
+
+        else if (sceneName == "Lobby_Scene")
+        {
+            serverScene = currentScene.name;
+        }
     }
 
     void PlaySong()
