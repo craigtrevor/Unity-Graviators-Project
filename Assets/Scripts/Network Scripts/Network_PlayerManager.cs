@@ -265,18 +265,9 @@ public class Network_PlayerManager : NetworkBehaviour
 
 		// spawn corpse on death
 
-		//ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
-//		if (!particleSystemPlayed) 
-//		{ 
-//			playDeathParticle.Emit(0);
-//			particleSystemPlayed = true;
-//		}
-//		if (particleSystemPlayed == true)
-//		{
-//			Destroy(playDeathParticle);
-//		}
-		//Destroy(corpseobject, 5);
-		// end of spawn corpse on death
+		ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
+		playDeathParticle.Emit(0);
+
 
         DisablePlayer();
 
@@ -481,4 +472,11 @@ public class Network_PlayerManager : NetworkBehaviour
             narrationAudio.Stop();
         }
     }
+
+	void OnTriggerStay(Collider col){
+		if (col.tag == "SlowTrap") {
+			ParticleSystem playSlowParticle = (ParticleSystem)Instantiate (slowParticle, this.transform.position, this.transform.rotation);
+			playSlowParticle.Emit (1);
+		}
+	}
 }
