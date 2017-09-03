@@ -42,6 +42,8 @@ public class Network_TrapManager : NetworkBehaviour {
     [SerializeField]
     private float trapDamage = 100;
 
+	private ParticleSystem playSlowParticle;
+	public ParticleSystem slowParticle;
 
     [Client]
     void OnTriggerEnter(Collider other)
@@ -94,12 +96,12 @@ public class Network_TrapManager : NetworkBehaviour {
 		}
     }
 
-  //private void OnTriggerStay(Collider other)
-  //  {
-  //      if (this.gameObject.tag == SLOWTRAP_TAG && other.gameObject.tag == PLAYER_TAG){
-		//	ParticleSystem playSlowParticle = (ParticleSystem)Instantiate (slowParticle, playerController.transform.position, playerController.transform.rotation);
-  //      }
-  //  }
+  private void OnTriggerStay(Collider other)
+   {
+       if (this.gameObject.tag == SLOWTRAP_TAG && other.gameObject.tag == PLAYER_TAG){
+			ParticleSystem playSlowParticle = (ParticleSystem)Instantiate (slowParticle, playerController.transform.position, playerController.transform.rotation);
+       }
+   }
 
 	//[Client]
 	//void OnTriggerStay(Collider other)

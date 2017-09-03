@@ -154,7 +154,7 @@ public class TutorialManager : MonoBehaviour {
 
 		//Basic movement
 		if (tutProgression == 1 && !textNotDone) {
-			StartCoroutine (AnimateText ("Okay rustbucket, lets get those servos moving!"));
+			StartCoroutine (AnimateText ("Okay rustbucket, lets get those circuits moving!"));
 			tutProgression = 2;
 		}
 		if (tutProgression == 2 && !textNotDone) {
@@ -164,11 +164,11 @@ public class TutorialManager : MonoBehaviour {
 
 		//Gravity shifting
 		if (tutProgression == 4 && !textNotDone) {
-			StartCoroutine (AnimateText ("Huh, looks like your not broken, ok, now to get tricky, hold Shift to bring up your gravity ring"));
+			StartCoroutine (AnimateText ("Huh, looks like you're not broken, ok, now to get tricky, hold Shift to bring up your gravity ring"));
 			tutProgression = 5;
 		}
 		if (tutProgression == 6 && !textNotDone) {
-			StartCoroutine (AnimateText ("Okay, heres the tricky bit. Hold shift, and then either W,S,A,D or space will switch you to a new plane of gravity"));
+			StartCoroutine (AnimateText ("Hold shift, and then either W,S,A,D or space will switch you to a new plane of gravity"));
 			tutProgression = 7;
 		}
 
@@ -182,18 +182,18 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 9 && !textNotDone) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = target2;
 			target2.SetActive (true);
-			StartCoroutine (AnimateText ("I knew you wern't ready for the scrap heap yet, one more now"));
+			StartCoroutine (AnimateText ("I knew you weren't ready for the scrap heap yet, one more now"));
 		}
 
 		if (tutProgression == 10 && !textNotDone) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = target3;
 			target3.SetActive (true);
-			StartCoroutine (AnimateText ("Okay, one more and you'll be ready to murder again"));
+			StartCoroutine (AnimateText ("Okay, one more and you'll be ready to fight again"));
 		}
 
 		//Next tut progression
 		if (tutProgression == 11 && !textNotDone) {
-			StartCoroutine (AnimateText ("Looks like your good to go four arms, lets see now..."));
+			StartCoroutine (AnimateText ("Looks like you're good to go four arms, lets see now..."));
 			overallProgression = 2;
 			tutProgression = 1;
 			indicator.SetActive (false);
@@ -222,6 +222,7 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("Yes! Yes! Do it again! Kill these 3 as well"));
 			tutProgression = 4;
 		}
+		//didn't trigger
 		if (tutProgression == 4 && !textNotDone && botsMurdered == 4) {
 			StartCoroutine (AnimateText ("Ah...Relaxing"));
 			overallProgression = 3;
@@ -233,7 +234,7 @@ public class TutorialManager : MonoBehaviour {
 
 	void tutClash () {
 		if (tutProgression == 1 && !textNotDone) {
-			StartCoroutine (AnimateText ("Of course, real opponents aren't going to stand and take it, lets see,"));
+			StartCoroutine (AnimateText ("Of course, real opponents aren't just going to stand and take it, lets see,"));
 			tutProgression = 2;
 		}
 		if (tutProgression == 2 && !textNotDone) {
@@ -245,16 +246,17 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 3 && !textNotDone) {
 			StartCoroutine (AnimateText ("Like before, run over and left click to attack"));
 		}
+		//didn't trigger the rest of statments in this function
 		if (botsMurdered == 0 && clashBounced && !textNotDone) {
-			StartCoroutine (AnimateText ("Well that didn't work, looks like you were attack at the same speed, and just bounced off each other"));
+			StartCoroutine (AnimateText ("Well that didn't work, looks like you were attacking at the same speed, and just bounced off each other"));
 			tutProgression = 4;
 		}
 		if (tutProgression == 4 && !textNotDone) {
-			StartCoroutine (AnimateText ("See the trails your weapons are leaving? The change colour the faster you go, green, yellow, then red"));
+			StartCoroutine (AnimateText ("See the trails your weapons are leaving? They change colour the faster you go, green, yellow, then red"));
 			tutProgression = 5;
 		}
 		if (tutProgression == 5 && !textNotDone) {
-			StartCoroutine (AnimateText ("Running, that'll only ever be slow, but falling, thats where it's at"));
+			StartCoroutine (AnimateText ("Running, that'll only ever be slow, but falling, thats where it's at. You will do more damage the higher speed you are moving at"));
 			tutProgression = 6;
 		}
 		if (tutProgression == 6 && !textNotDone) {
@@ -264,19 +266,19 @@ public class TutorialManager : MonoBehaviour {
 
 		//if they kill before bouncing
 		if (botsMurdered == 1 && !textNotDone) {
-			StartCoroutine (AnimateText ("Your either better at this than you let or, or are very lucky"));
+			StartCoroutine (AnimateText ("You're either better at this than you let or, you are very lucky"));
 			tutProgression = 7;
 		}
 
 		if (botsMurdered == 1 && clashBounced && !textNotDone) {
 			champ2.SetActive (true);
 			champ3.SetActive (true);
-			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remeber, falls are faster!"));
+			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remember, falling will do more damage!"));
 			tutProgression = 7;
 		}
 
 		if (botsMurdered == 7 && tutProgression == 7 && !textNotDone ) {
-			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remeber, move faster than your opponent to hurt them good"));
+			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remember, move faster than your opponent to hurt them good"));
 			overallProgression = 4;
 			tutProgression = 1;
 		}
@@ -296,6 +298,7 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("See these little camera drones? They'd love to hear from you,"));
 			tutProgression = 3;
 		}
+		//next two don't trigger
 		if (tutProgression == 3 && !textNotDone) {
 			StartCoroutine (AnimateText ("line 'em up in your sights and Right Click to deliver your message!"));
 			tutProgression = 4;
@@ -308,13 +311,14 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("So, this will only stun a proper fighter, but it should delay them long enough for you"));
 			tutProgression = 6;
 		}
+		//doesn't trigger
 		if (tutProgression == 6 && !textNotDone) {
 			StartCoroutine (AnimateText ("to get up in their face and deliver the finishing blow"));
 			tutProgression = 7;
 		}
 	
 		if (tutProgression == 7 && !textNotDone && botsMurdered == 5) {
-			StartCoroutine (AnimateText ("I love the smell of buring drones in the morning"));
+			StartCoroutine (AnimateText ("I love the smell of burning drones in the morning"));
 			overallProgression = 5;
 			tutProgression = 1;
 			botsMurdered = 0;
@@ -327,7 +331,7 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 2;
 		}
 		if (tutProgression == 2 && !textNotDone) {
-			StartCoroutine (AnimateText ("There are a few things I need to show you, so you dont kill yourself"));
+			StartCoroutine (AnimateText ("There are a few things I need to show you, so make sure you don't die"));
 			tutProgression = 3;
 		}
 		if (tutProgression == 3 && !textNotDone) {
@@ -345,10 +349,10 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("There are 4 types of pads, the small green one will heal you, touch it now"));
 		}
 		if (tutProgression == 5 && !textNotDone) {
-			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack, which is doesnt work at the moment, but all the same, tooouch it!"));
+			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack quicker so you can do some serious damage"));
 		}
 		if (tutProgression == 6 && !textNotDone) {
-			StartCoroutine (AnimateText ("the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definately touch this one!"));
+			StartCoroutine (AnimateText ("the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definitely touch this one though!"));
 		}
 		if (tutProgression == 7 && !textNotDone) {
 			StartCoroutine (AnimateText ("the big green one will slow you down, annoying, but not fatal, so touch it too"));

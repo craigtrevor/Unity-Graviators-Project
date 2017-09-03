@@ -31,7 +31,7 @@ public class Drone_bot : MonoBehaviour {
 	{
 		Instantiate (explosion1, transform.position, Quaternion.identity);
 		yield return new WaitForSeconds (1f);
-		Instantiate (explosion2, transform.position, Quaternion.identity);
+		//Instantiate (explosion2, transform.position, Quaternion.identity);
 		if (!respawn) {
 			tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
 			gameObject.SetActive(false);

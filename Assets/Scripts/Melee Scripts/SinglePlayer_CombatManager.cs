@@ -143,7 +143,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	IEnumerator slowTimer()
 	{
 		playerControllermodifier = this.gameObject.GetComponentInChildren<PlayerController>();
-		//play stun particles
+	
 		playerControllermodifier.moveSettings.forwardVel = reducedWalkSpeed;
 		playerControllermodifier.moveSettings.rightVel = reducedWalkSpeed;
 		playerControllermodifier.moveSettings.jumpVel = reducedJumpSpeed;
