@@ -359,15 +359,20 @@ public class TutorialManager : MonoBehaviour {
 		}
 		if (tutProgression == 8 && !textNotDone) {
 			StartCoroutine (AnimateText ("So watch out for these, some will help, some will harm"));
-			overallProgression = 6;
-			tutProgression = 0;
-			healthPad.SetActive (false);
-			ultPad.SetActive (false);
-			spikeTrap.SetActive (false);
-			slowTrap.SetActive (false);
-			indicator.SetActive (false);
+			StartCoroutine (WaitForTraps ());
 		}
 
+	}
+
+	public IEnumerator WaitForTraps() {
+		yield return new WaitForSeconds (5f);
+		overallProgression = 6;
+		tutProgression = 1;
+		healthPad.SetActive (false);
+		ultPad.SetActive (false);
+		spikeTrap.SetActive (false);
+		slowTrap.SetActive (false);
+		indicator.SetActive (false);
 	}
 
 	void tutUlt () {
@@ -382,7 +387,7 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 2;
 		}
 		if (tutProgression == 2 && !textNotDone) {
-			StartCoroutine (AnimateText ("you can run around here all you like, wrecking up the place, or you can go and play a real game"));
+			StartCoroutine (AnimateText ("you can run around here all you like, wrecking up the place, or you press Escape and play a real game"));
 			tutProgression = 3;
 		}
 		if (tutProgression == 3 && !textNotDone) {
