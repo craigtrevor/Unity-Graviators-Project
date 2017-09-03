@@ -57,7 +57,7 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
     public void ContinueGame()
     {
-        playerHUD.enabled = true;
+        playerHUD.enabled = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
