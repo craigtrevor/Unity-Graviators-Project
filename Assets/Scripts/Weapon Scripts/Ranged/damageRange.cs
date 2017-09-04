@@ -173,8 +173,9 @@ public class damageRange : NetworkBehaviour {
     {
         if (!dying)
         {
-			GetComponent<Rigidbody> ().isKinematic = true;
-			Destroy(GetComponent<BoxCollider>());
+            Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<MeleeWeaponTrail>());
+            Destroy(GetComponent<BoxCollider>());
 
             dying = true;
             StartCoroutine(DieNow());

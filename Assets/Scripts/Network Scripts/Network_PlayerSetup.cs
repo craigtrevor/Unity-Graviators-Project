@@ -33,9 +33,6 @@ public class Network_PlayerSetup : NetworkBehaviour
     [SerializeField]
     GameObject gravityBlock;
 
-    //[SerializeField]
-    //GameObject playerUIPrefab;
-
     [HideInInspector]
     public GameObject playerUIInstance;
 
@@ -48,20 +45,14 @@ public class Network_PlayerSetup : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            Debug.Log("Yay");
             DisableComponents();
             DisableGameObjects();
             AssignRemoteLayer();
-            SetLayerRecursively(gravityBlock, LayerMask.NameToLayer(dontDrawLayerName));
         }
 
         else
         {
-            if (isLocalPlayer)
-            {
-                //Disable player graphics for local player
-                SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
-            }
+            SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
 
             GetComponent<Network_PlayerManager>().SetupPlayer();
 
@@ -73,8 +64,6 @@ public class Network_PlayerSetup : NetworkBehaviour
 
             CmdSetUsername(transform.name, _username);
         }
-
-        GetComponent<Network_PlayerManager>().SetupPlayer();
     }
 
     void AssignRemoteLayer()
@@ -119,8 +108,6 @@ public class Network_PlayerSetup : NetworkBehaviour
             player.username = username;
 
             RpcJoinedGame(playerID, username);
-
-            //JoinedGame(username);
         }
     }
 

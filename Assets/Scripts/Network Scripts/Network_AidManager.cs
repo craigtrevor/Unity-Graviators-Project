@@ -27,7 +27,7 @@ public class Network_AidManager : NetworkBehaviour {
 			//Debug.Log(transform.name);
 			CmdHealthRegen(other.gameObject.name, healAmount, transform.name);
 		}
-		
+		/*
 		if (this.gameObject.tag == ULTCHARGER_TAG && other.gameObject.tag == PLAYER_TAG)
 		{
 			networkPlayerManager = other.GetComponent<Network_PlayerManager>();
@@ -35,6 +35,7 @@ public class Network_AidManager : NetworkBehaviour {
 			Debug.Log(transform.name);
 			CmdUltCharger(other.gameObject.name, chargeAmount, transform.name);
 		}
+		*/
 	}
 
 	[Command]
@@ -46,7 +47,8 @@ public class Network_AidManager : NetworkBehaviour {
 
 		networkPlayerStats.RpcHealthRegenerate(_heal, transform.name);
 	}
-	
+
+	/*
 	[Command]
 	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
 	{
@@ -56,5 +58,5 @@ public class Network_AidManager : NetworkBehaviour {
 
 		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
 	}
-	
+	*/
 }

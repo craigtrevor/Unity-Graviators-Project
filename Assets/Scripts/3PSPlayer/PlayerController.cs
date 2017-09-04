@@ -191,21 +191,21 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetButtonDown("Jump")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(Input.GetAxis("Jump"), 0f, 0f);
-                    networkSoundscape.PlaySound(22, 4, 0f);
+                    //networkSoundscape.PlaySound(22, 4, 0f);
                     //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonDown("Horizontal")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(0f, Input.GetAxis("Horizontal"), 0f);
-                    networkSoundscape.PlaySound(22, 4, 0f);
+                    //networkSoundscape.PlaySound(22, 4, 0f);
                     //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonDown("Vertical")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(0f, 0f, Input.GetAxis("Vertical"));
-                    networkSoundscape.PlaySound(22, 4, 0f);
+                    //networkSoundscape.PlaySound(22, 4, 0f);
                     //isShiftPressed = false;
                 }
 

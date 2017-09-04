@@ -29,7 +29,10 @@ public class Network_SceneManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this);
+    }
 
+    void Update()
+    {
         PlaySong();
     }
 

@@ -145,7 +145,7 @@ public class Dash : NetworkBehaviour
     }
 
 
-
+	/*
 	[Client]
 	void OnTriggerStay(Collider other) //Ultimate charger - CB
 	{
@@ -168,7 +168,7 @@ public class Dash : NetworkBehaviour
 
 		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
 	}
-
+ */
 
     [Client]
     void DashAttack()
