@@ -29,6 +29,8 @@ public class NoName_Ult : NetworkBehaviour {
     //dash damage storage
     [SerializeField]
     private float dashDamage = 20f;
+	public float chargeMax = 100;
+	private float chargeAmount = 15f;
     private Collider[] hitColliders;
     private Vector3 attackOffset;
     private float attackRadius;
@@ -83,6 +85,29 @@ public class NoName_Ult : NetworkBehaviour {
 
         charge = networkPlayerManager.currentUltimateGain;
     }
+
+	[Client]
+	void OnTriggerStay(Collider other) //Ultimate charger - CB
+	{
+		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG)
+		{
+			//networkPlayerManager = other.GetComponent<Network_PlayerManager>();
+			networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
+			Debug.Log(this.gameObject.name);
+			Debug.Log(transform.name);
+			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
+		}
+	}
+
+	[Command]
+	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
+	{
+		Debug.Log(_playerID + " is charging up teh lazor.");
+
+		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+
+		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
+	}
 
     //Checks for dash input
     void DashInput() {
@@ -192,20 +217,20 @@ public class NoName_Ult : NetworkBehaviour {
     }
 
     /*
-    .       _,..wWWw--./+'.            _      ,.                          .
-      ..wwWWWWWWWWW;ooo;++++.        .ll'  ,.++;
-       `'"">wW;oOOOOOO;:++\++.      .lll .l"+++'   ,..
-         ,wwOOOOOOOO,,,++++\+++.    lll',ll'++;  ,++;'
-        ,oOOOOOOOO,,,,+++++`'++ll. ;lll ll:+++' ;+++'
-       ;OOOOOOOOO,,,'++++++++++lll ;lll ll:++:'.+++'
-       OOOO;OOO",,"/;++++,+,++++ll`:llllll++++'+++
-      OOOO;OO",,'++'+++;###;"-++llX llll`;+++++++'  ,.    .,      _
-    ;O;'oOOO ,'+++\,-:  ###++++llX :l.;;;,--++."-+++++ w":---wWWWWWww-._
-    ;'  /O'"'"++++++' :;";#'+++lllXX,llll;++.+++++++++W,"WWWWWWWWww;""""'`
-       ."     `"+++++'.'"''`;'ll;xXXwllll++;--.++++;wWW;xXXXXXXXXXx"Ww.
-               .+++++++++++';xXXXXX;Wll"+-"++,'---"-.x""`"lllllllxXXxWWw.
-               "---'++++++-;XXXXXXwWWl"++++,"---++++",,,,,,,,,,;lllXXXxWW,
-                 `'""""',+xXXXXX;wWW'+++++++++;;;";;;;;;;;oOo,,,,,llXXX;WW`
+    .       _,..wWWw--./+'.            _      ,.                          .															
+      ..wwWWWWWWWWW;ooo;++++.        .ll'  ,.++;																                                                            					
+       `'"">wW;oOOOOOO;:++\++.      .lll .l"+++'   ,..	                                   ,-.______________,=========,																																							
+         ,wwOOOOOOOO,,,++++\+++.    lll',ll'++;  ,++;'                                    [|  )_____________)#######((_
+        ,oOOOOOOOO,,,,+++++`'++ll. ;lll ll:+++' ;+++'									   /===============.-.___,--" _\									
+       ;OOOOOOOOO,,,'++++++++++lll ;lll ll:++:'.+++'                                       "-._,__,__[JW]____\########/
+       OOOO;OOO",,"/;++++,+,++++ll`:llllll++++'+++											         \ (  )) )####O##(									
+      OOOO;OO",,'++'+++;###;"-++llX llll`;+++++++'  ,.    .,      _									  \ \___/,.#######\									
+    ;O;'oOOO ,'+++\,-:  ###++++llX :l.;;;,--++."-+++++ w":---wWWWWWww-._                               `===="  \#######\
+    ;'  /O'"'"++++++' :;";#'+++lllXX,llll;++.+++++++++W,"WWWWWWWWww;""""'`                                      \#######\
+       ."     `"+++++'.'"''`;'ll;xXXwllll++;--.++++;wWW;xXXXXXXXXXx"Ww.								             )##O####|
+               .+++++++++++';xXXXXX;Wll"+-"++,'---"-.x""`"lllllllxXXxWWw.                                        )####__,"
+               "---'++++++-;XXXXXXwWWl"++++,"---++++",,,,,,,,,,;lllXXXxWW,                                       `--""
+                 `'""""',+xXXXXX;wWW'+++++++++;;;";;;;;;;;oOo,,,,,llXXX;WW`                     LUL
                        ,+xXXXXXwWW"++.++++-.;;+++<'   `"WWWww;Oo,,,llXXX"Ww
                        +xXXX"wwW"+++++'"--'"'  )+++     `WWW"WwOO,,lllXXXww
                       ,x++++;"+++++++++++`., )  )+++     )W; ,WOO,,lllX:"Ww
