@@ -123,7 +123,7 @@ public class NoName_Ult : NetworkBehaviour {
         playerScript.isDashing = isDashing;
 
         if (Input.GetButtonDown("Ultimate") && !isCharging && charge >= DASH_COST && canDash) {
-            startSpot = player.transform.position;
+            startSpot = this.transform.position;
             target = cameraScript.raycastPoint;
             isCharging = true;
             onPause = false;
@@ -157,7 +157,7 @@ public class NoName_Ult : NetworkBehaviour {
 
     //The dash coroutine
     IEnumerator Dash(Vector3 thisTarget) {
-        player.transform.position = Vector3.MoveTowards(player.transform.position, target, Time.deltaTime * DASH_SPEED);
+		this.transform.position = Vector3.MoveTowards(this.transform.position, target, Time.deltaTime * DASH_SPEED);
         yield return new WaitUntil(() => ShouldStop());
         onPause = true;
         isCharging = false;
@@ -174,8 +174,8 @@ public class NoName_Ult : NetworkBehaviour {
     //Should the player exit current dash? 
     bool ShouldStop() {
         if (isCharging) {
-            bool distance = Vector3.Distance(player.transform.position, startSpot) > MAX_DISTANCE; //travelled certain disance from start
-            bool reachedTarget = Vector3.Distance(player.transform.position, target) < TARGET_THRESH; //travelled close enough to target
+            bool distance = Vector3.Distance(this.transform.position, startSpot) > MAX_DISTANCE; //travelled certain disance from start
+            bool reachedTarget = Vector3.Distance(this.transform.position, target) < TARGET_THRESH; //travelled close enough to target
 
             if (distance || reachedTarget) {
                 return true;
