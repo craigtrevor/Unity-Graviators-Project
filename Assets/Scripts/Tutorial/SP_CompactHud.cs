@@ -78,7 +78,7 @@ public class SP_CompactHud : MonoBehaviour {
 
 
 		//set health and damage ticker
-		healthMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((playerHealth * 600),100);
+		healthMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((playerHealth * 600),200);
 		if (damageMask.GetComponent<RectTransform> ().sizeDelta.x > healthMask.GetComponent<RectTransform> ().sizeDelta.x) {
 			damageMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (damageMask.GetComponent<RectTransform> ().sizeDelta.x - 3, damageMask.GetComponent<RectTransform> ().sizeDelta.y);
 		}
@@ -88,7 +88,7 @@ public class SP_CompactHud : MonoBehaviour {
 		}
 
 		//set ultimate charge
-		ultMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerUlt * 300, 100);
+		ultMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerUlt * 400, 100);
 
 		// set grav charges
 		gravCharge = gravityAxis.GetComponent<GravityAxisScript>().gravityCharge;

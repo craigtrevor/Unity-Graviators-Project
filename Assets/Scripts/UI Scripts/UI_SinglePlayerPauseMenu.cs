@@ -64,6 +64,6 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
     public void LeaveGame()
     {
-        SceneManager.LoadScene("Lobby_Scene");
+		SceneManager.LoadScene("Main_Menu");
     }
 }
