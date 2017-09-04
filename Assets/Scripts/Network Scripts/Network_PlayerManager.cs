@@ -228,6 +228,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
             sourcePlayer.killStats++;
             Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
+            DisablePlayer();
         }
 
         if (sourcePlayer.killStats == 10)
@@ -251,8 +252,6 @@ public class Network_PlayerManager : NetworkBehaviour
         }
 
         deathStats++;
-
-        DisablePlayer();
     }
 
     private void DieFromTrap(string _sourceID)
@@ -318,51 +317,49 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private IEnumerator Respawn()
     {
-        if (isLocalPlayer && deathbyPlayer)
+        if (isLocalPlayer)
         {
-            deathCanvas[0].SetActive(true);
-            yield return new WaitForSeconds(5f);
-            //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
-            deathCanvas[0].SetActive(false);
-
-            Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-            transform.position = _spawnPoint.position;
-            transform.rotation = _spawnPoint.rotation;
-
-            yield return new WaitForSeconds(0.1f);
-
-            SetupPlayer();
-
-            Debug.Log(transform.name + " respawned.");
-
-            if (isLocalPlayer)
+            if (deathbyPlayer)
             {
+                deathCanvas[0].SetActive(true);
+                yield return new WaitForSeconds(5f);
+                //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
+                deathCanvas[0].SetActive(false);
+
+                Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+                transform.position = _spawnPoint.position;
+                transform.rotation = _spawnPoint.rotation;
+
+                yield return new WaitForSeconds(0.1f);
+
+                SetupPlayer();
+
+                Debug.Log(transform.name + " respawned.");
+
                 randomSound = Random.Range(7, 9);
                 networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
             }
-        }
 
-        else if (isLocalPlayer && deathbyTrap)
-        {
-            deathCanvas[1].SetActive(true);
-            yield return new WaitForSeconds(5f);
-            //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
-            deathCanvas[1].SetActive(false);
-
-            Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-            transform.position = _spawnPoint.position;
-            transform.rotation = _spawnPoint.rotation;
-
-            yield return new WaitForSeconds(0.1f);
-
-            SetupPlayer();
-
-            Debug.Log(transform.name + " respawned.");
-
-            if (isLocalPlayer)
+            else if (deathbyTrap)
             {
+                deathCanvas[1].SetActive(true);
+                yield return new WaitForSeconds(5f);
+                //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
+                deathCanvas[1].SetActive(false);
+
+                Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+                transform.position = _spawnPoint.position;
+                transform.rotation = _spawnPoint.rotation;
+
+                yield return new WaitForSeconds(0.1f);
+
+                SetupPlayer();
+
+                Debug.Log(transform.name + " respawned.");
+
                 randomSound = Random.Range(7, 9);
                 networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+
             }
         }
     }
