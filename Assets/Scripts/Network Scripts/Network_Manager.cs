@@ -73,7 +73,7 @@ public class Network_Manager : NetworkManager {
             ChooseCustomization();
         }
 
-        if (Network_SceneManager.instance.sceneName == "Lobby_Scene")
+        else if (Network_SceneManager.instance.sceneName != "Character_Select")
         {
             characterSelectHUD.SetActive(false);
         }
