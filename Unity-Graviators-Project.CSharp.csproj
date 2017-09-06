@@ -90,6 +90,8 @@
     <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
     <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\Interpolate.cs" />
     <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
+    <Compile Include="Assets\Prefabs\Destructible Crate\Example\Scripts\Hit.cs" />
+    <Compile Include="Assets\Prefabs\Destructible Crate\removeCrate.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" />
