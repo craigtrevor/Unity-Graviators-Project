@@ -18,8 +18,10 @@ public class UI_UserAccountLobby : MonoBehaviour {
 
         networkManager = GameObject.Find("CustomNetworkManager").GetComponent<Network_Manager>();
 
-        characterText.text = networkManager.characterName;
-
+        if (Network_SceneManager.instance.sceneName == "JoinLAN_Scene" || Network_SceneManager.instance.sceneName == "Lobby_Scene")
+        {
+            characterText.text = networkManager.characterName;
+        }
     }
 
     public void SwitchCharacter()

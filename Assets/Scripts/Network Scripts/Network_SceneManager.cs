@@ -63,6 +63,12 @@ public class Network_SceneManager : MonoBehaviour
         {
             serverScene = currentScene.name;
         }
+
+        if (sceneName != "Online_Scene")
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     void PlaySong()
