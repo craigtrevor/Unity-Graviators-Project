@@ -24,13 +24,7 @@ public class Network_Manager : NetworkManager {
     public string characterID;
 
     [SerializeField]
-    GameObject ErrorNoName;
-
-    [SerializeField]
-    GameObject Sparkus;
-
-    [SerializeField]
-    GameObject unitD1;
+    GameObject[] CharacterSpotlight;
 
     [SerializeField]
     GameObject[] ERNNCustomization;
@@ -38,6 +32,9 @@ public class Network_Manager : NetworkManager {
     GameObject[] SPKSCustomization;
     [SerializeField]
     GameObject[] UT_D1Customization;
+
+    [SerializeField]
+    GameObject[] CharacterCustomizationButtons;
 
     public string customzationName;
 
@@ -55,6 +52,17 @@ public class Network_Manager : NetworkManager {
         characterID = "ERNN";
         customzationName = "empty hat";
 
+        CharacterCustomizationButtons[0].SetActive(true);
+        CharacterCustomizationButtons[1].SetActive(true);
+        CharacterCustomizationButtons[2].SetActive(false);
+        CharacterCustomizationButtons[3].SetActive(false);
+        CharacterCustomizationButtons[4].SetActive(false);
+        CharacterCustomizationButtons[5].SetActive(false);
+
+        CharacterSpotlight[0].SetActive(true);
+        CharacterSpotlight[1].SetActive(false);
+        CharacterSpotlight[2].SetActive(false);
+
         characterButtonArray[0].onClick.AddListener(delegate { CharacterSelector(characterButtonArray[0].name); });
         characterButtonArray[1].onClick.AddListener(delegate { CharacterSelector(characterButtonArray[1].name); });
         characterButtonArray[2].onClick.AddListener(delegate { CharacterSelector(characterButtonArray[2].name); });
@@ -70,10 +78,12 @@ public class Network_Manager : NetworkManager {
         if (Network_SceneManager.instance.sceneName == "Character_Select")
         {
             characterSelectHUD.SetActive(true);
-            ChooseCustomization();
+            ChooseCustomizationViaKeyboard();
+            ChooseCustomizationViaRightButtons();
+            ChooseCustomizationViaLeftButtons();
         }
 
-        if (Network_SceneManager.instance.sceneName == "Lobby_Scene")
+        else if (Network_SceneManager.instance.sceneName != "Character_Select")
         {
             characterSelectHUD.SetActive(false);
         }
@@ -90,9 +100,17 @@ public class Network_Manager : NetworkManager {
                 customzationName = "empty hat";
                 characterName = "Err:NoName";
                 characterID = "ERNN";
-                ErrorNoName.SetActive(true);
-                Sparkus.SetActive(false);
-                unitD1.SetActive(false);
+
+                CharacterSpotlight[0].SetActive(true);
+                CharacterSpotlight[1].SetActive(false);
+                CharacterSpotlight[2].SetActive(false);
+
+                CharacterCustomizationButtons[0].SetActive(true);
+                CharacterCustomizationButtons[1].SetActive(true);
+                CharacterCustomizationButtons[2].SetActive(false);
+                CharacterCustomizationButtons[3].SetActive(false);
+                CharacterCustomizationButtons[4].SetActive(false);
+                CharacterCustomizationButtons[5].SetActive(false);
 
                 break;
 
@@ -104,9 +122,17 @@ public class Network_Manager : NetworkManager {
                 customzationName = "empty hat";
                 characterName = "Sparkus";
                 characterID = "SPKS";
-                ErrorNoName.SetActive(false);
-                Sparkus.SetActive(true);
-                unitD1.SetActive(false);
+
+                CharacterCustomizationButtons[0].SetActive(false);
+                CharacterCustomizationButtons[1].SetActive(false);
+                CharacterCustomizationButtons[2].SetActive(true);
+                CharacterCustomizationButtons[3].SetActive(true);
+                CharacterCustomizationButtons[4].SetActive(false);
+                CharacterCustomizationButtons[5].SetActive(false);
+
+                CharacterSpotlight[0].SetActive(false);
+                CharacterSpotlight[1].SetActive(true);
+                CharacterSpotlight[2].SetActive(false);
 
                 break;
 
@@ -117,9 +143,17 @@ public class Network_Manager : NetworkManager {
                 customzationName = "empty hat";
                 characterName = "Unit-D1";
                 characterID = "UT-D1";
-                ErrorNoName.SetActive(false);
-                Sparkus.SetActive(false);
-                unitD1.SetActive(true);
+
+                CharacterCustomizationButtons[0].SetActive(false);
+                CharacterCustomizationButtons[1].SetActive(false);
+                CharacterCustomizationButtons[2].SetActive(false);
+                CharacterCustomizationButtons[3].SetActive(false);
+                CharacterCustomizationButtons[4].SetActive(true);
+                CharacterCustomizationButtons[5].SetActive(true);
+
+                CharacterSpotlight[0].SetActive(false);
+                CharacterSpotlight[1].SetActive(false);
+                CharacterSpotlight[2].SetActive(true);
                 break;
         }
 
@@ -127,7 +161,36 @@ public class Network_Manager : NetworkManager {
         playerPrefab = spawnPrefabs[characterIndex];
     }
 
-    void ChooseCustomization()
+    public void ChooseCustomizationViaRightButtons()
+    {
+        RemoveCustomization();
+
+        arrayCount++;
+
+        if (arrayCount >= arrayMax)
+        {
+            arrayCount = 1;
+            customzationName = "empty hat";
+        }
+
+        UpdateCustomization();
+    }
+
+    public void ChooseCustomizationViaLeftButtons()
+    {
+        RemoveCustomization();
+
+        arrayCount--;
+
+        if (arrayCount <= arrayMin)
+        {
+            arrayCount = 3;
+        }
+
+        UpdateCustomization();
+    }
+
+    void ChooseCustomizationViaKeyboard()
     {
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {

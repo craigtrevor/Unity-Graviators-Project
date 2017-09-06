@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
+using UnityEngine.SceneManagement;
 
 public class UI_PauseMenu : MonoBehaviour {
 
@@ -31,21 +32,25 @@ public class UI_PauseMenu : MonoBehaviour {
 
     public void LeaveRoom()
     {
-        if (networkManager.matchMaker)
+        //networkManager.matchMaker
+
+        if (Network_SceneManager.instance.serverScene == "Lobby_Scene")
         {
             MatchInfo matchInfo = networkManager.matchInfo;
             networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
             networkManager.StopClient();
+            SceneManager.LoadScene("Lobby_Scene");
             Debug.Log("Leaving");
         }
 
-        else if (!networkManager.matchMaker)
+        else if (Network_SceneManager.instance.serverScene == "JoinLAN_Scene")
         {
             networkManager.StopHost();
             networkDiscovery.StopBroadcast();
             networkDiscovery.SendMessage("DestorySelf", true);
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
+            SceneManager.LoadScene("JoinLAN_Scene");
             Debug.Log("Leaving");
         }
     }

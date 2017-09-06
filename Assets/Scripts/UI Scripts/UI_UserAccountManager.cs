@@ -33,7 +33,7 @@ public class UI_UserAccountManager : MonoBehaviour {
 
     public static bool IsLoggedIn { get; protected set; }
 
-    public string loggedInSceneName = "Lobby_Scene";
+    public string loggedInSceneName = "Main_Menu";
     public string loggedOutSceneName = "Network_Login";
 
     public delegate void OnDataRecievedCallback(string data);

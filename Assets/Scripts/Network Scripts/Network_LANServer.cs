@@ -5,27 +5,6 @@ using UnityEngine.Networking;
 
 public class Network_LANServer : NetworkDiscovery
 {
-    //public static Network_LANServer Instance;
-
-    //void Awake()
-    //{
-    //    if (Instance)
-    //    {
-    //        DestroyImmediate(gameObject);
-    //    }
-
-    //   else
-    //   {
-    //        DontDestroyOnLoad(gameObject);
-    //        Instance = gameObject;
-    //   }
-    //}
-
-    void DestorySelf(bool isDestroy)
-    {
-        Destroy(this.gameObject);
-    }
-
     void Start()
     {
         Application.runInBackground = true;
@@ -98,5 +77,10 @@ public class Network_LANServer : NetworkDiscovery
             }
         }
         return serverPort;
+    }
+
+    void DestorySelf(bool isDestroy)
+    {
+        Destroy(this.gameObject);
     }
 }

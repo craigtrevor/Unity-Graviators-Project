@@ -209,6 +209,19 @@ public class UI_LoginMenu : MonoBehaviour {
         }
     }
 
+    public void GuestButtonPressed()
+    {
+        Login_UsernameField.text = "Guest";
+        Login_PasswordField.text = "Guest123";
+
+        playerUsername = Login_UsernameField.text;
+        playerPassword = Login_PasswordField.text;
+
+        loginParent.gameObject.SetActive(false);
+        loadingParent.gameObject.SetActive(true);
+        StartCoroutine(LoginUser());
+    }
+
     public void SendDataRequestSuccess()
     {
         //The data string was set correctly. Goes back to LoggedIn UI
