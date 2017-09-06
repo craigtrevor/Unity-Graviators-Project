@@ -79,13 +79,7 @@ public class Network_SceneManager : MonoBehaviour
             isPlaying = false;
         }
 
-        else if (sceneName == "Lobby_Scene" && !isPlaying)
-        {
-            musicSource.UnPause();
-            isPlaying = true;
-        }
-
-        else if (sceneName == "Main_Menu" && !isPlaying)
+        else if (sceneName != "Online_Scene" && !isPlaying)
         {
             musicSource.UnPause();
             isPlaying = true;
