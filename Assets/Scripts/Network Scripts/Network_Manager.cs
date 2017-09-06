@@ -24,13 +24,7 @@ public class Network_Manager : NetworkManager {
     public string characterID;
 
     [SerializeField]
-    GameObject ErrorNoName;
-
-    [SerializeField]
-    GameObject Sparkus;
-
-    [SerializeField]
-    GameObject unitD1;
+    GameObject[] CharacterSpotlight;
 
     [SerializeField]
     GameObject[] ERNNCustomization;
@@ -90,9 +84,9 @@ public class Network_Manager : NetworkManager {
                 customzationName = "empty hat";
                 characterName = "Err:NoName";
                 characterID = "ERNN";
-                ErrorNoName.SetActive(true);
-                Sparkus.SetActive(false);
-                unitD1.SetActive(false);
+                CharacterSpotlight[0].SetActive(true);
+                CharacterSpotlight[1].SetActive(false);
+                CharacterSpotlight[2].SetActive(false);
 
                 break;
 
@@ -104,9 +98,9 @@ public class Network_Manager : NetworkManager {
                 customzationName = "empty hat";
                 characterName = "Sparkus";
                 characterID = "SPKS";
-                ErrorNoName.SetActive(false);
-                Sparkus.SetActive(true);
-                unitD1.SetActive(false);
+                CharacterSpotlight[0].SetActive(false);
+                CharacterSpotlight[1].SetActive(true);
+                CharacterSpotlight[2].SetActive(false);
 
                 break;
 
@@ -117,9 +111,9 @@ public class Network_Manager : NetworkManager {
                 customzationName = "empty hat";
                 characterName = "Unit-D1";
                 characterID = "UT-D1";
-                ErrorNoName.SetActive(false);
-                Sparkus.SetActive(false);
-                unitD1.SetActive(true);
+                CharacterSpotlight[0].SetActive(false);
+                CharacterSpotlight[1].SetActive(false);
+                CharacterSpotlight[2].SetActive(true);
                 break;
         }
 
