@@ -292,14 +292,11 @@ public class Network_CombatManager : NetworkBehaviour {
 	}
 
 	IEnumerator KnockBack(Collider hitCol, Vector3 hitPoint) {
+		isAttacking = false;
 		gameObject.GetComponentInChildren<PlayerController>().enabled = false;
 		playerRigidbody.constraints = RigidbodyConstraints.None;
 		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-		float multiplier = 1; 
-		if (hitCol.gameObject.tag == PLAYER_TAG) {
-			multiplier = hitCol.gameObject.GetComponent<Network_CombatManager> ().playerDamage;
-		}
-		playerRigidbody.AddExplosionForce(100000 * multiplier, hitPoint, 10f);	
+		playerRigidbody.AddExplosionForce(1000, hitPoint, 10f);	
 		yield return new WaitForSeconds (0.5f);
 		playerRigidbody.constraints = RigidbodyConstraints.None;
 		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
