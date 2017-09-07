@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CompactHud : MonoBehaviour {
 	[SerializeField]
@@ -25,30 +26,35 @@ public class CompactHud : MonoBehaviour {
 	public int gravCharge;
 
 	public WeaponSpawn rangedManager;
-	public GameObject reloadMask;
+	public Image reloadMask;
+
+	public Sprite reload6;
+	public Sprite reload5;
+	public Sprite reload4;
+	public Sprite reload3;
+	public Sprite reload2;
+	public Sprite reload1;
+	public Sprite reload0;
 
 	public void SetPlayer(Network_PlayerManager _networkPlayerManager) {
 		networkPlayerManager = _networkPlayerManager;
 	}
 
-	void Start()
-	{
+	void Start() {
 		gravCharge = gravityAxis.GetComponent<GravityAxisScript>().gravityCharge;
 		gravPips.Add (GravFull5);
 		gravPips.Add (GravFull4);
 		gravPips.Add (GravFull3);
 		gravPips.Add (GravFull2);
 		gravPips.Add (GravFull1);
-
 	}
 
-	public void Update()
-	{
+	public void Update() {
 		playerHealth = networkPlayerManager.GetHealthPct();
 		playerUlt = networkPlayerManager.GetUltimatePct();
 
 		//set health and damage ticker
-		healthMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((playerHealth * 600),100);
+		healthMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 ((playerHealth * 600),200);
 		if (damageMask.GetComponent<RectTransform> ().sizeDelta.x > healthMask.GetComponent<RectTransform> ().sizeDelta.x) {
 			damageMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (damageMask.GetComponent<RectTransform> ().sizeDelta.x - 3, damageMask.GetComponent<RectTransform> ().sizeDelta.y);
 		}
@@ -70,10 +76,27 @@ public class CompactHud : MonoBehaviour {
 			}
 		}
 
-		if (rangedManager.reloading == true) {
-			reloadMask.SetActive(false);
-		} else if (rangedManager.reloading == false) {
-			reloadMask.SetActive(true);
+		if (rangedManager.reloadTimer == 0) {
+			reloadMask.sprite = reload0;
+		}
+
+		if (rangedManager.reloadTimer == 1) {
+			reloadMask.sprite = reload1;
+		}
+		if (rangedManager.reloadTimer == 2) {
+			reloadMask.sprite = reload2;
+		}
+		if (rangedManager.reloadTimer == 3) {
+			reloadMask.sprite = reload3;
+		}
+		if (rangedManager.reloadTimer == 4) {
+			reloadMask.sprite = reload4;
+		}
+		if (rangedManager.reloadTimer == 5) {
+			reloadMask.sprite = reload5;
+		}
+		if (rangedManager.reloadTimer == 6) {
+			reloadMask.sprite = reload6;
 		}
 	}
 }

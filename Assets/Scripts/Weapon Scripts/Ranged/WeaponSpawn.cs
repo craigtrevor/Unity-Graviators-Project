@@ -43,6 +43,8 @@ public class WeaponSpawn : NetworkBehaviour {
 
     private string playerCharacterID;
 
+	public int reloadTimer = 6;
+
     // Scripts
     Network_Soundscape networkSoundscape;
     Network_PlayerManager networkPlayerManagerScript;
@@ -160,7 +162,12 @@ public class WeaponSpawn : NetworkBehaviour {
 
     IEnumerator reload() {
         // delay before the player can fire agian
-        yield return new WaitForSeconds(reloadTime);
+		reloadTimer = 0;
+
+		for (int i = 0; i < 6; i++) {
+			yield return new WaitForSeconds(reloadTime/6f);
+			reloadTimer += 1;
+		}
 
         if (playerCharacterID == "ERNN") {
 			//play reload anim and wait for it to trigger
