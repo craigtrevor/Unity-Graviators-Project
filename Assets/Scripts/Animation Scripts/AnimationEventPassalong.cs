@@ -11,6 +11,7 @@ public class AnimationEventPassalong : MonoBehaviour {
 	private PlayerController netPlayer;
 	private AnimTesterSpawner animSpawnTest;
 	private SinglePlayer_WeaponSpawn SP_wepSpawn;
+	private Network_CombatManager combatManager;
 
 	void Start() {
 		if (parentObject.GetComponent<WeaponSpawn>() != null) {
@@ -28,6 +29,11 @@ public class AnimationEventPassalong : MonoBehaviour {
 		if (parentObject.GetComponent<SinglePlayer_WeaponSpawn> () != null) {
 			SP_wepSpawn = parentObject.GetComponent<SinglePlayer_WeaponSpawn> ();
 		}
+
+		if (parentObject.GetComponent<Network_CombatManager> () != null) {
+			combatManager = parentObject.GetComponent<Network_CombatManager> ();
+		}
+
 	}
 
 	void RangedAttack (AnimationEvent animEvent) {
@@ -60,6 +66,15 @@ public class AnimationEventPassalong : MonoBehaviour {
 		} 
 		if (animSpawnTest != null) {
 			animSpawnTest.ActualJump ();
+		} 
+	}
+
+	void AttackFinished () {
+		if (combatManager != null) {
+			combatManager.AttackFinished ();
+		} 
+		if (animSpawnTest != null) {
+			
 		} 
 	}
 }

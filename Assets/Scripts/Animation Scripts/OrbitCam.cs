@@ -9,6 +9,7 @@ public class OrbitCam : MonoBehaviour {
 	private Vector3 point;//the coord to the point where the camera looks at
 	public Vector3 dragOrigin;
 	public float dragSpeed = 0.5f;
+	public bool rotateAround;
 
 	void Start() {
 		point = target.transform.position;//get target's coords
@@ -17,6 +18,14 @@ public class OrbitCam : MonoBehaviour {
 	}
 	
 	void Update () {//makes the camera rotate around "point" coords, rotating around its Y axis, 20 degrees per second times the speed modifier
+		if (rotateAround) {
+			transform.RotateAround (point, new Vector3 (0.0f, -0.1f, 0.0f), 20 * Time.deltaTime * 2);
+		}
+
+		if (Input.GetKeyDown ("r")) {
+			rotateAround = true;
+		}
+
 		if (Input.GetMouseButton(1)) {
 			transform.RotateAround (point,new Vector3(0.0f,Input.GetAxis ("Mouse X"),0.0f),20 * Time.deltaTime * speedMod);
 		}
