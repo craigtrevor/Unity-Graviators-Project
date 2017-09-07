@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour {
         get { return targetRotation; }
     }
 
-    bool Grounded() {
+    public bool Grounded() {
         //return Physics.Raycast(transform.position, -transform.up, moveSettings.distToGrounded, moveSettings.ground);
         CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
         float radius = capsuleCollider.radius * 0.65f;

@@ -12,7 +12,9 @@ public class Network_CombatManager : NetworkBehaviour {
     [SerializeField]
     private NetworkAnimator netanim;
 
-    [SerializeField]
+	private PlayerController playerController;
+
+	[SerializeField]
     Transform playerModel;
 
     string stateName;
@@ -92,6 +94,7 @@ public class Network_CombatManager : NetworkBehaviour {
 
     // Use this for initialization
     void Start() {
+		playerController = transform.GetComponentInChildren<PlayerController> ();
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         playerRigidbody = transform.GetComponent<Rigidbody>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
@@ -231,55 +234,57 @@ public class Network_CombatManager : NetworkBehaviour {
         //CheckCollision();
     }
 
-	public void weaponCollide(Collider collision, Vector3 hitPoint) {
+	public void weaponCollide(Collider collision, Vector3 hitPoint, bool airStrike) {
 		//Debug.Log (collision.gameObject.name + " struck at " + hitPoint);
 		if (isAttacking) {
-			Debug.Log ("strike");
 			GameObject tempParticle = Instantiate (grindParticle);
 			tempParticle.transform.position = hitPoint;
+			if ((airStrike && !playerController.Grounded()) || !airStrike ) {
+				if (collision.gameObject.tag == PLAYER_TAG) {
+					isHitting = true;
 
-			if (collision.gameObject.tag == PLAYER_TAG) {
-				isHitting = true;
-
-				if (!clashActive) {
-					if (attackCounter == 0) {
-						SendDamage (collision);
-						attackCounter = 1;
-					}
-				} else if (clashActive) {
-					// Clash Active
-					if (collision.gameObject.GetComponent<Network_CombatManager> ().isAttacking == true) { // check to see if the other player is attacking
-						if (collision.gameObject.GetComponent<Network_CombatManager> ().playerDamage == this.GetComponent<Network_CombatManager> ().playerDamage) {  // if the player has equal damage as oppenent
-							StartCoroutine (KnockBack (collision, hitPoint));
-						}
-					} else if (collision.gameObject.GetComponent<Network_CombatManager> ().playerDamage < this.GetComponent<Network_CombatManager> ().playerDamage) { // if the player has more damage then oponent
+					if (!clashActive) {
 						if (attackCounter == 0) {
-							SendDamage (collision);
+							SendDamage (collision, airStrike);
 							attackCounter = 1;
 						}
+					} else if (clashActive) {
+						// Clash Active
+						if (collision.gameObject.GetComponent<Network_CombatManager> ().isAttacking == true) { // check to see if the other player is attacking
+							if (collision.gameObject.GetComponent<Network_CombatManager> ().playerDamage == this.GetComponent<Network_CombatManager> ().playerDamage) {  // if the player has equal damage as oppenent
+								StartCoroutine (KnockBack (collision, hitPoint));
+							}
+						} else if (collision.gameObject.GetComponent<Network_CombatManager> ().playerDamage < this.GetComponent<Network_CombatManager> ().playerDamage) { // if the player has more damage then oponent
+							if (attackCounter == 0) {
+								SendDamage (collision, airStrike);
+								attackCounter = 1;
+							}
 
-					} else {
-						StartCoroutine (KnockBack (collision, hitPoint));
+						} else {
+							StartCoroutine (KnockBack (collision, hitPoint));
+						}
 					}
+				} else if (clashActive) {
+					StartCoroutine (KnockBack (collision, hitPoint));
 				}
-			}
-
-			else if (clashActive) {
-				StartCoroutine (KnockBack (collision, hitPoint));
 			}
 		}
 	}
 
-    void SendDamage(Collider hitCol) {
+	void SendDamage(Collider hitCol, bool airStrike) {
         if (isHitting) {
-            if (networkPlayerManager.playerCharacterID == "ERNN") {
+			if (airStrike) {
+				CmdTakeDamage (hitCol.gameObject.name, playerDamage, transform.name);
+				StartCoroutine (AttackDelay ());
+			}
+			if (networkPlayerManager.playerCharacterID == "ERNN" && !airStrike) {
 				CmdTakeDamage (hitCol.gameObject.name, playerDamage / 15, transform.name);
 				StartCoroutine (AttackDelay ());
                 //GetComponent<Dash>().chargePercent += ultGain;
-            } else if (networkPlayerManager.playerCharacterID == "SPKS") {
+			} else if (networkPlayerManager.playerCharacterID == "SPKS" && !airStrike) {
                 CmdTakeDamage(hitCol.gameObject.name, playerDamage / 2, transform.name);
 				StartCoroutine (AttackDelay ());
-            } else if (networkPlayerManager.playerCharacterID == "UT-D1") {
+			} else if (networkPlayerManager.playerCharacterID == "UT-D1" && !airStrike) {
                 CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
 				StartCoroutine (AttackDelay ());
             }
