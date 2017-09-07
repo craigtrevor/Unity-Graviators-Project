@@ -18,7 +18,11 @@ public class StrikeCollider : MonoBehaviour {
 			thisCollider = GetComponent<SphereCollider> ();
 		}
 	}
+
+	void OnCollisionEnter (Collision other) {
 		
+	}
+
 	void OnTriggerEnter(Collider other) {
 		if (other.transform.root.gameObject != this.transform.root.gameObject && other.gameObject.tag != "ThrowingSword" && other.gameObject.tag != "Sparkus_RangedWeapon" || other.gameObject.tag != "UnitD1_RangedWeapon") {
 			hitPoint = thisCollider.ClosestPointOnBounds (other.transform.position);
