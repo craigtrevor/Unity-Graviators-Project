@@ -79,6 +79,8 @@ public class Network_CombatManager : NetworkBehaviour {
     public ParticleSystem gravLandParticleMed;
     public ParticleSystem gravLandParticleLarge;
 
+	public GameObject grindParticle;
+
     // Scripts
     Network_Soundscape networkSoundscape;
     PlayerController playerControllermodifier;
@@ -94,7 +96,6 @@ public class Network_CombatManager : NetworkBehaviour {
         playerRigidbody = transform.GetComponent<Rigidbody>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
         dashScript = transform.GetComponent<Dash>();
-		clashActive = true;
 
         playerDamage = 5;
         attackRadius = 3;
@@ -107,9 +108,6 @@ public class Network_CombatManager : NetworkBehaviour {
     void Update() {
         CheckAnimation();
         AttackPlayer();
-		if (isAttacking) {
-			CheckCollision ();
-		}
         PlayerVelocity();
 		}
 
@@ -230,88 +228,83 @@ public class Network_CombatManager : NetworkBehaviour {
 
     [Client]
     public void Attacking() {
-        CheckCollision();
+        //CheckCollision();
     }
 
-    void CheckCollision() {
-        hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+	public void weaponCollide(Collider collision, Vector3 hitPoint) {
+		//Debug.Log (collision.gameObject.name + " struck at " + hitPoint);
+		if (isAttacking) {
+			Debug.Log ("strike");
+			GameObject tempParticle = Instantiate (grindParticle);
+			tempParticle.transform.position = hitPoint;
 
-        foreach (Collider hitCol in hitColliders) {
-			if (hitCol.gameObject != this.gameObject && hitCol.gameObject.tag == PLAYER_TAG) {
-                isHitting = true;
+			if (collision.gameObject.tag == PLAYER_TAG) {
+				isHitting = true;
 
-                // Metallic Hit SFX
-                //networkSoundscape.PlaySound(3, 3, 0f);
-
-				// Clash Inactive
 				if (!clashActive) {
 					if (attackCounter == 0) {
-						SendDamage (hitCol);
+						SendDamage (collision);
 						attackCounter = 1;
 					}
 				} else if (clashActive) {
 					// Clash Active
-					if (hitCol.gameObject.GetComponent<Network_CombatManager> ().isAttacking == true) { // check to see if the other player is attacking
-						if (hitCol.gameObject.GetComponent<Network_CombatManager> ().playerDamage == this.GetComponent<Network_CombatManager> ().playerDamage) {  // if the player has equal damage as oppenent
-							//StartCoroutine (knockBack (hitCol));
-							KnockBack(hitCol);
+					if (collision.gameObject.GetComponent<Network_CombatManager> ().isAttacking == true) { // check to see if the other player is attacking
+						if (collision.gameObject.GetComponent<Network_CombatManager> ().playerDamage == this.GetComponent<Network_CombatManager> ().playerDamage) {  // if the player has equal damage as oppenent
+							StartCoroutine (KnockBack (collision, hitPoint));
 						}
-					} else if (hitCol.gameObject.GetComponent<Network_CombatManager> ().playerDamage < this.GetComponent<Network_CombatManager> ().playerDamage) { // if the player has more damage then oponent
+					} else if (collision.gameObject.GetComponent<Network_CombatManager> ().playerDamage < this.GetComponent<Network_CombatManager> ().playerDamage) { // if the player has more damage then oponent
 						if (attackCounter == 0) {
-							SendDamage (hitCol);
+							SendDamage (collision);
 							attackCounter = 1;
 						}
 
 					} else {
-						KnockBack(hitCol);
-						// Debug.Log("i had less damage and loss the clash");
+						StartCoroutine (KnockBack (collision, hitPoint));
 					}
 				}
-            }
-        }
-    }
+			}
+
+			else if (clashActive) {
+				StartCoroutine (KnockBack (collision, hitPoint));
+			}
+		}
+	}
 
     void SendDamage(Collider hitCol) {
         if (isHitting) {
             if (networkPlayerManager.playerCharacterID == "ERNN") {
-                StartCoroutine(ERNNAttacking(hitCol));
+				CmdTakeDamage (hitCol.gameObject.name, playerDamage / 15, transform.name);
+				StartCoroutine (AttackDelay ());
                 //GetComponent<Dash>().chargePercent += ultGain;
             } else if (networkPlayerManager.playerCharacterID == "SPKS") {
-                CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+                CmdTakeDamage(hitCol.gameObject.name, playerDamage / 2, transform.name);
+				StartCoroutine (AttackDelay ());
             } else if (networkPlayerManager.playerCharacterID == "UT-D1") {
                 CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+				StartCoroutine (AttackDelay ());
             }
         }
     }
 
-    IEnumerator ERNNAttacking(Collider hitCol) {
-		yield return new WaitForSeconds (0.36f);
-		CmdTakeDamage (hitCol.gameObject.name, playerDamage / 3, transform.name);
-		yield return new WaitForSeconds (0.36f);
-		CmdTakeDamage (hitCol.gameObject.name, playerDamage / 3, transform.name);
-		yield return new WaitForSeconds (0.36f);
-		CmdTakeDamage (hitCol.gameObject.name, playerDamage / 3, transform.name);
+	IEnumerator AttackDelay() {
+		yield return new WaitForSeconds (0.1f);
+		attackCounter = 0;
 	}
 
-	void KnockBack(Collider hitCol) {
-		Vector3 smackForce; //used in knockback
-		smackForce = this.transform.position - hitCol.gameObject.transform.position;
-		smackForce = new Vector3 (smackForce.x * (playerDamage * 10), smackForce.y * (playerDamage * 10), smackForce.z * (playerDamage * 10));
-		playerRigidbody.AddForce(smackForce);					
+	IEnumerator KnockBack(Collider hitCol, Vector3 hitPoint) {
+		gameObject.GetComponentInChildren<PlayerController>().enabled = false;
+		playerRigidbody.constraints = RigidbodyConstraints.None;
+		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+		float multiplier = 1; 
+		if (hitCol.gameObject.tag == PLAYER_TAG) {
+			multiplier = hitCol.gameObject.GetComponent<Network_CombatManager> ().playerDamage;
+		}
+		playerRigidbody.AddExplosionForce(100000 * multiplier, hitPoint, 10f);	
+		yield return new WaitForSeconds (0.5f);
+		playerRigidbody.constraints = RigidbodyConstraints.None;
+		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+		gameObject.GetComponentInChildren<PlayerController>().enabled = true;
 	}
-								
-//	IEnumerator knockBack(Collider hitCol) {
-//        Debug.Log("knock Back");
-//        GetComponentInChildren<PlayerController>().enabled = false; // turn off player controls
-//        playerRigidbody.constraints = RigidbodyConstraints.None; // allows the player to move around the 3 axis's
-//        playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation; // stops the player from rotating
-//        playerRigidbody.AddForce(cameraRotation.forward * -thrust);
-//        yield return new WaitForSeconds(delay);
-//        playerRigidbody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
-//        playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-//        GetComponentInChildren<PlayerController>().enabled = true; // turn on player controls
-
-//    }
 
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {

@@ -82,6 +82,7 @@
      <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" />
      <Compile Include="Assets\Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
+     <Compile Include="Assets\Scripts\Melee Scripts\StrikeCollider.cs" />
      <Compile Include="Assets\Scripts\Misc\TestScript.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
