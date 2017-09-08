@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour {
-	
+
+	public SP_CompactHud compactHud; // to turn off the effects
+
 	private string str;
 	public Text textObject;
 	public bool textNotDone = false;
@@ -41,6 +43,7 @@ public class TutorialManager : MonoBehaviour {
 	public bool healthPadTouched;
 	public bool ultPadTouched;
 
+
 	public bool clashBounced;
 
 	public int botsMurdered = 0;
@@ -50,8 +53,8 @@ public class TutorialManager : MonoBehaviour {
 
 	void Start() {
 		indicator.SetActive (false);
-		tutProgression = 1;
-		overallProgression = 1;
+		//tutProgression = 1;
+		//overallProgression = 1;
 	}
 
 	// overallProgression
@@ -346,7 +349,7 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 4;
 		}
 		if (tutProgression == 4 && !textNotDone) {
-			StartCoroutine (AnimateText ("There are 4 types of pads, the small green one will heal you, touch it now"));
+			StartCoroutine (AnimateText ("There are 4 types of pads, the small green one will heal you, touch it now."));
 		}
 		if (tutProgression == 5 && !textNotDone) {
 			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack quicker so you can do some serious damage"));
@@ -358,7 +361,7 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("the big green one will slow you down, annoying, but not fatal, so touch it too"));
 		}
 		if (tutProgression == 8 && !textNotDone) {
-			StartCoroutine (AnimateText ("So watch out for these, some will help, some will harm"));
+			StartCoroutine (AnimateText ("So watch out for these pad, some will help, some will harm, but that is up to you to find out"));
 			StartCoroutine (WaitForTraps ());
 		}
 
@@ -373,6 +376,10 @@ public class TutorialManager : MonoBehaviour {
 		spikeTrap.SetActive (false);
 		slowTrap.SetActive (false);
 		indicator.SetActive (false);
+		compactHud.onHealthPad = false;
+		compactHud.onUltPad = false;
+		compactHud.onSpikeTrap = false;
+		compactHud.onSlowTrap = false;
 	}
 
 	void tutUlt () {
