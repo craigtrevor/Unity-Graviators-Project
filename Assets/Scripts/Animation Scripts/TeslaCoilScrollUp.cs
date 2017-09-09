@@ -10,7 +10,11 @@ public class TeslaCoilScrollUp : MonoBehaviour {
 
 	void Update () {
 		scroll -= Time.deltaTime;
-		rend.material.SetTextureOffset ("_MainTex", new Vector2(0, scroll));
-		rend2.material.SetTextureOffset ("_MainTex", new Vector2(0, scroll - Time.deltaTime));
+		if (rend != null) {
+			rend.material.SetTextureOffset ("_MainTex", new Vector2 (0, scroll));
+		}
+		if (rend2 != null) {
+			rend2.material.SetTextureOffset ("_MainTex", new Vector2 (0, scroll - Time.deltaTime));
+		}
 	}
 }
