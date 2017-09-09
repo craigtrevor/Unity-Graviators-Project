@@ -44,21 +44,15 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-<<<<<<< HEAD
       <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-=======
-      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
->>>>>>> a642c13217bd637fbc73c66e1e9704b90daf1d8d
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Database Control Free\Demos\C#\Scripts\DCF_DemoScene_ManagerScript_CSharp.cs" />
+     <Compile Include="Assets\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
      <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\LookAtTarget.cs" />
      <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\MouseMove.cs" />
      <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
@@ -182,12 +176,16 @@
      <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim_Bumped.shader" />
      <None Include="Assets\VacuumShaders\Beast\Shaders\CompilationTargetLevel.cginc" />
+     <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
      <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Plane.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonDefaultOutline.shader" />
      <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardShadow.cginc" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Diffuse_UnlitRimColor.shader" />
+     <None Include="Assets\Lava_Flowing_Shader\Shaders\Diffuse_Lava_Distort.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\burnThrough.shader" />
+     <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort.shader" />
+     <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort_Transparent.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\DiffuseBumped_UnlitRimColorBumped.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Diffuse_Outline_Edges.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Box.shader" />
@@ -200,6 +198,7 @@
      <None Include="Assets\Shaders\CrossSection.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Portal.shader" />
+     <None Include="Assets\Lava_Flowing_Shader\ReadMe.txt" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonV.cginc" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonDefault.shader" />
      <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardInput.cginc" />
@@ -218,7 +217,6 @@
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparent.shader" />
      <None Include="Assets\VacuumShaders\Beast\Shaders\Standard.shader" />
  <Reference Include="UnityEngine.UI">
-<<<<<<< HEAD
  <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
@@ -244,33 +242,6 @@
  </Reference>
  <Reference Include="VacuumShaders.Beast">
  <HintPath>E:/Users/Alex/Documents/Unity-Graviators-Project/Assets/VacuumShaders/Beast/Scripts/VacuumShaders.Beast.dll</HintPath>
-=======
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.TestRunner">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="nunit.framework">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Timeline">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.HoloLens">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="DatabaseControl">
- <HintPath>C:/Users/New/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
- </Reference>
- <Reference Include="VacuumShaders.Beast">
- <HintPath>C:/Users/New/Documents/Unity-Graviators-Project/Assets/VacuumShaders/Beast/Scripts/VacuumShaders.Beast.dll</HintPath>
->>>>>>> a642c13217bd637fbc73c66e1e9704b90daf1d8d
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
