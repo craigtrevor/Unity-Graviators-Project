@@ -7,10 +7,25 @@ public class FreeCamScript : MonoBehaviour {
     int sensitivty = 1;
     Space space = Space.Self;
 
-    // Use this for initialization
-    void Start() {
+    [SerializeField]
+    Transform playerTarget;
 
+    // Use this for initialization
+    void Start()
+    {
+        if (playerTarget != null)
+        {
+            transform.LookAt(playerTarget);
+        }
     }
+
+    //public Transform target;
+    //public float speed;
+    //void Update()
+    //{
+    //    float step = speed * Time.deltaTime;
+    //    transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+    //}
 
     // Update is called once per frame
     void Update() {

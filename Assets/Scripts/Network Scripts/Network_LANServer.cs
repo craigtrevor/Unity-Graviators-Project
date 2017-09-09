@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class Network_LANServer : NetworkDiscovery
 {
+    Text statusText;
+
     void Start()
     {
+        statusText = GameObject.Find("StatusText").GetComponent<Text>();
         Application.runInBackground = true;
     }
 
@@ -46,7 +50,11 @@ public class Network_LANServer : NetworkDiscovery
         if (serverCreated)
         {
             serverPort = defaultPort;
+
+            statusText.color = Color.green;
+            statusText.text = "Creating server...";
             Debug.Log("Server Created with default port");
+
         }
 
         else
@@ -72,6 +80,9 @@ public class Network_LANServer : NetworkDiscovery
                     if (temport == maxPort)
                     {
                         Debug.LogError("Failed to create server");
+
+                        statusText.color = Color.red;
+                        statusText.text = "Failed to create server...";
                     }
                 }
             }

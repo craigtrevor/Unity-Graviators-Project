@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class Network_HostGame : MonoBehaviour {
 
     [SerializeField]
     private uint roomSize = 8;
+
+    [SerializeField]
+    Text statusText;
 
     private string roomName;
 
@@ -29,7 +33,17 @@ public class Network_HostGame : MonoBehaviour {
         if (roomName != "" && roomName != null)
         {
             Debug.Log("Creating Room: " + roomName + " with room for " + roomSize + " players.");
+
+            statusText.color = Color.green;
+            statusText.text = "Creating server...";
+
             networkManager.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
+        }
+
+        else
+        {
+            statusText.color = Color.red;
+            statusText.text = "Please enter a name for your server...";
         }
     }
 }

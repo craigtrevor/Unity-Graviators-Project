@@ -359,7 +359,10 @@ public class Network_PlayerManager : NetworkBehaviour
         if (isLocalPlayer)
         {
             //Switch cameras
+            deathCamera.transform.position = this.transform.position;
+            deathCamera.transform.rotation = this.transform.rotation;
             deathCamera.SetActive(true);
+            GetComponent<Rigidbody>().Sleep();
         }
 
        // if (!isServer)
