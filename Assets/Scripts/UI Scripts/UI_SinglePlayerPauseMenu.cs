@@ -16,7 +16,7 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
     [SerializeField]
     private Canvas playerHUD;
 
-    void Awake()
+    void Start()
     {
         isOn = false;
         Cursor.visible = false;

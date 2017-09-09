@@ -47,12 +47,18 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     private Behaviour[] disableOnDeath;
+
     private bool[] wasEnabled;
 
     [SerializeField]
     private GameObject[] disableGameObjectsOnDeath;
+
+    [SerializeField]
+    GameObject deathCamera;
+
     [SerializeField]
     GameObject[] deathCanvas;
+
     [SerializeField]
     GameObject[] ERNNCustomization;
     [SerializeField]
@@ -295,24 +301,9 @@ public class Network_PlayerManager : NetworkBehaviour
         if (_col != null)
             _col.enabled = false;
 
-        Debug.Log(transform.name + " is DEAD!");
-
-        //Switch cameras
-        if (isLocalPlayer)
-        {
-            Network_GameManager.instance.SetSceneCameraActive(true);
-        }
-
         StartCoroutine(Respawn());
 
-        if (!isServer)
-            return;
-
-        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-        ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
-
-        NetworkServer.Spawn(corpseobject);
-        Destroy(corpseobject, 5);
+        onDeath();
     }
 
     private IEnumerator Respawn()
@@ -324,14 +315,12 @@ public class Network_PlayerManager : NetworkBehaviour
 				yield return new WaitForSeconds(5f);
                 deathCanvas[0].SetActive(true);
                 yield return new WaitForSeconds(5f);
-                //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
                 deathCanvas[0].SetActive(false);
+                deathCamera.SetActive(false);
 
                 Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
                 transform.position = _spawnPoint.position;
                 transform.rotation = _spawnPoint.rotation;
-
-                yield return new WaitForSeconds(0.1f);
 
                 SetupPlayer();
 
@@ -346,14 +335,12 @@ public class Network_PlayerManager : NetworkBehaviour
 				yield return new WaitForSeconds(5f);
                 deathCanvas[1].SetActive(true);
                 yield return new WaitForSeconds(5f);
-                //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
                 deathCanvas[1].SetActive(false);
+                deathCamera.SetActive(false);
 
                 Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
                 transform.position = _spawnPoint.position;
                 transform.rotation = _spawnPoint.rotation;
-
-                yield return new WaitForSeconds(0.1f);
 
                 SetupPlayer();
 
@@ -361,9 +348,28 @@ public class Network_PlayerManager : NetworkBehaviour
 
                 randomSound = Random.Range(7, 9);
                 networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
-
             }
         }
+    }
+
+    void onDeath()
+    {
+        Debug.Log(transform.name + " is DEAD!");
+
+        if (isLocalPlayer)
+        {
+            //Switch cameras
+            deathCamera.SetActive(true);
+        }
+
+       // if (!isServer)
+        //    return;
+
+        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+        ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
+
+        NetworkServer.Spawn(corpseobject);
+        Destroy(corpseobject, 5);
     }
 
     public void SetDefaults()
