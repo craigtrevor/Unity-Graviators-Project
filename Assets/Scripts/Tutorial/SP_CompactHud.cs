@@ -57,19 +57,19 @@ public class SP_CompactHud : MonoBehaviour {
 				StartCoroutine (SlowHeal ());
 			}
 		}
-		if (onUltPad) {
+		if (onUltPad && tutorialManager.healthPadTouched == true) {
 			tutorialManager.ultPadTouched = true;
 			if (!ultTrigger) {
 				StartCoroutine (SlowUlt ());
 			}
 		}
-		if (onSpikeTrap) {
+		if (onSpikeTrap && tutorialManager.ultPadTouched == true) {
 			tutorialManager.spikeTrapTouched = true;
 			if (!spikeTrigger) {
 				StartCoroutine (SlowSpike ());
 			}
 		}
-		if (onSlowTrap) {
+		if (onSlowTrap && tutorialManager.spikeTrapTouched == true) {
 			tutorialManager.slowTrapTouched = true;
 			if (!slowTrigger) {
 				StartCoroutine (SlowSlow ());
@@ -126,7 +126,7 @@ public class SP_CompactHud : MonoBehaviour {
 		if (playerHealth > 0.1) {
 			playerHealth -= 0.05f;
 		}
-		yield return new WaitForSeconds (0.25f);
+		yield return new WaitForSeconds (0.01f);
 		spikeTrigger = false;
 	}
 

@@ -90,6 +90,8 @@
     <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
     <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\Interpolate.cs" />
     <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
+    <Compile Include="Assets\Prefabs\Destructible Crate\Example\Scripts\Hit.cs" />
+    <Compile Include="Assets\Prefabs\Destructible Crate\removeCrate.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\3PSPlayer\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Assets\Scripts\Camera Scripts\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" />
     <Compile Include="Assets\Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
+    <Compile Include="Assets\Scripts\Melee Scripts\StrikeCollider.cs" />
     <Compile Include="Assets\Scripts\Misc\TestScript.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />

@@ -362,7 +362,7 @@ public class PlayerController : MonoBehaviour {
             // Jumping - Alex
             StartCoroutine(JumpTime());
             velocity.y = moveSettings.jumpVel;
-            networkSoundscape.PlaySound(22, 4, 0f);
+            //networkSoundscape.PlaySound(22, 4, 0f);
         }
         else if (jumpInput == 0 && Grounded())
         {

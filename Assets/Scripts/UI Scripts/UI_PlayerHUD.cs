@@ -59,7 +59,7 @@ public class UI_PlayerHUD : MonoBehaviour {
             scoreboard.SetActive(false);
         }
 
-		if (Input.GetKeyDown(KeyCode.X))
+	/*	if (Input.GetKeyDown(KeyCode.X))
 		{
 			SkillUI.SetActive(true);
 		}
@@ -67,7 +67,7 @@ public class UI_PlayerHUD : MonoBehaviour {
 		else if (Input.GetKeyUp(KeyCode.X))
 		{
 			SkillUI.SetActive(false);
-		}
+		}*/
 
         if (pauseMenu.activeSelf)
         {

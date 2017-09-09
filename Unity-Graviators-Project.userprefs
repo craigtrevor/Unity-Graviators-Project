@@ -1,24 +1,38 @@
+<<<<<<< HEAD
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Network Scripts\Network_SceneManager.cs">
+=======
+﻿<Properties StartupItem="Unity-Graviators-Project.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Melee Scripts\Network_CombatManager.cs">
+>>>>>>> 754dbb9c9591508e33c19285834968e9160f0897
     <Files>
       <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Weapon Scripts\Ults\Dash.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Animation Scripts\AnimTesterController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Animation Scripts\OrbitCam.cs" Line="1" Column="1" />
+<<<<<<< HEAD
       <File FileName="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" Line="1" Column="1" />
+=======
+      <File FileName="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" Line="277" Column="53" />
+>>>>>>> 754dbb9c9591508e33c19285834968e9160f0897
       <File FileName="Assets\Scripts\Network Scripts\Network_DevKeys.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Weapon Scripts\Ranged\damageRange.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Melee Scripts\StrikeCollider.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Particle Scripts\DestroyParticle.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\3PSPlayer\PlayerController.cs" Line="1" Column="1" />
+<<<<<<< HEAD
       <File FileName="Assets\Scripts\UI Scripts\CompactHud.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Network Scripts\Network_LANServer.cs" Line="26" Column="3" />
       <File FileName="Assets\Scripts\Network Scripts\Network_Manager.cs" Line="285" Column="80" />
       <File FileName="Assets\Scripts\Network Scripts\Network_SceneManager.cs" Line="1" Column="1" />
+=======
+      <File FileName="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" Line="77" Column="32" />
+>>>>>>> 754dbb9c9591508e33c19285834968e9160f0897
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -17,6 +17,8 @@ public class Network_AidManager : NetworkBehaviour {
 	private float healAmount = 1;
 	private float chargeAmount = 15f;
 
+	public ParticleSystem healthPadParticle;
+	private ParticleSystem playHealthPadParticle;
 	[Client]
 	void OnTriggerStay (Collider other)
 	{
@@ -27,6 +29,9 @@ public class Network_AidManager : NetworkBehaviour {
 			//Debug.Log(transform.name);
 			CmdHealthRegen(other.gameObject.name, healAmount, transform.name);
 		}
+		ParticleSystem playHealthPadParticle = (ParticleSystem)Instantiate (healthPadParticle, this.transform.position + Vector3.up, this.transform.rotation);
+		playHealthPadParticle.Emit (0);
+
 		/*
 		if (this.gameObject.tag == ULTCHARGER_TAG && other.gameObject.tag == PLAYER_TAG)
 		{
