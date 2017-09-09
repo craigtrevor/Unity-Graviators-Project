@@ -44,10 +44,17 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
+<<<<<<< HEAD
       <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+=======
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+>>>>>>> a642c13217bd637fbc73c66e1e9704b90daf1d8d
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +218,7 @@
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparent.shader" />
      <None Include="Assets\VacuumShaders\Beast\Shaders\Standard.shader" />
  <Reference Include="UnityEngine.UI">
+<<<<<<< HEAD
  <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
@@ -236,6 +244,33 @@
  </Reference>
  <Reference Include="VacuumShaders.Beast">
  <HintPath>E:/Users/Alex/Documents/Unity-Graviators-Project/Assets/VacuumShaders/Beast/Scripts/VacuumShaders.Beast.dll</HintPath>
+=======
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TestRunner">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Timeline">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="DatabaseControl">
+ <HintPath>C:/Users/New/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
+ </Reference>
+ <Reference Include="VacuumShaders.Beast">
+ <HintPath>C:/Users/New/Documents/Unity-Graviators-Project/Assets/VacuumShaders/Beast/Scripts/VacuumShaders.Beast.dll</HintPath>
+>>>>>>> a642c13217bd637fbc73c66e1e9704b90daf1d8d
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
