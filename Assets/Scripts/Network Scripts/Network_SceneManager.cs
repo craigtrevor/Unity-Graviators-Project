@@ -64,7 +64,7 @@ public class Network_SceneManager : MonoBehaviour
             serverScene = currentScene.name;
         }
 
-        if (sceneName != "Online_Scene")
+        if (sceneName != "Online_Scene" || sceneName != "Tutorial_Arena")
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
