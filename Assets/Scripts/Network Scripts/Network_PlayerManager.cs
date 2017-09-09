@@ -321,6 +321,7 @@ public class Network_PlayerManager : NetworkBehaviour
         {
             if (deathbyPlayer)
             {
+				yield return new WaitForSeconds(5f);
                 deathCanvas[0].SetActive(true);
                 yield return new WaitForSeconds(5f);
                 //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
@@ -342,6 +343,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
             else if (deathbyTrap)
             {
+				yield return new WaitForSeconds(5f);
                 deathCanvas[1].SetActive(true);
                 yield return new WaitForSeconds(5f);
                 //yield return new WaitForSeconds(Network_GameManager.instance.networkMatchSettings.respawnTime);
