@@ -162,6 +162,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth -= _amount;
 
+		playerAnim.SetTrigger ("Flinch");
+
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
 		//particles
@@ -183,6 +185,8 @@ public class Network_PlayerManager : NetworkBehaviour
         Debug.Log("Taken damage");
 
 		currentHealth -= _amount;
+
+		playerAnim.SetTrigger ("Flinch");
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
@@ -228,7 +232,7 @@ public class Network_PlayerManager : NetworkBehaviour
         {
             if (isLocalPlayer)
             {
-                randomSound = Random.Range(19, 23);
+                randomSound = Random.Range(20, 23);
                 networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
             }
 
@@ -326,7 +330,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
                 Debug.Log(transform.name + " respawned.");
 
-                randomSound = Random.Range(7, 9);
+                randomSound = Random.Range(18, 20);
                 networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
             }
 
@@ -346,7 +350,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
                 Debug.Log(transform.name + " respawned.");
 
-                randomSound = Random.Range(7, 9);
+                randomSound = Random.Range(18, 20);
                 networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
             }
         }

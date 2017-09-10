@@ -14,7 +14,7 @@ public class PlayerCamera : MonoBehaviour {
     // Use this for initialization
     void Start() {
         cameraDisplacement = 0f;
-        cameraZoom = 1f;
+        cameraZoom = 2f;
         this.initialLocalPosition = this.transform.localPosition;
         this.desiredLocalPosition = this.initialLocalPosition;
     }
@@ -24,7 +24,7 @@ public class PlayerCamera : MonoBehaviour {
         cameraDisplacement = player.GetComponent<PlayerController>().cameraDisplacement;
 
         //displacementVector = new Vector3(0f, -cameraDisplacement, 0f);
-        displacementVector = Vector3.Lerp(displacementVector, new Vector3(0f, cameraDisplacement * 2f, -cameraDisplacement), Time.deltaTime * 10);
+        displacementVector = Vector3.Lerp(displacementVector, new Vector3(0f, -cameraDisplacement * 1f - 0.5f*cameraZoom, 0f), Time.deltaTime * 15f);
 
         this.desiredLocalPosition = (this.initialLocalPosition - this.displacementVector)*cameraZoom;
 

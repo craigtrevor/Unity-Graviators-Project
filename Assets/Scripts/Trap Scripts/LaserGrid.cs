@@ -108,7 +108,6 @@ public class LaserGrid : NetworkBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
-		Debug.Log ("Adding");
 		if (collider.gameObject.tag == "Player") {
 			if (!NameInList (collider.gameObject)) {
 				affectedList.Add (collider.gameObject);

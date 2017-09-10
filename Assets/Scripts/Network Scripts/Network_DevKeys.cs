@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Network_DevKeys : NetworkBehaviour {
 
-	/* dev mode instruction
+    /* dev mode instruction
 	 * hold "\" to enable dev mode
 	 * press 1 to take damage
 	 * hold 2 to gain health
@@ -16,125 +16,114 @@ public class Network_DevKeys : NetworkBehaviour {
 	 * press 6 to go back to player spawn (player will keep thier current gravity set)
 	 */
 
-	public bool devmodeenabled = false;
-	[SerializeField]
-	Network_PlayerManager networkPlayerManager;
-	[SerializeField]
-	Network_CombatManager networkCombatManager;
-	[SerializeField]
-	private Vector3 spawnpostion;
+    public bool devmodeenabled = false;
+    [SerializeField]
+    Network_PlayerManager networkPlayerManager;
+    [SerializeField]
+    Network_CombatManager networkCombatManager;
+    [SerializeField]
+    private Vector3 spawnpostion;
 
-	public GameObject devStats;
-	public Text playerDamage;
+    public GameObject devStats;
+    public Text playerDamage;
 
 
-	void Start ()
-	{
-		networkPlayerManager = gameObject.GetComponent<Network_PlayerManager>();
-		networkCombatManager = gameObject.GetComponent<Network_CombatManager> ();
-		spawnpostion = gameObject.transform.position;
-		devStats.SetActive (false);
-	}
+    void Start() {
+        networkPlayerManager = gameObject.GetComponent<Network_PlayerManager>();
+        networkCombatManager = gameObject.GetComponent<Network_CombatManager>();
+        spawnpostion = gameObject.transform.position;
+        devStats.SetActive(false);
+    }
 
-	void Update () 
-	{
-		if (Input.GetKey (KeyCode.Backslash) || Input.GetKey(KeyCode.Slash))
-		{
-			devmodeenabled = true;
-		} else {
+    void Update() {
+        if (Input.GetKey(KeyCode.Backslash) || Input.GetKey(KeyCode.Slash)) {
+            devmodeenabled = true;
+        } else {
             devmodeenabled = false;
         }
 
-		if (Input.GetKeyDown (KeyCode.Period)) {
-			if (!devStats) {
-				devStats.SetActive(true);
-			}
-			if (devStats) {
-				devStats.SetActive(false);
-			}
-			if (!devmodeenabled) {
-				devmodeenabled = true;
-			}
-			if (devmodeenabled) {
-				devmodeenabled = false;
-			}
-		}
+        if (Input.GetKeyDown(KeyCode.Period)) {
+            if (!devStats) {
+                devStats.SetActive(true);
+            }
+            if (devStats) {
+                devStats.SetActive(false);
+            }
+            if (!devmodeenabled) {
+                devmodeenabled = true;
+            }
+            if (devmodeenabled) {
+                devmodeenabled = false;
+            }
+        }
 
-		if (devStats) {
-			playerDamage.text = "Player Damage: " + networkCombatManager.playerDamage;
-		}
+        if (devStats) {
+            playerDamage.text = "Player Damage: " + networkCombatManager.playerDamage;
+        }
 
-		if (devmodeenabled == true) 
-		{
-			if(Input.GetKeyDown(KeyCode.Alpha1)) // key 1 to partial heal/damage
-			{
-                if (Input.GetKey(KeyCode.LeftAlt)) {
+        if (devmodeenabled == true) {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) // key 1 to heal
+            {
+
+                CmdHealthRegen(gameObject.name, 10 * 10f / Time.deltaTime, transform.name);
+
+            }
+            if (Input.GetKey(KeyCode.Alpha2)) // hold 2 to damage
+            {
                     CmdTakeDamage(gameObject.name, 10, transform.name);
-                } else {
-                    CmdHealthRegen(gameObject.name, 10*10f/Time.deltaTime, transform.name);
-                }
-			}
-			if (Input.GetKey (KeyCode.Alpha2)) // hold 2 to full regen health/die
-			{
-                if (Input.GetKey(KeyCode.LeftAlt)) {
-                    CmdTakeDamage(gameObject.name, 100, transform.name);
-                } else {
-                    CmdHealthRegen(gameObject.name, 100 * 10f / Time.deltaTime, transform.name);
-                }
-			}
-			if (Input.GetKeyDown (KeyCode.Alpha3)) // key 3 to replenish/deplete ult
-			{
+               
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3)) // key 3 to replenish/deplete ult
+            {
                 if (Input.GetKey(KeyCode.LeftAlt)) {
                     networkPlayerManager.currentUltimateGain -= 100;
                 } else {
                     networkPlayerManager.currentUltimateGain += 100;
                 }
-			}
-			if (Input.GetKeyDown (KeyCode.Alpha4)) // key 4 to reload ranged
-			{
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4)) // key 4 to reload ranged
+            {
                 gameObject.GetComponent<WeaponSpawn>().InstantReload();
-			}
-			if (Input.GetKeyDown (KeyCode.Alpha5)) // key 5 to fill/empty gravity charges
-			{
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5)) // key 5 to fill/empty gravity charges
+            {
                 if (Input.GetKey(KeyCode.LeftAlt)) {
                     gameObject.GetComponentInChildren<GravityAxisScript>().gravityCharge = 0;
                 } else {
                     gameObject.GetComponentInChildren<GravityAxisScript>().gravityCharge = 5;
-                }                
-			}
-			if (Input.GetKeyDown (KeyCode.Alpha6)) // key 6 to go to spawn;
-			{
-				gameObject.transform.position = spawnpostion;
-			}
-			if (Input.GetKeyDown (KeyCode.C)) // key 6 to go to spawn;
-			{
-				gameObject.GetComponent<Network_CombatManager> ().clashActive = true;
-			}
-			if (Input.GetKeyDown (KeyCode.A)) // key 6 to go to spawn;
-			{
-				gameObject.GetComponent<Network_CombatManager> ().alwaysAttack = true;
-			}
-		}
-	}
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6)) // key 6 to go to spawn;
+            {
+                gameObject.transform.position = spawnpostion;
+            }
+            if (Input.GetKeyDown(KeyCode.C)) // key 6 to go to spawn;
+            {
+                gameObject.GetComponent<Network_CombatManager>().clashActive = true;
+            }
+            if (Input.GetKeyDown(KeyCode.A)) // key 6 to go to spawn;
+            {
+                gameObject.GetComponent<Network_CombatManager>().alwaysAttack = true;
+            }
+        }
+    }
 
 
 
-	[Command] // to take damage
-	void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
-	{
-		Debug.Log(_playerID + " has been attacked.");
-		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-		networkPlayerStats.RpcTakeTrapDamage(_damage, transform.name);
-	}
+    [Command] // to take damage
+    void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
+        Debug.Log(_playerID + " has been attacked.");
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+        networkPlayerStats.RpcTakeTrapDamage(_damage, transform.name);
+    }
 
-	[Command] // to heal
-	void CmdHealthRegen(string _playerID, float _heal, string _sourceID)
-	{
-		Debug.Log(_playerID + "is regenerating.");
+    [Command] // to heal
+    void CmdHealthRegen(string _playerID, float _heal, string _sourceID) {
+        Debug.Log(_playerID + "is regenerating.");
 
-		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-		networkPlayerStats.RpcHealthRegenerate(_heal, transform.name);
-	}
+        networkPlayerStats.RpcHealthRegenerate(_heal, transform.name);
+    }
 
 }

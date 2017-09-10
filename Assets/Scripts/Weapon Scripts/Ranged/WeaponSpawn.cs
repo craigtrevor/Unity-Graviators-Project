@@ -8,7 +8,7 @@ public class WeaponSpawn : NetworkBehaviour {
     public string _sourceID; //set the source id to the player that throws it. this is set by transform.name
 
     public int m_PlayerNumber = 1;
-    public Rigidbody weapon; // prefab of the weapon
+	public GameObject weapon; // prefab of the weapon
     public Collider2D colliderWeapon;
     public bool notRigid;
     public Transform fireTransform; // a child of the player where the weapon is spawned
@@ -48,12 +48,14 @@ public class WeaponSpawn : NetworkBehaviour {
     // Scripts
     Network_Soundscape networkSoundscape;
     Network_PlayerManager networkPlayerManagerScript;
+	private Network_CombatManager combatManager;
 
     private void Start() {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Collider2D = GetComponent<Collider2D>();
         _sourceID = transform.name;
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
+		combatManager = transform.GetComponent<Network_CombatManager> ();
         networkPlayerManagerScript = transform.GetComponent<Network_PlayerManager>();
         playerCharacterID = networkPlayerManagerScript.playerCharacterID;
     }
@@ -128,9 +130,9 @@ public class WeaponSpawn : NetworkBehaviour {
 
     [Command]
     private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation) {
-        if (!notRigid) {
             // create an instance of the weapon and store a reference to its rigibody
-            Rigidbody weaponInstance = Instantiate(weapon, position, rotation) as Rigidbody;
+			GameObject weaponInstance = Instantiate(weapon, position, rotation);
+			combatManager.safeList.Add (weaponInstance);
 
             // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
             Vector3 velocity = rigidbodyVelocity + launchForce * forward;
@@ -145,19 +147,9 @@ public class WeaponSpawn : NetworkBehaviour {
             }
 
             // Set the shell's velocity to this velocity.
-            weaponInstance.velocity = velocity;
+			weaponInstance.GetComponent<Rigidbody>().velocity = velocity;
 
             NetworkServer.Spawn(weaponInstance.gameObject);
-     //     Destroy(weaponInstance, 3);
-        } else {
-
-            // create an instance of the weapon and store a reference to its collider
-            Collider2D weaponInstance = Instantiate(colliderWeapon, position, rotation) as Collider2D;
-
-            weaponInstance.SendMessage("SetInitialReferences", _sourceID);
-
-            NetworkServer.Spawn(weaponInstance.gameObject);
-        }
     }
 
     IEnumerator reload() {

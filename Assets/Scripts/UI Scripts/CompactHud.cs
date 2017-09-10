@@ -64,7 +64,7 @@ public class CompactHud : MonoBehaviour {
 		}
 
 		//set ultimate charge
-		ultMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerUlt * 300, 100);
+		ultMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerUlt * 400, 100);
 
 		// set grav charges
 		gravCharge = gravityAxis.GetComponent<GravityAxisScript>().gravityCharge;

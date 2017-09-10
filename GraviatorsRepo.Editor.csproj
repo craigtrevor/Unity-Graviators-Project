@@ -149,6 +149,11 @@
   <ItemGroup>
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
+    <None Include="Assets\Lava_Flowing_Shader\ReadMe.txt" />
+    <None Include="Assets\Lava_Flowing_Shader\Shaders\Diffuse_Lava_Distort.shader" />
+    <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort.shader" />
+    <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort_Transparent.shader" />
+    <None Include="Assets\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
     <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
     <None Include="Assets\Materials\particles\SurfaceShader_VC.shader" />
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
@@ -193,6 +198,8 @@
     <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardCoreForward.cginc" />
     <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardInput.cginc" />
     <None Include="Assets\VacuumShaders\Beast\Shaders\UnityStandardShadow.cginc" />
+    <None Include="Assets\Water Flow FREE\Readme.txt" />
+    <None Include="Assets\Water Flow FREE\Shaders\Water Flow FREE Simple.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
