@@ -162,6 +162,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth -= _amount;
 
+		playerAnim.SetTrigger ("Flinch");
+
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
 		//particles
@@ -183,6 +185,8 @@ public class Network_PlayerManager : NetworkBehaviour
         Debug.Log("Taken damage");
 
 		currentHealth -= _amount;
+
+		playerAnim.SetTrigger ("Flinch");
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
