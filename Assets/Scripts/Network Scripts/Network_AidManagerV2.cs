@@ -14,13 +14,17 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	Network_PlayerManager networkPlayerManager;
 
 	[SerializeField]
-	private float healAmount = 1;
+	private float healAmount = 1f;
 	private float chargeAmount = 15f;
 
 	public GameObject healthPadParticle;
 	public GameObject ultPadParticle;
 
 	public List<GameObject> affectedList = new List<GameObject> ();
+	public List<GameObject> blackList = new List<GameObject> ();
+
+	public float healTimeOut = 5f;
+	public float blackListTimeOut = 30f;
 	public bool heal;
 	public bool playParticle;
 
@@ -36,11 +40,12 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 		if (playParticle) {
 			StartCoroutine (ParticlePlay ());
 		}
+
 	}
 			
-	public bool NameInList(GameObject toCheck) {
-		for (int i = 0; i < affectedList.Count; i++) {
-			if (affectedList [i] == toCheck) {
+	public bool NameInList(List<GameObject> listToCheck, GameObject toCheck) {
+		for (int i = 0; i < listToCheck.Count; i++) {
+			if (listToCheck [i] == toCheck) {
 				return true;
 			}
 		} 
@@ -50,9 +55,10 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	[Client]
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
-			if (!NameInList (collider.gameObject)) {
-				Debug.Log ("added");
+			if (!NameInList (affectedList, collider.gameObject) && !NameInList (blackList, collider.gameObject)) {
 				affectedList.Add (collider.gameObject);
+				blackList.Add (collider.gameObject);
+				BlackListTimer (collider);
 			}
 		}
 	}
@@ -60,41 +66,53 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	[Client]
 	void OnTriggerExit(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
-			if (NameInList (collider.gameObject)) {
-				Debug.Log ("removed");
+			if (NameInList (affectedList, collider.gameObject)) {
 				affectedList.Remove (collider.gameObject);
 			}
 		}
 	}
 
+	IEnumerator BlackListTimer (Collider collider) {
+		yield return new WaitForSeconds (healTimeOut);
+		if (NameInList (affectedList, collider.gameObject)) {
+			affectedList.Remove (collider.gameObject);
+		} 
+		yield return new WaitForSeconds (blackListTimeOut);
+		if (NameInList (blackList, collider.gameObject)) {
+			blackList.Remove (collider.gameObject);
+		} 
+
+
+	}
+
 	IEnumerator SlowHeal() {
 		heal = false;
-		yield return new WaitForSeconds (0.2f);
-		heal = true;
 		for (int i = 0; i < affectedList.Count; i++) {
 			if (gameObject.tag == HEALTHREGEN_TAG) {
-				CmdHealthRegen (affectedList [i].name, 5);
+				CmdHealthRegen (affectedList [i].name, healAmount);
 			}
 			if (gameObject.tag == ULTCHARGER_TAG) {
-				CmdUltRegen (affectedList [i].name, 5);
+				CmdUltRegen (affectedList [i].name, chargeAmount);
 			}
 		}
+		yield return new WaitForSeconds (0.2f);
+		heal = true;
 	}
 
 	IEnumerator ParticlePlay() {
 		playParticle = false;
-		yield return new WaitForSeconds (0.5f);
-		playParticle = true;
 		for (int i = 0; i < affectedList.Count; i++) {
 			if (gameObject.tag == HEALTHREGEN_TAG) {
-				GameObject temp = Instantiate(healthPadParticle, affectedList[i].transform.position, Quaternion.identity);
+				GameObject temp = Instantiate(healthPadParticle, affectedList[i].transform.position, affectedList[i].transform.rotation);
 				temp.transform.SetParent(affectedList[i].gameObject.transform);
 			}
 			if (gameObject.tag == ULTCHARGER_TAG) {
-				GameObject temp = Instantiate(ultPadParticle, affectedList[i].transform.position, Quaternion.identity);
+				GameObject temp = Instantiate(ultPadParticle, affectedList[i].transform.position, affectedList[i].transform.rotation);
 				temp.transform.SetParent(affectedList[i].gameObject.transform);
 			}
 		}
+		yield return new WaitForSeconds (0.5f);
+		playParticle = true;
 	}
 
 	[Command]
