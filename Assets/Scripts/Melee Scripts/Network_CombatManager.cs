@@ -140,25 +140,9 @@ public class Network_CombatManager : NetworkBehaviour {
     }
 
     IEnumerator stunTimer(float stunTime) {
-        /*
-        //play stun particles
-        this.gameObject.GetComponentInChildren<PlayerController>().enabled = false;
-		Debug.Log (" A player has been stunned");
-		yield return new WaitForSeconds (stunTime);
-		if (isLocalPlayer) // if they are the local player enable so they they can move agian whuile not ebalaing it for other players
-		{
-			this.gameObject.GetComponentInChildren<PlayerController>().enabled = true;
-		}
-		Debug.Log ("the player can move agian");*/
-
-        if (!isLocalPlayer) {
             this.gameObject.GetComponentInChildren<PlayerController>().stunned = true;
             yield return new WaitForSeconds(stunTime);
-        }
-
-        if (isLocalPlayer) {
             this.gameObject.GetComponentInChildren<PlayerController>().stunned = false;
-        }
     }
 
 	public void SlowForSeconds (float slowTime) {
