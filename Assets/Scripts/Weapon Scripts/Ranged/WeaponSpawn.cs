@@ -130,7 +130,6 @@ public class WeaponSpawn : NetworkBehaviour {
 
     [Command]
     private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation) {
-		if (playerCharacterID == "ERNN" || playerCharacterID == "UT-D1")  {
             // create an instance of the weapon and store a reference to its rigibody
 			GameObject weaponInstance = Instantiate(weapon, position, rotation);
 			combatManager.safeList.Add (weaponInstance);
@@ -151,17 +150,6 @@ public class WeaponSpawn : NetworkBehaviour {
 			weaponInstance.GetComponent<Rigidbody>().velocity = velocity;
 
             NetworkServer.Spawn(weaponInstance.gameObject);
-     //     Destroy(weaponInstance, 3);
-        } 
-		if (playerCharacterID == "SPKS") {
-
-            // create an instance of the weapon and store a reference to its collider
-            Collider2D weaponInstance = Instantiate(colliderWeapon, position, rotation) as Collider2D;
-
-            weaponInstance.SendMessage("SetInitialReferences", _sourceID);
-
-            NetworkServer.Spawn(weaponInstance.gameObject);
-        }
     }
 
     IEnumerator reload() {
