@@ -327,8 +327,8 @@ public class PlayerController : MonoBehaviour {
 
         }
         rotY -= Input.GetAxis("Mouse Y") * 2f;
-        rotY = Mathf.Clamp(rotY, -90f, 40f);
-        eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(rotY - cameraDisplacement * 15, 0, 0), Time.deltaTime * 30);
+        rotY = Mathf.Clamp(rotY, -90f, 60f);
+        eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(rotY - cameraDisplacement * 30f, 0, 0), Time.deltaTime * 30f);
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no
 
