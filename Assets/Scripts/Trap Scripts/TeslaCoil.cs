@@ -63,8 +63,8 @@ public class TeslaCoil : NetworkBehaviour {
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
 			if (!NameInList (collider.gameObject)) {
-				Debug.Log ("added");
 				affectedList.Add (collider.gameObject);
+				CmdTakeDamage (collider.gameObject.name, 5, sourceID);
 			}
 		}
 	}
@@ -72,7 +72,6 @@ public class TeslaCoil : NetworkBehaviour {
 	void OnTriggerExit(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
 			if (NameInList (collider.gameObject)) {
-				Debug.Log ("removed");
 				affectedList.Remove (collider.gameObject);
 			}
 		}
