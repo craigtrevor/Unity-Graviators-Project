@@ -62,17 +62,17 @@ public class WeaponSpawn : NetworkBehaviour {
     {
         if (m_Fired == true && playerCharacterID == "ERNN")
         {
-            networkSoundscape.PlaySound(3, 1, 0.0f);
+            networkSoundscape.PlaySound(8, 1, 0.0f);
         }
 
         else if (m_Fired == true && playerCharacterID == "SPKS")
         {
-            networkSoundscape.PlaySound(17, 1, 0.0f);
+            networkSoundscape.PlaySound(9, 1, 0.0f);
         }
 
         else if (m_Fired == true && playerCharacterID == "UT-D1")
         {
-            networkSoundscape.PlaySound(18, 1, 0.0f);
+            networkSoundscape.PlaySound(10, 1, 0.0f);
         }
     }
 
@@ -182,7 +182,7 @@ public class WeaponSpawn : NetworkBehaviour {
 			wingRing.GetComponent<Renderer> ().material.color = Color.cyan;
 		}
 
-        networkSoundscape.PlayNonNetworkedSound(19, 1);
+        networkSoundscape.PlayNonNetworkedSound(13, 1);
 
         // allow the player to fire again
 
@@ -204,7 +204,7 @@ public class WeaponSpawn : NetworkBehaviour {
             wingRing.GetComponent<Renderer>().material.color = Color.cyan;
         }
 
-        networkSoundscape.PlayNonNetworkedSound(19, 1);
+        networkSoundscape.PlayNonNetworkedSound(13, 1);
 
         // allow the player to fire again
 

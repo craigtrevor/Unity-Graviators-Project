@@ -73,15 +73,17 @@ public class Network_SceneManager : MonoBehaviour
 
     void PlaySong()
     {
-        if (sceneName == "Online_Scene" && isPlaying == true)
+        if (sceneName == "Online_Scene_ArenaV2" && isPlaying == true)
         {
             musicSource.Pause();
             isPlaying = false;
+            Debug.Log("Pause");
         }
 
-        else if (sceneName != "Online_Scene" && !isPlaying)
+        else if (sceneName != "Online_Scene_ArenaV2" && !isPlaying)
         {
             musicSource.UnPause();
+            Debug.Log("Unpause");
             isPlaying = true;
         }
     }

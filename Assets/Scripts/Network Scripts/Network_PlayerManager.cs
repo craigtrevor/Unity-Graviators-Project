@@ -109,7 +109,7 @@ public class Network_PlayerManager : NetworkBehaviour
         if (!firstPlay)
         {
             networkSoundscape = transform.GetComponent<Network_Soundscape>();
-            networkSoundscape.PlayNonNetworkedSound(16, 4);
+            //networkSoundscape.PlayNonNetworkedSound(16, 4);
             firstPlay = true;
         }
     }
@@ -228,7 +228,7 @@ public class Network_PlayerManager : NetworkBehaviour
         {
             if (isLocalPlayer)
             {
-                randomSound = Random.Range(9, 13);
+                randomSound = Random.Range(19, 23);
                 networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
             }
 
@@ -241,17 +241,17 @@ public class Network_PlayerManager : NetworkBehaviour
         {
             if (playerCharacterID == "ERNN")
             {
-                networkSoundscape.PlayNonNetworkedSound(4, 4);
+                networkSoundscape.PlayNonNetworkedSound(20, 4);
             }
 
             if (playerCharacterID == "SPKS")
             {
-                networkSoundscape.PlayNonNetworkedSound(5, 4);
+                networkSoundscape.PlayNonNetworkedSound(21, 4);
             }
 
             if (playerCharacterID == "UT-D1")
             {
-                networkSoundscape.PlayNonNetworkedSound(6, 4);
+                networkSoundscape.PlayNonNetworkedSound(22, 4);
             }
 
             StartCoroutine(EndGame());
