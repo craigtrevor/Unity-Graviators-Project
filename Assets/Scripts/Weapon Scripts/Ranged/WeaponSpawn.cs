@@ -167,6 +167,7 @@ public class WeaponSpawn : NetworkBehaviour {
 		}
 
 		if (playerCharacterID == "SPKS") {
+			playerAnimator.SetTrigger("Ranged Attack Reload");
 			sparkusReloadBall.SetActive (true);
 		}
 

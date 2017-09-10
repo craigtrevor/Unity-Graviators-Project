@@ -87,6 +87,7 @@
      <Compile Include="Assets\Scripts\Melee Scripts\StrikeCollider.cs" />
      <Compile Include="Assets\Scripts\Misc\TestScript.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
+     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManagerV2.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_DevKeys.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
@@ -127,6 +128,8 @@
      <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
+     <Compile Include="Assets\Scripts\Trap Scripts\LaserGrid.cs" />
+     <Compile Include="Assets\Scripts\Trap Scripts\SlowTrapV2.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\TeslaCoil.cs" />
      <Compile Include="Assets\Scripts\Tutorial\DirectionIndicator.cs" />
      <Compile Include="Assets\Scripts\Tutorial\Drone_bot.cs" />
