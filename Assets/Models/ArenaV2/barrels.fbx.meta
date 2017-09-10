@@ -1,72 +1,22 @@
 fileFormatVersion: 2
-guid: c7584955a600066458b8e556466950f1
-timeCreated: 1504823466
+guid: 4e0d98b65a91daa4c99a99f7a1a52f87
+timeCreated: 1505015831
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
-    100002: CubeFrame
-    100004: CubeWalls
-    100006: MainPlaformTop
-    100008: MainPlatformTopGlass
-    100010: WaterColumn
-    100012: WaterColumnBase
-    100014: ColliderWalls
-    100016: ColliderWalls.001
-    100018: ColliderWalls.002
-    100020: ColliderWalls.003
-    100022: ColliderWalls.004
-    100024: ColliderWalls.005
+    100002: Cylinder
+    100004: Cylinder.001
     400000: //RootNode
-    400002: CubeFrame
-    400004: CubeWalls
-    400006: MainPlaformTop
-    400008: MainPlatformTopGlass
-    400010: WaterColumn
-    400012: WaterColumnBase
-    400014: ColliderWalls
-    400016: ColliderWalls.001
-    400018: ColliderWalls.002
-    400020: ColliderWalls.003
-    400022: ColliderWalls.004
-    400024: ColliderWalls.005
-    2300000: CubeFrame
-    2300002: CubeWalls
-    2300004: MainPlaformTop
-    2300006: MainPlatformTopGlass
-    2300008: WaterColumn
-    2300010: WaterColumnBase
-    2300012: ColliderWalls
-    2300014: ColliderWalls.001
-    2300016: ColliderWalls.002
-    2300018: ColliderWalls.003
-    2300020: ColliderWalls.004
-    2300022: ColliderWalls.005
-    3300000: CubeFrame
-    3300002: CubeWalls
-    3300004: MainPlaformTop
-    3300006: MainPlatformTopGlass
-    3300008: WaterColumn
-    3300010: WaterColumnBase
-    3300012: ColliderWalls
-    3300014: ColliderWalls.001
-    3300016: ColliderWalls.002
-    3300018: ColliderWalls.003
-    3300020: ColliderWalls.004
-    3300022: ColliderWalls.005
-    4300000: MainPlatformTopGlass
-    4300002: MainPlaformTop
-    4300004: WaterColumn
-    4300006: WaterColumnBase
-    4300008: CubeWalls
-    4300010: CubeFrame
-    4300012: ColliderWalls.005
-    4300014: ColliderWalls.004
-    4300016: ColliderWalls.003
-    4300018: ColliderWalls.002
-    4300020: ColliderWalls.001
-    4300022: ColliderWalls
+    400002: Cylinder
+    400004: Cylinder.001
+    2300000: Cylinder
+    2300002: Cylinder.001
+    3300000: Cylinder
+    3300002: Cylinder.001
+    4300000: Cylinder.001
+    4300002: Cylinder
   materials:
     importMaterials: 1
     materialName: 0

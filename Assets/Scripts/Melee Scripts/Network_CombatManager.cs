@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
 public class Network_CombatManager : NetworkBehaviour {
 
@@ -13,6 +14,7 @@ public class Network_CombatManager : NetworkBehaviour {
     private NetworkAnimator netanim;
 
 	private PlayerController playerController;
+	public List<GameObject> safeList = new List<GameObject>();
 
 	[SerializeField]
     Transform playerModel;
@@ -85,7 +87,6 @@ public class Network_CombatManager : NetworkBehaviour {
 
     // Scripts
     Network_Soundscape networkSoundscape;
-    PlayerController playerControllermodifier;
     Network_PlayerManager networkPlayerManager;
     Dash dashScript;
 
@@ -115,16 +116,21 @@ public class Network_CombatManager : NetworkBehaviour {
 		}
 
     void OnTriggerEnter(Collider other) {
-        if (other.tag == "UnitD1_RangedWeapon") {
-            //StartCoroutine (stunTimer());
-            StartCoroutine(stunTimer(d1StunTime));
-        }
-        if (other.tag == "ThrowingSword") {
-            StartCoroutine(slowTimer());
-        }
-        if (other.tag == "Sparkus_Ranged") {
-            StartCoroutine(stunTimer(sparkusStunTime));
-        }
+		for (int i = 0; i < safeList.Count; i++) {
+			if (!safeList [i] == other.gameObject) {
+				if (other.tag == "UnitD1_RangedWeapon") {
+					//StartCoroutine (stunTimer());
+					StartCoroutine(stunTimer(d1StunTime));
+				}
+				if (other.tag == "ThrowingSword") {
+					StartCoroutine(slowTimer(slowTime));
+				}
+				if (other.tag == "Sparkus_Ranged") {
+					StartCoroutine(stunTimer(sparkusStunTime));
+				}
+			}
+		}
+
 	 if (other.tag == "collider") {
 			
 			ParticleSystem playGravLandMed = (ParticleSystem)Instantiate (gravLandParticleMed, this.transform.position + Vector3.down, this.transform.rotation);
@@ -155,21 +161,19 @@ public class Network_CombatManager : NetworkBehaviour {
         }
     }
 
-    IEnumerator slowTimer() {
-        playerControllermodifier = this.gameObject.GetComponentInChildren<PlayerController>();
+	public void SlowForSeconds (float slowTime) {
+		StartCoroutine (slowTimer (slowTime));
+	}
+
+	public IEnumerator slowTimer(float slowTime) {
         //play stun particles
-        if (!isLocalPlayer) {
-            playerControllermodifier.moveSettings.forwardVel = reducedWalkSpeed;
-            playerControllermodifier.moveSettings.rightVel = reducedWalkSpeed;
-            playerControllermodifier.moveSettings.jumpVel = reducedJumpSpeed;
-            yield return new WaitForSeconds(slowTime);
-        }
-        if (isLocalPlayer) // if they are the local player enable so they they can move agian whuile not ebalaing it for other players
-        {
-            playerControllermodifier.moveSettings.forwardVel = normalWalkSpeed;
-            playerControllermodifier.moveSettings.rightVel = normalWalkSpeed;
-            playerControllermodifier.moveSettings.jumpVel = normalJumpSpeed;
-        }
+		playerController.moveSettings.forwardVel = reducedWalkSpeed;
+		playerController.moveSettings.rightVel = reducedWalkSpeed;
+		playerController.moveSettings.jumpVel = reducedJumpSpeed;
+        yield return new WaitForSeconds(slowTime);
+		playerController.moveSettings.forwardVel = normalWalkSpeed;
+		playerController.moveSettings.rightVel = normalWalkSpeed;
+		playerController.moveSettings.jumpVel = normalJumpSpeed;
     }
 
     void CheckAnimation() {

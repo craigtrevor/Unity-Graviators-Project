@@ -23,8 +23,8 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	public List<GameObject> affectedList = new List<GameObject> ();
 	public List<GameObject> blackList = new List<GameObject> ();
 
-	public float healTimeOut = 5f;
-	public float blackListTimeOut = 30f;
+	public float healTimeOut = 10f;
+	public float blackListTimeOut = 10f;
 	public bool heal;
 	public bool playParticle;
 
@@ -57,8 +57,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 		if (collider.gameObject.tag == "Player") {
 			if (!NameInList (affectedList, collider.gameObject) && !NameInList (blackList, collider.gameObject)) {
 				affectedList.Add (collider.gameObject);
-				blackList.Add (collider.gameObject);
-				BlackListTimer (collider);
+				BlackListTimer (collider.gameObject);
 			}
 		}
 	}
@@ -72,14 +71,15 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 		}
 	}
 
-	IEnumerator BlackListTimer (Collider collider) {
+	IEnumerator BlackListTimer (GameObject player) {
 		yield return new WaitForSeconds (healTimeOut);
-		if (NameInList (affectedList, collider.gameObject)) {
-			affectedList.Remove (collider.gameObject);
+		blackList.Add (player);
+		if (NameInList (affectedList, player)) {
+			affectedList.Remove (player);
 		} 
 		yield return new WaitForSeconds (blackListTimeOut);
-		if (NameInList (blackList, collider.gameObject)) {
-			blackList.Remove (collider.gameObject);
+		if (NameInList (blackList, player)) {
+			blackList.Remove (player);
 		} 
 
 
