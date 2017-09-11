@@ -195,6 +195,8 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\damageRange.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\SinglePlayer_WeaponSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\D1Ult.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\D1UltWeap.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Dash.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\NoName_Ult.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />

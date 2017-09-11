@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour {
     private bool isShiftPressed;
 
     public int retainFallOnGrav;
+    bool fallPaused = false;
+    float tempYVel = 0;
 
     public GameObject sphere;
 
@@ -72,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         //return Physics.Raycast(transform.position, -transform.up, moveSettings.distToGrounded, moveSettings.ground);
         CapsuleCollider capsuleCollider = GetComponent<CapsuleCollider>();
         float radius = capsuleCollider.radius * 0.65f;
-        Vector3 pos = capsuleCollider.transform.position + -capsuleCollider.transform.up /** radius * 1.7f */* (capsuleCollider.height / 2 - 0.25f);
+        Vector3 pos = capsuleCollider.transform.position + -capsuleCollider.transform.up * (capsuleCollider.height / 2 - 0.25f);
 
         if (sphere != null) {
             sphere.transform.position = pos;
@@ -164,15 +166,12 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    void shiftPressed()
-    {
-        if (Input.GetButtonDown("Crouch"))
-        {
+    void shiftPressed() {
+        if (Input.GetButtonDown("Crouch")) {
             isShiftPressed = true;
         }
 
-        if (Input.GetButtonUp("Crouch"))
-        {
+        if (Input.GetButtonUp("Crouch")) {
             isShiftPressed = false;
         }
 
@@ -248,6 +247,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     float rotY = 0;
+    float camY = 0;
     public GameObject eyes;
 
     void Update() {
@@ -265,7 +265,10 @@ public class PlayerController : MonoBehaviour {
         ActualJump();
         CheckPause();
 
-        cameraDisplacement = Mathf.Min((velocity.y + 20f) / 30f, 0f);
+        if (!gravityAxisScript.gravitySwitching) {
+            cameraDisplacement = Mathf.Min((velocity.y + 20f) / 30f, 0f);
+        }
+
         //print(cameraDisplacement);
 
         rBody.velocity = transform.TransformDirection(velocity);
@@ -328,7 +331,8 @@ public class PlayerController : MonoBehaviour {
         }
         rotY -= Input.GetAxis("Mouse Y") * 2f;
         rotY = Mathf.Clamp(rotY, -90f, 60f);
-        eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(rotY - cameraDisplacement * 30f, 0, 0), Time.deltaTime * 30f);
+        camY = Mathf.Clamp(rotY - cameraDisplacement * 30f, -90f, 60f);
+        eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(camY, 0, 0), Time.deltaTime * 30f);
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no
 
@@ -352,25 +356,20 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void ActualJump()
-    {
+    public void ActualJump() {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching())
-        {
+        if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
             // Jumping - Alex
             StartCoroutine(JumpTime());
             velocity.y = moveSettings.jumpVel;
             //networkSoundscape.PlaySound(22, 4, 0f);
-        }
-        else if (jumpInput == 0 && Grounded())
-        {
+        } else if (jumpInput == 0 && Grounded()) {
 
             //set the anim to not jumping and spawn a blast wave
             playerAnimator.SetBool("InAir", false);
-            if (!hasLanded && velocity.y <= -25)
-            {
+            if (!hasLanded && velocity.y <= -25) {
                 Instantiate(blastWave, this.gameObject.transform);
             }
             hasLanded = true;
@@ -378,14 +377,12 @@ public class PlayerController : MonoBehaviour {
             // zero out our velocity.y
             velocity.y = 0;
 
-        }
-        else
-        {
+        } else {
             // decrease velocity.y
             playerAnimator.SetBool("InAir", true);
             hasLanded = false;
-            if (CanFall())
-            {
+            PauseFall();
+            if (CanFall()) {
                 velocity.y -= physSettings.downAccel;
             }
             velocity.y = Mathf.Max(velocity.y, -100);
@@ -405,5 +402,21 @@ public class PlayerController : MonoBehaviour {
             velocity.y *= retainFallOnGrav;
             return false;
         }
+    }
+
+    void PauseFall() {
+
+        if (gravityAxisScript.GetGravitySwitching() && !fallPaused) {
+            tempYVel = velocity.y;
+            fallPaused = true;
+            velocity.y = 0;
+            //Debug.Log("i did a thing " + tempYVel);
+        } else if (!gravityAxisScript.GetGravitySwitching() && fallPaused) {
+            velocity.y = tempYVel;
+            fallPaused = false;
+            //Debug.Log("I did another thing " + tempYVel);
+        }
+
+        //Debug.Log("ytemp" + tempYVel);
     }
 }
