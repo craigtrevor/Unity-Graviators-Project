@@ -2,9 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs">
     <Files>
-      <File FileName="Assets\Scripts\Animation Scripts\TeslaCoilScrollUp.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Trap Scripts\TeslaCoil.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Weapon Scripts\Ranged\damageRange.cs" Line="1" Column="1" />
+<<<<<<< HEAD
       <File FileName="Assets\Scripts\Animation Scripts\LightningLine.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Trap Scripts\LaserGrid.cs" Line="1" Column="1" />
@@ -12,6 +11,14 @@
       <File FileName="Assets\Scripts\Trap Scripts\SlowTrapV2.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" Line="171" Column="39" />
+=======
+      <File FileName="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" Line="2" Column="1" />
+      <File FileName="Assets\Scripts\Network Scripts\Network_AidManagerV2.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Trap Scripts\SlowTrapV2.cs" Line="21" Column="3" />
+      <File FileName="Assets\Scripts\Melee Scripts\Network_CombatManager.cs" Line="10" Column="7" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" Line="112" Column="10" />
+      <File FileName="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" Line="19" Column="37" />
+>>>>>>> d389e9d7f471c4cbd67ae13871feec09153308d0
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
