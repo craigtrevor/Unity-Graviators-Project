@@ -57,6 +57,7 @@ public class SparkusUlt : NetworkBehaviour {
             if (charge >= ULT_MAX) {
                 isLasering = true;
                 laser = Instantiate(laserParticle, spawnTransform.position, spawnTransform.rotation, spawnTransform);
+
                 spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = true;
             }
         }

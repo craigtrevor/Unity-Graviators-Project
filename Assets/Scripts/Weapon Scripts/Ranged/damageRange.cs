@@ -153,12 +153,12 @@ public class damageRange : NetworkBehaviour {
 
         if (this.gameObject.tag == THROWINGSWORD_TAG)
         {
-            networkSoundscape.PlayNonNetworkedSound(20, 1);
+            networkSoundscape.PlayNonNetworkedSound(11, 1);
         }
 
         if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG)
         {
-            networkSoundscape.PlayNonNetworkedSound(21, 1);
+            networkSoundscape.PlayNonNetworkedSound(12, 1);
         }
     }
 

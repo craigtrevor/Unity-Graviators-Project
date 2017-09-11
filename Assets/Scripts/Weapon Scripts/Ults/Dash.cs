@@ -182,7 +182,7 @@ public class Dash : NetworkBehaviour
                 numberOfDashes -= 1; // use a dash
                 playerAnimator.SetBool("UltimateLoop", true);
                 playerAnimator.SetTrigger("StartUltimate");
-                networkSoundscape.PlayNonNetworkedSound(13, 4);
+                //networkSoundscape.PlayNonNetworkedSound(13, 4);
             }
         }
     }
