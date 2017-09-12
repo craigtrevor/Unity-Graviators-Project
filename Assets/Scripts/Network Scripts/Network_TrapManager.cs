@@ -26,14 +26,14 @@ public class Network_TrapManager : NetworkBehaviour {
     [SerializeField]
     private int reducedWalkSpeed = 6;
 	[SerializeField]
-	private int increasedWalkSpeed = 50;
+	private int increasedWalkSpeed = 18;
     [SerializeField]
     private int normalWalkSpeed = 12;
 
     [SerializeField]
     private int reducedJumpSpeed = 7;
 	[SerializeField]
-	private int increasedJumpSpeed = 100;
+	private int increasedJumpSpeed = 20;
     [SerializeField]
     private int normalJumpSpeed = 15;
 
