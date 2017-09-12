@@ -26,6 +26,7 @@ public class damageRange : NetworkBehaviour {
     public bool dying = false;
     public float deathCount;
 	public GameObject collideParticle;
+    public GameObject colliderFrame;
 
     // D1
     public int d1Damage;
@@ -83,6 +84,30 @@ public class damageRange : NetworkBehaviour {
         }
     }
 
+    private void FixedUpdate() {
+        SparkusRanged(sparkusDamage);
+    }
+
+    [Client]
+    public void SparkusRanged(float damage) {
+
+        if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) { // if sparkus range weapon hit the player
+            Debug.Log("boop");
+
+            //hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+            hitColliders = Physics.OverlapBox(colliderFrame.transform.position, colliderFrame.transform.localScale / 2f);
+
+            foreach (Collider hitCol in hitColliders) {
+                if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG && sourceID != hitCol.gameObject.name) {
+                    /*Debug.Log("Hit Player " + hitCol.transform.name);*/
+                    /*Debug.Log("sourceid is " + sourceID);*/
+
+                    CmdTakeDamage(hitCol.gameObject.name, damage, sourceID);
+                }
+            }
+        }
+    }
+
     [Client]
 	void OnCollisionEnter(Collision other)
     {
@@ -113,11 +138,11 @@ public class damageRange : NetworkBehaviour {
                 Die();
             }
 
-            if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
+            /*if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if sparkus range weapon hit the player
             {
                 CmdTakeDamage(other.gameObject.name, sparkusDamage, sourceID);
                 Die();
-            }
+            }*/
         }
 
         else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG && other.transform.name != sourceID)

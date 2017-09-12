@@ -27,7 +27,7 @@ public class FaceCamera : MonoBehaviour {
 
             if (lerpFace) {
                 relativePos = Vector3.Lerp(relativePos, raycastPoint - transform.position, Time.deltaTime * 5f);
-                Debug.Log("am lerping");
+                /*Debug.Log("am lerping");*/
             } else {
                 relativePos = raycastPoint - transform.position;
             }

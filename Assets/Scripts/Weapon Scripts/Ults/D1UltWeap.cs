@@ -7,7 +7,7 @@ public class D1UltWeap : NetworkBehaviour {
 
     private const string PLAYER_TAG = "Player";
 
-    public GameObject cube;
+    public GameObject colliderFrame;
 
     private string sourceID;
 
@@ -49,10 +49,10 @@ public class D1UltWeap : NetworkBehaviour {
     [Client]
     public void StompDamage(float damage) {
         //hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
-        hitColliders = Physics.OverlapBox(cube.transform.position, cube.transform.localScale/2f);
+        hitColliders = Physics.OverlapBox(colliderFrame.transform.position, colliderFrame.transform.localScale/2f);
         
         foreach (Collider hitCol in hitColliders) {
-            if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG/* && sourceID != hitCol.gameObject.name*/) {
+            if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG && sourceID != hitCol.gameObject.name) {
                 Debug.Log("Hit Player " + hitCol.transform.name);
                 Debug.Log("sourceid is " + sourceID);
 

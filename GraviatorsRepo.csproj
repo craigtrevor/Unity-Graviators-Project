@@ -197,11 +197,11 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\D1Ult.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\D1UltWeap.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Dash.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\NoName_Ult.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\Dash.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\UnitD1_Ult.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\UnitD1_UltDamaging.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_Ult.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_UltDamaging.cs" />
     <Compile Include="Assets\Water Flow FREE\Scripts\WaterFlowFREEDemo.cs" />
   </ItemGroup>
   <ItemGroup>

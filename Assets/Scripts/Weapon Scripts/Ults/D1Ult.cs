@@ -71,7 +71,7 @@ public class D1Ult : NetworkBehaviour {
     }
 
     IEnumerator EndUlt() {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         //Debug.Log("apple");
         playerController.isDashing = false;
     }
