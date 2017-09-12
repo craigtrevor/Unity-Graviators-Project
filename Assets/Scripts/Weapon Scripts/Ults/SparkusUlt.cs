@@ -15,6 +15,8 @@ public class SparkusUlt : NetworkBehaviour {
 
     [SerializeField]
     private bool isLasering = false;
+	public float chargeMax = 100; //ultimate charging pad enabler
+	private float chargeAmount = 15f;
 
     public Transform spawnTransform; //where the laser spawns from
 
@@ -149,4 +151,27 @@ public class SparkusUlt : NetworkBehaviour {
 
         networkPlayerStats.RpcUltimateCharging(_ultimatePoints, _playerID);
     }
+
+	[Client]
+	void OnTriggerStay(Collider other) //Ultimate charger - CB
+	{
+		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG)
+		{
+			//networkPlayerManager = other.GetComponent<Network_PlayerManager>();
+			networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
+			Debug.Log(this.gameObject.name);
+			Debug.Log(transform.name);
+			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
+		}
+	}
+
+	[Command]
+	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
+	{
+		Debug.Log(_playerID + " is charging up teh lazor.");
+
+		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+
+		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
+	}
 }

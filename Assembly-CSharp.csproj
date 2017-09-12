@@ -162,11 +162,13 @@
      <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\damageRange.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\SinglePlayer_WeaponSpawn.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Dash.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\D1Ult.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\D1UltWeap.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\NoName_Ult.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\Dash.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\UnitD1_Ult.cs" />
+     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\UnitD1_UltDamaging.cs" />
      <Compile Include="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_Ult.cs" />
-     <Compile Include="Assets\Scripts\Weapon Scripts\Ults\UnitD1_UltDamaging.cs" />
      <Compile Include="Assets\Water Flow FREE\Scripts\WaterFlowFREEDemo.cs" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\def.shader" />
