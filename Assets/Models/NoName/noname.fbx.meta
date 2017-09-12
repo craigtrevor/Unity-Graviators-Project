@@ -1691,7 +1691,7 @@ ModelImporter:
       name: NoName|Melee Attack
       takeName: rig|Melee Attack
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
