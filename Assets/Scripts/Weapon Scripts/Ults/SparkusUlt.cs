@@ -5,6 +5,9 @@ using UnityEngine.Networking;
 
 public class SparkusUlt : NetworkBehaviour {
 
+    [SerializeField]
+    GameObject player;
+
     private const string ULTCHARGER_TAG = "UltCharger";
     private const string PLAYER_TAG = "Player";
 
@@ -42,25 +45,32 @@ public class SparkusUlt : NetworkBehaviour {
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
     }
 
-    // Update is called once per frame
-    void Update() {
-        ChargeUlt();
+    void Update()
+    {
         UltInput();
+    }
+
+    void LateUpdate()
+    {
+        ChargeUlt();
         UltDamage();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         SetAim();
     }
 
+    [Client]
     void UltInput() {
 
-        if (Input.GetButtonDown("Ultimate")) {
-            if (charge >= ULT_MAX) {
+        if (Input.GetButtonDown("Ultimate"))
+        {
+            if (charge >= ULT_MAX)
+            {
                 isLasering = true;
-                laser = Instantiate(laserParticle, spawnTransform.position, spawnTransform.rotation, spawnTransform);
-
                 spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = true;
+                CmdFire();
             }
         }
 
@@ -73,6 +83,13 @@ public class SparkusUlt : NetworkBehaviour {
             Destroy(laser);
             spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = false;
         }
+    }
+
+    [Command]
+    private void CmdFire()
+    {
+        laser = Instantiate(laserParticle, spawnTransform.position, spawnTransform.rotation, spawnTransform);
+        NetworkServer.Spawn(laser.gameObject);
     }
 
     void ChargeUlt() { //deals with charging the ult bar
@@ -121,25 +138,24 @@ public class SparkusUlt : NetworkBehaviour {
         }
     }
 
-    [Client]
-    void UltDamage() {
-
-        if (target != null && isLasering) {
-            if (target.transform.root != transform.root && target.gameObject.tag == PLAYER_TAG) {
-                Debug.Log("Hit Player!");
-
-                CmdTakeDamage(target.gameObject.name, laserDamage, transform.name);
+    void UltDamage()
+    {
+        if (target != null && isLasering)
+        {
+            if (target.transform.root != transform.root && target.gameObject.tag == PLAYER_TAG)
+            {
+                CmdTakeDamage(target.transform.name, laserDamage, transform.name);
             }
         }
-
     }
 
     //actual damage dealing command
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
-        Debug.Log(_playerID + " has been attacked.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+
+        Debug.Log(_playerID + " has been attacked with " + _damage + " by " + _sourceID);
 
         networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
     }

@@ -38,32 +38,23 @@ public class D1UltWeap : NetworkBehaviour {
         StompDamage(damage);
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    private void FixedUpdate() {
-    }
-
     [Client]
     public void StompDamage(float damage) {
         //hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
         hitColliders = Physics.OverlapBox(colliderFrame.transform.position, colliderFrame.transform.localScale/2f);
         
         foreach (Collider hitCol in hitColliders) {
-            if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG && sourceID != hitCol.gameObject.name) {
-                Debug.Log("Hit Player " + hitCol.transform.name);
-                Debug.Log("sourceid is " + sourceID);
+            if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG && hitCol.gameObject.name != sourceID) {
 
-                CmdTakeDamage(hitCol.gameObject.name, damage, transform.name);
+                CmdTakeDamage(hitCol.gameObject.name, damage, sourceID);
             }
         }
     }
 
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
-        Debug.Log(_playerID + " has been attacked.");
+
+        Debug.Log(_playerID + " has been attacked with " + _damage + " by " + _sourceID );
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
