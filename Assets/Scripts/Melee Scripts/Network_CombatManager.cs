@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Collections.Generic;
 
 public class Network_CombatManager : NetworkBehaviour {
 
@@ -94,12 +93,11 @@ public class Network_CombatManager : NetworkBehaviour {
     public bool alwaysAttack;
 
     // Use this for initialization
-    void Start() {
+    void Awake() {
         playerController = transform.GetComponentInChildren<PlayerController>();
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         playerRigidbody = transform.GetComponent<Rigidbody>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
-        dashScript = transform.GetComponent<Dash>();
 
         playerDamage = 5;
         attackRadius = 3;
