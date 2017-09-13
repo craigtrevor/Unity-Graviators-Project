@@ -38,6 +38,14 @@ public class TutorialManager : MonoBehaviour {
 	public GameObject healthPad;
 	public GameObject ultPad;
 
+
+
+	public Image gravArrow;
+	public Image healthArrow;
+	public Image ultArrow;
+	public Image rangeArrow;
+	private float flashtime = 0.25f;
+
 	public bool slowTrapTouched;
 	public bool spikeTrapTouched;
 	public bool healthPadTouched;
@@ -197,9 +205,25 @@ public class TutorialManager : MonoBehaviour {
 		//Next tut progression
 		if (tutProgression == 11 && !textNotDone) {
 			StartCoroutine (AnimateText ("Looks like you're good to go four arms, lets see now..."));
+			tutProgression = 12;
+			//overallProgression = 2;
+			//tutProgression = 1;
+			indicator.SetActive (false);
+		}
+		if (tutProgression == 12 && !textNotDone) {
+			StartCoroutine (AnimateText ("Oh, one more thing. You cant keep changing gravity forever"));
+			tutProgression = 13;
+		}
+		if (tutProgression == 13 && !textNotDone) {
+			StartCoroutine(flashingarrow(gravArrow));
+			StartCoroutine (AnimateText ("You have charges that regenerate overtime, thats them on your hud"));
+			tutProgression = 14;
+		}
+		if (tutProgression == 14 && !textNotDone) {
+			StartCoroutine(flashingarrow(gravArrow));
+			StartCoroutine (AnimateText ("When you are out of charges you cant change your gravity. You will be a sitting duck for you enemies"));
 			overallProgression = 2;
 			tutProgression = 1;
-			indicator.SetActive (false);
 		}
 	}
 
@@ -217,16 +241,26 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 3;
 		}
 
-		if (tutProgression == 3 && !textNotDone && botsMurdered == 1) {
+		if (tutProgression == 3 && !textNotDone) {
+			StartCoroutine (AnimateText ("While the gravity wheel is active, you can see your enemies through walls"));
+			tutProgression = 4;
+		}
+
+		if (tutProgression == 4 && !textNotDone) {
+			StartCoroutine (AnimateText ("So don't think you can go and hide. your enemies will find you"));
+			tutProgression = 5;
+		}
+
+		if (tutProgression == 5 && !textNotDone && botsMurdered == 1) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = chump3;
 			chump2.SetActive (true);
 			chump3.SetActive (true);
 			chump4.SetActive (true);
 			StartCoroutine (AnimateText ("Yes! Yes! Do it again! Kill these 3 as well"));
-			tutProgression = 4;
+			tutProgression = 6;
 		}
 		//didn't trigger
-		if (tutProgression == 4 && !textNotDone && botsMurdered == 4) {
+		if (tutProgression == 6 && !textNotDone && botsMurdered == 4) {
 			StartCoroutine (AnimateText ("Ah...Relaxing"));
 			overallProgression = 3;
 			tutProgression = 1;
@@ -303,24 +337,54 @@ public class TutorialManager : MonoBehaviour {
 		}
 		//next two don't trigger
 		if (tutProgression == 3 && !textNotDone) {
+			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("line 'em up in your sights and Right Click to deliver your message!"));
 			tutProgression = 4;
 		}
 		if (tutProgression == 4 && !textNotDone && botsMurdered >= 1) {
+			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("That'll teach those little sneaks, finish off the rest so my dressing room is safe again"));
 			tutProgression = 5;
 		}
 		if (tutProgression == 5 && !textNotDone) {
+			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("So, this will only stun a proper fighter, but it should delay them long enough for you"));
 			tutProgression = 6;
 		}
 		//doesn't trigger
 		if (tutProgression == 6 && !textNotDone) {
+			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("to get up in their face and deliver the finishing blow"));
 			tutProgression = 7;
 		}
+
+		if (tutProgression == 7 && !textNotDone) {
+			StartCoroutine(flashingarrow(rangeArrow));
+			StartCoroutine (AnimateText ("There are still some drones left, go hunt them down"));
+			tutProgression = 8;
+		}
+		if (tutProgression == 8 && !textNotDone && botsMurdered ==1) {
+			StartCoroutine(flashingarrow(rangeArrow));
+			StartCoroutine (AnimateText ("4 left"));
+			//tutProgression = 9;
+		}
+		if (tutProgression == 8 && !textNotDone && botsMurdered ==2) {
+			StartCoroutine(flashingarrow(rangeArrow));
+			StartCoroutine (AnimateText ("3 left"));
+			//tutProgression = 9;
+		}
+		if (tutProgression == 8 && !textNotDone && botsMurdered ==3) {
+			StartCoroutine(flashingarrow(rangeArrow));
+			StartCoroutine (AnimateText ("2 left"));
+			//tutProgression = 9;
+		}
+		if (tutProgression == 8 && !textNotDone && botsMurdered ==4) {
+			StartCoroutine(flashingarrow(rangeArrow));
+			StartCoroutine (AnimateText ("1 left"));
+			tutProgression = 9;
+		}
 	
-		if (tutProgression == 7 && !textNotDone && botsMurdered == 5) {
+		if (tutProgression == 9 && !textNotDone && botsMurdered == 5) {
 			StartCoroutine (AnimateText ("I love the smell of burning drones in the morning"));
 			overallProgression = 5;
 			tutProgression = 1;
@@ -427,6 +491,17 @@ public class TutorialManager : MonoBehaviour {
 			spikeTrap.SetActive (true);
 			slowTrap.SetActive (true);
 			tutProgression = 5;
+		}
+	}
+
+	IEnumerator flashingarrow(Image arrowtoFlash)
+	{
+		for (int i= 0; i<=10;i++)
+		{
+		arrowtoFlash.enabled = true;
+		yield return new WaitForSeconds (flashtime);
+		arrowtoFlash.enabled = false;
+		yield return new WaitForSeconds (flashtime);
 		}
 	}
 }

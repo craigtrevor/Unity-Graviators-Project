@@ -19,6 +19,8 @@ public class SP_CompactHud : MonoBehaviour {
 	public GameObject GravFull4;
 	public GameObject GravFull5;
 
+
+
 	public GameObject gravityAxis;
 	public int gravCharge;
 
