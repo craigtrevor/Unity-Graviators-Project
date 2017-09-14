@@ -131,6 +131,7 @@
      <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\LaserGrid.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\SlowTrapV2.cs" />
+     <Compile Include="Assets\Scripts\Trap Scripts\SpikeTrap.cs" />
      <Compile Include="Assets\Scripts\Trap Scripts\TeslaCoil.cs" />
      <Compile Include="Assets\Scripts\Tutorial\DirectionIndicator.cs" />
      <Compile Include="Assets\Scripts\Tutorial\Drone_bot.cs" />
