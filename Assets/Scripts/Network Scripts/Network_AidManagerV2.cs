@@ -48,7 +48,11 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 		if (playParticle && !cooling) {
 			StartCoroutine (ParticlePlay ());
 		}
-
+		for (int i = 0; i < affectedList.Count; i++) {
+			if (affectedList [i].GetComponent<Network_PlayerManager> ().isDead) {
+				affectedList.Remove (affectedList [i]);
+			}
+		}
 	}
 			
 	public bool NameInList(List<GameObject> listToCheck, GameObject toCheck) {
@@ -61,7 +65,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	}
 	
 	[Client]
-	void OnTriggerStay(Collider collider) {
+	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
 			if (!NameInList (affectedList, collider.gameObject)) {
 				affectedList.Add (collider.gameObject);
@@ -99,7 +103,6 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	}
 
 	IEnumerator Cooldown() {
-		affectedList.Clear ();
 		cooling = true;
 		baseObj.GetComponent<Renderer> ().materials[0].color = Color.black;
 		baseObj.GetComponent<Renderer> ().materials [0].SetColor ("_EmissionColor", Color.black);

@@ -45,17 +45,21 @@ public class LaserGrid : NetworkBehaviour {
 		}
 		if (Vector3.Distance (transform.localPosition, EndPoint) < 1) {
 			ChangeLaserLayout ();
-			affectedList.Clear ();
 			towardsEnd = false;
 		}
 		if (Vector3.Distance (transform.localPosition, StartPoint) < 1) {
 			ChangeLaserLayout ();
-			affectedList.Clear ();
 			towardsEnd = true;
 		}
 
 		if (damageTick) {
 			StartCoroutine (SlowDamage ());
+		}
+
+		for (int i = 0; i < affectedList.Count; i++) {
+			if (affectedList [i].GetComponent<Network_PlayerManager> ().isDead) {
+				affectedList.Remove (affectedList [i]);
+			}
 		}
 	}
 

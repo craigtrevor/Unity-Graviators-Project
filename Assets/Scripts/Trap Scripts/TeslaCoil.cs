@@ -34,6 +34,12 @@ public class TeslaCoil : NetworkBehaviour {
 		if (damageTick) {
 			StartCoroutine (SlowDamage ());
 		}
+
+		for (int i = 0; i < affectedList.Count; i++) {
+			if (affectedList [i].GetComponent<Network_PlayerManager> ().isDead) {
+				affectedList.Remove (affectedList [i]);
+			}
+		}
 	}
 
 	IEnumerator Shock() {
@@ -47,7 +53,6 @@ public class TeslaCoil : NetworkBehaviour {
 		damageTick = false;
 		lightningLine.target = StartCoil.transform.localPosition;
 		boxCollider.enabled = false;
-		affectedList.Clear ();
 		StopAllCoroutines ();
 	}
 		
