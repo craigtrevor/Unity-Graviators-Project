@@ -15,29 +15,37 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 
 	[SerializeField]
 	private float healAmount = 1f;
-	private float chargeAmount = 15f;
 
 	public ParticleManager particleManager;
 
 	public List<GameObject> affectedList = new List<GameObject> ();
-	public List<GameObject> blackList = new List<GameObject> ();
 
-	public float healTimeOut = 10f;
-	public float blackListTimeOut = 10f;
+	public float cooldownTime = 10f;
+	public float maxHeal = 50f;
+	public float healCounter = 0;
 	public bool heal;
 	public bool playParticle;
+	public bool cooling;
+
+	public GameObject ringObj;
+	public GameObject baseObj;
 
 	void Start () {
 		heal = true;
 		playParticle = true;
+		healCounter = 0;
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 	}
 
 	void Update () {
-		if (heal) {
+		if (healCounter > maxHeal && !cooling) {
+			StartCoroutine (Cooldown ());
+		}
+
+		if (heal && !cooling) {
 			StartCoroutine (SlowHeal ());
 		}
-		if (playParticle) {
+		if (playParticle && !cooling) {
 			StartCoroutine (ParticlePlay ());
 		}
 
@@ -55,9 +63,8 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	[Client]
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
-			if (!NameInList (affectedList, collider.gameObject) && !NameInList (blackList, collider.gameObject)) {
+			if (!NameInList (affectedList, collider.gameObject)) {
 				affectedList.Add (collider.gameObject);
-				BlackListTimer (collider.gameObject);
 			}
 		}
 	}
@@ -71,20 +78,6 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 		}
 	}
 
-	IEnumerator BlackListTimer (GameObject player) {
-		yield return new WaitForSeconds (healTimeOut);
-		blackList.Add (player);
-		if (NameInList (affectedList, player)) {
-			affectedList.Remove (player);
-		} 
-		yield return new WaitForSeconds (blackListTimeOut);
-		if (NameInList (blackList, player)) {
-			blackList.Remove (player);
-		} 
-
-
-	}
-
 	IEnumerator SlowHeal() {
 		heal = false;
 		for (int i = 0; i < affectedList.Count; i++) {
@@ -92,22 +85,42 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 				CmdHealthRegen (affectedList [i].name, healAmount);
 			}
 			if (gameObject.tag == ULTCHARGER_TAG) {
-				CmdUltRegen (affectedList [i].name, chargeAmount);
+				CmdUltRegen (affectedList [i].name, healAmount);
 			}
 		}
 		yield return new WaitForSeconds (0.2f);
+		if (affectedList.Count > 0) {
+			healCounter += healAmount;
+		}
+		if (affectedList.Count == 0) {
+			healCounter -= healAmount/2f;
+		}
 		heal = true;
+	}
+
+	IEnumerator Cooldown() {
+		cooling = true;
+		baseObj.GetComponent<Renderer> ().materials[0].color = Color.black;
+		baseObj.GetComponent<Renderer> ().materials [0].SetColor ("_EmissionColor", Color.black);
+		ringObj.GetComponent<Renderer> ().material.color = Color.black;
+		ringObj.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.black);
+		yield return new WaitForSeconds (cooldownTime);
+		baseObj.GetComponent<Renderer> ().materials[0].color = Color.green;
+		baseObj.GetComponent<Renderer> ().materials [0].SetColor ("_EmissionColor", Color.green);
+		ringObj.GetComponent<Renderer> ().material.color = Color.green;
+		ringObj.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.green);
+		healCounter = 0;
+		cooling = false;
 	}
 
 	IEnumerator ParticlePlay() {
 		playParticle = false;
 		for (int i = 0; i < affectedList.Count; i++) {
 			if (gameObject.tag == HEALTHREGEN_TAG) {
-				GameObject temp = Instantiate(particleManager.GetParticle("healthPadParticle"), affectedList[i].transform.position, affectedList[i].transform.rotation);
-				temp.transform.SetParent(affectedList[i].gameObject.transform);
+				GameObject temp = Instantiate(particleManager.GetParticle("healthPadParticle"), affectedList[i].transform.position, affectedList [i].gameObject.transform.Find ("RotationBlock").gameObject.transform.localRotation);
 			}
 			if (gameObject.tag == ULTCHARGER_TAG) {
-				GameObject temp = Instantiate(particleManager.GetParticle("ultPadParticle"), affectedList[i].transform.position, affectedList[i].transform.rotation);
+				GameObject temp = Instantiate(particleManager.GetParticle("ultPadParticle"), affectedList[i].transform.position, affectedList [i].gameObject.transform.Find ("RotationBlock").gameObject.transform.localRotation);
 				temp.transform.SetParent(affectedList[i].gameObject.transform);
 			}
 		}
@@ -122,7 +135,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-		networkPlayerStats.RpcHealthRegenerate(_heal, transform.name);
+		networkPlayerStats.RpcHealthFlatRegenerate(_heal, transform.name);
 	}
 
 	[Command]
@@ -132,6 +145,6 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-		networkPlayerStats.RpcUltimateCharging(_heal, transform.name);
+		networkPlayerStats.RpcUltimateFlatCharging(_heal, transform.name);
 	}
 }

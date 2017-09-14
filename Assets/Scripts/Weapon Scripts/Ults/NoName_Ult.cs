@@ -86,18 +86,18 @@ public class NoName_Ult : NetworkBehaviour {
         charge = networkPlayerManager.currentUltimateGain;
     }
 
-	[Client]
-	void OnTriggerStay(Collider other) //Ultimate charger - CB
-	{
-		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG)
-		{
-			//networkPlayerManager = other.GetComponent<Network_PlayerManager>();
-			networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
-			Debug.Log(this.gameObject.name);
-			Debug.Log(transform.name);
-			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
-		}
-	}
+//	[Client]
+//	void OnTriggerStay(Collider other) //Ultimate charger - CB
+//	{
+//		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG)
+//		{
+//			//networkPlayerManager = other.GetComponent<Network_PlayerManager>();
+//			networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
+//			Debug.Log(this.gameObject.name);
+//			Debug.Log(transform.name);
+//			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
+//		}
+//	}
 
 	[Command]
 	void CmdUltCharger(string _playerID, float _charge, string _sourceID)

@@ -24,8 +24,7 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         return currentHealth / maxHealth;
     }
-
-    public float maxChargeGain = 50;
+		
 	public float maxUltCharge = 100;
 
     [SyncVar]
@@ -182,9 +181,6 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         if (isDead)
             return;
-
-        Debug.Log("Taken damage");
-
 		currentHealth -= _amount;
 
 		playerAnim.SetTrigger ("Flinch");
@@ -198,11 +194,9 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcHealthRegenerate(float _amount, string _sourceID)
+    public void RpcHealthFlatRegenerate(float _amount, string _sourceID)
     {
-        Debug.Log("Healing!");
-
-		currentHealth += _amount * Time.deltaTime / 10;
+		currentHealth += _amount;
 
         if (currentHealth >= maxHealth)
         {
@@ -210,16 +204,38 @@ public class Network_PlayerManager : NetworkBehaviour
         }
     }
 
+	[ClientRpc]
+	public void RpcHealthRegenerate(float _amount, string _sourceID)
+	{
+		currentHealth += _amount * Time.deltaTime / 10f;
+
+		if (currentHealth >= maxHealth)
+		{
+			currentHealth = maxHealth;
+		}
+	}
+
     [ClientRpc]
-    public void RpcUltimateCharging(float _amount, string _sourceID)
+    public void RpcUltimateFlatCharging(float _amount, string _sourceID)
     {
-		currentUltimateGain += _amount * Time.deltaTime / 3;
+		currentUltimateGain += _amount;
         
 		if (currentUltimateGain >= maxUltCharge)
         {
 			currentUltimateGain = maxUltCharge;
         }
     }
+
+	[ClientRpc]
+	public void RpcUltimateCharging(float _amount, string _sourceID)
+	{
+		currentUltimateGain += _amount * Time.deltaTime / 3f;
+
+		if (currentUltimateGain >= maxUltCharge)
+		{
+			currentUltimateGain = maxUltCharge;
+		}
+	}
 
     private void Die(string _sourceID)
     {
