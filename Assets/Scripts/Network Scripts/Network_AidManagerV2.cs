@@ -17,8 +17,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	private float healAmount = 1f;
 	private float chargeAmount = 15f;
 
-	public GameObject healthPadParticle;
-	public GameObject ultPadParticle;
+	public ParticleManager particleManager;
 
 	public List<GameObject> affectedList = new List<GameObject> ();
 	public List<GameObject> blackList = new List<GameObject> ();
@@ -31,6 +30,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	void Start () {
 		heal = true;
 		playParticle = true;
+		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 	}
 
 	void Update () {
@@ -103,11 +103,11 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 		playParticle = false;
 		for (int i = 0; i < affectedList.Count; i++) {
 			if (gameObject.tag == HEALTHREGEN_TAG) {
-				GameObject temp = Instantiate(healthPadParticle, affectedList[i].transform.position, affectedList[i].transform.rotation);
+				GameObject temp = Instantiate(particleManager.GetParticle("healthPadParticle"), affectedList[i].transform.position, affectedList[i].transform.rotation);
 				temp.transform.SetParent(affectedList[i].gameObject.transform);
 			}
 			if (gameObject.tag == ULTCHARGER_TAG) {
-				GameObject temp = Instantiate(ultPadParticle, affectedList[i].transform.position, affectedList[i].transform.rotation);
+				GameObject temp = Instantiate(particleManager.GetParticle("ultPadParticle"), affectedList[i].transform.position, affectedList[i].transform.rotation);
 				temp.transform.SetParent(affectedList[i].gameObject.transform);
 			}
 		}

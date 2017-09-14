@@ -25,7 +25,7 @@ public class damageRange : NetworkBehaviour {
 
     public bool dying = false;
     public float deathCount;
-	public GameObject collideParticle;
+	public ParticleManager particleManager;
     public GameObject colliderFrame;
 
     // D1
@@ -47,6 +47,10 @@ public class damageRange : NetworkBehaviour {
     Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
     PlayerController playerController;
+
+	void Awake() {
+		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+	}
 
     void SetInitialReferences(string _sourceID)
     {
@@ -120,7 +124,7 @@ public class damageRange : NetworkBehaviour {
 				temp2.transform.SetParent(other.gameObject.transform);
 				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
-                GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
+				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 //PlayImpactSound();
                 Die();
@@ -132,7 +136,7 @@ public class damageRange : NetworkBehaviour {
 				temp2.transform.SetParent(other.gameObject.transform);
 				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
-                GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
+				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 CmdTakeDamage(other.gameObject.name, d1Damage, sourceID);
                 Die();
@@ -153,7 +157,7 @@ public class damageRange : NetworkBehaviour {
 				temp2.transform.SetParent(other.gameObject.transform);
 				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
-                GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
+				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 //PlayImpactSound();
                 Die();
@@ -165,7 +169,7 @@ public class damageRange : NetworkBehaviour {
 				temp2.transform.SetParent(other.gameObject.transform);
 				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
-                GameObject temp = Instantiate(collideParticle, this.gameObject.transform);
+				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 Die();
             }

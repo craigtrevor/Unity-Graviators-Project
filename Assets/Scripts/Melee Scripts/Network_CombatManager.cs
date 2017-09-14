@@ -74,15 +74,7 @@ public class Network_CombatManager : NetworkBehaviour {
     private int attackCounter;
 
     //particles
-    private ParticleSystem playGravLandSmall;
-    private ParticleSystem playGravLandMed;
-    private ParticleSystem playGravLandLarge;
-
-    public ParticleSystem gravLandParticleSmall;
-    public ParticleSystem gravLandParticleMed;
-    public ParticleSystem gravLandParticleLarge;
-
-    public GameObject grindParticle;
+	public ParticleManager particleManager;
 
     // Scripts
     Network_Soundscape networkSoundscape;
@@ -98,6 +90,7 @@ public class Network_CombatManager : NetworkBehaviour {
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         playerRigidbody = transform.GetComponent<Rigidbody>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
+		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 
         playerDamage = 5;
         attackRadius = 3;
@@ -130,9 +123,7 @@ public class Network_CombatManager : NetworkBehaviour {
         }
 
         if (other.tag == "collider") {
-
-            ParticleSystem playGravLandMed = (ParticleSystem)Instantiate(gravLandParticleMed, this.transform.position + Vector3.down, this.transform.rotation);
-            gravLandParticleMed.Emit(1);
+			GameObject playGravLandMed = Instantiate(particleManager.GetParticle("gravLandParticleMed"), this.transform.position + Vector3.down, this.transform.rotation);
         }
 
     }
@@ -226,7 +217,7 @@ public class Network_CombatManager : NetworkBehaviour {
     public void weaponCollide(Collider collision, Vector3 hitPoint, bool airStrike) {
         //Debug.Log (collision.gameObject.name + " struck at " + hitPoint);
         if (isAttacking) {
-            GameObject tempParticle = Instantiate(grindParticle);
+			GameObject tempParticle = Instantiate(particleManager.GetParticle("grindParticle"));
             tempParticle.transform.position = hitPoint;
             if ((airStrike && !playerController.Grounded()) || !airStrike) {
                 if (collision.gameObject.tag == PLAYER_TAG) {

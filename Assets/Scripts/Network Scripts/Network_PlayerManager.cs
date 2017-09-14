@@ -77,15 +77,14 @@ public class Network_PlayerManager : NetworkBehaviour
     public Transform playerModelTransform;
 
     //Particles
+	public ParticleManager particleManager;
+
     private ParticleSystem playHitParticle;
-    public ParticleSystem hitParticle;
 
     private ParticleSystem playSlowParticle;
-    public ParticleSystem slowParticle;
 
 	public GameObject corpse; // the player exploding on thier death, assigned in editor
 	private ParticleSystem playDeathParticle;
-	public ParticleSystem deathParticle;
 
 
     [SerializeField]
@@ -103,6 +102,7 @@ public class Network_PlayerManager : NetworkBehaviour
         netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
         playerCharacterID = networkManagerScript.characterID;
+		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
     }
 
     public override void OnStartLocalPlayer()
@@ -168,8 +168,8 @@ public class Network_PlayerManager : NetworkBehaviour
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
 		//particles
-        ParticleSystem playHitParticle = (ParticleSystem)Instantiate(hitParticle, this.transform.position, this.transform.rotation);
-		hitParticle.Emit(1);
+
+		GameObject playHitParticle = Instantiate(particleManager.GetParticle("hitParticle"), this.transform.position, this.transform.rotation);
 
         if (currentHealth <= 0)
         {
@@ -274,11 +274,8 @@ public class Network_PlayerManager : NetworkBehaviour
         deathStats++;
 
 		// spawn corpse on death
-
-		ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
-		playDeathParticle.Emit(0);
-
-
+		Debug.Log (particleManager.GetParticle("deathParticle"));
+		GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
         DisablePlayer();
 
         if (!isServer)
@@ -374,7 +371,7 @@ public class Network_PlayerManager : NetworkBehaviour
         //    return;
 
         GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-        ParticleSystem playDeathParticle = (ParticleSystem)Instantiate(deathParticle, this.transform.position, this.transform.rotation);
+				GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
 
         NetworkServer.Spawn(corpseobject);
         Destroy(corpseobject, 5);
@@ -488,8 +485,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
 	void OnTriggerStay(Collider col){
 		if (col.tag == "SlowTrap") {
-			ParticleSystem playSlowParticle = (ParticleSystem)Instantiate (slowParticle, this.transform.position, this.transform.rotation);
-			playSlowParticle.Emit (1);
+			GameObject playSlowParticle = Instantiate (particleManager.GetParticle("slowParticle"), this.transform.position, this.transform.rotation);
 		}
 	}
 }
