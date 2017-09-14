@@ -61,7 +61,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	}
 	
 	[Client]
-	void OnTriggerEnter(Collider collider) {
+	void OnTriggerStay(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
 			if (!NameInList (affectedList, collider.gameObject)) {
 				affectedList.Add (collider.gameObject);
@@ -99,6 +99,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	}
 
 	IEnumerator Cooldown() {
+		affectedList.Clear ();
 		cooling = true;
 		baseObj.GetComponent<Renderer> ().materials[0].color = Color.black;
 		baseObj.GetComponent<Renderer> ().materials [0].SetColor ("_EmissionColor", Color.black);
