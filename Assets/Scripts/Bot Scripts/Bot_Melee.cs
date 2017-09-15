@@ -15,7 +15,7 @@ public class Bot_Melee : MonoBehaviour {
 	private Collider[] hitColliders;
 
 	// Int
-	public float BotDamage = 25;
+	public float BotDamage = 50; //25
 	public int thrust = 2000; //change this for speed of knock back
 	public float delay = 0.2f;
 	//private int attackMask;
@@ -189,14 +189,14 @@ public class Bot_Melee : MonoBehaviour {
 		speed = BotRigidbody.velocity.magnitude;
 
 		if (speed < lowDamageVelocity) {
-			BotDamage = 25.0f;
+			BotDamage = 50.0f;
 		}//end low velocity
 		else if (lowDamageVelocity < speed && speed < highDamageVelocity) {
 			BotDamage = 50.0f;
 		} else if (highDamageVelocity < speed) {
 			BotDamage = 70.0f;
 		} else {
-			BotDamage = 25.0f;
+			BotDamage = 50.0f;
 		}
 	}
 

@@ -53,29 +53,37 @@ public class SP_CompactHud : MonoBehaviour {
 
 	public void Update()
 	{
-		if (onHealthPad) {
+		if (onSpikeTrap) {
+			tutorialManager.spikeTrapTouched = true;
+			if (!spikeTrigger) {
+				StartCoroutine (SlowSpike ());
+			}
+			tutorialManager.tutProgression = 6;
+		}
+
+		if (onHealthPad && tutorialManager.spikeTrapTouched == true) 
+		{
 			tutorialManager.healthPadTouched = true;
-			if (!healTrigger) {
+			if (!healTrigger) 
+			{
 				StartCoroutine (SlowHeal ());
 			}
+			tutorialManager.tutProgression = 7;
 		}
+
 		if (onUltPad && tutorialManager.healthPadTouched == true) {
 			tutorialManager.ultPadTouched = true;
 			if (!ultTrigger) {
 				StartCoroutine (SlowUlt ());
 			}
+			tutorialManager.tutProgression = 8;
 		}
-		if (onSpikeTrap && tutorialManager.ultPadTouched == true) {
-			tutorialManager.spikeTrapTouched = true;
-			if (!spikeTrigger) {
-				StartCoroutine (SlowSpike ());
-			}
-		}
-		if (onSlowTrap && tutorialManager.spikeTrapTouched == true) {
+		if (onSlowTrap && tutorialManager.ultPadTouched == true) {
 			tutorialManager.slowTrapTouched = true;
 			if (!slowTrigger) {
 				StartCoroutine (SlowSlow ());
 			}
+			tutorialManager.tutProgression = 9;
 		}
 
 
