@@ -10,6 +10,8 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	[SerializeField]
 	Transform playerModel;
 
+	public TutorialManager tutmanager;
+
 	string stateName;
 
 	//textures
@@ -268,6 +270,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	IEnumerator knockBack()
 	{
 		Debug.Log("knock Back");
+		tutmanager.clashBounced = true;
 		GetComponentInChildren<PlayerController>().enabled = false; // turn off player controls
 		playerRigidbody.constraints = RigidbodyConstraints.None; // allows the player to move around the 3 axis's
 		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation; // stops the player from rotating

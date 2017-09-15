@@ -91,8 +91,8 @@ public class TutorialManager : MonoBehaviour {
 		}
 
 		if (overallProgression == 3) {
-			//tutClash ();
-			overallProgression = 4;
+			tutClash ();
+			//overallProgression = 4;
 		}
 
 		if (overallProgression == 4) {
@@ -134,13 +134,13 @@ public class TutorialManager : MonoBehaviour {
 		}
 
 		//trap progression triggers
-		if (healthPadTouched && tutProgression == 4 && overallProgression == 5) {
+		if (spikeTrapTouched && tutProgression == 4 && overallProgression == 5) {
 			tutProgression = 5;
 		}
-		if (ultPadTouched && tutProgression == 5 && overallProgression == 5) {
+		if (healthPadTouched && tutProgression == 5 && overallProgression == 5) {
 			tutProgression = 6;
 		}
-		if (spikeTrapTouched && tutProgression == 6 && overallProgression == 5) {
+		if (ultPadTouched && tutProgression == 6 && overallProgression == 5) {
 			tutProgression = 7;
 		}
 		if (slowTrapTouched && tutProgression == 7 && overallProgression == 5) {
@@ -279,46 +279,64 @@ public class TutorialManager : MonoBehaviour {
 			indicator.SetActive (true);
 			indicator.GetComponent<DirectionIndicator> ().targetObject = champ1;
 			StartCoroutine (AnimateText ("This guy seems to have a bit of fight left in him, try and take him down"));
+			tutProgression = 3;
 		}
 		if (tutProgression == 3 && !textNotDone) {
 			StartCoroutine (AnimateText ("Like before, run over and left click to attack"));
-		}
-		//didn't trigger the rest of statments in this function
-		if (botsMurdered == 0 && clashBounced && !textNotDone) {
-			StartCoroutine (AnimateText ("Well that didn't work, looks like you were attacking at the same speed, and just bounced off each other"));
 			tutProgression = 4;
 		}
-		if (tutProgression == 4 && !textNotDone) {
-			StartCoroutine (AnimateText ("See the trails your weapons are leaving? They change colour the faster you go, green, yellow, then red"));
+		//didn't trigger the rest of statments in this function
+		if (botsMurdered == 0 && clashBounced && !textNotDone && tutProgression == 4) {
+			StartCoroutine (AnimateText ("Well that didn't work, looks like you were attacking at the same speed, and just bounced off each other"));
 			tutProgression = 5;
 		}
 		if (tutProgression == 5 && !textNotDone) {
-			StartCoroutine (AnimateText ("Running, that'll only ever be slow, but falling, thats where it's at. You will do more damage the higher speed you are moving at"));
+			StartCoroutine (AnimateText ("See the trails your weapons are leaving? They change colour the faster you go, green, yellow, then red"));
 			tutProgression = 6;
 		}
 		if (tutProgression == 6 && !textNotDone) {
+			StartCoroutine (AnimateText ("Running, that'll only ever be slow, but falling, thats where it's at. You will do more damage the higher speed you are moving at"));
+			tutProgression = 7;
+		}
+		if (tutProgression == 7 && !textNotDone) {
 			StartCoroutine (AnimateText ("So, using your gravity switching powers, fall at him and attack with speed!"));
+			tutProgression = 8;
+		}
+		if (botsMurdered == 1 && !textNotDone && tutProgression == 8) 
+		{
+			champ2.SetActive (true);
+			champ3.SetActive (true);
+			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remember, falling will do more damage!"));
+			tutProgression = 9;
+		}
+		if(botsMurdered == 3 && !textNotDone && tutProgression == 9)
+		{
+			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remember, move faster than your opponent to hurt them good"));
+			botsMurdered = 0;
+			overallProgression = 4;
+			tutProgression = 1;
+			
 		}
 
 
 		//if they kill before bouncing
-		if (botsMurdered == 1 && !textNotDone) {
+		if (botsMurdered == 1 && !textNotDone && tutProgression != 8 && !clashBounced) {
 			StartCoroutine (AnimateText ("You're either better at this than you let or, you are very lucky"));
-			tutProgression = 7;
+			tutProgression = 8;
 		}
-
-		if (botsMurdered == 1 && clashBounced && !textNotDone) {
-			champ2.SetActive (true);
-			champ3.SetActive (true);
-			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remember, falling will do more damage!"));
-			tutProgression = 7;
-		}
-
-		if (botsMurdered == 7 && tutProgression == 7 && !textNotDone ) {
-			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remember, move faster than your opponent to hurt them good"));
-			overallProgression = 4;
-			tutProgression = 1;
-		}
+//
+//		if (tutProgression == 8 && !textNotDone) {
+//			champ2.SetActive (true);
+//			champ3.SetActive (true);
+//			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remember, falling will do more damage!"));
+//			tutProgression = 9;
+//		}
+//
+////		if (botsMurdered == 7 && tutProgression == 9 && !textNotDone ) {
+////			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remember, move faster than your opponent to hurt them good"));
+////			overallProgression = 4;
+////			tutProgression = 1;
+////		}
 	}
 
 	void tutRanged () {
@@ -366,17 +384,17 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 8 && !textNotDone && botsMurdered ==1) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("4 left"));
-			//tutProgression = 9;
+
 		}
 		if (tutProgression == 8 && !textNotDone && botsMurdered ==2) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("3 left"));
-			//tutProgression = 9;
+
 		}
 		if (tutProgression == 8 && !textNotDone && botsMurdered ==3) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("2 left"));
-			//tutProgression = 9;
+
 		}
 		if (tutProgression == 8 && !textNotDone && botsMurdered ==4) {
 			StartCoroutine(flashingarrow(rangeArrow));
@@ -413,19 +431,26 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 4;
 		}
 		if (tutProgression == 4 && !textNotDone) {
-			StartCoroutine (AnimateText ("There are 4 types of pads, the small green one will heal you, touch it now."));
+			StartCoroutine (AnimateText ("here are some of the types of pads. traps, heal pad, ult charge pad and movement modifers"));
+			tutProgression = 5;
 		}
 		if (tutProgression == 5 && !textNotDone) {
-			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack quicker so you can do some serious damage"));
+			StartCoroutine (AnimateText ("the red pad here is a damage trap. it will kill you in a real match but not in here. definitely touch this one though "));
+			//the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definitely touch this one though
 		}
 		if (tutProgression == 6 && !textNotDone) {
-			StartCoroutine (AnimateText ("the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definitely touch this one though!"));
+			StartCoroutine(flashingarrow(healthArrow));
+			StartCoroutine (AnimateText ("the small green one will heal you, touch it now."));
 		}
 		if (tutProgression == 7 && !textNotDone) {
-			StartCoroutine (AnimateText ("the big green one will slow you down, annoying, but not fatal, so touch it too"));
+			StartCoroutine(flashingarrow(ultArrow));
+			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack quicker so you can do some serious damage"));
 		}
 		if (tutProgression == 8 && !textNotDone) {
-			StartCoroutine (AnimateText ("So watch out for these pad, some will help, some will harm, but that is up to you to find out"));
+			StartCoroutine (AnimateText ("the big green one will slow you down, annoying, but not fatal, so touch it too"));
+		}
+		if (tutProgression == 9 && !textNotDone) {
+			StartCoroutine (AnimateText ("So watch out for these pad, and other traps, some will help, some will harm, but that is up to you to find out"));
 			StartCoroutine (WaitForTraps ());
 		}
 
