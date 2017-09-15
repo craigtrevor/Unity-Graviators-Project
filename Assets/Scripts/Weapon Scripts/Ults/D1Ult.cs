@@ -31,7 +31,11 @@ public class D1Ult : NetworkBehaviour {
     Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
 
-    public Animator playerAnimator;
+    [SerializeField]
+    NetworkAnimator playerNetAnimator;
+
+    [SerializeField]
+    Animator playerAnimator;
 
     public float passiveCharge; // the amount of charge gained passively;
 

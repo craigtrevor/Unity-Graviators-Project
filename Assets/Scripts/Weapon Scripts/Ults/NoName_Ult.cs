@@ -43,7 +43,7 @@ public class NoName_Ult : NetworkBehaviour {
     Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
 
-    public Animator playerAnimator;
+    public NetworkAnimator playerNetAnimator;
 
     Vector3 startSpot;
     Vector3 target;
@@ -145,7 +145,7 @@ public class NoName_Ult : NetworkBehaviour {
 			if (isCharging) {
 				StartCoroutine (Dash (target));
 				DashDamaging (dashDamage + 10f);
-				playerAnimator.SetTrigger ("StartUltimate");
+                playerNetAnimator.SetTrigger ("StartUltimate");
 			} else {
 				DashDamaging (dashDamage);
             }

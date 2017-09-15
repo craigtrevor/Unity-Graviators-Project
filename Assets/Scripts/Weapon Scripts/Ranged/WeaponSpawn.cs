@@ -26,7 +26,7 @@ public class WeaponSpawn : NetworkBehaviour {
     [SerializeField]
     private bool m_Fired = false;          // Whether or not the weapon has been launched with this button press.
 
-    public Animator playerAnimator;
+    public NetworkAnimator playerNetAnimator;
    
 	//nonames weapons
 	public GameObject weaponToHide;
@@ -95,12 +95,15 @@ public class WeaponSpawn : NetworkBehaviour {
     [Client]
     private void Fire() {
         m_Fired = true; // set the fire flag so that fire is only called once
-        playerAnimator.SetTrigger("Ranged Attack");
+        playerNetAnimator.SetTrigger("Ranged Attack");
         //StartCoroutine(WaitForCurrentAnim());
     }
 
 	//Ranged attack is called by the animation at the appropriate time, check AnimationEventPassalong.cs
 	public void RangedAttack(AnimationEvent animEvent) {
+
+        if (!isLocalPlayer)
+            return;
 
 		//Nonames Attack
 		if (playerCharacterID == "ERNN") {
@@ -162,12 +165,12 @@ public class WeaponSpawn : NetworkBehaviour {
 		}
 
         if (playerCharacterID == "ERNN") {
-			//play reload anim and wait for it to trigger
-            playerAnimator.SetTrigger("Ranged Attack Reload");
+            //play reload anim and wait for it to trigger
+            playerNetAnimator.SetTrigger("Ranged Attack Reload");
 		}
 
 		if (playerCharacterID == "SPKS") {
-			playerAnimator.SetTrigger("Ranged Attack Reload");
+            playerNetAnimator.SetTrigger("Ranged Attack Reload");
 			sparkusReloadBall.SetActive (true);
 		}
 
@@ -186,7 +189,7 @@ public class WeaponSpawn : NetworkBehaviour {
     public void InstantReload() {
         if (playerCharacterID == "ERNN") {
             //play reload anim and wait for it to trigger
-            playerAnimator.SetTrigger("Ranged Attack Reload");
+            playerNetAnimator.SetTrigger("Ranged Attack Reload");
         }
 
         if (playerCharacterID == "SPKS") {

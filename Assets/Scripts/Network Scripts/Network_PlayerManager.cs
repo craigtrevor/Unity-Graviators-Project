@@ -383,14 +383,16 @@ public class Network_PlayerManager : NetworkBehaviour
             GetComponent<Rigidbody>().Sleep();
         }
 
-       // if (!isServer)
-        //    return;
-
         GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
 				GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
 
-        NetworkServer.Spawn(corpseobject);
         Destroy(corpseobject, 5);
+
+        if (!isServer)
+            return;
+
+        NetworkServer.Spawn(corpseobject);
+
     }
 
     public void SetDefaults()

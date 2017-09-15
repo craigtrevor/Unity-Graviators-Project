@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using DatabaseControl;
 using UnityEngine.SceneManagement;
 
 public class UI_UserAccountManager : MonoBehaviour {
+
+    [SerializeField]
+    Button loginBtn;
 
     public static UI_UserAccountManager instance;
     UI_LoginMenu uiLoginMenu;
@@ -25,6 +29,19 @@ public class UI_UserAccountManager : MonoBehaviour {
         if (Network_SceneManager.instance.sceneName == loggedOutSceneName)
         {
             uiLoginMenu = gameObject.GetComponent<UI_LoginMenu>();
+        }
+    }
+
+    void Update()
+    {
+        CheckEnterKeyPress();
+    }
+
+    void CheckEnterKeyPress()
+    {
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            loginBtn.onClick.Invoke();
         }
     }
 

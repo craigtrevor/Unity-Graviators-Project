@@ -37,8 +37,6 @@ public class SparkusUlt : NetworkBehaviour {
     Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
 
-    public Animator playerAnimator;
-
     // Use this for initialization
     void Start() {
         networkSoundscape = transform.GetComponent<Network_Soundscape>();

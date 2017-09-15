@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\TeslaCoilScrollUp.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\LaserGrid.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\SlowTrapV2.cs" />
+    <Compile Include="Assets\Scripts\Trap Scripts\SpikeTrap.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\TeslaCoil.cs" />
     <Compile Include="Assets\Scripts\Tutorial\DirectionIndicator.cs" />
     <Compile Include="Assets\Scripts\Tutorial\Drone_bot.cs" />

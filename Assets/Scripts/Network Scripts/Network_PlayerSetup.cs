@@ -152,7 +152,7 @@ public class Network_PlayerSetup : NetworkBehaviour
 
     public override void PreStartClient()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 12; i++)
         {
             netAnim.SetParameterAutoSend(i, true);
         }
@@ -160,7 +160,7 @@ public class Network_PlayerSetup : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 12; i++)
         {
             netAnim.SetParameterAutoSend(i, true);
         }
