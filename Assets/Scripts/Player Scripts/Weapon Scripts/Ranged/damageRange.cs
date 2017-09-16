@@ -126,7 +126,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                //PlayImpactSound();
+                PlayImpactSound();
                 Die();
             }
 
@@ -139,6 +139,7 @@ public class damageRange : NetworkBehaviour {
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 CmdTakeDamage(other.gameObject.name, d1Damage, sourceID);
+                PlayImpactSound();
                 Die();
             }
 
@@ -159,7 +160,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                //PlayImpactSound();
+                PlayImpactSound();
                 Die();
             }
 
@@ -171,6 +172,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
+                PlayImpactSound();
                 Die();
             }
         }
@@ -182,12 +184,12 @@ public class damageRange : NetworkBehaviour {
 
         if (this.gameObject.tag == THROWINGSWORD_TAG)
         {
-            networkSoundscape.PlayNonNetworkedSound(11, 1);
+            networkSoundscape.PlayNonNetworkedSound(11, 1, 0.2f);
         }
 
         if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG)
         {
-            networkSoundscape.PlayNonNetworkedSound(12, 1);
+            networkSoundscape.PlayNonNetworkedSound(12, 1, 0.2f);
         }
     }
 

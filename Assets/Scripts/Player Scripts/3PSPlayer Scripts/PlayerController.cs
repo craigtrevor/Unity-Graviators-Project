@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour {
     private bool recieveInput;
     private bool isShiftPressed;
 
+    private int cycleMovement;
+    private float audioStepLength = 0.45f;
+    private bool playerStep;
+
     public int retainFallOnGrav;
     bool fallPaused = false;
     float tempYVel = 0;
@@ -96,6 +100,8 @@ public class PlayerController : MonoBehaviour {
     void Start() {
 
         hasLanded = true; // setup animation variable
+        playerStep = true;
+        cycleMovement = 0;
 
         //  playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up * 2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
 
@@ -261,7 +267,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
 
         Run();
-        //CheckMovementAudio();
+        CheckMovementAudio();
         Strafe();
         ActualJump();
         CheckPause();
@@ -287,6 +293,7 @@ public class PlayerController : MonoBehaviour {
 
             // move
             velocity.z = moveSettings.forwardVel * forwardInput;
+
         } else {
             // zero velocity
 
@@ -303,6 +310,36 @@ public class PlayerController : MonoBehaviour {
             velocity.z = 0;
         }
 
+    }
+
+    void CheckMovementAudio()
+    {
+        if (playerAnimator.GetBool("InAir") == false && playerAnimator.GetBool("Moving") == true && playerStep == true && playerAnimator == true && !Input.GetButton("Jump"))
+        {
+            Debug.Log("Playing");
+
+            if (cycleMovement == 0)
+            {
+                Debug.Log("Now Playing");
+                networkSoundscape.PlaySound(0, 3, 0.1f, 0);
+                cycleMovement++;
+            }
+
+            else if (cycleMovement == 1)
+            {
+                networkSoundscape.PlaySound(0, 3, 0.1f, 0);
+                cycleMovement--;
+            }
+
+            StartCoroutine(WaitForFootSteps(audioStepLength));
+        }
+    }
+
+    private IEnumerator WaitForFootSteps(float stepsLength)
+    {
+        playerStep = false;
+        yield return new WaitForSeconds(stepsLength);
+        playerStep = true;
     }
 
     void Strafe() {
@@ -365,7 +402,7 @@ public class PlayerController : MonoBehaviour {
             // Jumping - Alex
             StartCoroutine(JumpTime());
             velocity.y = moveSettings.jumpVel;
-            //networkSoundscape.PlaySound(22, 4, 0f);
+            networkSoundscape.PlaySound(4, 4, 0.2f, 0f);
         } else if (jumpInput == 0 && Grounded()) {
 
             //set the anim to not jumping and spawn a blast wave

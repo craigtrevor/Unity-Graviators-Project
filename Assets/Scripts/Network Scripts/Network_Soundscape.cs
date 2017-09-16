@@ -23,7 +23,7 @@ public class Network_Soundscape : NetworkBehaviour {
         AutoAssignAudio();
     }
 
-    public void PlayNonNetworkedSound(int clipID, int audioSource)
+    public void PlayNonNetworkedSound(int clipID, int audioSource, float audioVolume)
     {
         playerAudioSources[audioSource].PlayOneShot(playerAudioClips[clipID]);
     }
@@ -33,33 +33,34 @@ public class Network_Soundscape : NetworkBehaviour {
         playerAudioSources[audioSource].Stop();
     }
 
-    public void PlaySound(int clipID, int audioSourceID, float soundDealy)
+    public void PlaySound(int clipID, int audioSourceID, float audioVolume, float soundDealy)
     {
         if (clipID >= 0 && audioSourceID >= 0 && clipID < playerAudioClips.Length && audioSourceID < playerAudioSources.Length)
         {
-            CmdSendServerSoundID(clipID, audioSourceID, soundDealy);
+            CmdSendServerSoundID(clipID, audioSourceID, audioVolume, soundDealy);
         }
     }
 
     [Command]
-    void CmdSendServerSoundID(int clipID, int audioSourceID, float soundDealy)
+    void CmdSendServerSoundID(int clipID, int audioSourceID, float audioVolume, float soundDealy)
     {
-        RpcSendSoundIDToClient(clipID, audioSourceID, soundDealy);
+        RpcSendSoundIDToClient(clipID, audioSourceID, audioVolume, soundDealy);
     }
 
     [ClientRpc]
-    void RpcSendSoundIDToClient(int clipID, int audioSourceID, float soundDealy)
+    void RpcSendSoundIDToClient(int clipID, int audioSourceID, float audioVolume, float soundDealy)
     {
         if (!soundPlayed)
         {
-            StartCoroutine(WaitForSound(clipID, audioSourceID, soundDealy));
+            StartCoroutine(WaitForSound(clipID, audioSourceID, audioVolume, soundDealy));
         }
     }
 
-    private IEnumerator WaitForSound(int clipID, int audioSourceID, float soundDealy)
+    private IEnumerator WaitForSound(int clipID, int audioSourceID, float audioVolume, float soundDealy)
     {
         soundPlayed = true;
         yield return new WaitForSeconds(soundDealy);
+        playerAudioSources[audioSourceID].volume = audioVolume;
         playerAudioSources[audioSourceID].PlayOneShot(playerAudioClips[clipID]);
         soundPlayed = false;
     }
@@ -69,8 +70,8 @@ public class Network_Soundscape : NetworkBehaviour {
         // Foley Audio
         playerAudioClips[0] = (AudioClip)Resources.Load("Foley_PlayerFootstep_Metal1");
         playerAudioClips[1] = (AudioClip)Resources.Load("Foley_PlayerFootstep_Metal2");
-        playerAudioClips[2] = (AudioClip)Resources.Load("Foley_PlayerFootstep_Metal3");
-        playerAudioClips[3] = (AudioClip)Resources.Load("Foley_PlayerFootstep_Metal4");
+        playerAudioClips[2] = (AudioClip)Resources.Load("Foley_PlayerFootstep_Metal1");
+        playerAudioClips[3] = (AudioClip)Resources.Load("Foley_PlayerFootstep_Metal2");
         playerAudioClips[4] = (AudioClip)Resources.Load("Foley_PlayerJump");
 
         // Attack Audio

@@ -250,7 +250,7 @@ public class Network_PlayerManager : NetworkBehaviour
             if (isLocalPlayer)
             {
                 randomSound = Random.Range(20, 23);
-                networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+                networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
             }
 
             sourcePlayer.killStats++;
@@ -262,17 +262,17 @@ public class Network_PlayerManager : NetworkBehaviour
         {
             if (playerCharacterID == "ERNN")
             {
-                networkSoundscape.PlayNonNetworkedSound(20, 4);
+                networkSoundscape.PlayNonNetworkedSound(20, 4, 1f);
             }
 
             if (playerCharacterID == "SPKS")
             {
-                networkSoundscape.PlayNonNetworkedSound(21, 4);
+                networkSoundscape.PlayNonNetworkedSound(21, 4, 1f);
             }
 
             if (playerCharacterID == "UT-D1")
             {
-                networkSoundscape.PlayNonNetworkedSound(22, 4);
+                networkSoundscape.PlayNonNetworkedSound(22, 4, 1f);
             }
 
             StartCoroutine(EndGame());
@@ -345,7 +345,7 @@ public class Network_PlayerManager : NetworkBehaviour
                 Debug.Log(transform.name + " respawned.");
 
                 randomSound = Random.Range(18, 20);
-                networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+                networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
             }
 
             else if (deathbyTrap)
@@ -365,7 +365,7 @@ public class Network_PlayerManager : NetworkBehaviour
                 Debug.Log(transform.name + " respawned.");
 
                 randomSound = Random.Range(18, 20);
-                networkSoundscape.PlayNonNetworkedSound(randomSound, 4);
+                networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
             }
         }
     }

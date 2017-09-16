@@ -168,11 +168,11 @@ public class Network_CombatManager : NetworkBehaviour {
 
     void PlayMeleeSound() {
         if (networkPlayerManager.playerCharacterID == "ERNN") {
-            networkSoundscape.PlaySound(5, 0, 0f);
+            networkSoundscape.PlaySound(5, 0, 0.2f, 0f);
         } else if (networkPlayerManager.playerCharacterID == "SPKS") {
-            networkSoundscape.PlaySound(6, 0, 0f);
+            networkSoundscape.PlaySound(6, 0, 0.2f, 0f);
         } else if (networkPlayerManager.playerCharacterID == "UT-D1") {
-            networkSoundscape.PlaySound(7, 0, 0f);
+            networkSoundscape.PlaySound(7, 0, 0.2f, 0f);
         }
     }
 
