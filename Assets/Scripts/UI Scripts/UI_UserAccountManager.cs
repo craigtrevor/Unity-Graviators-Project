@@ -119,7 +119,7 @@ public class UI_UserAccountManager : MonoBehaviour {
     {
         // called when the 'Get Data' button on the data part is pressed
 
-       if (IsLoggedIn)
+       if (IsLoggedIn && instance != null)
         {
             //ready to send request
             StartCoroutine(sendGetDataRequest(LoggedIn_Username, LoggedIn_Password, onDataReceived));

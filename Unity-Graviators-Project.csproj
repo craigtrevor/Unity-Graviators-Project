@@ -157,8 +157,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\KeyMat.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
-    <Compile Include="Assets\Scripts\Soundscape Scripts\AudioFadeOut.cs" />
-    <Compile Include="Assets\Scripts\Soundscape Scripts\MusicPlayer.cs" />
+    <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_AudioFade.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\ConfuseTrap.cs" />
     <Compile Include="Assets\Scripts\Trap Scripts\GravityTrap1prototype.cs" />

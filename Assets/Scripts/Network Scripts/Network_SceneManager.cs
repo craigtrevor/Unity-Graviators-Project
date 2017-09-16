@@ -57,34 +57,49 @@ public class Network_SceneManager : MonoBehaviour
         if (sceneName == "JoinLAN_Scene")
         {
             serverScene = currentScene.name;
+
+            if (!isPlaying)
+            {
+                StopAllCoroutines();
+                StartCoroutine(Soundscape_AudioFade.FadeIn(musicSource, 2f));
+                isPlaying = true;
+            }
         }
 
         else if (sceneName == "Lobby_Scene")
         {
             serverScene = currentScene.name;
+
+            if (!isPlaying)
+            {
+                StopAllCoroutines();
+                StartCoroutine(Soundscape_AudioFade.FadeIn(musicSource, 2f));
+                isPlaying = true;
+            }
         }
 
-        if (sceneName != "Online_Scene" || sceneName != "Tutorial_Arena")
+        if (sceneName == "Main_Menu")
+        {
+            if (!isPlaying)
+            {
+                StopAllCoroutines();
+                StartCoroutine(Soundscape_AudioFade.FadeIn(musicSource, 2f));
+                isPlaying = true;
+            }
+        }
+
+
+        if (sceneName != "Online_Scene_ArenaV2" || sceneName != "Tutorial_Arena")
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-    }
 
-    void PlaySong()
-    {
-        if (sceneName == "Online_Scene_ArenaV2" && isPlaying == true)
+        if (sceneName == "Online_Scene_ArenaV2" || sceneName == "Tutorial_Arena")
         {
-            musicSource.Pause();
-            isPlaying = false;
-            Debug.Log("Pause");
-        }
-
-        else if (sceneName != "Online_Scene_ArenaV2" && !isPlaying)
-        {
-            musicSource.UnPause();
-            Debug.Log("Unpause");
-            isPlaying = true;
+            StopAllCoroutines();
+            StartCoroutine(Soundscape_AudioFade.FadeOut(musicSource, 2f));
+            isPlaying = false;        
         }
     }
 }
