@@ -261,6 +261,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
 
         Run();
+        //CheckMovementAudio();
         Strafe();
         ActualJump();
         CheckPause();
