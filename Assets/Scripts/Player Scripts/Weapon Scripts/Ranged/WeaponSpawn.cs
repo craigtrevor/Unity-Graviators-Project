@@ -119,9 +119,7 @@ public class WeaponSpawn : NetworkBehaviour {
 		if (playerCharacterID == "UT-D1") {
 			CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
 			wingRing.GetComponent<Renderer> ().material.color = Color.black;
-			ParticleSystem playD1Ranged = (ParticleSystem)Instantiate (D1Ranged, this.transform.position, this.transform.rotation);
-			playD1Ranged.transform.parent = this.transform;
-			playD1Ranged.Emit (1);
+		
 		}
 
 		//Sparkus Attack
