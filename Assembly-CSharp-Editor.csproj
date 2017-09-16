@@ -63,7 +63,7 @@
      <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim_Bumped.shader" />
      <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
-     <None Include="Assets\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
+     <None Include="Assets\Prefabs\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Plane.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonDefaultOutline.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Diffuse_UnlitRimColor.shader" />
