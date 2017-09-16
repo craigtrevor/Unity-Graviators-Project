@@ -31,11 +31,6 @@ public class Network_SceneManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    void Update()
-    {
-        PlaySong();
-    }
-
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
