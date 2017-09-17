@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: 2eddb0ccd544e6040aa376033c33352f
+timeCreated: 1505688039
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ColliderWalls
+    100004: ColliderWalls.001
+    100006: ColliderWalls.002
+    100008: ColliderWalls.003
+    100010: ColliderWalls.004
+    100012: ColliderWalls.005
+    100014: ColliderWalls.006
+    100016: ColliderWalls.007
+    100018: ColliderWalls.008
+    100020: ColliderWalls.009
+    100022: ColliderWalls.010
+    100024: ColliderWalls.011
+    100026: ColliderWalls.012
+    100028: ColliderWalls.013
+    100030: ColliderWalls.014
+    100032: ColliderWalls.015
+    100034: ColliderWalls.016
+    100036: ColliderWalls.017
+    100038: ColliderWalls.018
+    100040: ColliderWalls.019
+    100042: ColliderWalls.020
+    100044: ColliderWalls.021
+    100046: CubeFrame
+    100048: CubeWalls
+    100050: MainPlaformTop
+    100052: MainPlatformTopGlass
+    100054: SideCubeHorizontal
+    100056: SideCubeHorizontalWalls
+    100058: SideCubeVertical
+    100060: SideCubeVerticalWalls
+    100062: WaterColumn
+    100064: WaterColumnBase
+    400000: //RootNode
+    400002: ColliderWalls
+    400004: ColliderWalls.001
+    400006: ColliderWalls.002
+    400008: ColliderWalls.003
+    400010: ColliderWalls.004
+    400012: ColliderWalls.005
+    400014: ColliderWalls.006
+    400016: ColliderWalls.007
+    400018: ColliderWalls.008
+    400020: ColliderWalls.009
+    400022: ColliderWalls.010
+    400024: ColliderWalls.011
+    400026: ColliderWalls.012
+    400028: ColliderWalls.013
+    400030: ColliderWalls.014
+    400032: ColliderWalls.015
+    400034: ColliderWalls.016
+    400036: ColliderWalls.017
+    400038: ColliderWalls.018
+    400040: ColliderWalls.019
+    400042: ColliderWalls.020
+    400044: ColliderWalls.021
+    400046: CubeFrame
+    400048: CubeWalls
+    400050: MainPlaformTop
+    400052: MainPlatformTopGlass
+    400054: SideCubeHorizontal
+    400056: SideCubeHorizontalWalls
+    400058: SideCubeVertical
+    400060: SideCubeVerticalWalls
+    400062: WaterColumn
+    400064: WaterColumnBase
+    2300000: ColliderWalls
+    2300002: ColliderWalls.001
+    2300004: ColliderWalls.002
+    2300006: ColliderWalls.003
+    2300008: ColliderWalls.004
+    2300010: ColliderWalls.005
+    2300012: ColliderWalls.006
+    2300014: ColliderWalls.007
+    2300016: ColliderWalls.008
+    2300018: ColliderWalls.009
+    2300020: ColliderWalls.010
+    2300022: ColliderWalls.011
+    2300024: ColliderWalls.012
+    2300026: ColliderWalls.013
+    2300028: ColliderWalls.014
+    2300030: ColliderWalls.015
+    2300032: ColliderWalls.016
+    2300034: ColliderWalls.017
+    2300036: ColliderWalls.018
+    2300038: ColliderWalls.019
+    2300040: ColliderWalls.020
+    2300042: ColliderWalls.021
+    2300044: CubeFrame
+    2300046: CubeWalls
+    2300048: MainPlaformTop
+    2300050: MainPlatformTopGlass
+    2300052: SideCubeHorizontal
+    2300054: SideCubeHorizontalWalls
+    2300056: SideCubeVertical
+    2300058: SideCubeVerticalWalls
+    2300060: WaterColumn
+    2300062: WaterColumnBase
+    3300000: ColliderWalls
+    3300002: ColliderWalls.001
+    3300004: ColliderWalls.002
+    3300006: ColliderWalls.003
+    3300008: ColliderWalls.004
+    3300010: ColliderWalls.005
+    3300012: ColliderWalls.006
+    3300014: ColliderWalls.007
+    3300016: ColliderWalls.008
+    3300018: ColliderWalls.009
+    3300020: ColliderWalls.010
+    3300022: ColliderWalls.011
+    3300024: ColliderWalls.012
+    3300026: ColliderWalls.013
+    3300028: ColliderWalls.014
+    3300030: ColliderWalls.015
+    3300032: ColliderWalls.016
+    3300034: ColliderWalls.017
+    3300036: ColliderWalls.018
+    3300038: ColliderWalls.019
+    3300040: ColliderWalls.020
+    3300042: ColliderWalls.021
+    3300044: CubeFrame
+    3300046: CubeWalls
+    3300048: MainPlaformTop
+    3300050: MainPlatformTopGlass
+    3300052: SideCubeHorizontal
+    3300054: SideCubeHorizontalWalls
+    3300056: SideCubeVertical
+    3300058: SideCubeVerticalWalls
+    3300060: WaterColumn
+    3300062: WaterColumnBase
+    4300000: ColliderWalls.021
+    4300002: ColliderWalls.020
+    4300004: ColliderWalls.019
+    4300006: ColliderWalls.018
+    4300008: ColliderWalls.017
+    4300010: ColliderWalls.016
+    4300012: ColliderWalls.015
+    4300014: ColliderWalls.014
+    4300016: ColliderWalls.013
+    4300018: ColliderWalls.012
+    4300020: ColliderWalls.011
+    4300022: ColliderWalls.010
+    4300024: ColliderWalls.009
+    4300026: ColliderWalls.008
+    4300028: ColliderWalls.007
+    4300030: ColliderWalls.006
+    4300032: SideCubeVerticalWalls
+    4300034: SideCubeHorizontalWalls
+    4300036: SideCubeHorizontal
+    4300038: SideCubeVertical
+    4300040: ColliderWalls.005
+    4300042: ColliderWalls.004
+    4300044: ColliderWalls.003
+    4300046: ColliderWalls.002
+    4300048: ColliderWalls.001
+    4300050: ColliderWalls
+    4300052: MainPlatformTopGlass
+    4300054: MainPlaformTop
+    4300056: WaterColumn
+    4300058: WaterColumnBase
+    4300060: CubeWalls
+    4300062: CubeFrame
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
