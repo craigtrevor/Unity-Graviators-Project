@@ -386,7 +386,7 @@ public class Network_PlayerManager : NetworkBehaviour
         GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
 				GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
 
-        Destroy(corpseobject, 5);
+        //Destroy(corpseobject, 5);
 
         if (!isServer)
             return;

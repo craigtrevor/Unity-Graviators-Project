@@ -12,11 +12,11 @@ public class CorpseDissolve : MonoBehaviour {
 
 	private int length = 0;
 
-	void Death (Vector3 direction) {
+	void Death () {
 		dying = true;
 
 		foreach (Rigidbody rbody in rbodies) {
-			rbody.AddForce (direction*100);
+			rbody.AddExplosionForce (100f, Vector3.zero, 10f);
 		}
 	}
 
@@ -24,13 +24,13 @@ public class CorpseDissolve : MonoBehaviour {
 		materials = GetComponentsInChildren<Renderer> ();
 		rbodies = GetComponentsInChildren<Rigidbody> ();
 		int length = rbodies.Length;
-		Death(new Vector3 (0,1,0));
+		Death();
 	}
 
 	void Update () {
 		if (health <= 0) 
 		{
-			Death(new Vector3 (0,0,0));
+			Death();
 			Destroy (this.gameObject, 10f);
 		}
 		if (dying) {
