@@ -42,6 +42,7 @@ public class NoName_Ult : NetworkBehaviour {
     // Scripts
     Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
+    Network_CombatManager newtworkCombatManager;
 
     [SerializeField]
     Animator playerAnimator;
@@ -60,6 +61,7 @@ public class NoName_Ult : NetworkBehaviour {
 
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
+        newtworkCombatManager = transform.GetComponent<Network_CombatManager>();
 
         attackRadius = 5;
 
@@ -132,9 +134,12 @@ public class NoName_Ult : NetworkBehaviour {
             networkPlayerManager.currentUltimateGain -= DASH_COST;
             if (!isDashing) {
                 isDashing = true;
+                newtworkCombatManager.isUlting = true;
+
             }
         } else if (!isCharging && charge < DASH_COST) {
             isDashing = false;
+            newtworkCombatManager.isUlting = false;
             onPause = false;
         }
 
@@ -170,6 +175,7 @@ public class NoName_Ult : NetworkBehaviour {
     IEnumerator Expire() {
         yield return new WaitForSeconds(2f);
         isDashing = false;
+        newtworkCombatManager.isUlting = false;
         yield return null;
     }
 

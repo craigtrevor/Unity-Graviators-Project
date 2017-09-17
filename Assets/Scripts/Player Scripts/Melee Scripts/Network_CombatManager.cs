@@ -60,6 +60,7 @@ public class Network_CombatManager : NetworkBehaviour {
     // Boolean
     public bool isAttacking;
     public bool isHitting;
+    public bool isUlting;
     [SerializeField]
     public bool animationPlaying;
 
@@ -96,6 +97,8 @@ public class Network_CombatManager : NetworkBehaviour {
         attackRadius = 3;
         attackCounter = 0;
 
+        isUlting = false;
+
         //anim = GetComponent<Animator>();
         //anim.speed = 0.2f;
     }
@@ -104,6 +107,7 @@ public class Network_CombatManager : NetworkBehaviour {
         CheckAnimation();
         AttackPlayer();
         PlayerVelocity();
+        Debug.Log("isulting "+isUlting);
     }
 		
     void OnTriggerEnter(Collider other) {

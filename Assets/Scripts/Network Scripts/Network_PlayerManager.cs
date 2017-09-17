@@ -55,6 +55,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     GameObject deathCamera;
+    public GameObject mainCamera;
 
     [SerializeField]
     GameObject[] deathCanvas;
@@ -377,8 +378,10 @@ public class Network_PlayerManager : NetworkBehaviour
         if (isLocalPlayer)
         {
             //Switch cameras
-            deathCamera.transform.position = this.transform.position;
-            deathCamera.transform.rotation = this.transform.rotation;
+            //deathCamera.transform.position = this.transform.position;
+            //deathCamera.transform.rotation = this.transform.rotation;
+            deathCamera.transform.position = mainCamera.transform.position;
+            deathCamera.transform.rotation = mainCamera.transform.rotation;
             deathCamera.SetActive(true);
             GetComponent<Rigidbody>().Sleep();
         }
