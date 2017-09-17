@@ -194,18 +194,20 @@ public class WeaponSpawn : NetworkBehaviour {
     }
 
 	IEnumerator D1WingOn(float time) {
+		print ("triggered");
 		float emissionStrength = 0.1f;
 		for (int i = 0; i < 5; i++) {
-			emissionStrength += 0.2f;
+			emissionStrength += 0.4f;
 			wingRing.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.cyan * emissionStrength);
 			yield return new WaitForSeconds (time / 5f);
 		}
 	}
 
 	IEnumerator D1WingOff(float time) {
+		print ("triggered2");
 		float emissionStrength = 2f;
 		for (int i = 0; i < 5; i++) {
-			emissionStrength -= 0.2f;
+			emissionStrength -= 0.4f;
 			wingRing.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.cyan * emissionStrength);
 			yield return new WaitForSeconds (time/5f);
 		}
