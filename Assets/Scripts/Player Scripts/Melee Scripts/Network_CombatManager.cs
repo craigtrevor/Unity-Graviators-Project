@@ -132,8 +132,7 @@ public class Network_CombatManager : NetworkBehaviour {
         if (!isLocalPlayer) {
 			playerController.stunned = true;
 			anim.SetBool ("Stun", true);
-			particleManager.GetParticle("StunEffect")
-			GameObject stunParticle = Instantiate(particleManager.GetParticle("StunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
+			GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
 			stunParticle.GetComponent<DestroyParticle>().delayBeforeDeath = stunTime;
             yield return new WaitForSeconds(stunTime);
         }
