@@ -35,7 +35,8 @@ public class WeaponSpawn : NetworkBehaviour {
 	//nonames weapons
 	public GameObject weaponToHide;
 	public GameObject weaponToHide2;
-    //public MonoBehaviour trailToHide;
+	public MeleeWeaponTrail trailToHide;
+	public MeleeWeaponTrail trailToHide2;
 
 	private ParticleSystem playSparkusRanged;
 	public GameObject sparkusRanged;
@@ -118,12 +119,14 @@ public class WeaponSpawn : NetworkBehaviour {
 			right = false;
 			weaponToHide.SetActive(false);
 			weaponToHide2.SetActive(false);
+			trailToHide.enabled = false;
+			trailToHide2.enabled = false;
 		}
 
 		//D1s Attack
 		if (playerCharacterID == "UT-D1") {
 			CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
-			StartCoroutine (D1WingOff (1f));
+			StartCoroutine (D1WingOff (0.5f));
 		
 		}
 
@@ -180,9 +183,8 @@ public class WeaponSpawn : NetworkBehaviour {
 		}
 
 		if (playerCharacterID == "UT-D1") {
-			StartCoroutine (D1WingOn (1f));
+			StartCoroutine (D1WingOn (0.5f));
             playerAnimator.SetBool("Attacking", false);
-            wingRing.GetComponent<Renderer> ().material.color = Color.cyan;
 		}
 
         networkSoundscape.PlayNonNetworkedSound(13, 1, 0.1f);
@@ -195,19 +197,21 @@ public class WeaponSpawn : NetworkBehaviour {
 
 	IEnumerator D1WingOn(float time) {
 		float emissionStrength = 0.1f;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			emissionStrength += 0.2f;
-			wingRing.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.cyan * emissionStrength);
-			yield return new WaitForSeconds (time / 5f);
+			print (emissionStrength);
+			wingRing.GetComponent<Renderer> ().material.SetFloat ("_Emission", emissionStrength);
+			yield return new WaitForSeconds (time / 10f);
 		}
 	}
 
 	IEnumerator D1WingOff(float time) {
 		float emissionStrength = 2f;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			emissionStrength -= 0.2f;
-			wingRing.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.cyan * emissionStrength);
-			yield return new WaitForSeconds (time/5f);
+			print (emissionStrength);
+			wingRing.GetComponent<Renderer> ().material.SetFloat ("_Emission", emissionStrength);
+			yield return new WaitForSeconds (time/10f);
 		}
 	}
 
@@ -238,5 +242,7 @@ public class WeaponSpawn : NetworkBehaviour {
 		//show nonames the weapons again
 		weaponToHide.SetActive (true);
 		weaponToHide2.SetActive (true);
+		trailToHide.enabled = true;
+		trailToHide2.enabled = true;
 	}
 }
