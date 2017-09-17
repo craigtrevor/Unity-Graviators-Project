@@ -180,12 +180,9 @@ public class WeaponSpawn : NetworkBehaviour {
 		}
 
 		if (playerCharacterID == "UT-D1") {
-<<<<<<< HEAD
 			StartCoroutine (D1WingOn (1f));
-=======
             playerAnimator.SetBool("Attacking", false);
             wingRing.GetComponent<Renderer> ().material.color = Color.cyan;
->>>>>>> ef9f8a7701dc98f7b4b971237a6a2c8dc7d84262
 		}
 
         networkSoundscape.PlayNonNetworkedSound(13, 1, 0.1f);

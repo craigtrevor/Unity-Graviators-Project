@@ -105,8 +105,7 @@ public class Network_CombatManager : NetworkBehaviour {
         AttackPlayer();
         PlayerVelocity();
     }
-
-<<<<<<< HEAD
+		
     void OnTriggerEnter(Collider other) {
 		if (!safeList.Contains (other.gameObject)) {
 			if (other.tag == "UnitD1_RangedWeapon") {
@@ -136,41 +135,7 @@ public class Network_CombatManager : NetworkBehaviour {
         playerController.stunned = false;
         anim.SetBool("Stun", false);
     }
-=======
-   // void OnTriggerEnter(Collider other) {
-   //     for (int i = 0; i < safeList.Count; i++) {
-   //         if (!safeList[i] == other.gameObject) {
-   //             if (other.tag == "UnitD1_RangedWeapon") {
-   //                 //StartCoroutine (stunTimer());
-   //                 StartCoroutine(stunTimer(d1StunTime));
-   //             }
-   //             if (other.tag == "ThrowingSword") {
-   //                 StartCoroutine(slowTimer(slowTime, false));
-   //             }
-   //             if (other.tag == "Sparkus_Ranged" || other.tag == "D1_Ult") {
-   //                 StartCoroutine(stunTimer(sparkusStunTime));
-   //             }
-   //         }
-   //     }
-
-   //     if (other.tag == "collider") {
-			//GameObject playGravLandMed = Instantiate(particleManager.GetParticle("gravLandParticleMed"), this.transform.position + Vector3.down, this.transform.rotation);
-   //     }
-
-   // }
-
-    //IEnumerator stunTimer(float stunTime)
-    //{ 
-    //    playerController.stunned = true;
-    //    anim.SetBool("Stun", true);
-    //    GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
-    //    stunParticle.GetComponent<DestroyParticle>().delayBeforeDeath = stunTime;
-    //    yield return new WaitForSeconds(stunTime);
-    //    playerController.stunned = false;
-    //    anim.SetBool("Stun", false);
-    //}
->>>>>>> ef9f8a7701dc98f7b4b971237a6a2c8dc7d84262
-
+		
     public void SlowForSeconds(float slowTime) {
         StartCoroutine(slowTimer(slowTime, true));
     }
