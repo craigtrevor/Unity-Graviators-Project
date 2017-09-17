@@ -26,7 +26,11 @@ public class WeaponSpawn : NetworkBehaviour {
     [SerializeField]
     private bool m_Fired = false;          // Whether or not the weapon has been launched with this button press.
 
-    public NetworkAnimator playerNetAnimator;
+    [SerializeField]
+    Animator playerAnimator;
+
+    [SerializeField]
+    NetworkAnimator playerNetAnimator;
    
 	//nonames weapons
 	public GameObject weaponToHide;
@@ -95,6 +99,7 @@ public class WeaponSpawn : NetworkBehaviour {
     [Client]
     private void Fire() {
         m_Fired = true; // set the fire flag so that fire is only called once
+        playerAnimator.SetBool("Attacking", false);
         playerNetAnimator.SetTrigger("Ranged Attack");
         //StartCoroutine(WaitForCurrentAnim());
     }
@@ -164,16 +169,23 @@ public class WeaponSpawn : NetworkBehaviour {
 
         if (playerCharacterID == "ERNN") {
             //play reload anim and wait for it to trigger
+            playerAnimator.SetBool("Attacking", false);
             playerNetAnimator.SetTrigger("Ranged Attack Reload");
 		}
 
 		if (playerCharacterID == "SPKS") {
+            playerAnimator.SetBool("Attacking", false);
             playerNetAnimator.SetTrigger("Ranged Attack Reload");
 			sparkusReloadBall.SetActive (true);
 		}
 
 		if (playerCharacterID == "UT-D1") {
+<<<<<<< HEAD
 			StartCoroutine (D1WingOn (1f));
+=======
+            playerAnimator.SetBool("Attacking", false);
+            wingRing.GetComponent<Renderer> ().material.color = Color.cyan;
+>>>>>>> ef9f8a7701dc98f7b4b971237a6a2c8dc7d84262
 		}
 
         networkSoundscape.PlayNonNetworkedSound(13, 1, 0.1f);
@@ -205,6 +217,7 @@ public class WeaponSpawn : NetworkBehaviour {
     public void InstantReload() {
         if (playerCharacterID == "ERNN") {
             //play reload anim and wait for it to trigger
+            playerAnimator.SetBool("Attacking", false);
             playerNetAnimator.SetTrigger("Ranged Attack Reload");
         }
 

@@ -99,9 +99,8 @@ public class D1Ult : NetworkBehaviour {
             canCharge = false;
             isStomping = true;
             playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);
-            playerAnimator.SetTrigger("StartUltimate");
+            playerAnimator.SetBool("Atacking", false);
             playerAnimator.SetBool("UltimateLoop", true);
-
 
         } else if (charge <= 0f) {
             canCharge = true;

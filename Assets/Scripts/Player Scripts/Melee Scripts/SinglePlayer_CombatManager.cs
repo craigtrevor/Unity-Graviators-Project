@@ -78,9 +78,11 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	// Scripts
 	PlayerController playerControllermodifier;
 	Dash dashScript;
+    NonNetworked_Soundscape soundscape;
 
-	public bool isDashing;
+    public bool isDashing;
 	public GravityAxisScript gravityAxisScript;
+
 
 
 	// Use this for initialization
@@ -88,6 +90,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	{
 		playerRigidbody = transform.GetComponent<Rigidbody>();
 		dashScript = transform.GetComponent<Dash>();
+        soundscape = transform.GetComponent<NonNetworked_Soundscape>();
 
 		playerDamage = 5;
 		attackRadius = 5;
@@ -102,6 +105,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		CheckAnimation();
 		AttackPlayer();
 		PlayerVelocity();
+
 		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Attack")) {
 			CheckCollision ();
 		}
@@ -188,7 +192,8 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 			anim.SetBool("Attacking", true);
 			anim.SetTrigger("Attack");
 			isAttacking = true;
-		}
+            PlayMeleeSound();
+        }
 
 		if (isAttacking)
 		{
@@ -348,7 +353,12 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		}
 	}
 
-	public void ActualJump() {
+    void PlayMeleeSound()
+    {
+        soundscape.PlayNonNetworkedSound(5, 0, 0.2f);
+    }
+
+    public void ActualJump() {
 	}
 
 	bool CanFall() {
