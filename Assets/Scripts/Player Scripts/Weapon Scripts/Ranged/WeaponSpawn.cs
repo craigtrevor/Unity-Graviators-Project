@@ -23,8 +23,7 @@ public class WeaponSpawn : NetworkBehaviour {
     //private string m_FireButton; // the input axis that is used for firing
     private Rigidbody m_Rigidbody; // reference to the rigidbody
     private Collider2D m_Collider2D;
-    [SerializeField]
-    private bool m_Fired = false;          // Whether or not the weapon has been launched with this button press.
+    public bool m_Fired = false;          // Whether or not the weapon has been launched with this button press.
 
     [SerializeField]
     Animator playerAnimator;
@@ -89,7 +88,7 @@ public class WeaponSpawn : NetworkBehaviour {
             return;
         }
 
-		if (Input.GetButtonDown("Fire2") && !m_Fired && !combatManager.isUlting) {
+		if (Input.GetButtonDown("Fire2") && !m_Fired && !combatManager.isUlting && !combatManager.isAttacking) {
 			reloading = true;
 			StartCoroutine(reload());
 			Fire();

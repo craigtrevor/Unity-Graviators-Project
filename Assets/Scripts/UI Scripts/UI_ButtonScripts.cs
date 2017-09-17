@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class UI_ButtonScripts : MonoBehaviour 
 {
@@ -14,6 +15,16 @@ public class UI_ButtonScripts : MonoBehaviour
 
         Debug.Log("Please wait as the scene changes");
     }
+
+    public void ShutdownMatch(string NameofLevel)
+    {
+        SceneManager.LoadScene(NameofLevel);
+
+        NetworkManager.Shutdown();
+
+        Debug.Log("Please wait as the scene changes");
+    }
+
 
     public void LoadCharacterSelectionLAN(string NameofLevel)
     {

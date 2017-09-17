@@ -16,10 +16,13 @@ public class Network_SceneManager : MonoBehaviour
 
     public string sceneName;
     public string serverScene;
+    public bool wonMatch;
+    public string playerUsername;
 
     void Awake()
     {
         isPlaying = true;
+        wonMatch = false;
 
         if (instance != null)
         {

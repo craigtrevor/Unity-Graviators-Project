@@ -14,6 +14,7 @@ public class CorpseDissolve : MonoBehaviour {
 
 	void Death () {
 		dying = true;
+        health = 0;
 
 		foreach (Rigidbody rbody in rbodies) {
 			rbody.AddExplosionForce (100f, Vector3.zero, 10f);

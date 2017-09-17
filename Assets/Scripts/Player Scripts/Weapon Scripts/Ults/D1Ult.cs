@@ -30,7 +30,7 @@ public class D1Ult : NetworkBehaviour {
     // Scripts
     Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
-    Network_CombatManager newtworkCombatManager;
+    Network_CombatManager networkCombatManager;
 
     [SerializeField]
     NetworkAnimator playerNetAnimator;
@@ -50,7 +50,7 @@ public class D1Ult : NetworkBehaviour {
 
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
-        newtworkCombatManager = transform.GetComponent<Network_CombatManager>();
+        networkCombatManager = transform.GetComponent<Network_CombatManager>();
 
     }
 
@@ -68,7 +68,7 @@ public class D1Ult : NetworkBehaviour {
     void hitGround() {
         if (isStomping && playerController.Grounded() && !hasStopmed) { //ult has stopped
             isStomping = false;
-            newtworkCombatManager.isUlting = false;
+            networkCombatManager.isUlting = false;
             playerAnimator.SetBool("UltimateLoop", false);
             playerController.isDashing = true;
             //spawn the ice thingy
@@ -98,10 +98,10 @@ public class D1Ult : NetworkBehaviour {
     }
 
     void UltInput() {
-        if (Input.GetButtonDown("Ultimate") && !playerController.Grounded() && canUseUlt && !hasStopmed && !gravityScript.gravitySwitching) { //ult has started
+        if (Input.GetButtonDown("Ultimate") && !playerController.Grounded() && canUseUlt && !hasStopmed && !gravityScript.gravitySwitching && !networkCombatManager.isAttacking) { //ult has started
             canCharge = false;
             isStomping = true;
-            newtworkCombatManager.isUlting = true;
+            networkCombatManager.isUlting = true;
             playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);
             playerAnimator.SetBool("Atacking", false);
             playerAnimator.SetBool("UltimateLoop", true);

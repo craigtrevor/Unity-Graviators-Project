@@ -261,20 +261,23 @@ public class Network_PlayerManager : NetworkBehaviour
 
         if (sourcePlayer.killStats == 10)
         {
-            if (playerCharacterID == "ERNN")
-            {
-                networkSoundscape.PlayNonNetworkedSound(20, 4, 1f);
-            }
+            //if (playerCharacterID == "ERNN")
+            //{
+            //    networkSoundscape.PlayNonNetworkedSound(20, 4, 1f);
+            //}
 
-            if (playerCharacterID == "SPKS")
-            {
-                networkSoundscape.PlayNonNetworkedSound(21, 4, 1f);
-            }
+            //if (playerCharacterID == "SPKS")
+            //{
+            //    networkSoundscape.PlayNonNetworkedSound(21, 4, 1f);
+            //}
 
-            if (playerCharacterID == "UT-D1")
-            {
-                networkSoundscape.PlayNonNetworkedSound(22, 4, 1f);
-            }
+            //if (playerCharacterID == "UT-D1")
+            //{
+            //    networkSoundscape.PlayNonNetworkedSound(22, 4, 1f);
+            //}
+
+            Network_SceneManager.instance.wonMatch = true;
+            Network_SceneManager.instance.playerUsername = username;
 
             StartCoroutine(EndGame());
         }
@@ -493,7 +496,22 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         Debug.Log("Match has finished");
 
+       // RpcEndMatch();
+
         NetworkManager.Shutdown();
+       // SceneManager.LoadScene("EndMatch_Scene");
+    }
+
+    [ClientRpc]
+    public void RpcEndMatch()
+    {
+        if (!isLocalPlayer)
+        {
+            if (Network_SceneManager.instance.wonMatch == true)
+            {
+                Network_SceneManager.instance.wonMatch = false;
+            }
+        }
     }
 
     void MuteNarration()

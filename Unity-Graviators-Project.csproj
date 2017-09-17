@@ -109,6 +109,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManagerV2.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DevKeys.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_EndMatch.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\3PSPlayer Scripts\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\3PSPlayer Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\DeathCamera.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\PlayerCamera.cs" />

@@ -36,13 +36,13 @@ public class SparkusUlt : NetworkBehaviour {
     // Scripts
     Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
-    Network_CombatManager newtworkCombatManager;
+    Network_CombatManager networkCombatManager;
 
     // Use this for initialization
     void Start() {
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
-        newtworkCombatManager = transform.GetComponent<Network_CombatManager>();
+        networkCombatManager = transform.GetComponent<Network_CombatManager>();
     }
 
     void Update()
@@ -64,12 +64,12 @@ public class SparkusUlt : NetworkBehaviour {
     [Client]
     void UltInput() {
 
-        if (Input.GetButtonDown("Ultimate"))
+        if (Input.GetButtonDown("Ultimate") && !networkCombatManager.isAttacking)
         {
             if (charge >= ULT_MAX)
             {
                 isLasering = true;
-                newtworkCombatManager.isUlting = true;
+                networkCombatManager.isUlting = true;
                 spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = true;
                 CmdFire();
             }
@@ -81,7 +81,7 @@ public class SparkusUlt : NetworkBehaviour {
 
         if (charge <= 0) {
             isLasering = false;
-            newtworkCombatManager.isUlting = false;
+            networkCombatManager.isUlting = false;
             Destroy(laser);
             spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = false;
         }

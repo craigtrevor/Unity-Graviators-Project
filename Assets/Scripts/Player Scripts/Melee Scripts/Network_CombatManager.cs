@@ -81,6 +81,7 @@ public class Network_CombatManager : NetworkBehaviour {
     Network_Soundscape networkSoundscape;
     Network_PlayerManager networkPlayerManager;
     Dash dashScript;
+    WeaponSpawn weaponSpawn;
 
     public bool clashActive;
     public bool alwaysAttack;
@@ -89,6 +90,7 @@ public class Network_CombatManager : NetworkBehaviour {
     void Awake() {
         playerController = transform.GetComponentInChildren<PlayerController>();
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
+        weaponSpawn = transform.GetComponent<WeaponSpawn>();
         playerRigidbody = transform.GetComponent<Rigidbody>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
         particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
@@ -190,7 +192,7 @@ public class Network_CombatManager : NetworkBehaviour {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && !isAttacking && !isUlting) {
+        if (Input.GetKeyUp(KeyCode.Mouse0) && !isAttacking && !isUlting && !weaponSpawn.m_Fired) {
             anim.SetBool("Attacking", true);
             netanim.SetTrigger("Attack");
             PlayMeleeSound();
