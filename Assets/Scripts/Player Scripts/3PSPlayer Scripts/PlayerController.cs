@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour {
 
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
-    public Network_CombatManager netCombatManager;
+    [SerializeField]
+    Network_CombatManager netCombatManager;
     Network_Soundscape netSoundscape;
     NonNetworked_Soundscape soundscape;
 
@@ -122,6 +123,8 @@ public class PlayerController : MonoBehaviour {
         {
             soundscape = GetComponentInParent<NonNetworked_Soundscape>();
         }
+
+        netCombatManager = transform.root.GetComponent<Network_CombatManager>();
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
