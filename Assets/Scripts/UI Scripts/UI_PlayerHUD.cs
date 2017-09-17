@@ -9,17 +9,11 @@ public class UI_PlayerHUD : MonoBehaviour {
     [SerializeField]
     GameObject scoreboard;
 
-	[SerializeField]
-	GameObject SkillUI;
-
-	[SerializeField]
-	GameObject compactHUD;
-
-	[SerializeField]
-	GameObject gravityBlock;
-
     [SerializeField]
     MonoBehaviour[] playerScripts;
+
+    [SerializeField]
+    GameObject[] disableObjects;
 
     [SerializeField]
     Network_PlayerManager networkPlayerManager;
@@ -44,6 +38,12 @@ public class UI_PlayerHUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        CheckInput();
+        CheckPauseMenu();
+    }
+
+    void CheckInput()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
@@ -58,29 +58,24 @@ public class UI_PlayerHUD : MonoBehaviour {
         {
             scoreboard.SetActive(false);
         }
+    }
 
-	/*	if (Input.GetKeyDown(KeyCode.X))
-		{
-			SkillUI.SetActive(true);
-		}
-
-		else if (Input.GetKeyUp(KeyCode.X))
-		{
-			SkillUI.SetActive(false);
-		}*/
-
+    void CheckPauseMenu()
+    {
         if (pauseMenu.activeSelf)
         {
-            //playerAnimator.enabled = false;
-            //playerRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            // disable controls
+            for (int i = 0; i < playerScripts.Length; i++)
+            {
+                playerScripts[i].enabled = false;
+            }
 
-			compactHUD.SetActive(false);
+            // disable objects
 
-			//disable controls
-			for (int i = 0; i < playerScripts.Length; i++) {
-					playerScripts [i].enabled = false;
-				}
-			gravityBlock.SetActive (false);
+            for (int i = 0; i < disableObjects.Length; i++)
+            {
+                disableObjects[i].SetActive(false);
+            }
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -88,16 +83,18 @@ public class UI_PlayerHUD : MonoBehaviour {
 
         if (!pauseMenu.activeSelf)
         {
-            //playerRigidbody.constraints = RigidbodyConstraints.None;
-            //playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-            //playerAnimator.enabled = true;
-			compactHUD.SetActive(true);
+            // enable controls
+            for (int i = 0; i < playerScripts.Length; i++)
+            {
+                playerScripts[i].enabled = true;
+            }
 
-			//enable controls
-			for (int i = 0; i < playerScripts.Length; i++) {
-				playerScripts [i].enabled = true;
-			}
-			gravityBlock.SetActive (true);
+            // enable objects
+
+            for (int i = 0; i < disableObjects.Length; i++)
+            {
+                disableObjects[i].SetActive(true);
+            }
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
