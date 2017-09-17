@@ -107,26 +107,23 @@ public class Network_CombatManager : NetworkBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        for (int i = 0; i < safeList.Count; i++) {
-            if (!safeList[i] == other.gameObject) {
-                if (other.tag == "UnitD1_RangedWeapon") {
-                    //StartCoroutine (stunTimer());
-                    StartCoroutine(stunTimer(d1StunTime));
-                }
-                if (other.tag == "ThrowingSword") {
-                    StartCoroutine(slowTimer(slowTime, false));
-                }
-                if (other.tag == "Sparkus_Ranged" || other.tag == "D1_Ult") {
-                    StartCoroutine(stunTimer(sparkusStunTime));
-                }
-            }
-        }
+		if (!safeList.Contains (other.gameObject)) {
+			if (other.tag == "UnitD1_RangedWeapon") {
+				StartCoroutine (stunTimer (d1StunTime));
+			}
+			if (other.tag == "ThrowingSword") {
+				StartCoroutine (slowTimer (slowTime, false));
+			}
+			if (other.tag == "Sparkus_Ranged" || other.tag == "D1_Ult") {
+				StartCoroutine (stunTimer (sparkusStunTime));
+			}
+		}
 
-        if (other.tag == "collider") {
-			GameObject playGravLandMed = Instantiate(particleManager.GetParticle("gravLandParticleMed"), this.transform.position + Vector3.down, this.transform.rotation);
-        }
-
-    }
+		if (other.tag == "collider") {
+			GameObject playGravLandMed = Instantiate (particleManager.GetParticle ("gravLandParticleMed"), this.transform.position + Vector3.down, this.transform.rotation);
+		}
+	}
+			
 
     IEnumerator stunTimer(float stunTime)
     { 

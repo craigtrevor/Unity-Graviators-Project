@@ -118,7 +118,7 @@ public class WeaponSpawn : NetworkBehaviour {
 		//D1s Attack
 		if (playerCharacterID == "UT-D1") {
 			CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
-			wingRing.GetComponent<Renderer> ().material.color = Color.black;
+			StartCoroutine (D1WingOff (1f));
 		
 		}
 
@@ -173,7 +173,7 @@ public class WeaponSpawn : NetworkBehaviour {
 		}
 
 		if (playerCharacterID == "UT-D1") {
-			wingRing.GetComponent<Renderer> ().material.color = Color.cyan;
+			StartCoroutine (D1WingOn (1f));
 		}
 
         networkSoundscape.PlayNonNetworkedSound(13, 1, 0.1f);
@@ -183,6 +183,24 @@ public class WeaponSpawn : NetworkBehaviour {
         m_Fired = false;
 		reloading = false;
     }
+
+	IEnumerator D1WingOn(float time) {
+		float emissionStrength = 0.1f;
+		for (int i = 0; i < 5; i++) {
+			emissionStrength += 0.2f;
+			wingRing.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.cyan * emissionStrength);
+			yield return new WaitForSeconds (time / 5f);
+		}
+	}
+
+	IEnumerator D1WingOff(float time) {
+		float emissionStrength = 2f;
+		for (int i = 0; i < 5; i++) {
+			emissionStrength -= 0.2f;
+			wingRing.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.cyan * emissionStrength);
+			yield return new WaitForSeconds (time/5f);
+		}
+	}
 
     public void InstantReload() {
         if (playerCharacterID == "ERNN") {
