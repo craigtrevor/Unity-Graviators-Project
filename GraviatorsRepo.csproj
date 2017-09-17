@@ -132,6 +132,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\3PSPlayer Scripts\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\3PSPlayer Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\DeathCamera.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\OrbitCamera.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\PlayerCamera.cs" />
@@ -159,18 +160,6 @@
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\SP_TrapPads.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\TouchTarget.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\TutorialManager.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Melee\Attack.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ranged\damageRange.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ranged\SinglePlayer_WeaponSpawn.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ults\D1Ult.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ults\D1UltWeap.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ults\NoName_Ult.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ults\Old\Dash.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ults\Old\UnitD1_Ult.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ults\Old\UnitD1_UltDamaging.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\NonNetworked_Soundscape.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_AudioFade.cs" />
     <Compile Include="Assets\Scripts\Soundscape Scripts\Soundscape_PlayerController.cs" />
@@ -199,6 +188,18 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\Attack.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Melee\DeathExplosion.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\damageRange.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\SinglePlayer_WeaponSpawn.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ranged\WeaponSpawn.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\D1Ult.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\D1UltWeap.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\NoName_Ult.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\Dash.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\UnitD1_Ult.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\Old\UnitD1_UltDamaging.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\Ults\SparkusUlt.cs" />
     <Compile Include="Assets\Shaders\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
     <Compile Include="Assets\Shaders\Water Flow FREE\Scripts\WaterFlowFREEDemo.cs" />
   </ItemGroup>

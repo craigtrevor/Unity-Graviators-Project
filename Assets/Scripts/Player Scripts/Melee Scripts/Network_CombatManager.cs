@@ -75,7 +75,7 @@ public class Network_CombatManager : NetworkBehaviour {
     private int attackCounter;
 
     //particles
-	public ParticleManager particleManager;
+    public ParticleManager particleManager;
 
     // Scripts
     Network_Soundscape networkSoundscape;
@@ -91,7 +91,7 @@ public class Network_CombatManager : NetworkBehaviour {
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         playerRigidbody = transform.GetComponent<Rigidbody>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
-		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+        particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 
         playerDamage = 5;
         attackRadius = 3;
@@ -107,39 +107,43 @@ public class Network_CombatManager : NetworkBehaviour {
         CheckAnimation();
         AttackPlayer();
         PlayerVelocity();
-        Debug.Log("isulting "+isUlting);
+        //Debug.Log("isulting " + isUlting);
     }
-		
+
     void OnTriggerEnter(Collider other) {
-		if (!safeList.Contains (other.gameObject)) {
-			if (other.tag == "UnitD1_RangedWeapon") {
-				StartCoroutine (stunTimer (d1StunTime));
-			}
-			if (other.tag == "ThrowingSword") {
-				StartCoroutine (slowTimer (slowTime, false));
-			}
-			if (other.tag == "Sparkus_Ranged" || other.tag == "D1_Ult") {
-				StartCoroutine (stunTimer (sparkusStunTime));
-			}
-		}
+        if (!safeList.Contains(other.gameObject)) {
+            if (other.tag == "UnitD1_RangedWeapon") {
+                StartCoroutine(stunTimer(d1StunTime, false));
+            }
+            if (other.tag == "ThrowingSword") {
+                StartCoroutine(slowTimer(slowTime, false));
+            }
+            if (other.tag == "Sparkus_Ranged" || other.tag == "D1_Ult") {
+                StartCoroutine(stunTimer(sparkusStunTime, false));
+            }
+        }
 
-		if (other.tag == "collider") {
-			GameObject playGravLandMed = Instantiate (particleManager.GetParticle ("gravLandParticleMed"), this.transform.position + Vector3.down, this.transform.rotation);
-		}
-	}
-			
+        if (other.tag == "collider") {
+            GameObject playGravLandMed = Instantiate(particleManager.GetParticle("gravLandParticleMed"), this.transform.position + Vector3.down, this.transform.rotation);
+        }
+    }
 
-    IEnumerator stunTimer(float stunTime)
-    { 
-        playerController.stunned = true;
-        anim.SetBool("Stun", true);
-        GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
-        stunParticle.GetComponent<DestroyParticle>().delayBeforeDeath = stunTime;
-        yield return new WaitForSeconds(stunTime);
+    public void StunForSeconds(float stunTime) {
+        StartCoroutine(stunTimer(stunTime, true));
+    }
+
+    IEnumerator stunTimer(float stunTime, bool ignoreLocalWarning) {
+        if (!isLocalPlayer || ignoreLocalWarning) {
+            playerController.stunned = true;
+            anim.SetBool("Stun", true);
+            GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
+            stunParticle.GetComponent<DestroyParticle>().delayBeforeDeath = stunTime;
+            yield return new WaitForSeconds(stunTime);
+        }
         playerController.stunned = false;
         anim.SetBool("Stun", false);
     }
-		
+
     public void SlowForSeconds(float slowTime) {
         StartCoroutine(slowTimer(slowTime, true));
     }
@@ -161,8 +165,7 @@ public class Network_CombatManager : NetworkBehaviour {
             anim.SetBool("Attacking", false);
         }
 
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("UltimateDash"))
-        {
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("UltimateDash")) {
             anim.SetBool("Attacking", false);
         }
 
@@ -223,7 +226,7 @@ public class Network_CombatManager : NetworkBehaviour {
     public void weaponCollide(Collider collision, Vector3 hitPoint, bool airStrike) {
         //Debug.Log (collision.gameObject.name + " struck at " + hitPoint);
         if (isAttacking) {
-			GameObject tempParticle = Instantiate(particleManager.GetParticle("grindParticle"));
+            GameObject tempParticle = Instantiate(particleManager.GetParticle("grindParticle"));
             tempParticle.transform.position = hitPoint;
             if ((airStrike && !playerController.Grounded()) || !airStrike) {
                 if (collision.gameObject.tag == PLAYER_TAG) {
