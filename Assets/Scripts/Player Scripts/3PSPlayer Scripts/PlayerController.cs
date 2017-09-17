@@ -46,12 +46,9 @@ public class PlayerController : MonoBehaviour {
     public GameObject gravityAxis;
     public GameObject gravityBlock;
 
-    public GameObject stunParticle;
-    //GameObject playStun;
-
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
-    Network_CombatManager netCombatManager;
+    public Network_CombatManager netCombatManager;
     Network_Soundscape netSoundscape;
     NonNetworked_Soundscape soundscape;
 
@@ -104,8 +101,6 @@ public class PlayerController : MonoBehaviour {
         playerStep = true;
         cycleMovement = 0;
 
-        //  playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up * 2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
-
         targetRotation = transform.rotation;
 
         if (GetComponentInParent<Rigidbody>()) {
@@ -139,7 +134,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void GetInput() {
-        if (recieveInput && !stunned && !isDashing) {
+		if (recieveInput && !stunned && !netCombatManager.isUlting) {
             forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
             turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
@@ -150,7 +145,7 @@ public class PlayerController : MonoBehaviour {
 
         shiftPressed();
 
-        if (!stunned && !isDashing) {
+		if (!stunned && !isDashing && !netCombatManager.isUlting) {
             GravityInput(inputSettings.GRAVITY_RELEASE);
         }
 
@@ -163,32 +158,12 @@ public class PlayerController : MonoBehaviour {
         velocity = Vector3.zero;
     }
 
-    public void StartStun(float time) {
-        StartCoroutine(Stun(Time.time + time));
-    }
-
-    IEnumerator Stun(float time) {
-        GameObject playStun = (GameObject)Instantiate(stunParticle, this.transform.position + this.transform.up * 2f, /*Quaternion.Euler(this.transform.eulerAngles.x - 90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z)*/this.transform.rotation, this.transform);
-        playStun.GetComponent<ParticleSystem>().Play();
-        while (Time.time < time) {
-            stunned = true;
-            //Debug.Log("I am stunning");
-            yield return null;
-        }
-        playStun.GetComponent<ParticleSystem>().Stop();
-        playStun.GetComponent<ParticleSystem>().Clear();
-        //Destroy(playStun);
-        stunned = false;
-        //Debug.Log("I'm free");
-
-    }
-
     void shiftPressed() {
-        if (Input.GetButtonDown("Crouch")) {
+		if (Input.GetButtonDown("Crouch") && !netCombatManager.isUlting) {
             isShiftPressed = true;
         }
 
-        if (Input.GetButtonUp("Crouch")) {
+		if (Input.GetButtonUp("Crouch") && !netCombatManager.isUlting) {
             isShiftPressed = false;
         }
 

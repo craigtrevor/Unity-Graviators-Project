@@ -111,20 +111,22 @@ public class Network_CombatManager : NetworkBehaviour {
     }
 		
     void OnTriggerEnter(Collider other) {
-		if (!safeList.Contains (other.gameObject)) {
-			if (other.tag == "UnitD1_RangedWeapon") {
-				StartCoroutine (stunTimer (d1StunTime));
+		if (!isUlting) {
+			if (!safeList.Contains (other.gameObject)) {
+				if (other.tag == "UnitD1_RangedWeapon") {
+					StartCoroutine (stunTimer (d1StunTime));
+				}
+				if (other.tag == "ThrowingSword") {
+					StartCoroutine (slowTimer (slowTime, false));
+				}
+				if (other.tag == "Sparkus_Ranged" || other.tag == "D1_Ult") {
+					StartCoroutine (stunTimer (sparkusStunTime));
+				}
 			}
-			if (other.tag == "ThrowingSword") {
-				StartCoroutine (slowTimer (slowTime, false));
-			}
-			if (other.tag == "Sparkus_Ranged" || other.tag == "D1_Ult") {
-				StartCoroutine (stunTimer (sparkusStunTime));
-			}
-		}
 
-		if (other.tag == "collider") {
-			GameObject playGravLandMed = Instantiate (particleManager.GetParticle ("gravLandParticleMed"), this.transform.position + Vector3.down, this.transform.rotation);
+			if (other.tag == "collider") {
+				GameObject playGravLandMed = Instantiate (particleManager.GetParticle ("gravLandParticleMed"), this.transform.position + Vector3.down, this.transform.rotation);
+			}
 		}
 	}
 			
@@ -185,14 +187,14 @@ public class Network_CombatManager : NetworkBehaviour {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && isAttacking == false) {
+		if (Input.GetKeyUp(KeyCode.Mouse0) && !isAttacking && !isUlting) {
             anim.SetBool("Attacking", true);
             netanim.SetTrigger("Attack");
             PlayMeleeSound();
             isAttacking = true;
         }
 
-        if (alwaysAttack && isAttacking == false) {
+		if (alwaysAttack && !isAttacking && !isUlting) {
             anim.SetBool("Attacking", true);
             netanim.SetTrigger("Attack");
             PlayMeleeSound();

@@ -89,7 +89,7 @@ public class WeaponSpawn : NetworkBehaviour {
             return;
         }
 
-		if (Input.GetButtonDown("Fire2") && m_Fired == false) {
+		if (Input.GetButtonDown("Fire2") && !m_Fired && !combatManager.isUlting) {
 			reloading = true;
 			StartCoroutine(reload());
 			Fire();
