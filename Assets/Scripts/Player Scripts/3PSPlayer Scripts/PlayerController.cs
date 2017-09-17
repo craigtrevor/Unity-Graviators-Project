@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour {
     GravityAxisScript gravityAxisScript;
     GravityBlockScript gravityBlockScript;
     Network_CombatManager netCombatManager;
-    Network_Soundscape networkSoundscape;
+    Network_Soundscape netSoundscape;
+    NonNetworked_Soundscape soundscape;
 
     public float cameraDisplacement;
     public bool stunned;
@@ -117,9 +118,19 @@ public class PlayerController : MonoBehaviour {
 
         turnMode = false;
 
+        if (Network_SceneManager.instance.sceneName == "Online_Scene_ArenaV2")
+        {
+            netSoundscape = GetComponentInParent<Network_Soundscape>();
+        }
+
+        else if (Network_SceneManager.instance.sceneName == "Tutorial_Arena")
+        {
+            soundscape = GetComponentInParent<NonNetworked_Soundscape>();
+        }
+
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
-        networkSoundscape = GetComponentInParent<Network_Soundscape>();
+
 
         recieveInput = true;
         isShiftPressed = false;
@@ -320,14 +331,32 @@ public class PlayerController : MonoBehaviour {
 
             if (cycleMovement == 0)
             {
-                Debug.Log("Now Playing");
-                networkSoundscape.PlaySound(0, 3, 0.1f, 0);
+                if (soundscape != null)
+                {
+                    soundscape.PlayNonNetworkedSound(0, 3, 0.1f);
+                }
+
+                else if (netSoundscape != null)
+                {
+                    netSoundscape.PlaySound(0, 3, 0.1f, 0);
+                }
+
                 cycleMovement++;
+
             }
 
             else if (cycleMovement == 1)
             {
-                networkSoundscape.PlaySound(0, 3, 0.1f, 0);
+                if (soundscape != null)
+                {
+                    soundscape.PlayNonNetworkedSound(1, 3, 0.1f);
+                }
+
+                else if (netSoundscape != null)
+                {
+                    netSoundscape.PlaySound(1, 3, 0.1f, 0);
+                }
+
                 cycleMovement--;
             }
 
@@ -402,7 +431,7 @@ public class PlayerController : MonoBehaviour {
             // Jumping - Alex
             StartCoroutine(JumpTime());
             velocity.y = moveSettings.jumpVel;
-            networkSoundscape.PlaySound(4, 4, 0.2f, 0f);
+            //soundscape.PlaySound(4, 4, 0.2f, 0f);
         } else if (jumpInput == 0 && Grounded()) {
 
             //set the anim to not jumping and spawn a blast wave

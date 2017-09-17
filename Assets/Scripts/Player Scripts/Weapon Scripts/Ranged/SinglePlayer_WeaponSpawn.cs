@@ -26,10 +26,12 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
     public GameObject weaponToHide;
 	public GameObject weaponToHide2;
     public MonoBehaviour trailToHide;
+    NonNetworked_Soundscape soundscape;
 
     private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        soundscape = GetComponent<NonNetworked_Soundscape>();
         _sourceID = transform.name;
     }
 
@@ -38,6 +40,7 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse1) && m_Fired == false)
         {
             Fire();
+            PlayThrowSound();
             StartCoroutine(reload());
         }
     }
@@ -81,7 +84,16 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
 		reloading = false;
     }
 
-	public void NoNameShowWeapons() {
+
+    void PlayThrowSound()
+    {
+        if (m_Fired == true)
+        {
+            soundscape.PlayNonNetworkedSound(8, 1, 0.2f);
+        }
+    }
+
+    public void NoNameShowWeapons() {
 		weaponToHide.SetActive(true);
 		weaponToHide2.SetActive(true);
 	}

@@ -13,9 +13,10 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 	private const string THROWINGSWORD_TAG = "ThrowingSword";
 
 	public GameObject collideParticle;
+    NonNetworked_Soundscape playerSoundscape;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 
@@ -50,7 +51,7 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 				transform.position = other.contacts [0].point;
 				GameObject temp = Instantiate (collideParticle, this.gameObject.transform);
 				temp.transform.position = other.contacts [0].point;
-				//PlayImpactSound ();
+				PlayImpactSound();
 				Die ();
 			}
 		} else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG) {
@@ -61,13 +62,20 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 				transform.position = other.contacts [0].point;
 				GameObject temp = Instantiate (collideParticle, this.gameObject.transform);
 				temp.transform.position = other.contacts [0].point;
-				//PlayImpactSound();
+				PlayImpactSound();
 				Die ();
 			}
 		}
 	}
-		
-	void CmdTakeDamage(GameObject robot, float _damage)
+
+    void PlayImpactSound()
+    {
+        playerSoundscape = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<NonNetworked_Soundscape>();
+
+        playerSoundscape.PlayNonNetworkedSound(11, 1, 0.2f);
+    }
+
+    void CmdTakeDamage(GameObject robot, float _damage)
 	{
 		if (robot.GetComponent<Drone_bot> () != null) {
 			robot.GetComponent<Drone_bot> ().RangedHit ();

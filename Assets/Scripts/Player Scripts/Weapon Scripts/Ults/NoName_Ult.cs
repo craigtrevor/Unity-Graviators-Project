@@ -43,7 +43,11 @@ public class NoName_Ult : NetworkBehaviour {
     Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
 
-    public NetworkAnimator playerNetAnimator;
+    [SerializeField]
+    Animator playerAnimator;
+
+    [SerializeField]
+    NetworkAnimator playerNetAnimator;
 
     Vector3 startSpot;
     Vector3 target;
@@ -117,8 +121,6 @@ public class NoName_Ult : NetworkBehaviour {
         } else if (!isDashing) {
             canDash = false;
         }
-
-        
 
         playerScript.isDashing = isDashing;
 
