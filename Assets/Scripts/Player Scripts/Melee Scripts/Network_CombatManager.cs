@@ -128,16 +128,15 @@ public class Network_CombatManager : NetworkBehaviour {
 
     }
 
-    IEnumerator stunTimer(float stunTime) {
-        if (!isLocalPlayer) {
-			playerController.stunned = true;
-			anim.SetBool ("Stun", true);
-			GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
-			stunParticle.GetComponent<DestroyParticle>().delayBeforeDeath = stunTime;
-            yield return new WaitForSeconds(stunTime);
-        }
-		playerController.stunned = false;
-		anim.SetBool ("Stun", false);
+    IEnumerator stunTimer(float stunTime)
+    { 
+        playerController.stunned = true;
+        anim.SetBool("Stun", true);
+        GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
+        stunParticle.GetComponent<DestroyParticle>().delayBeforeDeath = stunTime;
+        yield return new WaitForSeconds(stunTime);
+        playerController.stunned = false;
+        anim.SetBool("Stun", false);
     }
 
     public void SlowForSeconds(float slowTime) {
