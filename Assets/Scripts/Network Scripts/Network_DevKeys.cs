@@ -70,8 +70,8 @@ public class Network_DevKeys : NetworkBehaviour {
             }
             if (Input.GetKey(KeyCode.Alpha2)) // hold 2 to damage
             {
-                    CmdTakeDamage(gameObject.name, 10, transform.name);
-               
+                CmdTakeDamage(gameObject.name, 100 * Time.deltaTime, transform.name);
+
             }
             if (Input.GetKeyDown(KeyCode.Alpha3)) // key 3 to replenish/deplete ult
             {
@@ -97,11 +97,15 @@ public class Network_DevKeys : NetworkBehaviour {
             {
                 gameObject.transform.position = spawnpostion;
             }
-            if (Input.GetKeyDown(KeyCode.C)) // key 6 to go to spawn;
+            if (Input.GetKeyDown(KeyCode.Alpha7)) // key 7 to selfstun for 2 secodns
+            {
+                networkCombatManager.StunForSeconds(2);
+            }
+            if (Input.GetKeyDown(KeyCode.C)) // key c to sturn on clash
             {
                 gameObject.GetComponent<Network_CombatManager>().clashActive = true;
             }
-            if (Input.GetKeyDown(KeyCode.A)) // key 6 to go to spawn;
+            if (Input.GetKeyDown(KeyCode.A)) // key a to turn on always attack
             {
                 gameObject.GetComponent<Network_CombatManager>().alwaysAttack = true;
             }
