@@ -12,6 +12,8 @@ public class SpikeTrap : NetworkBehaviour {
 	public bool countingDown;
 	public bool spikesOut;
 	public GameObject spikes;
+	public GameObject baseObj;
+	public bool blinking;
 	 
 	void SetInitialReferences(string _sourceID)
 	{
@@ -40,6 +42,9 @@ public class SpikeTrap : NetworkBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider) {
+		if (!blinking) {
+			StartCoroutine (Blink ());
+		}
 		if (!countingDown) {
 			StartCoroutine (CountDown ());
 			countingDown = true;
@@ -81,6 +86,22 @@ public class SpikeTrap : NetworkBehaviour {
 		for (int i = 0; i < affectedList.Count; i++) {
 			CmdTakeDamage (affectedList[i].gameObject.name, 1000, sourceID);
 		}
+	}
+
+	IEnumerator Blink() {
+		blinking = true;
+		float emissionStrength = 0.1f;
+		while (emissionStrength < 2f) {
+			baseObj.GetComponent<Renderer> ().materials [1].SetColor ("_EmissionColor", new Color(1f, 1f, 0f, 1f) * emissionStrength);
+			emissionStrength += 0.1f;
+			yield return new WaitForSeconds (0.05f);
+		}
+		while (emissionStrength > 0f) {
+			baseObj.GetComponent<Renderer> ().materials [1].SetColor ("_EmissionColor", new Color(1f, 1f, 0f, 1f) * emissionStrength);
+			emissionStrength -= 0.1f;
+			yield return new WaitForSeconds (0.05f);
+		}
+		blinking = false;
 	}
 
 	[Command]
