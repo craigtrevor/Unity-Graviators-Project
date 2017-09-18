@@ -50,7 +50,7 @@ public class UI_LoginMenu : MonoBehaviour {
         Register_ConfirmPasswordField.text = "";
         //LoggedIn_DataInputField.text = "";
         //LoggedIn_DataOutputField.text = "";
-        Login_ErrorText.text = "";
+        Login_ErrorText.text = "Reminder: It's case-sensitive";
         Register_ErrorText.text = "";
         LoggedIn_DisplayUsernameText.text = "";
     }
