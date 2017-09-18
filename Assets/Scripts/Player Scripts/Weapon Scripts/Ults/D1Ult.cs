@@ -43,7 +43,7 @@ public class D1Ult : NetworkBehaviour {
     // Use this for initialization
     void Start() {
 
-        _sourceID = transform.name;
+        _sourceID = transform.root.name;
 
         gravityScript = GetComponentInChildren<GravityAxisScript>();
         playerController = GetComponentInChildren<PlayerController>();

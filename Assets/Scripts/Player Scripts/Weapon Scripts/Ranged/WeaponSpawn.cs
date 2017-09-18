@@ -57,7 +57,7 @@ public class WeaponSpawn : NetworkBehaviour {
     private void Start() {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Collider2D = GetComponent<Collider2D>();
-        _sourceID = transform.name;
+        _sourceID = transform.root.name;
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
 		combatManager = transform.GetComponent<Network_CombatManager> ();
         networkPlayerManagerScript = transform.GetComponent<Network_PlayerManager>();

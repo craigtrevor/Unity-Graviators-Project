@@ -117,7 +117,7 @@ public class damageRange : NetworkBehaviour
     [Client]
     void OnCollisionEnter(Collision other)
     {
-        if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.name != sourceID)
+        if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.root.name != sourceID)
         {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
