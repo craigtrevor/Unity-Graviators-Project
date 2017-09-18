@@ -60,7 +60,7 @@ public class CompactHud : MonoBehaviour {
 	}
 
 	public void Update() {
-		thisTransform.position = new Vector2 (Screen.width / 2, Screen.height);
+		thisTransform.position = new Vector2 ((Screen.width / 2) - 24, Screen.height);
 
 		playerHealth = networkPlayerManager.GetHealthPct();
 		playerUlt = networkPlayerManager.GetUltimatePct();
