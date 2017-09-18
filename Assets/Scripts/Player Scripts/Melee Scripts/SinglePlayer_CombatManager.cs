@@ -76,7 +76,8 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	public ParticleSystem gravLandParticleLarge;
 
 	// Scripts
-	PlayerController playerControllermodifier;
+	Sp_Controller playerControllermodifier;
+	//PlayerController playerControllermodifier;
 	Dash dashScript;
     NonNetworked_Soundscape soundscape;
 
@@ -138,17 +139,17 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	IEnumerator stunTimer(float stunTime)
 	{
 		//play stun particles
-		this.gameObject.GetComponentInChildren<PlayerController>().enabled = false;
+		this.gameObject.GetComponentInChildren<Sp_Controller>().enabled = false;
 		Debug.Log(" A player has been stunned");
 		yield return new WaitForSeconds(stunTime);
-		this.gameObject.GetComponentInChildren<PlayerController>().stunned = false;
+		this.gameObject.GetComponentInChildren<Sp_Controller>().stunned = false;
 
 		Debug.Log("the player can move agian");
 	}
 
 	IEnumerator slowTimer()
 	{
-		playerControllermodifier = this.gameObject.GetComponentInChildren<PlayerController>();
+		playerControllermodifier = this.gameObject.GetComponentInChildren<Sp_Controller>();
 	
 		playerControllermodifier.moveSettings.forwardVel = reducedWalkSpeed;
 		playerControllermodifier.moveSettings.rightVel = reducedWalkSpeed;
@@ -276,14 +277,14 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	{
 		Debug.Log("knock Back");
 		tutmanager.clashBounced = true;
-		GetComponentInChildren<PlayerController>().enabled = false; // turn off player controls
+		GetComponentInChildren<Sp_Controller>().enabled = false; // turn off player controls
 		playerRigidbody.constraints = RigidbodyConstraints.None; // allows the player to move around the 3 axis's
 		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation; // stops the player from rotating
 		playerRigidbody.AddForce(cameraRotation.forward * -thrust);
 		yield return new WaitForSeconds(delay);
 		playerRigidbody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
 		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-		GetComponentInChildren<PlayerController>().enabled = true; // turn on player controls
+		GetComponentInChildren<Sp_Controller>().enabled = true; // turn on player controls
 	}
 
 	void PlayerVelocity()
