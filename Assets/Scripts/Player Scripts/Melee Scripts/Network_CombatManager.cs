@@ -133,7 +133,7 @@ public class Network_CombatManager : NetworkBehaviour {
     }
 
     public void StunForSeconds(float stunTime) {
-        StartCoroutine(slowTimer(stunTime, true));
+        StartCoroutine(stunTimer(stunTime, true));
     }
 
     IEnumerator stunTimer(float stunTime, bool ignoreLocalWarning) {
@@ -141,6 +141,7 @@ public class Network_CombatManager : NetworkBehaviour {
             playerController.stunned = true;
             anim.SetBool("Stun", true);
             GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
+			stunParticle.transform.position = new Vector3 (stunParticle.transform.position.x, stunParticle.transform.position.y + 3, stunParticle.transform.position.z);
             stunParticle.GetComponent<DestroyParticle>().delayBeforeDeath = stunTime;
             yield return new WaitForSeconds(stunTime);
         }

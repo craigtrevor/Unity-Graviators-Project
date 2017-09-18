@@ -70,6 +70,10 @@
      <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\ParticleManager.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\SplineController\MathUtils.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\SplineController\SplineController.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\SplineController\SplineInterpolator.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\SplineParticles.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\TeslaCoilScrollUp.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
      <Compile Include="Assets\Scripts\Misc Scripts\DestroyParticle.cs" />
