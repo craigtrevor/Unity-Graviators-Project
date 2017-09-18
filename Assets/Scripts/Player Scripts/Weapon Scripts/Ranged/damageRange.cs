@@ -119,14 +119,15 @@ public class damageRange : NetworkBehaviour {
         {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
-                CmdTakeDamage(other.gameObject.name, swordDamage, sourceID);
 				GameObject temp2 = new GameObject ();
 				temp2.transform.SetParent(other.gameObject.transform);
 				transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                PlayImpactSound();
+                CmdTakeDamage(other.gameObject.name, swordDamage, sourceID);
+                //networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
+                //PlayImpactSound();
                 Die();
             }
 
@@ -139,7 +140,8 @@ public class damageRange : NetworkBehaviour {
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 CmdTakeDamage(other.gameObject.name, d1Damage, sourceID);
-                PlayImpactSound();
+                //networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
+                //PlayImpactSound();
                 Die();
             }
 
@@ -160,7 +162,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                PlayImpactSound();
+                //PlayImpactSound();
                 Die();
             }
 
@@ -172,7 +174,7 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                PlayImpactSound();
+                //PlayImpactSound();
                 Die();
             }
         }
@@ -180,8 +182,6 @@ public class damageRange : NetworkBehaviour {
 
     void PlayImpactSound()
     {
-        networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
-
         if (this.gameObject.tag == THROWINGSWORD_TAG)
         {
             networkSoundscape.PlayNonNetworkedSound(11, 1, 0.2f);

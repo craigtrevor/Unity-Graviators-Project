@@ -21,6 +21,12 @@ public class Network_SceneManager : MonoBehaviour
 
     void Awake()
     {
+        // Create a reference to the current scene.
+        currentScene = SceneManager.GetActiveScene();
+
+        // Retrieve the name of this scene.
+        sceneName = currentScene.name;
+
         isPlaying = true;
         wonMatch = false;
 
