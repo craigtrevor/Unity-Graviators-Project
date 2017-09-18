@@ -11,15 +11,12 @@ public class UI_ButtonScripts : MonoBehaviour
     //Once a button is pressed the scene will change to another scene depending on the assigned scene in the string: NameofLevel
     public void ChangeScreen(string NameofLevel)
     {
-        SceneManager.LoadScene(NameofLevel);
-
-        Debug.Log("Please wait as the scene changes");
+        StartCoroutine(DelaySceneLoad(NameofLevel));
     }
 
     public void ShutdownMatch(string NameofLevel)
     {
-        SceneManager.LoadScene(NameofLevel);
-
+        StartCoroutine(DelaySceneLoad(NameofLevel));
         NetworkManager.Shutdown();
 
         Debug.Log("Please wait as the scene changes");
@@ -29,24 +26,19 @@ public class UI_ButtonScripts : MonoBehaviour
     public void LoadCharacterSelectionLAN(string NameofLevel)
     {
         Network_SceneManager.instance.serverScene = "JoinLAN_Scene";
-        SceneManager.LoadScene(NameofLevel);
-
-        Debug.Log("Please wait as the scene changes");
+        StartCoroutine(DelaySceneLoad(NameofLevel));
     }
 
     public void LoadCharacterSelectionInternet(string NameofLevel)
     {
         Network_SceneManager.instance.serverScene = "Lobby_Scene";
-        SceneManager.LoadScene(NameofLevel);
-
-        Debug.Log("Please wait as the scene changes");
+        StartCoroutine(DelaySceneLoad(NameofLevel));
     }
 
     public void LoadLastScene()
     {
         SceneManager.LoadScene(Network_SceneManager.instance.serverScene);
-
-        Debug.Log("Please wait as the scene changes");
+        StartCoroutine(DelaySceneLoad(null));
     }
 
     //Once a button is pressed the application will close
@@ -55,4 +47,11 @@ public class UI_ButtonScripts : MonoBehaviour
         Application.Quit();
 		Debug.Log ("Please, don't leave me");
 	}
+
+    IEnumerator DelaySceneLoad(string NameofLevel)
+    {
+        yield return new WaitForSeconds(0.2f);
+        Debug.Log("Please wait as the scene changes");
+        SceneManager.LoadScene(NameofLevel);
+    }
 }
