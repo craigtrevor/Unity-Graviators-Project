@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class damageRange : NetworkBehaviour {
+public class damageRange : NetworkBehaviour
+{
 
     private string sourceID;
 
@@ -25,8 +26,8 @@ public class damageRange : NetworkBehaviour {
 
     public bool dying = false;
     public float deathCount;
-	public ParticleManager particleManager;
-    public GameObject colliderFrame;
+    public ParticleManager particleManager;
+    //public GameObject colliderFrame;
 
     // D1
     public int d1Damage;
@@ -48,9 +49,10 @@ public class damageRange : NetworkBehaviour {
     Network_Soundscape networkSoundscape;
     PlayerController playerController;
 
-	void Awake() {
-		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
-	}
+    void Awake()
+    {
+        particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+    }
 
     void SetInitialReferences(string _sourceID)
     {
@@ -64,8 +66,8 @@ public class damageRange : NetworkBehaviour {
 
     void transformSparkusRanged()
     {
-        transform.Translate(Vector3.forward * 0.2f);
-        transform.localScale += new Vector3(0.2f, 0.2f, 0f);
+        //transform.Translate(Vector3.forward * 0.1f);
+        //transform.localScale += new Vector3(0.05f, 0.05f, 0f);
 
         Destroy(this.gameObject, 2f);
     }
@@ -113,18 +115,18 @@ public class damageRange : NetworkBehaviour {
     //}
 
     [Client]
-	void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision other)
     {
         if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.name != sourceID)
         {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
                 CmdTakeDamage(other.gameObject.name, swordDamage, sourceID);
-				GameObject temp2 = new GameObject ();
-				temp2.transform.SetParent(other.gameObject.transform);
-				transform.SetParent(temp2.transform);
+                GameObject temp2 = new GameObject();
+                temp2.transform.SetParent(other.gameObject.transform);
+                transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
-				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
+                GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 PlayImpactSound();
                 Die();
@@ -132,11 +134,11 @@ public class damageRange : NetworkBehaviour {
 
             if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
             {
-				GameObject temp2 = new GameObject ();
-				temp2.transform.SetParent(other.gameObject.transform);
-				transform.SetParent(temp2.transform);
+                GameObject temp2 = new GameObject();
+                temp2.transform.SetParent(other.gameObject.transform);
+                transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
-				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
+                GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 CmdTakeDamage(other.gameObject.name, d1Damage, sourceID);
                 PlayImpactSound();
@@ -146,7 +148,7 @@ public class damageRange : NetworkBehaviour {
             if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if sparkus range weapon hit the player
             {
                 CmdTakeDamage(other.gameObject.name, sparkusDamage, sourceID);
-                Die();
+                //Die();
             }
         }
 
@@ -154,11 +156,11 @@ public class damageRange : NetworkBehaviour {
         {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
-				GameObject temp2 = new GameObject ();
-				temp2.transform.SetParent(other.gameObject.transform);
-				transform.SetParent(temp2.transform);
+                GameObject temp2 = new GameObject();
+                temp2.transform.SetParent(other.gameObject.transform);
+                transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
-				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
+                GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 PlayImpactSound();
                 Die();
@@ -166,11 +168,11 @@ public class damageRange : NetworkBehaviour {
 
             if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
             {
-				GameObject temp2 = new GameObject ();
-				temp2.transform.SetParent(other.gameObject.transform);
-				transform.SetParent(temp2.transform);
+                GameObject temp2 = new GameObject();
+                temp2.transform.SetParent(other.gameObject.transform);
+                transform.SetParent(temp2.transform);
                 transform.position = other.contacts[0].point;
-				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
+                GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 PlayImpactSound();
                 Die();
@@ -213,9 +215,9 @@ public class damageRange : NetworkBehaviour {
         }
     }
 
-	private IEnumerator DieNow()
+    private IEnumerator DieNow()
     {
-		yield return new WaitForSeconds (5f);
-		Destroy(gameObject);
-	}
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
+    }
 }

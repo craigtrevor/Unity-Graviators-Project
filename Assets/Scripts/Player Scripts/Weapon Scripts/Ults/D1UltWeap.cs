@@ -45,7 +45,7 @@ public class D1UltWeap : NetworkBehaviour {
         
         foreach (Collider hitCol in hitColliders) {
             if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG && hitCol.gameObject.name != sourceID) {
-
+                //Debug.Log("i hit " + hitCol);
                 CmdTakeDamage(hitCol.gameObject.name, damage, sourceID);
             }
         }

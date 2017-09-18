@@ -79,7 +79,7 @@ public class SparkusUlt : NetworkBehaviour {
             laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, hit.distance / 2f);
         }
 
-        if (charge <= 0) {
+        if (charge <= 10) {
             isLasering = false;
             networkCombatManager.isUlting = false;
             Destroy(laser);
