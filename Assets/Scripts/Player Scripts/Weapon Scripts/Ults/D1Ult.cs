@@ -87,7 +87,7 @@ public class D1Ult : NetworkBehaviour {
         if (canCharge) {
             CmdChargeUltimate(passiveCharge, transform.name);
         } else {
-            CmdChargeUltimate(-200f, transform.name);
+            CmdChargeUltimate(-300f, transform.name);
         }
 
         charge = networkPlayerManager.currentUltimateGain;
@@ -103,7 +103,7 @@ public class D1Ult : NetworkBehaviour {
             isStomping = true;
             networkCombatManager.isUlting = true;
             playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);
-            playerAnimator.SetBool("Atacking", false);
+            //playerAnimator.SetBool("Atacking", false);
             playerAnimator.SetBool("UltimateLoop", true);
 
         } else if (charge <= 0f) {

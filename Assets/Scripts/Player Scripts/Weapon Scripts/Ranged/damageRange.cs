@@ -64,8 +64,8 @@ public class damageRange : NetworkBehaviour {
 
     void transformSparkusRanged()
     {
-        transform.Translate(Vector3.forward * 0.2f);
-        transform.localScale += new Vector3(0.2f, 0.2f, 0f);
+        //transform.Translate(Vector3.forward * 0.2f);
+        //transform.localScale += new Vector3(0.2f, 0.2f, 0f);
 
         Destroy(this.gameObject, 2f);
     }

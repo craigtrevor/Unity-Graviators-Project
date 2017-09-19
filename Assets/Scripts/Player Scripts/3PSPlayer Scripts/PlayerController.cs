@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour {
     public bool stunned;
     public bool isDashing;
     private bool recieveInput;
-    private bool isShiftPressed;
+    public bool isShiftPressed;
 
     private int cycleMovement;
     private float audioStepLength = 0.45f;
@@ -162,11 +162,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     void shiftPressed() {
-		if (Input.GetButtonDown("Crouch") && !netCombatManager.isUlting) {
+		if (Input.GetButtonDown("SwitchGrav") && !netCombatManager.isUlting) {
             isShiftPressed = true;
         }
 
-		if (Input.GetButtonUp("Crouch") && !netCombatManager.isUlting) {
+		if (Input.GetButtonUp("SwitchGrav") && !netCombatManager.isUlting) {
             isShiftPressed = false;
         }
 
@@ -277,8 +277,14 @@ public class PlayerController : MonoBehaviour {
             if (UI_PauseMenu.IsOn == true)
                 return;
 
-            // Walking - Alex
-            playerAnimator.SetBool("Moving", true);
+            if (forwardInput > 0)
+            { //If moving forward
+                // Walking - Alex
+                playerAnimator.SetBool("Moving", true);
+            } else
+            { //If moving backwards
+                playerAnimator.SetBool("Moving", true);
+            }
 
             // move
             velocity.z = moveSettings.forwardVel * forwardInput;
@@ -305,7 +311,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (playerAnimator.GetBool("InAir") == false && playerAnimator.GetBool("Moving") == true && playerStep == true && playerAnimator == true && !Input.GetButton("Jump"))
         {
-            Debug.Log("Playing");
+            //Debug.Log("Playing");
 
             if (cycleMovement == 0)
             {
@@ -356,6 +362,16 @@ public class PlayerController : MonoBehaviour {
 
                 if (UI_PauseMenu.IsOn == true)
                     return;
+
+                if (rightInput > 0)
+                { //If moving right                  
+                    
+                }
+                else
+                { //If moving left
+                    
+                }
+
                 // move
                 velocity.x = moveSettings.rightVel * rightInput;
             } else {
