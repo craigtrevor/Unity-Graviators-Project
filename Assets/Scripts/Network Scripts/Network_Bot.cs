@@ -39,7 +39,7 @@ public class Network_Bot : NetworkBehaviour {
 	public Transform fireTransform; // a child of the player where the weapon is spawned
 	public Transform secondaryFireTransform; // second position for no name
 	public bool right;
-	public float force = 2000;
+	public float force = 200;
 
 	private Rigidbody m_Rigidbody;
 
@@ -56,6 +56,8 @@ public class Network_Bot : NetworkBehaviour {
 	public ParticleSystem D1Ranged;
 	public GameObject wingRing;
 
+	public bool rangedAttacking;
+
 	// Use this for initialization
 	void Start () {
 		username.text = "Test Bot";
@@ -71,7 +73,8 @@ public class Network_Bot : NetworkBehaviour {
 		if (health <= 0) {
 			Die();
 		}
-		if (!isAttacking) {
+		if (!rangedAttacking) {
+			rangedAttacking = true;
 			StartCoroutine(ActionDelay ());
 		}
 	}
@@ -209,8 +212,11 @@ public class Network_Bot : NetworkBehaviour {
 
 	[Client]
 	private void SecondaryAttack() {
+		print ("called");
 		anim.SetBool("Attacking", false);
 		netanim.SetTrigger("Ranged Attack");
+		reloading = true;
+		StartCoroutine(reload());
 	}
 
 	public void RangedAttack() {
@@ -244,6 +250,7 @@ public class Network_Bot : NetworkBehaviour {
 	[Command]
 	private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation)
 	{
+		print ("cmdfire");
 		// create an instance of the weapon and store a reference to its rigibody
 		GameObject weaponInstance = Instantiate(weapon, position, rotation);
 
@@ -273,16 +280,9 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	IEnumerator reload() {
-		// delay before the player can fire agian
-		reloadTimer = 0;
-
-		for (int i = 0; i < 6; i++) {
-			yield return new WaitForSeconds(reloadTime/6f);
-			reloadTimer += 1;
-		}
+		yield return new WaitForSeconds(reloadTime);
 
 		if (playerCharacterID == "ERNN") {
-			//play reload anim and wait for it to trigger
 			anim.SetBool("Attacking", false);
 			netanim.SetTrigger("Ranged Attack Reload");
 		}
@@ -300,9 +300,9 @@ public class Network_Bot : NetworkBehaviour {
 
 		//networkSoundscape.PlayNonNetworkedSound(13, 1, 0.1f);
 
-		// allow the player to fire again
-
 		reloading = false;
+		yield return new WaitForSeconds(reloadTime);
+		rangedAttacking = false;
 	}
 
 	IEnumerator D1WingOn(float time) {
@@ -325,7 +325,7 @@ public class Network_Bot : NetworkBehaviour {
 		}
 	}
 
-	public void NoNameShowWeapons (AnimationEvent animEvent) {
+	public void NoNameShowWeapons () {
 		//show nonames the weapons again
 		weaponToHide.SetActive (true);
 		weaponToHide2.SetActive (true);

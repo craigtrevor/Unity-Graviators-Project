@@ -67,7 +67,7 @@ public class AnimationEventPassalong : MonoBehaviour {
 			SP_wepSpawn.NoNameShowWeapons ();
 		}
 		if (netBot != null) {
-			netBot.RangedAttack ();
+			netBot.NoNameShowWeapons ();
 		}
 	}
 
