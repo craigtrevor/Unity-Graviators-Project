@@ -26,7 +26,7 @@ public class damageRange : NetworkBehaviour {
     public bool dying = false;
     public float deathCount;
 	public ParticleManager particleManager;
-    public GameObject colliderFrame;
+    //public GameObject colliderFrame;
 
     // D1
     public int d1Damage;
@@ -148,13 +148,13 @@ public class damageRange : NetworkBehaviour {
             if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if sparkus range weapon hit the player
             {
                 CmdTakeDamage(other.gameObject.name, sparkusDamage, sourceID);
-                Die();
+                //Die();
             }
         }
 
         else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG && other.transform.name != sourceID)
         {
-            if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
+            if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the arena
             {
 				GameObject temp2 = new GameObject ();
 				temp2.transform.SetParent(other.gameObject.transform);
@@ -166,7 +166,7 @@ public class damageRange : NetworkBehaviour {
                 Die();
             }
 
-            if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
+            if (this.gameObject.tag == UNITD1RANGEWEAPON_TAG) // if UnitD1 range weapon hit the arena
             {
 				GameObject temp2 = new GameObject ();
 				temp2.transform.SetParent(other.gameObject.transform);

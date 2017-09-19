@@ -100,6 +100,10 @@
     <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\SplineController\MathUtils.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\SplineController\SplineController.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\SplineController\SplineInterpolator.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\SplineParticles.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\TeslaCoilScrollUp.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
     <Compile Include="Assets\Scripts\Misc Scripts\DestroyParticle.cs" />
@@ -109,6 +113,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManagerV2.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DevKeys.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_EndMatch.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
@@ -132,6 +137,8 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_TrapManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\3PSPlayer Scripts\PlayerCameraController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\3PSPlayer Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\3PSPlayer Scripts\SinglePlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\3PSPlayer Scripts\Sp_Controller.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\DeathCamera.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\FreeCamScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Camera Scripts\OrbitCamera.cs" />
@@ -144,6 +151,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\GravityBlockScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\HorArrowsScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\KeyMat.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\Sp_GravitySwitch.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\Network_CombatManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
@@ -184,6 +192,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\CompactHud.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\deathScreenCountdown.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\mouseHover.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_InputNavigator.cs" />

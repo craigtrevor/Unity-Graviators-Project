@@ -120,7 +120,7 @@ public class SparkusUlt : NetworkBehaviour {
                 target = hit.transform.gameObject;
             }
 
-            DebugLines(hit.point, colour);
+            //DebugLines(hit.point, colour);
         }
     }
 
