@@ -301,7 +301,6 @@ public class Network_Bot : NetworkBehaviour {
 		//networkSoundscape.PlayNonNetworkedSound(13, 1, 0.1f);
 
 		reloading = false;
-		yield return new WaitForSeconds(reloadTime);
 		rangedAttacking = false;
 	}
 
