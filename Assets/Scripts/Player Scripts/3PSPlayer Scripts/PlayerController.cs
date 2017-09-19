@@ -305,7 +305,6 @@ public class PlayerController : MonoBehaviour {
     {
         if (playerAnimator.GetBool("InAir") == false && playerAnimator.GetBool("Moving") == true && playerStep == true && playerAnimator == true && !Input.GetButton("Jump"))
         {
-            Debug.Log("Playing");
 
             if (cycleMovement == 0)
             {
