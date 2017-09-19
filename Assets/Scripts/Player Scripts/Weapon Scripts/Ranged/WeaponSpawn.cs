@@ -141,7 +141,6 @@ public class WeaponSpawn : NetworkBehaviour {
     {
         // create an instance of the weapon and store a reference to its rigibody
         GameObject weaponInstance = Instantiate(weapon, position, rotation);
-        combatManager.safeList.Add(weaponInstance);
 
         // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
         Vector3 velocity = rigidbodyVelocity + launchForce * forward;

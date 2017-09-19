@@ -39,9 +39,14 @@ public class damageRange : NetworkBehaviour {
 
     private float attackRadius;
     private const string PLAYER_TAG = "Player";
+	private const string BOT_TAG = "NetBot";
     private const string THROWINGSWORD_TAG = "ThrowingSword";
     private const string UNITD1RANGEWEAPON_TAG = "UnitD1_RangedWeapon";
     private const string SPARKUSRANGEWEAPON_TAG = "Sparkus_RangedWeapon";
+
+	public float d1StunTime = 2f;
+	public float sparkusStunTime = 5f;
+	public float nonameSlowTime = 2f;
 
     // scripts
     Network_PlayerManager networkPlayerManager;
@@ -115,7 +120,7 @@ public class damageRange : NetworkBehaviour {
     [Client]
 	void OnCollisionEnter(Collision other)
     {
-        if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.name != sourceID)
+		if (other.transform.root != transform.root && (other.gameObject.tag == PLAYER_TAG || other.gameObject.tag == BOT_TAG) && other.transform.name != sourceID)
         {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
@@ -125,7 +130,15 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                CmdTakeDamage(other.gameObject.name, swordDamage, sourceID);
+				if (other.gameObject.tag == PLAYER_TAG) {
+					CmdTakeDamage (other.gameObject.name, swordDamage, sourceID);
+					other.gameObject.GetComponent<Network_CombatManager> ().SlowForSeconds (nonameSlowTime);
+				}
+
+				if (other.gameObject.tag == BOT_TAG) {
+					other.gameObject.GetComponent<Network_Bot> ().TakeDamage (swordDamage);
+					other.gameObject.GetComponent<Network_Bot> ().Slow (nonameSlowTime);
+				}
                 //networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
                 //PlayImpactSound();
                 Die();
@@ -139,7 +152,15 @@ public class damageRange : NetworkBehaviour {
                 transform.position = other.contacts[0].point;
 				GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
-                CmdTakeDamage(other.gameObject.name, d1Damage, sourceID);
+				if (other.gameObject.tag == PLAYER_TAG) {
+					CmdTakeDamage (other.gameObject.name, d1Damage, sourceID);
+					other.gameObject.GetComponent<Network_CombatManager> ().StunForSeconds (d1StunTime);
+				}
+
+				if (other.gameObject.tag == BOT_TAG) {
+					other.gameObject.GetComponent<Network_Bot> ().TakeDamage (d1Damage);
+					other.gameObject.GetComponent<Network_Bot> ().Stun (d1StunTime);
+				}
                 //networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
                 //PlayImpactSound();
                 Die();
@@ -147,7 +168,15 @@ public class damageRange : NetworkBehaviour {
 
             if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if sparkus range weapon hit the player
             {
-                CmdTakeDamage(other.gameObject.name, sparkusDamage, sourceID);
+				if (other.gameObject.tag == PLAYER_TAG) {
+					CmdTakeDamage (other.gameObject.name, sparkusDamage, sourceID);
+					other.gameObject.GetComponent<Network_CombatManager> ().StunForSeconds (sparkusStunTime);
+				}
+
+				if (other.gameObject.tag == BOT_TAG) {
+					other.gameObject.GetComponent<Network_Bot> ().TakeDamage (sparkusDamage);
+					other.gameObject.GetComponent<Network_Bot> ().Slow (sparkusStunTime);
+				}
                 //Die();
             }
         }
