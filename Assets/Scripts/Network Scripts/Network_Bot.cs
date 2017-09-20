@@ -32,7 +32,6 @@ public class Network_Bot : NetworkBehaviour {
 	public bool stunned;
 	public bool slowed;
 
-	public float speed = 1.5f;
 	public bool movingToPoint;
 	public GameObject currentTarget;
 	public string currentTargetGravity;
@@ -131,7 +130,7 @@ public class Network_Bot : NetworkBehaviour {
 		if (gravity == "-y") {
 			this.transform.rotation = Quaternion.Euler(0, 0, 0);
 			gravVector = yNeg * fallSpeed;
-			if (!Physics.Raycast(transform.position, yNeg, 0.1f)) {
+			if (!Physics.Raycast(transform.position, yNeg, 0.3f)) {
 				isFalling = true;
 			} else {isFalling = false;}
 			if (currentTarget != null) {
@@ -140,7 +139,7 @@ public class Network_Bot : NetworkBehaviour {
 		} else if (gravity == "y") {
 			this.transform.rotation = Quaternion.Euler(0, 0, 180);
 			gravVector = yPlus * fallSpeed;
-			if (!Physics.Raycast(transform.position, yPlus, 0.1f)) {
+			if (!Physics.Raycast(transform.position, yPlus, 0.3f)) {
 				isFalling = true;
 			} else {isFalling = false;}
 			if (currentTarget != null) {
@@ -149,7 +148,7 @@ public class Network_Bot : NetworkBehaviour {
 		} else if (gravity == "z") {
 			this.transform.rotation = Quaternion.Euler(-90, 0, 0);
 			gravVector = zPlus * fallSpeed;
-			if (!Physics.Raycast(transform.position, zPlus, 0.1f)) {
+			if (!Physics.Raycast(transform.position, zPlus, 0.3f)) {
 				isFalling = true;
 			} else {isFalling = false;}
 			if (currentTarget != null) {
@@ -158,7 +157,7 @@ public class Network_Bot : NetworkBehaviour {
 		} else if (gravity == "-z") {
 			this.transform.rotation = Quaternion.Euler(-90, -180, 0);
 			gravVector = zNeg * fallSpeed;
-			if (!Physics.Raycast(transform.position, zNeg, 0.1f)) {
+			if (!Physics.Raycast(transform.position, zNeg, 0.3f)) {
 				isFalling = true;
 			} else {isFalling = false;}
 			if (currentTarget != null) {
@@ -167,7 +166,7 @@ public class Network_Bot : NetworkBehaviour {
 		} else if (gravity == "x") {
 			this.transform.rotation = Quaternion.Euler(-90, 90, 0);
 			gravVector = xPlus * fallSpeed;
-			if (!Physics.Raycast(transform.position, xPlus, 0.1f)) {
+			if (!Physics.Raycast(transform.position, xPlus, 0.3f)) {
 				isFalling = true;
 			} else {isFalling = false;}
 			if (currentTarget != null) {
@@ -176,7 +175,7 @@ public class Network_Bot : NetworkBehaviour {
 		} else if (gravity == "-x") {
 			this.transform.rotation = Quaternion.Euler(-90, -90, 0);
 			gravVector = xNeg * fallSpeed;
-			if (!Physics.Raycast(transform.position, xNeg, 0.1f)) {
+			if (!Physics.Raycast(transform.position, xNeg, 0.3f)) {
 				isFalling = true;
 			} else {isFalling = false;}
 			if (currentTarget != null) {
@@ -222,15 +221,18 @@ public class Network_Bot : NetworkBehaviour {
 
 	void MoveTowardsPoint(Vector3 target) {
 		anim.SetBool("Moving", true);
-		Vector3 direction = target - transform.position;
-		m_Rigidbody.velocity = gravVector + (direction * speed);
+		m_Rigidbody.MovePosition(Vector3.Lerp(transform.position, target, 0.025f));
+		if (isFalling) {
+			m_Rigidbody.velocity = gravVector;
+		}
 	}
 
 	void MoveBackFromPoint(Vector3 target) {
 		anim.SetBool("Moving", true);
-		Vector3 direction = target - transform.position;
-		direction *= -1;
-		m_Rigidbody.velocity = gravVector + (direction * speed);
+		m_Rigidbody.MovePosition(Vector3.Lerp(transform.position, target, 0.025f));
+		if (isFalling) {
+			m_Rigidbody.velocity = gravVector;
+		}
 	}
 
 	void Think() {
@@ -239,7 +241,7 @@ public class Network_Bot : NetworkBehaviour {
 			MoveTowardsPoint (currentTarget.transform.position);
 		}
 
-		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 10 && Vector3.Distance (transform.position, currentTarget.transform.position) > 2) {
+		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 10 && Vector3.Distance (transform.position, currentTarget.transform.position) > 1) {
 			if (Random.Range (0, 1) == 0) {
 				MoveTowardsPoint (currentTarget.transform.position);
 			}
@@ -273,11 +275,6 @@ public class Network_Bot : NetworkBehaviour {
 		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 4 && !isAttacking) {
 			Attack ();
 		}
-	}
-
-	IEnumerator ActionDelay() {
-		yield return new WaitForSeconds(5f);
-		gravity = "y";
 	}
 
 	public void TakeDamage(float damage) {
