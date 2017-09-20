@@ -11,7 +11,10 @@ public class UI_PauseMenu : MonoBehaviour {
     private NetworkManager networkManager;
     private NetworkDiscovery networkDiscovery;
 
-    void Start()
+    // Scripts
+    Network_PlayerManager netPlayerManager;
+
+    void Awake()
     {
         networkManager = NetworkManager.singleton;
         SetNetworkDiscovery();
@@ -28,6 +31,8 @@ public class UI_PauseMenu : MonoBehaviour {
         {
             networkDiscovery = GameObject.Find("NetServer").GetComponent<NetworkDiscovery>();
         }
+
+        netPlayerManager = GetComponentInParent<Network_PlayerManager>();
     }
 
     public void LeaveRoom()
@@ -45,13 +50,23 @@ public class UI_PauseMenu : MonoBehaviour {
 
         else if (Network_SceneManager.instance.serverScene == "JoinLAN_Scene")
         {
-            networkManager.StopHost();
-            networkDiscovery.StopBroadcast();
-            networkDiscovery.SendMessage("DestorySelf", true);
-            NetworkTransport.Shutdown();
-            NetworkTransport.Init();
-            SceneManager.LoadScene("JoinLAN_Scene");
-            Debug.Log("Leaving");
+            if (netPlayerManager.isPlayerServer)
+            {
+                networkManager.StopHost();
+                networkDiscovery.StopBroadcast();
+                networkDiscovery.SendMessage("DestorySelf", true);
+                NetworkTransport.Shutdown();
+                NetworkTransport.Init();
+                SceneManager.LoadScene("JoinLAN_Scene");
+                Debug.Log("Leaving");
+            }
+           
+            else if (!netPlayerManager.isPlayerServer)
+            {
+                networkManager.StopClient();
+                SceneManager.LoadScene("JoinLAN_Scene");
+                Debug.Log("Leaving");
+            }
         }
     }
 }

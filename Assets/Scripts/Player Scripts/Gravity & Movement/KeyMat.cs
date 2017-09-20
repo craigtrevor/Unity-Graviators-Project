@@ -21,7 +21,7 @@ public class KeyMat : MonoBehaviour {
         gravityCharge = GetComponent<GravityAxisScript>().gravityCharge;
 
         foreach (GameObject key in keys) {
-            if (key.transform.IsChildOf(this.transform)) {
+            if (key.transform.IsChildOf(this.transform) && key != null) {
                 ChangeMat(key.GetComponent<Renderer>());
                 key.transform.localScale = ChangeScale(key.transform.localScale);
             }            
