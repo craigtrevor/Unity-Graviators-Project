@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class NoName_Ult : NetworkBehaviour {
 
     private const string ULTCHARGER_TAG = "UltCharger";
+	private const string BOT_TAG = "NetBot";
 
     public GameObject player;
     private PlayerController playerScript;
@@ -203,6 +204,10 @@ public class NoName_Ult : NetworkBehaviour {
 
                 CmdTakeDamage(hitCol.gameObject.name, damage, transform.name);
             }
+			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == BOT_TAG) {
+
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (damage);
+			}
         }
     }
 
