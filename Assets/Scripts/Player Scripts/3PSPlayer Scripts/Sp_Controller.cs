@@ -179,8 +179,9 @@ public class Sp_Controller : MonoBehaviour {
 
 	void GravityInput(bool gravityRelease) {
 		//If shift is pressed (gravity selection)
-		if (UI_PauseMenu.IsOn == true)
+		if (UI_SinglePlayerPauseMenu.isOn == true)
 			return;
+		
 
 		if (/*Input.GetButton("Crouch")*/isShiftPressed) {
 			gravityAxisScript.SetShiftPressed(true); //shiftPressed true
@@ -279,7 +280,7 @@ public class Sp_Controller : MonoBehaviour {
 
 		if (Mathf.Abs(forwardInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
 
-			if (UI_PauseMenu.IsOn == true)
+			if (UI_SinglePlayerPauseMenu.isOn == true)
 				return;
 
 			// Walking - Alex
@@ -296,7 +297,7 @@ public class Sp_Controller : MonoBehaviour {
 			velocity.z = 0;
 		}
 
-		if (UI_PauseMenu.IsOn == true) {
+		if (UI_SinglePlayerPauseMenu.isOn) {
 			// zero velocity
 
 			playerAnimator.SetBool("Moving", false);
@@ -359,7 +360,7 @@ public class Sp_Controller : MonoBehaviour {
 		if (true) {
 			if (Mathf.Abs(rightInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
 
-				if (UI_PauseMenu.IsOn == true)
+				if (UI_SinglePlayerPauseMenu.isOn)
 					return;
 				// move
 				velocity.x = moveSettings.rightVel * rightInput;
@@ -372,7 +373,7 @@ public class Sp_Controller : MonoBehaviour {
 
 	void Turn() {
 
-		if (UI_PauseMenu.IsOn == true)
+		if (UI_SinglePlayerPauseMenu.isOn)
 			return;
 
 		if (!gravityAxisScript.GetGravitySwitching()) {
@@ -390,7 +391,7 @@ public class Sp_Controller : MonoBehaviour {
 	}
 
 	void CheckPause() {
-		if (UI_PauseMenu.IsOn) {
+		if (UI_SinglePlayerPauseMenu.isOn) {
 			if (!Grounded()) {
 				playerAnimator.SetBool("InAir", true);
 				if (CanFall()) {
@@ -407,7 +408,7 @@ public class Sp_Controller : MonoBehaviour {
 	}
 
 	public void ActualJump() {
-		if (UI_PauseMenu.IsOn == true)
+		if (UI_SinglePlayerPauseMenu.isOn == true)
 			return;
 
 		if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
