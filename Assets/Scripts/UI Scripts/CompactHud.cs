@@ -7,7 +7,7 @@ public class CompactHud : MonoBehaviour {
 	[SerializeField]
 	Network_PlayerManager networkPlayerManager;
 
-	RectTransform thisTransform;
+    RectTransform thisTransform;
 
 	public float playerHealth;
 	public float playerUlt;
@@ -60,7 +60,7 @@ public class CompactHud : MonoBehaviour {
 	}
 
 	public void Update() {
-		thisTransform.position = new Vector2 (Screen.width / 2, Screen.height);
+		thisTransform.position = new Vector2 ((Screen.width / 2) - 24, Screen.height);
 
 		playerHealth = networkPlayerManager.GetHealthPct();
 		playerUlt = networkPlayerManager.GetUltimatePct();
@@ -77,7 +77,7 @@ public class CompactHud : MonoBehaviour {
 
 		//set ultimate charge
 		ultMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerUlt * 400, 100);
-		if (playerUlt == 1) {
+		if (playerUlt == 1 && !UI_PauseMenu.IsOn) {
 			ultFrame.SetActive (false);
 			ultHighlight.SetActive (true);
 			ultText.SetActive (true);

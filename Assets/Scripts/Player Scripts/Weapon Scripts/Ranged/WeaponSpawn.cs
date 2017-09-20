@@ -57,7 +57,7 @@ public class WeaponSpawn : NetworkBehaviour {
     private void Start() {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Collider2D = GetComponent<Collider2D>();
-        _sourceID = transform.name;
+        _sourceID = transform.root.name;
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
 		combatManager = transform.GetComponent<Network_CombatManager> ();
         networkPlayerManagerScript = transform.GetComponent<Network_PlayerManager>();
@@ -137,27 +137,35 @@ public class WeaponSpawn : NetworkBehaviour {
 	}
 
     [Command]
-    private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation) {
-            // create an instance of the weapon and store a reference to its rigibody
-			GameObject weaponInstance = Instantiate(weapon, position, rotation);
-			combatManager.safeList.Add (weaponInstance);
+    private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation)
+    {
+        // create an instance of the weapon and store a reference to its rigibody
+        GameObject weaponInstance = Instantiate(weapon, position, rotation);
+        combatManager.safeList.Add(weaponInstance);
 
-            // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
-            Vector3 velocity = rigidbodyVelocity + launchForce * forward;
+        // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
+        Vector3 velocity = rigidbodyVelocity + launchForce * forward;
 
-			if (playerCharacterID == "UT-D1") {
-				velocity = new Vector3 (velocity.x * 3, velocity.y * 3, velocity.z * 3);
-			}
-				
-            weaponInstance.SendMessage("SetInitialReferences", _sourceID);
-            if (right) {
-                weaponInstance.SendMessage("SetRight");
-            }
+        if (playerCharacterID == "UT-D1")
+        {
+            velocity = new Vector3(velocity.x * 3, velocity.y * 3, velocity.z * 3);
+        }
 
-            // Set the shell's velocity to this velocity.
-			weaponInstance.GetComponent<Rigidbody>().velocity = velocity;
+        weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+        if (right)
+        {
+            weaponInstance.SendMessage("SetRight");
+        }
 
-            NetworkServer.Spawn(weaponInstance.gameObject);
+        // Set the shell's velocity to this velocity.
+        weaponInstance.GetComponent<Rigidbody>().velocity = velocity;
+
+        NetworkServer.Spawn(weaponInstance.gameObject);
+
+        if (playerCharacterID == "SPKS")
+        {
+            weaponInstance.transform.SetParent(fireTransform);
+        }
     }
 
     IEnumerator reload() {

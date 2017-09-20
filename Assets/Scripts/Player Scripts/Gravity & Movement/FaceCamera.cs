@@ -26,13 +26,13 @@ public class FaceCamera : MonoBehaviour {
             raycastPoint = cameraToFace.GetComponent<PlayerCamera>().raycastPoint;
 
             if (lerpFace) {
-                relativePos = Vector3.Lerp(relativePos, raycastPoint - transform.position, Time.deltaTime * 5f);
+                relativePos = Vector3.Lerp(relativePos, raycastPoint - transform.position, Time.deltaTime * 3f);
+                transform.rotation = Quaternion.LookRotation(relativePos);
                 /*Debug.Log("am lerping");*/
             } else {
-                relativePos = raycastPoint - transform.position;
+                transform.LookAt(raycastPoint, transform.parent.up);
             }
-
-            transform.rotation = Quaternion.LookRotation(relativePos);
+       
             //Debug.DrawLine(this.transform.position, raycastPoint);
         } else {
             transform.rotation = Quaternion.Lerp(transform.rotation, cameraToFace.transform.rotation, Time.deltaTime * 10); //Set rotation of text to grav cam
