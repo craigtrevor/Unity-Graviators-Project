@@ -96,7 +96,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 		if (affectedList.Count > 0) {
 			healCounter += healAmount;
 		}
-		if (affectedList.Count == 0) {
+		if (affectedList.Count <= 0) {
 			healCounter -= healAmount/2f;
 		}
 		heal = true;
