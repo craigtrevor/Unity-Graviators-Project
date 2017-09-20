@@ -23,6 +23,7 @@ public class Network_LANServer : NetworkDiscovery
         {
             Debug.Log("Server created on port : " + serverPort);
             broadcastData = serverPort.ToString();
+            useNetworkManager = true;
             Initialize();
             StartAsServer();
             NetworkManager.singleton.StartHost();

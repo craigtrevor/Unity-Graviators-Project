@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
-    public bool isOn = false;
+	public static bool isOn = false;
 
     [SerializeField]
     private GameObject pauseMenu;
@@ -26,6 +26,7 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+		isOn = pauseMenu.activeSelf;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();         
@@ -37,7 +38,6 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
         playerMenu = GameObject.FindWithTag("PlayerHUD");
         playerHUD = playerMenu.GetComponent<Canvas>();
 
-        isOn = pauseMenu.activeSelf;
         pauseMenu.SetActive(!pauseMenu.activeSelf);
 
         if (pauseMenu.activeSelf)
@@ -57,9 +57,12 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
     public void ContinueGame()
     {
-        playerHUD.enabled = false;
+		
+		playerHUD.enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+		pauseMenu.SetActive (false);
+
     }
 
     public void LeaveGame()

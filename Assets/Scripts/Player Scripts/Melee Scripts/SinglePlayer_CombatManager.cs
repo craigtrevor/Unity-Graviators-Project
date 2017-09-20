@@ -185,7 +185,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
 	void AttackPlayer()
 	{
-		if (UI_PauseMenu.IsOn == true)
+		if (UI_SinglePlayerPauseMenu.isOn == true)
 			return;
 
 		if (Input.GetKeyDown(KeyCode.Mouse0) && isAttacking == false && attackCounter == 0)

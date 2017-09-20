@@ -97,6 +97,9 @@ public class Network_PlayerManager : NetworkBehaviour
     Network_Soundscape networkSoundscape;
     Network_Manager networkManagerScript;
 
+    // Network Booleans
+    public bool isPlayerServer;
+
     public override void PreStartClient()
     {
         netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
@@ -112,6 +115,16 @@ public class Network_PlayerManager : NetworkBehaviour
             networkSoundscape = transform.GetComponent<Network_Soundscape>();
             //networkSoundscape.PlayNonNetworkedSound(16, 4);
             firstPlay = true;
+        }
+
+        if (isServer)
+        {
+            isPlayerServer = true;
+        }
+
+        else if (!isServer)
+        {
+            isPlayerServer = false;
         }
     }
 

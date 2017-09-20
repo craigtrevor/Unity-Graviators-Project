@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour {
 	private string str;
 	public Text textObject;
 	public bool textNotDone = false;
+	public bool Scoreboardshown = false;
 
 	public GameObject chatBox;
 
@@ -106,6 +107,10 @@ public class TutorialManager : MonoBehaviour {
 		if (overallProgression == 6) {
 			tutUlt ();
 		}
+		if (overallProgression == 7) 
+		{
+			tabtut ();
+		}
 
 		//movement progression triggers
 		if (overallProgression == 1 && tutProgression == 3) {
@@ -193,7 +198,7 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 9 && !textNotDone) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = target2;
 			target2.SetActive (true);
-			StartCoroutine (AnimateText ("I knew you weren't ready for the scrap heap yet, one more now"));
+			StartCoroutine (AnimateText ("I knew you weren't ready for the scrap heap yet, reach the next target now"));
 		}
 
 		if (tutProgression == 10 && !textNotDone) {
@@ -206,12 +211,10 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 11 && !textNotDone) {
 			StartCoroutine (AnimateText ("Looks like you're good to go four arms, lets see now..."));
 			tutProgression = 12;
-			//overallProgression = 2;
-			//tutProgression = 1;
 			indicator.SetActive (false);
 		}
 		if (tutProgression == 12 && !textNotDone) {
-			StartCoroutine (AnimateText ("Oh, one more thing. You cant keep changing gravity forever"));
+			StartCoroutine (AnimateText ("Oh, just to let you know. You cant keep changing gravity forever"));
 			tutProgression = 13;
 		}
 		if (tutProgression == 13 && !textNotDone) {
@@ -236,18 +239,19 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("Ahh! Perfect timing, this chump is headed for the scrap heap."));
 			tutProgression = 2;
 		}
+
 		if (tutProgression == 2 && !textNotDone) {
-			StartCoroutine (AnimateText ("Run over there and left click to finish the job"));
+			StartCoroutine (AnimateText ("While the gravity wheel is active, you can see your enemies through walls"));
 			tutProgression = 3;
 		}
 
 		if (tutProgression == 3 && !textNotDone) {
-			StartCoroutine (AnimateText ("While the gravity wheel is active, you can see your enemies through walls"));
+			StartCoroutine (AnimateText ("So don't think you can go and hide. your enemies will find you"));
 			tutProgression = 4;
 		}
 
 		if (tutProgression == 4 && !textNotDone) {
-			StartCoroutine (AnimateText ("So don't think you can go and hide. your enemies will find you"));
+			StartCoroutine (AnimateText ("Run over there and left click to finish the job"));
 			tutProgression = 5;
 		}
 
@@ -259,7 +263,7 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("Yes! Yes! Do it again! Kill these 3 as well"));
 			tutProgression = 6;
 		}
-		//didn't trigger
+
 		if (tutProgression == 6 && !textNotDone && botsMurdered == 4) {
 			StartCoroutine (AnimateText ("Ah...Relaxing"));
 			overallProgression = 3;
@@ -324,19 +328,6 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("You're either better at this than you let or, you are very lucky"));
 			tutProgression = 8;
 		}
-//
-//		if (tutProgression == 8 && !textNotDone) {
-//			champ2.SetActive (true);
-//			champ3.SetActive (true);
-//			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remember, falling will do more damage!"));
-//			tutProgression = 9;
-//		}
-//
-////		if (botsMurdered == 7 && tutProgression == 9 && !textNotDone ) {
-////			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remember, move faster than your opponent to hurt them good"));
-////			overallProgression = 4;
-////			tutProgression = 1;
-////		}
 	}
 
 	void tutRanged () {
@@ -376,7 +367,7 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 7;
 		}
 
-		if (tutProgression == 7 && !textNotDone) {
+		if (tutProgression == 7 && !textNotDone && botsMurdered != 5) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("There are still some drones left, go hunt them down"));
 			tutProgression = 8;
@@ -399,10 +390,9 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 8 && !textNotDone && botsMurdered ==4) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("1 left"));
-			tutProgression = 9;
 		}
 	
-		if (tutProgression == 9 && !textNotDone && botsMurdered == 5) {
+		if (tutProgression == 8 && !textNotDone && botsMurdered == 5) {
 			StartCoroutine (AnimateText ("I love the smell of burning drones in the morning"));
 			overallProgression = 5;
 			tutProgression = 1;
@@ -435,7 +425,7 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 5;
 		}
 		if (tutProgression == 5 && !textNotDone) {
-			StartCoroutine (AnimateText ("the red pad here is a damage trap. it will kill you in a real match but not in here. definitely touch this one though "));
+			StartCoroutine (AnimateText ("the grey pad is a spike trap. it will kill you in a real match but not in here. definitely touch this one though "));
 			//the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definitely touch this one though
 		}
 		if (tutProgression == 6 && !textNotDone) {
@@ -447,7 +437,7 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack quicker so you can do some serious damage"));
 		}
 		if (tutProgression == 8 && !textNotDone) {
-			StartCoroutine (AnimateText ("the big green one will slow you down, annoying, but not fatal, so touch it too"));
+			StartCoroutine (AnimateText ("the oil spill one will slow you down, annoying, but not fatal, so touch it too"));
 		}
 		if (tutProgression == 9 && !textNotDone) {
 			StartCoroutine (AnimateText ("So watch out for these pad, and other traps, some will help, some will harm, but that is up to you to find out"));
@@ -472,7 +462,35 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	void tutUlt () {
-		overallProgression = 0;
+		overallProgression = 7;
+	}
+
+	void tabtut()
+	{
+		
+		if (tutProgression == 1 && !textNotDone) {
+			Scoreboardshown = false;
+			StartCoroutine (AnimateText ("Before I finsh with you, You can see other player in you game by holding tab"));
+			tutProgression = 2;
+		}
+
+		if (tutProgression == 2 && !textNotDone) {
+			StartCoroutine (AnimateText ("Hold tab now to bring up the scoreboard"));
+			tutProgression = 3;
+		}
+
+		if(tutProgression == 3 && !textNotDone && Scoreboardshown == true)
+		{
+			StartCoroutine (AnimateText ("This scoreboard will give you the info on the current state of the match."));
+			tutProgression = 4;
+		} 
+
+		if(tutProgression == 4 && !textNotDone)
+		{
+			StartCoroutine (AnimateText ("since there is no match running it wont show anything at this moment, check it in a real game"));
+			tutProgression = 1;
+			overallProgression = 0;
+		} 
 	}
 
 

@@ -28,6 +28,8 @@ public class SP_CompactHud : MonoBehaviour {
 	public GameObject reloadMask;
 	public SinglePlayer_CombatManager combatManager;
 	public TutorialManager tutorialManager;
+	[SerializeField]
+	GameObject scoreboard;
 
 	public bool healTrigger;
 	public bool ultTrigger;
@@ -41,7 +43,7 @@ public class SP_CompactHud : MonoBehaviour {
 
 	void Start()
 	{
-		gravCharge = gravityAxis.GetComponent<GravityAxisScript>().gravityCharge;
+		gravCharge = gravityAxis.GetComponent<Sp_GravitySwitch>().gravityCharge;
 		gravPips.Add (GravFull5);
 		gravPips.Add (GravFull4);
 		gravPips.Add (GravFull3);
@@ -53,6 +55,17 @@ public class SP_CompactHud : MonoBehaviour {
 
 	public void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			tutorialManager.Scoreboardshown = true;
+			scoreboard.SetActive(true);
+		}
+
+		else if (Input.GetKeyUp(KeyCode.Tab))
+		{
+			scoreboard.SetActive(false);
+		}
+
 		if (onSpikeTrap) {
 			tutorialManager.spikeTrapTouched = true;
 			if (!spikeTrigger) {
@@ -101,7 +114,7 @@ public class SP_CompactHud : MonoBehaviour {
 		ultMask.GetComponent<RectTransform> ().sizeDelta = new Vector2 (playerUlt * 400, 100);
 
 		// set grav charges
-		gravCharge = gravityAxis.GetComponent<GravityAxisScript>().gravityCharge;
+		gravCharge = gravityAxis.GetComponent<Sp_GravitySwitch>().gravityCharge;
 		for (int i = 0; i < 5; i++) {
 			if (gravCharge > i) {
 				gravPips [i].SetActive (true);	
