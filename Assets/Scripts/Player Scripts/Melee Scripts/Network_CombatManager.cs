@@ -148,16 +148,23 @@ public class Network_CombatManager : NetworkBehaviour {
     }
 
     void CheckAnimation() {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) {
-            anim.SetBool("Attacking", false);
-        }
 
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("UltimateDash")) {
-            anim.SetBool("Attacking", false);
-        }
+        if (anim.isActiveAndEnabled)
+        {
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                anim.SetBool("Attacking", false);
+            }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) {
-            anim.SetBool("Jump", false);
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("UltimateDash"))
+            {
+                anim.SetBool("Attacking", false);
+            }
+
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                anim.SetBool("Jump", false);
+            }
         }
     }
 
