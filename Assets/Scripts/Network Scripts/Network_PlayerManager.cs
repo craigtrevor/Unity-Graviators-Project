@@ -75,6 +75,7 @@ public class Network_PlayerManager : NetworkBehaviour
     // Player Animator & Model
     public Animator playerAnim;
     public Transform playerModelTransform;
+	public Network_CombatManager combatManager;
 
     //Particles
 	public ParticleManager particleManager;
@@ -106,6 +107,7 @@ public class Network_PlayerManager : NetworkBehaviour
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
         playerCharacterID = networkManagerScript.characterID;
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+		combatManager = this.gameObject.GetComponent<Network_CombatManager> ();
     }
 
     public override void OnStartLocalPlayer()
@@ -176,7 +178,9 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth -= _amount;
 
-		playerAnim.SetTrigger ("Flinch");
+		if (!combatManager.isAttacking) {
+			playerAnim.SetTrigger ("Flinch");
+		}
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
@@ -197,7 +201,9 @@ public class Network_PlayerManager : NetworkBehaviour
             return;
 		currentHealth -= _amount;
 
-		playerAnim.SetTrigger ("Flinch");
+		if (!combatManager.isAttacking) {
+			playerAnim.SetTrigger ("Flinch");
+		}
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 

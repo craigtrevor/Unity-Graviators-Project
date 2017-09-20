@@ -37,6 +37,8 @@ public class Network_Bot : NetworkBehaviour {
 	public string currentTargetGravity;
 	public bool matchingGravity;
 
+	private float speed = 0.025f;
+
 	//---------------------------------
 	// GRAVITY STUFF
 
@@ -221,7 +223,7 @@ public class Network_Bot : NetworkBehaviour {
 
 	void MoveTowardsPoint(Vector3 target) {
 		anim.SetBool("Moving", true);
-		m_Rigidbody.MovePosition(Vector3.Lerp(transform.position, target, 0.025f));
+		m_Rigidbody.MovePosition(Vector3.Lerp(transform.position, target, speed));
 		if (isFalling) {
 			m_Rigidbody.velocity = gravVector;
 		}
@@ -229,7 +231,7 @@ public class Network_Bot : NetworkBehaviour {
 
 	void MoveBackFromPoint(Vector3 target) {
 		anim.SetBool("Moving", true);
-		m_Rigidbody.MovePosition(Vector3.Lerp(transform.position, target, 0.025f));
+		m_Rigidbody.MovePosition(Vector3.Lerp(transform.position, target, speed));
 		if (isFalling) {
 			m_Rigidbody.velocity = gravVector;
 		}
@@ -304,7 +306,9 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	IEnumerator SlowedFor(float time) {
+		speed /= 2f;
 		yield return new WaitForSeconds(time);
+		speed *= 2f;
 		slowed = false;
 	}
 
