@@ -28,7 +28,7 @@ public class D1UltWeap : NetworkBehaviour {
         float multiplierPercent = Mathf.Clamp((-sizeMeasurement - 50f) / 50f, 0f, 1f);
         float sizeMultiplier = Mathf.Max(multiplierPercent * 3f, 0.5f);
         float damageMultiplier = multiplierPercent * 4f;
-        Debug.Log(damageMultiplier * damage);
+        //Debug.Log(damageMultiplier * damage);
 
         this.transform.localScale = Vector3.one * sizeMultiplier;
         damage *= damageMultiplier;

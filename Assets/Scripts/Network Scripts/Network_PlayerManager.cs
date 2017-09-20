@@ -77,8 +77,11 @@ public class Network_PlayerManager : NetworkBehaviour
     public Transform playerModelTransform;
 	public Network_CombatManager combatManager;
 
+    //Gravity axis script
+    public GravityAxisScript gravityScript;
+
     //Particles
-	public ParticleManager particleManager;
+    public ParticleManager particleManager;
 
     private ParticleSystem playHitParticle;
 
@@ -261,6 +264,9 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
 
+        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
+        gravityScript.SetShiftPressed(false);
+
         isDead = true;
         deathbyPlayer = true;
         deathbyTrap = false;
@@ -306,6 +312,9 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private void DieFromTrap(string _sourceID)
     {
+        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
+        gravityScript.SetShiftPressed(false);
+
         isDead = true;
         deathbyPlayer = false;
         deathbyTrap = true;

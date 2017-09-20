@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour {
     public bool stunned;
     public bool isDashing;
     private bool recieveInput;
-    private bool isShiftPressed;
+    public bool isShiftPressed;
 
     private int cycleMovement;
     private float audioStepLength = 0.45f;

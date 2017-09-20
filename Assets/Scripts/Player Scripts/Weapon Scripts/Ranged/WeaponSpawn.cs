@@ -147,7 +147,6 @@ public class WeaponSpawn : NetworkBehaviour {
             velocity = new Vector3(velocity.x * 3, velocity.y * 3, velocity.z * 3);
         }
 
-        weaponInstance.SendMessage("SetInitialReferences", _sourceID);
         if (right)
         {
             weaponInstance.SendMessage("SetRight");
@@ -161,6 +160,10 @@ public class WeaponSpawn : NetworkBehaviour {
         if (playerCharacterID == "SPKS")
         {
             weaponInstance.transform.SetParent(fireTransform);
+            weaponInstance.transform.GetChild(0).SendMessage("SetInitialReferences", _sourceID);
+        } else
+        {
+            weaponInstance.SendMessage("SetInitialReferences", _sourceID);
         }
     }
 
@@ -202,7 +205,7 @@ public class WeaponSpawn : NetworkBehaviour {
 		float emissionStrength = 0.1f;
 		for (int i = 0; i < 10; i++) {
 			emissionStrength += 0.2f;
-			print (emissionStrength);
+			//print (emissionStrength);
 			wingRing.GetComponent<Renderer> ().material.SetFloat ("_Emission", emissionStrength);
 			yield return new WaitForSeconds (time / 10f);
 		}
@@ -212,7 +215,7 @@ public class WeaponSpawn : NetworkBehaviour {
 		float emissionStrength = 2f;
 		for (int i = 0; i < 10; i++) {
 			emissionStrength -= 0.2f;
-			print (emissionStrength);
+			//print (emissionStrength);
 			wingRing.GetComponent<Renderer> ().material.SetFloat ("_Emission", emissionStrength);
 			yield return new WaitForSeconds (time/10f);
 		}

@@ -16,7 +16,7 @@ public class NoName_Ult : NetworkBehaviour {
     public const float MAX_DISTANCE = 40f; 
     public const float TARGET_THRESH = 2f; //distance considered "close enough" to target
     public const float DASH_MAX = 100f;
-    public const float DASH_COST = DASH_MAX / 3f;
+    public const float DASH_COST = DASH_MAX;
 
     [SerializeField]
     private bool isDashing = false;
@@ -53,6 +53,9 @@ public class NoName_Ult : NetworkBehaviour {
 
     Vector3 startSpot;
     Vector3 target;
+
+    public LayerMask colliderMask;
+    //public GameObject sphere;
 
     // Use this for initialization
     void Start() {
@@ -133,6 +136,7 @@ public class NoName_Ult : NetworkBehaviour {
             isCharging = true;
             onPause = false;
             networkPlayerManager.currentUltimateGain -= DASH_COST;
+            networkPlayerManager.currentUltimateGain = 0f;
             if (!isDashing) {
                 isDashing = true;
                 networkCombatManager.isUlting = true;
@@ -184,7 +188,11 @@ public class NoName_Ult : NetworkBehaviour {
     bool ShouldStop() {
         if (isCharging) {
             bool distance = Vector3.Distance(this.transform.position, startSpot) > MAX_DISTANCE; //travelled certain disance from start
-            bool reachedTarget = Vector3.Distance(this.transform.position, target) < TARGET_THRESH; //travelled close enough to target
+            //bool reachedTarget = Vector3.Distance(this.transform.position, target) < TARGET_THRESH; //travelled close enough to target
+            bool reachedTarget = Physics.CheckSphere(transform.position + transform.up*0.5f, 1f, colliderMask);
+            //sphere.transform.position = transform.position + transform.up * 0.5f;
+            //sphere.transform.localScale = Vector3.one * 2f * 1f;
+            
 
             if (distance || reachedTarget) {
                 return true;
