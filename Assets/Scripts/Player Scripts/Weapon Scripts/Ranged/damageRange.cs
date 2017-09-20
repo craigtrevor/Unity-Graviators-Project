@@ -54,7 +54,7 @@ public class damageRange : NetworkBehaviour {
     PlayerController playerController;
 
 	void Awake() {
-		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+		//particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 	}
 
     void SetInitialReferences(string _sourceID)
