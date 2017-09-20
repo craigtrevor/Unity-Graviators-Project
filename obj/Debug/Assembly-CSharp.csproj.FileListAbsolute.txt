@@ -127,7 +127,6 @@ C:\Users\n9482521\Documents\Unity-Graviators-Project\obj\Debug\Assembly-CSharp.d
 C:\Users\n9482521\Documents\Unity-Graviators-Project\obj\Debug\Assembly-CSharp.pdb
 E:\Users\Alex\Documents\Unity-Graviators-Project\Temp\bin\Debug\DatabaseControl.dll
 E:\Users\Alex\Documents\Unity-Graviators-Project\Temp\bin\Debug\UnityEngine.Timeline.dll
-E:\Users\Alex\Documents\Unity-Graviators-Project\Temp\bin\Debug\VacuumShaders.Beast.dll
 E:\Users\Alex\Documents\Unity-Graviators-Project\Temp\bin\Debug\ExCSS.Unity.dll
 E:\Users\Alex\Documents\Unity-Graviators-Project\Temp\bin\Debug\Unity.Legacy.NRefactory.dll
 E:\Users\Alex\Documents\Unity-Graviators-Project\Temp\bin\Debug\UnityEngine.Timeline.xml

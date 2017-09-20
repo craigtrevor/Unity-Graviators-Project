@@ -111,6 +111,7 @@
     <Compile Include="Assets\Scripts\Misc Scripts\TestScript.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManagerV2.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_Bot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DevKeys.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_EndMatch.cs" />

@@ -23,7 +23,7 @@ public class GravityAxisScript : MonoBehaviour {
     private const float RECHARGE_SPEED = 4f;
 
     //Gravity variables
-    private string gravity;
+    public string gravity;
     private Gravity newGravity;
     public bool gravitySwitching;
     private bool cameraSwitching;

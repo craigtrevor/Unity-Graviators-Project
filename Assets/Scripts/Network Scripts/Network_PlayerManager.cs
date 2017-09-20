@@ -75,6 +75,7 @@ public class Network_PlayerManager : NetworkBehaviour
     // Player Animator & Model
     public Animator playerAnim;
     public Transform playerModelTransform;
+	public Network_CombatManager combatManager;
 
     //Gravity axis script
     public GravityAxisScript gravityScript;
@@ -100,12 +101,16 @@ public class Network_PlayerManager : NetworkBehaviour
     Network_Soundscape networkSoundscape;
     Network_Manager networkManagerScript;
 
+    // Network Booleans
+    public bool isPlayerServer;
+
     public override void PreStartClient()
     {
         netManagerGameObject = GameObject.FindGameObjectWithTag("NetManager");
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
         playerCharacterID = networkManagerScript.characterID;
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+		combatManager = this.gameObject.GetComponent<Network_CombatManager> ();
     }
 
     public override void OnStartLocalPlayer()
@@ -115,6 +120,16 @@ public class Network_PlayerManager : NetworkBehaviour
             networkSoundscape = transform.GetComponent<Network_Soundscape>();
             //networkSoundscape.PlayNonNetworkedSound(16, 4);
             firstPlay = true;
+        }
+
+        if (isServer)
+        {
+            isPlayerServer = true;
+        }
+
+        else if (!isServer)
+        {
+            isPlayerServer = false;
         }
     }
 
@@ -166,7 +181,9 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth -= _amount;
 
-		playerAnim.SetTrigger ("Flinch");
+		if (!combatManager.isAttacking) {
+			playerAnim.SetTrigger ("Flinch");
+		}
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 
@@ -187,7 +204,9 @@ public class Network_PlayerManager : NetworkBehaviour
             return;
 		currentHealth -= _amount;
 
-		playerAnim.SetTrigger ("Flinch");
+		if (!combatManager.isAttacking) {
+			playerAnim.SetTrigger ("Flinch");
+		}
 
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
 

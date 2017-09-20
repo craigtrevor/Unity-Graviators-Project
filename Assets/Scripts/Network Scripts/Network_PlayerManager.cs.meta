@@ -1,20 +1,10 @@
 fileFormatVersion: 2
 guid: ee2e73857ed5aa048b953d2d89849932
-timeCreated: 1502602723
-licenseType: Pro
+timeCreated: 1505819250
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - playerAnim: {instanceID: 0}
-  - playerModelTransform: {instanceID: 0}
-  - hitParticle: {fileID: 198000012368742472, guid: 78b71003e8b357d4bbf89c8b5e5e4f0e,
-      type: 2}
-  - slowParticle: {fileID: 198376399869495032, guid: 78607e256a2b1e74bad45facd96d60ff,
-      type: 2}
-  - corpse: {instanceID: 0}
-  - deathParticle: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9,
-      type: 2}
-  - netManagerGameObject: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

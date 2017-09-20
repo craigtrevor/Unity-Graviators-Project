@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class D1UltWeap : NetworkBehaviour {
 
     private const string PLAYER_TAG = "Player";
+	private const string BOT_TAG = "NetBot";
 
     public GameObject colliderFrame;
 
@@ -57,6 +58,9 @@ public class D1UltWeap : NetworkBehaviour {
         if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.root.name != sourceID) {
             CmdTakeDamage(other.gameObject.name, damage, sourceID);
         }
+		if (other.transform.root != transform.root && other.gameObject.tag == BOT_TAG && other.transform.root.name != sourceID) {
+			other.gameObject.GetComponent<Network_Bot> ().TakeDamage (damage);
+		}
     }
 
     [Command]

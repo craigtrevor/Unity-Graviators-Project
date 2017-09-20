@@ -10,6 +10,7 @@ public class SparkusUlt : NetworkBehaviour {
 
     private const string ULTCHARGER_TAG = "UltCharger";
     private const string PLAYER_TAG = "Player";
+	private const string BOT_TAG = "NetBot";
 
     public float laserLength; //laser range
     public float laserDamage;
@@ -148,6 +149,10 @@ public class SparkusUlt : NetworkBehaviour {
             {
                 CmdTakeDamage(target.transform.name, laserDamage, transform.name);
             }
+			if (target.transform.root != transform.root && target.gameObject.tag == BOT_TAG)
+			{
+				target.gameObject.GetComponent<Network_Bot> ().TakeDamage (laserDamage);
+			}
         }
     }
 

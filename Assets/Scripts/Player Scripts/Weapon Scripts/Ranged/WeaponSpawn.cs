@@ -9,21 +9,19 @@ public class WeaponSpawn : NetworkBehaviour {
 
     public int m_PlayerNumber = 1;
 	public GameObject weapon; // prefab of the weapon
-    public Collider2D colliderWeapon;
-    public bool notRigid;
     public Transform fireTransform; // a child of the player where the weapon is spawned
 	public Transform secondaryFireTransform; // second position for no name
     public bool right;
     public float force = 2000; // the force to be applied to the weapon
     public float reloadTime = 15f;
 	public bool reloading;
+	public int reloadTimer = 6;
     //	[SyncVar]
     //	public int m_localID;
 
     //private string m_FireButton; // the input axis that is used for firing
     private Rigidbody m_Rigidbody; // reference to the rigidbody
-    private Collider2D m_Collider2D;
-    public bool m_Fired = false;          // Whether or not the weapon has been launched with this button press.
+    public bool m_Fired = false;   // Whether or not the weapon has been launched with this button press.
 
     [SerializeField]
     Animator playerAnimator;
@@ -47,7 +45,7 @@ public class WeaponSpawn : NetworkBehaviour {
 
     private string playerCharacterID;
 
-	public int reloadTimer = 6;
+
 
     // Scripts
     Network_Soundscape networkSoundscape;
@@ -56,7 +54,6 @@ public class WeaponSpawn : NetworkBehaviour {
 
     private void Start() {
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Collider2D = GetComponent<Collider2D>();
         _sourceID = transform.root.name;
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
 		combatManager = transform.GetComponent<Network_CombatManager> ();
@@ -141,7 +138,6 @@ public class WeaponSpawn : NetworkBehaviour {
     {
         // create an instance of the weapon and store a reference to its rigibody
         GameObject weaponInstance = Instantiate(weapon, position, rotation);
-        combatManager.safeList.Add(weaponInstance);
 
         // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
         Vector3 velocity = rigidbodyVelocity + launchForce * forward;
