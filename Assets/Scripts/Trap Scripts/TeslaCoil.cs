@@ -16,6 +16,7 @@ public class TeslaCoil : NetworkBehaviour {
 	public bool Shocking;
 	public bool damageTick;
 	public List<GameObject> affectedList = new List<GameObject> ();
+	public List<GameObject> affectedBotList = new List<GameObject> ();
 
 	void SetInitialReferences(string _sourceID)
 	{
@@ -40,6 +41,11 @@ public class TeslaCoil : NetworkBehaviour {
 				affectedList.Remove (affectedList [i]);
 			}
 		}
+		for (int i = 0; i < affectedBotList.Count; i++) {
+			if (affectedBotList [i] == null) {
+				affectedBotList.Remove (affectedBotList [i]);
+			}
+		}
 	}
 
 	IEnumerator Shock() {
@@ -56,9 +62,9 @@ public class TeslaCoil : NetworkBehaviour {
 		StopAllCoroutines ();
 	}
 		
-	public bool NameInList(GameObject toCheck) {
-		for (int i = 0; i < affectedList.Count; i++) {
-			if (affectedList [i] == toCheck) {
+	public bool NameInList(GameObject toCheck, List<GameObject> listToCheck) {
+		for (int i = 0; i < listToCheck.Count; i++) {
+			if (listToCheck [i] == toCheck) {
 				return true;
 			}
 		} 
@@ -67,17 +73,28 @@ public class TeslaCoil : NetworkBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
-			if (!NameInList (collider.gameObject)) {
+			if (!NameInList (collider.gameObject, affectedList)) {
 				affectedList.Add (collider.gameObject);
 				CmdTakeDamage (collider.gameObject.name, 5, sourceID);
+			}
+		}
+		if (collider.gameObject.tag == "NetBot") {
+			if (!NameInList (collider.gameObject, affectedBotList)) {
+				affectedBotList.Add (collider.gameObject);
+				collider.gameObject.GetComponent<Network_Bot>().TakeDamage(5);
 			}
 		}
 	}
 
 	void OnTriggerExit(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
-			if (NameInList (collider.gameObject)) {
+			if (NameInList (collider.gameObject, affectedList)) {
 				affectedList.Remove (collider.gameObject);
+			}
+		}
+		if (collider.gameObject.tag == "NetBot") {
+			if (NameInList (collider.gameObject, affectedBotList)) {
+				affectedBotList.Remove (collider.gameObject);
 			}
 		}
 	}
@@ -88,6 +105,9 @@ public class TeslaCoil : NetworkBehaviour {
 		damageTick = true;
 		for (int i = 0; i < affectedList.Count; i++) {
 			CmdTakeDamage (affectedList[i].name, 5, sourceID);
+		}
+		for (int i = 0; i < affectedBotList.Count; i++) {
+			affectedBotList[i].GetComponent<Network_Bot>().TakeDamage(5);
 		}
 	}
 

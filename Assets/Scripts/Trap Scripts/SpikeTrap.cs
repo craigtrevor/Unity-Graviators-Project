@@ -8,6 +8,7 @@ public class SpikeTrap : NetworkBehaviour {
 	private string sourceID;
 
 	public List<GameObject> affectedList = new List<GameObject> ();
+	public List<GameObject> affectedBotList = new List<GameObject> ();
 	public float countDownTimer = 5f;
 	public bool countingDown;
 	public bool spikesOut;
@@ -30,11 +31,16 @@ public class SpikeTrap : NetworkBehaviour {
 				affectedList.Remove (affectedList [i]);
 			}
 		}
+		for (int i = 0; i < affectedBotList.Count; i++) {
+			if (affectedBotList [i] == null) {
+				affectedBotList.Remove (affectedBotList [i]);
+			}
+		}
 	}
 
-	public bool NameInList(GameObject toCheck) {
-		for (int i = 0; i < affectedList.Count; i++) {
-			if (affectedList [i] == toCheck) {
+	public bool NameInList(GameObject toCheck, List<GameObject> listToCheck) {
+		for (int i = 0; i < listToCheck.Count; i++) {
+			if (listToCheck [i] == toCheck) {
 				return true;
 			}
 		} 
@@ -50,8 +56,13 @@ public class SpikeTrap : NetworkBehaviour {
 			KillPlayers ();
 		}
 		if (collider.gameObject.tag == "Player") {
-			if (!NameInList (collider.gameObject)) {
+			if (!NameInList (collider.gameObject, affectedList)) {
 				affectedList.Add (collider.gameObject);
+			}
+		}
+		if (collider.gameObject.tag == "NetBot") {
+			if (!NameInList (collider.gameObject, affectedBotList)) {
+				affectedBotList.Add (collider.gameObject);
 			}
 		}
 	}
@@ -84,8 +95,13 @@ public class SpikeTrap : NetworkBehaviour {
 
 	void OnTriggerExit(Collider collider) {
 		if (collider.gameObject.tag == "Player") {
-			if (NameInList (collider.gameObject)) {
+			if (NameInList (collider.gameObject, affectedList)) {
 				affectedList.Remove (collider.gameObject);
+			}
+		}
+		if (collider.gameObject.tag == "NetBot") {
+			if (NameInList (collider.gameObject, affectedBotList)) {
+				affectedBotList.Remove (collider.gameObject);
 			}
 		}
 	}
@@ -93,6 +109,9 @@ public class SpikeTrap : NetworkBehaviour {
 	void KillPlayers () {
 		for (int i = 0; i < affectedList.Count; i++) {
 			CmdTakeDamage (affectedList[i].gameObject.name, 1000, sourceID);
+		}
+		for (int i = 0; i < affectedBotList.Count; i++) {
+			affectedBotList[i].GetComponent<Network_Bot>().TakeDamage(1000);
 		}
 	}
 

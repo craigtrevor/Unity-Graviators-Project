@@ -21,6 +21,8 @@ public class Network_Bot : NetworkBehaviour {
 	public NetworkAnimator netanim;
 	private ParticleManager particleManager;
 
+	public GameObject corpse;
+
 	public bool isAttacking;
 	public bool isHitting;
 	public int attackCounter;
@@ -29,6 +31,30 @@ public class Network_Bot : NetworkBehaviour {
 
 	public bool stunned;
 	public bool slowed;
+
+	public float speed = 1.5f;
+	public bool movingToPoint;
+	public GameObject currentTarget;
+	public string currentTargetGravity;
+	public bool matchingGravity;
+
+	//---------------------------------
+	// GRAVITY STUFF
+
+	public string gravity;
+	public Vector3 gravVector;
+	public float fallSpeed = 25f;
+	public bool isFalling;
+
+	private static Vector3 xPlus = new Vector3(1, 0, 0);     // x+
+	private static Vector3 xNeg = new Vector3(-1, 0, 0);     // x-
+	private static Vector3 yPlus = new Vector3(0, 1, 0);        // y+
+	private static Vector3 yNeg = new Vector3(0, -1, 0);     // y-
+	private static Vector3 zPlus = new Vector3(0, 0, 1);   // z+
+	private static Vector3 zNeg = new Vector3(0, 0, -1); // z-
+
+	// END OF GRAVITY STUFF
+	//-------------------------------------
 
 	//Ranged Attack Variables
 	public float reloadTime = 15f;
@@ -60,6 +86,7 @@ public class Network_Bot : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		gravity = "-y";
 		username.text = "Test Bot";
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 		m_Rigidbody = GetComponent<Rigidbody>();
@@ -68,15 +95,20 @@ public class Network_Bot : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (currentTarget == null) {
+			FindTarget ();
+		}
+
 		CheckAnimation ();
+		ApplyGravity ();
+		CheckTargetGravity ();
+
 		healthSlider.value = health - 10;
 		if (health <= 0) {
 			Die();
 		}
-		if (!rangedAttacking) {
-			rangedAttacking = true;
-			StartCoroutine(ActionDelay ());
-		}
+
+		Think ();
 	}
 
 	void CheckAnimation() {
@@ -93,9 +125,159 @@ public class Network_Bot : NetworkBehaviour {
 		}
 	}
 
+	void ApplyGravity() {
+		Vector3 tempVec;
+		//Check gravity
+		if (gravity == "-y") {
+			this.transform.rotation = Quaternion.Euler(0, 0, 0);
+			gravVector = yNeg * fallSpeed;
+			if (!Physics.Raycast(transform.position, yNeg, 0.1f)) {
+				isFalling = true;
+			} else {isFalling = false;}
+			if (currentTarget != null) {
+				transform.LookAt(currentTarget.transform.position, yPlus);
+			}
+		} else if (gravity == "y") {
+			this.transform.rotation = Quaternion.Euler(0, 0, 180);
+			gravVector = yPlus * fallSpeed;
+			if (!Physics.Raycast(transform.position, yPlus, 0.1f)) {
+				isFalling = true;
+			} else {isFalling = false;}
+			if (currentTarget != null) {
+				transform.LookAt(currentTarget.transform.position, yNeg);
+			}
+		} else if (gravity == "z") {
+			this.transform.rotation = Quaternion.Euler(-90, 0, 0);
+			gravVector = zPlus * fallSpeed;
+			if (!Physics.Raycast(transform.position, zPlus, 0.1f)) {
+				isFalling = true;
+			} else {isFalling = false;}
+			if (currentTarget != null) {
+				transform.LookAt(currentTarget.transform.position, zNeg);
+			}
+		} else if (gravity == "-z") {
+			this.transform.rotation = Quaternion.Euler(-90, -180, 0);
+			gravVector = zNeg * fallSpeed;
+			if (!Physics.Raycast(transform.position, zNeg, 0.1f)) {
+				isFalling = true;
+			} else {isFalling = false;}
+			if (currentTarget != null) {
+				transform.LookAt(currentTarget.transform.position, zPlus);
+			}
+		} else if (gravity == "x") {
+			this.transform.rotation = Quaternion.Euler(-90, 90, 0);
+			gravVector = xPlus * fallSpeed;
+			if (!Physics.Raycast(transform.position, xPlus, 0.1f)) {
+				isFalling = true;
+			} else {isFalling = false;}
+			if (currentTarget != null) {
+				transform.LookAt(currentTarget.transform.position, xNeg);
+			}
+		} else if (gravity == "-x") {
+			this.transform.rotation = Quaternion.Euler(-90, -90, 0);
+			gravVector = xNeg * fallSpeed;
+			if (!Physics.Raycast(transform.position, xNeg, 0.1f)) {
+				isFalling = true;
+			} else {isFalling = false;}
+			if (currentTarget != null) {
+				transform.LookAt(currentTarget.transform.position, xPlus);
+			}
+		}
+	}
+
+	void FindTarget() {
+		List<GameObject> opponents = new List<GameObject>();
+		GameObject[] searchList;
+		searchList = GameObject.FindGameObjectsWithTag (PLAYER_TAG);
+		for (int i = 0; i < searchList.Length; i++) {
+			opponents.Add (searchList [i]);
+		}
+//		searchList = GameObject.FindGameObjectsWithTag (BOT_TAG);
+//		for (int i = 0; i < searchList.Length; i++) {
+//			opponents.Add (searchList [i]);
+//		}
+
+		opponents.Remove (this.gameObject);
+		currentTarget = opponents [Random.Range (0, opponents.Count)];
+	}
+
+	void CheckTargetGravity() {
+		if (currentTarget.tag == PLAYER_TAG) {
+			currentTargetGravity = currentTarget.GetComponentInChildren<GravityAxisScript> ().gravity;
+		}
+		if (currentTarget.tag == BOT_TAG) {
+			currentTargetGravity = currentTarget.GetComponent<Network_Bot>().gravity;
+		}
+		if (gravity != currentTargetGravity && !matchingGravity) {
+			StartCoroutine (MatchGravity ());
+		}
+	}
+
+	IEnumerator MatchGravity() {
+		matchingGravity = true;
+		yield return new WaitForSeconds(Random.Range(0.5f,1.5f));
+		gravity = currentTargetGravity;
+		matchingGravity = false;
+	}
+
+	void MoveTowardsPoint(Vector3 target) {
+		anim.SetBool("Moving", true);
+		Vector3 direction = target - transform.position;
+		m_Rigidbody.velocity = gravVector + (direction * speed);
+	}
+
+	void MoveBackFromPoint(Vector3 target) {
+		anim.SetBool("Moving", true);
+		Vector3 direction = target - transform.position;
+		direction *= -1;
+		m_Rigidbody.velocity = gravVector + (direction * speed);
+	}
+
+	void Think() {
+		// Move towards the player if far away
+		if (Vector3.Distance (transform.position, currentTarget.transform.position) > 10) {
+			MoveTowardsPoint (currentTarget.transform.position);
+		}
+
+		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 10 && Vector3.Distance (transform.position, currentTarget.transform.position) > 2) {
+			if (Random.Range (0, 1) == 0) {
+				MoveTowardsPoint (currentTarget.transform.position);
+			}
+		}
+
+		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 2) {
+			anim.SetBool("Moving", false);
+			if (isFalling) {
+				m_Rigidbody.velocity = gravVector;
+			} else {
+				m_Rigidbody.velocity = Vector3.zero;
+			}
+		}
+
+		if (!rangedAttacking) {
+			if (Vector3.Distance (transform.position, currentTarget.transform.position) < 15 && Vector3.Distance (transform.position, currentTarget.transform.position) > 5 ) {
+				if (Random.Range (0, 10) == 0) {
+					rangedAttacking = true;
+					SecondaryAttack ();
+				}
+			}
+		}
+
+
+		if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
+			if (Vector3.Distance (transform.position, currentTarget.transform.position) < 4 && Vector3.Distance (transform.position, currentTarget.transform.position) < 7) {
+				MoveBackFromPoint (currentTarget.transform.position);
+			}
+		}
+
+		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 4 && !isAttacking) {
+			Attack ();
+		}
+	}
+
 	IEnumerator ActionDelay() {
 		yield return new WaitForSeconds(5f);
-		SecondaryAttack();
+		gravity = "y";
 	}
 
 	public void TakeDamage(float damage) {
@@ -103,6 +285,9 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	public void Die() {
+		GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
+		GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+		NetworkServer.Spawn(corpseobject);
 		Destroy (this.gameObject);
 	}
 
@@ -212,7 +397,6 @@ public class Network_Bot : NetworkBehaviour {
 
 	[Client]
 	private void SecondaryAttack() {
-		print ("called");
 		anim.SetBool("Attacking", false);
 		netanim.SetTrigger("Ranged Attack");
 		reloading = true;
@@ -250,7 +434,6 @@ public class Network_Bot : NetworkBehaviour {
 	[Command]
 	private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation)
 	{
-		print ("cmdfire");
 		// create an instance of the weapon and store a reference to its rigibody
 		GameObject weaponInstance = Instantiate(weapon, position, rotation);
 
@@ -308,7 +491,6 @@ public class Network_Bot : NetworkBehaviour {
 		float emissionStrength = 0.1f;
 		for (int i = 0; i < 10; i++) {
 			emissionStrength += 0.2f;
-			print (emissionStrength);
 			wingRing.GetComponent<Renderer> ().material.SetFloat ("_Emission", emissionStrength);
 			yield return new WaitForSeconds (time / 10f);
 		}
@@ -318,7 +500,6 @@ public class Network_Bot : NetworkBehaviour {
 		float emissionStrength = 2f;
 		for (int i = 0; i < 10; i++) {
 			emissionStrength -= 0.2f;
-			print (emissionStrength);
 			wingRing.GetComponent<Renderer> ().material.SetFloat ("_Emission", emissionStrength);
 			yield return new WaitForSeconds (time/10f);
 		}
