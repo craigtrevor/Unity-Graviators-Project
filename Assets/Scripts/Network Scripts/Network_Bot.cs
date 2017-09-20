@@ -312,7 +312,14 @@ public class Network_Bot : NetworkBehaviour {
 		slowed = false;
 	}
 
+	IEnumerator Jump() {
+		anim.SetBool("Jump", true);
+		yield return new WaitForSeconds(0.1f);
+		anim.SetBool("Jump", false);
+	}
+
 	public void ActualJump () {
+		m_Rigidbody.velocity += new Vector3 (0, 50, 0);
 	}
 
 	//------------------------------------

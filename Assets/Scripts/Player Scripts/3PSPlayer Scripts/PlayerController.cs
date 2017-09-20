@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour {
     public int retainFallOnGrav;
     bool fallPaused = false;
     float tempYVel = 0;
+	public bool jumping;
 
     public GameObject sphere;
 
@@ -258,7 +259,7 @@ public class PlayerController : MonoBehaviour {
         Run();
         CheckMovementAudio();
         Strafe();
-        ActualJump();
+        Jump();
         CheckPause();
 
         if (!gravityAxisScript.gravitySwitching) {
@@ -380,7 +381,7 @@ public class PlayerController : MonoBehaviour {
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no
 
-        transform.localRotation = targetRotation;
+		transform.localRotation = targetRotation;
     }
 
     void CheckPause() {
@@ -400,16 +401,17 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void ActualJump() {
+    public void Jump() {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching()) {
+		if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching() && !jumping) {
             // Jumping - Alex
             StartCoroutine(JumpTime());
-            velocity.y = moveSettings.jumpVel;
+			jumping = true;
+			//velocity.y = moveSettings.jumpVel;
             //soundscape.PlaySound(4, 4, 0.2f, 0f);
-        } else if (jumpInput == 0 && Grounded()) {
+		} else if (jumpInput == 0 && Grounded()) {
 
             //set the anim to not jumping and spawn a blast wave
             playerAnimator.SetBool("InAir", false);
@@ -419,7 +421,9 @@ public class PlayerController : MonoBehaviour {
             hasLanded = true;
 
             // zero out our velocity.y
-            velocity.y = 0;
+			if (!jumping) {
+				velocity.y = 0;
+			}
 
         } else {
             // decrease velocity.y
@@ -433,10 +437,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+	public void ActualJump() {
+		velocity.y = moveSettings.jumpVel;
+	}
+
     IEnumerator JumpTime() {
         playerAnimator.SetBool("Jump", true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("Jump", false);
+		jumping = false;
     }
 
     bool CanFall() {

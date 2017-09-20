@@ -19,7 +19,7 @@ public class AnimationEventPassalong : MonoBehaviour {
 			wepSpawn = parentObject.GetComponent<WeaponSpawn> ();
 		}
 
-		if (parentObject.GetComponent<PlayerController> () != null) {
+		if (controllerObject.GetComponent<PlayerController> () != null) {
 			netPlayer = controllerObject.GetComponent<PlayerController> ();
 		}
 
