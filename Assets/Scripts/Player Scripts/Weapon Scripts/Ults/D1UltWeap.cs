@@ -54,7 +54,7 @@ public class D1UltWeap : NetworkBehaviour {
     }*/
 
     [Client]
-    void OnCollisionEnter(Collision other) {
+    private void OnTriggerEnter(Collider other) {
         if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.root.name != sourceID) {
             CmdTakeDamage(other.gameObject.name, damage, sourceID);
         }
