@@ -1,6 +1,6 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -55,6 +55,17 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     GameObject deathCamera;
+
+    [SerializeField]
+    GameObject endMatchCanvas;
+
+    [SerializeField]
+    Text endMatchText;
+
+    [SerializeField]
+    Text endMatchCountdownText;
+    int endMatchCountdown = 10;
+
     public GameObject mainCamera;
 
     [SerializeField]
@@ -71,6 +82,8 @@ public class Network_PlayerManager : NetworkBehaviour
     private bool firstPlay = false;
     private bool deathbyPlayer;
     private bool deathbyTrap;
+    private bool hasMatchEnded = false;
+    private bool hasWonMatch = false;
 
     // Player Animator & Model
     public Animator playerAnim;
@@ -78,7 +91,7 @@ public class Network_PlayerManager : NetworkBehaviour
 	public Network_CombatManager combatManager;
 
     //Gravity axis script
-    public GravityAxisScript gravityScript;
+    GravityAxisScript gravityScript;
 
     //Particles
     public ParticleManager particleManager;
@@ -100,6 +113,7 @@ public class Network_PlayerManager : NetworkBehaviour
     // Scripts
     Network_Soundscape networkSoundscape;
     Network_Manager networkManagerScript;
+    UI_PauseMenu pauseMenu;
 
     // Network Booleans
     public bool isPlayerServer;
@@ -111,6 +125,8 @@ public class Network_PlayerManager : NetworkBehaviour
         playerCharacterID = networkManagerScript.characterID;
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 		combatManager = this.gameObject.GetComponent<Network_CombatManager> ();
+        gravityScript = GetComponentInChildren<GravityAxisScript>();
+        pauseMenu = GetComponentInChildren<UI_PauseMenu>();
     }
 
     public override void OnStartLocalPlayer()
@@ -169,6 +185,90 @@ public class Network_PlayerManager : NetworkBehaviour
         }
 
         SetDefaults();
+    }
+
+    public void SetDefaults()
+    {
+        isDead = false;
+
+        currentHealth = maxHealth;
+
+        if (isLocalPlayer)
+        {
+            CheckCustomizations();
+        }
+
+        for (int i = 0; i < disableOnDeath.Length; i++)
+        {
+            disableOnDeath[i].enabled = wasEnabled[i];
+        }
+
+        //Enable the gameobjects
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        {
+            disableGameObjectsOnDeath[i].SetActive(true);
+        }
+
+        Collider _col = GetComponent<Collider>();
+        if (_col != null)
+            _col.enabled = true;
+    }
+
+    void CheckCustomizations()
+    {
+        if (playerCharacterID == "ERNN")
+        {
+            if (networkManagerScript.customzationName == "empty hat")
+            {
+                ERNNCustomization[0].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "samurai hat")
+            {
+                ERNNCustomization[1].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "cowboy hat")
+            {
+                ERNNCustomization[2].SetActive(true);
+            }
+        }
+
+        else if (playerCharacterID == "SPKS")
+        {
+            if (networkManagerScript.customzationName == "empty hat")
+            {
+                SPKSCustomization[0].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "centurion")
+            {
+                SPKSCustomization[1].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "fez")
+            {
+                SPKSCustomization[2].SetActive(true);
+            }
+        }
+
+        else if (playerCharacterID == "UT-D1")
+        {
+            if (networkManagerScript.customzationName == "empty hat")
+            {
+                UT_D1Customization[0].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "flower")
+            {
+                UT_D1Customization[1].SetActive(true);
+            }
+
+            else if (networkManagerScript.customzationName == "santa hat")
+            {
+                UT_D1Customization[2].SetActive(true);
+            }
+        }
     }
 
     [ClientRpc]
@@ -273,38 +373,41 @@ public class Network_PlayerManager : NetworkBehaviour
 
         if (sourcePlayer != null)
         {
-            if (isLocalPlayer)
+            sourcePlayer.killStats++;
+
+            if (isLocalPlayer && sourcePlayer.killStats == 10)
             {
-                randomSound = Random.Range(20, 23);
-                networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+                hasWonMatch = true;
+                hasMatchEnded = true;
+                CmdMatchEnd();
+
+                //if (playerCharacterID == "ERNN")
+                //{
+                //    networkSoundscape.PlayNonNetworkedSound(20, 4, 1f);
+                //}
+
+                //if (playerCharacterID == "SPKS")
+                //{
+                //    networkSoundscape.PlayNonNetworkedSound(21, 4, 1f);
+                //}
+
+                //if (playerCharacterID == "UT-D1")
+                //{
+                //    networkSoundscape.PlayNonNetworkedSound(22, 4, 1f);
+                //}
+
+                //Network_SceneManager.instance.wonMatch = true;
+                //Network_SceneManager.instance.playerUsername = username;
+                //StartCoroutine(EndGame());
             }
 
-            sourcePlayer.killStats++;
+            else if (isLocalPlayer && sourcePlayer.killStats != 10)
+            {
+                hasWonMatch = false;
+            }
+
             Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
             DisablePlayer();
-        }
-
-        if (sourcePlayer.killStats == 10)
-        {
-            //if (playerCharacterID == "ERNN")
-            //{
-            //    networkSoundscape.PlayNonNetworkedSound(20, 4, 1f);
-            //}
-
-            //if (playerCharacterID == "SPKS")
-            //{
-            //    networkSoundscape.PlayNonNetworkedSound(21, 4, 1f);
-            //}
-
-            //if (playerCharacterID == "UT-D1")
-            //{
-            //    networkSoundscape.PlayNonNetworkedSound(22, 4, 1f);
-            //}
-
-            Network_SceneManager.instance.wonMatch = true;
-            Network_SceneManager.instance.playerUsername = username;
-
-            StartCoroutine(EndGame());
         }
 
         deathStats++;
@@ -335,6 +438,12 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private void DisablePlayer()
     {
+        if (isLocalPlayer)
+        {
+            randomSound = Random.Range(20, 23);
+            networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+        }
+
         //Disable components
         for (int i = 0; i < disableOnDeath.Length; i++)
         {
@@ -351,7 +460,10 @@ public class Network_PlayerManager : NetworkBehaviour
         if (_col != null)
             _col.enabled = false;
 
-        StartCoroutine(Respawn());
+        if (!hasMatchEnded)
+        {
+            StartCoroutine(Respawn());
+        }
 
         onDeath();
     }
@@ -426,97 +538,6 @@ public class Network_PlayerManager : NetworkBehaviour
             return;
 
         NetworkServer.Spawn(corpseobject);
-
-    }
-
-    public void SetDefaults()
-    {
-        isDead = false;
-
-        currentHealth = maxHealth;
-
-        if (isLocalPlayer)
-        {
-            CheckCustomizations();
-        }
-
-        for (int i = 0; i < disableOnDeath.Length; i++)
-        {
-            disableOnDeath[i].enabled = wasEnabled[i];
-        }
-
-        //Enable the gameobjects
-        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
-        {
-            disableGameObjectsOnDeath[i].SetActive(true);
-        }
-
-        Collider _col = GetComponent<Collider>();
-        if (_col != null)
-            _col.enabled = true;
-    }
-
-    void CheckCustomizations()
-    {
-        if (playerCharacterID == "ERNN")
-        {
-            if (networkManagerScript.customzationName == "empty hat")
-            {
-                ERNNCustomization[0].SetActive(true);
-            }
-
-            else if (networkManagerScript.customzationName == "samurai hat")
-            {
-                ERNNCustomization[1].SetActive(true);
-            }
-
-            else if (networkManagerScript.customzationName == "cowboy hat")
-            {
-                ERNNCustomization[2].SetActive(true);
-            }
-        }
-
-        else if (playerCharacterID == "SPKS")
-        {
-            if (networkManagerScript.customzationName == "empty hat")
-            {
-                SPKSCustomization[0].SetActive(true);
-            }
-
-            else if (networkManagerScript.customzationName == "centurion")
-            {
-                SPKSCustomization[1].SetActive(true);
-            }
-
-            else if (networkManagerScript.customzationName == "fez")
-            {
-                SPKSCustomization[2].SetActive(true);
-            }
-        }
-
-        else if (playerCharacterID == "UT-D1")
-        {
-            if (networkManagerScript.customzationName == "empty hat")
-            {
-                UT_D1Customization[0].SetActive(true);
-            }
-
-            else if (networkManagerScript.customzationName == "flower")
-            {
-                UT_D1Customization[1].SetActive(true);
-            }
-
-            else if (networkManagerScript.customzationName == "santa hat")
-            {
-                UT_D1Customization[2].SetActive(true);
-            }
-        }
-    }
-
-    IEnumerator EndGame()
-    {
-        yield return new WaitForSeconds(5);
-        CmdMatchEnd();
     }
 
     [Command]
@@ -524,22 +545,43 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         Debug.Log("Match has finished");
 
-       // RpcEndMatch();
-
-        NetworkManager.Shutdown();
-       // SceneManager.LoadScene("EndMatch_Scene");
+        RpcEndMatch();
     }
 
     [ClientRpc]
     public void RpcEndMatch()
     {
-        if (!isLocalPlayer)
+        hasMatchEnded = true;
+        endMatchCanvas.SetActive(true);
+
+        if (hasWonMatch)
         {
-            if (Network_SceneManager.instance.wonMatch == true)
-            {
-                Network_SceneManager.instance.wonMatch = false;
-            }
+            endMatchText.text = "VICTORY";
+            endMatchText.color = Color.yellow;
         }
+
+        else if (!hasWonMatch)
+        {
+            endMatchText.text = "DEFEAT";
+            endMatchText.color = Color.red;
+        }
+
+        StartCoroutine(ShutdownServer());
+    }
+
+    IEnumerator ShutdownServer()
+    {
+        endMatchCountdownText.text = endMatchCountdown.ToString();
+        InvokeRepeating("ServerCountdown", 1, 1);
+        yield return new WaitForSeconds(10);
+        pauseMenu.LeaveRoom();
+    }
+
+
+    void ServerCountdown()
+    {
+        endMatchCountdown -= 1;
+        endMatchCountdownText.text = endMatchCountdown.ToString();
     }
 
     void MuteNarration()
