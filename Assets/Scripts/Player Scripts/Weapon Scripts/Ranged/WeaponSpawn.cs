@@ -157,14 +157,11 @@ public class WeaponSpawn : NetworkBehaviour {
 
         NetworkServer.Spawn(weaponInstance.gameObject);
 
-        if (playerCharacterID == "SPKS")
-        {
+        if (playerCharacterID == "SPKS") {
             weaponInstance.transform.SetParent(fireTransform);
-            weaponInstance.transform.GetChild(0).SendMessage("SetInitialReferences", _sourceID);
-        } else
-        {
-            weaponInstance.SendMessage("SetInitialReferences", _sourceID);
         }
+
+        weaponInstance.SendMessage("SetInitialReferences", _sourceID);
     }
 
     IEnumerator reload() {

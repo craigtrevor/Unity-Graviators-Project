@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour {
     GravityBlockScript gravityBlockScript;
     [SerializeField]
     Network_CombatManager netCombatManager;
+    [SerializeField]
+    Network_PlayerManager netPlayerManager;
     Network_Soundscape netSoundscape;
     NonNetworked_Soundscape soundscape;
 
@@ -66,9 +68,12 @@ public class PlayerController : MonoBehaviour {
     public int retainFallOnGrav;
     bool fallPaused = false;
     float tempYVel = 0;
-	public bool jumping;
+    public bool jumping;
 
     public GameObject sphere;
+
+    //Animator turning
+    Quaternion strafeRot;
 
     public Quaternion TargetRotation {
         get { return targetRotation; }
@@ -115,17 +120,14 @@ public class PlayerController : MonoBehaviour {
 
         turnMode = false;
 
-        if (Network_SceneManager.instance.sceneName == "Online_Scene_ArenaV2")
-        {
+        if (Network_SceneManager.instance.sceneName == "Online_Scene_ArenaV2") {
             netSoundscape = GetComponentInParent<Network_Soundscape>();
-        }
-
-        else if (Network_SceneManager.instance.sceneName == "Tutorial_Arena")
-        {
+        } else if (Network_SceneManager.instance.sceneName == "Tutorial_Arena") {
             soundscape = GetComponentInParent<NonNetworked_Soundscape>();
         }
 
         netCombatManager = transform.root.GetComponent<Network_CombatManager>();
+        netPlayerManager = transform.root.GetComponent<Network_PlayerManager>();
 
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
@@ -138,7 +140,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void GetInput() {
-		if (recieveInput && !stunned && !netCombatManager.isUlting) {
+        if (recieveInput && !stunned && !netCombatManager.isUlting) {
             forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
             turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
@@ -149,7 +151,7 @@ public class PlayerController : MonoBehaviour {
 
         shiftPressed();
 
-		if (!stunned && !isDashing && !netCombatManager.isUlting) {
+        if (!stunned && !isDashing && !netCombatManager.isUlting) {
             GravityInput(inputSettings.GRAVITY_RELEASE);
         }
 
@@ -163,11 +165,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     void shiftPressed() {
-		if (Input.GetButtonDown("Crouch") && !netCombatManager.isUlting) {
+        if (Input.GetButtonDown("Crouch") && !netCombatManager.isUlting) {
             isShiftPressed = true;
         }
 
-		if (Input.GetButtonUp("Crouch") && !netCombatManager.isUlting) {
+        if (Input.GetButtonUp("Crouch") && !netCombatManager.isUlting) {
             isShiftPressed = false;
         }
 
@@ -250,6 +252,7 @@ public class PlayerController : MonoBehaviour {
 
         GetInput();
         Turn();
+        Animations();
 
         gravityBlockScript.UpdatePosition(); //Update gravity block position
     }
@@ -271,6 +274,52 @@ public class PlayerController : MonoBehaviour {
         rBody.velocity = transform.TransformDirection(velocity);
     }
 
+    void Animations() {   
+
+        if (Mathf.Abs(forwardInput) + Mathf.Abs(rightInput) > inputSettings.inputDelay) {
+            playerAnimator.SetBool("Moving", true);
+        } else {
+            playerAnimator.SetBool("Moving", false);
+        }
+
+
+        if (Input.GetAxis(inputSettings.RIGHT_AXIS) > 0f && Input.GetButton(inputSettings.RIGHT_AXIS)) { //if moving right
+
+            if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward right
+                strafeRot = Quaternion.Euler(Vector3.up * 45f);
+            } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back right
+                strafeRot = Quaternion.Euler(Vector3.up * 135f);
+            } else { //just right 
+                strafeRot = Quaternion.Euler(Vector3.up * 90f);
+            }
+
+        } else if (Input.GetAxis(inputSettings.RIGHT_AXIS) < 0f && Input.GetButton(inputSettings.RIGHT_AXIS)) { //if moving left
+
+            if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward right
+                strafeRot = Quaternion.Euler(Vector3.up * -45f);
+            } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back right
+                strafeRot = Quaternion.Euler(Vector3.up * -135f);
+            } else { //just right 
+                strafeRot = Quaternion.Euler(Vector3.up * -90f);
+            }
+
+        } else { //if not strafing
+
+            if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward 
+                strafeRot = Quaternion.Euler(Vector3.zero);
+            } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back 
+                strafeRot = Quaternion.Euler(Vector3.up * 180f);
+            }
+        }
+
+        if (netCombatManager.isUlting || Input.GetButtonDown("Fire2")) { //if range or ult
+            strafeRot = Quaternion.Euler(Vector3.zero);
+        }
+
+        playerAnimator.transform.localRotation = Quaternion.Lerp(playerAnimator.transform.localRotation, strafeRot, 10f * Time.deltaTime);
+
+    }
+
     void Run() {
 
         if (Mathf.Abs(forwardInput) > inputSettings.inputDelay && !gravityAxisScript.GetGravitySwitching()) {
@@ -278,16 +327,11 @@ public class PlayerController : MonoBehaviour {
             if (UI_PauseMenu.IsOn == true)
                 return;
 
-            // Walking - Alex
-            playerAnimator.SetBool("Moving", true);
-
             // move
             velocity.z = moveSettings.forwardVel * forwardInput;
 
         } else {
             // zero velocity
-
-            playerAnimator.SetBool("Moving", false);
 
             velocity.z = 0;
         }
@@ -295,43 +339,27 @@ public class PlayerController : MonoBehaviour {
         if (UI_PauseMenu.IsOn == true) {
             // zero velocity
 
-            playerAnimator.SetBool("Moving", false);
-
             velocity.z = 0;
         }
 
     }
 
-    void CheckMovementAudio()
-    {
-        if (playerAnimator.GetBool("InAir") == false && playerAnimator.GetBool("Moving") == true && playerStep == true && playerAnimator == true && !Input.GetButton("Jump"))
-        {
+    void CheckMovementAudio() {
+        if (playerAnimator.GetBool("InAir") == false && playerAnimator.GetBool("Moving") == true && playerStep == true && playerAnimator == true && !Input.GetButton("Jump")) {
 
-            if (cycleMovement == 0)
-            {
-                if (soundscape != null)
-                {
+            if (cycleMovement == 0) {
+                if (soundscape != null) {
                     soundscape.PlayNonNetworkedSound(0, 3, 0.1f);
-                }
-
-                else if (netSoundscape != null)
-                {
+                } else if (netSoundscape != null) {
                     netSoundscape.PlaySound(0, 3, 0.1f, 0);
                 }
 
                 cycleMovement++;
 
-            }
-
-            else if (cycleMovement == 1)
-            {
-                if (soundscape != null)
-                {
+            } else if (cycleMovement == 1) {
+                if (soundscape != null) {
                     soundscape.PlayNonNetworkedSound(1, 3, 0.1f);
-                }
-
-                else if (netSoundscape != null)
-                {
+                } else if (netSoundscape != null) {
                     netSoundscape.PlaySound(1, 3, 0.1f, 0);
                 }
 
@@ -342,8 +370,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private IEnumerator WaitForFootSteps(float stepsLength)
-    {
+    private IEnumerator WaitForFootSteps(float stepsLength) {
         playerStep = false;
         yield return new WaitForSeconds(stepsLength);
         playerStep = true;
@@ -358,6 +385,7 @@ public class PlayerController : MonoBehaviour {
                     return;
                 // move
                 velocity.x = moveSettings.rightVel * rightInput;
+
             } else {
                 // zero velocity
                 velocity.x = 0;
@@ -381,7 +409,7 @@ public class PlayerController : MonoBehaviour {
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no
 
-		transform.localRotation = targetRotation;
+        transform.localRotation = targetRotation;
     }
 
     void CheckPause() {
@@ -405,13 +433,13 @@ public class PlayerController : MonoBehaviour {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-		if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching() && !jumping) {
+        if (jumpInput > 0 && Grounded() && !gravityAxisScript.GetGravitySwitching() && !jumping) {
             // Jumping - Alex
             StartCoroutine(JumpTime());
-			jumping = true;
-			//velocity.y = moveSettings.jumpVel;
+            jumping = true;
+            //velocity.y = moveSettings.jumpVel;
             //soundscape.PlaySound(4, 4, 0.2f, 0f);
-		} else if (jumpInput == 0 && Grounded()) {
+        } else if (jumpInput == 0 && Grounded()) {
 
             //set the anim to not jumping and spawn a blast wave
             playerAnimator.SetBool("InAir", false);
@@ -421,9 +449,9 @@ public class PlayerController : MonoBehaviour {
             hasLanded = true;
 
             // zero out our velocity.y
-			if (!jumping) {
-				velocity.y = 0;
-			}
+            if (!jumping) {
+                velocity.y = 0;
+            }
 
         } else {
             // decrease velocity.y
@@ -437,15 +465,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-	public void ActualJump() {
-		velocity.y = moveSettings.jumpVel;
-	}
+    public void ActualJump() {
+        velocity.y = moveSettings.jumpVel;
+    }
 
     IEnumerator JumpTime() {
         playerAnimator.SetBool("Jump", true);
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("Jump", false);
-		jumping = false;
+        jumping = false;
     }
 
     bool CanFall() {
