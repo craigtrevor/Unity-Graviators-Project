@@ -197,7 +197,7 @@ public class Network_CombatManager : NetworkBehaviour {
         }
 
         if (isLocalPlayer && Input.GetKeyUp(KeyCode.K)) {
-            playerDamage = 10;
+            playerDamage = 100;
             CmdTakeDamage(transform.name, playerDamage, transform.name);
         }
     }

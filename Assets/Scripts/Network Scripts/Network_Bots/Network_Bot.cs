@@ -37,14 +37,33 @@ public class Network_Bot : NetworkBehaviour {
 	public string currentTargetGravity;
 	public bool matchingGravity;
 
-	private float speed = 0.025f;
+	private float speed = 0.2f;
+
+	public bool jumping;
+	public bool frontColliding;
+	public bool backColliding;
+	public bool leftColliding;
+	public bool rightColliding;
+	public bool jumpColliding;
+
+	public Transform frontTransform;
+	public Transform backTransform;
+	public Transform leftTransform;
+	public Transform rightTransform;
+	public Transform jumpTransform;
+	public Transform groundTransform;
+
+	public LayerMask ignorePlayers;
+
+	public bool pathfinding;
+	public bool tryLeft;
 
 	//---------------------------------
 	// GRAVITY STUFF
 
 	public string gravity;
 	public Vector3 gravVector;
-	public float fallSpeed = 25f;
+	public float fallSpeed = 15f;
 	public bool isFalling;
 
 	private static Vector3 xPlus = new Vector3(1, 0, 0);     // x+
@@ -85,6 +104,8 @@ public class Network_Bot : NetworkBehaviour {
 
 	public bool rangedAttacking;
 
+	public string distanceFromTarget;
+
 	// Use this for initialization
 	void Start () {
 		gravity = "-y";
@@ -100,6 +121,7 @@ public class Network_Bot : NetworkBehaviour {
 			FindTarget ();
 		}
 
+		CheckCollisions ();
 		CheckAnimation ();
 		ApplyGravity ();
 		CheckTargetGravity ();
@@ -132,56 +154,38 @@ public class Network_Bot : NetworkBehaviour {
 		if (gravity == "-y") {
 			this.transform.rotation = Quaternion.Euler(0, 0, 0);
 			gravVector = yNeg * fallSpeed;
-			if (!Physics.Raycast(transform.position, yNeg, 0.3f)) {
-				isFalling = true;
-			} else {isFalling = false;}
 			if (currentTarget != null) {
-				transform.LookAt(currentTarget.transform.position, yPlus);
+				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), yPlus);
 			}
 		} else if (gravity == "y") {
 			this.transform.rotation = Quaternion.Euler(0, 0, 180);
 			gravVector = yPlus * fallSpeed;
-			if (!Physics.Raycast(transform.position, yPlus, 0.3f)) {
-				isFalling = true;
-			} else {isFalling = false;}
 			if (currentTarget != null) {
-				transform.LookAt(currentTarget.transform.position, yNeg);
+				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), yNeg);
 			}
 		} else if (gravity == "z") {
 			this.transform.rotation = Quaternion.Euler(-90, 0, 0);
 			gravVector = zPlus * fallSpeed;
-			if (!Physics.Raycast(transform.position, zPlus, 0.3f)) {
-				isFalling = true;
-			} else {isFalling = false;}
 			if (currentTarget != null) {
 				transform.LookAt(currentTarget.transform.position, zNeg);
 			}
 		} else if (gravity == "-z") {
 			this.transform.rotation = Quaternion.Euler(-90, -180, 0);
 			gravVector = zNeg * fallSpeed;
-			if (!Physics.Raycast(transform.position, zNeg, 0.3f)) {
-				isFalling = true;
-			} else {isFalling = false;}
 			if (currentTarget != null) {
-				transform.LookAt(currentTarget.transform.position, zPlus);
+				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), zPlus);
 			}
 		} else if (gravity == "x") {
 			this.transform.rotation = Quaternion.Euler(-90, 90, 0);
 			gravVector = xPlus * fallSpeed;
-			if (!Physics.Raycast(transform.position, xPlus, 0.3f)) {
-				isFalling = true;
-			} else {isFalling = false;}
 			if (currentTarget != null) {
-				transform.LookAt(currentTarget.transform.position, xNeg);
+				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), xNeg);
 			}
 		} else if (gravity == "-x") {
 			this.transform.rotation = Quaternion.Euler(-90, -90, 0);
 			gravVector = xNeg * fallSpeed;
-			if (!Physics.Raycast(transform.position, xNeg, 0.3f)) {
-				isFalling = true;
-			} else {isFalling = false;}
 			if (currentTarget != null) {
-				transform.LookAt(currentTarget.transform.position, xPlus);
+				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), xPlus);
 			}
 		}
 	}
@@ -217,65 +221,181 @@ public class Network_Bot : NetworkBehaviour {
 	IEnumerator MatchGravity() {
 		matchingGravity = true;
 		yield return new WaitForSeconds(Random.Range(0.5f,1.5f));
+		StartCoroutine (Jump ());
+		yield return new WaitForSeconds(1f);
 		gravity = currentTargetGravity;
 		matchingGravity = false;
 	}
 
+	public Vector3 VectorAlongCurrentPlane(Vector3 vector) {
+		Vector3 tempVec;
+		if (gravVector.x != 0) {
+			tempVec.x = transform.position.x;
+		} else {
+			tempVec.x = vector.x;
+		}
+
+		if (gravVector.y != 0) {
+			tempVec.y = transform.position.y;
+		} else {
+			tempVec.y = vector.y;
+		}
+
+		if (gravVector.z != 0) {
+			tempVec.z = transform.position.z;
+		} else {
+			tempVec.z = vector.z;
+		}
+		return tempVec;
+	}
+
 	void MoveTowardsPoint(Vector3 target) {
-		anim.SetBool("Moving", true);
-		m_Rigidbody.MovePosition(Vector3.Lerp(transform.position, target, speed));
-		if (isFalling) {
-			m_Rigidbody.velocity = gravVector;
+		anim.SetBool ("Moving", true);
+		if (frontColliding) {
+			if (!pathfinding) {
+				if (!leftColliding && !rightColliding) {
+					if (Random.Range (0, 2) == 0) {
+						tryLeft = true;
+					} else {
+						tryLeft = false;
+					}
+				} else if (!leftColliding && rightColliding) {
+					tryLeft = true;
+				} else if (leftColliding && !rightColliding) {
+					tryLeft = false;
+				}
+			}
+			pathfinding = true;
+			Pathfind ();
+		} else {
+			pathfinding = false;
+			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(frontTransform.position), speed));
 		}
 	}
 
 	void MoveBackFromPoint(Vector3 target) {
 		anim.SetBool("Moving", true);
-		m_Rigidbody.MovePosition(Vector3.Lerp(transform.position, target, speed));
-		if (isFalling) {
-			m_Rigidbody.velocity = gravVector;
-		}
+		m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(backTransform.position), speed));
 	}
 
 	void Think() {
 		// Move towards the player if far away
-		if (Vector3.Distance (transform.position, currentTarget.transform.position) > 10) {
+		if (Vector3.Distance (transform.position, VectorAlongCurrentPlane(currentTarget.transform.position)) >= 10) {
+			distanceFromTarget = "far";
+		}
+
+		if (Vector3.Distance (transform.position, VectorAlongCurrentPlane(currentTarget.transform.position)) < 10 && Vector3.Distance (transform.position, VectorAlongCurrentPlane(currentTarget.transform.position)) >= 6) {
+			distanceFromTarget = "medium";
+		}
+
+		if (Vector3.Distance (transform.position, VectorAlongCurrentPlane(currentTarget.transform.position)) < 6 && Vector3.Distance (transform.position, VectorAlongCurrentPlane(currentTarget.transform.position)) >= 2f) {
+			distanceFromTarget = "close";
+		} 
+
+		if (Vector3.Distance (transform.position, VectorAlongCurrentPlane(currentTarget.transform.position)) < 2f) {
+			distanceFromTarget = "meleeRange";
+		} 
+
+		if (isFalling & !jumping) {
+			anim.SetBool ("InAir", true);
+			m_Rigidbody.AddForce (gravVector, ForceMode.Force);
+			//m_Rigidbody.velocity = gravVector;
+		} else if (!jumping) {
+			anim.SetBool ("InAir", false);
+			m_Rigidbody.velocity = Vector3.zero;
+		}
+
+		if (!movingToPoint) {
+			anim.SetBool ("Moving", false);
+		}
+
+		if (CheckJump () && !jumping && !isFalling && distanceFromTarget != "meleeRange") {
+			StartCoroutine (Jump ());
+		}
+
+		if (distanceFromTarget == "far") {
 			MoveTowardsPoint (currentTarget.transform.position);
+			movingToPoint = true;
 		}
-
-		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 10 && Vector3.Distance (transform.position, currentTarget.transform.position) > 1) {
-			if (Random.Range (0, 1) == 0) {
-				MoveTowardsPoint (currentTarget.transform.position);
-			}
+		if (distanceFromTarget == "medium") {
+			MoveTowardsPoint (currentTarget.transform.position);
+			movingToPoint = true;
 		}
-
-		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 2) {
-			anim.SetBool("Moving", false);
-			if (isFalling) {
-				m_Rigidbody.velocity = gravVector;
-			} else {
-				m_Rigidbody.velocity = Vector3.zero;
-			}
+		if (distanceFromTarget == "close") {
+			MoveTowardsPoint (currentTarget.transform.position);
+			movingToPoint = true;
+		}
+		if (distanceFromTarget == "meleeRange") {
+			movingToPoint = false;
 		}
 
 		if (!rangedAttacking) {
-			if (Vector3.Distance (transform.position, currentTarget.transform.position) < 15 && Vector3.Distance (transform.position, currentTarget.transform.position) > 5 ) {
-				if (Random.Range (0, 10) == 0) {
+			if (Vector3.Distance (transform.position, currentTarget.transform.position) < 20 && Vector3.Distance (transform.position, currentTarget.transform.position) > 5 ) {
+				if (Random.Range (0, 5) == 0) {
 					rangedAttacking = true;
 					SecondaryAttack ();
 				}
 			}
 		}
 
-
 		if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
-			if (Vector3.Distance (transform.position, currentTarget.transform.position) < 4 && Vector3.Distance (transform.position, currentTarget.transform.position) < 7) {
-				MoveBackFromPoint (currentTarget.transform.position);
-			}
 		}
 
-		if (Vector3.Distance (transform.position, currentTarget.transform.position) < 4 && !isAttacking) {
+		if (distanceFromTarget == "meleeRange" && !isAttacking) {
 			Attack ();
+		}
+	}
+
+	public void Pathfind() {
+		if (leftColliding && rightColliding && frontColliding && !backColliding) {
+			MoveBackFromPoint(VectorAlongCurrentPlane(currentTarget.transform.position));
+		}
+		if (tryLeft) {
+			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(leftTransform.position), speed));
+		}
+		if (!tryLeft) {
+			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(rightTransform.position), speed));
+		}
+	}
+
+	public void CheckCollisions() {
+		if (Physics.OverlapBox(frontTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+			frontColliding = true; 
+		} else {
+			frontColliding = false;
+		}
+		if (Physics.OverlapBox(backTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+			backColliding = true; 
+		} else {
+			backColliding = false;
+		}
+		if (Physics.OverlapBox(leftTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+			leftColliding = true; 
+		} else {
+			leftColliding = false;
+		}
+		if (Physics.OverlapBox(rightTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+			rightColliding = true; 
+		} else {
+			rightColliding = false;
+		}
+		if (Physics.OverlapBox(jumpTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+			jumpColliding = true; 
+		} else {
+			jumpColliding = false;
+		}
+		if (Physics.OverlapBox(groundTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+			isFalling = false; 
+		} else {
+			isFalling = true; 
+		}
+	}
+
+	public bool CheckJump() {
+		if (frontColliding && !jumpColliding) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -312,8 +432,19 @@ public class Network_Bot : NetworkBehaviour {
 		slowed = false;
 	}
 
-	public void ActualJump () {
+	IEnumerator Jump() {
+		jumping = true;
+		anim.SetBool("Jump", true);
+		yield return new WaitForSeconds(0.1f);
+		anim.SetBool("Jump", false);
+		yield return new WaitForSeconds(0.5f);
+		jumping = false;
 	}
+
+	public void ActualJump () {
+		m_Rigidbody.AddForce((gravVector * -1) * 30);
+	}
+
 
 	//------------------------------------
 	// MELEE ATTACK
@@ -325,6 +456,11 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	public void AttackFinished () {
+		StartCoroutine (DelayBeforeAnotherAttack ());
+	}
+
+	IEnumerator DelayBeforeAnotherAttack () {
+		yield return new WaitForSeconds (2f);
 		isAttacking = false;
 	}
 

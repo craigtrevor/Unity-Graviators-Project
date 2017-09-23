@@ -322,6 +322,11 @@ public class TutorialManager : MonoBehaviour {
 			
 		}
 
+		// if they kill but still bounced and caanot go into next section
+		if (botsMurdered == 1 && clashBounced && !textNotDone && tutProgression == 4) {
+			StartCoroutine (AnimateText ("You're either better at this than you let or, you are very lucky"));
+			tutProgression = 8;
+		}
 
 		//if they kill before bouncing
 		if (botsMurdered == 1 && !textNotDone && tutProgression != 8 && !clashBounced) {
@@ -495,7 +500,9 @@ public class TutorialManager : MonoBehaviour {
 
 
 
-	public void tutFinish() {
+	public void tutFinish() 
+	{
+		indicator.SetActive (false);	
 		if (tutProgression == 1 && !textNotDone) {
 			StartCoroutine (AnimateText ("Well, thats all we have time for today! I'll leave some guys in here for you so"));
 			tutProgression = 2;

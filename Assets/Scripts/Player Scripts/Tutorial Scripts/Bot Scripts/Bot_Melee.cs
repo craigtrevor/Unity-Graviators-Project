@@ -15,7 +15,7 @@ public class Bot_Melee : MonoBehaviour {
 	private Collider[] hitColliders;
 
 	// Int
-	public float BotDamage = 50; //25
+	public float BotDamage = 25; //25
 	public int thrust = 2000; //change this for speed of knock back
 	public float delay = 0.2f;
 	//private int attackMask;
@@ -61,7 +61,6 @@ public class Bot_Melee : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		BotRigidbody = transform.GetComponent<Rigidbody>();
-		BotDamage = 5;
 		attackRadius = 3;
 		attackCounter = 0;
 	}
@@ -90,6 +89,12 @@ public class Bot_Melee : MonoBehaviour {
 		}
 	}
 
+	public void AttackFinished() {
+		attackCounter = 0;
+		isAttacking = false;
+		anim.SetBool("Attacking", false);
+	}
+
 	void AttackPlayer()
 	{
 
@@ -113,90 +118,50 @@ public class Bot_Melee : MonoBehaviour {
 
 		
 	public void Attacking() {
-		CheckCollision();
+//		CheckCollision();
 	}
 
-	void CheckCollision() {
-		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+//	void CheckCollision() {
+//		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+//
+//		foreach (Collider hitCol in hitColliders) {
+//			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
+//				isHitting = true;
+//				if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().isAttacking == true) { // check to see if the other player is attacking
+//					if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().playerDamage == this.GetComponent<Bot_Melee>().BotDamage) {  // if the player has equal damage as oppenent
+//						//Debug.Log("knockedback");
+//					}
+//				} else if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().playerDamage < this.GetComponent<Bot_Melee>().BotDamage) { // if the player has more damage then oponent
+//					
+//
+//
+//				} else {
+//					// Debug.Log("i had less damage and loss the clash");
+//				}
+//
+//				//hitCol.GetComponent<SinglePlayer_CombatManager>().enabled = false;
+//			}
+//		}
+//	}
 
-		foreach (Collider hitCol in hitColliders) {
-			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
-				isHitting = true;
-				if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().isAttacking == true) { // check to see if the other player is attacking
-					if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().playerDamage == this.GetComponent<Bot_Melee>().BotDamage) {  // if the player has equal damage as oppenent
-						//Debug.Log("knockedback");
-						StartCoroutine(knockBack());
-					}
-				} else if (hitCol.gameObject.GetComponent<SinglePlayer_CombatManager>().playerDamage < this.GetComponent<Bot_Melee>().BotDamage) { // if the player has more damage then oponent
-
-					// Debug.Log("won clash");
-
-					if (attackCounter == 0) {
-						SendDamage(hitCol);
-						Debug.Log ("attack counter went to 1");
-						attackCounter = 1;
-					}
-
-				} else {
-					// Debug.Log("i had less damage and loss the clash");
-				}
-
-				//hitCol.GetComponent<SinglePlayer_CombatManager>().enabled = false;
-			}
-
-			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag != PLAYER_TAG) {
-				isHitting = false;
-				StopCoroutine(ERNNAttacking(hitCol));
-			}
-		}
-	}
-
-	void SendDamage(Collider hitCol) {
-		if (isHitting) 
-		{
-			StartCoroutine(ERNNAttacking(hitCol));
-		}
-	}
-
-	IEnumerator ERNNAttacking(Collider hitCol) {
-		yield return new WaitForSeconds(0.36f);
-		TakeDamage(hitCol.gameObject.name, BotDamage, transform.name);
-		yield return new WaitForSeconds(0.36f);
-		TakeDamage(hitCol.gameObject.name, BotDamage, transform.name);
-		yield return new WaitForSeconds(0.36f);
-		TakeDamage(hitCol.gameObject.name, BotDamage, transform.name);
-	}
-
-	IEnumerator knockBack() {
-		Debug.Log("knock Back"); 
-		BotRigidbody.constraints = RigidbodyConstraints.None; // allows the player to move around the 3 axis's
-		BotRigidbody.constraints = RigidbodyConstraints.FreezeRotation; // stops the player from rotating
-		BotRigidbody.AddForce(transform.forward * -thrust);
-		yield return new WaitForSeconds(delay);
-		BotRigidbody.constraints = RigidbodyConstraints.None; // free the player to allow movement agian
-		BotRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-	}
-
-	void TakeDamage(string _playerID, float _damage, string _sourceID) {
-		Debug.Log(_playerID + " has been attacked.");
-
-		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-
-		networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
-	}
+//	void TakeDamage(string _playerID, float _damage, string _sourceID) {
+//		Debug.Log(_playerID + " has been attacked.");
+//
+//		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+//
+//		networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+//	}
 
 	void PlayerVelocity() {
 		speed = BotRigidbody.velocity.magnitude;
 
 		if (speed < lowDamageVelocity) {
-			BotDamage = 50.0f;
+			BotDamage = 25.0f;
 		}//end low velocity
 		else if (lowDamageVelocity < speed && speed < highDamageVelocity) {
 			BotDamage = 50.0f;
 		} else if (highDamageVelocity < speed) {
 			BotDamage = 70.0f;
-		} else {
-			BotDamage = 50.0f;
 		}
 	}
 

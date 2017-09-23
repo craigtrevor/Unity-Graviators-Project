@@ -35,9 +35,12 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	// Float
 	private float attackRadius;
 	[SerializeField]
-	private float lowDamageVelocity = 10;
+	private float lowDamageVelocity = 40;
 	[SerializeField]
-	private float highDamageVelocity = 25;
+	private float highDamageVelocity = 80;
+
+	[SerializeField]
+	private int damageToKeep = 25; 
 
 	//stun timers
 	public float unitD1StunTime = 2f;
@@ -76,7 +79,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	public ParticleSystem gravLandParticleLarge;
 
 	// Scripts
-	Sp_Controller playerControllermodifier;
+	public Sp_Controller playerControllermodifier;
 	//PlayerController playerControllermodifier;
 	Dash dashScript;
     NonNetworked_Soundscape soundscape;
@@ -84,7 +87,8 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
     public bool isDashing;
 	public GravityAxisScript gravityAxisScript;
 
-
+	[SerializeField]
+	private bool checkspeed = false;
 
 	// Use this for initialization
 	void Start()
@@ -93,7 +97,8 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		dashScript = transform.GetComponent<Dash>();
         soundscape = transform.GetComponent<NonNetworked_Soundscape>();
 
-		playerDamage = 5;
+
+		//playerDamage = 5;
 		attackRadius = 5;
 		attackCounter = 0;
 
@@ -103,13 +108,30 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
 	void Update()
 	{
+		speedcheck ();
 		CheckAnimation();
 		AttackPlayer();
+//		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Attack")) {
+//			CheckCollision ();
+//		}
 		PlayerVelocity();
 
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Attack")) {
-			CheckCollision ();
+
+	}
+
+	void speedcheck(){
+		if (checkspeed == true) {
+			checkspeed = false;
+			damageToKeep = playerDamage;
+			StartCoroutine (Checkspeedbool());
 		}
+	}
+
+	IEnumerator Checkspeedbool()
+	{
+		//Debug.Log(" waiting to turn on check speed");
+		yield return new WaitForSeconds (0.25f);
+		checkspeed = true;
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -169,6 +191,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		{
 			anim.SetBool("Attacking", false);
 			attackCounter = 0;
+			isAttacking = false;
 		}
 
 		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
@@ -183,8 +206,15 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		}
 	}
 
+	public void AttackFinished() {
+		attackCounter = 0;
+		isAttacking = false;
+		anim.SetBool("Attacking", false);
+	}
+
 	void AttackPlayer()
 	{
+		
 		if (UI_SinglePlayerPauseMenu.isOn == true)
 			return;
 
@@ -192,20 +222,30 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		{
 			anim.SetBool("Attacking", true);
 			anim.SetTrigger("Attack");
-			isAttacking = true;
+			StartCoroutine (IsAttakingDelay ());
+			//star coutine here to dealy is attaking
+			//isAttacking = true;
             PlayMeleeSound();
         }
 
-		if (isAttacking)
+		if (isAttacking == true)
 		{
 			CheckCollision();
 		}
 	}
 
+	IEnumerator IsAttakingDelay()
+	{
+		yield return new WaitForSeconds (0.45f);
+		Debug.Log("i should now Be attking");
+		isAttacking = true;
+	}
+
+
 	void CheckCollision()
 	{
 		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
-		print (hitColliders.Length);
+//		print (hitColliders.Length);
 
 		foreach (Collider hitCol in hitColliders)
 		{
@@ -214,23 +254,29 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
 				if (hitCol.gameObject.GetComponent<Bot_Melee>().isAttacking == true)
 				{ // check to see if the other player is attacking
-					if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage == this.GetComponent<SinglePlayer_CombatManager>().playerDamage)
+					if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage == this.GetComponent<SinglePlayer_CombatManager>().damageToKeep)
 					{  // if the player has equal damage as oppenent
-						//Debug.Log("knockedback");
+						
+						Debug.Log("knockedback");
+						Debug.Log("player Damage fail " + damageToKeep);
+						Debug.Log("bot Damage fail " + hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage);
 						StartCoroutine(knockBack());
 						//hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (100);
 					}
 				}
 
-				else if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage < this.GetComponent<SinglePlayer_CombatManager>().playerDamage)
+				else if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage < this.GetComponent<SinglePlayer_CombatManager>().damageToKeep)
 				{ // if the player has more damage then oponent
 
 					// Debug.Log("won clash");
 
 					//GetComponent<Dash>().chargePercent += ultGain;
 
-					if (attackCounter == 0) {
-						SendDamage(hitCol);
+					if (attackCounter == 1 && isAttacking == true) {
+						Debug.Log ("done Damage");
+						Debug.Log("player Damage succed " + damageToKeep);
+						Debug.Log("bot Damage succed " + hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage);
+						hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (damageToKeep);
 						attackCounter = 1;
 					}
 
@@ -242,40 +288,41 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 					// Debug.Log("i had less damage and loss the clash");
 				}
 
-				if (!hitCol.gameObject.GetComponent<Bot_Melee> ().isAttacking) {
+				if (!hitCol.gameObject.GetComponent<Bot_Melee> ().isAttacking && isAttacking == true) {
+					Debug.Log ("done Damage");
 					hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
 				}
 			}
 
 			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag != PLAYER_TAG)
 			{
-				isAttacking = false;
-				StopCoroutine(ERNNAttacking(hitCol));
+				//isAttacking = false;
+				//StopCoroutine(ERNNAttacking(hitCol));
 			}
 		}
 	}
 
-	void SendDamage(Collider hitCol) {
-		if (isHitting) 
-		{
-			print (isHitting);
-			StartCoroutine(ERNNAttacking(hitCol));
-			//GetComponent<Dash>().chargePercent += ultGain;
-		}
-	}
+//	void SendDamage(Collider hitCol) {
+//		if (isHitting) 
+//		{
+//			print (isHitting);
+//			StartCoroutine(ERNNAttacking(hitCol));
+//			//GetComponent<Dash>().chargePercent += ultGain;
+//		}
+//	}
 
 	IEnumerator ERNNAttacking(Collider hitCol) {
 		yield return new WaitForSeconds(0.36f);
-		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
-		yield return new WaitForSeconds(0.36f);
-		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
-		yield return new WaitForSeconds(0.36f);
-		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
+//		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
+//		yield return new WaitForSeconds(0.36f);
+//		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
+//		yield return new WaitForSeconds(0.36f);
+//		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
 	}
 
 	IEnumerator knockBack()
 	{
-		Debug.Log("knock Back");
+//		Debug.Log("knock Back");
 		tutmanager.clashBounced = true;
 		GetComponentInChildren<Sp_Controller>().enabled = false; // turn off player controls
 		playerRigidbody.constraints = RigidbodyConstraints.None; // allows the player to move around the 3 axis's
@@ -293,64 +340,20 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 
 		if (speed < lowDamageVelocity)
 		{
-			//This does not work, collider check needs to be in OnTrigger
-			/*if (collider.tag == "collider" ) {
-				ParticleSystem playGravLandSmall = (ParticleSystem)Instantiate (gravLandParticleSmall, this.transform.position, this.transform.rotation);
-
-				if (!gravParticleSystemPlayed) {
-					{
-						playGravLandSmall.Emit (1);
-						gravParticleSystemPlayed = true;
-						Debug.Log ("gravPlayed");
-					}
-
-					if (gravParticleSystemPlayed == true) {
-						Destroy (playGravLandSmall);
-						Debug.Log ("gravDead");
-					}
-					}
-					}*/ //End ParticleScript
-			//transform.GetComponent<Renderer>().material.color = Color.green;
 			playerDamage = 25;
 			ultGain = 5;
-
 
 
 		}//end low velocity
 		else if (lowDamageVelocity < speed && speed < highDamageVelocity)
 		{
-			/*if (collider.tag == "collider") {
-				ParticleSystem playGravLandMed = (ParticleSystem)Instantiate (gravLandParticleMed, this.transform.position, this.transform.rotation);
-
-				if (!gravParticleSystemPlayed) {
-					{
-						playGravLandMed.Emit (1);
-						gravParticleSystemPlayed = true;
-						Debug.Log ("gravPlayed");
-					}
-
-					if (gravParticleSystemPlayed == true) {
-						Destroy (playGravLandMed);
-						Debug.Log ("gravDead");
-					}
-				}
-			}*/ //End Particle script\
-
-
-			//transform.GetComponent<Renderer>().material.color = Color.yellow;
 			playerDamage = 50;
 			ultGain = 10;
 		}
 		else if (highDamageVelocity < speed)
 		{
-			//transform.GetComponent<Renderer>().material.color = Color.red;
 			playerDamage = 70;
 			ultGain = 20;
-		}
-		else
-		{
-			playerDamage = 25;
-			ultGain = 5;
 		}
 	}
 
