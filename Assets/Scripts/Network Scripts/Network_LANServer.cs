@@ -36,6 +36,15 @@ public class Network_LANServer : NetworkDiscovery
 
     }
 
+    public void startPracticeRange()
+    {
+        useNetworkManager = true;
+        Initialize();
+        StartAsServer();
+        StopBroadcast();
+        NetworkManager.singleton.StartHost();
+    }
+
     int minPort = 1000;
     int maxPort = 10010;
     int defaultPort = 10000;

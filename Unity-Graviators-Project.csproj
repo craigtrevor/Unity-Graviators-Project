@@ -113,6 +113,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManagerV2.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_Bot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_Bot_CollisionChecker.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_BotSpawner.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DevKeys.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />

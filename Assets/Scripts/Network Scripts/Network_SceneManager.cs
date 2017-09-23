@@ -82,6 +82,18 @@ public class Network_SceneManager : MonoBehaviour
             }
         }
 
+        else if (sceneName == "JoinPracticeRange_Scene")
+        {
+            serverScene = currentScene.name;
+
+            if (!isPlaying)
+            {
+                StopAllCoroutines();
+                StartCoroutine(Soundscape_AudioFade.FadeIn(musicSource, 2f));
+                isPlaying = true;
+            }
+        }
+
         if (sceneName == "Main_Menu")
         {
             if (!isPlaying)

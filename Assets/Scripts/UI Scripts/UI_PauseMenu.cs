@@ -68,5 +68,15 @@ public class UI_PauseMenu : MonoBehaviour {
                 Debug.Log("Leaving");
             }
         }
+
+        else if (Network_SceneManager.instance.serverScene == "JoinPracticeRange_Scene")
+        {
+            networkManager.StopHost();
+            networkDiscovery.SendMessage("DestorySelf", true);
+            NetworkTransport.Shutdown();
+            NetworkTransport.Init();
+            SceneManager.LoadScene("JoinPracticeRange_Scene");
+            Debug.Log("Leaving");
+        }
     }
 }
