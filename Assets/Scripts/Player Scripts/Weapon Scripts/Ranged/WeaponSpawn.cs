@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class WeaponSpawn : NetworkBehaviour {
 
     public string _sourceID; //set the source id to the player that throws it. this is set by transform.name
+    public string _sourceTag;
 
     public int m_PlayerNumber = 1;
 	public GameObject weapon; // prefab of the weapon
@@ -55,6 +56,7 @@ public class WeaponSpawn : NetworkBehaviour {
     private void Start() {
         m_Rigidbody = GetComponent<Rigidbody>();
         _sourceID = transform.root.name;
+        _sourceTag = gameObject.tag;
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
 		combatManager = transform.GetComponent<Network_CombatManager> ();
         networkPlayerManagerScript = transform.GetComponent<Network_PlayerManager>();
@@ -161,7 +163,11 @@ public class WeaponSpawn : NetworkBehaviour {
             weaponInstance.transform.SetParent(fireTransform);
         }
 
-        weaponInstance.SendMessage("SetInitialReferences", _sourceID);
+        string[] sourceParams = new string[2];
+        sourceParams[0] = _sourceID;
+        sourceParams[1] = _sourceTag;
+
+        weaponInstance.SendMessage("SetInitialReferences", sourceParams);
     }
 
     IEnumerator reload() {

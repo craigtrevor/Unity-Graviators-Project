@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class damageRange : NetworkBehaviour {
 
     private string sourceID;
+    private string attackedByEntity;
 
     // Sword Stats
     public int swordDamage = 30;
@@ -57,9 +58,12 @@ public class damageRange : NetworkBehaviour {
         particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
     }
 
-    void SetInitialReferences(string _sourceID) {
-        sourceID = _sourceID;
-        //Debug.Log("GotRef: " + sourceID + " from " + _sourceID);
+    void SetInitialReferences(string[] _sourceParams) {
+
+        sourceID = _sourceParams[0];
+        attackedByEntity = _sourceParams[1];
+
+        Debug.Log("GotRef: " + sourceID + " from " + _sourceParams[0]);
     }
 
     void SetRight() {
@@ -125,7 +129,8 @@ public class damageRange : NetworkBehaviour {
                 GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 if (other.gameObject.tag == PLAYER_TAG) {
-                    CmdTakeDamage(other.gameObject.name, swordDamage, sourceID);
+
+                    SendDamage(other.gameObject.name, swordDamage, sourceID);
                     other.gameObject.GetComponent<Network_CombatManager>().SlowForSeconds(nonameSlowTime);
                 }
 
@@ -147,7 +152,7 @@ public class damageRange : NetworkBehaviour {
                 GameObject temp = Instantiate(particleManager.GetParticle("collideParticle"), this.gameObject.transform);
                 temp.transform.position = other.contacts[0].point;
                 if (other.gameObject.tag == PLAYER_TAG) {
-                    CmdTakeDamage(other.gameObject.name, d1Damage, sourceID);
+                    SendDamage(other.gameObject.name, d1Damage, sourceID);
                     other.gameObject.GetComponent<Network_CombatManager>().StunForSeconds(d1StunTime);
                 }
 
@@ -206,7 +211,8 @@ public class damageRange : NetworkBehaviour {
             if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if sparkus range weapon hit the player
             {
                 if (other.gameObject.tag == PLAYER_TAG) {
-                    CmdTakeDamage(other.gameObject.name, sparkusDamage*Time.deltaTime, sourceID);
+
+                    SendDamage(other.gameObject.name, sparkusDamage*Time.deltaTime, sourceID);
                     other.gameObject.GetComponent<Network_CombatManager>().StunForSeconds(sparkusStunTime);
                     Debug.Log("sourceID is: " + sourceID);
                     Debug.Log("hit: " + other.transform.name);
@@ -221,6 +227,19 @@ public class damageRange : NetworkBehaviour {
         }
     }
 
+    void SendDamage(string _playerID, float _damage, string _sourceID)
+    {
+        if (attackedByEntity == PLAYER_TAG)
+        {
+            CmdTakeDamageByPlayer(_playerID, _damage, _sourceID);
+        }
+
+        else if (attackedByEntity == BOT_TAG)
+        {
+            CmdTakeDamageByBot(_playerID, _damage, _sourceID);
+        }
+    }
+
     void PlayImpactSound() {
         if (this.gameObject.tag == THROWINGSWORD_TAG) {
             networkSoundscape.PlayNonNetworkedSound(11, 1, 0.2f);
@@ -232,9 +251,16 @@ public class damageRange : NetworkBehaviour {
     }
 
     [Command]
-    void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
+    void CmdTakeDamageByPlayer(string _playerID, float _damage, string _sourceID) {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
         networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+    }
+
+    [Command]
+    void CmdTakeDamageByBot(string _playerID, float _damage, string _sourceID)
+    {
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+        networkPlayerStats.RpcTakDamageByBot(_damage, _sourceID);
     }
 
     public void Die() {

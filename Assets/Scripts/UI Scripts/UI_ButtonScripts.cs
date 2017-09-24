@@ -35,6 +35,12 @@ public class UI_ButtonScripts : MonoBehaviour
         StartCoroutine(DelaySceneLoad(NameofLevel));
     }
 
+    public void LoadCharacterSelectionPractice(string NameofLevel)
+    {
+        Network_SceneManager.instance.serverScene = "JoinPracticeRange_Scene";
+        StartCoroutine(DelaySceneLoad(NameofLevel));
+    }
+
     public void LoadLastScene()
     {
         SceneManager.LoadScene(Network_SceneManager.instance.serverScene);

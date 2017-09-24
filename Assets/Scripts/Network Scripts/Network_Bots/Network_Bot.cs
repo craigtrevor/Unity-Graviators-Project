@@ -7,7 +7,9 @@ using UnityEngine.Networking;
 public class Network_Bot : NetworkBehaviour {
 
 	public string _sourceID;
-	public Text username;
+    public string _sourceTag;
+
+    public Text username;
 
 	public float health = 100;
 	public Slider healthSlider;
@@ -20,10 +22,11 @@ public class Network_Bot : NetworkBehaviour {
 	public Animator anim;
 	public NetworkAnimator netanim;
 	private ParticleManager particleManager;
+    Network_BotSpawner networkBotSpawner;
 
-	public GameObject corpse;
+    public GameObject corpse;
 
-	public bool isAttacking;
+    public bool isAttacking;
 	public bool isHitting;
 	public int attackCounter;
 
@@ -113,7 +116,8 @@ public class Network_Bot : NetworkBehaviour {
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 		m_Rigidbody = GetComponent<Rigidbody>();
 		_sourceID = transform.root.name;
-	}
+        networkBotSpawner = GameObject.FindGameObjectWithTag("NetBotSpawner").GetComponent<Network_BotSpawner>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -406,7 +410,8 @@ public class Network_Bot : NetworkBehaviour {
 	public void Die() {
 		GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
 		GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-		NetworkServer.Spawn(corpseobject);
+        networkBotSpawner.ScheduleNextEnemySpawn();
+        NetworkServer.Spawn(corpseobject);
 		Destroy (this.gameObject);
 	}
 
@@ -525,9 +530,8 @@ public class Network_Bot : NetworkBehaviour {
 	[Command]
 	void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-		networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+		networkPlayerStats.RpcTakDamageByBot(_damage, _sourceID);
 	}
-
 
 	//------------------------------------
 	// RANGED ATTACK
@@ -582,8 +586,13 @@ public class Network_Bot : NetworkBehaviour {
 			velocity = new Vector3(velocity.x * 3, velocity.y * 3, velocity.z * 3);
 		}
 
-		weaponInstance.SendMessage("SetInitialReferences", _sourceID);
-		if (right)
+        string[] sourceParams = new string[2];
+        sourceParams[0] = _sourceID;
+        sourceParams[1] = _sourceTag;
+
+        weaponInstance.SendMessage("SetInitialReferences", sourceParams);
+
+        if (right)
 		{
 			weaponInstance.SendMessage("SetRight");
 		}

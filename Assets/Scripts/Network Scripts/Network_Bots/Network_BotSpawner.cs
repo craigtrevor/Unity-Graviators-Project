@@ -9,45 +9,57 @@ public class Network_BotSpawner : MonoBehaviour {
     GameObject networkBot;
 
     [SerializeField]
-    Transform botSpawnPoint;
-
-    GameObject spawnedBot;
-
-    float maxSpawnRateInSeconds = 5f;
+    GameObject[] botSpawnPoints;
 
     [SerializeField]
-    int spawnAmount;
+    int numberToSpawn = 1;
+    int botSpawnerindex;
+
+    [SerializeField]
+    float maxSpawnRateInSeconds = 10f;
+
+    GameObject currentBotSpawnPoint;
+    GameObject spawnedBot;
 
     void Start()
     {
         if (Network_SceneManager.instance.serverScene == "JoinPracticeRange_Scene")
         {
-            ScheduleNextEnemySpawn();
+            SpawnInitialBot();
         }
+    }
+
+    void SpawnInitialBot()
+    {
+        spawnedBot = Instantiate(networkBot, botSpawnPoints[botSpawnerindex].transform.position, botSpawnPoints[botSpawnerindex].transform.rotation) as GameObject;
+    }
+
+    public void ScheduleNextEnemySpawn()
+    {
+        float spawnInSeconds;
+
+        if (maxSpawnRateInSeconds > 1f)
+        {
+            spawnInSeconds = Random.Range(1f, maxSpawnRateInSeconds);
+        }
+
+        else
+        {
+            spawnInSeconds = 1f;
+        }
+
+        //numberToSpawn++;
+
+        Invoke("SpawnBot", maxSpawnRateInSeconds);
     }
 
     void SpawnBot()
     {
-        spawnedBot = Instantiate(networkBot, botSpawnPoint.position, botSpawnPoint.rotation) as GameObject;
-        ScheduleNextEnemySpawn();
-    }
-
-    void ScheduleNextEnemySpawn()
-    {
-        //float spawnInSeconds;
-
-        //if (maxSpawnRateInSeconds > 1f)
-        //{
-        //    spawnInSeconds = Random.Range(1f, maxSpawnRateInSeconds);
-        //}
-
-        //else
-        //{
-        //    spawnInSeconds = 1f;
-        //}
-
-        Invoke("SpawnBot", maxSpawnRateInSeconds);
-        maxSpawnRateInSeconds = 10f;
+        for (int i = 0; i < numberToSpawn; i++)
+        {
+            botSpawnerindex = Random.Range(0, botSpawnPoints.Length);
+            spawnedBot = Instantiate(networkBot, botSpawnPoints[botSpawnerindex].transform.position, botSpawnPoints[botSpawnerindex].transform.rotation) as GameObject;
+        }
     }
 
     void IncreaseSpawnRate()

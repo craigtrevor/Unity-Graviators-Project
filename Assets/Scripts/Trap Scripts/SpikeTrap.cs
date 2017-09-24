@@ -136,6 +136,6 @@ public class SpikeTrap : NetworkBehaviour {
 	void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
 	{
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-		networkPlayerStats.RpcTakeTrapDamage(_damage, _sourceID);
+		networkPlayerStats.RpcTakDamageByTrap(_damage, _sourceID);
 	}
 }

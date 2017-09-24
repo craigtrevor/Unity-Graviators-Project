@@ -144,7 +144,7 @@ public class Network_TrapManager : NetworkBehaviour {
         //Network_TrapManager networkTrap = Network_GameManager.GetTrap(_sourceID);
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.RpcTakeTrapDamage(_damage, transform.name);
+        networkPlayerStats.RpcTakDamageByTrap(_damage, transform.name);
     }
 
 

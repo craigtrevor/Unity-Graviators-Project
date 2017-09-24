@@ -82,6 +82,7 @@ public class Network_PlayerManager : NetworkBehaviour
     private bool firstPlay = false;
     private bool deathbyPlayer;
     private bool deathbyTrap;
+    private bool deathbyBot;
     private bool hasMatchEnded = false;
     private bool hasWonMatch = false;
 
@@ -277,19 +278,11 @@ public class Network_PlayerManager : NetworkBehaviour
         if (isDead)
             return;
 
-        Debug.Log("Taken damage");
+        PlayerTakenDamage(_amount);
 
-        currentHealth -= _amount;
+        //particles
 
-		if (!combatManager.isAttacking) {
-			playerAnim.SetTrigger ("Flinch");
-		}
-
-        Debug.Log(transform.name + " now has " + currentHealth + " health.");
-
-		//particles
-
-		GameObject playHitParticle = Instantiate(particleManager.GetParticle("hitParticle"), this.transform.position, this.transform.rotation);
+        GameObject playHitParticle = Instantiate(particleManager.GetParticle("hitParticle"), this.transform.position, this.transform.rotation);
 
         if (currentHealth <= 0)
         {
@@ -298,22 +291,258 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcTakeTrapDamage(float _amount, string _sourceID)
+    public void RpcTakDamageByTrap(float _amount, string _sourceID)
     {
         if (isDead)
             return;
-		currentHealth -= _amount;
 
-		if (!combatManager.isAttacking) {
-			playerAnim.SetTrigger ("Flinch");
-		}
-
-        Debug.Log(transform.name + " now has " + currentHealth + " health.");
+        PlayerTakenDamage(_amount);
 
         if (currentHealth <= 0)
         {
-            DieFromTrap(_sourceID);
+            DieByTrap(_sourceID);
         }
+    }
+
+    [ClientRpc]
+    public void RpcTakDamageByBot(float _amount, string _sourceID)
+    {
+        if (isDead)
+            return;
+
+        PlayerTakenDamage(_amount);
+
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Killed by bot");
+            DieByBot(_sourceID);
+        }
+    }
+
+    void PlayerTakenDamage(float _amount)
+    {
+        Debug.Log("Taken damage");
+
+        currentHealth -= _amount;
+
+        if (!combatManager.isAttacking)
+        {
+            playerAnim.SetTrigger("Flinch");
+        }
+
+        Debug.Log(transform.name + " now has " + currentHealth + " health.");
+    }
+
+    private void Die(string _sourceID)
+    {
+        Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
+
+        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
+        gravityScript.SetShiftPressed(false);
+
+        isDead = true;
+        deathbyPlayer = true;
+        deathbyTrap = false;
+        deathbyBot = false;
+
+        if (sourcePlayer != null)
+        {
+            sourcePlayer.killStats++;
+
+            if (isLocalPlayer && sourcePlayer.killStats == 10)
+            {
+                hasWonMatch = true;
+                hasMatchEnded = true;
+                CmdMatchEnd();
+
+                //if (playerCharacterID == "ERNN")
+                //{
+                //    networkSoundscape.PlayNonNetworkedSound(20, 4, 1f);
+                //}
+
+                //if (playerCharacterID == "SPKS")
+                //{
+                //    networkSoundscape.PlayNonNetworkedSound(21, 4, 1f);
+                //}
+
+                //if (playerCharacterID == "UT-D1")
+                //{
+                //    networkSoundscape.PlayNonNetworkedSound(22, 4, 1f);
+                //}
+
+                //Network_SceneManager.instance.wonMatch = true;
+                //Network_SceneManager.instance.playerUsername = username;
+                //StartCoroutine(EndGame());
+            }
+
+            else if (isLocalPlayer && sourcePlayer.killStats != 10)
+            {
+                hasWonMatch = false;
+            }
+
+            Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
+            DisablePlayer();
+        }
+
+        deathStats++;
+    }
+
+    private void DieByTrap(string _sourceID)
+    {
+        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
+        gravityScript.SetShiftPressed(false);
+
+        isDead = true;
+        deathbyPlayer = false;
+        deathbyTrap = true;
+        deathbyBot = false;
+
+        deathStats++;
+
+        // spawn corpse on death
+        Debug.Log(particleManager.GetParticle("deathParticle"));
+        GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
+        DisablePlayer();
+
+        if (!isServer)
+            return;
+
+        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+        NetworkServer.Spawn(corpseobject);
+    }
+
+    private void DieByBot(string _sourceID)
+    {
+        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
+        gravityScript.SetShiftPressed(false);
+
+        isDead = true;
+        deathbyPlayer = false;
+        deathbyTrap = false;
+        deathbyBot = true;
+
+        // spawn corpse on death
+        Debug.Log(particleManager.GetParticle("deathParticle"));
+        GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
+        DisablePlayer();
+
+        if (!isServer)
+            return;
+
+        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+        NetworkServer.Spawn(corpseobject);
+    }
+
+    private void DisablePlayer()
+    {
+        if (isLocalPlayer)
+        {
+            randomSound = Random.Range(20, 23);
+            networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+        }
+
+        //Disable components
+        for (int i = 0; i < disableOnDeath.Length; i++)
+        {
+            disableOnDeath[i].enabled = false;
+        }
+
+        //Disable GameObjects
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        {
+            disableGameObjectsOnDeath[i].SetActive(false);
+        }
+
+        Collider _col = GetComponent<Collider>();
+        if (_col != null)
+            _col.enabled = false;
+
+        if (!hasMatchEnded)
+        {
+            Respawn();
+        }
+
+        onDeath();
+    }
+
+    void Respawn()
+    {
+        if (isLocalPlayer)
+        {
+            StartCoroutine(ChooseDeathCanvas());
+        }
+    }
+
+    private IEnumerator ChooseDeathCanvas()
+    {
+        if (deathbyPlayer)
+        {
+            yield return new WaitForSeconds(1f);
+            deathCanvas[0].SetActive(true);
+            yield return new WaitForSeconds(5f);
+            deathCanvas[0].SetActive(false);
+            deathCamera.SetActive(false);
+        }
+
+        else if (deathbyTrap)
+        {
+            yield return new WaitForSeconds(1f);
+            deathCanvas[1].SetActive(true);
+            yield return new WaitForSeconds(5f);
+            deathCanvas[1].SetActive(false);
+            deathCamera.SetActive(false);
+        }
+
+        if (deathbyBot)
+        {
+            yield return new WaitForSeconds(1f);
+            deathCanvas[0].SetActive(true);
+            yield return new WaitForSeconds(5f);
+            deathCanvas[0].SetActive(false);
+            deathCamera.SetActive(false);
+        }
+
+        PlayerRespawning();
+    }
+
+    void PlayerRespawning()
+    {
+        Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+        transform.position = _spawnPoint.position;
+        transform.rotation = _spawnPoint.rotation;
+
+        SetupPlayer();
+
+        Debug.Log(transform.name + " respawned.");
+
+        randomSound = Random.Range(18, 20);
+        networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+    }
+
+    void onDeath()
+    {
+        Debug.Log(transform.name + " is DEAD!");
+
+        if (isLocalPlayer)
+        {
+            //Switch cameras
+            //deathCamera.transform.position = this.transform.position;
+            //deathCamera.transform.rotation = this.transform.rotation;
+            deathCamera.transform.position = mainCamera.transform.position;
+            deathCamera.transform.rotation = mainCamera.transform.rotation;
+            deathCamera.SetActive(true);
+            GetComponent<Rigidbody>().Sleep();
+        }
+
+        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+        GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
+
+        //Destroy(corpseobject, 5);
+
+        if (!isServer)
+            return;
+
+        NetworkServer.Spawn(corpseobject);
     }
 
     [ClientRpc]
@@ -359,186 +588,6 @@ public class Network_PlayerManager : NetworkBehaviour
 			currentUltimateGain = maxUltCharge;
 		}
 	}
-
-    private void Die(string _sourceID)
-    {
-        Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
-
-        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
-        gravityScript.SetShiftPressed(false);
-
-        isDead = true;
-        deathbyPlayer = true;
-        deathbyTrap = false;
-
-        if (sourcePlayer != null)
-        {
-            sourcePlayer.killStats++;
-
-            if (isLocalPlayer && sourcePlayer.killStats == 10)
-            {
-                hasWonMatch = true;
-                hasMatchEnded = true;
-                CmdMatchEnd();
-
-                //if (playerCharacterID == "ERNN")
-                //{
-                //    networkSoundscape.PlayNonNetworkedSound(20, 4, 1f);
-                //}
-
-                //if (playerCharacterID == "SPKS")
-                //{
-                //    networkSoundscape.PlayNonNetworkedSound(21, 4, 1f);
-                //}
-
-                //if (playerCharacterID == "UT-D1")
-                //{
-                //    networkSoundscape.PlayNonNetworkedSound(22, 4, 1f);
-                //}
-
-                //Network_SceneManager.instance.wonMatch = true;
-                //Network_SceneManager.instance.playerUsername = username;
-                //StartCoroutine(EndGame());
-            }
-
-            else if (isLocalPlayer && sourcePlayer.killStats != 10)
-            {
-                hasWonMatch = false;
-            }
-
-            Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
-            DisablePlayer();
-        }
-
-        deathStats++;
-    }
-
-    private void DieFromTrap(string _sourceID)
-    {
-        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
-        gravityScript.SetShiftPressed(false);
-
-        isDead = true;
-        deathbyPlayer = false;
-        deathbyTrap = true;
-
-        deathStats++;
-
-		// spawn corpse on death
-		Debug.Log (particleManager.GetParticle("deathParticle"));
-		GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
-        DisablePlayer();
-
-        if (!isServer)
-            return;
-
-        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-        NetworkServer.Spawn(corpseobject);
-    }
-
-    private void DisablePlayer()
-    {
-        if (isLocalPlayer)
-        {
-            randomSound = Random.Range(20, 23);
-            networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
-        }
-
-        //Disable components
-        for (int i = 0; i < disableOnDeath.Length; i++)
-        {
-            disableOnDeath[i].enabled = false;
-        }
-
-        //Disable GameObjects
-        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
-        {
-            disableGameObjectsOnDeath[i].SetActive(false);
-        }
-
-        Collider _col = GetComponent<Collider>();
-        if (_col != null)
-            _col.enabled = false;
-
-        if (!hasMatchEnded)
-        {
-            StartCoroutine(Respawn());
-        }
-
-        onDeath();
-    }
-
-    private IEnumerator Respawn()
-    {
-        if (isLocalPlayer)
-        {
-            if (deathbyPlayer)
-            {
-				yield return new WaitForSeconds(1f);
-                deathCanvas[0].SetActive(true);
-                yield return new WaitForSeconds(5f);
-                deathCanvas[0].SetActive(false);
-                deathCamera.SetActive(false);
-
-                Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-                transform.position = _spawnPoint.position;
-                transform.rotation = _spawnPoint.rotation;
-
-                SetupPlayer();
-
-                Debug.Log(transform.name + " respawned.");
-
-                randomSound = Random.Range(18, 20);
-                networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
-            }
-
-            else if (deathbyTrap)
-            {
-				yield return new WaitForSeconds(1f);
-                deathCanvas[1].SetActive(true);
-                yield return new WaitForSeconds(5f);
-                deathCanvas[1].SetActive(false);
-                deathCamera.SetActive(false);
-
-                Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
-                transform.position = _spawnPoint.position;
-                transform.rotation = _spawnPoint.rotation;
-
-                SetupPlayer();
-
-                Debug.Log(transform.name + " respawned.");
-
-                randomSound = Random.Range(18, 20);
-                networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
-            }
-        }
-    }
-
-    void onDeath()
-    {
-        Debug.Log(transform.name + " is DEAD!");
-
-        if (isLocalPlayer)
-        {
-            //Switch cameras
-            //deathCamera.transform.position = this.transform.position;
-            //deathCamera.transform.rotation = this.transform.rotation;
-            deathCamera.transform.position = mainCamera.transform.position;
-            deathCamera.transform.rotation = mainCamera.transform.rotation;
-            deathCamera.SetActive(true);
-            GetComponent<Rigidbody>().Sleep();
-        }
-
-        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-				GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
-
-        //Destroy(corpseobject, 5);
-
-        if (!isServer)
-            return;
-
-        NetworkServer.Spawn(corpseobject);
-    }
 
     [Command]
     public void CmdMatchEnd()
