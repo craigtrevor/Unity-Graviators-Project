@@ -29,30 +29,26 @@ public class Network_BotSpawner : NetworkBehaviour {
     GameObject currentBotSpawnPoint;
     GameObject spawnedBot;
 
+	List <string> names = new List<string> ();
+
     void Start()
     {
+		AddNames ();
+
         if (Network_SceneManager.instance.serverScene == "JoinPracticeRange_Scene")
         {
-            SpawnInitialBot();
+			SpawnBot();
         }
     }
 
-    void SpawnInitialBot()
-    {
-		randomizer = Random.Range (1, 4);
-		if (randomizer == 1) {
-			spawnedBot = Instantiate (networkBot_noName, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
-		}
-		if (randomizer == 2) {
-			spawnedBot = Instantiate (networkBot_Sparkus, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
-		}
-		if (randomizer == 3) {
-			spawnedBot = Instantiate (networkBot_D1, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
-		}
-		NetworkServer.Spawn(spawnedBot.gameObject);
-		spawnedBot.gameObject.GetComponent<Network_Bot>().username = "Test Bot";
-		Network_GameManager.RegisterBot(spawnedBot.gameObject.transform.name, spawnedBot.gameObject.GetComponent<Network_Bot>());
-    }
+	void AddNames() {
+		names.Add ("Joe");
+		names.Add ("Casey");
+		names.Add ("Katie");
+		names.Add ("rank");
+		names.Add ("Fred");
+		names.Add ("Lucy");
+	}
 
     public void ScheduleNextEnemySpawn()
     {
@@ -89,7 +85,9 @@ public class Network_BotSpawner : NetworkBehaviour {
 				spawnedBot = Instantiate (networkBot_D1, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
 			}
 			NetworkServer.Spawn(spawnedBot.gameObject);
-			spawnedBot.gameObject.GetComponent<Network_Bot>().username = "Test Bot";
+			int tempInt = Random.Range (0, names.Count + 1);
+			spawnedBot.gameObject.GetComponent<Network_Bot>().username = names[tempInt];
+			names.Remove(names[tempInt]);
 			Network_GameManager.RegisterBot(spawnedBot.gameObject.transform.name, spawnedBot.gameObject.GetComponent<Network_Bot>());
 
         }

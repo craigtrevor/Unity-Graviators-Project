@@ -133,6 +133,7 @@ public class Network_GameManager : MonoBehaviour {
 	IEnumerator RespawnBot (string _botID) {
 		yield return new WaitForSeconds(6f);
 		bots[_botID].transform.root.gameObject.SetActive(true);
+		bots [_botID].GetComponent<Network_Bot> ().Respawn ();
 	}
 
 	#endregion

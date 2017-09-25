@@ -440,6 +440,12 @@ public class Network_Bot : NetworkBehaviour {
 		Network_GameManager.KillBot(transform.name);
 	}
 
+	public void Respawn() {
+		Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
+		transform.position = _spawnPoint.position;
+		transform.rotation = _spawnPoint.rotation;
+	}
+
 	public void Stun(float time) {
 		stunned = true;
 		StartCoroutine (StunnedFor (time));
