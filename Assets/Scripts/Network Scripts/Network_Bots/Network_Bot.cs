@@ -29,6 +29,7 @@ public class Network_Bot : NetworkBehaviour {
     public bool isAttacking;
 	public bool isHitting;
 	public int attackCounter;
+	public bool checkWeaponCollisions;
 
 	public float playerDamage = 25;
 
@@ -117,6 +118,8 @@ public class Network_Bot : NetworkBehaviour {
 		m_Rigidbody = GetComponent<Rigidbody>();
 		_sourceID = transform.root.name;
         networkBotSpawner = GameObject.FindGameObjectWithTag("NetBotSpawner").GetComponent<Network_BotSpawner>();
+		anim.transform.GetComponentInChildren<Animator> ();
+		netanim.GetComponent<NetworkAnimator> ();
 		FindTarget ();
     }
 	
@@ -124,19 +127,20 @@ public class Network_Bot : NetworkBehaviour {
 	void Update () {
 		if (currentTarget == null) {
 			FindTarget ();
+		} else {
+
+			CheckCollisions ();
+			CheckAnimation ();
+			ApplyGravity ();
+			CheckTargetGravity ();
+
+			healthSlider.value = health - 10;
+			if (health <= 0) {
+				Die ();
+			}
+
+			Think ();
 		}
-
-		CheckCollisions ();
-		CheckAnimation ();
-		ApplyGravity ();
-		CheckTargetGravity ();
-
-		healthSlider.value = health - 10;
-		if (health <= 0) {
-			Die();
-		}
-
-		Think ();
 	}
 
 	void CheckAnimation() {
@@ -345,8 +349,8 @@ public class Network_Bot : NetworkBehaviour {
 			}
 		}
 
-		if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
-		}
+//		if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
+//		}
 
 		if (distanceFromTarget == "meleeRange" && !isAttacking) {
 			Attack ();
@@ -461,20 +465,23 @@ public class Network_Bot : NetworkBehaviour {
 		anim.SetBool("Attacking", true);
 		netanim.SetTrigger("Attack");
 		isAttacking = true;
+		checkWeaponCollisions = true;
 	}
 
 	public void AttackFinished () {
+		attackCounter = 0;
 		StartCoroutine (DelayBeforeAnotherAttack ());
 	}
 
 	IEnumerator DelayBeforeAnotherAttack () {
+		checkWeaponCollisions = false;
 		yield return new WaitForSeconds (2f);
 		isAttacking = false;
 	}
 
 	public void weaponCollide(Collider collision, Vector3 hitPoint, bool airStrike) {
 		//Debug.Log (collision.gameObject.name + " struck at " + hitPoint);
-		if (isAttacking) {
+		if (checkWeaponCollisions) {
 			GameObject tempParticle = Instantiate(particleManager.GetParticle("grindParticle"));
 			tempParticle.transform.position = hitPoint;
 			if (collision.gameObject.tag == PLAYER_TAG) {

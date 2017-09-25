@@ -6,7 +6,13 @@ using UnityEngine.Networking;
 public class Network_BotSpawner : MonoBehaviour {
 
     [SerializeField]
-    GameObject networkBot;
+    GameObject networkBot_noName;
+
+	[SerializeField]
+	GameObject networkBot_Sparkus;
+
+	[SerializeField]
+	GameObject networkBot_D1;
 
     [SerializeField]
     GameObject[] botSpawnPoints;
@@ -17,6 +23,8 @@ public class Network_BotSpawner : MonoBehaviour {
 
     [SerializeField]
     float maxSpawnRateInSeconds = 10f;
+
+	int randomizer = 0;
 
     GameObject currentBotSpawnPoint;
     GameObject spawnedBot;
@@ -31,7 +39,16 @@ public class Network_BotSpawner : MonoBehaviour {
 
     void SpawnInitialBot()
     {
-        spawnedBot = Instantiate(networkBot, botSpawnPoints[botSpawnerindex].transform.position, botSpawnPoints[botSpawnerindex].transform.rotation) as GameObject;
+		randomizer = Random.Range (1, 3);
+		if (randomizer == 1) {
+			spawnedBot = Instantiate (networkBot_noName, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
+		}
+		if (randomizer == 2) {
+			spawnedBot = Instantiate (networkBot_Sparkus, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
+		}
+		if (randomizer == 3) {
+			spawnedBot = Instantiate (networkBot_D1, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
+		}
 		NetworkServer.Spawn(spawnedBot.gameObject);
     }
 
@@ -59,7 +76,17 @@ public class Network_BotSpawner : MonoBehaviour {
         for (int i = 0; i < numberToSpawn; i++)
         {
             botSpawnerindex = Random.Range(0, botSpawnPoints.Length);
-            spawnedBot = Instantiate(networkBot, botSpawnPoints[botSpawnerindex].transform.position, botSpawnPoints[botSpawnerindex].transform.rotation) as GameObject;
+			randomizer = Random.Range (1, 3);
+			if (randomizer == 1) {
+				spawnedBot = Instantiate (networkBot_noName, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
+			}
+			if (randomizer == 2) {
+				spawnedBot = Instantiate (networkBot_Sparkus, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
+			}
+			if (randomizer == 3) {
+				spawnedBot = Instantiate (networkBot_D1, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
+			}
+			NetworkServer.Spawn(spawnedBot.gameObject);
         }
     }
 
