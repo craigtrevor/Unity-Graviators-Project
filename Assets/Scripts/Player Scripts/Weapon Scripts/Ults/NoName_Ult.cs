@@ -214,7 +214,7 @@ public class NoName_Ult : NetworkBehaviour {
             }
 			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == BOT_TAG) {
 
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (damage);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, damage);
 			}
         }
     }

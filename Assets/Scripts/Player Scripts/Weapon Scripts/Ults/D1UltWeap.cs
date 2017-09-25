@@ -59,7 +59,7 @@ public class D1UltWeap : NetworkBehaviour {
             CmdTakeDamage(other.gameObject.name, damage, sourceID);
         }
 		if (other.transform.root != transform.root && other.gameObject.tag == BOT_TAG && other.transform.root.name != sourceID) {
-			other.gameObject.GetComponent<Network_Bot> ().TakeDamage (damage);
+			other.gameObject.GetComponent<Network_Bot> ().TakeDamage (sourceID, damage);
 		}
     }
 

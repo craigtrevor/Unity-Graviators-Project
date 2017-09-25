@@ -50,6 +50,8 @@ public class Network_BotSpawner : NetworkBehaviour {
 			spawnedBot = Instantiate (networkBot_D1, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
 		}
 		NetworkServer.Spawn(spawnedBot.gameObject);
+		spawnedBot.gameObject.GetComponent<Network_Bot>().username = "Test Bot";
+		Network_GameManager.RegisterBot(spawnedBot.gameObject.transform.name, spawnedBot.gameObject.GetComponent<Network_Bot>());
     }
 
     public void ScheduleNextEnemySpawn()
@@ -87,6 +89,9 @@ public class Network_BotSpawner : NetworkBehaviour {
 				spawnedBot = Instantiate (networkBot_D1, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
 			}
 			NetworkServer.Spawn(spawnedBot.gameObject);
+			spawnedBot.gameObject.GetComponent<Network_Bot>().username = "Test Bot";
+			Network_GameManager.RegisterBot(spawnedBot.gameObject.transform.name, spawnedBot.gameObject.GetComponent<Network_Bot>());
+
         }
     }
 

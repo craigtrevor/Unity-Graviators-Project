@@ -111,7 +111,7 @@ public class SpikeTrap : NetworkBehaviour {
 			CmdTakeDamage (affectedList[i].gameObject.name, 1000, sourceID);
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
-			affectedBotList[i].GetComponent<Network_Bot>().TakeDamage(1000);
+			affectedBotList[i].GetComponent<Network_Bot>().TakeTrapDamage(1000);
 		}
 	}
 

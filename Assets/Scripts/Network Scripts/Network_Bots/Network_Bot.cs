@@ -9,7 +9,11 @@ public class Network_Bot : NetworkBehaviour {
 	public string _sourceID;
     public string _sourceTag;
 
-    public Text username;
+	public int killStats = 0;
+	public int deathStats = 0;
+
+    public string username = "Test Bot";
+	public Text usernameText;
 
 	public float health = 100;
 	public Slider healthSlider;
@@ -113,7 +117,7 @@ public class Network_Bot : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
 		gravity = "-y";
-		username.text = "Test Bot";
+		usernameText.text = username;
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 		m_Rigidbody = GetComponent<Rigidbody>();
 		_sourceID = transform.root.name;
@@ -121,6 +125,7 @@ public class Network_Bot : NetworkBehaviour {
 		anim.transform.GetComponentInChildren<Animator> ();
 		netanim.GetComponent<NetworkAnimator> ();
 		FindTarget ();
+
     }
 	
 	// Update is called once per frame
@@ -135,9 +140,6 @@ public class Network_Bot : NetworkBehaviour {
 			CheckTargetGravity ();
 
 			healthSlider.value = health - 10;
-			if (health <= 0) {
-				Die ();
-			}
 
 			Think ();
 		}
@@ -410,16 +412,32 @@ public class Network_Bot : NetworkBehaviour {
 		}
 	}
 
-	public void TakeDamage(float damage) {
+	public void TakeDamage(string sourceID, float damage) {
+		health -= damage;
+		if (health <= 0) {
+			Die (sourceID);
+		}
+	}
+
+	public void TakeTrapDamage(float damage) {
 		health -= damage;
 	}
 
-	public void Die() {
+	public void Die(string sourceID) {
+		if (Network_GameManager.GetPlayer(sourceID) != null) {
+			Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(sourceID);
+			networkPlayerStats.killStats += 1;
+		}
+		else if (Network_GameManager.GetBot(sourceID) != null) {
+			Network_Bot networkPlayerStats = Network_GameManager.GetBot(sourceID);
+			networkPlayerStats.killStats += 1;
+		}
+		deathStats++;
 		GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
 		GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
         networkBotSpawner.ScheduleNextEnemySpawn();
         NetworkServer.Spawn(corpseobject);
-		Destroy (this.gameObject);
+		Network_GameManager.KillBot(transform.name);
 	}
 
 	public void Stun(float time) {
@@ -520,13 +538,13 @@ public class Network_Bot : NetworkBehaviour {
 	void SendBotDamage(Collider hitCol) {
 		if (isHitting) {
 			if (playerCharacterID == "ERNN") {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (playerDamage / 15);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (_sourceID, playerDamage / 15);
 				StartCoroutine(AttackDelay());
 			} else if (playerCharacterID == "SPKS") {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (playerDamage / 2);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (_sourceID, playerDamage / 2);
 				StartCoroutine(AttackDelay());
 			} else if (playerCharacterID == "UT-D1") {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (playerDamage);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (_sourceID, playerDamage);
 				StartCoroutine(AttackDelay());
 			}
 		}

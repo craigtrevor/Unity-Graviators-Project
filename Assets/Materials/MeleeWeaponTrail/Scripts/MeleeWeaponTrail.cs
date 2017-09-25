@@ -381,6 +381,9 @@ public class MeleeWeaponTrail : MonoBehaviour
 
 	void PlayerVelocity()
 	{
+		if (playerRigidbody == null) {
+			playerRigidbody = gameObject.transform.root.gameObject.GetComponent<Rigidbody> ();
+		}
 		speed = playerRigidbody.velocity.magnitude;
 
 		if (speed < lowDamageVelocity)

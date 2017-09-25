@@ -127,7 +127,7 @@ public class LaserGrid : NetworkBehaviour {
 		if (collider.gameObject.tag == "NetBot") {
 			if (!NameInList (collider.gameObject, affectedBotList)) {
 				affectedBotList.Add (collider.gameObject);
-				collider.gameObject.GetComponent<Network_Bot>().TakeDamage(30);
+				collider.gameObject.GetComponent<Network_Bot>().TakeTrapDamage(30);
 			}
 		}
 	}
@@ -153,7 +153,7 @@ public class LaserGrid : NetworkBehaviour {
 			CmdTakeDamage (affectedList[i].name, 30, sourceID);
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
-			affectedBotList[i].GetComponent<Network_Bot>().TakeDamage(30);
+			affectedBotList[i].GetComponent<Network_Bot>().TakeTrapDamage(30);
 		}
 	}
 

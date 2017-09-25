@@ -81,7 +81,7 @@ public class TeslaCoil : NetworkBehaviour {
 		if (collider.gameObject.tag == "NetBot") {
 			if (!NameInList (collider.gameObject, affectedBotList)) {
 				affectedBotList.Add (collider.gameObject);
-				collider.gameObject.GetComponent<Network_Bot>().TakeDamage(5);
+				collider.gameObject.GetComponent<Network_Bot>().TakeTrapDamage(5);
 			}
 		}
 	}
@@ -107,7 +107,7 @@ public class TeslaCoil : NetworkBehaviour {
 			CmdTakeDamage (affectedList[i].name, 5, sourceID);
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
-			affectedBotList[i].GetComponent<Network_Bot>().TakeDamage(5);
+			affectedBotList[i].GetComponent<Network_Bot>().TakeTrapDamage(5);
 		}
 	}
 

@@ -255,14 +255,14 @@ public class Network_CombatManager : NetworkBehaviour {
 	void SendBotDamage(Collider hitCol, bool airStrike) {
 		if (isHitting) {
 			if (networkPlayerManager.playerCharacterID == "ERNN" && !airStrike) {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (playerDamage / 15);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, playerDamage / 15);
 				StartCoroutine(AttackDelay());
 				//GetComponent<Dash>().chargePercent += ultGain;
 			} else if (networkPlayerManager.playerCharacterID == "SPKS" && !airStrike) {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (playerDamage / 2);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, playerDamage / 2);
 				StartCoroutine(AttackDelay());
 			} else if (networkPlayerManager.playerCharacterID == "UT-D1" && !airStrike) {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (playerDamage);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, playerDamage);
 				StartCoroutine(AttackDelay());
 			}
 		}

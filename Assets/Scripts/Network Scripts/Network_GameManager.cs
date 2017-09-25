@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 
 public class Network_GameManager : MonoBehaviour {
 
@@ -67,6 +68,7 @@ public class Network_GameManager : MonoBehaviour {
 
     private static Dictionary<string, Network_PlayerManager> players = new Dictionary<string, Network_PlayerManager>();
 
+
     public static void RegisterPlayer (string _netID, Network_PlayerManager _player)
     {
         string _playerID = PLAYER_ID_PREFIX + _netID;
@@ -90,6 +92,50 @@ public class Network_GameManager : MonoBehaviour {
     }
 
     #endregion
+
+
+	#region Bot tracking
+
+	private const string Bot_ID_PREFIX = "Bot ";
+
+	private static Dictionary<string, Network_Bot> bots = new Dictionary<string, Network_Bot>();
+
+
+	public static void RegisterBot (string _netID, Network_Bot _bot)
+	{
+		string _botID = PLAYER_ID_PREFIX + _netID;
+		bots.Add(_botID, _bot);
+		_bot.transform.name = _botID;
+	}
+
+	public static void UnRegisterBot(string _botID)
+	{
+		players.Remove(_botID);
+	}
+
+	public static Network_Bot GetBot (string _botID)
+	{
+		return bots[_botID];
+	}
+
+	public static Network_Bot[] GetAllBots()
+	{
+		return bots.Values.ToArray();
+	}
+
+	public static void KillBot (string _botID)
+	{
+		bots [_botID].health = 100;
+		bots[_botID].transform.root.gameObject.SetActive(false);
+		instance.StartCoroutine(instance.RespawnBot(_botID));
+	}
+
+	IEnumerator RespawnBot (string _botID) {
+		yield return new WaitForSeconds(6f);
+		bots[_botID].transform.root.gameObject.SetActive(true);
+	}
+
+	#endregion
 
 
 	#region Aid Tracking

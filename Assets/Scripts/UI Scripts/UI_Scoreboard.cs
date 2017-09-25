@@ -24,6 +24,19 @@ public class UI_Scoreboard : MonoBehaviour {
                 item.Setup(player.username, player.killStats, player.deathStats);
             }
         }
+
+		Network_Bot[] bots = Network_GameManager.GetAllBots();
+
+		foreach (Network_Bot bot in bots)
+		{
+			GameObject itemGO = (GameObject)Instantiate(playerScoreboardItem, playerScoreboardList);
+			UI_ScoreboardItem item = itemGO.GetComponent<UI_ScoreboardItem>();
+
+			if (item != null)
+			{
+				item.Setup(bot.username, bot.killStats, bot.deathStats);
+			}
+		}
     }
 
     void OnDisable()

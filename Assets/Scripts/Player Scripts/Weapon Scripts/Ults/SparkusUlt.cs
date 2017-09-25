@@ -151,7 +151,7 @@ public class SparkusUlt : NetworkBehaviour {
             }
 			if (target.transform.root != transform.root && target.gameObject.tag == BOT_TAG)
 			{
-				target.gameObject.GetComponent<Network_Bot> ().TakeDamage (laserDamage);
+				target.gameObject.GetComponent<Network_Bot> ().TakeTrapDamage (laserDamage);
 			}
         }
     }

@@ -413,13 +413,36 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private void DieByBot(string _sourceID)
     {
-        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
+		Network_Bot sourceBot = Network_GameManager.GetBot(_sourceID);
+
+		playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
         gravityScript.SetShiftPressed(false);
 
         isDead = true;
         deathbyPlayer = false;
         deathbyTrap = false;
         deathbyBot = true;
+
+		if (sourceBot != null)
+		{
+			sourceBot.killStats++;
+
+			if (isLocalPlayer && sourceBot.killStats == 10)
+			{
+				hasWonMatch = true;
+				hasMatchEnded = true;
+				CmdMatchEnd();
+			}
+
+			else if (isLocalPlayer && sourceBot.killStats != 10)
+			{
+				hasWonMatch = false;
+			}
+
+			Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourceBot.username);
+			DisablePlayer();
+		}
+
 
         // spawn corpse on death
         Debug.Log(particleManager.GetParticle("deathParticle"));

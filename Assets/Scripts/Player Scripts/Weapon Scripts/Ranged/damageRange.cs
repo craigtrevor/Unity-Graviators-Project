@@ -135,7 +135,7 @@ public class damageRange : NetworkBehaviour {
                 }
 
                 if (other.gameObject.tag == BOT_TAG) {
-                    other.gameObject.GetComponent<Network_Bot>().TakeDamage(swordDamage);
+					other.gameObject.GetComponent<Network_Bot>().TakeDamage(sourceID, swordDamage);
                     other.gameObject.GetComponent<Network_Bot>().Slow(nonameSlowTime);
                 }
                 //networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
@@ -157,7 +157,7 @@ public class damageRange : NetworkBehaviour {
                 }
 
                 if (other.gameObject.tag == BOT_TAG) {
-                    other.gameObject.GetComponent<Network_Bot>().TakeDamage(d1Damage);
+					other.gameObject.GetComponent<Network_Bot>().TakeDamage(sourceID, d1Damage);
                     other.gameObject.GetComponent<Network_Bot>().Stun(d1StunTime);
                 }
                 //networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
@@ -219,7 +219,7 @@ public class damageRange : NetworkBehaviour {
                 }
 
                 if (other.gameObject.tag == BOT_TAG) {
-                    other.gameObject.GetComponent<Network_Bot>().TakeDamage(sparkusDamage * Time.deltaTime);
+					other.gameObject.GetComponent<Network_Bot>().TakeDamage(sourceID, sparkusDamage * Time.deltaTime);
                     other.gameObject.GetComponent<Network_Bot>().Slow(sparkusStunTime);
                 }
                 //Die();
