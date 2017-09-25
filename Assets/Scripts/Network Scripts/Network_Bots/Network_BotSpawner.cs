@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Network_BotSpawner : MonoBehaviour {
+public class Network_BotSpawner : NetworkBehaviour {
 
     [SerializeField]
     GameObject networkBot_noName;
@@ -39,7 +39,7 @@ public class Network_BotSpawner : MonoBehaviour {
 
     void SpawnInitialBot()
     {
-		randomizer = Random.Range (1, 3);
+		randomizer = Random.Range (1, 4);
 		if (randomizer == 1) {
 			spawnedBot = Instantiate (networkBot_noName, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
 		}
@@ -76,7 +76,7 @@ public class Network_BotSpawner : MonoBehaviour {
         for (int i = 0; i < numberToSpawn; i++)
         {
             botSpawnerindex = Random.Range(0, botSpawnPoints.Length);
-			randomizer = Random.Range (1, 3);
+			randomizer = Random.Range (1, 4);
 			if (randomizer == 1) {
 				spawnedBot = Instantiate (networkBot_noName, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
 			}
