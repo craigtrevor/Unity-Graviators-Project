@@ -32,6 +32,7 @@ public class Network_BotSpawner : MonoBehaviour {
     void SpawnInitialBot()
     {
         spawnedBot = Instantiate(networkBot, botSpawnPoints[botSpawnerindex].transform.position, botSpawnPoints[botSpawnerindex].transform.rotation) as GameObject;
+		NetworkServer.Spawn(spawnedBot.gameObject);
     }
 
     public void ScheduleNextEnemySpawn()

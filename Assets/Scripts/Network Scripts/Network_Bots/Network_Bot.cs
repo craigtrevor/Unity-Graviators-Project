@@ -117,6 +117,7 @@ public class Network_Bot : NetworkBehaviour {
 		m_Rigidbody = GetComponent<Rigidbody>();
 		_sourceID = transform.root.name;
         networkBotSpawner = GameObject.FindGameObjectWithTag("NetBotSpawner").GetComponent<Network_BotSpawner>();
+		FindTarget ();
     }
 	
 	// Update is called once per frame
@@ -201,13 +202,15 @@ public class Network_Bot : NetworkBehaviour {
 		for (int i = 0; i < searchList.Length; i++) {
 			opponents.Add (searchList [i]);
 		}
-//		searchList = GameObject.FindGameObjectsWithTag (BOT_TAG);
-//		for (int i = 0; i < searchList.Length; i++) {
-//			opponents.Add (searchList [i]);
-//		}
+		searchList = GameObject.FindGameObjectsWithTag (BOT_TAG);
+		for (int i = 0; i < searchList.Length; i++) {
+			opponents.Add (searchList [i]);
+		}
 
 		opponents.Remove (this.gameObject);
-		currentTarget = opponents [Random.Range (0, opponents.Count)];
+		if (opponents.Count > 0) {
+			currentTarget = opponents [Random.Range (0, opponents.Count)];
+		} 
 	}
 
 	void CheckTargetGravity() {
