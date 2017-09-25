@@ -72,8 +72,7 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject sphere;
 
-    //Animator turning
-    Quaternion strafeRot;
+    Quaternion strafeRot; //for strafing animation
 
     public Quaternion TargetRotation {
         get { return targetRotation; }
@@ -132,11 +131,10 @@ public class PlayerController : MonoBehaviour {
         gravityAxisScript = gravityAxis.GetComponent<GravityAxisScript>();
         gravityBlockScript = gravityBlock.GetComponent<GravityBlockScript>();
 
-
         recieveInput = true;
         isShiftPressed = false;
         stunned = false;
-        inputSettings.GRAVITY_RELEASE = false;
+        inputSettings.GRAVITY_RELEASE = false;    
     }
 
     void GetInput() {
@@ -192,16 +190,30 @@ public class PlayerController : MonoBehaviour {
                     //isShiftPressed = false;
                 }
 
-                if (Input.GetButtonDown("Horizontal")) {
+                if (Input.GetButtonDown("GravForward")) {
                     // Used Gravity || in the air - Alex
-                    gravityAxisScript.ChangeGravity(0f, Input.GetAxis("Horizontal"), 0f);
+                    gravityAxisScript.ChangeGravity(0f, 0f, Input.GetAxis("GravForward"));
                     //networkSoundscape.PlaySound(22, 4, 0f);
                     //isShiftPressed = false;
                 }
 
-                if (Input.GetButtonDown("Vertical")) {
+                if (Input.GetButtonDown("GravBack")) {
                     // Used Gravity || in the air - Alex
-                    gravityAxisScript.ChangeGravity(0f, 0f, Input.GetAxis("Vertical"));
+                    gravityAxisScript.ChangeGravity(0f, 0f, -Input.GetAxis("GravBack"));
+                    //networkSoundscape.PlaySound(22, 4, 0f);
+                    //isShiftPressed = false;
+                }
+
+                if (Input.GetButtonDown("GravRight")) {
+                    // Used Gravity || in the air - Alex
+                    gravityAxisScript.ChangeGravity(0f, Input.GetAxis("GravRight"), 0f);
+                    //networkSoundscape.PlaySound(22, 4, 0f);
+                    //isShiftPressed = false;
+                }
+
+                if (Input.GetButtonDown("GravLeft")) {
+                    // Used Gravity || in the air - Alex
+                    gravityAxisScript.ChangeGravity(0f, -Input.GetAxis("GravLeft"), 0f);
                     //networkSoundscape.PlaySound(22, 4, 0f);
                     //isShiftPressed = false;
                 }
@@ -274,50 +286,52 @@ public class PlayerController : MonoBehaviour {
         rBody.velocity = transform.TransformDirection(velocity);
     }
 
-    void Animations() {   
+    void Animations() {
 
-        if (Mathf.Abs(forwardInput) + Mathf.Abs(rightInput) > inputSettings.inputDelay) {
-            playerAnimator.SetBool("Moving", true);
-        } else {
-            playerAnimator.SetBool("Moving", false);
-        }
+        if (!gravityAxisScript.gravitySwitching) {
 
-
-        if (Input.GetAxis(inputSettings.RIGHT_AXIS) > 0f && Input.GetButton(inputSettings.RIGHT_AXIS)) { //if moving right
-
-            if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward right
-                strafeRot = Quaternion.Euler(Vector3.up * 45f);
-            } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back right
-                strafeRot = Quaternion.Euler(Vector3.up * 135f);
-            } else { //just right 
-                strafeRot = Quaternion.Euler(Vector3.up * 90f);
+            if (Mathf.Abs(forwardInput) + Mathf.Abs(rightInput) > inputSettings.inputDelay) {
+                playerAnimator.SetBool("Moving", true);
+            } else {
+                playerAnimator.SetBool("Moving", false);
             }
 
-        } else if (Input.GetAxis(inputSettings.RIGHT_AXIS) < 0f && Input.GetButton(inputSettings.RIGHT_AXIS)) { //if moving left
 
-            if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward right
-                strafeRot = Quaternion.Euler(Vector3.up * -45f);
-            } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back right
-                strafeRot = Quaternion.Euler(Vector3.up * -135f);
-            } else { //just right 
-                strafeRot = Quaternion.Euler(Vector3.up * -90f);
+            if (Input.GetAxis(inputSettings.RIGHT_AXIS) > 0f && Input.GetButton(inputSettings.RIGHT_AXIS)) { //if moving right
+
+                if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward right
+                    strafeRot = Quaternion.Euler(Vector3.up * 45f);
+                } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back right
+                    strafeRot = Quaternion.Euler(Vector3.up * 135f);
+                } else { //just right 
+                    strafeRot = Quaternion.Euler(Vector3.up * 90f);
+                }
+
+            } else if (Input.GetAxis(inputSettings.RIGHT_AXIS) < 0f && Input.GetButton(inputSettings.RIGHT_AXIS)) { //if moving left
+
+                if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward right
+                    strafeRot = Quaternion.Euler(Vector3.up * -45f);
+                } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back right
+                    strafeRot = Quaternion.Euler(Vector3.up * -135f);
+                } else { //just right 
+                    strafeRot = Quaternion.Euler(Vector3.up * -90f);
+                }
+
+            } else { //if not strafing
+
+                if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward 
+                    strafeRot = Quaternion.Euler(Vector3.zero);
+                } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back 
+                    strafeRot = Quaternion.Euler(Vector3.up * 180f);
+                }
             }
 
-        } else { //if not strafing
-
-            if (Input.GetAxis(inputSettings.FORWARD_AXIS) > 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//forward 
+            if (netCombatManager.isUlting || Input.GetButtonDown("Fire2")) { //if range or ult
                 strafeRot = Quaternion.Euler(Vector3.zero);
-            } else if (Input.GetAxis(inputSettings.FORWARD_AXIS) < 0f && Input.GetButton(inputSettings.FORWARD_AXIS)) {//back 
-                strafeRot = Quaternion.Euler(Vector3.up * 180f);
             }
+
+            playerAnimator.transform.localRotation = Quaternion.Lerp(playerAnimator.transform.localRotation, strafeRot, 10f * Time.deltaTime);
         }
-
-        if (netCombatManager.isUlting || Input.GetButtonDown("Fire2")) { //if range or ult
-            strafeRot = Quaternion.Euler(Vector3.zero);
-        }
-
-        playerAnimator.transform.localRotation = Quaternion.Lerp(playerAnimator.transform.localRotation, strafeRot, 10f * Time.deltaTime);
-
     }
 
     void Run() {
@@ -385,7 +399,6 @@ public class PlayerController : MonoBehaviour {
                     return;
                 // move
                 velocity.x = moveSettings.rightVel * rightInput;
-
             } else {
                 // zero velocity
                 velocity.x = 0;
