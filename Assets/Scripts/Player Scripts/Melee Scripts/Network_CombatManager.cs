@@ -243,14 +243,14 @@ public class Network_CombatManager : NetworkBehaviour {
                 StartCoroutine(AttackDelay());
             }
             if (networkPlayerManager.playerCharacterID == "ERNN" && !airStrike) {
-                CmdTakeDamage(hitCol.gameObject.name, playerDamage / 15, transform.name);
+                CmdTakeDamage(hitCol.gameObject.name, playerDamage / 4, transform.name);
                 StartCoroutine(AttackDelay());
                 //GetComponent<Dash>().chargePercent += ultGain;
             } else if (networkPlayerManager.playerCharacterID == "SPKS" && !airStrike) {
                 CmdTakeDamage(hitCol.gameObject.name, playerDamage / 2, transform.name);
                 StartCoroutine(AttackDelay());
             } else if (networkPlayerManager.playerCharacterID == "UT-D1" && !airStrike) {
-                CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+                CmdTakeDamage(hitCol.gameObject.name, playerDamage / 2, transform.name);
                 StartCoroutine(AttackDelay());
             }
         }
@@ -259,14 +259,14 @@ public class Network_CombatManager : NetworkBehaviour {
 	void SendBotDamage(Collider hitCol, bool airStrike) {
 		if (isHitting) {
 			if (networkPlayerManager.playerCharacterID == "ERNN" && !airStrike) {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, playerDamage / 15);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, playerDamage / 4);
 				StartCoroutine(AttackDelay());
 				//GetComponent<Dash>().chargePercent += ultGain;
 			} else if (networkPlayerManager.playerCharacterID == "SPKS" && !airStrike) {
 				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, playerDamage / 2);
 				StartCoroutine(AttackDelay());
 			} else if (networkPlayerManager.playerCharacterID == "UT-D1" && !airStrike) {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, playerDamage);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (transform.name, playerDamage / 2);
 				StartCoroutine(AttackDelay());
 			}
 		}

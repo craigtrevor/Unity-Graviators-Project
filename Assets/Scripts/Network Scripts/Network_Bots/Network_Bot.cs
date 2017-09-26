@@ -561,14 +561,14 @@ public class Network_Bot : NetworkBehaviour {
 	void SendDamage(Collider hitCol) {
 		if (isHitting) {
 			if (playerCharacterID == "ERNN") {
-				CmdTakeDamage(hitCol.gameObject.name, playerDamage / 15, transform.name);
+				CmdTakeDamage(hitCol.gameObject.name, playerDamage / 4, transform.name);
 				StartCoroutine(AttackDelay());
 				//GetComponent<Dash>().chargePercent += ultGain;
 			} else if (playerCharacterID == "SPKS") {
 				CmdTakeDamage(hitCol.gameObject.name, playerDamage / 2, transform.name);
 				StartCoroutine(AttackDelay());
 			} else if (playerCharacterID == "UT-D1") {
-				CmdTakeDamage(hitCol.gameObject.name, playerDamage, transform.name);
+				CmdTakeDamage(hitCol.gameObject.name, playerDamage / 2, transform.name);
 				StartCoroutine(AttackDelay());
 			}
 		}
@@ -577,13 +577,13 @@ public class Network_Bot : NetworkBehaviour {
 	void SendBotDamage(Collider hitCol) {
 		if (isHitting) {
 			if (playerCharacterID == "ERNN") {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (_sourceID, playerDamage / 15);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (_sourceID, playerDamage / 4);
 				StartCoroutine(AttackDelay());
 			} else if (playerCharacterID == "SPKS") {
 				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (_sourceID, playerDamage / 2);
 				StartCoroutine(AttackDelay());
 			} else if (playerCharacterID == "UT-D1") {
-				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (_sourceID, playerDamage);
+				hitCol.gameObject.GetComponent<Network_Bot> ().TakeDamage (_sourceID, playerDamage / 2);
 				StartCoroutine(AttackDelay());
 			}
 		}
