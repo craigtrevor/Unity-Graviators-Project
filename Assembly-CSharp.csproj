@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\NoOfCPUs.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\ParticleManager.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />

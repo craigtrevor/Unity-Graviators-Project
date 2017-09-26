@@ -351,8 +351,16 @@ public class Network_Bot : NetworkBehaviour {
 			}
 		}
 
-//		if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
-//		}
+		if (currentTarget.gameObject.tag == PLAYER_TAG) {
+			if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
+				MoveBackFromPoint (currentTarget.transform.position);	
+			}
+		}
+		if (currentTarget.gameObject.tag == BOT_TAG) {
+			if (currentTarget.gameObject.GetComponent<Network_Bot> ().isAttacking && !isAttacking) {
+				MoveBackFromPoint (currentTarget.transform.position);
+			}
+		}
 
 		if (distanceFromTarget == "meleeRange" && !isAttacking) {
 			Attack ();

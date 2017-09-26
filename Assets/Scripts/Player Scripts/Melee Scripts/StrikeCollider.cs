@@ -6,20 +6,20 @@ public class StrikeCollider : MonoBehaviour {
 
 	public Network_CombatManager combatManager;
 	public Network_Bot netBot;
-	private Collider thisCollider;
+	public Collider thisCollider;
 	public Vector3 hitPoint;
 	public bool airStrike;
 
-	void Start() {
+	void Awake() {
 		if (transform.root.tag == "Player") {
 			combatManager = transform.root.GetComponent<Network_CombatManager> ();
 		}
 		if (transform.root.tag == "NetBot") {
 			netBot = transform.root.GetComponent<Network_Bot> ();	
 		}
-
+			
 		if (GetComponent<BoxCollider> () != null) {
-			thisCollider = GetComponent<BoxCollider> ();
+			thisCollider = this.gameObject.GetComponent<BoxCollider> ();
 		}
 		if (GetComponent<SphereCollider> () != null) {
 			thisCollider = GetComponent<SphereCollider> ();
