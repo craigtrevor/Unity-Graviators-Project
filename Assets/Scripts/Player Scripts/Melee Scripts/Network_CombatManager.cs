@@ -55,6 +55,8 @@ public class Network_CombatManager : NetworkBehaviour {
 	public bool isAttacking = false;
     public bool isHitting;
     public bool isUlting;
+	public bool isStunned;
+	public bool isSlowed;
     [SerializeField]
     public bool animationPlaying;
 
@@ -101,7 +103,9 @@ public class Network_CombatManager : NetworkBehaviour {
 
     void Update() {
         CheckAnimation();
-        AttackPlayer();
+		if (!isStunned) {
+			AttackPlayer ();
+		}
         PlayerVelocity();
         //Debug.Log("isulting "+isUlting);
     }
@@ -115,7 +119,10 @@ public class Network_CombatManager : NetworkBehaviour {
     }
 
     public void StunForSeconds(float stunTime) {
-        StartCoroutine(stunTimer(stunTime, true));
+		if (!isStunned) {
+			isStunned = true;
+			StartCoroutine (stunTimer (stunTime, true));
+		}
     }
 
     IEnumerator stunTimer(float stunTime, bool ignoreLocalWarning) {
@@ -129,10 +136,14 @@ public class Network_CombatManager : NetworkBehaviour {
         }
         playerController.stunned = false;
         anim.SetBool("Stun", false);
+		isStunned = false;
     }
 
     public void SlowForSeconds(float slowTime) {
-        StartCoroutine(slowTimer(slowTime, true));
+		if (!isSlowed) {
+			isSlowed = true;
+			StartCoroutine (slowTimer (slowTime, true));
+		}
     }
 
     public IEnumerator slowTimer(float slowTime, bool ignoreLocalWarning) {
@@ -145,6 +156,7 @@ public class Network_CombatManager : NetworkBehaviour {
         playerController.moveSettings.forwardVel = normalWalkSpeed;
         playerController.moveSettings.rightVel = normalWalkSpeed;
         playerController.moveSettings.jumpVel = normalJumpSpeed;
+		isSlowed = false;
     }
 
     void CheckAnimation() {
