@@ -435,7 +435,7 @@ public class Network_Bot : NetworkBehaviour {
 		deathStats++;
 		GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
 		GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-        networkBotSpawner.ScheduleNextEnemySpawn();
+        //networkBotSpawner.ScheduleNextEnemySpawn();
         NetworkServer.Spawn(corpseobject);
 		Network_GameManager.KillBot(transform.name);
 	}

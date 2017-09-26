@@ -34,40 +34,38 @@ public class Network_BotSpawner : NetworkBehaviour {
     void Start()
     {
 		AddNames ();
-
-        if (Network_SceneManager.instance.serverScene == "JoinPracticeRange_Scene")
-        {
-			SpawnBot();
-        }
+		Network_Manager netManager = GameObject.FindGameObjectWithTag ("NetManager").GetComponent<Network_Manager> ();
+		numberToSpawn = netManager.noOfCPUs;
+		SpawnBot();
     }
 
 	void AddNames() {
-		names.Add ("Joe");
-		names.Add ("Casey");
-		names.Add ("Katie");
-		names.Add ("rank");
-		names.Add ("Fred");
-		names.Add ("Lucy");
+		names.Add ("CPU-Joe");
+		names.Add ("CPU-Casey");
+		names.Add ("CPU-Katie");
+		names.Add ("CPU-Frank");
+		names.Add ("CPU-Fred");
+		names.Add ("CPU-Lucy");
 	}
 
-    public void ScheduleNextEnemySpawn()
-    {
-        float spawnInSeconds;
-
-        if (maxSpawnRateInSeconds > 1f)
-        {
-            spawnInSeconds = Random.Range(1f, maxSpawnRateInSeconds);
-        }
-
-        else
-        {
-            spawnInSeconds = 1f;
-        }
-
-        //numberToSpawn++;
-
-        Invoke("SpawnBot", maxSpawnRateInSeconds);
-    }
+//    public void ScheduleNextEnemySpawn()
+//    {
+//        float spawnInSeconds;
+//
+//        if (maxSpawnRateInSeconds > 1f)
+//        {
+//            spawnInSeconds = Random.Range(1f, maxSpawnRateInSeconds);
+//        }
+//
+//        else
+//        {
+//            spawnInSeconds = 1f;
+//        }
+//
+//        //numberToSpawn++;
+//
+//        Invoke("SpawnBot", maxSpawnRateInSeconds);
+//    }
 
     void SpawnBot()
     {
@@ -85,27 +83,28 @@ public class Network_BotSpawner : NetworkBehaviour {
 				spawnedBot = Instantiate (networkBot_D1, botSpawnPoints [botSpawnerindex].transform.position, botSpawnPoints [botSpawnerindex].transform.rotation) as GameObject;
 			}
 			NetworkServer.Spawn(spawnedBot.gameObject);
-			int tempInt = Random.Range (0, names.Count + 1);
+			int tempInt = Random.Range (0, names.Count);
 			spawnedBot.gameObject.GetComponent<Network_Bot>().username = names[tempInt];
+			spawnedBot.gameObject.name = names [tempInt];
 			names.Remove(names[tempInt]);
 			Network_GameManager.RegisterBot(spawnedBot.gameObject.transform.name, spawnedBot.gameObject.GetComponent<Network_Bot>());
 
         }
     }
 
-    void IncreaseSpawnRate()
-    {
-        if (maxSpawnRateInSeconds > 1f)
-            maxSpawnRateInSeconds--;
-        if (maxSpawnRateInSeconds == 1f)
-            CancelInvoke("IncreaseSpawnRate");
-    }
-
-    //Funtion to stop enemy spawner
-    public void UnscheduleEnemySpawner()
-    {
-        CancelInvoke("SpawnEnemy");
-        CancelInvoke("IncreaseSpawnRate");
-        CancelInvoke("ScheduleEnemySpawner");
-    }
+//    void IncreaseSpawnRate()
+//    {
+//        if (maxSpawnRateInSeconds > 1f)
+//            maxSpawnRateInSeconds--;
+//        if (maxSpawnRateInSeconds == 1f)
+//            CancelInvoke("IncreaseSpawnRate");
+//    }
+//
+//    //Funtion to stop enemy spawner
+//    public void UnscheduleEnemySpawner()
+//    {
+//        CancelInvoke("SpawnEnemy");
+//        CancelInvoke("IncreaseSpawnRate");
+//        CancelInvoke("ScheduleEnemySpawner");
+//    }
 }

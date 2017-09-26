@@ -42,6 +42,12 @@ public class Network_Manager : NetworkManager {
     int arrayMax;
     int arrayMin;
 
+	[SerializeField]
+	public int noOfCPUs = 0;
+
+	[SerializeField]
+	public int maxCPUs = 4;
+
     void Start()
     {
         characterIndex = 0;
@@ -289,4 +295,15 @@ public class Network_Manager : NetworkManager {
     {
         //base.OnClientSceneChanged(conn);
     }
+
+	public void IncreaseCPUs () {
+		if (noOfCPUs < maxCPUs) {
+			noOfCPUs += 1;
+		}
+	}
+	public void DecreaseCPUs () {
+		if (noOfCPUs > 0) {
+			noOfCPUs -= 1;
+		}
+	}
 }

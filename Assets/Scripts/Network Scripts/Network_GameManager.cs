@@ -83,7 +83,11 @@ public class Network_GameManager : MonoBehaviour {
 
     public static Network_PlayerManager GetPlayer (string _playerID)
     {
-        return players[_playerID];
+		if (players.ContainsKey (_playerID)) {
+			return players [_playerID];
+		} else {
+			return null;
+		}
     }
 
     public static Network_PlayerManager[] GetAllPlayers()
@@ -115,7 +119,11 @@ public class Network_GameManager : MonoBehaviour {
 
 	public static Network_Bot GetBot (string _botID)
 	{
-		return bots[_botID];
+		if (bots.ContainsKey (_botID) != null) {
+			return bots [_botID];
+		} else {
+			return null;
+		}
 	}
 
 	public static Network_Bot[] GetAllBots()
