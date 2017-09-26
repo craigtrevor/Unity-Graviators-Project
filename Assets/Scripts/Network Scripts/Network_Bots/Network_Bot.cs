@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 
 public class Network_Bot : NetworkBehaviour {
 
+	[Header("Character Stats")]
 	public string _sourceID;
     public string _sourceTag;
 
@@ -18,10 +19,15 @@ public class Network_Bot : NetworkBehaviour {
 	public float health = 100;
 	public Slider healthSlider;
 
+	private float speed = 0.2f;
+
 	public string playerCharacterID = "ERNN";
 
 	private const string PLAYER_TAG = "Player";
 	private const string BOT_TAG = "NetBot";
+
+	[Space(10)]
+	[Header("Script Variables")]
 
 	public Animator anim;
 	public NetworkAnimator netanim;
@@ -30,25 +36,33 @@ public class Network_Bot : NetworkBehaviour {
 
     public GameObject corpse;
 
+	[Space(10)]
+	[Header("Combat Variables")]
+
     public bool isAttacking;
 	public bool isHitting;
 	public int attackCounter;
 	public bool checkWeaponCollisions;
-
-	public bool retargeting;
-	public bool backingUp;
-
 	public float playerDamage = 25;
 
 	public bool stunned;
 	public bool slowed;
 
-	public bool movingToPoint;
+	[Space(10)]
+	[Header("Character Logic Variables")]
+
 	public GameObject currentTarget;
 	public string currentTargetGravity;
 	public bool matchingGravity;
 
-	private float speed = 0.2f;
+	public bool pathfindingState;
+	public bool retargeting;
+	public bool backingUp;
+	public bool movingToPoint;
+	public bool dodgeObstacle;
+	public bool tryLeft;
+	public bool stuckVertically;
+	public bool dontTurn;
 
 	public bool jumping;
 	public bool frontColliding;
@@ -66,11 +80,8 @@ public class Network_Bot : NetworkBehaviour {
 
 	public LayerMask ignorePlayers;
 
-	public bool pathfinding;
-	public bool tryLeft;
-
-	//---------------------------------
-	// GRAVITY STUFF
+	[Space(10)]
+	[Header("Gravity Variables")]
 
 	public string gravity;
 	public Vector3 gravVector;
@@ -84,10 +95,9 @@ public class Network_Bot : NetworkBehaviour {
 	private static Vector3 zPlus = new Vector3(0, 0, 1);   // z+
 	private static Vector3 zNeg = new Vector3(0, 0, -1); // z-
 
-	// END OF GRAVITY STUFF
-	//-------------------------------------
+	[Space(10)]
+	[Header("Ranged Attack Variables")]
 
-	//Ranged Attack Variables
 	public float reloadTime = 15f;
 	public bool reloading;
 	public int reloadTimer = 6;
@@ -172,37 +182,37 @@ public class Network_Bot : NetworkBehaviour {
 		if (gravity == "-y") {
 			this.transform.rotation = Quaternion.Euler(0, 0, 0);
 			gravVector = yNeg * fallSpeed;
-			if (currentTarget != null) {
+			if (currentTarget != null && !dontTurn) {
 				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), yPlus);
 			}
 		} else if (gravity == "y") {
 			this.transform.rotation = Quaternion.Euler(0, 0, 180);
 			gravVector = yPlus * fallSpeed;
-			if (currentTarget != null) {
+			if (currentTarget != null && !dontTurn) {
 				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), yNeg);
 			}
 		} else if (gravity == "z") {
 			this.transform.rotation = Quaternion.Euler(-90, 0, 0);
 			gravVector = zPlus * fallSpeed;
-			if (currentTarget != null) {
+			if (currentTarget != null && !dontTurn) {
 				transform.LookAt(currentTarget.transform.position, zNeg);
 			}
 		} else if (gravity == "-z") {
 			this.transform.rotation = Quaternion.Euler(-90, -180, 0);
 			gravVector = zNeg * fallSpeed;
-			if (currentTarget != null) {
+			if (currentTarget != null && !dontTurn) {
 				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), zPlus);
 			}
 		} else if (gravity == "x") {
 			this.transform.rotation = Quaternion.Euler(-90, 90, 0);
 			gravVector = xPlus * fallSpeed;
-			if (currentTarget != null) {
+			if (currentTarget != null && !dontTurn) {
 				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), xNeg);
 			}
 		} else if (gravity == "-x") {
 			this.transform.rotation = Quaternion.Euler(-90, -90, 0);
 			gravVector = xNeg * fallSpeed;
-			if (currentTarget != null) {
+			if (currentTarget != null && !dontTurn) {
 				transform.LookAt(VectorAlongCurrentPlane (currentTarget.transform.position), xPlus);
 			}
 		}
@@ -272,7 +282,7 @@ public class Network_Bot : NetworkBehaviour {
 	void MoveTowardsPoint(Vector3 target) {
 		anim.SetBool ("Moving", true);
 		if (frontColliding) {
-			if (!pathfinding) {
+			if (!dodgeObstacle) {
 				if (!leftColliding && !rightColliding) {
 					if (Random.Range (0, 2) == 0) {
 						tryLeft = true;
@@ -285,10 +295,10 @@ public class Network_Bot : NetworkBehaviour {
 					tryLeft = false;
 				}
 			}
-			pathfinding = true;
+			dodgeObstacle = true;
 			Pathfind ();
 		} else {
-			pathfinding = false;
+			dodgeObstacle = false;
 			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(frontTransform.position), speed));
 		}
 	}
@@ -298,8 +308,7 @@ public class Network_Bot : NetworkBehaviour {
 		m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(backTransform.position), speed));
 	}
 
-	void Think() {
-		// Move towards the player if far away
+	void CalculateDistance() {
 		if (Vector3.Distance (transform.position, VectorAlongCurrentPlane(currentTarget.transform.position)) >= 10) {
 			distanceFromTarget = "far";
 		}
@@ -316,6 +325,56 @@ public class Network_Bot : NetworkBehaviour {
 			distanceFromTarget = "meleeRange";
 		} 
 
+		if (Vector3.Distance (transform.position, VectorAlongCurrentPlane (currentTarget.transform.position)) < 2 && Vector3.Distance (transform.position, currentTarget.transform.position) > 2) {
+			stuckVertically = true;
+		}
+	}
+
+	void PathfindingState() {
+		if (backingUp || stuckVertically && !pathfindingState) {
+			pathfindingState = true;
+			StartCoroutine (PathfindForABit ());
+		}
+	}
+
+	IEnumerator PathfindForABit() {
+		yield return new WaitForSeconds(1f);
+		if (!backingUp || !stuckVertically) {
+			pathfindingState = false;
+			dontTurn = false;
+		}
+	}
+
+	void BackupCheck() {
+		if (currentTarget.gameObject.tag == PLAYER_TAG) {
+			if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
+				backingUp = true;
+				MoveBackFromPoint (currentTarget.transform.position);	
+			} else {
+				backingUp = false;
+			}
+		}
+
+		if (currentTarget.gameObject.tag == BOT_TAG) {
+			if (currentTarget.gameObject.GetComponent<Network_Bot> ().isAttacking && !isAttacking) {
+				backingUp = true;
+				MoveBackFromPoint (currentTarget.transform.position);
+			} else {
+				backingUp = false;
+			}
+		}
+	}
+
+	void Think() {
+		CalculateDistance ();
+
+		//See if other player is attacking and move away
+		BackupCheck ();
+
+		// Check if there are any special movement conditions happening
+		PathfindingState ();
+
+		//Check to see if falling
 		if (isFalling & !jumping) {
 			anim.SetBool ("InAir", true);
 			m_Rigidbody.AddForce (gravVector, ForceMode.Force);
@@ -325,34 +384,51 @@ public class Network_Bot : NetworkBehaviour {
 			m_Rigidbody.velocity = Vector3.zero;
 		}
 
+		// Stand if not moving
 		if (!movingToPoint) {
 			anim.SetBool ("Moving", false);
 		}
 
+		//Check if stuck on an obstacle
 		if (CheckJump () && !jumping && !isFalling && distanceFromTarget != "meleeRange") {
 			StartCoroutine (Jump ());
 		}
 
-		if (distanceFromTarget == "far" && !backingUp) {
+		if (stuckVertically) {
+			Pathfind ();
+		}
+
+		if (distanceFromTarget == "far" && !pathfindingState) {
 			MoveTowardsPoint (currentTarget.transform.position);
 			movingToPoint = true;
+
+			// Check if we have been stuck for awhile trying to get to this target
 			if (!retargeting) {
 				Retarget ();
 			}
 		}
-		if (distanceFromTarget == "medium" && !backingUp) {
+
+		if (distanceFromTarget == "medium" && !pathfindingState) {
 			MoveTowardsPoint (currentTarget.transform.position);
 			movingToPoint = true;
 		}
-		if (distanceFromTarget == "close" && !backingUp) {
+		if (distanceFromTarget == "close" && !pathfindingState) {
 			MoveTowardsPoint (currentTarget.transform.position);
 			movingToPoint = true;
 		}
-		if (distanceFromTarget == "meleeRange" && !backingUp) {
+		if (distanceFromTarget == "meleeRange" && !pathfindingState) {
 			movingToPoint = false;
 		}
 
-		if (!rangedAttacking) {
+		if (distanceFromTarget == "meleeRange" && !isAttacking && !pathfindingState) {
+			Attack ();
+		}
+
+		RangedAttackCheck ();
+	}
+
+	public void RangedAttackCheck() {
+		if (!rangedAttacking && !pathfindingState) {
 			if (Vector3.Distance (transform.position, currentTarget.transform.position) < 20 && Vector3.Distance (transform.position, currentTarget.transform.position) > 5 ) {
 				if (Random.Range (0, 5) == 0) {
 					rangedAttacking = true;
@@ -360,38 +436,30 @@ public class Network_Bot : NetworkBehaviour {
 				}
 			}
 		}
-
-		if (currentTarget.gameObject.tag == PLAYER_TAG) {
-			if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
-				backingUp = true;
-				MoveBackFromPoint (currentTarget.transform.position);	
-			} else {
-				backingUp = false;
-			}
-		}
-		if (currentTarget.gameObject.tag == BOT_TAG) {
-			if (currentTarget.gameObject.GetComponent<Network_Bot> ().isAttacking && !isAttacking) {
-				backingUp = true;
-				MoveBackFromPoint (currentTarget.transform.position);
-			} else {
-				backingUp = false;
-			}
-		}
-
-		if (distanceFromTarget == "meleeRange" && !isAttacking) {
-			Attack ();
-		}
 	}
 
 	public void Pathfind() {
+		dontTurn = true;
 		if (leftColliding && rightColliding && frontColliding && !backColliding) {
 			MoveBackFromPoint(VectorAlongCurrentPlane(currentTarget.transform.position));
 		}
+
+//		if (!frontColliding) {
+//			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(frontTransform.position), speed));
+//		}
+
 		if (tryLeft) {
 			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(leftTransform.position), speed));
+			if (leftColliding) {
+				tryLeft = false;
+			}
 		}
+
 		if (!tryLeft) {
 			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(rightTransform.position), speed));
+			if (rightColliding) {
+				tryLeft = true;
+			}
 		}
 	}
 
@@ -423,6 +491,7 @@ public class Network_Bot : NetworkBehaviour {
 		}
 		if (Physics.OverlapBox(groundTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
 			isFalling = false; 
+			stuckVertically = false;
 		} else {
 			isFalling = true; 
 		}
