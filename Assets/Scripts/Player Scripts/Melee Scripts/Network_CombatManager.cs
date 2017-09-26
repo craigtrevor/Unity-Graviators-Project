@@ -165,6 +165,10 @@ public class Network_CombatManager : NetworkBehaviour {
             {
                 anim.SetBool("Jump", false);
             }
+			if (!isUlting)
+			{
+				anim.SetBool("UltimateLoop", false);
+			}
         }
     }
 

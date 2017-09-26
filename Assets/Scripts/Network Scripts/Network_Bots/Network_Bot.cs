@@ -35,6 +35,9 @@ public class Network_Bot : NetworkBehaviour {
 	public int attackCounter;
 	public bool checkWeaponCollisions;
 
+	public bool retargeting;
+	public bool backingUp;
+
 	public float playerDamage = 25;
 
 	public bool stunned;
@@ -130,6 +133,10 @@ public class Network_Bot : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (currentTarget == null) {
+			FindTarget ();
+		}
+
 		if (!currentTarget.activeSelf) {
 			FindTarget ();
 		} else {
@@ -326,19 +333,22 @@ public class Network_Bot : NetworkBehaviour {
 			StartCoroutine (Jump ());
 		}
 
-		if (distanceFromTarget == "far") {
+		if (distanceFromTarget == "far" && !backingUp) {
+			MoveTowardsPoint (currentTarget.transform.position);
+			movingToPoint = true;
+			if (!retargeting) {
+				Retarget ();
+			}
+		}
+		if (distanceFromTarget == "medium" && !backingUp) {
 			MoveTowardsPoint (currentTarget.transform.position);
 			movingToPoint = true;
 		}
-		if (distanceFromTarget == "medium") {
+		if (distanceFromTarget == "close" && !backingUp) {
 			MoveTowardsPoint (currentTarget.transform.position);
 			movingToPoint = true;
 		}
-		if (distanceFromTarget == "close") {
-			MoveTowardsPoint (currentTarget.transform.position);
-			movingToPoint = true;
-		}
-		if (distanceFromTarget == "meleeRange") {
+		if (distanceFromTarget == "meleeRange" && !backingUp) {
 			movingToPoint = false;
 		}
 
@@ -353,12 +363,18 @@ public class Network_Bot : NetworkBehaviour {
 
 		if (currentTarget.gameObject.tag == PLAYER_TAG) {
 			if (currentTarget.gameObject.GetComponent<Network_CombatManager> ().isAttacking && !isAttacking) {
+				backingUp = true;
 				MoveBackFromPoint (currentTarget.transform.position);	
+			} else {
+				backingUp = false;
 			}
 		}
 		if (currentTarget.gameObject.tag == BOT_TAG) {
 			if (currentTarget.gameObject.GetComponent<Network_Bot> ().isAttacking && !isAttacking) {
+				backingUp = true;
 				MoveBackFromPoint (currentTarget.transform.position);
+			} else {
+				backingUp = false;
 			}
 		}
 
@@ -410,6 +426,15 @@ public class Network_Bot : NetworkBehaviour {
 		} else {
 			isFalling = true; 
 		}
+	}
+
+	IEnumerator Retarget() {
+		retargeting = true;
+		yield return new WaitForSeconds(5f);
+		if (distanceFromTarget == "far") {
+			FindTarget ();
+		}
+		retargeting = false;
 	}
 
 	public bool CheckJump() {
