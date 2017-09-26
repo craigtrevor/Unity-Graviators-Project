@@ -130,7 +130,7 @@ public class Network_Bot : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (currentTarget == null) {
+		if (!currentTarget.activeSelf) {
 			FindTarget ();
 		} else {
 
