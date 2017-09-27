@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{31BAE3C3-CBA9-3FE5-0BE9-8B63F0A230E4}</ProjectGuid>
+    <ProjectGuid>{609CF590-5C68-27AD-D327-665AF02E50B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-UnityScript</AssemblyName>
+    <AssemblyName>Assembly-UnityScript-firstpass</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -51,9 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Database Control Free\Demos\UnityScript\Scripts\DCF_DemoScene_ManagerScript_UnityScript.js" />
-     <Compile Include="Assets\Database Control Free\Demos\UnityScript\Scripts\DCF_DemoScene_ManagerScript_UnityScript1.js" />
-     <Compile Include="Assets\Models\VolumetricLight\LookAtCamera.js" />
+     <Compile Include="Assets\Standard Assets\Scripts\FPSWalker.js" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\def.shader" />
      <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
