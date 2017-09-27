@@ -10,7 +10,7 @@ public class SP_TrapPads : MonoBehaviour {
 	public bool spikeTrap;
 	public bool slowTrap;
 
-	void OnTriggerEnter () {
+	void OnTriggerEnter (Collider col) {
 		if (healthPad) {
 			compactHud.onHealthPad = true;
 		}
@@ -20,7 +20,8 @@ public class SP_TrapPads : MonoBehaviour {
 		if (spikeTrap) {
 			compactHud.onSpikeTrap = true;
 		}
-		if (slowTrap) {
+		if (slowTrap && col.tag == "Player") {
+			Debug.Log (" the slow trap pad is active");
 			compactHud.onSlowTrap = true;
 		}
 	}

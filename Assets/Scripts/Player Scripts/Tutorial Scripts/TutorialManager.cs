@@ -210,24 +210,26 @@ public class TutorialManager : MonoBehaviour {
 		//Next tut progression
 		if (tutProgression == 11 && !textNotDone) {
 			StartCoroutine (AnimateText ("Looks like you're good to go four arms, lets see now..."));
-			tutProgression = 12;
+			overallProgression = 2;
+				tutProgression = 1;
+			//tutProgression = 12;
 			indicator.SetActive (false);
 		}
-		if (tutProgression == 12 && !textNotDone) {
-			StartCoroutine (AnimateText ("Oh, just to let you know. You cant keep changing gravity forever"));
-			tutProgression = 13;
-		}
-		if (tutProgression == 13 && !textNotDone) {
-			StartCoroutine(flashingarrow(gravArrow));
-			StartCoroutine (AnimateText ("You have charges that regenerate overtime, thats them on your hud"));
-			tutProgression = 14;
-		}
-		if (tutProgression == 14 && !textNotDone) {
-			StartCoroutine(flashingarrow(gravArrow));
-			StartCoroutine (AnimateText ("When you are out of charges you cant change your gravity. You will be a sitting duck for you enemies"));
-			overallProgression = 2;
-			tutProgression = 1;
-		}
+//		if (tutProgression == 12 && !textNotDone) {
+//			StartCoroutine (AnimateText ("Oh, just to let you know. You cant keep changing gravity forever"));
+//			tutProgression = 13;
+//		}
+//		if (tutProgression == 13 && !textNotDone) {
+//			StartCoroutine(flashingarrow(gravArrow));
+//			StartCoroutine (AnimateText ("You have charges that regenerate overtime, thats them on your hud"));
+//			tutProgression = 14;
+//		}
+//		if (tutProgression == 14 && !textNotDone) {
+//			StartCoroutine(flashingarrow(gravArrow));
+//			StartCoroutine (AnimateText ("When you are out of charges you cant change your gravity. You will be a sitting duck for you enemies"));
+//			overallProgression = 2;
+//			tutProgression = 1;
+//		}
 	}
 
 	void tutMelee () {
@@ -274,65 +276,66 @@ public class TutorialManager : MonoBehaviour {
 	}
 
 	void tutClash () {
-		if (tutProgression == 1 && !textNotDone) {
-			StartCoroutine (AnimateText ("Of course, real opponents aren't just going to stand and take it, lets see,"));
-			tutProgression = 2;
-		}
-		if (tutProgression == 2 && !textNotDone) {
-			champ1.SetActive (true);
-			indicator.SetActive (true);
-			indicator.GetComponent<DirectionIndicator> ().targetObject = champ1;
-			StartCoroutine (AnimateText ("This guy seems to have a bit of fight left in him, try and take him down"));
-			tutProgression = 3;
-		}
-		if (tutProgression == 3 && !textNotDone) {
-			StartCoroutine (AnimateText ("Like before, run over and left click to attack"));
-			tutProgression = 4;
-		}
-		//didn't trigger the rest of statments in this function
-		if (botsMurdered == 0 && clashBounced && !textNotDone && tutProgression == 4) {
-			StartCoroutine (AnimateText ("Well that didn't work, looks like you were attacking at the same speed, and just bounced off each other"));
-			tutProgression = 5;
-		}
-		if (tutProgression == 5 && !textNotDone) {
-			StartCoroutine (AnimateText ("See the trails your weapons are leaving? They change colour the faster you go, green, yellow, then red"));
-			tutProgression = 6;
-		}
-		if (tutProgression == 6 && !textNotDone) {
-			StartCoroutine (AnimateText ("Running, that'll only ever be slow, but falling, thats where it's at. You will do more damage the higher speed you are moving at"));
-			tutProgression = 7;
-		}
-		if (tutProgression == 7 && !textNotDone) {
-			StartCoroutine (AnimateText ("So, using your gravity switching powers, fall at him and attack with speed!"));
-			tutProgression = 8;
-		}
-		if (botsMurdered == 1 && !textNotDone && tutProgression == 8) 
-		{
-			champ2.SetActive (true);
-			champ3.SetActive (true);
-			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remember, falling will do more damage!"));
-			tutProgression = 9;
-		}
-		if(botsMurdered == 3 && !textNotDone && tutProgression == 9)
-		{
-			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remember, move faster than your opponent to hurt them good"));
-			botsMurdered = 0;
-			overallProgression = 4;
-			tutProgression = 1;
-			
-		}
-
-		// if they kill but still bounced and caanot go into next section
-		if (botsMurdered == 1 && clashBounced && !textNotDone && tutProgression == 4) {
-			StartCoroutine (AnimateText ("You're either better at this than you let or, you are very lucky"));
-			tutProgression = 8;
-		}
-
-		//if they kill before bouncing
-		if (botsMurdered == 1 && !textNotDone && tutProgression != 8 && !clashBounced) {
-			StartCoroutine (AnimateText ("You're either better at this than you let or, you are very lucky"));
-			tutProgression = 8;
-		}
+		overallProgression = 4;
+//		if (tutProgression == 1 && !textNotDone) {
+//			StartCoroutine (AnimateText ("Of course, real opponents aren't just going to stand and take it, lets see,"));
+//			tutProgression = 2;
+//		}
+//		if (tutProgression == 2 && !textNotDone) {
+//			champ1.SetActive (true);
+//			indicator.SetActive (true);
+//			indicator.GetComponent<DirectionIndicator> ().targetObject = champ1;
+//			StartCoroutine (AnimateText ("This guy seems to have a bit of fight left in him, try and take him down"));
+//			tutProgression = 3;
+//		}
+//		if (tutProgression == 3 && !textNotDone) {
+//			StartCoroutine (AnimateText ("Like before, run over and left click to attack"));
+//			tutProgression = 4;
+//		}
+//		//didn't trigger the rest of statments in this function
+//		if (botsMurdered == 0 && clashBounced && !textNotDone && tutProgression == 4) {
+//			StartCoroutine (AnimateText ("Well that didn't work, looks like you were attacking at the same speed, and just bounced off each other"));
+//			tutProgression = 5;
+//		}
+//		if (tutProgression == 5 && !textNotDone) {
+//			StartCoroutine (AnimateText ("See the trails your weapons are leaving? They change colour the faster you go, green, yellow, then red"));
+//			tutProgression = 6;
+//		}
+//		if (tutProgression == 6 && !textNotDone) {
+//			StartCoroutine (AnimateText ("Running, that'll only ever be slow, but falling, thats where it's at. You will do more damage the higher speed you are moving at"));
+//			tutProgression = 7;
+//		}
+//		if (tutProgression == 7 && !textNotDone) {
+//			StartCoroutine (AnimateText ("So, using your gravity switching powers, fall at him and attack with speed!"));
+//			tutProgression = 8;
+//		}
+//		if (botsMurdered == 1 && !textNotDone && tutProgression == 8) 
+//		{
+//			champ2.SetActive (true);
+//			champ3.SetActive (true);
+//			StartCoroutine (AnimateText ("Haha, yeah! Okay, two more! Remember, falling will do more damage!"));
+//			tutProgression = 9;
+//		}
+//		if(botsMurdered == 3 && !textNotDone && tutProgression == 9)
+//		{
+//			StartCoroutine (AnimateText ("Nice job twinkle toes... Just remember, move faster than your opponent to hurt them good"));
+//			botsMurdered = 0;
+//			overallProgression = 4;
+//			tutProgression = 1;
+//			
+//		}
+//
+//		// if they kill but still bounced and caanot go into next section
+//		if (botsMurdered == 1 && clashBounced && !textNotDone && tutProgression == 4) {
+//			StartCoroutine (AnimateText ("You're either better at this than you let or, you are very lucky"));
+//			tutProgression = 8;
+//		}
+//
+//		//if they kill before bouncing
+//		if (botsMurdered == 1 && !textNotDone && tutProgression != 8 && !clashBounced) {
+//			StartCoroutine (AnimateText ("You're either better at this than you let or, you are very lucky"));
+//			tutProgression = 8;
+//		}
 	}
 
 	void tutRanged () {
@@ -370,6 +373,10 @@ public class TutorialManager : MonoBehaviour {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("to get up in their face and deliver the finishing blow"));
 			tutProgression = 7;
+		}
+
+		if (tutProgression == 7 && !textNotDone && botsMurdered == 5) { // if they destory bots to quicklythis will allow them to move on
+			tutProgression = 8;
 		}
 
 		if (tutProgression == 7 && !textNotDone && botsMurdered != 5) {
@@ -540,6 +547,7 @@ public class TutorialManager : MonoBehaviour {
 			ultPad.SetActive (true);
 			spikeTrap.SetActive (true);
 			slowTrap.SetActive (true);
+			compactHud.onSlowTrap = false;// prevent the player being slowed when the traps respawn
 			tutProgression = 5;
 		}
 	}

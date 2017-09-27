@@ -199,7 +199,7 @@ public class Sp_GravitySwitch : MonoBehaviour {
 
 			gravitySwitching = true; //Gravity switching is true
 
-			gravityCharge -= GRAVITY_COST; //Decrease gravity charge
+			//gravityCharge -= GRAVITY_COST; //Decrease gravity charge
 
 		} //End If (haveCharge && !gravitySwitching)
 

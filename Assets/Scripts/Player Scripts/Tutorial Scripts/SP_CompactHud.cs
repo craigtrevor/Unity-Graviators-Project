@@ -156,7 +156,7 @@ public class SP_CompactHud : MonoBehaviour {
 	private IEnumerator SlowSlow() {
 		slowTrigger = true;
 		combatManager.Slow ();
-		yield return new WaitForSeconds (2f);
+		yield return new WaitForSeconds (1f);
 		slowTrigger = false;
 	}
 }
