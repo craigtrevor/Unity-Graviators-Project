@@ -17,6 +17,7 @@ public class NoName_Ult : NetworkBehaviour {
     public const float TARGET_THRESH = 2f; //distance considered "close enough" to target
     public const float DASH_MAX = 100f;
     public const float DASH_COST = DASH_MAX;
+    public const float PASSIVE_CHARGE = 1f; // the amount of charge gained passively;
 
     [SerializeField]
     private bool isDashing = false;
@@ -37,8 +38,7 @@ public class NoName_Ult : NetworkBehaviour {
     private float attackRadius;
     private const string PLAYER_TAG = "Player";
     
-    float charge = 0; // the amount of charge
-    public float passiveCharge; // the amount of charge gained passively;
+    //float charge = 0; // the amount of charge
 
     // Scripts
     Network_PlayerManager networkPlayerManager;
@@ -90,10 +90,10 @@ public class NoName_Ult : NetworkBehaviour {
     
     void ChargeUlt() { //deals with charging the ult bar
         if (!isDashing) {
-            CmdChargeUltimate(passiveCharge, transform.name);
+            CmdChargeUltimate(PASSIVE_CHARGE * Time.deltaTime, transform.name);
         }
 
-        charge = networkPlayerManager.currentUltimateGain;
+        //charge = networkPlayerManager.currentUltimateGain;
     }
 
 //	[Client]
@@ -108,7 +108,7 @@ public class NoName_Ult : NetworkBehaviour {
 //			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
 //		}
 //	}
-
+/*
 	[Command]
 	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
 	{
@@ -117,12 +117,12 @@ public class NoName_Ult : NetworkBehaviour {
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
 		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
-	}
+	}*/
 
     //Checks for dash input
     void DashInput() {
 
-        if (charge >= DASH_MAX) {
+        if (networkPlayerManager.currentUltimateGain >= DASH_MAX) {
             canDash = true;
         } else if (!isDashing) {
             canDash = false;
@@ -130,19 +130,20 @@ public class NoName_Ult : NetworkBehaviour {
 
         playerScript.isDashing = isDashing;
 
-        if (Input.GetButtonDown("Ultimate") && !isCharging && charge >= DASH_COST && canDash && !networkCombatManager.isAttacking) {
+        if (Input.GetButtonDown("Ultimate") && !isCharging && networkPlayerManager.currentUltimateGain >= DASH_COST && canDash && !networkCombatManager.isAttacking) {
             startSpot = this.transform.position;
             target = cameraScript.raycastPoint;
             isCharging = true;
             onPause = false;
-            networkPlayerManager.currentUltimateGain -= DASH_COST;
-            networkPlayerManager.currentUltimateGain = 0f;
+            //networkPlayerManager.currentUltimateGain -= DASH_COST;
+            //networkPlayerManager.currentUltimateGain = 0f;
+            CmdChargeUltimate(-DASH_COST, transform.name);
             if (!isDashing) {
                 isDashing = true;
                 networkCombatManager.isUlting = true;
 
             }
-        } else if (!isCharging && charge < DASH_COST) {
+        } else if (!isCharging && networkPlayerManager.currentUltimateGain < DASH_COST) {
             isDashing = false;
             networkCombatManager.isUlting = false;
             onPause = false;
@@ -234,7 +235,7 @@ public class NoName_Ult : NetworkBehaviour {
     void CmdChargeUltimate(float _ultimatePoints, string _playerID) {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.RpcUltimateCharging(_ultimatePoints, _playerID);
+        networkPlayerStats.RpcUltimateFlatCharging(_ultimatePoints, _playerID);
     }
 
     /*

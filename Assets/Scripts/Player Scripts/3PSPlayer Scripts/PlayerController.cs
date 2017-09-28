@@ -288,7 +288,7 @@ public class PlayerController : MonoBehaviour {
 
     void Animations() {
 
-        if (!gravityAxisScript.gravitySwitching) {
+        if (!gravityAxisScript.gravitySwitching && !stunned) { //dont strafe when: grav switching or  stunned
 
             if (Mathf.Abs(forwardInput) + Mathf.Abs(rightInput) > inputSettings.inputDelay) {
                 playerAnimator.SetBool("Moving", true);

@@ -16,11 +16,10 @@ public class SparkusUlt : NetworkBehaviour {
     public float laserDamage;
     public float laserCost;
     public const float ULT_MAX = 100f;
+    public const float PASSIVE_CHARGE = 1f; // the amount of charge gained passively;
 
     [SerializeField]
     private bool isLasering = false;
-	public float chargeMax = 100; //ultimate charging pad enabler
-	private float chargeAmount = 15f;
 
     public Transform spawnTransform; //where the laser spawns from
 
@@ -30,8 +29,7 @@ public class SparkusUlt : NetworkBehaviour {
     RaycastHit hit;
     public LayerMask mask;
     GameObject target;
-
-    float charge = 0; // the amount of charge
+    
     public float passiveCharge; // the amount of charge gained passively;
 
     // Scripts
@@ -67,7 +65,7 @@ public class SparkusUlt : NetworkBehaviour {
 
         if (Input.GetButtonDown("Ultimate") && !networkCombatManager.isAttacking)
         {
-            if (charge >= ULT_MAX)
+            if (networkPlayerManager.currentUltimateGain >= ULT_MAX)
             {
                 isLasering = true;
                 networkCombatManager.isUlting = true;
@@ -80,7 +78,7 @@ public class SparkusUlt : NetworkBehaviour {
             laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, hit.distance / 2f);
         }
 
-        if (charge <= 10) {
+        if (networkPlayerManager.currentUltimateGain <= 0) {
             isLasering = false;
             networkCombatManager.isUlting = false;
             Destroy(laser);
@@ -97,12 +95,13 @@ public class SparkusUlt : NetworkBehaviour {
 
     void ChargeUlt() { //deals with charging the ult bar
         if (!isLasering) {
-            CmdChargeUltimate(passiveCharge, transform.name);
+            CmdChargeUltimate(PASSIVE_CHARGE*Time.deltaTime, transform.name);
         } else {
-            CmdChargeUltimate(-laserCost, transform.name);
+            CmdChargeUltimate(-laserCost*Time.deltaTime, transform.name);
         }
+        Debug.Log(networkPlayerManager.currentUltimateGain);
 
-        charge = networkPlayerManager.currentUltimateGain;
+        //charge = networkPlayerManager.currentUltimateGain;
         //Debug.Log(charge);
         //Debug.Log("lasering: " + isLasering);
     }
@@ -172,7 +171,7 @@ public class SparkusUlt : NetworkBehaviour {
     void CmdChargeUltimate(float _ultimatePoints, string _playerID) {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.RpcUltimateCharging(_ultimatePoints, _playerID);
+        networkPlayerStats.RpcUltimateFlatCharging(_ultimatePoints, _playerID);
     }
 
 //	[Client]
@@ -187,7 +186,7 @@ public class SparkusUlt : NetworkBehaviour {
 //			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
 //		}
 //	}
-
+/*
 	[Command]
 	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
 	{
@@ -196,5 +195,5 @@ public class SparkusUlt : NetworkBehaviour {
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
 		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
-	}
+	}*/
 }

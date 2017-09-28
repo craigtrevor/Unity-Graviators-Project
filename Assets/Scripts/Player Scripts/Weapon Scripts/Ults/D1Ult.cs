@@ -17,8 +17,9 @@ public class D1Ult : NetworkBehaviour {
     public const float STOMP_SPEED = -50f;
     public const float STOMP_COST = 100f;
     public float chargeMax = 100;
+    public const float PASSIVE_CHARGE = 1f; // the amount of charge gained passively;
 
-    float charge = 0;
+    //float charge = 0;
 
     [SerializeField]
     private bool isStomping = false;
@@ -37,8 +38,6 @@ public class D1Ult : NetworkBehaviour {
 
     [SerializeField]
     Animator playerAnimator;
-
-    public float passiveCharge; // the amount of charge gained passively;
 
     // Use this for initialization
     void Start() {
@@ -71,6 +70,7 @@ public class D1Ult : NetworkBehaviour {
             networkCombatManager.isUlting = false;
             playerAnimator.SetBool("UltimateLoop", false);
             playerController.isDashing = true;
+            CmdChargeUltimate(-STOMP_COST, transform.name);
             //spawn the ice thingy
             CmdSpawnUlt(this.transform.position, playerController.transform.rotation, playerController.velocity.y);
             StartCoroutine(EndUlt());
@@ -85,14 +85,13 @@ public class D1Ult : NetworkBehaviour {
 
     void ChargeUlt() { //deals with charging the ult bar
         if (canCharge) {
-            CmdChargeUltimate(passiveCharge, transform.name);
+            CmdChargeUltimate(PASSIVE_CHARGE*Time.deltaTime, transform.name);
         } else {
-            CmdChargeUltimate(-300f, transform.name);
         }
 
-        charge = networkPlayerManager.currentUltimateGain;
+        //charge = networkPlayerManager.currentUltimateGain;
 
-        canUseUlt = charge >= STOMP_COST;
+        canUseUlt = networkPlayerManager.currentUltimateGain >= STOMP_COST;
         //Debug.Log(charge);
         //Debug.Log("lasering: " + isLasering);
     }
@@ -106,7 +105,7 @@ public class D1Ult : NetworkBehaviour {
             //playerAnimator.SetBool("Atacking", false);
             playerAnimator.SetBool("UltimateLoop", true);
 
-        } else if (charge <= 0f) {
+        } else if (networkPlayerManager.currentUltimateGain <= 0f) {
             canCharge = true;
         }
     }
@@ -122,7 +121,7 @@ public class D1Ult : NetworkBehaviour {
 //            CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
 //        }
 //    }
-
+/*
     [Command]
     void CmdUltCharger(string _playerID, float _charge, string _sourceID) {
         Debug.Log(_playerID + " is charging up teh lazor.");
@@ -130,14 +129,14 @@ public class D1Ult : NetworkBehaviour {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
         networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
-    }
+    }*/
 
     //command that modifies the ultimate bar value
     [Command]
     void CmdChargeUltimate(float _ultimatePoints, string _playerID) {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.RpcUltimateCharging(_ultimatePoints, _playerID);
+        networkPlayerStats.RpcUltimateFlatCharging(_ultimatePoints, _playerID);
     }
 
     [Command]
