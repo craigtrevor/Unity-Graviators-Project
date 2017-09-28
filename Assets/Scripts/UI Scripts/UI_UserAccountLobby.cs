@@ -26,7 +26,7 @@ public class UI_UserAccountLobby : MonoBehaviour {
 
     public void SwitchCharacter()
     {
-        SceneManager.LoadScene("Character_Select");          
+        SceneManager.LoadScene("Character_Select_V2");          
     }
 
     public void LogOut()

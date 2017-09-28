@@ -11,6 +11,7 @@ public class Network_LANServer : NetworkDiscovery
     void Start()
     {
         statusText = GameObject.Find("StatusText").GetComponent<Text>();
+        Debug.Log(statusText.gameObject);
         Application.runInBackground = true;
     }
 
@@ -39,6 +40,7 @@ public class Network_LANServer : NetworkDiscovery
     public void startPracticeRange()
     {
         useNetworkManager = true;
+        statusText.text = "Creating server...";
         Initialize();
         StartAsServer();
         StopBroadcast();

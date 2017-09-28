@@ -8,14 +8,16 @@ using UnityEngine.UI;
 
 public class Network_Manager : NetworkManager {
 
+    [Header("Character Select Settings")]
+
+    [SerializeField]
+    GameObject characterSelectRoom;
+
     [SerializeField]
     GameObject characterSelectHUD;
 
     [SerializeField]
     Text characterTitle;
-
-    [SerializeField]
-    private Button[] characterButtonArray;
 
     [SerializeField]
     int characterIndex;
@@ -24,31 +26,24 @@ public class Network_Manager : NetworkManager {
     public string characterID;
 
     [SerializeField]
-    GameObject[] CharacterSpotlight;
-
-    [SerializeField]
     GameObject[] ERNNCustomization;
     [SerializeField]
     GameObject[] SPKSCustomization;
     [SerializeField]
     GameObject[] UT_D1Customization;
 
-    [SerializeField]
-    GameObject[] CharacterCustomizationButtons;
-
-	[SerializeField]
-	public bool v2SelectScreen;
-
     public string customzationName;
 	public int noNameCustomization;
 	public int sparkusCustomization;
 	public int d1Customization;
 
-	public int arrayCount;
+	int arrayCount;
     int arrayMax;
     int arrayMin;
 
-	[SerializeField]
+    [Header("CPU Settings")]
+
+    [SerializeField]
 	public int noOfCPUs = 0;
 
 	[SerializeField]
@@ -67,31 +62,6 @@ public class Network_Manager : NetworkManager {
 		noNameCustomization = 0;
 		sparkusCustomization = 0;
 		d1Customization = 0;
-
-		if (!v2SelectScreen) {
-			CharacterCustomizationButtons [0].SetActive (true);
-			CharacterCustomizationButtons [1].SetActive (true);
-			CharacterCustomizationButtons [2].SetActive (false);
-			CharacterCustomizationButtons [3].SetActive (false);
-			CharacterCustomizationButtons [4].SetActive (false);
-			CharacterCustomizationButtons [5].SetActive (false);
-		}
-
-        CharacterSpotlight[0].SetActive(true);
-        CharacterSpotlight[1].SetActive(false);
-        CharacterSpotlight[2].SetActive(false);
-
-		if (!v2SelectScreen) {
-			characterButtonArray [0].onClick.AddListener (delegate {
-				CharacterSelector (characterButtonArray [0].name);
-			});
-			characterButtonArray [1].onClick.AddListener (delegate {
-				CharacterSelector (characterButtonArray [1].name);
-			});
-			characterButtonArray [2].onClick.AddListener (delegate {
-				CharacterSelector (characterButtonArray [2].name);
-			});
-		}
     }
 
     void Update()
@@ -103,93 +73,27 @@ public class Network_Manager : NetworkManager {
     {
 		if (Network_SceneManager.instance.sceneName == "Character_Select" || Network_SceneManager.instance.sceneName == "Character_Select_V2")
         {
-            characterSelectHUD.SetActive(true);
             ChooseCustomizationViaKeyboard();
             ChooseCustomizationViaRightButtons();
             ChooseCustomizationViaLeftButtons();
+            ActivateCharacterSelectRoom();
         }
 
-		else if (Network_SceneManager.instance.sceneName != "Character_Select" || Network_SceneManager.instance.sceneName != "Character_Select_V2")
+        else if (Network_SceneManager.instance.sceneName != "Character_Select" || Network_SceneManager.instance.sceneName != "Character_Select_V2")
         {
             characterSelectHUD.SetActive(false);
+            characterSelectRoom.SetActive(false);
         }
     }
 
-    public void CharacterSelector(string buttonName)
+    void ActivateCharacterSelectRoom()
     {
-        switch (buttonName)
-        {
-		case "ErrNoName_btn":
-			characterIndex = 0;
-			RemoveCustomization ();
-			arrayCount = 0;
-				customzationName = "empty hat";
-                characterName = "Err:NoName";
-                characterID = "ERNN";
-
-                CharacterSpotlight[0].SetActive(true);
-                CharacterSpotlight[1].SetActive(false);
-                CharacterSpotlight[2].SetActive(false);
-
-                CharacterCustomizationButtons[0].SetActive(true);
-                CharacterCustomizationButtons[1].SetActive(true);
-                CharacterCustomizationButtons[2].SetActive(false);
-                CharacterCustomizationButtons[3].SetActive(false);
-                CharacterCustomizationButtons[4].SetActive(false);
-                CharacterCustomizationButtons[5].SetActive(false);
-
-                break;
-
-            case "Sparkus_btn":
-
-                characterIndex = 1;
-                RemoveCustomization();
-                arrayCount = 0;
-				customzationName = "empty hat";
-                characterName = "Sparkus";
-                characterID = "SPKS";
-
-                CharacterCustomizationButtons[0].SetActive(false);
-                CharacterCustomizationButtons[1].SetActive(false);
-                CharacterCustomizationButtons[2].SetActive(true);
-                CharacterCustomizationButtons[3].SetActive(true);
-                CharacterCustomizationButtons[4].SetActive(false);
-                CharacterCustomizationButtons[5].SetActive(false);
-
-                CharacterSpotlight[0].SetActive(false);
-                CharacterSpotlight[1].SetActive(true);
-                CharacterSpotlight[2].SetActive(false);
-
-                break;
-
-            case "UnitD1_btn":
-                characterIndex = 2;
-                RemoveCustomization();
-                arrayCount = 0;
-				customzationName = "empty hat";
-                characterName = "Unit-D1";
-                characterID = "UT-D1";
-
-                CharacterCustomizationButtons[0].SetActive(false);
-                CharacterCustomizationButtons[1].SetActive(false);
-                CharacterCustomizationButtons[2].SetActive(false);
-                CharacterCustomizationButtons[3].SetActive(false);
-                CharacterCustomizationButtons[4].SetActive(true);
-                CharacterCustomizationButtons[5].SetActive(true);
-
-                CharacterSpotlight[0].SetActive(false);
-                CharacterSpotlight[1].SetActive(false);
-                CharacterSpotlight[2].SetActive(true);
-                break;
-        }
-
-        characterTitle.text = characterName;
-        playerPrefab = spawnPrefabs[characterIndex];
+        characterSelectRoom.SetActive(true);
+        characterSelectHUD.SetActive(true);
     }
 
-	public void CharacterSelectorV2(string buttonName)
+	public void CharacterSelector(string buttonName)
 	{
-		Color tempColor;
 		switch (buttonName)
 		{
 		case "ErrNoName_btn":
@@ -199,13 +103,6 @@ public class Network_Manager : NetworkManager {
 			UpdateCustomization();
 			characterName = "Err:NoName";
 			characterID = "ERNN";
-
-			CharacterSpotlight [0].SetActive (true);
-			tempColor = CharacterSpotlight [0].GetComponent<Renderer> ().material.color;
-			tempColor.a = 0.1f;
-			CharacterSpotlight [0].GetComponent<Renderer> ().material.color = tempColor;
-			CharacterSpotlight[1].SetActive(false);
-			CharacterSpotlight[2].SetActive(false);
 
 			break;
 
@@ -218,13 +115,6 @@ public class Network_Manager : NetworkManager {
 			characterName = "Sparkus";
 			characterID = "SPKS";
 
-			CharacterSpotlight[0].SetActive(false);
-			CharacterSpotlight[1].SetActive(true);
-			tempColor = CharacterSpotlight [1].GetComponent<Renderer> ().material.color;
-			tempColor.a = 0.1f;
-			CharacterSpotlight [1].GetComponent<Renderer> ().material.color = tempColor;
-			CharacterSpotlight[2].SetActive(false);
-
 			break;
 
 		case "UnitD1_btn":
@@ -234,13 +124,6 @@ public class Network_Manager : NetworkManager {
 			UpdateCustomization();
 			characterName = "Unit-D1";
 			characterID = "UT-D1";
-
-			CharacterSpotlight[0].SetActive(false);
-			CharacterSpotlight[1].SetActive(false);
-			CharacterSpotlight[2].SetActive(true);			
-			tempColor = CharacterSpotlight [2].GetComponent<Renderer> ().material.color;
-			tempColor.a = 0.1f;
-			CharacterSpotlight [2].GetComponent<Renderer> ().material.color = tempColor;
 
 			break;
 		}

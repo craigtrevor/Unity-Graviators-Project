@@ -50,7 +50,7 @@ public class CharacterSelectScreen : MonoBehaviour {
 	// Update is called once per frame
 	void UpdateCharacter () {
 		if (charSelection == 1) { 
-			netManager.CharacterSelectorV2 ("ErrNoName_btn");
+			netManager.CharacterSelector ("ErrNoName_btn");
 			rotateTo = new Vector3 (0, -90, 0);
 			StartCoroutine(FadeIn (noNameInfo, 0.5f, noNameColor));
 			StartCoroutine(FadeOut (sparkusInfo, 0.5f, sparkusColor));
@@ -61,7 +61,7 @@ public class CharacterSelectScreen : MonoBehaviour {
 			StartCoroutine(FadeOut (d1UltInfo, 0.5f, d1Color));
 		}
 		if (charSelection == 2) { 
-			netManager.CharacterSelectorV2 ("Sparkus_btn");
+			netManager.CharacterSelector ("Sparkus_btn");
 			rotateTo = new Vector3 (0, 27, 0);
 			StartCoroutine(FadeOut (noNameInfo, 0.5f, noNameColor));
 			StartCoroutine(FadeIn (sparkusInfo, 0.5f, sparkusColor));
@@ -72,7 +72,7 @@ public class CharacterSelectScreen : MonoBehaviour {
 			StartCoroutine(FadeOut (d1UltInfo, 0.5f, d1Color));
 		}
 		if (charSelection == 3) { 
-			netManager.CharacterSelectorV2 ("UnitD1_btn");
+			netManager.CharacterSelector ("UnitD1_btn");
 			rotateTo = new Vector3 (0, 150, 0);
 			StartCoroutine(FadeOut (noNameInfo, 0.5f, noNameColor));
 			StartCoroutine(FadeOut (sparkusInfo, 0.5f, sparkusColor));
