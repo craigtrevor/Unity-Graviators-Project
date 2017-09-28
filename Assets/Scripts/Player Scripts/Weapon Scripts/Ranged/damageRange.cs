@@ -63,7 +63,7 @@ public class damageRange : NetworkBehaviour {
         sourceID = _sourceParams[0];
         attackedByEntity = _sourceParams[1];
 
-        Debug.Log("GotRef: " + sourceID + " from " + _sourceParams[0]);
+        //Debug.Log("GotRef: " + sourceID + " from " + _sourceParams[0]);
     }
 
     void SetRight() {
