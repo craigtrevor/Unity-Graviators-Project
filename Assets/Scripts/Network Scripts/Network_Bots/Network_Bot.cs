@@ -26,6 +26,11 @@ public class Network_Bot : NetworkBehaviour {
 	private const string PLAYER_TAG = "Player";
 	private const string BOT_TAG = "NetBot";
 
+	public int botHat;
+	public GameObject hat1;
+	public GameObject hat2;
+	public GameObject hat3;
+
 	[Space(10)]
 	[Header("Script Variables")]
 
@@ -128,7 +133,7 @@ public class Network_Bot : NetworkBehaviour {
 	public string distanceFromTarget;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		gravity = "-y";
 		usernameText.text = username;
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
@@ -137,8 +142,40 @@ public class Network_Bot : NetworkBehaviour {
         networkBotSpawner = GameObject.FindGameObjectWithTag("NetBotSpawner").GetComponent<Network_BotSpawner>();
 		anim.transform.GetComponentInChildren<Animator> ();
 		netanim.GetComponent<NetworkAnimator> ();
-		FindTarget ();
+		netanim.SetParameterAutoSend (0, true);
+		netanim.SetParameterAutoSend (1, true);
+		netanim.SetParameterAutoSend (2, true);
+		netanim.SetParameterAutoSend (3, true);
+		netanim.SetParameterAutoSend (4, true);
+		netanim.SetParameterAutoSend (5, true);
+		netanim.SetParameterAutoSend (6, true);
+		netanim.SetParameterAutoSend (7, true);
+		netanim.SetParameterAutoSend (8, true);
+		netanim.SetParameterAutoSend (9, true);
+		netanim.SetParameterAutoSend (10, true);
+		netanim.SetParameterAutoSend (11, true);
+		netanim.SetParameterAutoSend (12, true);
 
+		// ~You can leave your hat on~
+		botHat = Random.Range (1, 4);
+		if (botHat == 1) {
+			hat1.SetActive (true);
+			hat2.SetActive (false);
+			hat3.SetActive (false);
+		}
+		if (botHat == 2) {
+			hat1.SetActive (false);
+			hat2.SetActive (true);
+			hat3.SetActive (false);
+		}
+		if (botHat == 3) {
+			hat1.SetActive (false);
+			hat2.SetActive (false);
+			hat3.SetActive (true);
+		}
+
+
+		FindTarget ();
     }
 	
 	// Update is called once per frame
@@ -295,10 +332,11 @@ public class Network_Bot : NetworkBehaviour {
 					tryLeft = false;
 				}
 			}
-			dodgeObstacle = true;
-			Pathfind ();
+//			dodgeObstacle = true;
+//			Pathfind ();
 		} else {
 			dodgeObstacle = false;
+			dontTurn = false;
 			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(frontTransform.position), speed));
 		}
 	}
@@ -420,7 +458,7 @@ public class Network_Bot : NetworkBehaviour {
 			movingToPoint = false;
 		}
 
-		if (distanceFromTarget == "meleeRange" && !isAttacking && !pathfindingState) {
+		if (distanceFromTarget == "meleeRange" && !isAttacking) {
 			Attack ();
 		}
 
@@ -464,32 +502,35 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	public void CheckCollisions() {
-		if (Physics.OverlapBox(frontTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+		Vector3 boxSize;
+		boxSize = new Vector3 (0.2f, 0.2f, 0.2f);
+
+		if (Physics.OverlapBox(frontTransform.position, boxSize, Quaternion.identity, ignorePlayers).Length != 0) {
 			frontColliding = true; 
 		} else {
 			frontColliding = false;
 		}
-		if (Physics.OverlapBox(backTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+		if (Physics.OverlapBox(backTransform.position, boxSize, Quaternion.identity, ignorePlayers).Length != 0) {
 			backColliding = true; 
 		} else {
 			backColliding = false;
 		}
-		if (Physics.OverlapBox(leftTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+		if (Physics.OverlapBox(leftTransform.position, boxSize, Quaternion.identity, ignorePlayers).Length != 0) {
 			leftColliding = true; 
 		} else {
 			leftColliding = false;
 		}
-		if (Physics.OverlapBox(rightTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+		if (Physics.OverlapBox(rightTransform.position, boxSize, Quaternion.identity, ignorePlayers).Length != 0) {
 			rightColliding = true; 
 		} else {
 			rightColliding = false;
 		}
-		if (Physics.OverlapBox(jumpTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+		if (Physics.OverlapBox(jumpTransform.position, boxSize, Quaternion.identity, ignorePlayers).Length != 0) {
 			jumpColliding = true; 
 		} else {
 			jumpColliding = false;
 		}
-		if (Physics.OverlapBox(groundTransform.position, Vector3.one, Quaternion.identity, ignorePlayers).Length != 0) {
+		if (Physics.OverlapBox(groundTransform.position, boxSize, Quaternion.identity, ignorePlayers).Length != 0) {
 			isFalling = false; 
 			stuckVertically = false;
 		} else {
@@ -519,6 +560,7 @@ public class Network_Bot : NetworkBehaviour {
 		if (health <= 0) {
 			Die (sourceID);
 		}
+
 	}
 
 	public void TakeTrapDamage(float damage) {

@@ -119,7 +119,7 @@ public class Network_GameManager : MonoBehaviour {
 
 	public static Network_Bot GetBot (string _botID)
 	{
-		if (bots.ContainsKey (_botID) != null) {
+		if (bots.ContainsKey (_botID)) {
 			return bots [_botID];
 		} else {
 			return null;
