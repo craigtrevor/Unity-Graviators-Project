@@ -11,13 +11,13 @@ public class SP_TrapPads : MonoBehaviour {
 	public bool slowTrap;
 
 	void OnTriggerEnter (Collider col) {
-		if (healthPad) {
+		if (healthPad && col.tag == "Player") {
 			compactHud.onHealthPad = true;
 		}
-		if (ultPad) {
+		if (ultPad && col.tag == "Player") {
 			compactHud.onUltPad = true;
 		}
-		if (spikeTrap) {
+		if (spikeTrap && col.tag == "Player") {
 			compactHud.onSpikeTrap = true;
 		}
 		if (slowTrap && col.tag == "Player") {

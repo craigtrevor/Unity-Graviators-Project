@@ -17,6 +17,7 @@ public class MeleeWeaponTrail : MonoBehaviour
     
 	[SerializeField]
 	private Rigidbody playerRigidbody; //used to grab velcioty
+	[SerializeField]
 	private float speed; // used to grab velocity
 
     [SerializeField]

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SinglePlayer_ThrownSword : MonoBehaviour {
 
+
 	public int swordDamage = 30;
 	public float rotateSpeed = 500;
 
@@ -41,9 +42,8 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other)
 	{
-		print ("hit");
-		if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG) {
-			if (this.gameObject.tag == THROWINGSWORD_TAG) {// if a throwing sword hit the player
+		if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.gameObject.tag =="PlayerController") {
+			if (this.gameObject.tag == THROWINGSWORD_TAG && other.gameObject.tag != THROWINGSWORD_TAG) {// if a throwing sword hit the player
 				CmdTakeDamage (other.gameObject, swordDamage);
 				GameObject temp2 = new GameObject ();
 				temp2.transform.SetParent(other.gameObject.transform);
@@ -55,7 +55,7 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 				Die ();
 			}
 		} else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG) {
-			if (this.gameObject.tag == THROWINGSWORD_TAG) {// if a throwing sword hit the player
+			if (this.gameObject.tag == THROWINGSWORD_TAG && other.gameObject.tag != THROWINGSWORD_TAG) {// if a throwing sword hit the player
 				GameObject temp2 = new GameObject ();
 				temp2.transform.SetParent(other.gameObject.transform);
 				transform.SetParent(temp2.transform);
