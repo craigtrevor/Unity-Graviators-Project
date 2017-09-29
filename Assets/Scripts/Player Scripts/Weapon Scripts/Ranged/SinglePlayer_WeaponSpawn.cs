@@ -7,7 +7,8 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
     public string _sourceID; //set the source id to the player that throws it. this is set by transform.name
 
     public int m_PlayerNumber = 1;
-    public Rigidbody weapon; // prefab of the weapon
+    ////public Rigidbody weapon; // prefab of the weapon
+	public GameObject weapon; // prefab of the weapon
     public Transform fireTransform; // a child of the player where the weapon is spawned
 	public Transform fireTransformSecondary;
     public float force = 2000; // the force to be applied to the weapon
@@ -25,19 +26,23 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
     public Animator playerAnimator;
     public GameObject weaponToHide;
 	public GameObject weaponToHide2;
-    public MonoBehaviour trailToHide;
+	public MeleeWeaponTrail trailToHide;
+	public MeleeWeaponTrail trailToHide2;
     NonNetworked_Soundscape soundscape;
+	[SerializeField]
+	private SinglePlayer_CombatManager combatManager;
 
     private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         soundscape = GetComponent<NonNetworked_Soundscape>();
+		combatManager = transform.GetComponent<SinglePlayer_CombatManager> ();
         _sourceID = transform.name;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && m_Fired == false)
+		if (Input.GetKeyDown(KeyCode.Mouse1) && m_Fired == false && !combatManager.isAttacking)
         {
             Fire();
             PlayThrowSound();
@@ -54,6 +59,9 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
 	public void RangedAttack()
     {
         weaponToHide.SetActive(false);
+		weaponToHide2.SetActive (false);
+		trailToHide.enabled = false;
+		trailToHide2.enabled = false;
         ThrowWeapon(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
 		ThrowWeapon(m_Rigidbody.velocity, force, fireTransformSecondary.forward, fireTransformSecondary.position, fireTransformSecondary.rotation);
     }
@@ -61,7 +69,8 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
     void ThrowWeapon(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation)
     {
         // create an instance of the weapon and store a reference to its rigibody
-        Rigidbody weaponInstance = Instantiate(weapon, position, rotation) as Rigidbody;
+		GameObject weaponInstance = Instantiate(weapon, position, rotation);
+        ////Rigidbody weaponInstance = Instantiate(weapon, position, rotation) as Rigidbody;
 		if (position == fireTransformSecondary.position) {
 			weaponInstance.GetComponent<SinglePlayer_ThrownSword> ().SetRight ();
 		}
@@ -69,7 +78,8 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
         Vector3 velocity = rigidbodyVelocity + launchForce * forward;
 
         // Set the shell's velocity to this velocity.
-        weaponInstance.velocity = velocity;
+		weaponInstance.GetComponent<Rigidbody>().velocity = velocity;
+        ////weaponInstance.velocity = velocity;
 
         //Destroy(weaponInstance, 3);
 		reloading = true;
@@ -94,6 +104,9 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
     }
 
     public void NoNameShowWeapons() {
+
+		trailToHide.enabled = true;
+		trailToHide2.enabled = true;
 		weaponToHide.SetActive(true);
 		weaponToHide2.SetActive(true);
 	}
