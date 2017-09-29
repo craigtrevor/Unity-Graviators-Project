@@ -42,7 +42,7 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.gameObject.tag =="PlayerController") {
+		if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.gameObject.tag !="PlayerController") {
 			if (this.gameObject.tag == THROWINGSWORD_TAG && other.gameObject.tag != THROWINGSWORD_TAG) {// if a throwing sword hit the player
 				CmdTakeDamage (other.gameObject, swordDamage);
 				GameObject temp2 = new GameObject ();
