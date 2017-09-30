@@ -182,7 +182,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 		playerControllermodifier.moveSettings.rightVel = normalWalkSpeed;
 		playerControllermodifier.moveSettings.jumpVel = normalJumpSpeed;
 
-		Debug.Log("the player is running at normal speed agian");
+
 	}
 
 	void CheckAnimation()
@@ -289,7 +289,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 				}
 
 				if (!hitCol.gameObject.GetComponent<Bot_Melee> ().isAttacking && isAttacking == true) {
-					Debug.Log ("done Damage");
+
 					hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
 				}
 			}
