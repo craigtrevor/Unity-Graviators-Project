@@ -94,9 +94,11 @@
     <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterSpawner.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BlastWaveDie.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\CharacterSelectScreen.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\NoOfCPUs.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
@@ -111,9 +113,11 @@
     <Compile Include="Assets\Scripts\Misc Scripts\TestScript.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManagerV2.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_Bot.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_Bot_CollisionChecker.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_BotSpawner.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DevKeys.cs" />
-    <Compile Include="Assets\Scripts\Network Scripts\Network_EndMatch.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_HostGame.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_JoinGame.cs" />
@@ -163,6 +167,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Bot Scripts\Patrol_Bot.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\DirectionIndicator.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Drone_bot.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Out_of_Bounds.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\SinglePlayer_ThrownSword.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\SP_CompactHud.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\SP_TrapPads.cs" />

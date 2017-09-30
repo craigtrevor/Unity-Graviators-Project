@@ -194,6 +194,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
         currentHealth = maxHealth;
 
+        GetComponent<Rigidbody>().detectCollisions = true;
+
         if (isLocalPlayer)
         {
             CheckCustomizations();
@@ -555,6 +557,7 @@ public class Network_PlayerManager : NetworkBehaviour
             deathCamera.transform.rotation = mainCamera.transform.rotation;
             deathCamera.SetActive(true);
             GetComponent<Rigidbody>().Sleep();
+            GetComponent<Rigidbody>().detectCollisions = false;
         }
 
         GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;

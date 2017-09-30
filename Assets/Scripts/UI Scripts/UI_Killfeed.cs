@@ -15,10 +15,12 @@ public class UI_Killfeed : MonoBehaviour {
 
     public void onKill (string player, string source)
     {
-        GameObject go = (GameObject)Instantiate(killfeedItemPrefab, this.transform);
-        go.GetComponent<UI_KillfeedItem>().Setup(player, source);
+        if (this.gameObject.activeSelf)
+        {
+            GameObject go = (GameObject)Instantiate(killfeedItemPrefab, this.transform);
+            go.GetComponent<UI_KillfeedItem>().Setup(player, source);
 
-        Destroy(go, 4f);
+            Destroy(go, 4f);
+        }
     }	
-
 }
