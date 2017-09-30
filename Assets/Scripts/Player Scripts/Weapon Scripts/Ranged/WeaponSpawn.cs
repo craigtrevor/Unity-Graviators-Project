@@ -154,20 +154,21 @@ public class WeaponSpawn : NetworkBehaviour {
             weaponInstance.SendMessage("SetRight");
         }
 
-        // Set the shell's velocity to this velocity.
-        weaponInstance.GetComponent<Rigidbody>().velocity = velocity;
-
-        NetworkServer.Spawn(weaponInstance.gameObject);
-
-        if (playerCharacterID == "SPKS") {
+        if (playerCharacterID == "SPKS")
+        {
             weaponInstance.transform.SetParent(fireTransform);
         }
+
+        // Set the shell's velocity to this velocity.
+        weaponInstance.GetComponent<Rigidbody>().velocity = velocity;
 
         string[] sourceParams = new string[2];
         sourceParams[0] = _sourceID;
         sourceParams[1] = _sourceTag;
 
         weaponInstance.SendMessage("SetInitialReferences", sourceParams);
+
+        NetworkServer.Spawn(weaponInstance.gameObject);
     }
 
     IEnumerator reload() {
