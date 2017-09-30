@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
     bool turnMode; // horizontal mode turns (true) or strafe (false)
 
     public Animator playerAnimator;
+    public Transform playerModel;
     public GameObject blastWave;
     public bool hasLanded;
 
@@ -330,7 +331,7 @@ public class PlayerController : MonoBehaviour {
                 strafeRot = Quaternion.Euler(Vector3.zero);
             }
 
-            playerAnimator.transform.localRotation = Quaternion.Lerp(playerAnimator.transform.localRotation, strafeRot, 10f * Time.deltaTime);
+            playerModel.localRotation = Quaternion.Lerp(playerAnimator.transform.localRotation, strafeRot, 10f * Time.deltaTime);
         }
     }
 
