@@ -99,7 +99,7 @@ public class SparkusUlt : NetworkBehaviour {
         } else {
             CmdChargeUltimate(-laserCost*Time.deltaTime, transform.name);
         }
-        Debug.Log(networkPlayerManager.currentUltimateGain);
+        //Debug.Log(networkPlayerManager.currentUltimateGain);
 
         //charge = networkPlayerManager.currentUltimateGain;
         //Debug.Log(charge);
