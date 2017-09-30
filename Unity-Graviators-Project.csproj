@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CharacterSelectScreen.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\CreditsScroller.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\NoOfCPUs.cs" />
