@@ -56,16 +56,6 @@ public class Network_PlayerManager : NetworkBehaviour
     [SerializeField]
     GameObject deathCamera;
 
-    [SerializeField]
-    GameObject endMatchCanvas;
-
-    [SerializeField]
-    Text endMatchText;
-
-    [SerializeField]
-    Text endMatchCountdownText;
-    int endMatchCountdown = 10;
-
     public GameObject mainCamera;
 
     [SerializeField]
@@ -83,8 +73,6 @@ public class Network_PlayerManager : NetworkBehaviour
     private bool deathbyPlayer;
     private bool deathbyTrap;
     private bool deathbyBot;
-    private bool hasMatchEnded = false;
-    private bool hasWonMatch = false;
 
     // Player Animator & Model
     public Animator playerAnim;
@@ -115,6 +103,8 @@ public class Network_PlayerManager : NetworkBehaviour
     Network_Soundscape networkSoundscape;
     Network_Manager networkManagerScript;
     UI_PauseMenu pauseMenu;
+    [SerializeField]
+    Network_MatchEnd netMatchEnd;
 
     // Network Booleans
     public bool isPlayerServer;
@@ -215,6 +205,8 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
+
+        netMatchEnd = GameObject.Find("GameManager").GetComponent<Network_MatchEnd>();
     }
 
     void CheckCustomizations()
@@ -307,7 +299,7 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcTakDamageByBot(float _amount, string _sourceID)
+    public void RpcTakeDamageByBot(float _amount, string _sourceID)
     {
         if (isDead)
             return;
@@ -351,39 +343,17 @@ public class Network_PlayerManager : NetworkBehaviour
         {
             sourcePlayer.killStats++;
 
-            if (isLocalPlayer && sourcePlayer.killStats == 10)
-            {
-                hasWonMatch = true;
-                hasMatchEnded = true;
-                CmdMatchEnd();
-
-                //if (playerCharacterID == "ERNN")
-                //{
-                //    networkSoundscape.PlayNonNetworkedSound(20, 4, 1f);
-                //}
-
-                //if (playerCharacterID == "SPKS")
-                //{
-                //    networkSoundscape.PlayNonNetworkedSound(21, 4, 1f);
-                //}
-
-                //if (playerCharacterID == "UT-D1")
-                //{
-                //    networkSoundscape.PlayNonNetworkedSound(22, 4, 1f);
-                //}
-
-                //Network_SceneManager.instance.wonMatch = true;
-                //Network_SceneManager.instance.playerUsername = username;
-                //StartCoroutine(EndGame());
-            }
-
-            else if (isLocalPlayer && sourcePlayer.killStats != 10)
-            {
-                hasWonMatch = false;
-            }
-
             Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
-            DisablePlayer();
+            
+            if (!netMatchEnd.hasMatchEnded)
+            {
+                DisablePlayer();
+            }
+
+            else if (netMatchEnd.hasMatchEnded)
+            {
+                DisablePlayerOnMatchEnd();
+            }
         }
 
         deathStats++;
@@ -425,26 +395,15 @@ public class Network_PlayerManager : NetworkBehaviour
         deathbyTrap = false;
         deathbyBot = true;
 
-		if (sourceBot != null)
+        deathStats++;
+
+        if (sourceBot != null)
 		{
 			sourceBot.killStats++;
-
-			if (isLocalPlayer && sourceBot.killStats == 10)
-			{
-				hasWonMatch = true;
-				hasMatchEnded = true;
-				CmdMatchEnd();
-			}
-
-			else if (isLocalPlayer && sourceBot.killStats != 10)
-			{
-				hasWonMatch = false;
-			}
 
 			Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourceBot.username);
 			DisablePlayer();
 		}
-
 
         // spawn corpse on death
         Debug.Log(particleManager.GetParticle("deathParticle"));
@@ -459,6 +418,13 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     private void DisablePlayer()
+    {
+        DisableComponents();
+        onDeath();
+        Respawn();
+    }
+
+    void DisableComponents()
     {
         if (isLocalPlayer)
         {
@@ -481,18 +447,39 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = false;
+    }
 
-        if (!hasMatchEnded)
+    void onDeath()
+    {
+        Debug.Log(transform.name + " is DEAD!");
+
+        if (isLocalPlayer)
         {
-            Respawn();
+            //Switch cameras
+            //deathCamera.transform.position = this.transform.position;
+            //deathCamera.transform.rotation = this.transform.rotation;
+            deathCamera.transform.position = mainCamera.transform.position;
+            deathCamera.transform.rotation = mainCamera.transform.rotation;
+            deathCamera.SetActive(true);
+            GetComponent<Rigidbody>().Sleep();
+            GetComponent<Rigidbody>().detectCollisions = false;
         }
 
-        onDeath();
+        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
+        GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
+
+        //Destroy(corpseobject, 5);
+
+        if (!isServer)
+            return;
+
+        NetworkServer.Spawn(corpseobject);
     }
+
 
     void Respawn()
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && netMatchEnd != null && !netMatchEnd.hasWonMatch)
         {
             StartCoroutine(ChooseDeathCanvas());
         }
@@ -544,33 +531,6 @@ public class Network_PlayerManager : NetworkBehaviour
         networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
     }
 
-    void onDeath()
-    {
-        Debug.Log(transform.name + " is DEAD!");
-
-        if (isLocalPlayer)
-        {
-            //Switch cameras
-            //deathCamera.transform.position = this.transform.position;
-            //deathCamera.transform.rotation = this.transform.rotation;
-            deathCamera.transform.position = mainCamera.transform.position;
-            deathCamera.transform.rotation = mainCamera.transform.rotation;
-            deathCamera.SetActive(true);
-            GetComponent<Rigidbody>().Sleep();
-            GetComponent<Rigidbody>().detectCollisions = false;
-        }
-
-        GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-        GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
-
-        //Destroy(corpseobject, 5);
-
-        if (!isServer)
-            return;
-
-        NetworkServer.Spawn(corpseobject);
-    }
-
     [ClientRpc]
     public void RpcHealthFlatRegenerate(float _amount, string _sourceID)
     {
@@ -615,50 +575,6 @@ public class Network_PlayerManager : NetworkBehaviour
 		}
 	}
 
-    [Command]
-    public void CmdMatchEnd()
-    {
-        Debug.Log("Match has finished");
-
-        RpcEndMatch();
-    }
-
-    [ClientRpc]
-    public void RpcEndMatch()
-    {
-        hasMatchEnded = true;
-        endMatchCanvas.SetActive(true);
-
-        if (hasWonMatch)
-        {
-            endMatchText.text = "VICTORY";
-            endMatchText.color = Color.yellow;
-        }
-
-        else if (!hasWonMatch)
-        {
-            endMatchText.text = "DEFEAT";
-            endMatchText.color = Color.red;
-        }
-
-        StartCoroutine(ShutdownServer());
-    }
-
-    IEnumerator ShutdownServer()
-    {
-        endMatchCountdownText.text = endMatchCountdown.ToString();
-        InvokeRepeating("ServerCountdown", 1, 1);
-        yield return new WaitForSeconds(10);
-        pauseMenu.LeaveRoom();
-    }
-
-
-    void ServerCountdown()
-    {
-        endMatchCountdown -= 1;
-        endMatchCountdownText.text = endMatchCountdown.ToString();
-    }
-
     void MuteNarration()
     {
         if (Input.GetKeyDown(KeyCode.M))
@@ -672,4 +588,10 @@ public class Network_PlayerManager : NetworkBehaviour
 			GameObject playSlowParticle = Instantiate (particleManager.GetParticle("slowParticle"), this.transform.position, this.transform.rotation);
 		}
 	}
+
+    public void DisablePlayerOnMatchEnd()
+    {
+        DisableComponents();
+        onDeath();
+    }
 }
