@@ -88,10 +88,11 @@ public class WeaponSpawn : NetworkBehaviour {
         }
 
 		if (Input.GetButtonDown("Fire2") && !m_Fired && !combatManager.isUlting && !combatManager.isAttacking) {
-			reloading = true;
+			reloading = true;              
 			StartCoroutine(reload());
 			Fire();
             PlayThrowSound();
+            combatManager.isRanging = true;
         }
     }
 
@@ -119,21 +120,24 @@ public class WeaponSpawn : NetworkBehaviour {
 			weaponToHide2.SetActive(false);
 			trailToHide.enabled = false;
 			trailToHide2.enabled = false;
-		}
+
+            combatManager.isRanging = false;
+        }
 
 		//D1s Attack
 		if (playerCharacterID == "UT-D1") {
 			CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
 			StartCoroutine (D1WingOff (0.5f));
-		
-		}
+
+            combatManager.isRanging = false;
+        }
 
 		//Sparkus Attack
 		if (playerCharacterID == "SPKS") {
 			CmdFire(Vector3.zero, 0f, fireTransform.forward, fireTransform.position, fireTransform.rotation);
 			sparkusReloadBall.SetActive (false);
 		}
-	}
+    }
 
     [Command]
     private void CmdFire(Vector3 rigidbodyVelocity, float launchForce, Vector3 forward, Vector3 position, Quaternion rotation)
@@ -203,6 +207,8 @@ public class WeaponSpawn : NetworkBehaviour {
 
         m_Fired = false;
 		reloading = false;
+
+        combatManager.isRanging = false;
     }
 
 	IEnumerator D1WingOn(float time) {

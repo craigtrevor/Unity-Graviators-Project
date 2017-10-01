@@ -53,6 +53,7 @@ public class Network_CombatManager : NetworkBehaviour {
 
     // Boolean
 	public bool isAttacking = false;
+    public bool isRanging;
     public bool isHitting;
     public bool isUlting;
 	public bool isStunned;

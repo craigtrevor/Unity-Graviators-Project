@@ -85,7 +85,7 @@ public class NoName_Ult : NetworkBehaviour {
 
         ChargeUlt();
 
-        Debug.DrawLine(startSpot, target);
+        //Debug.DrawLine(startSpot, target);
     }  
     
     void ChargeUlt() { //deals with charging the ult bar
