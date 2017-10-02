@@ -214,8 +214,8 @@ public class damageRange : NetworkBehaviour {
 
                     SendDamage(other.gameObject.name, sparkusDamage*Time.deltaTime, sourceID);
                     other.gameObject.GetComponent<Network_CombatManager>().StunForSeconds(sparkusStunTime);
-                    Debug.Log("sourceID is: " + sourceID);
-                    Debug.Log("hit: " + other.transform.name);
+                    //Debug.Log("sourceID is: " + sourceID);
+                    //Debug.Log("hit: " + other.transform.name);
                 }
 
                 if (other.gameObject.tag == BOT_TAG) {
@@ -260,17 +260,24 @@ public class damageRange : NetworkBehaviour {
     void CmdTakeDamageByBot(string _playerID, float _damage, string _sourceID)
     {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-        networkPlayerStats.RpcTakDamageByBot(_damage, _sourceID);
+        networkPlayerStats.RpcTakeDamageByBot(_damage, _sourceID);
     }
 
     public void Die() {
-        if (!dying) {
+        if (!dying && this.gameObject.activeSelf)
+        {
             Destroy(GetComponent<Rigidbody>());
             Destroy(GetComponent<MeleeWeaponTrail>());
             Destroy(GetComponent<BoxCollider>());
 
             dying = true;
             StartCoroutine(DieNow());
+        }
+
+        else if (!this.gameObject.activeSelf)
+        {
+            dying = true;
+            StopCoroutine(DieNow());
         }
     }
 

@@ -134,53 +134,49 @@ public class Network_Bot : NetworkBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		gravity = "-y";
-		usernameText.text = username;
-		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
-		m_Rigidbody = GetComponent<Rigidbody>();
-		_sourceID = transform.root.name;
+
+        gravity = "-y";
+        particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+        m_Rigidbody = GetComponent<Rigidbody>();
+        _sourceID = transform.root.name;
         networkBotSpawner = GameObject.FindGameObjectWithTag("NetBotSpawner").GetComponent<Network_BotSpawner>();
-		anim.transform.GetComponentInChildren<Animator> ();
-		netanim.GetComponent<NetworkAnimator> ();
-		netanim.SetParameterAutoSend (0, true);
-		netanim.SetParameterAutoSend (1, true);
-		netanim.SetParameterAutoSend (2, true);
-		netanim.SetParameterAutoSend (3, true);
-		netanim.SetParameterAutoSend (4, true);
-		netanim.SetParameterAutoSend (5, true);
-		netanim.SetParameterAutoSend (6, true);
-		netanim.SetParameterAutoSend (7, true);
-		netanim.SetParameterAutoSend (8, true);
-		netanim.SetParameterAutoSend (9, true);
-		netanim.SetParameterAutoSend (10, true);
-		netanim.SetParameterAutoSend (11, true);
-		netanim.SetParameterAutoSend (12, true);
+        anim.transform.GetComponentInChildren<Animator>();
+        netanim.GetComponent<NetworkAnimator>();
+        usernameText.text = username;
 
-		// ~You can leave your hat on~
-		botHat = Random.Range (1, 4);
-		if (botHat == 1) {
-			hat1.SetActive (true);
-			hat2.SetActive (false);
-			hat3.SetActive (false);
-		}
-		if (botHat == 2) {
-			hat1.SetActive (false);
-			hat2.SetActive (true);
-			hat3.SetActive (false);
-		}
-		if (botHat == 3) {
-			hat1.SetActive (false);
-			hat2.SetActive (false);
-			hat3.SetActive (true);
-		}
+        for (int i = 0; i < 12; i++)
+        {
+            netanim.SetParameterAutoSend(i, true);
+        }
 
+        // ~You can leave your hat on~
+        botHat = Random.Range(1, 4);
+        if (botHat == 1)
+        {
+            hat1.SetActive(true);
+            hat2.SetActive(false);
+            hat3.SetActive(false);
+        }
+        if (botHat == 2)
+        {
+            hat1.SetActive(false);
+            hat2.SetActive(true);
+            hat3.SetActive(false);
+        }
+        if (botHat == 3)
+        {
+            hat1.SetActive(false);
+            hat2.SetActive(false);
+            hat3.SetActive(true);
+        }
 
-		FindTarget ();
+        FindTarget();
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if (currentTarget == null) {
+
+        if (currentTarget == null) {
 			FindTarget ();
 		}
 
@@ -571,6 +567,7 @@ public class Network_Bot : NetworkBehaviour {
 		if (Network_GameManager.GetPlayer(sourceID) != null) {
 			Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(sourceID);
 			networkPlayerStats.killStats += 1;
+            //networkPlayerStats.CheckKillStats();
 		}
 		else if (Network_GameManager.GetBot(sourceID) != null) {
 			Network_Bot networkPlayerStats = Network_GameManager.GetBot(sourceID);
@@ -601,8 +598,18 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	public void Slow(float time) {
-		slowed = true;
-		StartCoroutine (SlowedFor (time));
+
+        if (this.gameObject.activeSelf)
+        {
+            slowed = true;
+            StartCoroutine(SlowedFor(time));
+        }
+
+        else if (!this.gameObject.activeSelf)
+        {
+            slowed = false;
+            StopCoroutine(SlowedFor(time));
+        }
 	}
 
 	IEnumerator SlowedFor(float time) {
@@ -708,7 +715,7 @@ public class Network_Bot : NetworkBehaviour {
 	[Command]
 	void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-		networkPlayerStats.RpcTakDamageByBot(_damage, _sourceID);
+		networkPlayerStats.RpcTakeDamageByBot(_damage, _sourceID);
 	}
 
 	//------------------------------------

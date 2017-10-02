@@ -20,6 +20,7 @@ public class Network_BotSpawner : NetworkBehaviour {
     [SerializeField]
     int numberToSpawn = 1;
     int botSpawnerindex;
+    bool spawnedBots = false;
 
     [SerializeField]
     float maxSpawnRateInSeconds = 10f;
@@ -33,10 +34,21 @@ public class Network_BotSpawner : NetworkBehaviour {
 
     void Start()
     {
-		AddNames ();
-		Network_Manager netManager = GameObject.FindGameObjectWithTag ("NetManager").GetComponent<Network_Manager> ();
-		numberToSpawn = netManager.noOfCPUs;
-		SpawnBot();
+        if (!spawnedBots)
+        {
+            StartCoroutine(StartSpawner());
+        }
+
+    }
+
+    IEnumerator StartSpawner()
+    {
+        yield return new WaitForSeconds(1);
+        AddNames();
+        Network_Manager netManager = GameObject.FindGameObjectWithTag("NetManager").GetComponent<Network_Manager>();
+        numberToSpawn = netManager.noOfCPUs;
+        SpawnBot();
+        spawnedBots = true;
     }
 
 	void AddNames() {

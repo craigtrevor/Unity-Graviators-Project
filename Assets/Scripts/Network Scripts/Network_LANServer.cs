@@ -11,7 +11,6 @@ public class Network_LANServer : NetworkDiscovery
     void Start()
     {
         statusText = GameObject.Find("StatusText").GetComponent<Text>();
-        Debug.Log(statusText.gameObject);
         Application.runInBackground = true;
     }
 

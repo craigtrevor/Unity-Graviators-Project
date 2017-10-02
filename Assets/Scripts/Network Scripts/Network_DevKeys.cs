@@ -118,7 +118,7 @@ public class Network_DevKeys : NetworkBehaviour {
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
         Debug.Log(_playerID + " has been attacked.");
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-        networkPlayerStats.RpcTakDamageByBot(_damage, transform.name);
+        networkPlayerStats.RpcTakeDamageByBot(_damage, transform.name);
     }
 
     [Command] // to heal
