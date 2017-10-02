@@ -125,6 +125,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_LANClient.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_LANServer.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_Manager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_MatchEnd.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_MatchSettings.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerLatency.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" />

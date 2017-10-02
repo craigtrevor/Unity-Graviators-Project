@@ -135,7 +135,9 @@ public class PlayerController : MonoBehaviour {
         recieveInput = true;
         isShiftPressed = false;
         stunned = false;
-        inputSettings.GRAVITY_RELEASE = false;    
+        inputSettings.GRAVITY_RELEASE = false;
+
+        strafeRot = Quaternion.Euler(Vector3.zero);
     }
 
     void GetInput() {

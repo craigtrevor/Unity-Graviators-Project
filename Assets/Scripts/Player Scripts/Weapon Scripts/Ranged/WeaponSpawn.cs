@@ -160,7 +160,7 @@ public class WeaponSpawn : NetworkBehaviour {
 
         if (playerCharacterID == "SPKS")
         {
-            weaponInstance.transform.SetParent(fireTransform);
+            //weaponInstance.transform.SetParent(fireTransform);
         }
 
         // Set the shell's velocity to this velocity.
