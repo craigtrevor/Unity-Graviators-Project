@@ -345,12 +345,12 @@ public class Network_PlayerManager : NetworkBehaviour
 
             Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
             
-            if (!netMatchEnd.hasMatchEnded)
+            if (netMatchEnd != null && killStats != netMatchEnd.matchCount)
             {
                 DisablePlayer();
             }
 
-            else if (netMatchEnd.hasMatchEnded)
+            else if (netMatchEnd != null && killStats == netMatchEnd.matchCount)
             {
                 DisablePlayerOnMatchEnd();
             }
@@ -479,7 +479,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     void Respawn()
     {
-        if (isLocalPlayer && netMatchEnd != null && !netMatchEnd.hasWonMatch)
+        if (isLocalPlayer)
         {
             StartCoroutine(ChooseDeathCanvas());
         }

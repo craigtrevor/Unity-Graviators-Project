@@ -25,6 +25,8 @@ public class Network_MatchEnd : NetworkBehaviour
 
     [Header("End Match Components")]
 
+    public int matchCount = 10;
+
     [SerializeField]
     GameObject endMatchCanvas;
 
@@ -34,8 +36,6 @@ public class Network_MatchEnd : NetworkBehaviour
     [SerializeField]
     Text endMatchCountdownText;
     int endMatchCountdown = 10;
-
-    int matchCount = 10;
 
     void Awake()
     {
@@ -104,13 +104,14 @@ public class Network_MatchEnd : NetworkBehaviour
         //hasWonMatch = true;
         endMatchCanvas.SetActive(true);
 
-        foreach (Network_PlayerManager playerManager in players)
-        {
-            playerManager.DisablePlayerOnMatchEnd();
-        }
-
         endMatchText.text = "MATCH OVER!";
         endMatchText.color = Color.white;
+
+        foreach (Network_PlayerManager playerManager in players)
+        {
+            playerManager.StopAllCoroutines();
+            playerManager.DisablePlayerOnMatchEnd();
+        }
 
         //if (hasWonMatch)
         //{
