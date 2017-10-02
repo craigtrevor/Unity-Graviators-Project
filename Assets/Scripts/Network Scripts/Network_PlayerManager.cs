@@ -38,10 +38,10 @@ public class Network_PlayerManager : NetworkBehaviour
     [SyncVar]
     public string username = "Loading...";
 
-    [SerializeField]
     public int killStats;
     public int deathStats;
     private int randomSound;
+    private int soundCounter = 0;
 
     public string playerCharacterID;
 
@@ -74,6 +74,7 @@ public class Network_PlayerManager : NetworkBehaviour
     private bool deathbyPlayer;
     private bool deathbyTrap;
     private bool deathbyBot;
+
 
     // Player Animator & Model
     public Animator playerAnim;
@@ -127,7 +128,8 @@ public class Network_PlayerManager : NetworkBehaviour
         if (!firstPlay)
         {
             networkSoundscape = transform.GetComponent<Network_Soundscape>();
-            //networkSoundscape.PlayNonNetworkedSound(16, 4);
+            networkSoundscape.PlayNonNetworkedSound(18, 5, 1);
+
             firstPlay = true;
         }
 
@@ -433,10 +435,11 @@ public class Network_PlayerManager : NetworkBehaviour
 
     void DisableComponents()
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && soundCounter == 0)
         {
-            randomSound = Random.Range(20, 23);
+            randomSound = Random.Range(23, 26);
             networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+            soundCounter++;
         }
 
         //Disable components
@@ -455,6 +458,7 @@ public class Network_PlayerManager : NetworkBehaviour
         if (_col != null)
             _col.enabled = false;
 
+        soundCounter--;
         onDeath();
     }
 
@@ -538,8 +542,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
         Debug.Log(transform.name + " respawned.");
 
-        randomSound = Random.Range(18, 20);
-        networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+        //randomSound = Random.Range(18, 20);
+        //networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
     }
 
     [ClientRpc]

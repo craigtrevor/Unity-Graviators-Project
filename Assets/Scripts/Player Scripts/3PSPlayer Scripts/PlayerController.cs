@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     Network_PlayerManager netPlayerManager;
     Network_Soundscape netSoundscape;
-    NonNetworked_Soundscape soundscape;
 
     public float cameraDisplacement;
     public bool stunned;
@@ -120,12 +119,7 @@ public class PlayerController : MonoBehaviour {
 
         turnMode = false;
 
-        if (Network_SceneManager.instance.sceneName == "Online_Scene_ArenaV2") {
-            netSoundscape = GetComponentInParent<Network_Soundscape>();
-        } else if (Network_SceneManager.instance.sceneName == "Tutorial_Arena") {
-            soundscape = GetComponentInParent<NonNetworked_Soundscape>();
-        }
-
+        netSoundscape = GetComponentInParent<Network_Soundscape>();
         netCombatManager = transform.root.GetComponent<Network_CombatManager>();
         netPlayerManager = transform.root.GetComponent<Network_PlayerManager>();
 
@@ -187,35 +181,35 @@ public class PlayerController : MonoBehaviour {
                 if (Input.GetButtonDown("Jump")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(Input.GetAxis("Jump"), 0f, 0f);
-                    //networkSoundscape.PlaySound(22, 4, 0f);
+                    netSoundscape.PlaySound(4, 3, 0.1f, 0);
                     //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonDown("GravForward")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(0f, 0f, Input.GetAxis("GravForward"));
-                    //networkSoundscape.PlaySound(22, 4, 0f);
+                    netSoundscape.PlaySound(4, 3, 0.1f, 0);
                     //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonDown("GravBack")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(0f, 0f, -Input.GetAxis("GravBack"));
-                    //networkSoundscape.PlaySound(22, 4, 0f);
+                    netSoundscape.PlaySound(4, 3, 0.1f, 0);
                     //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonDown("GravRight")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(0f, Input.GetAxis("GravRight"), 0f);
-                    //networkSoundscape.PlaySound(22, 4, 0f);
+                    netSoundscape.PlaySound(4, 3, 0.1f, 0);
                     //isShiftPressed = false;
                 }
 
                 if (Input.GetButtonDown("GravLeft")) {
                     // Used Gravity || in the air - Alex
                     gravityAxisScript.ChangeGravity(0f, -Input.GetAxis("GravLeft"), 0f);
-                    //networkSoundscape.PlaySound(22, 4, 0f);
+                    netSoundscape.PlaySound(4, 3, 0.1f, 0);
                     //isShiftPressed = false;
                 }
 
@@ -362,22 +356,14 @@ public class PlayerController : MonoBehaviour {
     void CheckMovementAudio() {
         if (playerAnimator.GetBool("InAir") == false && playerAnimator.GetBool("Moving") == true && playerStep == true && playerAnimator == true && !Input.GetButton("Jump")) {
 
-            if (cycleMovement == 0) {
-                if (soundscape != null) {
-                    soundscape.PlayNonNetworkedSound(0, 3, 0.1f);
-                } else if (netSoundscape != null) {
-                    netSoundscape.PlaySound(0, 3, 0.1f, 0);
-                }
-
+            if (cycleMovement == 0)
+            {
+                netSoundscape.PlaySound(0, 3, 0.1f, 0);
                 cycleMovement++;
 
-            } else if (cycleMovement == 1) {
-                if (soundscape != null) {
-                    soundscape.PlayNonNetworkedSound(1, 3, 0.1f);
-                } else if (netSoundscape != null) {
-                    netSoundscape.PlaySound(1, 3, 0.1f, 0);
-                }
-
+            } else if (cycleMovement == 1)
+            {
+                netSoundscape.PlaySound(1, 3, 0.1f, 0);
                 cycleMovement--;
             }
 
@@ -452,7 +438,6 @@ public class PlayerController : MonoBehaviour {
             StartCoroutine(JumpTime());
             jumping = true;
             //velocity.y = moveSettings.jumpVel;
-            //soundscape.PlaySound(4, 4, 0.2f, 0f);
         } else if (jumpInput == 0 && Grounded()) {
 
             //set the anim to not jumping and spawn a blast wave
