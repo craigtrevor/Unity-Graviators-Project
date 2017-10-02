@@ -8,14 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class Network_MatchEnd : NetworkBehaviour
 {
-
-    [Header("Network Components")]
-
     private NetworkManager networkManager;
     private NetworkDiscovery networkDiscovery;
-
-    public bool hasMatchEnded;
-    public bool hasWonMatch;
 
     [SerializeField]
     Network_PlayerManager[] players;
@@ -26,6 +20,8 @@ public class Network_MatchEnd : NetworkBehaviour
     [Header("End Match Components")]
 
     public int matchCount = 10;
+    public bool hasMatchEnded;
+    public bool hasWonMatch;
 
     [SerializeField]
     GameObject endMatchCanvas;
