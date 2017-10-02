@@ -70,6 +70,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     private bool firstSetup = true;
     private bool firstPlay = false;
+    private bool firstDeath = true;
     private bool deathbyPlayer;
     private bool deathbyTrap;
     private bool deathbyBot;
@@ -107,6 +108,7 @@ public class Network_PlayerManager : NetworkBehaviour
     Network_MatchEnd netMatchEnd;
 
     // Network Booleans
+    [HideInInspector]
     public bool isPlayerServer;
 
     public override void PreStartClient()
@@ -173,6 +175,7 @@ public class Network_PlayerManager : NetworkBehaviour
             }
 
             firstSetup = false;
+            netMatchEnd = GameObject.Find("GameManager").GetComponent<Network_MatchEnd>();
         }
 
         SetDefaults();
@@ -205,8 +208,6 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
-
-        netMatchEnd = GameObject.Find("GameManager").GetComponent<Network_MatchEnd>();
     }
 
     void CheckCustomizations()
@@ -344,19 +345,27 @@ public class Network_PlayerManager : NetworkBehaviour
             sourcePlayer.killStats++;
 
             Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
-            
-            if (!netMatchEnd.hasMatchEnded)
-            {
-                DisablePlayer();
-            }
-
-            else if (netMatchEnd.hasMatchEnded)
-            {
-                DisablePlayerOnMatchEnd();
-            }
         }
 
         deathStats++;
+
+        // The lines of code below are nesecarry atm to fix a network issue. I plan to clean it up eventually 
+
+        if (firstDeath)
+        {
+            DisablePlayer();
+            firstDeath = false;
+        }
+
+        if (killStats != netMatchEnd.matchCount)
+        {
+            DisablePlayer();
+        }
+
+        else if (killStats == netMatchEnd.matchCount)
+        {
+            DisablePlayerOnMatchEnd();
+        }
     }
 
     private void DieByTrap(string _sourceID)
@@ -420,8 +429,6 @@ public class Network_PlayerManager : NetworkBehaviour
     private void DisablePlayer()
     {
         DisableComponents();
-        onDeath();
-        Respawn();
     }
 
     void DisableComponents()
@@ -447,6 +454,8 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = false;
+
+        onDeath();
     }
 
     void onDeath()
@@ -470,6 +479,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
         //Destroy(corpseobject, 5);
 
+        Respawn();
+
         if (!isServer)
             return;
 
@@ -479,7 +490,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     void Respawn()
     {
-        if (isLocalPlayer && netMatchEnd != null && !netMatchEnd.hasWonMatch)
+        if (isLocalPlayer)
         {
             StartCoroutine(ChooseDeathCanvas());
         }
@@ -591,7 +602,28 @@ public class Network_PlayerManager : NetworkBehaviour
 
     public void DisablePlayerOnMatchEnd()
     {
-        DisableComponents();
-        onDeath();
+        DisableComponentOnEndMatch();
+    }
+
+    void DisableComponentOnEndMatch()
+    {
+        //if (isLocalPlayer)
+        //{
+        //    randomSound = Random.Range(20, 23);
+        //    networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+        //}
+
+        //Disable components
+        for (int i = 0; i < disableOnDeath.Length; i++)
+        {
+            disableOnDeath[i].enabled = false;
+        }
+
+        GetComponent<Rigidbody>().Sleep();
+        GetComponent<Rigidbody>().detectCollisions = false;
+
+        Collider _col = GetComponent<Collider>();
+        if (_col != null)
+            _col.enabled = false;
     }
 }

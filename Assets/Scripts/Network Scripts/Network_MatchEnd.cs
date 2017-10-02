@@ -8,14 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class Network_MatchEnd : NetworkBehaviour
 {
-
-    [Header("Network Components")]
-
     private NetworkManager networkManager;
     private NetworkDiscovery networkDiscovery;
-
-    public bool hasMatchEnded;
-    public bool hasWonMatch;
 
     [SerializeField]
     Network_PlayerManager[] players;
@@ -24,6 +18,10 @@ public class Network_MatchEnd : NetworkBehaviour
     Network_Bot[] bots;
 
     [Header("End Match Components")]
+
+    public int matchCount = 10;
+    public bool hasMatchEnded;
+    public bool hasWonMatch;
 
     [SerializeField]
     GameObject endMatchCanvas;
@@ -34,8 +32,6 @@ public class Network_MatchEnd : NetworkBehaviour
     [SerializeField]
     Text endMatchCountdownText;
     int endMatchCountdown = 10;
-
-    int matchCount = 10;
 
     void Awake()
     {
@@ -104,13 +100,14 @@ public class Network_MatchEnd : NetworkBehaviour
         //hasWonMatch = true;
         endMatchCanvas.SetActive(true);
 
-        foreach (Network_PlayerManager playerManager in players)
-        {
-            playerManager.DisablePlayerOnMatchEnd();
-        }
-
         endMatchText.text = "MATCH OVER!";
         endMatchText.color = Color.white;
+
+        foreach (Network_PlayerManager playerManager in players)
+        {
+            playerManager.StopAllCoroutines();
+            playerManager.DisablePlayerOnMatchEnd();
+        }
 
         //if (hasWonMatch)
         //{
