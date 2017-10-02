@@ -142,7 +142,6 @@ public class Network_Bot : NetworkBehaviour {
         networkBotSpawner = GameObject.FindGameObjectWithTag("NetBotSpawner").GetComponent<Network_BotSpawner>();
         anim.transform.GetComponentInChildren<Animator>();
         netanim.GetComponent<NetworkAnimator>();
-        usernameText.text = username;
 
         for (int i = 0; i < 12; i++)
         {
@@ -172,7 +171,11 @@ public class Network_Bot : NetworkBehaviour {
 
         FindTarget();
     }
-	
+
+	void Start () {
+		usernameText.text = username;
+	}
+
 	// Update is called once per frame
 	void Update () {
 

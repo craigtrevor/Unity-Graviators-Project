@@ -71,7 +71,7 @@ public class SlowTrapV2 : MonoBehaviour {
 			affectedList[i].gameObject.GetComponent<Network_CombatManager> ().SlowForSeconds (1f);
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
-			affectedList[i].gameObject.GetComponent<Network_Bot> ().Slow (1f);
+			affectedList [i].gameObject.GetComponent<Network_Bot> ().Slow (1f);
 		}
 		yield return new WaitForSeconds (0.1f);
 		damageTick = true;

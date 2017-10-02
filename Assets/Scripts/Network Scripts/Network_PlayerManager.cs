@@ -128,7 +128,7 @@ public class Network_PlayerManager : NetworkBehaviour
         if (!firstPlay)
         {
             networkSoundscape = transform.GetComponent<Network_Soundscape>();
-            networkSoundscape.PlayNonNetworkedSound(18, 5, 1);
+            networkSoundscape.PlayNonNetworkedSound(18, 5, 0.2f);
 
             firstPlay = true;
         }
@@ -438,7 +438,7 @@ public class Network_PlayerManager : NetworkBehaviour
         if (isLocalPlayer && soundCounter == 0)
         {
             randomSound = Random.Range(23, 26);
-            networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+            networkSoundscape.PlayNonNetworkedSound(randomSound, 5, 0.2f);
             soundCounter++;
         }
 

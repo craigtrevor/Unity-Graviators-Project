@@ -25,6 +25,7 @@ public class Network_Soundscape : NetworkBehaviour {
 
     public void PlayNonNetworkedSound(int clipID, int audioSource, float audioVolume)
     {
+        playerAudioSources[audioSource].volume = audioVolume;
         playerAudioSources[audioSource].PlayOneShot(playerAudioClips[clipID]);
     }
 
