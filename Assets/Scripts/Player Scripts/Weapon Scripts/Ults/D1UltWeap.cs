@@ -28,25 +28,26 @@ public class D1UltWeap : NetworkBehaviour {
     }
 
     private void Update() {
-        Debug.Log("ID: " + sourceID + "| Tag: " + attackedByEntity);
-        Debug.Log("Size:" + damage);
+        //Debug.Log("ID: " + sourceID + "| Tag: " + attackedByEntity);
+        //Debug.Log("Size:" + damage);
     }
 
     public void getUltSize(float sizeMeasurement) {
         float multiplierPercent = Mathf.Clamp((-sizeMeasurement - 50f) / 50f, 0f, 1f);
         float sizeMultiplier = Mathf.Max(multiplierPercent * 3f, 0.5f);
         float damageMultiplier = multiplierPercent * 4f;
-        float stunMultiplier = multiplierPercent * 5f;
+        float stunMultiplier = 2f + multiplierPercent * 5f;
         //Debug.Log(damageMultiplier * damage);
 
         this.transform.localScale = Vector3.one * sizeMultiplier;
         damage *= damageMultiplier;
         stun *= stunMultiplier;
+        Debug.Log(stun);
     }
 
     // Use this for initialization
     void Start() {
-        Destroy(this.gameObject, 3f);
+        Destroy(this.gameObject, 2f);
         //StompDamage(damage);
     }
     /*

@@ -43,7 +43,7 @@ public class D1Ult : NetworkBehaviour {
     // Use this for initialization
     void Start() {
 
-        _sourceID = gameObject.name;
+        _sourceID = transform.root.name;
         _sourceTag = gameObject.tag;
 
         gravityScript = GetComponentInChildren<GravityAxisScript>();
@@ -69,20 +69,18 @@ public class D1Ult : NetworkBehaviour {
     void hitGround() {
         if (isStomping && playerController.Grounded() && !hasStopmed) { //ult has stopped
             isStomping = false;
-            combatManager.isUlting = false;
             playerAnimator.SetBool("UltimateLoop", false);
-            playerController.isDashing = true;
             CmdChargeUltimate(-STOMP_COST, transform.name);
             //spawn the ice thingy
-            CmdSpawnUlt(this.transform.position, playerController.transform.rotation, playerController.velocity.y);
+            CmdSpawnUlt(playerController.transform.position, playerController.transform.rotation, playerController.velocity.y);
             StartCoroutine(EndUlt());
         }
     }
 
     IEnumerator EndUlt() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         //Debug.Log("apple");
-        playerController.isDashing = false;
+        combatManager.isUlting = false;
     }
 
     void ChargeUlt() { //deals with charging the ult bar
@@ -104,8 +102,8 @@ public class D1Ult : NetworkBehaviour {
             isStomping = true;
             combatManager.isUlting = true;
             playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);
-            //playerAnimator.SetBool("Atacking", false);
             playerAnimator.SetBool("UltimateLoop", true);
+            playerAnimator.SetTrigger("StartUltimate");
 
         } else if (networkPlayerManagerScript.currentUltimateGain <= 0f) {
             canCharge = true;

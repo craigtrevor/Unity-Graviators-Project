@@ -139,8 +139,16 @@ public class PlayerController : MonoBehaviour {
             forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
             turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
-            jumpInput = Input.GetAxisRaw(inputSettings.JUMP_AXIS); // non-interpolated
-        } else {
+            //jumpInput = Input.GetAxisRaw(inputSettings.JUMP_AXIS); // non-interpolated
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumpInput = 1;
+            } else
+            {
+                jumpInput = Mathf.Max(0, jumpInput - 0.01f);
+            }
+        }
+        else {
             forwardInput = rightInput = turnInput = jumpInput = 0f;
         }
 
