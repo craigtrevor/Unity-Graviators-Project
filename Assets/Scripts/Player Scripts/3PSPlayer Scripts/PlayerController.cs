@@ -140,12 +140,12 @@ public class PlayerController : MonoBehaviour {
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
             turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
             //jumpInput = Input.GetAxisRaw(inputSettings.JUMP_AXIS); // non-interpolated
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && jumpInput == 0f)
             {
                 jumpInput = 1;
             } else
             {
-                jumpInput = Mathf.Max(0, jumpInput - 0.01f);
+                jumpInput = Mathf.Max(0, jumpInput - 0.1f);
             }
         }
         else {
