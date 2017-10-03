@@ -25,6 +25,7 @@ public class Network_Soundscape : NetworkBehaviour {
 
     public void PlayNonNetworkedSound(int clipID, int audioSource, float audioVolume)
     {
+        playerAudioSources[audioSource].volume = audioVolume;
         playerAudioSources[audioSource].PlayOneShot(playerAudioClips[clipID]);
     }
 
@@ -92,13 +93,17 @@ public class Network_Soundscape : NetworkBehaviour {
         playerAudioClips[17] = (AudioClip)Resources.Load("Atmos_SpookyWind");
 
         // Narration Audio
-        playerAudioClips[18] = (AudioClip)Resources.Load("Respawn Messages-01");
-        playerAudioClips[19] = (AudioClip)Resources.Load("Respawn Messages-02");
-        playerAudioClips[20] = (AudioClip)Resources.Load("Die Message 1");
-        playerAudioClips[21] = (AudioClip)Resources.Load("Die Message 2");
-        playerAudioClips[22] = (AudioClip)Resources.Load("Die Message 3");
-        playerAudioClips[23] = (AudioClip)Resources.Load("Win Messages-noname");
-        playerAudioClips[24] = (AudioClip)Resources.Load("Win Messages-sparkus");
-        playerAudioClips[25] = (AudioClip)Resources.Load("Win Messages-D1");
+        playerAudioClips[18] = (AudioClip)Resources.Load("Introduction");
+        playerAudioClips[19] = (AudioClip)Resources.Load("Alternate Introduction");
+        playerAudioClips[20] = (AudioClip)Resources.Load("Battle Start");
+        playerAudioClips[21] = (AudioClip)Resources.Load("Respawn Messages-01");
+        playerAudioClips[22] = (AudioClip)Resources.Load("Respawn Messages-02");
+        playerAudioClips[23] = (AudioClip)Resources.Load("Die Message 1");
+        playerAudioClips[24] = (AudioClip)Resources.Load("Die Message 2");
+        playerAudioClips[25] = (AudioClip)Resources.Load("Die Message 3");
+        playerAudioClips[26] = (AudioClip)Resources.Load("Die Message 4");
+        playerAudioClips[27] = (AudioClip)Resources.Load("Win Messages-noname");
+        playerAudioClips[28] = (AudioClip)Resources.Load("Win Messages-sparkus");
+        playerAudioClips[29] = (AudioClip)Resources.Load("Win Messages-D1");
     }
 }

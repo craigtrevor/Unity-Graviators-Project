@@ -191,23 +191,23 @@ public class Sp_Controller : MonoBehaviour {
 				if (Input.GetButtonDown("Jump")) {
 					// Used Gravity || in the air - Alex
 					gravityAxisScript.ChangeGravity(Input.GetAxis("Jump"), 0f, 0f);
-					//networkSoundscape.PlaySound(22, 4, 0f);
-					//isShiftPressed = false;
-				}
+                    soundscape.PlayNonNetworkedSound(4, 3, 0.1f);
+                    //isShiftPressed = false;
+                }
 
 				if (Input.GetButtonDown("Horizontal")) {
 					// Used Gravity || in the air - Alex
 					gravityAxisScript.ChangeGravity(0f, Input.GetAxis("Horizontal"), 0f);
-					//networkSoundscape.PlaySound(22, 4, 0f);
-					//isShiftPressed = false;
-				}
+                    soundscape.PlayNonNetworkedSound(4, 3, 0.1f);
+                    //isShiftPressed = false;
+                }
 
 				if (Input.GetButtonDown("Vertical")) {
 					// Used Gravity || in the air - Alex
 					gravityAxisScript.ChangeGravity(0f, 0f, Input.GetAxis("Vertical"));
-					//networkSoundscape.PlaySound(22, 4, 0f);
-					//isShiftPressed = false;
-				}
+                    soundscape.PlayNonNetworkedSound(4, 3, 0.1f);
+                    //isShiftPressed = false;
+                }
 
 			} else { //If gravity release is on
 
