@@ -405,7 +405,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void Turn() {
+    void Turn() { //we don't use this
 
         if (UI_PauseMenu.IsOn == true)
             return;

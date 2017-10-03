@@ -169,7 +169,7 @@ public class GravityAxisScript : MonoBehaviour {
 
             //Initialise rotation block rotation
             rotationBlock.transform.rotation = controller.transform.rotation;
-            //FixSkew();
+            FixSkew();
 
             //Check input
             if (jumpAxis > 0) { //If spacebar
