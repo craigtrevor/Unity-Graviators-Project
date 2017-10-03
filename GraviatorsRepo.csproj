@@ -94,9 +94,12 @@
     <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterSpawner.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BlastWaveDie.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\CharacterSelectScreen.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\CreditsScroller.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\NoOfCPUs.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\ParticleManager.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
@@ -113,6 +116,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_AidManagerV2.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_Bot.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_Bot_CollisionChecker.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_Bots\Network_BotSpawner.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DataTranslator.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_DevKeys.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_GameManager.cs" />
@@ -121,6 +125,7 @@
     <Compile Include="Assets\Scripts\Network Scripts\Network_LANClient.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_LANServer.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_Manager.cs" />
+    <Compile Include="Assets\Scripts\Network Scripts\Network_MatchEnd.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_MatchSettings.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerLatency.cs" />
     <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" />

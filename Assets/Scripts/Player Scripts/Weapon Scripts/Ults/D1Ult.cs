@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 public class D1Ult : NetworkBehaviour {
 
     public string _sourceID; //set the source id to the player that throws it. this is set by transform.name
-    public Collider weapon; // prefab of the unitD1 ult hitbox
+    public string _sourceTag;
+    public GameObject weapon; // prefab of the unitD1 ult 
 
     private const string PLAYER_TAG = "Player";
     private const string ULTCHARGER_TAG = "UltCharger";
@@ -29,9 +30,9 @@ public class D1Ult : NetworkBehaviour {
     bool hasStopmed = false;
 
     // Scripts
-    Network_PlayerManager networkPlayerManager;
     Network_Soundscape networkSoundscape;
-    Network_CombatManager networkCombatManager;
+    Network_PlayerManager networkPlayerManagerScript;
+    private Network_CombatManager combatManager;
 
     [SerializeField]
     NetworkAnimator playerNetAnimator;
@@ -43,13 +44,14 @@ public class D1Ult : NetworkBehaviour {
     void Start() {
 
         _sourceID = transform.root.name;
+        _sourceTag = gameObject.tag;
 
         gravityScript = GetComponentInChildren<GravityAxisScript>();
         playerController = GetComponentInChildren<PlayerController>();
 
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
-        networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
-        networkCombatManager = transform.GetComponent<Network_CombatManager>();
+        combatManager = transform.GetComponent<Network_CombatManager>();
+        networkPlayerManagerScript = transform.GetComponent<Network_PlayerManager>();
 
     }
 
@@ -67,20 +69,18 @@ public class D1Ult : NetworkBehaviour {
     void hitGround() {
         if (isStomping && playerController.Grounded() && !hasStopmed) { //ult has stopped
             isStomping = false;
-            networkCombatManager.isUlting = false;
             playerAnimator.SetBool("UltimateLoop", false);
-            playerController.isDashing = true;
             CmdChargeUltimate(-STOMP_COST, transform.name);
             //spawn the ice thingy
-            CmdSpawnUlt(this.transform.position, playerController.transform.rotation, playerController.velocity.y);
+            CmdSpawnUlt(playerController.transform.position, playerController.transform.rotation, playerController.velocity.y);
             StartCoroutine(EndUlt());
         }
     }
 
     IEnumerator EndUlt() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         //Debug.Log("apple");
-        playerController.isDashing = false;
+        combatManager.isUlting = false;
     }
 
     void ChargeUlt() { //deals with charging the ult bar
@@ -91,21 +91,21 @@ public class D1Ult : NetworkBehaviour {
 
         //charge = networkPlayerManager.currentUltimateGain;
 
-        canUseUlt = networkPlayerManager.currentUltimateGain >= STOMP_COST;
+        canUseUlt = networkPlayerManagerScript.currentUltimateGain >= STOMP_COST;
         //Debug.Log(charge);
         //Debug.Log("lasering: " + isLasering);
     }
 
     void UltInput() {
-        if (Input.GetButtonDown("Ultimate") && !playerController.Grounded() && canUseUlt && !hasStopmed && !gravityScript.gravitySwitching && !networkCombatManager.isAttacking) { //ult has started
+        if (Input.GetButtonDown("Ultimate") && !playerController.Grounded() && canUseUlt && !hasStopmed && !gravityScript.gravitySwitching && !combatManager.isAttacking) { //ult has started
             canCharge = false;
             isStomping = true;
-            networkCombatManager.isUlting = true;
+            combatManager.isUlting = true;
             playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);
-            //playerAnimator.SetBool("Atacking", false);
             playerAnimator.SetBool("UltimateLoop", true);
+            playerAnimator.SetTrigger("StartUltimate");
 
-        } else if (networkPlayerManager.currentUltimateGain <= 0f) {
+        } else if (networkPlayerManagerScript.currentUltimateGain <= 0f) {
             canCharge = true;
         }
     }
@@ -133,7 +133,7 @@ public class D1Ult : NetworkBehaviour {
 
     //command that modifies the ultimate bar value
     [Command]
-    void CmdChargeUltimate(float _ultimatePoints, string _playerID) {
+    private void CmdChargeUltimate(float _ultimatePoints, string _playerID) {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
         networkPlayerStats.RpcUltimateFlatCharging(_ultimatePoints, _playerID);
@@ -142,10 +142,15 @@ public class D1Ult : NetworkBehaviour {
     [Command]
     private void CmdSpawnUlt(Vector3 position, Quaternion rotation, float SizeMeasurement) {
         // create an instance of the weapon and store a reference to its rigibody
-        Collider weaponInstance = Instantiate(weapon, position, rotation) as Collider;
+        GameObject weaponInstance = Instantiate(weapon, position, rotation);
+
+        string[] ultSourceParams = new string[2];
+        ultSourceParams[0] = _sourceID;
+        ultSourceParams[1] = _sourceTag;
+
+        weaponInstance.SendMessage("SetUltRefs", ultSourceParams, SendMessageOptions.RequireReceiver);
+        weaponInstance.SendMessage("getUltSize", SizeMeasurement, SendMessageOptions.RequireReceiver);
 
         NetworkServer.Spawn(weaponInstance.gameObject);
-        weaponInstance.SendMessage("SetInitialReferences", _sourceID);
-        weaponInstance.SendMessage("getUltSize", SizeMeasurement);
     }
 }

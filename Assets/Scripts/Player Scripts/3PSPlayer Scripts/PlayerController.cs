@@ -129,7 +129,9 @@ public class PlayerController : MonoBehaviour {
         recieveInput = true;
         isShiftPressed = false;
         stunned = false;
-        inputSettings.GRAVITY_RELEASE = false;    
+        inputSettings.GRAVITY_RELEASE = false;
+
+        strafeRot = Quaternion.Euler(Vector3.zero);
     }
 
     void GetInput() {
@@ -137,8 +139,16 @@ public class PlayerController : MonoBehaviour {
             forwardInput = Input.GetAxis(inputSettings.FORWARD_AXIS); // interpolated 
             rightInput = Input.GetAxis(inputSettings.RIGHT_AXIS); // interpolated 
             turnInput = Input.GetAxis(inputSettings.TURN_AXIS); // interpolated    
-            jumpInput = Input.GetAxisRaw(inputSettings.JUMP_AXIS); // non-interpolated
-        } else {
+            //jumpInput = Input.GetAxisRaw(inputSettings.JUMP_AXIS); // non-interpolated
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumpInput = 1;
+            } else
+            {
+                jumpInput = Mathf.Max(0, jumpInput - 0.01f);
+            }
+        }
+        else {
             forwardInput = rightInput = turnInput = jumpInput = 0f;
         }
 
@@ -321,11 +331,13 @@ public class PlayerController : MonoBehaviour {
                 }
             }
 
-            if (netCombatManager.isUlting || Input.GetButtonDown("Fire2")) { //if range or ult
+            if (netCombatManager.isUlting || Input.GetButtonDown("Fire2") || netCombatManager.isRanging) { //if range or ult
                 strafeRot = Quaternion.Euler(Vector3.zero);
             }
 
-            playerModel.localRotation = Quaternion.Lerp(playerAnimator.transform.localRotation, strafeRot, 10f * Time.deltaTime);
+            if (playerModel != null) {
+                playerModel.localRotation = Quaternion.Lerp(playerAnimator.transform.localRotation, strafeRot, 10f * Time.deltaTime);
+            }
         }
     }
 
@@ -399,19 +411,20 @@ public class PlayerController : MonoBehaviour {
             return;
 
         if (!gravityAxisScript.GetGravitySwitching()) {
-            targetRotation *= Quaternion.AngleAxis(moveSettings.rotateVel * Input.GetAxisRaw("Mouse X") * Time.deltaTime * 2, Vector3.up);
+            targetRotation *= Quaternion.AngleAxis(moveSettings.rotateVel * Input.GetAxis("Mouse X") * 0.015f, Vector3.up);
 
         }
+
         rotY -= Input.GetAxis("Mouse Y") * 2f;
         rotY = Mathf.Clamp(rotY, -90f, 60f);
         camY = Mathf.Clamp(rotY - cameraDisplacement * 30f, -90f, 60f);
         eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(camY, 0, 0), Time.deltaTime * 30f);
+        
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no
 
         transform.localRotation = targetRotation;
     }
-
     void CheckPause() {
         if (UI_PauseMenu.IsOn) {
             if (!Grounded()) {

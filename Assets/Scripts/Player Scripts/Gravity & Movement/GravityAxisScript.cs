@@ -103,10 +103,9 @@ public class GravityAxisScript : MonoBehaviour {
                                                                   rotationBlock.transform.eulerAngles.y,
                                                                   RoundNum(rotationBlock.transform.eulerAngles.z, 90));
             } else if (gravity == "z" || gravity == "-z") {
-                //I don't know why this works - it should be z
-                rotationBlock.transform.eulerAngles = new Vector3(rotationBlock.transform.eulerAngles.x,
+                rotationBlock.transform.eulerAngles = new Vector3(RoundNum(rotationBlock.transform.eulerAngles.x, 90),
                                                                   RoundNum(rotationBlock.transform.eulerAngles.y, 90),
-                                                                  RoundNum(rotationBlock.transform.eulerAngles.z, 90));
+                                                                  rotationBlock.transform.eulerAngles.z);
             } else if (gravity == "x" || gravity == "-x") {
                 rotationBlock.transform.eulerAngles = new Vector3(rotationBlock.transform.eulerAngles.x,
                                                                   RoundNum(rotationBlock.transform.eulerAngles.y, 90),
@@ -170,7 +169,7 @@ public class GravityAxisScript : MonoBehaviour {
 
             //Initialise rotation block rotation
             rotationBlock.transform.rotation = controller.transform.rotation;
-            FixSkew();
+            //FixSkew();
 
             //Check input
             if (jumpAxis > 0) { //If spacebar
@@ -223,7 +222,6 @@ public class GravityAxisScript : MonoBehaviour {
         } else if (gravity == "x" || gravity == "-x") { //If x gravities
             rotationBlock.transform.Rotate(0, 0, 180, Space.Self);
         } //End if (gravity)
-
 
     } //End GravityUp()
 
@@ -327,9 +325,9 @@ public class GravityAxisScript : MonoBehaviour {
             playerControllerScript.targetRotation = playerRotation;
 
             //Check if full rotated
-            if (Mathf.Abs(controller.transform.eulerAngles.magnitude - rotationBlock.transform.eulerAngles.magnitude) <= 0.5f) {
+            if (/*Mathf.Abs(controller.transform.eulerAngles.magnitude - rotationBlock.transform.eulerAngles.magnitude) <= 0.5f*/controller.transform.rotation == rotationBlock.transform.rotation) {
 
-                controller.transform.rotation = rotationBlock.transform.rotation; //Completely rotate player
+                //controller.transform.rotation = rotationBlock.transform.rotation; //Completely rotate player
                 gravitySwitching = false;
             } //End if (fully rotated)
 
