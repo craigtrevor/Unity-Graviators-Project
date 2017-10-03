@@ -542,8 +542,8 @@ public class Network_PlayerManager : NetworkBehaviour
 
         Debug.Log(transform.name + " respawned.");
 
-        //randomSound = Random.Range(18, 20);
-        //networkSoundscape.PlayNonNetworkedSound(randomSound, 4, 1f);
+        randomSound = Random.Range(21, 22);
+        networkSoundscape.PlayNonNetworkedSound(randomSound, 5, 1f);
     }
 
     [ClientRpc]
