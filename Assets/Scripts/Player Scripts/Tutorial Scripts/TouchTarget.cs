@@ -8,6 +8,7 @@ public class TouchTarget : MonoBehaviour {
 
 	void OnTriggerEnter () {
 		tutManager.GetComponent<TutorialManager> ().tutProgression += 1;
+		tutManager.GetComponent<TutorialManager> ().TextSaid = false;
 		gameObject.SetActive (false);
 	}
 	

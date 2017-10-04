@@ -11,6 +11,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	Transform playerModel;
 
 	public TutorialManager tutmanager;
+	public Sp_Controller playerController;
 
 	string stateName;
 
@@ -77,6 +78,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	public ParticleSystem gravLandParticleSmall;
 	public ParticleSystem gravLandParticleMed;
 	public ParticleSystem gravLandParticleLarge;
+	public ParticleSystem GrindParticle;
 
 	// Scripts
 	public Sp_Controller playerControllermodifier;
@@ -228,78 +230,118 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
             PlayMeleeSound();
         }
 
-		if (isAttacking == true)
-		{
-			CheckCollision();
-		}
+//		if (isAttacking == true)
+//		{
+//			CheckCollision();
+//		}
 	}
 
 	IEnumerator IsAttakingDelay()
 	{
 		yield return new WaitForSeconds (0.45f);
-		Debug.Log("i should now Be attking");
+//		Debug.Log("i should now Be attking");
 		isAttacking = true;
 	}
 
 
-	void CheckCollision()
-	{
-		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
-//		print (hitColliders.Length);
+//	void CheckCollision()
+//	{
+//		hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+////		print (hitColliders.Length);
+//
+//		foreach (Collider hitCol in hitColliders)
+//		{
+//			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
+//			{
+//
+//				if (hitCol.gameObject.GetComponent<Bot_Melee>().isAttacking == true)
+//				{ // check to see if the other player is attacking
+//					if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage == this.GetComponent<SinglePlayer_CombatManager>().damageToKeep)
+//					{  // if the player has equal damage as oppenent
+//						
+//						Debug.Log("knockedback");
+//						Debug.Log("player Damage fail " + damageToKeep);
+//						Debug.Log("bot Damage fail " + hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage);
+//						StartCoroutine(knockBack());
+//						//hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (100);
+//					}
+//				}
+//
+//				else if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage < this.GetComponent<SinglePlayer_CombatManager>().damageToKeep)
+//				{ // if the player has more damage then oponent
+//
+//					// Debug.Log("won clash");
+//
+//					//GetComponent<Dash>().chargePercent += ultGain;
+//
+//					if (attackCounter == 1 && isAttacking == true) {
+//						Debug.Log ("done Damage");
+//						Debug.Log("player Damage succed " + damageToKeep);
+//						Debug.Log("bot Damage succed " + hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage);
+//						hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (damageToKeep);
+//						attackCounter = 1;
+//					}
+//
+//					isAttacking = false;
+//				}
+//
+//				else
+//				{
+//					// Debug.Log("i had less damage and loss the clash");
+//				}
+//
+//				if (!hitCol.gameObject.GetComponent<Bot_Melee> ().isAttacking && isAttacking == true) {
+//					//StartCoroutine (ERNNAttacking (hitCol));
+//					isAttacking = false;
+//					//hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
+//					//isAttacking = false;
+//				}
+//			}
+//
+//			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag != PLAYER_TAG)
+//			{
+//				//isAttacking = false;
+//				//StopCoroutine(ERNNAttacking(hitCol));
+//			}
+//		}
+//	}
 
-		foreach (Collider hitCol in hitColliders)
-		{
-			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG)
-			{
-
-				if (hitCol.gameObject.GetComponent<Bot_Melee>().isAttacking == true)
-				{ // check to see if the other player is attacking
-					if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage == this.GetComponent<SinglePlayer_CombatManager>().damageToKeep)
-					{  // if the player has equal damage as oppenent
-						
-						Debug.Log("knockedback");
-						Debug.Log("player Damage fail " + damageToKeep);
-						Debug.Log("bot Damage fail " + hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage);
-						StartCoroutine(knockBack());
-						//hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (100);
+	public void weaponCollide(Collider collision, Vector3 hitPoint, bool airStrike) {
+		if (isAttacking) {
+			//ParticleSystem playGrind = (ParticleSystem)Instantiate (GrindParticle, this.transform.position + Vector3.down, this.transform.rotation);
+			ParticleSystem playGrind = (ParticleSystem)Instantiate(GrindParticle,this.transform.position + hitPoint,this.transform.rotation);
+			playGrind.transform.position = hitPoint;
+			GrindParticle.Emit (1);
+			//Debug.Log (collision.gameObject.name + " struck at " + hitPoint);
+			//GameObject tempParticle = Instantiate(particleManager.GetParticle("grindParticle"));
+			//tempParticle.transform.position = hitPoint;
+			//if ((airStrike && !playerController.Grounded()) || !airStrike) {
+				if (collision.gameObject.tag == PLAYER_TAG) {
+					isHitting = true;
+				//Debug.Log ("is hitting = true");
+					if (attackCounter == 1) {
+						//Debug.Log ("doing damage");
+						SendDamage (collision, airStrike);
+						attackCounter = 0;
 					}
 				}
+			//}
+		}
+	}
 
-				else if (hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage < this.GetComponent<SinglePlayer_CombatManager>().damageToKeep)
-				{ // if the player has more damage then oponent
-
-					// Debug.Log("won clash");
-
-					//GetComponent<Dash>().chargePercent += ultGain;
-
-					if (attackCounter == 1 && isAttacking == true) {
-						Debug.Log ("done Damage");
-						Debug.Log("player Damage succed " + damageToKeep);
-						Debug.Log("bot Damage succed " + hitCol.gameObject.GetComponent<Bot_Melee>().BotDamage);
-						hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (damageToKeep);
-						attackCounter = 1;
-					}
-
-					isAttacking = false;
-				}
-
-				else
-				{
-					// Debug.Log("i had less damage and loss the clash");
-				}
-
-				if (!hitCol.gameObject.GetComponent<Bot_Melee> ().isAttacking && isAttacking == true) {
-
-					hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
-				}
-			}
-
-			if (hitCol.transform.root != transform.root && hitCol.gameObject.tag != PLAYER_TAG)
-			{
-				//isAttacking = false;
-				//StopCoroutine(ERNNAttacking(hitCol));
+	void SendDamage(Collider hitCol, bool airStrike) {
+		if (isHitting) {
+			if (!airStrike) {
+				hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (damageToKeep / 4);
+				StartCoroutine(AttackDelay());
+				//GetComponent<Dash>().chargePercent += ultGain;
 			}
 		}
+	}
+
+	IEnumerator AttackDelay() {
+		yield return new WaitForSeconds(0.1f);
+		attackCounter = 1;
 	}
 
 //	void SendDamage(Collider hitCol) {
@@ -311,14 +353,18 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 //		}
 //	}
 
-	IEnumerator ERNNAttacking(Collider hitCol) {
-		yield return new WaitForSeconds(0.36f);
+//	IEnumerator ERNNAttacking(Collider hitCol) {
+//		yield return new WaitForSeconds(0.1f);
+//		Debug.Log ("hit 1");
 //		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
-//		yield return new WaitForSeconds(0.36f);
+//		yield return new WaitForSeconds(0.1f);
+//		Debug.Log ("hit 3");
 //		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
-//		yield return new WaitForSeconds(0.36f);
+//		yield return new WaitForSeconds(0.1f);
+//		Debug.Log ("hit 2");
 //		hitCol.gameObject.GetComponent<Bot_Script> ().TakeDamage (playerDamage);
-	}
+//		isAttacking = false;
+//	}
 
 	IEnumerator knockBack()
 	{

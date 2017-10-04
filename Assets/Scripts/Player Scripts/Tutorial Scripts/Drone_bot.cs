@@ -35,6 +35,7 @@ public class Drone_bot : MonoBehaviour {
 		if (!respawn) {
 			tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
 			gameObject.SetActive(false);
+			tutorialManager.GetComponent<TutorialManager> ().TextSaid = false;
 		}
 
 		if (respawn) {

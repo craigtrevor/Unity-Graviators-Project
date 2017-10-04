@@ -11,6 +11,7 @@ public class TutorialManager : MonoBehaviour {
 	public Text textObject;
 	public bool textNotDone = false;
 	public bool Scoreboardshown = false;
+	public bool TextSaid = false; // is false text has not bee said, if true text has been said
 
 	public GameObject chatBox;
 
@@ -155,6 +156,7 @@ public class TutorialManager : MonoBehaviour {
 
 	//StartCoroutine( AnimateText(textToWrite));
 	IEnumerator AnimateText(string strComplete){
+		TextSaid = true;
 		textNotDone = true;
 		int i = 0;
 		str = "";
@@ -186,22 +188,23 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 6 && !textNotDone) {
 			StartCoroutine (AnimateText ("Holding shift, press W,A,S,D or spacebar to switch to a new plane of gravity."));
 			tutProgression = 7;
+			TextSaid = false;
 		}
 
 		//Reach the targets x 3
-		if (tutProgression == 8 && !textNotDone) {
+		if (tutProgression == 8 && !textNotDone && TextSaid == false) {
 			indicator.SetActive (true);
 			target1.SetActive (true);
 			StartCoroutine (AnimateText ("Oh good, Gravita will be pleased. Grind those gears and see if you can reach the target that has appeared."));
 		}
 
-		if (tutProgression == 9 && !textNotDone) {
+		if (tutProgression == 9 && !textNotDone && TextSaid == false) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = target2;
 			target2.SetActive (true);
 			StartCoroutine (AnimateText ("I knew you weren’t quite ready for the scrap heap yet. Try and reach the next target now."));
 		}
 
-		if (tutProgression == 10 && !textNotDone) {
+		if (tutProgression == 10 && !textNotDone && TextSaid == false) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = target3;
 			target3.SetActive (true);
 			StartCoroutine (AnimateText ("Okay one more, and then we can test your combat systems."));
@@ -392,24 +395,25 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 7 && !textNotDone && botsMurdered != 5) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("There are still some drones left, go hunt them down."));
-			tutProgression = 8;
+			tutProgression = 8;			
+			TextSaid = false;
 		}
-		if (tutProgression == 8 && !textNotDone && botsMurdered ==1) {
+		if (tutProgression == 8 && !textNotDone && botsMurdered ==1 && TextSaid == false) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("4 left"));
 
 		}
-		if (tutProgression == 8 && !textNotDone && botsMurdered ==2) {
+		if (tutProgression == 8 && !textNotDone && botsMurdered ==2 && TextSaid == false) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("3 left"));
 
 		}
-		if (tutProgression == 8 && !textNotDone && botsMurdered ==3) {
+		if (tutProgression == 8 && !textNotDone && botsMurdered ==3 && TextSaid == false) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("2 left"));
 
 		}
-		if (tutProgression == 8 && !textNotDone && botsMurdered ==4) {
+		if (tutProgression == 8 && !textNotDone && botsMurdered ==4 && TextSaid == false) {
 			StartCoroutine(flashingarrow(rangeArrow));
 			StartCoroutine (AnimateText ("1 left, come on, quickly now!"));
 		}
@@ -445,23 +449,24 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 4 && !textNotDone) {
 			StartCoroutine (AnimateText ("Here are some of the types of items in the arena; traps, heal pad, ultimate charge pad and movement modifiers."));
 			tutProgression = 5;
+			TextSaid = false;
 		}
-		if (tutProgression == 5 && !textNotDone) {
+		if (tutProgression == 5 && !textNotDone && TextSaid == false) {
 			StartCoroutine (AnimateText ("The grey pad is a spike trap. It will kill you in a real match but not in here, so go ahead and touch it."));
 			//the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definitely touch this one though
 		}
-		if (tutProgression == 6 && !textNotDone) {
+		if (tutProgression == 6 && !textNotDone && TextSaid == false) {
 			StartCoroutine(flashingarrow(healthArrow));
 			StartCoroutine (AnimateText ("The small green one will heal you, touch it now."));
 		}
-		if (tutProgression == 7 && !textNotDone) {
+		if (tutProgression == 7 && !textNotDone && TextSaid == false) {
 			StartCoroutine(flashingarrow(ultArrow));
 			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack quicker so you can do some serious damage faster."));
 		}
-		if (tutProgression == 8 && !textNotDone) {
+		if (tutProgression == 8 && !textNotDone && TextSaid == false) {
 			StartCoroutine (AnimateText ("The slime spill will slow you down, annoying, but not fatal, make sure you touch it too."));
 		}
-		if (tutProgression == 9 && !textNotDone) {
+		if (tutProgression == 9 && !textNotDone && TextSaid == false) {
 			StartCoroutine (AnimateText ("Watch out for these pads and traps. Some will help, some will harm, and the rest is up to you to find out."));
 			StartCoroutine (WaitForTraps ());
 		}

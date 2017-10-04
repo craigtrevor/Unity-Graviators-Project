@@ -71,6 +71,7 @@ public class SP_CompactHud : MonoBehaviour {
 			if (!spikeTrigger) {
 				StartCoroutine (SlowSpike ());
 			}
+			tutorialManager.GetComponent<TutorialManager> ().TextSaid = false;
 			tutorialManager.tutProgression = 6;
 		}
 
@@ -81,6 +82,7 @@ public class SP_CompactHud : MonoBehaviour {
 			{
 				StartCoroutine (SlowHeal ());
 			}
+			tutorialManager.GetComponent<TutorialManager> ().TextSaid = false;
 			tutorialManager.tutProgression = 7;
 		}
 
@@ -89,6 +91,7 @@ public class SP_CompactHud : MonoBehaviour {
 			if (!ultTrigger) {
 				StartCoroutine (SlowUlt ());
 			}
+			tutorialManager.GetComponent<TutorialManager> ().TextSaid = false;
 			tutorialManager.tutProgression = 8;
 		}
 		if (onSlowTrap && tutorialManager.ultPadTouched == true) {
@@ -96,6 +99,7 @@ public class SP_CompactHud : MonoBehaviour {
 			if (!slowTrigger) {
 				StartCoroutine (SlowSlow ());
 			}
+			tutorialManager.GetComponent<TutorialManager> ().TextSaid = false;
 			tutorialManager.tutProgression = 9;
 		}
 

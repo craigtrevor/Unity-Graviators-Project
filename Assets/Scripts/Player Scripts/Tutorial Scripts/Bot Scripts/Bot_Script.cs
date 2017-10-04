@@ -6,7 +6,7 @@ public class Bot_Script : MonoBehaviour {
 
 	public GameObject tutorialManager;
 
-	public float health = 10;
+	public float health = 100;
 
 	private bool dead = false;
 	public bool respawnEnabled = false;
@@ -58,6 +58,7 @@ public class Bot_Script : MonoBehaviour {
 		Instantiate(corpse, this.transform.position, this.transform.rotation);
 		if (!respawnEnabled) {
 			tutorialManager.GetComponent<TutorialManager> ().botsMurdered += 1;
+			tutorialManager.GetComponent<TutorialManager> ().TextSaid = false;
 
 		}
 		StartCoroutine (RespawnTimer ());
