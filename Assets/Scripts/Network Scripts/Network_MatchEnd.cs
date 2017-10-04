@@ -19,7 +19,7 @@ public class Network_MatchEnd : NetworkBehaviour
 
     [Header("End Match Components")]
 
-    public int matchCount = 10;
+    public int matchCount = 2;
     public bool hasMatchEnded;
     public bool hasWonMatch;
 
@@ -146,13 +146,15 @@ public class Network_MatchEnd : NetworkBehaviour
         {
             MatchInfo matchInfo = networkManager.matchInfo;
             networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
+            networkManager.SendMessage("DestorySelf", true);
             networkManager.StopClient();
-            SceneManager.LoadScene("Lobby_Scene");
+            SceneManager.LoadScene("Character_Select_V2");
             Debug.Log("Leaving");
         }
 
         else if (Network_SceneManager.instance.serverScene == "JoinLAN_Scene")
         {
+            networkManager.SendMessage("DestorySelf", true);
             networkManager.StopHost();
 
             if (networkDiscovery != null)
@@ -163,12 +165,13 @@ public class Network_MatchEnd : NetworkBehaviour
 
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
-            SceneManager.LoadScene("JoinLAN_Scene");
+            SceneManager.LoadScene("Character_Select_V2");
             Debug.Log("Leaving");
         }
 
         else if (Network_SceneManager.instance.serverScene == "JoinPracticeRange_Scene")
         {
+            networkManager.SendMessage("DestorySelf", true);
             networkManager.StopHost();
 
             if (networkDiscovery != null)
@@ -179,7 +182,7 @@ public class Network_MatchEnd : NetworkBehaviour
 
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
-            SceneManager.LoadScene("JoinPracticeRange_Scene");
+            SceneManager.LoadScene("Character_Select_V2");
             Debug.Log("Leaving");
         }
     }

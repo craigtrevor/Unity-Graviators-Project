@@ -97,35 +97,37 @@ public class Network_Manager : NetworkManager {
 		switch (buttonName)
 		{
 		case "ErrNoName_btn":
-			characterIndex = 0;
-			RemoveCustomization ();
-			arrayCount = noNameCustomization;
-			UpdateCustomization();
-			characterName = "Err:NoName";
-			characterID = "ERNN";
 
-			break;
+			    characterIndex = 0;
+			    RemoveCustomization ();
+			    arrayCount = noNameCustomization;
+			    UpdateCustomization();
+			    characterName = "Err:NoName";
+			    characterID = "ERNN";
+
+                break;
 
 		case "Sparkus_btn":
 
-			characterIndex = 1;
-			RemoveCustomization();
-			arrayCount = sparkusCustomization;
-			UpdateCustomization();
-			characterName = "Sparkus";
-			characterID = "SPKS";
+			    characterIndex = 1;
+			    RemoveCustomization();
+			    arrayCount = sparkusCustomization;
+			    UpdateCustomization();
+			    characterName = "Sparkus";
+			    characterID = "SPKS";
 
-			break;
+                break;
 
 		case "UnitD1_btn":
-			characterIndex = 2;
-			RemoveCustomization();
-			arrayCount = d1Customization;
-			UpdateCustomization();
-			characterName = "Unit-D1";
-			characterID = "UT-D1";
 
-			break;
+			    characterIndex = 2;
+			    RemoveCustomization();
+			    arrayCount = d1Customization;
+			    UpdateCustomization();
+			    characterName = "Unit-D1";
+			    characterID = "UT-D1";
+
+                break;
 		}
 
 		characterTitle.text = characterName;
@@ -269,7 +271,7 @@ public class Network_Manager : NetworkManager {
         //base.OnClientSceneChanged(conn);
     }
 
-	public void IncreaseCPUs () {
+    public void IncreaseCPUs () {
 		if (noOfCPUs < maxCPUs) {
 			noOfCPUs += 1;
 		}
@@ -279,4 +281,9 @@ public class Network_Manager : NetworkManager {
 			noOfCPUs -= 1;
 		}
 	}
+
+    public void DestorySelf(bool isDestroy)
+    {
+        Destroy(this.gameObject);
+    }
 }

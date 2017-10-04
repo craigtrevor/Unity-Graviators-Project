@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.SceneManagement;
@@ -43,8 +44,9 @@ public class UI_PauseMenu : MonoBehaviour {
         {
             MatchInfo matchInfo = networkManager.matchInfo;
             networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
+            networkManager.SendMessage("DestorySelf", true);
             networkManager.StopClient();
-            SceneManager.LoadScene("Lobby_Scene");
+            SceneManager.LoadScene("Character_Select_V2");
             Debug.Log("Leaving");
         }
 
@@ -52,30 +54,33 @@ public class UI_PauseMenu : MonoBehaviour {
         {
             if (netPlayerManager.isPlayerServer)
             {
+                networkManager.SendMessage("DestorySelf", true);
                 networkManager.StopHost();
                 networkDiscovery.StopBroadcast();
                 networkDiscovery.SendMessage("DestorySelf", true);
                 NetworkTransport.Shutdown();
                 NetworkTransport.Init();
-                SceneManager.LoadScene("JoinLAN_Scene");
+                SceneManager.LoadScene("Character_Select_V2");
                 Debug.Log("Leaving");
             }
            
             else if (!netPlayerManager.isPlayerServer)
             {
+                networkManager.SendMessage("DestorySelf", true);
                 networkManager.StopClient();
-                SceneManager.LoadScene("JoinLAN_Scene");
+                SceneManager.LoadScene("Character_Select_V2");
                 Debug.Log("Leaving");
             }
         }
 
         else if (Network_SceneManager.instance.serverScene == "JoinPracticeRange_Scene")
         {
+            networkManager.SendMessage("DestorySelf", true);
             networkManager.StopHost();
             networkDiscovery.SendMessage("DestorySelf", true);
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
-            SceneManager.LoadScene("JoinPracticeRange_Scene");
+            SceneManager.LoadScene("Character_Select_V2");
             Debug.Log("Leaving");
         }
     }
