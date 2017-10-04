@@ -19,7 +19,8 @@ public class Network_Bot : NetworkBehaviour {
 	public float health = 100;
 	public Slider healthSlider;
 
-	private float speed = 0.2f;
+	private float currentSpeed = 0.2f;
+	public float speed = 0.2f;
 
 	public string playerCharacterID = "ERNN";
 
@@ -178,6 +179,11 @@ public class Network_Bot : NetworkBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (slowed) {
+			currentSpeed = speed / 2f;
+		} else if (!slowed) {
+			currentSpeed = speed;
+		}
 
         if (currentTarget == null) {
 			FindTarget ();
@@ -336,13 +342,13 @@ public class Network_Bot : NetworkBehaviour {
 		} else {
 			dodgeObstacle = false;
 			dontTurn = false;
-			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(frontTransform.position), speed));
+			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(frontTransform.position), currentSpeed));
 		}
 	}
 
 	void MoveBackFromPoint(Vector3 target) {
 		anim.SetBool("Moving", true);
-		m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(backTransform.position), speed));
+		m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(backTransform.position), currentSpeed));
 	}
 
 	void CalculateDistance() {
@@ -482,18 +488,18 @@ public class Network_Bot : NetworkBehaviour {
 		}
 
 //		if (!frontColliding) {
-//			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(frontTransform.position), speed));
+//			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(frontTransform.position), currentSpeed));
 //		}
 
 		if (tryLeft) {
-			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(leftTransform.position), speed));
+			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(leftTransform.position), currentSpeed));
 			if (leftColliding) {
 				tryLeft = false;
 			}
 		}
 
 		if (!tryLeft) {
-			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(rightTransform.position), speed));
+			m_Rigidbody.MovePosition (Vector3.Lerp (transform.position, VectorAlongCurrentPlane(rightTransform.position), currentSpeed));
 			if (rightColliding) {
 				tryLeft = true;
 			}
@@ -581,6 +587,13 @@ public class Network_Bot : NetworkBehaviour {
 		GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
         //networkBotSpawner.ScheduleNextEnemySpawn();
         NetworkServer.Spawn(corpseobject);
+		StopAllCoroutines ();
+		stunned = false;
+		slowed = false;
+		reloading = false;
+		rangedAttacking = false;
+		isAttacking = false;
+		isHitting = false;
 		Network_GameManager.KillBot(transform.name);
 	}
 
@@ -602,23 +615,19 @@ public class Network_Bot : NetworkBehaviour {
 
 	public void Slow(float time) {
 
-        if (this.gameObject.activeSelf)
-        {
-            slowed = true;
-            StartCoroutine(SlowedFor(time));
-        }
-
-        else if (!this.gameObject.activeSelf)
-        {
-            slowed = false;
-            StopCoroutine(SlowedFor(time));
-        }
+		if (!slowed) {
+			if (this.gameObject.activeSelf) {
+				slowed = true;
+				StartCoroutine (SlowedFor (time));
+			} else if (!this.gameObject.activeSelf) {
+				slowed = false;
+				StopCoroutine (SlowedFor (time));
+			}
+		}
 	}
 
 	IEnumerator SlowedFor(float time) {
-		speed /= 2f;
 		yield return new WaitForSeconds(time);
-		speed *= 2f;
 		slowed = false;
 	}
 
