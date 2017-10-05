@@ -97,7 +97,7 @@ public class Network_BotSpawner : NetworkBehaviour {
 			NetworkServer.Spawn(spawnedBot.gameObject);
 			int tempInt = Random.Range (0, names.Count);
 			spawnedBot.gameObject.GetComponent<Network_Bot>().username = names[tempInt];
-			//spawnedBot.gameObject.name = names [tempInt];
+			spawnedBot.gameObject.name = names [tempInt];
 			names.Remove(names[tempInt]);
 			Network_GameManager.RegisterBot(spawnedBot.gameObject.transform.name, spawnedBot.gameObject.GetComponent<Network_Bot>());
 
