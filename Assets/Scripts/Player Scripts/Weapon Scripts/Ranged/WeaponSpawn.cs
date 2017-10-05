@@ -207,10 +207,12 @@ public class WeaponSpawn : NetworkBehaviour {
 
         // allow the player to fire again
 
-        m_Fired = false;
+		yield return new WaitForSeconds (0.5f);
+
+		m_Fired = false;
 		reloading = false;
 
-        combatManager.isRanging = false;
+		combatManager.isRanging = false;
     }
 
 	IEnumerator D1WingOn(float time) {
