@@ -19,7 +19,7 @@ public class Network_MatchEnd : NetworkBehaviour
 
     [Header("End Match Components")]
 
-    public int matchCount = 2;
+    public int matchCount = 10;
     public bool hasMatchEnded;
     public bool hasWonMatch;
 
@@ -148,7 +148,7 @@ public class Network_MatchEnd : NetworkBehaviour
             networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
             networkManager.SendMessage("DestorySelf", true);
             networkManager.StopClient();
-            SceneManager.LoadScene("Character_Select_V2");
+            SceneManager.LoadScene("Main_Menu");
             Debug.Log("Leaving");
         }
 
@@ -165,7 +165,7 @@ public class Network_MatchEnd : NetworkBehaviour
 
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
-            SceneManager.LoadScene("Character_Select_V2");
+            SceneManager.LoadScene("Main_Menu");
             Debug.Log("Leaving");
         }
 
@@ -182,7 +182,7 @@ public class Network_MatchEnd : NetworkBehaviour
 
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
-            SceneManager.LoadScene("Character_Select_V2");
+            SceneManager.LoadScene("Main_Menu");
             Debug.Log("Leaving");
         }
     }

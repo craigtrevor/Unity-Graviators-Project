@@ -371,14 +371,17 @@ public class Network_PlayerManager : NetworkBehaviour
             firstDeath = false;
         }
 
-        if (killStats != netMatchEnd.matchCount)
+        if (!firstDeath)
         {
-            DisablePlayer();
-        }
+            if (killStats != netMatchEnd.matchCount)
+            {
+                DisablePlayer();
+            }
 
-        else if (killStats == netMatchEnd.matchCount)
-        {
-            DisablePlayerOnMatchEnd();
+            else if (killStats == netMatchEnd.matchCount)
+            {
+                DisablePlayerOnMatchEnd();
+            }
         }
     }
 

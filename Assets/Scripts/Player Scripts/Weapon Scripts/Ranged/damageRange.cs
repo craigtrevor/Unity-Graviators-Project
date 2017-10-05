@@ -80,9 +80,6 @@ public class damageRange : NetworkBehaviour {
     }
 
     void Update() {
-        if (dying) {
-            Die();
-        }
 
         if (this.gameObject.tag == THROWINGSWORD_TAG && !dying) {
             transform.Rotate(Vector3.down, rotateSpeed * Time.deltaTime);
@@ -91,6 +88,8 @@ public class damageRange : NetworkBehaviour {
         if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) {
             transformSparkusRanged();
         }
+
+        CheckDeath();
     }
 
     //private void FixedUpdate() {
@@ -263,25 +262,33 @@ public class damageRange : NetworkBehaviour {
         networkPlayerStats.RpcTakeDamageByBot(_damage, _sourceID);
     }
 
-    public void Die() {
-        if (!dying && this.gameObject.activeSelf)
+    public void Die()
+    {
+        if (!dying)
         {
             Destroy(GetComponent<Rigidbody>());
             Destroy(GetComponent<MeleeWeaponTrail>());
             Destroy(GetComponent<BoxCollider>());
 
             dying = true;
+        }
+    }
+
+    void CheckDeath()
+    {
+        if (this.gameObject.activeSelf && dying)
+        {
             StartCoroutine(DieNow());
         }
 
-        else if (!this.gameObject.activeSelf)
+        else if (!this.gameObject.activeSelf && dying)
         {
-            dying = true;
             StopCoroutine(DieNow());
         }
     }
 
-    private IEnumerator DieNow() {
+    private IEnumerator DieNow()
+    {
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }

@@ -161,6 +161,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\Network_CombatManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\SP_StrikeColider.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\StrikeCollider.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Bot Scripts\Bot_Melee.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Bot Scripts\Bot_Range.cs" />
