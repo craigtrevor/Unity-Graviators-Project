@@ -29,7 +29,7 @@ ZTest LEqual
 
 
 CGPROGRAM
-#pragma surface surf BlinnPhongEditor alpha:fade vertex:vert
+#pragma surface surf BlinnPhongEditor alpha:fade vertex:vert addshadow
 //#pragma target 3.0
 
 
