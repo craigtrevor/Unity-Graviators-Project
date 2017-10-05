@@ -330,6 +330,16 @@ public class Network_PlayerManager : NetworkBehaviour
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
     }
 
+	private void CancelAttacks() {
+		combatManager.isAttacking = false;
+		combatManager.isHitting = false;
+		combatManager.isSlowed = false;
+		combatManager.isStunned = false;
+		combatManager.isRanging = false;
+		combatManager.StopAllCoroutines ();
+	}
+
+
     private void Die(string _sourceID)
     {
         Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
@@ -341,6 +351,8 @@ public class Network_PlayerManager : NetworkBehaviour
         deathbyPlayer = true;
         deathbyTrap = false;
         deathbyBot = false;
+
+		CancelAttacks ();
 
         if (sourcePlayer != null)
         {
@@ -380,6 +392,8 @@ public class Network_PlayerManager : NetworkBehaviour
         deathbyTrap = true;
         deathbyBot = false;
 
+		CancelAttacks ();
+
         deathStats++;
 
         // spawn corpse on death
@@ -405,6 +419,8 @@ public class Network_PlayerManager : NetworkBehaviour
         deathbyPlayer = false;
         deathbyTrap = false;
         deathbyBot = true;
+
+		CancelAttacks ();
 
         deathStats++;
 
