@@ -46,7 +46,7 @@ public class UI_PauseMenu : MonoBehaviour {
             networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
             networkManager.SendMessage("DestorySelf", true);
             networkManager.StopClient();
-            SceneManager.LoadScene("Character_Select_V2");
+            SceneManager.LoadScene("Main_Menu");
             Debug.Log("Leaving");
         }
 
@@ -60,7 +60,7 @@ public class UI_PauseMenu : MonoBehaviour {
                 networkDiscovery.SendMessage("DestorySelf", true);
                 NetworkTransport.Shutdown();
                 NetworkTransport.Init();
-                SceneManager.LoadScene("Character_Select_V2");
+                SceneManager.LoadScene("Main_Menu");
                 Debug.Log("Leaving");
             }
            
@@ -68,7 +68,7 @@ public class UI_PauseMenu : MonoBehaviour {
             {
                 networkManager.SendMessage("DestorySelf", true);
                 networkManager.StopClient();
-                SceneManager.LoadScene("Character_Select_V2");
+                SceneManager.LoadScene("Main_Menu");
                 Debug.Log("Leaving");
             }
         }
@@ -80,7 +80,7 @@ public class UI_PauseMenu : MonoBehaviour {
             networkDiscovery.SendMessage("DestorySelf", true);
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
-            SceneManager.LoadScene("Character_Select_V2");
+            SceneManager.LoadScene("Main_Menu");
             Debug.Log("Leaving");
         }
     }
