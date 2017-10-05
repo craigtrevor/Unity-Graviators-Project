@@ -22,7 +22,7 @@ public class SlowTrapV2 : MonoBehaviour {
 			}
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
-			if (affectedBotList [i] == null) {
+			if (!affectedBotList [i].gameObject.activeSelf) {
 				affectedBotList.Remove (affectedBotList [i]);
 			}
 		}
@@ -71,7 +71,7 @@ public class SlowTrapV2 : MonoBehaviour {
 			affectedList[i].gameObject.GetComponent<Network_CombatManager> ().SlowForSeconds (1f);
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
-			affectedList [i].gameObject.GetComponent<Network_Bot> ().Slow (1f);
+			affectedBotList [i].gameObject.GetComponent<Network_Bot> ().Slow (1f);
 		}
 		yield return new WaitForSeconds (0.1f);
 		damageTick = true;

@@ -109,9 +109,11 @@ public class SpikeTrap : NetworkBehaviour {
 	void KillPlayers () {
 		for (int i = 0; i < affectedList.Count; i++) {
 			CmdTakeDamage (affectedList[i].gameObject.name, 1000, sourceID);
+			affectedList.Remove (affectedList[i]);
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
 			affectedBotList[i].GetComponent<Network_Bot>().TakeTrapDamage(1000);
+			affectedBotList.Remove (affectedBotList[i]);
 		}
 	}
 

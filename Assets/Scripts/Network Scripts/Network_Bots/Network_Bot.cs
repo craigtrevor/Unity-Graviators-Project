@@ -40,6 +40,7 @@ public class Network_Bot : NetworkBehaviour {
 	private ParticleManager particleManager;
     Network_BotSpawner networkBotSpawner;
 
+	public bool dying;
     public GameObject corpse;
 
 	[Space(10)]
@@ -562,7 +563,7 @@ public class Network_Bot : NetworkBehaviour {
 
 	public void TakeDamage(string sourceID, float damage) {
 		health -= damage;
-		if (health <= 0) {
+		if (health <= 0 && !dying) {
 			Die (sourceID);
 		}
 
@@ -570,22 +571,27 @@ public class Network_Bot : NetworkBehaviour {
 
 	public void TakeTrapDamage(float damage) {
 		health -= damage;
+		if (health <= 0 && !dying) {
+			Die ("null");
+		}
 	}
 
 	public void Die(string sourceID) {
-		if (Network_GameManager.GetPlayer(sourceID) != null) {
+		print ("called");
+		dying = true;
+		if (Network_GameManager.GetPlayer(sourceID) != null && sourceID != "null") {
 			Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(sourceID);
 			networkPlayerStats.killStats += 1;
             //networkPlayerStats.CheckKillStats();
 		}
-		else if (Network_GameManager.GetBot(sourceID) != null) {
+		else if (Network_GameManager.GetBot(sourceID) != null && sourceID != "null") {
 			Network_Bot networkPlayerStats = Network_GameManager.GetBot(sourceID);
 			networkPlayerStats.killStats += 1;
 		}
 		deathStats++;
 		GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
 		GameObject corpseobject = Instantiate(corpse, this.transform.position, this.transform.rotation) as GameObject;
-        //networkBotSpawner.ScheduleNextEnemySpawn();
+        
         NetworkServer.Spawn(corpseobject);
 		StopAllCoroutines ();
 		stunned = false;
@@ -594,6 +600,7 @@ public class Network_Bot : NetworkBehaviour {
 		rangedAttacking = false;
 		isAttacking = false;
 		isHitting = false;
+		dying = false;
 		Network_GameManager.KillBot(transform.name);
 	}
 
