@@ -199,7 +199,7 @@ public class Network_CombatManager : NetworkBehaviour {
         if (UI_PauseMenu.IsOn == true)
             return;
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && !isAttacking && !isUlting && !weaponSpawn.m_Fired) {
+		if (Input.GetKeyUp(KeyCode.Mouse0) && !isAttacking && !isUlting && !isRanging) {
             anim.SetBool("Attacking", true);
             netanim.SetTrigger("Attack");
             PlayMeleeSound();
