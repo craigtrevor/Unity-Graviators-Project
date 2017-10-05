@@ -119,7 +119,7 @@ public class damageRange : NetworkBehaviour {
 
     [Client]
     void OnCollisionEnter(Collision other) {
-        if (other.transform.root != transform.root && (other.gameObject.tag == PLAYER_TAG || other.gameObject.tag == BOT_TAG) && other.transform.name != sourceID) {
+		if (other.transform.root != transform.root && (other.gameObject.tag == PLAYER_TAG || other.gameObject.tag == BOT_TAG) && other.transform.name != sourceID && other.gameObject.tag != THROWINGSWORD_TAG) {
             if (this.gameObject.tag == THROWINGSWORD_TAG && other.gameObject.tag != THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
                 GameObject temp2 = new GameObject();
@@ -179,7 +179,7 @@ public class damageRange : NetworkBehaviour {
                 }
                 //Die();
             }*/
-        } else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG && other.transform.name != sourceID) {
+		} else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG && other.transform.name != sourceID && other.gameObject.tag != THROWINGSWORD_TAG) {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the arena
             {
                 GameObject temp2 = new GameObject();
