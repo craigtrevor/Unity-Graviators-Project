@@ -63,7 +63,7 @@ public class LaserGrid : NetworkBehaviour {
 			}
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
-			if (affectedBotList [i] == null) {
+			if (!affectedBotList [i].gameObject.activeSelf) {
 				affectedBotList.Remove (affectedBotList [i]);
 			}
 		}

@@ -577,7 +577,6 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	public void Die(string sourceID) {
-		print ("called");
 		dying = true;
 		if (Network_GameManager.GetPlayer(sourceID) != null && sourceID != "null") {
 			Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(sourceID);
@@ -600,11 +599,11 @@ public class Network_Bot : NetworkBehaviour {
 		rangedAttacking = false;
 		isAttacking = false;
 		isHitting = false;
-		dying = false;
 		Network_GameManager.KillBot(transform.name);
 	}
 
 	public void Respawn() {
+		dying = false;
 		Transform _spawnPoint = NetworkManager.singleton.GetStartPosition();
 		transform.position = _spawnPoint.position;
 		transform.rotation = _spawnPoint.rotation;
