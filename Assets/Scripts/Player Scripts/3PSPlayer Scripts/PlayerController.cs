@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour {
     Network_Soundscape netSoundscape;
 
     public float cameraDisplacement;
+    float cameraZoom;
     public bool stunned;
     public bool isDashing;
     private bool recieveInput;
@@ -132,6 +133,7 @@ public class PlayerController : MonoBehaviour {
         inputSettings.GRAVITY_RELEASE = false;
 
         strafeRot = Quaternion.Euler(Vector3.zero);
+        cameraZoom = 2f;
     }
 
     void GetInput() {
@@ -161,10 +163,20 @@ public class PlayerController : MonoBehaviour {
         if (isDashing) {
             CancelVelocity();
         }
+
+        ZoomStuff();
     }
 
     void CancelVelocity() {
         velocity = Vector3.zero;
+    }
+
+    void ZoomStuff() {
+
+        cameraZoom -= Input.GetAxis("Mouse ScrollWheel");
+        cameraZoom = Mathf.Lerp(cameraZoom, Mathf.Clamp(cameraZoom, 1f, 3f), 20f*Time.deltaTime);
+        pivot.GetComponentInChildren<PlayerCamera>().cameraZoom = cameraZoom;
+        gravityAxis.GetComponent<GravityAxisDisplayScript>().cameraZoom = 1f+(cameraZoom-1f)/2f;
     }
 
     void shiftPressed() {
@@ -263,7 +275,7 @@ public class PlayerController : MonoBehaviour {
 
     float rotY = 0;
     float camY = 0;
-    public GameObject eyes;
+    public GameObject pivot;
 
     void Update() {
 
@@ -418,7 +430,7 @@ public class PlayerController : MonoBehaviour {
         rotY -= Input.GetAxis("Mouse Y") * 2f;
         rotY = Mathf.Clamp(rotY, -90f, 60f);
         camY = Mathf.Clamp(rotY - cameraDisplacement * 30f, -90f, 60f);
-        eyes.transform.localRotation = Quaternion.Lerp(eyes.transform.localRotation, Quaternion.Euler(camY, 0, 0), Time.deltaTime * 30f);
+        pivot.transform.localRotation = Quaternion.Lerp(pivot.transform.localRotation, Quaternion.Euler(camY, 0, 0), Time.deltaTime * 30f);
         
 
         //orbit.yRotation += hOrbitMouseInput * orbit.hOrbitSmooth * Time.deltaTime; no

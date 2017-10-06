@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Animation Scripts\CreditsScroller.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\LookAtCentre.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\NoOfCPUs.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\ParticleManager.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\Network_CombatManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\SP_StrikeColider.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\StrikeCollider.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Bot Scripts\Bot_Melee.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Bot Scripts\Bot_Range.cs" />
@@ -206,6 +208,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_MixLevels.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerNameplate.cs" />
@@ -250,7 +253,13 @@
     <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort.shader" />
     <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort_Transparent.shader" />
     <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
+    <None Include="Assets\Shaders\LightingShadowOnly.shader" />
+    <None Include="Assets\Shaders\Shadow.shader" />
+    <None Include="Assets\Shaders\ShadowDrawer.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
+    <None Include="Assets\Shaders\SoftHair.shader" />
+    <None Include="Assets\Shaders\TransparentCutout.shader" />
+    <None Include="Assets\Shaders\TransparentWShadow.shader" />
     <None Include="Assets\Shaders\Water Flow FREE\Readme.txt" />
     <None Include="Assets\Shaders\Water Flow FREE\Shaders\Water Flow FREE Simple.shader" />
     <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
