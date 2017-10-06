@@ -314,22 +314,27 @@ public class GravityAxisScript : MonoBehaviour {
 
         //Player rotation as Quaternion
         Quaternion playerRotation;
+        Vector3 playerRotEuler;
+        Vector3 rotBlockEuler;
         playerRotation = controller.transform.rotation;
+        playerRotEuler = controller.transform.eulerAngles;
+        rotBlockEuler = rotationBlock.transform.eulerAngles;
 
-        if (gravitySwitching) { //If gravity is switching            
+        if (gravitySwitching) { //If gravity is switching          
 
-            //Lerp playerRotation towards rotation block and apply it to player
-            //playerRotation = Quaternion.Lerp(controller.transform.rotation, rotationBlock.transform.rotation, Time.deltaTime * 8);
-            playerRotation = Quaternion.RotateTowards(controller.transform.rotation, rotationBlock.transform.rotation, Time.deltaTime * 500);
-            //controller.transform.rotation = playerRotation;
-            playerControllerScript.targetRotation = playerRotation;
+            Debug.Log(Mathf.Abs(playerRotEuler.x - rotBlockEuler.x) + " " + Mathf.Abs(playerRotEuler.y - rotBlockEuler.y) + " " + Mathf.Abs(playerRotEuler.z - rotBlockEuler.z));
 
             //Check if full rotated
-            if (/*Mathf.Abs(controller.transform.eulerAngles.magnitude - rotationBlock.transform.eulerAngles.magnitude) <= 0.5f*/controller.transform.rotation == rotationBlock.transform.rotation) {
+            if (Mathf.Abs(playerRotEuler.x - rotBlockEuler.x) < 0.5f &&
+                Mathf.Abs(playerRotEuler.y - rotBlockEuler.y) < 0.5f &&
+                Mathf.Abs(playerRotEuler.z - rotBlockEuler.z) < 0.5f) {
 
-                //controller.transform.rotation = rotationBlock.transform.rotation; //Completely rotate player
+                playerRotation = rotationBlock.transform.rotation; //Completely rotate player
                 gravitySwitching = false;
-            } //End if (fully rotated)
+            } else { //End if (fully rotated)
+                playerRotation = Quaternion.RotateTowards(controller.transform.rotation, rotationBlock.transform.rotation, Time.deltaTime * 500f);
+                playerControllerScript.targetRotation = playerRotation;
+            }
 
         } //End if (gravitySwitching)
 
