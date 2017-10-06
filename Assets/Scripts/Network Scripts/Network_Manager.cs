@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Network_Manager : NetworkManager {
@@ -269,6 +270,13 @@ public class Network_Manager : NetworkManager {
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
         //base.OnClientSceneChanged(conn);
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        //base.OnClientDisconnect(conn);
+        SceneManager.LoadScene("Main_Menu");
+        Destroy(this.gameObject);
     }
 
     public void IncreaseCPUs () {
