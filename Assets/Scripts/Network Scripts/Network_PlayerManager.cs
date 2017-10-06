@@ -144,6 +144,8 @@ public class Network_PlayerManager : NetworkBehaviour
         }
     }
 
+
+
     private void Update()
     {
         MuteNarration();
