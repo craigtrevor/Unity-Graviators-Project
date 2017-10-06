@@ -6,7 +6,7 @@ public class PlayerCamera : MonoBehaviour {
     private Vector3 desiredLocalPosition, initialLocalPosition, displacementVector;
     public GameObject player;
     public GameObject vertArrows;
-    float cameraDisplacement, cameraZoom;
+    public float cameraDisplacement, cameraZoom;
 
     public Vector3 raycastPoint;
     public LayerMask mask;
@@ -24,7 +24,7 @@ public class PlayerCamera : MonoBehaviour {
         cameraDisplacement = player.GetComponent<PlayerController>().cameraDisplacement;
 
         //displacementVector = new Vector3(0f, -cameraDisplacement, 0f);
-        displacementVector = Vector3.Lerp(displacementVector, new Vector3(0f, -cameraDisplacement * 1f - 0.5f*cameraZoom, 0f), Time.deltaTime * 15f);
+        displacementVector = Vector3.Lerp(displacementVector, new Vector3(0f, -cameraDisplacement * 1f - 0.5f*cameraZoom+0.25f, 0f), Time.deltaTime * 15f);
 
         this.desiredLocalPosition = (this.initialLocalPosition - this.displacementVector)*cameraZoom;
 
@@ -41,12 +41,6 @@ public class PlayerCamera : MonoBehaviour {
         }
 
         RaycastStuff();
-        ZoomStuff();
-    }
-
-    void ZoomStuff() {
-        cameraZoom -= Input.GetAxis("Mouse ScrollWheel");
-        cameraZoom = Mathf.Clamp(cameraZoom, 0.5f, 3f);
     }
 
     void RaycastStuff() {

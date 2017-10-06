@@ -54,6 +54,8 @@ public class GravityAxisDisplayScript : MonoBehaviour {
     public GameObject gravityCamera;
     public GameObject gravityCameraFront;
 
+    public float cameraZoom;
+
     //UI Objects/Components
     //public GameObject UIGravityCharge;
 
@@ -112,14 +114,14 @@ public class GravityAxisDisplayScript : MonoBehaviour {
 
 
     //DisplayAxis() makes the axis in/visisble if gravity is switching and if shift is being pressed
-    private void DisplayAxis() {
+    private void DisplayAxis() {        
 
         //Check gravityChanging && shiftPressed  
         if (shiftPressed && !gravitySwitching) { //If shift is pressed and not switching gravity
             //Show axis    
             gravityCamera.GetComponent<Camera>().enabled = true;
             gravityCameraFront.GetComponent<Camera>().enabled = true;
-            this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.one, Time.deltaTime * 15);
+            this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.one*cameraZoom, Time.deltaTime * 15);
             ChangeWalls(true);
         } else {
             //Hide axis

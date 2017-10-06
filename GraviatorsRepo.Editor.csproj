@@ -165,7 +165,13 @@
     <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort.shader" />
     <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort_Transparent.shader" />
     <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
+    <None Include="Assets\Shaders\LightingShadowOnly.shader" />
+    <None Include="Assets\Shaders\Shadow.shader" />
+    <None Include="Assets\Shaders\ShadowDrawer.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
+    <None Include="Assets\Shaders\SoftHair.shader" />
+    <None Include="Assets\Shaders\TransparentCutout.shader" />
+    <None Include="Assets\Shaders\TransparentWShadow.shader" />
     <None Include="Assets\Shaders\Water Flow FREE\Readme.txt" />
     <None Include="Assets\Shaders\Water Flow FREE\Shaders\Water Flow FREE Simple.shader" />
     <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
