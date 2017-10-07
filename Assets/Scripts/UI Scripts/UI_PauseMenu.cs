@@ -73,7 +73,7 @@ public class UI_PauseMenu : MonoBehaviour {
             }
         }
 
-        else if (Network_SceneManager.instance.serverScene == "JoinPracticeRange_Scene")
+        else if (Network_SceneManager.instance.serverScene == "JoinOfflineMode_Scene")
         {
             networkManager.SendMessage("DestorySelf", true);
             networkManager.StopHost();

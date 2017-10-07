@@ -169,7 +169,7 @@ public class Network_MatchEnd : NetworkBehaviour
             Debug.Log("Leaving");
         }
 
-        else if (Network_SceneManager.instance.serverScene == "JoinPracticeRange_Scene")
+        else if (Network_SceneManager.instance.serverScene == "JoinOfflineMode_Scene")
         {
             networkManager.SendMessage("DestorySelf", true);
             networkManager.StopHost();

@@ -18,7 +18,7 @@ public class UI_UserAccountLobby : MonoBehaviour {
 
         networkManager = GameObject.Find("CustomNetworkManager").GetComponent<Network_Manager>();
 
-        if (Network_SceneManager.instance.sceneName == "JoinLAN_Scene" || Network_SceneManager.instance.sceneName == "Lobby_Scene" || Network_SceneManager.instance.sceneName == "JoinPracticeRange_Scene")
+        if (Network_SceneManager.instance.sceneName == "JoinLAN_Scene" || Network_SceneManager.instance.sceneName == "Lobby_Scene" || Network_SceneManager.instance.sceneName == "JoinOfflineMode_Scene")
         {
             characterText.text = networkManager.characterName;
         }

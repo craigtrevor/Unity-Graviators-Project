@@ -37,7 +37,7 @@ public class UI_ButtonScripts : MonoBehaviour
 
     public void LoadCharacterSelectionPractice(string NameofLevel)
     {
-        Network_SceneManager.instance.serverScene = "JoinPracticeRange_Scene";
+        Network_SceneManager.instance.serverScene = "JoinOfflineMode_Scene";
         StartCoroutine(DelaySceneLoad(NameofLevel));
     }
 

@@ -83,7 +83,7 @@ public class Network_SceneManager : MonoBehaviour
             }
         }
 
-        else if (sceneName == "JoinPracticeRange_Scene")
+        else if (sceneName == "JoinOfflineMode_Scene")
         {
             serverScene = currentScene.name;
 

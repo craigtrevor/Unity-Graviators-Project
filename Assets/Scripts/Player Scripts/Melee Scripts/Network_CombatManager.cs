@@ -228,10 +228,10 @@ public class Network_CombatManager : NetworkBehaviour {
             isPlaying = false;
         }
 
-        if (isLocalPlayer && Input.GetKeyUp(KeyCode.K)) {
-            playerDamage = 100;
-            CmdTakeDamage(transform.name, playerDamage, transform.name);
-        }
+        //if (isLocalPlayer && Input.GetKeyUp(KeyCode.K)) {
+        //    playerDamage = 100;
+        //    CmdTakeDamage(transform.name, playerDamage, transform.name);
+        //}
     }
 
     public void AttackFinished() {
