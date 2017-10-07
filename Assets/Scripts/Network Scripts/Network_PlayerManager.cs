@@ -74,6 +74,7 @@ public class Network_PlayerManager : NetworkBehaviour
     private bool deathbyPlayer;
     private bool deathbyTrap;
     private bool deathbyBot;
+    private bool isPlaying = false;
 
 
     // Player Animator & Model
@@ -590,6 +591,18 @@ public class Network_PlayerManager : NetworkBehaviour
 		if (currentUltimateGain >= maxUltCharge)
         {
 			currentUltimateGain = maxUltCharge;
+
+            if (!isPlaying)
+            {
+                networkSoundscape.PlayNonNetworkedSound(30, 2, 0.5f);
+                isPlaying = true;
+            }
+        }
+
+
+        if (currentUltimateGain == 0)
+        {
+            isPlaying = false;
         }
     }
 
@@ -601,7 +614,7 @@ public class Network_PlayerManager : NetworkBehaviour
 		if (currentUltimateGain >= maxUltCharge)
 		{
 			currentUltimateGain = maxUltCharge;
-		}
+        }
 	}
 
     //void MuteNarration()

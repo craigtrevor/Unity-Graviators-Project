@@ -108,5 +108,8 @@ public class Network_Soundscape : NetworkBehaviour {
         playerAudioClips[27] = (AudioClip)Resources.Load("Win Messages-noname");
         playerAudioClips[28] = (AudioClip)Resources.Load("Win Messages-sparkus");
         playerAudioClips[29] = (AudioClip)Resources.Load("Win Messages-D1");
+
+        // Ult Audio
+        playerAudioClips[30] = (AudioClip)Resources.Load("Ult Ready");
     }
 }

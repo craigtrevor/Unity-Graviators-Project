@@ -178,6 +178,12 @@ public class Network_Bot : NetworkBehaviour {
 		usernameText.text = username;
 	}
 
+	public override void OnStartLocalPlayer() {
+		for(int i = 0; i < 4; i++) {
+			netanim.SetParameterAutoSend(i, true);
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (slowed) {
@@ -203,6 +209,10 @@ public class Network_Bot : NetworkBehaviour {
 
 			Think ();
 		}
+	}
+
+	void LateUpdate () {
+		anim.SetBool ("Flinch", false);
 	}
 
 	void CheckAnimation() {
@@ -563,14 +573,19 @@ public class Network_Bot : NetworkBehaviour {
 
 	public void TakeDamage(string sourceID, float damage) {
 		health -= damage;
+		if (!isAttacking) {
+			anim.SetBool ("Flinch", true);
+		}
 		if (health <= 0 && !dying) {
 			Die (sourceID);
 		}
-
 	}
 
 	public void TakeTrapDamage(float damage) {
 		health -= damage;
+		if (!isAttacking) {
+			anim.SetBool ("Flinch", true);
+		}
 		if (health <= 0 && !dying) {
 			Die ("null");
 		}
@@ -610,8 +625,10 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	public void Stun(float time) {
-		stunned = true;
-		StartCoroutine (StunnedFor (time));
+		if (!dying) {
+			stunned = true;
+			StartCoroutine (StunnedFor (time));
+		}
 	}
 
 	IEnumerator StunnedFor(float time) {
@@ -620,14 +637,15 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	public void Slow(float time) {
-
-		if (!slowed) {
-			if (this.gameObject.activeSelf) {
-				slowed = true;
-				StartCoroutine (SlowedFor (time));
-			} else if (!this.gameObject.activeSelf) {
-				slowed = false;
-				StopCoroutine (SlowedFor (time));
+		if (!dying) {
+			if (!slowed) {
+				if (this.gameObject.activeSelf) {
+					slowed = true;
+					StartCoroutine (SlowedFor (time));
+				} else if (!this.gameObject.activeSelf) {
+					slowed = false;
+					StopCoroutine (SlowedFor (time));
+				}
 			}
 		}
 	}
@@ -655,8 +673,8 @@ public class Network_Bot : NetworkBehaviour {
 	// MELEE ATTACK
 
 	public void Attack() {
+		anim.SetBool("Attack", true);
 		anim.SetBool("Attacking", true);
-		netanim.SetTrigger("Attack");
 		isAttacking = true;
 		checkWeaponCollisions = true;
 	}
@@ -664,6 +682,7 @@ public class Network_Bot : NetworkBehaviour {
 	public void AttackFinished () {
 		attackCounter = 0;
 		StartCoroutine (DelayBeforeAnotherAttack ());
+		anim.SetBool("Attack", false);
 	}
 
 	IEnumerator DelayBeforeAnotherAttack () {
@@ -742,13 +761,12 @@ public class Network_Bot : NetworkBehaviour {
 	[Client]
 	private void SecondaryAttack() {
 		anim.SetBool("Attacking", false);
-		netanim.SetTrigger("Ranged Attack");
+		anim.SetBool("Ranged Attack", true);
 		reloading = true;
 		StartCoroutine(reload());
 	}
 
 	public void RangedAttack() {
-
 		//Nonames Attack
 		if (playerCharacterID == "ERNN") {
 			CmdFire(m_Rigidbody.velocity, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
@@ -812,16 +830,19 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	IEnumerator reload() {
+		yield return new WaitForSeconds(0.3f);
+		anim.SetBool("Ranged Attack", false);
+
 		yield return new WaitForSeconds(reloadTime);
 
 		if (playerCharacterID == "ERNN") {
 			anim.SetBool("Attacking", false);
-			netanim.SetTrigger("Ranged Attack Reload");
+			anim.SetBool("Ranged Attack Reload", true);
 		}
 
 		if (playerCharacterID == "SPKS") {
 			anim.SetBool("Attacking", false);
-			netanim.SetTrigger("Ranged Attack Reload");
+			anim.SetBool("Ranged Attack Reload", true);
 			sparkusReloadBall.SetActive (true);
 		}
 
@@ -834,6 +855,7 @@ public class Network_Bot : NetworkBehaviour {
 
 		reloading = false;
 		rangedAttacking = false;
+		anim.SetBool("Ranged Attack Reload", false);
 	}
 
 	IEnumerator D1WingOn(float time) {

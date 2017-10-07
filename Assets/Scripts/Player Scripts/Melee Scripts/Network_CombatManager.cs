@@ -60,6 +60,7 @@ public class Network_CombatManager : NetworkBehaviour {
 	public bool isSlowed;
     [SerializeField]
     public bool animationPlaying;
+    private bool isPlaying;
 
 
     // Floats
@@ -211,6 +212,20 @@ public class Network_CombatManager : NetworkBehaviour {
             netanim.SetTrigger("Attack");
             PlayMeleeSound();
             isAttacking = true;
+        }
+
+        if (isUlting && !isPlaying)
+        {
+            if (networkPlayerManager.playerCharacterID == "ERNN") 
+            {
+                networkSoundscape.PlaySound(5, 2, 0.2f, 0f);
+                isPlaying = true;
+            }
+        }
+
+        else if (!isUlting)
+        {
+            isPlaying = false;
         }
 
         if (isLocalPlayer && Input.GetKeyUp(KeyCode.K)) {
