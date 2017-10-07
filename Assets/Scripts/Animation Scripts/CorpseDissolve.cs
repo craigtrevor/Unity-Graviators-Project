@@ -16,9 +16,13 @@ public class CorpseDissolve : MonoBehaviour {
 		dying = true;
         health = 0;
 
-		foreach (Rigidbody rbody in rbodies) {
-			rbody.AddExplosionForce (100f, Vector3.zero, 10f);
-		}
+        if (gameObject.activeSelf)
+        {
+            foreach (Rigidbody rbody in rbodies)
+            {
+                rbody.AddExplosionForce(100f, Vector3.zero, 10f);
+            }
+        }
 	}
 
 	void Start () {
