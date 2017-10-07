@@ -182,6 +182,8 @@ public class Network_PlayerManager : NetworkBehaviour
     public void SetDefaults()
     {
         isDead = false;
+        combatManager.isStunned = false;
+        combatManager.StopAllCoroutines();
 
         currentHealth = maxHealth;
 
@@ -206,6 +208,20 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
+    }
+
+    private void Update()
+    {
+        if (currentUltimateGain >= 100 && !isPlaying && networkSoundscape != null)
+        {
+            networkSoundscape.PlayNonNetworkedSound(30, 2, 0.5f);
+            isPlaying = true;
+        }
+
+        else if (currentUltimateGain == 0)
+        {
+            isPlaying = false;
+        }
     }
 
     void CheckCustomizations()
@@ -367,7 +383,7 @@ public class Network_PlayerManager : NetworkBehaviour
             firstDeath = false;
         }
 
-        if (!firstDeath)
+        if (!firstDeath && netMatchEnd != null)
         {
             if (killStats != netMatchEnd.matchCount)
             {
@@ -591,18 +607,6 @@ public class Network_PlayerManager : NetworkBehaviour
 		if (currentUltimateGain >= maxUltCharge)
         {
 			currentUltimateGain = maxUltCharge;
-
-            if (!isPlaying)
-            {
-                networkSoundscape.PlayNonNetworkedSound(30, 2, 0.5f);
-                isPlaying = true;
-            }
-        }
-
-
-        if (currentUltimateGain == 0)
-        {
-            isPlaying = false;
         }
     }
 
