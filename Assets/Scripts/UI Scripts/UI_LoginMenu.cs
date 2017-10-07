@@ -72,7 +72,7 @@ public class UI_LoginMenu : MonoBehaviour {
             loadingParent.gameObject.SetActive(false);
             //loggedInParent.gameObject.SetActive(true);
             UI_UserAccountManager.instance.LogIn(playerUsername, playerPassword);
-            LoggedIn_DisplayUsernameText.text = "Logged In As: " + playerUsername;
+            LoggedIn_DisplayUsernameText.text = "Logged in as: " + playerUsername;
         } else
         {
             //Something went wrong logging in. Stop showing 'Loading...' and go back to LoginUI
@@ -81,17 +81,17 @@ public class UI_LoginMenu : MonoBehaviour {
             if (response == "UserError")
             {
                 //The Username was wrong so display relevent error message
-                Login_ErrorText.text = "Error: Username not Found";
+                Login_ErrorText.text = "Error: username not found";
             } else
             {
                 if (response == "PassError")
                 {
                     //The Password was wrong so display relevent error message
-                    Login_ErrorText.text = "Error: Password Incorrect";
+                    Login_ErrorText.text = "Error: password incorrect";
                 } else
                 {
                     //There was another error. This error message should never appear, but is here just in case.
-                    Login_ErrorText.text = "Error: Unknown Error. Please try again later.";
+                    Login_ErrorText.text = "Error: unknown error. Please try again later.";
                 }
             }
         }
@@ -112,7 +112,7 @@ public class UI_LoginMenu : MonoBehaviour {
             loadingParent.gameObject.SetActive(false);
             //loggedInParent.gameObject.SetActive(true);
             UI_UserAccountManager.instance.LogIn(playerUsername, playerPassword);
-            LoggedIn_DisplayUsernameText.text = "Logged In As: " + playerUsername;
+            LoggedIn_DisplayUsernameText.text = "Logged in as: " + playerUsername;
         } else
         {
             //Something went wrong logging in. Stop showing 'Loading...' and go back to RegisterUI
@@ -121,11 +121,11 @@ public class UI_LoginMenu : MonoBehaviour {
             if (response == "UserError")
             {
                 //The username has already been taken. Player needs to choose another. Shows error message.
-                Register_ErrorText.text = "Error: Username Already Taken";
+                Register_ErrorText.text = "Error: username already taken";
             } else
             {
                 //There was another error. This error message should never appear, but is here just in case.
-                Login_ErrorText.text = "Error: Unknown Error. Please try again later.";
+                Login_ErrorText.text = "Error: unknown error. Please try again later.";
             }
         }
     }
@@ -153,12 +153,12 @@ public class UI_LoginMenu : MonoBehaviour {
             else
             {
                 //Password too short so it must be wrong
-                Login_ErrorText.text = "Error: Password Incorrect";
+                Login_ErrorText.text = "Error: password incorrect";
             }
         } else
         {
             //Username too short so it must be wrong
-            Login_ErrorText.text = "Error: Username Incorrect";
+            Login_ErrorText.text = "Error: username incorrect";
         }
     }
     public void Login_RegisterButtonPressed ()
@@ -193,19 +193,19 @@ public class UI_LoginMenu : MonoBehaviour {
                 else
                 {
                     //Passwords don't match, show error
-                    Register_ErrorText.text = "Error: Password's don't Match";
+                    Register_ErrorText.text = "Error: password dosen't match";
                 }
             }
             else
             {
                 //Password too short so show error
-                Register_ErrorText.text = "Error: Password too Short";
+                Register_ErrorText.text = "Error: password too short";
             }
         }
         else
         {
             //Username too short so show error
-            Register_ErrorText.text = "Error: Username too Short";
+            Register_ErrorText.text = "Error: username too short";
         }
     }
 
@@ -234,7 +234,7 @@ public class UI_LoginMenu : MonoBehaviour {
         ResetAllUIElements();
         loginParent.gameObject.SetActive(true);
         loadingParent.gameObject.SetActive(false);
-        Login_ErrorText.text = "Error: Unknown Error. Please try again later.";
+        Login_ErrorText.text = "Error: unknown error. Please try again later.";
     }
 
     public void GetDataRequestSuccess()
@@ -248,7 +248,7 @@ public class UI_LoginMenu : MonoBehaviour {
         ResetAllUIElements();
         loginParent.gameObject.SetActive(true);
         loadingParent.gameObject.SetActive(false);
-        Login_ErrorText.text = "Error: Unknown Error. Please try again later.";
+        Login_ErrorText.text = "Error: unknown error. Please try again later.";
     }
 
     public void Register_BackButtonPressed ()

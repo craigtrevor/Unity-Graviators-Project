@@ -221,6 +221,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
     <Compile Include="Assets\Shaders\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
     <Compile Include="Assets\Shaders\Water Flow FREE\Scripts\WaterFlowFREEDemo.cs" />
+    <Compile Include="Assets\UI_MatchMixerLevels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />

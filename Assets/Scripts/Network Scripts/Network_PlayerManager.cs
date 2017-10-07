@@ -144,13 +144,6 @@ public class Network_PlayerManager : NetworkBehaviour
         }
     }
 
-
-
-    private void Update()
-    {
-        MuteNarration();
-    }
-
     public void SetupPlayer()
     {
         if (isLocalPlayer)
@@ -611,13 +604,13 @@ public class Network_PlayerManager : NetworkBehaviour
 		}
 	}
 
-    void MuteNarration()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            narrationAudio.Stop();
-        }
-    }
+    //void MuteNarration()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.M))
+    //    {
+    //        narrationAudio.Stop();
+    //    }
+    //}
 
 	void OnTriggerStay(Collider col){
 		if (col.tag == "SlowTrap") {
