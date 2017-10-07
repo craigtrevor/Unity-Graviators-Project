@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class FreeCamScript : MonoBehaviour {
 
+    /* CONTROLS
+
+    WASD - Move left/right, forward/back    
+    RF - Move up/down
+
+    QE - Rotate left/right
+    TG - Rotate up/down
+    ZC - Spin anti/clockwise
+    X - Reset spin
+
+    Scroll up/down - Increase sensitivity
+
+    P - Reset position to centre
+
+    , . - Change local/world movement
+
+    */
+
     int sensitivty = 1;
     Space space = Space.Self;
 
