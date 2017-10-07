@@ -134,8 +134,8 @@ public class WeaponSpawn : NetworkBehaviour {
 
 		//Sparkus Attack
 		if (playerCharacterID == "SPKS") {
-			CmdFire(Vector3.zero, 0f, fireTransform.forward, fireTransform.position, fireTransform.rotation);
-			sparkusReloadBall.SetActive (false);
+            CmdFire(m_Rigidbody.velocity*0f, force, fireTransform.forward, fireTransform.position, fireTransform.rotation);
+            sparkusReloadBall.SetActive (false);
 
 			combatManager.isRanging = false;
 		}

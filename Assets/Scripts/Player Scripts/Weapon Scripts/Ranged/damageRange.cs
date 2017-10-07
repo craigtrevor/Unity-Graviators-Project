@@ -70,13 +70,14 @@ public class damageRange : NetworkBehaviour {
         rotateSpeed *= -1;
     }
 
+    private void Start() {
+    }
+
     void transformSparkusRanged() {
         //transform.Translate(Vector3.forward * 0.1f);
         //transform.localScale += new Vector3(0.03f, 0.03f, 0f);
 
-        transform.localScale = Vector3.one * 2f;
-
-        Destroy(this.gameObject, 2f);
+        Destroy(this.gameObject, 5f);
     }
 
     void Update() {
@@ -119,6 +120,7 @@ public class damageRange : NetworkBehaviour {
     [Client]
     void OnCollisionEnter(Collision other) {
 		if (other.transform.root != transform.root && (other.gameObject.tag == PLAYER_TAG || other.gameObject.tag == BOT_TAG) && other.transform.name != sourceID && other.gameObject.tag != THROWINGSWORD_TAG) {
+
             if (this.gameObject.tag == THROWINGSWORD_TAG && other.gameObject.tag != THROWINGSWORD_TAG)// if a throwing sword hit the player
             {
                 GameObject temp2 = new GameObject();
@@ -163,22 +165,25 @@ public class damageRange : NetworkBehaviour {
                 //PlayImpactSound();
                 Die();
             }
-            //Sparkus ranged handled by OnTrigger
-            /*
-            if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if sparkus range weapon hit the player
+
+            if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if UnitD1 range weapon hit the player
             {
                 if (other.gameObject.tag == PLAYER_TAG) {
-                    CmdTakeDamage(other.gameObject.name, sparkusDamage, sourceID);
+                    SendDamage(other.gameObject.name, sparkusDamage, sourceID);
                     other.gameObject.GetComponent<Network_CombatManager>().StunForSeconds(sparkusStunTime);
                 }
 
                 if (other.gameObject.tag == BOT_TAG) {
-                    other.gameObject.GetComponent<Network_Bot>().TakeDamage(sparkusDamage);
-                    other.gameObject.GetComponent<Network_Bot>().Slow(sparkusStunTime);
+                    other.gameObject.GetComponent<Network_Bot>().TakeDamage(sourceID, sparkusDamage);
+                    other.gameObject.GetComponent<Network_Bot>().Stun(sparkusStunTime);
                 }
-                //Die();
-            }*/
-		} else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG && other.transform.name != sourceID && other.gameObject.tag != THROWINGSWORD_TAG) {
+                //networkSoundscape = GameObject.Find(sourceID).transform.GetComponent<Network_Soundscape>();
+                //PlayImpactSound();
+                Destroy(gameObject);
+            }
+            this.gameObject.GetComponent<Collider>().isTrigger = true;
+
+        } else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG && other.transform.name != sourceID && other.gameObject.tag != THROWINGSWORD_TAG) {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the arena
             {
                 GameObject temp2 = new GameObject();
@@ -202,9 +207,16 @@ public class damageRange : NetworkBehaviour {
                 //PlayImpactSound();
                 Die();
             }
+
+            if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if sparkus range weapon hit the arena
+            {
+                Destroy(gameObject);
+            }
+            this.gameObject.GetComponent<Collider>().isTrigger = true;
         }
     }
 
+    /*
     private void OnTriggerStay(Collider other) {
         if (other.transform.root != transform.root && (other.gameObject.tag == PLAYER_TAG || other.gameObject.tag == BOT_TAG) && other.transform.name != sourceID) {
             if (this.gameObject.tag == SPARKUSRANGEWEAPON_TAG) // if sparkus range weapon hit the player
@@ -225,6 +237,7 @@ public class damageRange : NetworkBehaviour {
             }
         }
     }
+    */
 
     void SendDamage(string _playerID, float _damage, string _sourceID)
     {
