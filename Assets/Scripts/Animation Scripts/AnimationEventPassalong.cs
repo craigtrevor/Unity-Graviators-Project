@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class AnimationEventPassalong : MonoBehaviour {
 
 	public GameObject parentObject;
 	public GameObject controllerObject;
+
+	private bool fireOnce;
 
 	private WeaponSpawn wepSpawn;
 	private PlayerController netPlayer;

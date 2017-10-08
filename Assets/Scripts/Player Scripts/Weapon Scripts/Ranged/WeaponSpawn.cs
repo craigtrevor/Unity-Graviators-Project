@@ -101,6 +101,7 @@ public class WeaponSpawn : NetworkBehaviour {
         m_Fired = true; // set the fire flag so that fire is only called once
         playerAnimator.SetBool("Attacking", false);
         playerNetAnimator.SetTrigger("Ranged Attack");
+		playerAnimator.SetBool("RangedAttacking", true);
         //StartCoroutine(WaitForCurrentAnim());
     }
 
@@ -122,6 +123,7 @@ public class WeaponSpawn : NetworkBehaviour {
 			trailToHide2.enabled = false;
 
             combatManager.isRanging = false;
+			playerAnimator.SetBool("RangedAttacking", false);
         }
 
 		//D1s Attack
@@ -130,6 +132,7 @@ public class WeaponSpawn : NetworkBehaviour {
 			StartCoroutine (D1WingOff (0.5f));
 
             combatManager.isRanging = false;
+			playerAnimator.SetBool("RangedAttacking", false);
         }
 
 		//Sparkus Attack
@@ -138,6 +141,7 @@ public class WeaponSpawn : NetworkBehaviour {
             sparkusReloadBall.SetActive (false);
 
 			combatManager.isRanging = false;
+			playerAnimator.SetBool("RangedAttacking", false);
 		}
     }
 
