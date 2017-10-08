@@ -8,8 +8,6 @@ public class D1UltWeap : NetworkBehaviour {
     private const string PLAYER_TAG = "Player";
     private const string BOT_TAG = "NetBot";
 
-    public GameObject colliderFrame;
-
     //[SerializeField]
     private string sourceID;
     private string attackedByEntity;
@@ -17,7 +15,7 @@ public class D1UltWeap : NetworkBehaviour {
     Collider[] hitColliders;
 
     public float damage;
-    float stun = 1f;
+    float stun = 5f;
 
     Network_PlayerManager networkPlayerManager;
     PlayerController playerController;
@@ -32,14 +30,16 @@ public class D1UltWeap : NetworkBehaviour {
         //Debug.Log("Size:" + damage);
     }
 
-    public void getUltSize(float sizeMeasurement) {
-        float multiplierPercent = Mathf.Clamp((-sizeMeasurement - 50f) / 50f, 0f, 1f);
+    //This doesn't trigger anymore
+    public void GetYVel(float _yVel) {
+        float multiplierPercent = Mathf.Clamp((-_yVel - 50f) / 50f, 0f, 1f);
         float sizeMultiplier = Mathf.Max(multiplierPercent * 3f, 0.5f);
         float damageMultiplier = multiplierPercent * 4f;
         float stunMultiplier = 2f + multiplierPercent * 5f;
         //Debug.Log(damageMultiplier * damage);
 
-        this.transform.localScale = Vector3.one * sizeMultiplier;
+        //this.transform.localScale = Vector3.one * sizeMultiplier;
+
         damage *= damageMultiplier;
         stun *= stunMultiplier;
         Debug.Log(stun);
@@ -64,8 +64,8 @@ public class D1UltWeap : NetworkBehaviour {
         }
     }*/
 
-    //[Client]
-    private void OnTriggerStay(Collider other) {/*
+    [Client]
+    void OnCollisionEnter(Collision other) {/*
         if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.root.name != sourceID) {
             CmdTakeDamage(other.gameObject.name, damage, sourceID);
         }
@@ -77,14 +77,14 @@ public class D1UltWeap : NetworkBehaviour {
 
             if (other.gameObject.tag == PLAYER_TAG) {
 
-                SendDamage(other.gameObject.name, damage*Time.deltaTime, sourceID);
+                SendDamage(other.gameObject.name, damage, sourceID);
                 other.gameObject.GetComponent<Network_CombatManager>().StunForSeconds(stun);
                 //Debug.Log("sourceID is: " + sourceID);
                 //Debug.Log("hit: " + other.transform.name);
             }
 
             if (other.gameObject.tag == BOT_TAG) {
-                other.gameObject.GetComponent<Network_Bot>().TakeDamage(sourceID, damage * Time.deltaTime);
+                other.gameObject.GetComponent<Network_Bot>().TakeDamage(sourceID, damage);
                 other.gameObject.GetComponent<Network_Bot>().Stun(stun);
             }
             //Die();

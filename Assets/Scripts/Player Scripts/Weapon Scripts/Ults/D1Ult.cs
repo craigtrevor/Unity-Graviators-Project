@@ -71,8 +71,13 @@ public class D1Ult : NetworkBehaviour {
             isStomping = false;
             playerAnimator.SetBool("UltimateLoop", false);
             CmdChargeUltimate(-STOMP_COST, transform.name);
-            //spawn the ice thingy
-            CmdSpawnUlt(playerController.transform.position, playerController.transform.rotation, playerController.velocity.y);
+
+            //spawn the ice thingies
+            CmdSpawnUlt(playerController.transform.position + playerController.transform.forward * 6f, playerController.transform.rotation, playerController.velocity.y);
+            CmdSpawnUlt(playerController.transform.position + playerController.transform.forward * -6f, playerController.transform.rotation, playerController.velocity.y);
+            CmdSpawnUlt(playerController.transform.position + playerController.transform.right * 6f, playerController.transform.rotation, playerController.velocity.y);
+            CmdSpawnUlt(playerController.transform.position + playerController.transform.right * -6f, playerController.transform.rotation, playerController.velocity.y);
+
             StartCoroutine(EndUlt());
         }
     }
@@ -99,9 +104,11 @@ public class D1Ult : NetworkBehaviour {
     void UltInput() {
         if (Input.GetButtonDown("Ultimate") && !playerController.Grounded() && canUseUlt && !hasStopmed && !gravityScript.gravitySwitching && !combatManager.isAttacking) { //ult has started
             canCharge = false;
-            isStomping = true;
+            isStomping = true;            
             combatManager.isUlting = true;
-            playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);
+
+            playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);           
+
             playerAnimator.SetBool("UltimateLoop", true);
             playerAnimator.SetTrigger("StartUltimate");
 
@@ -140,7 +147,7 @@ public class D1Ult : NetworkBehaviour {
     }
 
     [Command]
-    private void CmdSpawnUlt(Vector3 position, Quaternion rotation, float SizeMeasurement) {
+    private void CmdSpawnUlt(Vector3 position, Quaternion rotation, float yVel) {
         // create an instance of the weapon and store a reference to its rigibody
         GameObject weaponInstance = Instantiate(weapon, position, rotation);
 
@@ -149,7 +156,7 @@ public class D1Ult : NetworkBehaviour {
         ultSourceParams[1] = _sourceTag;
 
         weaponInstance.SendMessage("SetUltRefs", ultSourceParams, SendMessageOptions.RequireReceiver);
-        weaponInstance.SendMessage("getUltSize", SizeMeasurement, SendMessageOptions.RequireReceiver);
+        //weaponInstance.SendMessage("GetYVel", yVel, SendMessageOptions.RequireReceiver);
 
         NetworkServer.Spawn(weaponInstance.gameObject);
     }
