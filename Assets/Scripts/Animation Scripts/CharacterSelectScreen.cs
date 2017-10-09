@@ -8,6 +8,10 @@ public class CharacterSelectScreen : MonoBehaviour {
 	Network_Manager netManager;
 	public int charSelection;
 
+	public Animator noNameAnim;
+	public Animator sparkusAnim;
+	public Animator d1Anim;
+
 	public Text noNameInfo;
 	public Text sparkusInfo;
 	public Text d1Info;
@@ -51,6 +55,8 @@ public class CharacterSelectScreen : MonoBehaviour {
 	void UpdateCharacter () {
 		if (charSelection == 1) { 
 			netManager.CharacterSelector ("ErrNoName_btn");
+			noNameAnim.SetTrigger ("Flourish");
+
 			rotateTo = new Vector3 (0, -90, 0);
 			StartCoroutine(FadeIn (noNameInfo, 0.5f, noNameColor));
 			StartCoroutine(FadeOut (sparkusInfo, 0.5f, sparkusColor));
@@ -62,6 +68,7 @@ public class CharacterSelectScreen : MonoBehaviour {
 		}
 		if (charSelection == 2) { 
 			netManager.CharacterSelector ("Sparkus_btn");
+			sparkusAnim.SetTrigger ("Flourish");
 			rotateTo = new Vector3 (0, 27, 0);
 			StartCoroutine(FadeOut (noNameInfo, 0.5f, noNameColor));
 			StartCoroutine(FadeIn (sparkusInfo, 0.5f, sparkusColor));
@@ -73,6 +80,7 @@ public class CharacterSelectScreen : MonoBehaviour {
 		}
 		if (charSelection == 3) { 
 			netManager.CharacterSelector ("UnitD1_btn");
+			d1Anim.SetTrigger ("Flourish");
 			rotateTo = new Vector3 (0, 150, 0);
 			StartCoroutine(FadeOut (noNameInfo, 0.5f, noNameColor));
 			StartCoroutine(FadeOut (sparkusInfo, 0.5f, sparkusColor));
