@@ -172,7 +172,7 @@ public class TutorialManager : MonoBehaviour {
 
 		//Basic movement
 		if (tutProgression == 1 && !textNotDone) {
-			StartCoroutine (AnimateText ("Okay you old rustbucket, let’s get those circuits warmed up.  Look around and change your zoom with the mouse."));
+			StartCoroutine (AnimateText ("Okay you old rustbucket, let’s get those circuits warmed up. Look around and change your zoom with the mouse."));
 			tutProgression = 2;
 		}
 		if (tutProgression == 2 && !textNotDone) {
@@ -274,7 +274,7 @@ public class TutorialManager : MonoBehaviour {
             tutProgression = 5;
         }
         if (tutProgression == 5 && !textNotDone) {
-            StartCoroutine(AnimateText("While your gravity wheel is active, you can see your enemies through walls. So don’t think you can go and hide. Your enemies WILL find you."));
+            StartCoroutine(AnimateText("While your gravity wheel is active, you can see your enemies through walls. So don’t think you can go and hide. "));
             tutProgression = 6;
         }
 
@@ -526,7 +526,7 @@ public class TutorialManager : MonoBehaviour {
 	{
 		indicator.SetActive (false);	
 		if (tutProgression == 1 && !textNotDone) {
-			StartCoroutine (AnimateText ("Well, that's all we have time for today! I'll leave some guys in here for you so."));
+			StartCoroutine (AnimateText ("Well, that's all we have time for today! I'll leave some guys in here for you so"));
 			tutProgression = 2;
 		}
 		if (tutProgression == 2 && !textNotDone) {
