@@ -109,10 +109,18 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 		ringObj.GetComponent<Renderer> ().material.color = Color.black;
 		ringObj.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.black);
 		yield return new WaitForSeconds (cooldownTime);
-		baseObj.GetComponent<Renderer> ().materials[0].color = Color.green;
-		baseObj.GetComponent<Renderer> ().materials [0].SetColor ("_EmissionColor", Color.green);
-		ringObj.GetComponent<Renderer> ().material.color = Color.green;
-		ringObj.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.green);
+		if (gameObject.tag == HEALTHREGEN_TAG) {
+			baseObj.GetComponent<Renderer> ().materials [0].color = Color.green;
+			baseObj.GetComponent<Renderer> ().materials [0].SetColor ("_EmissionColor", Color.green);
+			ringObj.GetComponent<Renderer> ().material.color = Color.green;
+			ringObj.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.green);
+		}
+		if (gameObject.tag == ULTCHARGER_TAG) {
+			baseObj.GetComponent<Renderer> ().materials [0].color = Color.blue;
+			baseObj.GetComponent<Renderer> ().materials [0].SetColor ("_EmissionColor", Color.blue);
+			ringObj.GetComponent<Renderer> ().material.color = Color.blue;
+			ringObj.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.blue);
+		}
 		healCounter = 0;
 		cooling = false;
 	}
