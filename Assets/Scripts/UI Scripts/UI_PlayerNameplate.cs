@@ -9,6 +9,9 @@ public class UI_PlayerNameplate : MonoBehaviour {
     [SerializeField]
     private RectTransform healthBarFill;
 
+	[SerializeField]
+	private RectTransform healthBarFill2;
+
     [SerializeField]
     private Network_PlayerManager player;
 	
@@ -16,6 +19,8 @@ public class UI_PlayerNameplate : MonoBehaviour {
 	void Update () {
 
         usernameText.text = player.username;
-        healthBarFill.localScale = new Vector3(player.GetHealthPct(), 1f, 1f);
+		healthBarFill.sizeDelta = new Vector2 ((player.GetHealthPct() * 600),200);
+		healthBarFill2.sizeDelta = new Vector2 ((player.GetHealthPct() * 600),200);
+
     }
 }
