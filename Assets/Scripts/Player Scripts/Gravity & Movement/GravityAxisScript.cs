@@ -322,7 +322,7 @@ public class GravityAxisScript : MonoBehaviour {
 
         if (gravitySwitching) { //If gravity is switching          
 
-            Debug.Log(Mathf.Abs(playerRotEuler.x - rotBlockEuler.x) + " " + Mathf.Abs(playerRotEuler.y - rotBlockEuler.y) + " " + Mathf.Abs(playerRotEuler.z - rotBlockEuler.z));
+            //Debug.Log(Mathf.Abs(playerRotEuler.x - rotBlockEuler.x) + " " + Mathf.Abs(playerRotEuler.y - rotBlockEuler.y) + " " + Mathf.Abs(playerRotEuler.z - rotBlockEuler.z));
 
             //Check if full rotated
             if (Mathf.Abs(playerRotEuler.x - rotBlockEuler.x) < 0.5f &&
