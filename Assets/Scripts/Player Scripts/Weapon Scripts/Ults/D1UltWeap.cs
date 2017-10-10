@@ -63,34 +63,34 @@ public class D1UltWeap : NetworkBehaviour {
             }
         }
     }*/
+    
+  //  [Client]
+  //  void OnCollisionEnter(Collision other) {/*
+  //      if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.root.name != sourceID) {
+  //          CmdTakeDamage(other.gameObject.name, damage, sourceID);
+  //      }
+		//if (other.transform.root != transform.root && other.gameObject.tag == BOT_TAG && other.transform.root.name != sourceID) {
+		//	other.gameObject.GetComponent<Network_Bot> ().TakeDamage (sourceID, damage);
+		//}*/
 
-    [Client]
-    void OnCollisionEnter(Collision other) {/*
-        if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.transform.root.name != sourceID) {
-            CmdTakeDamage(other.gameObject.name, damage, sourceID);
-        }
-		if (other.transform.root != transform.root && other.gameObject.tag == BOT_TAG && other.transform.root.name != sourceID) {
-			other.gameObject.GetComponent<Network_Bot> ().TakeDamage (sourceID, damage);
-		}*/
+  //      if (other.transform.root != transform.root && (other.gameObject.tag == PLAYER_TAG || other.gameObject.tag == BOT_TAG) && other.transform.name != sourceID) {
 
-        if (other.transform.root != transform.root && (other.gameObject.tag == PLAYER_TAG || other.gameObject.tag == BOT_TAG) && other.transform.name != sourceID) {
+  //          if (other.gameObject.tag == PLAYER_TAG) {
 
-            if (other.gameObject.tag == PLAYER_TAG) {
+  //              SendDamage(other.gameObject.name, damage, sourceID);
+  //              other.gameObject.GetComponent<Network_CombatManager>().StunForSeconds(stun);
+  //              //Debug.Log("sourceID is: " + sourceID);
+  //              //Debug.Log("hit: " + other.transform.name);
+  //          }
 
-                SendDamage(other.gameObject.name, damage, sourceID);
-                other.gameObject.GetComponent<Network_CombatManager>().StunForSeconds(stun);
-                //Debug.Log("sourceID is: " + sourceID);
-                //Debug.Log("hit: " + other.transform.name);
-            }
+  //          if (other.gameObject.tag == BOT_TAG) {
+  //              other.gameObject.GetComponent<Network_Bot>().TakeDamage(sourceID, damage);
+  //              other.gameObject.GetComponent<Network_Bot>().Stun(stun);
+  //          }
+  //          //Die();
 
-            if (other.gameObject.tag == BOT_TAG) {
-                other.gameObject.GetComponent<Network_Bot>().TakeDamage(sourceID, damage);
-                other.gameObject.GetComponent<Network_Bot>().Stun(stun);
-            }
-            //Die();
-
-        }
-    }
+  //      }
+  //  }
 
     void SendDamage(string _playerID, float _damage, string _sourceID) {
         if (attackedByEntity == PLAYER_TAG) {

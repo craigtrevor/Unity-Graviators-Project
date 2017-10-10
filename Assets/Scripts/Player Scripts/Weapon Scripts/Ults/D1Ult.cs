@@ -10,6 +10,7 @@ public class D1Ult : NetworkBehaviour {
     public GameObject weapon; // prefab of the unitD1 ult 
 
     private const string PLAYER_TAG = "Player";
+    private const string BOT_TAG = "NetBot";
     private const string ULTCHARGER_TAG = "UltCharger";
 
     PlayerController playerController;
@@ -19,6 +20,9 @@ public class D1Ult : NetworkBehaviour {
     public const float STOMP_COST = 100f;
     public float chargeMax = 100;
     public const float PASSIVE_CHARGE = 1f; // the amount of charge gained passively;
+
+    public float damage = 30f;
+    public float stun = 5f;
 
     //float charge = 0;
 
@@ -39,6 +43,8 @@ public class D1Ult : NetworkBehaviour {
 
     [SerializeField]
     Animator playerAnimator;
+
+    private Collider[] hitColliders;
 
     // Use this for initialization
     void Start() {
@@ -64,6 +70,52 @@ public class D1Ult : NetworkBehaviour {
 
     private void FixedUpdate() {
         hitGround();
+        Collide();
+    }
+
+    public GameObject debugCube;
+
+    void Collide() {
+
+        if (combatManager.isUlting) {
+            if (isStomping) {//while falling
+
+                hitColliders = Physics.OverlapBox(playerController.transform.position + playerController.transform.up * 0.5f, Vector3.one * 3.5f / 2f);
+                debugCube.transform.position = playerController.transform.position + playerController.transform.up * 0.5f;
+                debugCube.transform.localScale = Vector3.one * 3.5f;
+
+            } else { //during icicles
+
+                hitColliders = Physics.OverlapBox(playerController.transform.position + playerController.transform.up * 1.5f, new Vector3(9f, 6f, 9f) / 2f);
+                debugCube.transform.position = playerController.transform.position + playerController.transform.up * 1.5f;
+                debugCube.transform.localScale = new Vector3(9f, 6f, 9f);
+            }
+
+            foreach (Collider hitCol in hitColliders) {
+                if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
+                    Debug.Log("Hit Player!");
+
+                    CmdTakeDamage(hitCol.gameObject.name, damage*Time.deltaTime, transform.name);
+                }
+                if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == BOT_TAG) {
+
+                    hitCol.gameObject.GetComponent<Network_Bot>().TakeDamage(transform.name, damage * Time.deltaTime);
+                }
+            }
+        } else {
+            debugCube.transform.position = playerController.transform.position;
+            debugCube.transform.localScale = Vector3.one * 0f;
+        }
+    }
+
+    //actual damage dealing command
+    [Command]
+    void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
+        Debug.Log(_playerID + " has been attacked.");
+
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+
+        networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
     }
 
     void hitGround() {
@@ -71,12 +123,12 @@ public class D1Ult : NetworkBehaviour {
             isStomping = false;
             playerAnimator.SetBool("UltimateLoop", false);
             CmdChargeUltimate(-STOMP_COST, transform.name);
-
+            CmdSpawnUlt(playerController.transform.position - playerController.transform.up*0.5f, playerController.transform.rotation, playerController.velocity.y);
             //spawn the ice thingies
-            CmdSpawnUlt(playerController.transform.position + playerController.transform.forward * 6f, playerController.transform.rotation, playerController.velocity.y);
+            /*CmdSpawnUlt(playerController.transform.position + playerController.transform.forward * 6f, playerController.transform.rotation, playerController.velocity.y);
             CmdSpawnUlt(playerController.transform.position + playerController.transform.forward * -6f, playerController.transform.rotation, playerController.velocity.y);
             CmdSpawnUlt(playerController.transform.position + playerController.transform.right * 6f, playerController.transform.rotation, playerController.velocity.y);
-            CmdSpawnUlt(playerController.transform.position + playerController.transform.right * -6f, playerController.transform.rotation, playerController.velocity.y);
+            CmdSpawnUlt(playerController.transform.position + playerController.transform.right * -6f, playerController.transform.rotation, playerController.velocity.y);*/
 
             StartCoroutine(EndUlt());
         }
@@ -90,7 +142,7 @@ public class D1Ult : NetworkBehaviour {
 
     void ChargeUlt() { //deals with charging the ult bar
         if (canCharge) {
-            CmdChargeUltimate(PASSIVE_CHARGE*Time.deltaTime, transform.name);
+            CmdChargeUltimate(PASSIVE_CHARGE * Time.deltaTime, transform.name);
         } else {
         }
 
@@ -104,10 +156,10 @@ public class D1Ult : NetworkBehaviour {
     void UltInput() {
         if (Input.GetButtonDown("Ultimate") && !playerController.Grounded() && canUseUlt && !hasStopmed && !gravityScript.gravitySwitching && !combatManager.isAttacking) { //ult has started
             canCharge = false;
-            isStomping = true;            
+            isStomping = true;
             combatManager.isUlting = true;
 
-            playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);           
+            playerController.velocity.y = Mathf.Min(STOMP_SPEED, playerController.velocity.y);
 
             playerAnimator.SetBool("UltimateLoop", true);
             playerAnimator.SetTrigger("StartUltimate");
@@ -117,26 +169,26 @@ public class D1Ult : NetworkBehaviour {
         }
     }
 
-//    [Client]
-//    void OnTriggerStay(Collider other) //Ultimate charger - CB
-//{
-//        if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG) {
-//            //networkPlayerManager = other.GetComponent<Network_PlayerManager>();
-//            networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
-//            Debug.Log(this.gameObject.name);
-//            Debug.Log(transform.name);
-//            CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
-//        }
-//    }
-/*
-    [Command]
-    void CmdUltCharger(string _playerID, float _charge, string _sourceID) {
-        Debug.Log(_playerID + " is charging up teh lazor.");
+    //    [Client]
+    //    void OnTriggerStay(Collider other) //Ultimate charger - CB
+    //{
+    //        if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG) {
+    //            //networkPlayerManager = other.GetComponent<Network_PlayerManager>();
+    //            networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
+    //            Debug.Log(this.gameObject.name);
+    //            Debug.Log(transform.name);
+    //            CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
+    //        }
+    //    }
+    /*
+        [Command]
+        void CmdUltCharger(string _playerID, float _charge, string _sourceID) {
+            Debug.Log(_playerID + " is charging up teh lazor.");
 
-        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+            Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
-    }*/
+            networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
+        }*/
 
     //command that modifies the ultimate bar value
     [Command]
