@@ -69,7 +69,7 @@ public class SpikeTrap : NetworkBehaviour {
 		
 	IEnumerator CountDown() {
 		float tickDown = countDownTimer / 5f;
-		float blinkAmount = 1f;
+		float blinkAmount = 0f;
 
 		for (int x = 0; x < 5f; x++) {
 			for (int y = 0; y < blinkAmount; y++ ) {

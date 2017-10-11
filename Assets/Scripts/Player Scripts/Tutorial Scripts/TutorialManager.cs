@@ -438,12 +438,12 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 3 && !textNotDone) {
 			//turn on pads and indicate to them
 			indicator.SetActive (true);
-			indicator.GetComponent<DirectionIndicator> ().targetObject = healthPad;
+			indicator.GetComponent<DirectionIndicator> ().targetObject = spikeTrap;
 			healthPad.SetActive (true);
 			ultPad.SetActive (true);
 			spikeTrap.SetActive (true);
 			slowTrap.SetActive (true);
-			StartCoroutine (AnimateText ("Hop on over to the pads that have just appeared, and touch them when I say so."));
+			StartCoroutine (AnimateText ("Hop on over to the pad that have just appeared, and touch them when I say so."));
 			tutProgression = 4;
 		}
 		if (tutProgression == 4 && !textNotDone) {
@@ -452,18 +452,31 @@ public class TutorialManager : MonoBehaviour {
 			TextSaid = false;
 		}
 		if (tutProgression == 5 && !textNotDone && TextSaid == false) {
+			healthPad.SetActive (false);
+			ultPad.SetActive (false);
+			slowTrap.SetActive (false);
 			StartCoroutine (AnimateText ("The grey pad is a spike trap. It will kill you in a real match but not in here, so go ahead and touch it."));
+
 			//the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definitely touch this one though
 		}
 		if (tutProgression == 6 && !textNotDone && TextSaid == false) {
+			indicator.GetComponent<DirectionIndicator> ().targetObject = healthPad;
 			StartCoroutine(flashingarrow(healthArrow));
+			healthPad.SetActive (true);
+			ultPad.SetActive (false);
+			slowTrap.SetActive (false);
 			StartCoroutine (AnimateText ("The small green one will heal you, touch it now."));
 		}
 		if (tutProgression == 7 && !textNotDone && TextSaid == false) {
+			indicator.GetComponent<DirectionIndicator> ().targetObject = ultPad;
+			ultPad.SetActive (true);
+			slowTrap.SetActive (false);
 			StartCoroutine(flashingarrow(ultArrow));
 			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack quicker so you can do some serious damage faster."));
 		}
 		if (tutProgression == 8 && !textNotDone && TextSaid == false) {
+			indicator.GetComponent<DirectionIndicator> ().targetObject = slowTrap;
+			slowTrap.SetActive (true);
 			StartCoroutine (AnimateText ("The slime spill will slow you down, annoying, but not fatal, make sure you touch it too."));
 		}
 		if (tutProgression == 9 && !textNotDone && TextSaid == false) {
