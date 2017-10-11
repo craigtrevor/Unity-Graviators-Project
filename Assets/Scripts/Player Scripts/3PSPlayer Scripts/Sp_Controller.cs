@@ -55,6 +55,7 @@ public class Sp_Controller : MonoBehaviour {
 	NonNetworked_Soundscape soundscape;
 
 	public float cameraDisplacement;
+	float cameraZoom;
 	public bool stunned;
 	public bool isDashing;
 	private bool recieveInput;
@@ -135,6 +136,7 @@ public class Sp_Controller : MonoBehaviour {
 		isShiftPressed = false;
 		stunned = false;
 		inputSettings.GRAVITY_RELEASE = false;
+		cameraZoom = 2f;
 	}
 
 	void GetInput() {
@@ -158,10 +160,19 @@ public class Sp_Controller : MonoBehaviour {
 		if (isDashing) {
 			CancelVelocity();
 		}
+
+		ZoomStuff ();
 	}
 
 	void CancelVelocity() {
 		velocity = Vector3.zero;
+	}
+
+	void ZoomStuff() {
+		cameraZoom -= Input.GetAxis("Mouse ScrollWheel");
+		cameraZoom = Mathf.Lerp(cameraZoom, Mathf.Clamp(cameraZoom, 1f, 3f), 20f*Time.deltaTime);
+		eyes.GetComponentInChildren<PlayerCamera>().cameraZoom = cameraZoom;
+		gravityAxis.GetComponent<GravityAxisDisplayScript>().cameraZoom = 1f+(cameraZoom-1f)/2f;
 	}
 
 	void shiftPressed() {
