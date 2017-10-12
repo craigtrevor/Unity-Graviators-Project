@@ -149,12 +149,12 @@ public class SP_CompactHud : MonoBehaviour {
 	}
 
 	private IEnumerator SlowSpike() {
-		spikeTrigger = true;
+		//spikeTrigger = true;
 		if (playerHealth > 0.1) {
 			playerHealth -= 0.05f;
 		}
 		yield return new WaitForSeconds (0.01f);
-		spikeTrigger = false;
+		//spikeTrigger = false;
 	}
 
 	private IEnumerator SlowSlow() {

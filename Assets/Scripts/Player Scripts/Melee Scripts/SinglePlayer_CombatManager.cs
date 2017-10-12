@@ -177,8 +177,7 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	
 		playerControllermodifier.moveSettings.forwardVel = reducedWalkSpeed;
 		playerControllermodifier.moveSettings.rightVel = reducedWalkSpeed;
-		playerControllermodifier.moveSettings.jumpVel = reducedJumpSpeed;
-		Debug.Log(" A player has been slowed");
+		playerControllermodifier.moveSettings.jumpVel = reducedJumpSpeed;;
 		yield return new WaitForSeconds(slowTime);
 		playerControllermodifier.moveSettings.forwardVel = normalWalkSpeed;
 		playerControllermodifier.moveSettings.rightVel = normalWalkSpeed;

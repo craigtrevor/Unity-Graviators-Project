@@ -21,7 +21,17 @@ public class PlayerCamera : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        cameraDisplacement = player.GetComponent<PlayerController>().cameraDisplacement;
+
+		if (Network_SceneManager.instance.sceneName == "Online_Scene_ArenaV2")
+		{
+			cameraDisplacement = player.GetComponent<PlayerController>().cameraDisplacement;
+		}
+
+		else if (Network_SceneManager.instance.sceneName == "Tutorial_Arena")
+		{
+			cameraDisplacement = player.GetComponent<Sp_Controller>().cameraDisplacement;
+		}
+        
 
         //displacementVector = new Vector3(0f, -cameraDisplacement, 0f);
         displacementVector = Vector3.Lerp(displacementVector, new Vector3(0f, -cameraDisplacement * 1f - 0.5f*cameraZoom+0.25f, 0f), Time.deltaTime * 15f);

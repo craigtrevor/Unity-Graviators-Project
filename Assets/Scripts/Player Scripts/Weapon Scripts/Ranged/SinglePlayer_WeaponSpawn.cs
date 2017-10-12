@@ -53,7 +53,9 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
     private void Fire()
     {
         m_Fired = true; // set the fire flag so that fire is only called once
-        playerAnimator.SetTrigger("Ranged Attack");
+        //playerAnimator.SetTrigger("Ranged Attack");
+		playerAnimator.SetBool("RangedAttacking",true);
+		//RangedAttack ();// added since range animations are not triggering
     }
 
 	public void RangedAttack()
@@ -90,7 +92,10 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
         // delay before the player can fire agian
         yield return new WaitForSeconds(reloadTime);
         m_Fired = false;
-        playerAnimator.SetTrigger("Ranged Attack Reload");
+        //playerAnimator.SetTrigger("Ranged Attack Reload");
+		playerAnimator.SetBool("Ranged Attack Reload" ,true);
+		playerAnimator.SetBool("RangedAttacking",false);
+		//NoNameShowWeapons (); // added since range animations are not triggering
 		reloading = false;
     }
 
