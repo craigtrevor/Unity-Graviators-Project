@@ -20,6 +20,7 @@ public class TutorialManager : MonoBehaviour {
 	public GameObject target2;
 	public GameObject target3;
 
+
 	public GameObject chump1;
 	public GameObject chump2;
 	public GameObject chump3;
@@ -61,6 +62,8 @@ public class TutorialManager : MonoBehaviour {
 	public int tutProgression = 1;
 	public int overallProgression = 1;
 
+	private float textWaitTime = 0.03f;
+
 	void Start() {
 		indicator.SetActive (false);
 		//tutProgression = 1;
@@ -76,6 +79,13 @@ public class TutorialManager : MonoBehaviour {
 	// 5 Traps
 	// 6 ultimates
 	void Update() {
+//		if (Input.GetKeyDown(KeyCode.P)) 
+//		{
+//			tutProgression += 1;
+//			textWaitTime = 0.00f;
+//			textNotDone = false;
+//		}
+
 		//update the chatbox
 		textObject.text = str;
 
@@ -156,24 +166,27 @@ public class TutorialManager : MonoBehaviour {
 
 	//StartCoroutine( AnimateText(textToWrite));
 	IEnumerator AnimateText(string strComplete){
+		
 		TextSaid = true;
 		textNotDone = true;
 		int i = 0;
 		str = "";
-		while( i < strComplete.Length ){
-			str += strComplete[i++];
-			yield return new WaitForSeconds(0.03F);
+		while (i < strComplete.Length) 
+		{
+			str += strComplete [i++];
+			yield return new WaitForSeconds (textWaitTime);
 		}
 		yield return new WaitForSeconds(3F);
 		textNotDone = false;
 	}
 
-	void tutMovement () {
+		void tutMovement () {
 
 		//Basic movement
 		if (tutProgression == 1 && !textNotDone) {
 			StartCoroutine (AnimateText ("Okay you old rustbucket, let’s get those circuits warmed up. Look around and change your zoom with the mouse."));
 			tutProgression = 2;
+
 		}
 		if (tutProgression == 2 && !textNotDone) {
 			StartCoroutine (AnimateText ("First of all let’s check your movement system still work. Use W,A,S,D to move around and spacebar to jump."));
@@ -261,7 +274,7 @@ public class TutorialManager : MonoBehaviour {
 		}*/
 
 		if (tutProgression == 3 && !textNotDone && botsMurdered == 1) {
-			indicator.GetComponent<DirectionIndicator> ().targetObject = chump3;
+			indicator.GetComponent<DirectionIndicator> ().targetObject = chump2;
 			chump2.SetActive (true);
 			chump3.SetActive (true);
 			chump4.SetActive (true);
@@ -362,6 +375,8 @@ public class TutorialManager : MonoBehaviour {
 			camDrone3.SetActive (true);
 			camDrone4.SetActive (true);
 			camDrone5.SetActive (true);
+			indicator.SetActive(true);
+			indicator.GetComponent<DirectionIndicator> ().targetObject = camDrone3;
 			StartCoroutine (AnimateText ("See those little camera drones? They'd love to hear from you,"));
 			tutProgression = 3;
 		}
@@ -410,6 +425,7 @@ public class TutorialManager : MonoBehaviour {
 		}
 		if (tutProgression == 8 && !textNotDone && botsMurdered ==3 && TextSaid == false) {
 			StartCoroutine(flashingarrow(rangeArrow));
+			indicator.GetComponent<DirectionIndicator> ().targetObject = camDrone1;
 			StartCoroutine (AnimateText ("2 left"));
 
 		}

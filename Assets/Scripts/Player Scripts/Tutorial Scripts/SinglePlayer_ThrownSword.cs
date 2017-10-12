@@ -45,25 +45,29 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 		if (other.transform.root != transform.root && other.gameObject.tag == PLAYER_TAG && other.gameObject.tag !="PlayerController") {
 			if (this.gameObject.tag == THROWINGSWORD_TAG && other.gameObject.tag != THROWINGSWORD_TAG) {// if a throwing sword hit the player
 				CmdTakeDamage (other.gameObject, swordDamage);
-				GameObject temp2 = new GameObject ();
-				temp2.transform.SetParent(other.gameObject.transform);
-				transform.SetParent(temp2.transform);
-				transform.position = other.contacts [0].point;
-				GameObject temp = Instantiate (collideParticle, this.gameObject.transform);
-				temp.transform.position = other.contacts [0].point;
+
+//					GameObject temp2 = new GameObject ();
+//					temp2.transform.SetParent (other.gameObject.transform);
+//					transform.SetParent (temp2.transform);
+//					transform.position = other.contacts [0].point;
+//					GameObject temp = Instantiate (collideParticle, this.gameObject.transform);
+//					temp.transform.position = other.contacts [0].point;
+
 				PlayImpactSound();
 				Die ();
+				Destroy (gameObject);
 			}
 		} else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG) {
 			if (this.gameObject.tag == THROWINGSWORD_TAG && other.gameObject.tag != THROWINGSWORD_TAG) {// if a throwing sword hit the player
-				GameObject temp2 = new GameObject ();
-				temp2.transform.SetParent(other.gameObject.transform);
-				transform.SetParent(temp2.transform);
-				transform.position = other.contacts [0].point;
-				GameObject temp = Instantiate (collideParticle, this.gameObject.transform);
-				temp.transform.position = other.contacts [0].point;
+//				GameObject temp2 = new GameObject ();
+//				temp2.transform.SetParent(other.gameObject.transform);
+//				transform.SetParent(temp2.transform);
+//				transform.position = other.contacts [0].point;
+//				GameObject temp = Instantiate (collideParticle, this.gameObject.transform);
+//				temp.transform.position = other.contacts [0].point;
 				PlayImpactSound();
 				Die ();
+
 			}
 		}
 	}
@@ -99,7 +103,7 @@ public class SinglePlayer_ThrownSword : MonoBehaviour {
 
 	private IEnumerator DieNow()
 	{
-		yield return new WaitForSeconds (5f);
+		yield return new WaitForSeconds (2f);
 		Destroy(gameObject);
 	}
 }

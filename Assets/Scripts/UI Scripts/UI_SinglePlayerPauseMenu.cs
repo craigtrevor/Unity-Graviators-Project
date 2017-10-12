@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
 	public static bool isOn = false;
-
+	public GameObject videoplayer;
+	public GameObject Camera;
     [SerializeField]
     private GameObject pauseMenu;
 
@@ -42,6 +43,8 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
         if (pauseMenu.activeSelf)
         {
+			videoplayer.SetActive (false);
+			Camera.GetComponent<PlayerCamera>().enabled = false;
             playerHUD.enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -49,6 +52,8 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
         if (!pauseMenu.activeSelf)
         {
+			Camera.GetComponent<PlayerCamera>().enabled = true;
+			videoplayer.SetActive (true);
             playerHUD.enabled = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -57,7 +62,8 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
     public void ContinueGame()
     {
-		
+		Camera.GetComponent<PlayerCamera>().enabled = true;
+		videoplayer.SetActive (true);
 		playerHUD.enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

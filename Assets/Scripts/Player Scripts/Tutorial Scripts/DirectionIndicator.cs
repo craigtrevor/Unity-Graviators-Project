@@ -133,6 +133,7 @@ public class DirectionIndicator : MonoBehaviour {
         return (targetViewportPosition.x > VisibilitySafeFactor && targetViewportPosition.x < 1 - VisibilitySafeFactor &&
                 targetViewportPosition.y > VisibilitySafeFactor && targetViewportPosition.y < 1 - VisibilitySafeFactor &&
                 targetViewportPosition.z > 0);
+		//return false;
     }
 
     private void GetDirectionIndicatorPositionAndRotation(Vector3 camToObjectDirection, out Vector3 position, out Quaternion rotation)
