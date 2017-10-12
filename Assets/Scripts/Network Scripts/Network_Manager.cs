@@ -38,7 +38,7 @@ public class Network_Manager : NetworkManager {
 	public int sparkusCustomization;
 	public int d1Customization;
 
-	int arrayCount;
+	public int arrayCount;
     int arrayMax;
     int arrayMin;
 
@@ -53,7 +53,7 @@ public class Network_Manager : NetworkManager {
     void Start()
     {
         characterIndex = 0;
-        arrayMax = 4;
+        arrayMax = 5;
         arrayMin = 0;
         arrayCount = 0;
         characterName = "Err:NoName";
@@ -75,8 +75,6 @@ public class Network_Manager : NetworkManager {
 		if (Network_SceneManager.instance.sceneName == "Character_Select" || Network_SceneManager.instance.sceneName == "Character_Select_V2")
         {
             ChooseCustomizationViaKeyboard();
-            ChooseCustomizationViaRightButtons();
-            ChooseCustomizationViaLeftButtons();
             ActivateCharacterSelectRoom();
         }
 
@@ -98,36 +96,33 @@ public class Network_Manager : NetworkManager {
 		switch (buttonName)
 		{
 		case "ErrNoName_btn":
-
+				characterName = "Err:NoName";
+				characterID = "ERNN";
 			    characterIndex = 0;
 			    RemoveCustomization ();
 			    arrayCount = noNameCustomization;
 			    UpdateCustomization();
-			    characterName = "Err:NoName";
-			    characterID = "ERNN";
-
+			    
                 break;
 
 		case "Sparkus_btn":
-
+				characterName = "Sparkus";
+				characterID = "SPKS";
 			    characterIndex = 1;
 			    RemoveCustomization();
 			    arrayCount = sparkusCustomization;
 			    UpdateCustomization();
-			    characterName = "Sparkus";
-			    characterID = "SPKS";
-
+			   
                 break;
 
 		case "UnitD1_btn":
-
+				characterName = "Unit-D1";
+				characterID = "UT-D1";
 			    characterIndex = 2;
 			    RemoveCustomization();
 			    arrayCount = d1Customization;
 			    UpdateCustomization();
-			    characterName = "Unit-D1";
-			    characterID = "UT-D1";
-
+			    
                 break;
 		}
 
@@ -143,9 +138,7 @@ public class Network_Manager : NetworkManager {
 
         if (arrayCount >= arrayMax)
         {
-            arrayCount = 1;
-
-            customzationName = "empty hat";
+			arrayCount = arrayMin;
         }
 
         UpdateCustomization();
@@ -159,7 +152,7 @@ public class Network_Manager : NetworkManager {
 
         if (arrayCount <= arrayMin)
         {
-            arrayCount = 3;
+			arrayCount = arrayMax;
         }
 
         UpdateCustomization();
@@ -169,31 +162,12 @@ public class Network_Manager : NetworkManager {
     {
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            RemoveCustomization();
-
-            arrayCount++;
-
-            if (arrayCount >= arrayMax)
-            {
-                arrayCount = 1;
-                customzationName = "empty hat";
-            }
-
-            UpdateCustomization();
+			ChooseCustomizationViaRightButtons ();
         }
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            RemoveCustomization();
-
-            arrayCount--;
-
-            if (arrayCount <= arrayMin)
-            {
-                arrayCount = 3;
-            }
-
-            UpdateCustomization();
+			ChooseCustomizationViaLeftButtons ();
         }
     }
 

@@ -242,6 +242,14 @@ public class Network_PlayerManager : NetworkBehaviour
             {
                 ERNNCustomization[2].SetActive(true);
             }
+			else if (networkManagerScript.customzationName == "cavalierhat")
+			{
+				ERNNCustomization[3].SetActive(true);
+			}
+			else if (networkManagerScript.customzationName == "priateHat")
+			{
+				ERNNCustomization[4].SetActive(true);
+			}
         }
 
         else if (playerCharacterID == "SPKS")
@@ -260,6 +268,14 @@ public class Network_PlayerManager : NetworkBehaviour
             {
                 SPKSCustomization[2].SetActive(true);
             }
+			else if (networkManagerScript.customzationName == "pumpkin")
+			{
+				SPKSCustomization[3].SetActive(true);
+			}
+			else if (networkManagerScript.customzationName == "topHat")
+			{
+				SPKSCustomization[4].SetActive(true);
+			}
         }
 
         else if (playerCharacterID == "UT-D1")
@@ -269,7 +285,7 @@ public class Network_PlayerManager : NetworkBehaviour
                 UT_D1Customization[0].SetActive(true);
             }
 
-            else if (networkManagerScript.customzationName == "flower")
+            else if (networkManagerScript.customzationName == "flowercrown")
             {
                 UT_D1Customization[1].SetActive(true);
             }
@@ -278,6 +294,14 @@ public class Network_PlayerManager : NetworkBehaviour
             {
                 UT_D1Customization[2].SetActive(true);
             }
+			else if (networkManagerScript.customzationName == "witchesHat")
+			{
+				UT_D1Customization[3].SetActive(true);
+			}
+			else if (networkManagerScript.customzationName == "bowler hat")
+			{
+				UT_D1Customization[4].SetActive(true);
+			}
         }
     }
 
