@@ -121,7 +121,7 @@ public class Network_CombatManager : NetworkBehaviour {
     }
 
     public void StunForSeconds(float stunTime) {
-		if (!isStunned & !isLocalPlayer) {
+		if (!isStunned) {
 			isStunned = true;
 			StartCoroutine (stunTimer (stunTime, true));
 		}
@@ -132,8 +132,9 @@ public class Network_CombatManager : NetworkBehaviour {
             playerController.stunned = true;
             anim.SetBool("Stun", true);
             GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
-			stunParticle.transform.position = new Vector3 (stunParticle.transform.position.x, stunParticle.transform.position.y + 3, stunParticle.transform.position.z);
-            stunParticle.GetComponent<DestroyParticle>().delayBeforeDeath = stunTime;
+			stunParticle.transform.position = new Vector3 (stunParticle.transform.position.x, stunParticle.transform.position.y + 4f, stunParticle.transform.position.z);
+			stunParticle.transform.SetParent (this.gameObject.transform);
+			stunParticle.GetComponent<StunParticleWobbler>().KillSelfAfter(stunTime);
             yield return new WaitForSeconds(stunTime);
         }
         playerController.stunned = false;
