@@ -31,6 +31,8 @@ public class Network_Bot : NetworkBehaviour {
 	public GameObject hat1;
 	public GameObject hat2;
 	public GameObject hat3;
+	public GameObject hat4;
+	public GameObject hat5;
 
 	[Space(10)]
 	[Header("Script Variables")]
@@ -151,25 +153,47 @@ public class Network_Bot : NetworkBehaviour {
         }
 
         // ~You can leave your hat on~
-        botHat = Random.Range(1, 4);
+        botHat = Random.Range(1, 6);
         if (botHat == 1)
         {
             hat1.SetActive(true);
             hat2.SetActive(false);
             hat3.SetActive(false);
+			hat4.SetActive(false);
+			hat5.SetActive(false);
         }
         if (botHat == 2)
         {
             hat1.SetActive(false);
             hat2.SetActive(true);
             hat3.SetActive(false);
+			hat4.SetActive(false);
+			hat5.SetActive(false);
         }
         if (botHat == 3)
         {
             hat1.SetActive(false);
             hat2.SetActive(false);
             hat3.SetActive(true);
+			hat4.SetActive(false);
+			hat5.SetActive(false);
         }
+		if (botHat == 4)
+		{
+			hat1.SetActive(false);
+			hat2.SetActive(false);
+			hat3.SetActive(false);
+			hat4.SetActive(true);
+			hat5.SetActive(false);
+		}
+		if (botHat == 5)
+		{
+			hat1.SetActive(false);
+			hat2.SetActive(false);
+			hat3.SetActive(false);
+			hat4.SetActive(false);
+			hat5.SetActive(true);
+		}
 
         FindTarget();
     }
