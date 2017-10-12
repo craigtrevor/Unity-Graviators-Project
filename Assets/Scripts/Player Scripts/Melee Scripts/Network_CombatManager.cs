@@ -121,7 +121,7 @@ public class Network_CombatManager : NetworkBehaviour {
     }
 
     public void StunForSeconds(float stunTime) {
-		if (!isStunned) {
+		if (!isStunned && !isLocalPlayer) {
 			isStunned = true;
 			StartCoroutine (stunTimer (stunTime, true));
 		}

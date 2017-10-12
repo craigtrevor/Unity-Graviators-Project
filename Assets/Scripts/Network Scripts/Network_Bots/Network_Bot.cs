@@ -199,15 +199,16 @@ public class Network_Bot : NetworkBehaviour {
 		if (!currentTarget.activeSelf) {
 			FindTarget ();
 		} else {
-
-			CheckCollisions ();
 			CheckAnimation ();
 			ApplyGravity ();
-			CheckTargetGravity ();
 
 			healthSlider.value = health - 10;
 
-			Think ();
+			if (!stunned) {
+				CheckCollisions ();
+				CheckTargetGravity ();
+				Think ();
+			}
 		}
 	}
 
@@ -632,7 +633,15 @@ public class Network_Bot : NetworkBehaviour {
 	}
 
 	IEnumerator StunnedFor(float time) {
+		anim.SetBool("Stun", true);
+
+		GameObject stunParticle = Instantiate(particleManager.GetParticle("stunEffect"), this.transform.position + Vector3.down, this.transform.rotation);
+		stunParticle.transform.position = new Vector3 (stunParticle.transform.position.x, stunParticle.transform.position.y + 4f, stunParticle.transform.position.z);
+		stunParticle.transform.SetParent (this.gameObject.transform);
+		stunParticle.GetComponent<StunParticleWobbler>().KillSelfAfter(time);
+
 		yield return new WaitForSeconds(time);
+		anim.SetBool("Stun", false);
 		stunned = false;
 	}
 
