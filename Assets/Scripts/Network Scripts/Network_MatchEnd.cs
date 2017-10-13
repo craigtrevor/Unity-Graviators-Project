@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class Network_MatchEnd : NetworkBehaviour
 {
+    public static Network_MatchEnd instance;
+
+    [Header("Network Entities")]
+
     private NetworkManager networkManager;
     private NetworkDiscovery networkDiscovery;
 
@@ -37,6 +41,15 @@ public class Network_MatchEnd : NetworkBehaviour
     {
         networkManager = NetworkManager.singleton;
         SetNetworkDiscovery();
+
+        if (instance != null)
+        {
+            Debug.LogError("More than one Network GameManager in scene.");
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     void SetNetworkDiscovery()

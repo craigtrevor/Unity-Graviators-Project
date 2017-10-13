@@ -81,14 +81,14 @@ public class D1Ult : NetworkBehaviour {
             if (isStomping) {//while falling
 
                 hitColliders = Physics.OverlapBox(playerController.transform.position + playerController.transform.up * 0.5f, Vector3.one * 3.5f / 2f);
-                debugCube.transform.position = playerController.transform.position + playerController.transform.up * 0.5f;
-                debugCube.transform.localScale = Vector3.one * 3.5f;
+                //debugCube.transform.position = playerController.transform.position + playerController.transform.up * 0.5f;
+                //debugCube.transform.localScale = Vector3.one * 3.5f;
 
             } else { //during icicles
 
                 hitColliders = Physics.OverlapBox(playerController.transform.position + playerController.transform.up * 1.5f, new Vector3(9f, 6f, 9f) / 2f);
-                debugCube.transform.position = playerController.transform.position + playerController.transform.up * 1.5f;
-                debugCube.transform.localScale = new Vector3(9f, 6f, 9f);
+               //debugCube.transform.position = playerController.transform.position + playerController.transform.up * 1.5f;
+               //debugCube.transform.localScale = new Vector3(9f, 6f, 9f);
             }
 
             foreach (Collider hitCol in hitColliders) {
@@ -103,8 +103,8 @@ public class D1Ult : NetworkBehaviour {
                 }
             }
         } else {
-            debugCube.transform.position = playerController.transform.position;
-            debugCube.transform.localScale = Vector3.one * 0f;
+            //debugCube.transform.position = playerController.transform.position;
+            //debugCube.transform.localScale = Vector3.one * 0f;
         }
     }
 

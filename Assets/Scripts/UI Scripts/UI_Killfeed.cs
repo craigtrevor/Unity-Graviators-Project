@@ -10,17 +10,17 @@ public class UI_Killfeed : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        Network_GameManager.instance.onPlayerKilledCallback += onKill;		
+        if (this.gameObject.activeSelf)
+        {
+            Network_GameManager.instance.onPlayerKilledCallback += onKill;
+        }
 	}
 
     public void onKill (string player, string source)
     {
-        if (this.gameObject.activeSelf)
-        {
-            GameObject go = (GameObject)Instantiate(killfeedItemPrefab, this.transform);
-            go.GetComponent<UI_KillfeedItem>().Setup(player, source);
+        GameObject go = (GameObject)Instantiate(killfeedItemPrefab, this.transform);
+        go.GetComponent<UI_KillfeedItem>().Setup(player, source);
 
-            Destroy(go, 4f);
-        }
+        Destroy(go, 4f);
     }	
 }
