@@ -10,7 +10,7 @@ public class SparkusUlt : NetworkBehaviour {
 
     private const string ULTCHARGER_TAG = "UltCharger";
     private const string PLAYER_TAG = "Player";
-	private const string BOT_TAG = "NetBot";
+    private const string BOT_TAG = "NetBot";
 
     public float laserLength; //laser range
     public float laserDamage;
@@ -25,11 +25,14 @@ public class SparkusUlt : NetworkBehaviour {
 
     public GameObject laserParticle;
     GameObject laser;
+    private Collider[] hitColliders;
+    private Vector3 attackOffset;
+    private float attackRadius;
 
     RaycastHit hit;
     public LayerMask mask;
     GameObject target;
-    
+
     public float passiveCharge; // the amount of charge gained passively;
 
     // Scripts
@@ -42,31 +45,28 @@ public class SparkusUlt : NetworkBehaviour {
         networkSoundscape = transform.GetComponent<Network_Soundscape>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
         networkCombatManager = transform.GetComponent<Network_CombatManager>();
+
+        attackRadius = 2.5f;
     }
 
-    void Update()
-    {
+    void Update() {
         UltInput();
     }
 
-    void LateUpdate()
-    {
+    void LateUpdate() {
         ChargeUlt();
         UltDamage();
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         SetAim();
     }
 
     [Client]
     void UltInput() {
 
-        if (Input.GetButtonDown("Ultimate") && !networkCombatManager.isAttacking)
-        {
-            if (networkPlayerManager.currentUltimateGain >= ULT_MAX)
-            {
+        if (Input.GetButtonDown("Ultimate") && !networkCombatManager.isAttacking) {
+            if (networkPlayerManager.currentUltimateGain >= ULT_MAX) {
                 isLasering = true;
                 networkCombatManager.isUlting = true;
                 spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = true;
@@ -88,17 +88,16 @@ public class SparkusUlt : NetworkBehaviour {
     }
 
     [Command]
-    private void CmdFire()
-    {
+    private void CmdFire() {
         laser = Instantiate(laserParticle, spawnTransform.position, spawnTransform.rotation, spawnTransform);
         NetworkServer.Spawn(laser.gameObject);
     }
 
     void ChargeUlt() { //deals with charging the ult bar
         if (!isLasering) {
-            CmdChargeUltimate(PASSIVE_CHARGE*Time.deltaTime, transform.name);
+            CmdChargeUltimate(PASSIVE_CHARGE * Time.deltaTime, transform.name);
         } else {
-            CmdChargeUltimate(-laserCost*Time.deltaTime, transform.name);
+            CmdChargeUltimate(-laserCost * Time.deltaTime, transform.name);
         }
         //Debug.Log(networkPlayerManager.currentUltimateGain);
 
@@ -118,7 +117,7 @@ public class SparkusUlt : NetworkBehaviour {
                 target = null;
             } else {
                 colour = Color.green; //can hit
-                target = hit.transform.gameObject;
+                target = hit.transform.root.gameObject;
             }
 
             //DebugLines(hit.point, colour);
@@ -141,18 +140,32 @@ public class SparkusUlt : NetworkBehaviour {
         }
     }
 
-    void UltDamage()
-    {
-        if (target != null && isLasering)
-        {
-            if (target.transform.root != transform.root && target.gameObject.tag == PLAYER_TAG)
-            {
-                CmdTakeDamage(target.transform.name, laserDamage, transform.name);
+    void UltDamage() {
+
+        if (isLasering) {
+
+            if (target != null) {
+                if (target.transform.root != transform.root && target.gameObject.tag == PLAYER_TAG) {
+                    CmdTakeDamage(target.transform.name, laserDamage, transform.name);
+                }
+                if (target.transform.root != transform.root && target.gameObject.tag == BOT_TAG) {
+                    target.gameObject.GetComponent<Network_Bot>().TakeTrapDamage(laserDamage * Time.deltaTime);
+                }
             }
-			if (target.transform.root != transform.root && target.gameObject.tag == BOT_TAG)
-			{
-				target.gameObject.GetComponent<Network_Bot> ().TakeTrapDamage (laserDamage);
-			}
+
+            hitColliders = Physics.OverlapSphere(transform.TransformPoint(attackOffset), attackRadius);
+
+            foreach (Collider hitCol in hitColliders) {
+                if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
+                    // Debug.Log("Hit Player!");
+
+                    CmdTakeDamage(hitCol.gameObject.name, laserDamage, transform.name);
+                }
+                if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == BOT_TAG) {
+
+                    hitCol.gameObject.GetComponent<Network_Bot>().TakeTrapDamage(laserDamage * Time.deltaTime);
+                }
+            }
         }
     }
 
@@ -164,7 +177,7 @@ public class SparkusUlt : NetworkBehaviour {
 
         Debug.Log(_playerID + " has been attacked with " + _damage + " by " + _sourceID);
 
-        networkPlayerStats.RpcTakeDamageByUlt(_damage, _sourceID);
+        networkPlayerStats.RpcTakeDamageByUlt(_damage * Time.deltaTime, _sourceID);
     }
 
     //command that modifies the ultimate bar value
@@ -175,26 +188,26 @@ public class SparkusUlt : NetworkBehaviour {
         networkPlayerStats.RpcUltimateFlatCharging(_ultimatePoints, _playerID);
     }
 
-//	[Client]
-//	void OnTriggerStay(Collider other) //Ultimate charger - CB
-//	{
-//		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG)
-//		{
-//			//networkPlayerManager = other.GetComponent<Network_PlayerManager>();
-//			networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
-//			Debug.Log(this.gameObject.name);
-//			Debug.Log(transform.name);
-//			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
-//		}
-//	}
-/*
-	[Command]
-	void CmdUltCharger(string _playerID, float _charge, string _sourceID)
-	{
-		Debug.Log(_playerID + " is charging up teh lazor.");
+    //	[Client]
+    //	void OnTriggerStay(Collider other) //Ultimate charger - CB
+    //	{
+    //		if (this.gameObject.tag == PLAYER_TAG && other.gameObject.tag == ULTCHARGER_TAG)
+    //		{
+    //			//networkPlayerManager = other.GetComponent<Network_PlayerManager>();
+    //			networkPlayerManager = this.gameObject.GetComponent<Network_PlayerManager>();
+    //			Debug.Log(this.gameObject.name);
+    //			Debug.Log(transform.name);
+    //			CmdUltCharger(this.gameObject.name, chargeMax, transform.name);
+    //		}
+    //	}
+    /*
+        [Command]
+        void CmdUltCharger(string _playerID, float _charge, string _sourceID)
+        {
+            Debug.Log(_playerID + " is charging up teh lazor.");
 
-		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+            Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-		networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
-	}*/
+            networkPlayerStats.RpcUltimateCharging(_charge, transform.name);
+        }*/
 }

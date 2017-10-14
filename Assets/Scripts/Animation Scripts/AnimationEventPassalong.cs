@@ -74,19 +74,19 @@ public class AnimationEventPassalong : MonoBehaviour {
 		}
 	}
 
-	void ActualJump (AnimationEvent animEvent) {
-		if (netPlayer != null) {
-			netPlayer.ActualJump ();
-		} 
-		if (animSpawnTest != null) {
-			animSpawnTest.ActualJump ();
-		} 
-		if (netBot != null) {
-			netBot.ActualJump ();
-		}
-	}
+    void ActualJump(AnimationEvent animEvent) {/*
+        if (netPlayer != null) {
+            netPlayer.ActualJump();
+        }
+        if (animSpawnTest != null) {
+            animSpawnTest.ActualJump();
+        }
+        if (netBot != null) {
+            netBot.ActualJump();
+        }*/
+    }
 
-	void AttackFinished () {
+    void AttackFinished () {
 		if (combatManager != null) {
 			combatManager.AttackFinished ();
 		} 
