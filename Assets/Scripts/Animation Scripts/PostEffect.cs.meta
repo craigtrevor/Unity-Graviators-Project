@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0ab634893b5480d429f195a5e828be1b
+timeCreated: 1507893233
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Post_Outline: {fileID: 4800000, guid: 38971dc1fe195354c9e2b61eeca903fc, type: 3}
+  - DrawSimple: {fileID: 4800000, guid: 13b24394a5cc78d49bb6920376af72e9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
