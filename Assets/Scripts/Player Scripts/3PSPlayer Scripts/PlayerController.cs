@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour {
         if (GetComponentInParent<Rigidbody>()) {
             rBody = GetComponentInParent<Rigidbody>();
         } else {
-            Debug.LogError("The player needs a rigidbody.");
+            //Debug.LogError("The player needs a rigidbody.");
         }
 
         forwardInput = turnInput = jumpInput = 0;

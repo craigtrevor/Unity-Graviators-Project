@@ -137,6 +137,7 @@ public class NoName_Ult : NetworkBehaviour {
             onPause = false;
             //networkPlayerManager.currentUltimateGain -= DASH_COST;
             //networkPlayerManager.currentUltimateGain = 0f;
+            Debug.Log("Player used ErrorNoName's ultimate");
             CmdChargeUltimate(-DASH_COST, transform.name);
             if (!isDashing) {
                 isDashing = true;
@@ -209,7 +210,7 @@ public class NoName_Ult : NetworkBehaviour {
 
         foreach (Collider hitCol in hitColliders) {
             if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
-                Debug.Log("Hit Player!");
+               // Debug.Log("Hit Player!");
 
                 CmdTakeDamage(hitCol.gameObject.name, damage, transform.name);
             }
@@ -223,11 +224,11 @@ public class NoName_Ult : NetworkBehaviour {
     //actual damage dealing command
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
-        Debug.Log(_playerID + " has been attacked.");
+        //Debug.Log(_playerID + " has been attacked.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+        networkPlayerStats.RpcTakeDamageByUlt(_damage, _sourceID);
     }
 
     //command that modifies the ultimate bar value

@@ -23,7 +23,7 @@ public class SlowTrapV2 : MonoBehaviour {
 		}
 		for (int i = 0; i < affectedBotList.Count; i++) {
 			if (!affectedBotList [i].gameObject.activeSelf) {
-				affectedBotList.Remove (affectedBotList [i]);
+                affectedBotList.Remove (affectedBotList [i]);
 			}
 		}
 	}

@@ -104,7 +104,7 @@ public class Network_PlayerSetup : NetworkBehaviour
 
         if (player != null)
         {
-            Debug.Log(username + " has joined!");
+            //Debug.Log(username + " has joined!");
             player.username = username;
 
             RpcJoinedGame(playerID, username);

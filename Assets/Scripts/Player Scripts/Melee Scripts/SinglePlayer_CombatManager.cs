@@ -164,11 +164,11 @@ public class SinglePlayer_CombatManager : MonoBehaviour {
 	{
 		//play stun particles
 		this.gameObject.GetComponentInChildren<Sp_Controller>().enabled = false;
-		Debug.Log(" A player has been stunned");
+		//Debug.Log(" A player has been stunned");
 		yield return new WaitForSeconds(stunTime);
 		this.gameObject.GetComponentInChildren<Sp_Controller>().stunned = false;
 
-		Debug.Log("the player can move agian");
+		//Debug.Log("the player can move agian");
 	}
 
 	IEnumerator slowTimer()

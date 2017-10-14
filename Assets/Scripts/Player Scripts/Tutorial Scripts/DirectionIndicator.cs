@@ -40,12 +40,12 @@ public class DirectionIndicator : MonoBehaviour {
     {
         if (Cursor == null)
         {
-            Debug.LogError("Please include a GameObject for the cursor.");
+            //Debug.LogError("Please include a GameObject for the cursor.");
         }
 
         if (DirectionIndicatorObject == null)
         {
-            Debug.LogError("Please include a GameObject for the Direction Indicator.");
+            //Debug.LogError("Please include a GameObject for the Direction Indicator.");
         }
 
         // Instantiate the direction indicator.
@@ -53,7 +53,7 @@ public class DirectionIndicator : MonoBehaviour {
 
         if (DirectionIndicatorObject == null)
         {
-            Debug.LogError("Direction Indicator failed to instantiate.");
+            //Debug.LogError("Direction Indicator failed to instantiate.");
         }
     }
 

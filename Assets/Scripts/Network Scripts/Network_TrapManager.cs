@@ -53,8 +53,8 @@ public class Network_TrapManager : NetworkBehaviour {
         if (this.gameObject.tag == SPIKETRAP_TAG && other.gameObject.tag == PLAYER_TAG)
         {
             networkPlayerManager = other.GetComponent<Network_PlayerManager>();
-            Debug.Log(other.gameObject.name);
-            Debug.Log(transform.name);
+            //Debug.Log(other.gameObject.name);
+            //Debug.Log(transform.name);
             CmdTakeDamage(other.gameObject.name, trapDamage, transform.name);
         }
 
@@ -88,7 +88,7 @@ public class Network_TrapManager : NetworkBehaviour {
 
 		if (this.gameObject.tag == SPEEDTRAP_TAG && other.tag == PLAYER_TAG)
 		{
-			Debug.Log("I'm making someone fast as fuck boiiii");
+			//Debug.Log("I'm making someone fast as fuck boiiii");
 			playerController = other.GetComponentInChildren<PlayerController>();         
 			playerController.moveSettings.forwardVel = increasedWalkSpeed;
 			playerController.moveSettings.rightVel = increasedWalkSpeed;
@@ -138,7 +138,7 @@ public class Network_TrapManager : NetworkBehaviour {
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
     {
-        Debug.Log(_playerID + " has been attacked.");
+        //Debug.Log(_playerID + " has been attacked.");
 
         //Debug.Log(networkTrap);
         //Network_TrapManager networkTrap = Network_GameManager.GetTrap(_sourceID);

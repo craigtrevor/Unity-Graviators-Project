@@ -102,6 +102,7 @@ public class WeaponSpawn : NetworkBehaviour {
         playerAnimator.SetBool("Attacking", false);
         playerNetAnimator.SetTrigger("Ranged Attack");
 		playerAnimator.SetBool("RangedAttacking", true);
+        Debug.Log("Player used ranged weapon");
         //StartCoroutine(WaitForCurrentAnim());
     }
 
@@ -142,7 +143,7 @@ public class WeaponSpawn : NetworkBehaviour {
 
 			combatManager.isRanging = false;
 			playerAnimator.SetBool("RangedAttacking", false);
-		}
+        }
     }
 
     [Command]

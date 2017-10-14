@@ -320,7 +320,7 @@ public class Network_CombatManager : NetworkBehaviour {
 
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
-        Debug.Log(_playerID + " has been attacked.");
+        //Debug.Log(_playerID + " has been attacked.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 

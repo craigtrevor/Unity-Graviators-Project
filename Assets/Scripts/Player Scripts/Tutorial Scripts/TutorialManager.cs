@@ -593,6 +593,7 @@ public class TutorialManager : MonoBehaviour {
 			slowTrap.SetActive (true);
 			compactHud.onSlowTrap = false;// prevent the player being slowed when the traps respawn
 			tutProgression = 5;
+            Debug.Log("Player finished tutorial");
 		}
 	}
 

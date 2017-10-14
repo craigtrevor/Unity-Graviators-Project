@@ -71,6 +71,7 @@ public class SparkusUlt : NetworkBehaviour {
                 networkCombatManager.isUlting = true;
                 spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = true;
                 CmdFire();
+                Debug.Log("Player used Sparkus' ultimate");
             }
         }
 
@@ -163,7 +164,7 @@ public class SparkusUlt : NetworkBehaviour {
 
         Debug.Log(_playerID + " has been attacked with " + _damage + " by " + _sourceID);
 
-        networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+        networkPlayerStats.RpcTakeDamageByUlt(_damage, _sourceID);
     }
 
     //command that modifies the ultimate bar value

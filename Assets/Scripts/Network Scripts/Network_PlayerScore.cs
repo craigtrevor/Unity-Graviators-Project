@@ -56,7 +56,7 @@ public class Network_PlayerScore : MonoBehaviour {
 
         string newData = Network_DataTranslator.ValuesToData(newKillsStats, newDeathStats);
 
-        Debug.Log("Syncing: " + newData);
+        //Debug.Log("Syncing: " + newData);
 
         lastKills = networkPlayerManager.killStats;
         lastDeaths = networkPlayerManager.deathStats;

@@ -319,6 +319,42 @@ public class Network_PlayerManager : NetworkBehaviour
     }
 
     [ClientRpc]
+    public void RpcTakeDamageByRange(float _amount, string _sourceID)
+    {
+        if (isDead)
+            return;
+
+        PlayerTakenDamage(_amount);
+
+        //particles
+
+        GameObject playHitParticle = Instantiate(particleManager.GetParticle("hitParticle"), this.transform.position, this.transform.rotation);
+
+        if (currentHealth <= 0)
+        {
+            DieByRange(_sourceID);
+        }
+    }
+
+    [ClientRpc]
+    public void RpcTakeDamageByUlt(float _amount, string _sourceID)
+    {
+        if (isDead)
+            return;
+
+        PlayerTakenDamage(_amount);
+
+        //particles
+
+        GameObject playHitParticle = Instantiate(particleManager.GetParticle("hitParticle"), this.transform.position, this.transform.rotation);
+
+        if (currentHealth <= 0)
+        {
+            DieByUlt(_sourceID);
+        }
+    }
+
+    [ClientRpc]
     public void RpcTakDamageByTrap(float _amount, string _sourceID)
     {
         if (isDead)
@@ -342,14 +378,13 @@ public class Network_PlayerManager : NetworkBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log("Killed by bot");
             DieByBot(_sourceID);
         }
     }
 
     void PlayerTakenDamage(float _amount)
     {
-        Debug.Log("Taken damage");
+        //Debug.Log("Taken damage");
 
         currentHealth -= _amount;
 
@@ -358,7 +393,7 @@ public class Network_PlayerManager : NetworkBehaviour
             playerAnim.SetTrigger("Flinch");
         }
 
-        Debug.Log(transform.name + " now has " + currentHealth + " health.");
+       // Debug.Log(transform.name + " now has " + currentHealth + " health.");
     }
 
 	private void CancelAttacks() {
@@ -401,6 +436,77 @@ public class Network_PlayerManager : NetworkBehaviour
             DisablePlayerOnMatchEnd();
         }
 
+        Debug.Log("Player killed by player's melee");
+        deathStats++;
+    }
+
+    private void DieByRange(string _sourceID)
+    {
+        Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
+
+        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
+        gravityScript.SetShiftPressed(false);
+
+        isDead = true;
+        deathbyPlayer = true;
+        deathbyTrap = false;
+        deathbyBot = false;
+
+        CancelAttacks();
+
+        if (sourcePlayer != null)
+        {
+            sourcePlayer.killStats++;
+
+            Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
+        }
+
+        if (killStats != Network_MatchEnd.instance.matchCount)
+        {
+            DisableComponents();
+        }
+
+        else if (killStats == Network_MatchEnd.instance.matchCount)
+        {
+            DisablePlayerOnMatchEnd();
+        }
+
+        Debug.Log("Player killed by player's ranged weapon");
+        deathStats++;
+    }
+
+    private void DieByUlt(string _sourceID)
+    {
+        Network_PlayerManager sourcePlayer = Network_GameManager.GetPlayer(_sourceID);
+
+        playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
+        gravityScript.SetShiftPressed(false);
+
+        isDead = true;
+        deathbyPlayer = true;
+        deathbyTrap = false;
+        deathbyBot = false;
+
+        CancelAttacks();
+
+        if (sourcePlayer != null)
+        {
+            sourcePlayer.killStats++;
+
+            Network_GameManager.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
+        }
+
+        if (killStats != Network_MatchEnd.instance.matchCount)
+        {
+            DisableComponents();
+        }
+
+        else if (killStats == Network_MatchEnd.instance.matchCount)
+        {
+            DisablePlayerOnMatchEnd();
+        }
+
+        Debug.Log("Player killed by player's ultimate");
         deathStats++;
     }
 
@@ -419,9 +525,11 @@ public class Network_PlayerManager : NetworkBehaviour
         deathStats++;
 
         // spawn corpse on death
-        Debug.Log(particleManager.GetParticle("deathParticle"));
+        ///Debug.Log(particleManager.GetParticle("deathParticle"));
         GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
         DisableComponents();
+
+        Debug.Log("Player killed by trap");
 
         if (!isServer)
             return;
@@ -454,8 +562,10 @@ public class Network_PlayerManager : NetworkBehaviour
             DisableComponents();
 		}
 
+        Debug.Log("Player killed by bot");
+
         // spawn corpse on death
-        Debug.Log(particleManager.GetParticle("deathParticle"));
+        //Debug.Log(particleManager.GetParticle("deathParticle"));
         GameObject playDeathParticle = Instantiate(particleManager.GetParticle("deathParticle"), this.transform.position, this.transform.rotation);
         DisableComponents();
 
@@ -498,7 +608,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     void onDeath()
     {
-        Debug.Log(transform.name + " is DEAD!");
+        //Debug.Log(transform.name + " is DEAD!");
 
         if (isLocalPlayer)
         {
@@ -574,7 +684,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
         SetupPlayer();
 
-        Debug.Log(transform.name + " respawned.");
+        //Debug.Log(transform.name + " respawned.");
 
         randomSound = Random.Range(21, 22);
         networkSoundscape.PlayNonNetworkedSound(randomSound, 5, 1f);

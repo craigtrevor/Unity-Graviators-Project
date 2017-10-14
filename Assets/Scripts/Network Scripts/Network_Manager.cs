@@ -65,20 +65,28 @@ public class Network_Manager : NetworkManager {
 		d1Customization = 0;
     }
 
-    void Update()
+    void OnEnable()
     {
-        SceneChecker();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void SceneChecker()
+    void OnDisable()
     {
-		if (Network_SceneManager.instance.sceneName == "Character_Select" || Network_SceneManager.instance.sceneName == "Character_Select_V2")
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //Debug.Log("OnSceneLoaded: " + scene.name);
+        //Debug.Log(mode);
+
+        if (scene.name == "Character_Select_V2")
         {
             ChooseCustomizationViaKeyboard();
             ActivateCharacterSelectRoom();
         }
 
-        else if (Network_SceneManager.instance.sceneName != "Character_Select" || Network_SceneManager.instance.sceneName != "Character_Select_V2")
+        else if (scene.name != "Character_Select_V2")
         {
             characterSelectHUD.SetActive(false);
             characterSelectRoom.SetActive(false);
@@ -211,7 +219,7 @@ public class Network_Manager : NetworkManager {
         IntegerMessage msg = new IntegerMessage(characterIndex);
         characterSelectHUD.SetActive(false);
 
-        Debug.Log(msg);
+        //Debug.Log(msg);
 
         ClientScene.AddPlayer(conn, 0, msg);
     }
@@ -225,6 +233,7 @@ public class Network_Manager : NetworkManager {
         }
 
         GameObject playerPrefab = spawnPrefabs[characterIndex];
+        Debug.Log("Player played as " + characterName);
 
         GameObject player;
         Transform startPos = GetStartPosition();

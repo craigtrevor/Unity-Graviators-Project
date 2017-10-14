@@ -32,7 +32,8 @@ public class Network_HostGame : MonoBehaviour {
     {
         if (roomName != "" && roomName != null)
         {
-            Debug.Log("Creating Room: " + roomName + " with room for " + roomSize + " players.");
+            //Debug.Log("Creating Room: " + roomName + " with room for " + roomSize + " players.");
+            Debug.Log("Player created internet match");
 
             statusText.color = Color.green;
             statusText.text = "Creating server...";

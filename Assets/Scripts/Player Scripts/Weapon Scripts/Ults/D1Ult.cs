@@ -93,7 +93,7 @@ public class D1Ult : NetworkBehaviour {
 
             foreach (Collider hitCol in hitColliders) {
                 if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG) {
-                    Debug.Log("Hit Player!");
+                    //Debug.Log("Hit Player!");
 
                     CmdTakeDamage(hitCol.gameObject.name, damage*Time.deltaTime, transform.name);
                 }
@@ -111,11 +111,11 @@ public class D1Ult : NetworkBehaviour {
     //actual damage dealing command
     [Command]
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
-        Debug.Log(_playerID + " has been attacked.");
+        //Debug.Log(_playerID + " has been attacked.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
-        networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+        networkPlayerStats.RpcTakeDamageByUlt(_damage, _sourceID);
     }
 
     void hitGround() {
@@ -163,6 +163,7 @@ public class D1Ult : NetworkBehaviour {
 
             playerAnimator.SetBool("UltimateLoop", true);
             playerAnimator.SetTrigger("StartUltimate");
+            Debug.Log("Player used Unit D1's ultimate");
 
         } else if (networkPlayerManagerScript.currentUltimateGain <= 0f) {
             canCharge = true;
