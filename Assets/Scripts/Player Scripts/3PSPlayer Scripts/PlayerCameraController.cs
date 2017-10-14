@@ -93,10 +93,10 @@ public class PlayerCameraController : MonoBehaviour {
             if (target.GetComponent<PlayerController>()) {
                 playerController = target.GetComponent<PlayerController>();
             } else {
-                Debug.LogError("The camera's target needs a character controller.");
+               // Debug.LogError("The camera's target needs a character controller.");
             }
         } else {
-            Debug.LogError("Camera needs a target.");
+            //Debug.LogError("Camera needs a target.");
         }
     }
 

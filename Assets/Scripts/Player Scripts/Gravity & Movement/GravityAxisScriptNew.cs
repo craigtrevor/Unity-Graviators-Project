@@ -224,7 +224,7 @@ namespace Gravity {
                 rotationBlock.transform.eulerAngles = rotation;
                 this.SetGravity();
 
-                Debug.Log(rotation);
+                //Debug.Log(rotation);
 
                 gravitySwitching = true; //Gravity switching is true
                 gravityCharge -= GRAVITY_COST; //Decrease gravity charge

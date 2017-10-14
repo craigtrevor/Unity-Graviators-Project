@@ -26,5 +26,6 @@ public class Network_LANClient : NetworkDiscovery
     {
         NetworkManager.singleton.networkAddress = fromAddress;
         NetworkManager.singleton.StartClient();
+        Debug.Log("Player joined local server");
     }
 }

@@ -32,7 +32,7 @@ public class UnitD1_UltDamaging : NetworkBehaviour {
 		
 	public void getUltSize (float sizeMeasurement)
 	{
-		Debug.Log("i have reciced info and the size measurement is " +  sizeMeasurement);
+		//Debug.Log("i have reciced info and the size measurement is " +  sizeMeasurement);
 		MaxSize = sizeMeasurement / 2;
 	}
 
@@ -50,7 +50,7 @@ public class UnitD1_UltDamaging : NetworkBehaviour {
 		}
 			else if (transform.localScale.x > MaxSize) 
 		{
-			Debug.Log ("i have reached max size at " + MaxSize);
+			//Debug.Log ("i have reached max size at " + MaxSize);
 			//Destroy (this.gameObject); // not destorying for testing
 		}
 
@@ -67,7 +67,7 @@ public class UnitD1_UltDamaging : NetworkBehaviour {
 			{
 				if (hitCol.transform.root != transform.root && hitCol.gameObject.tag == PLAYER_TAG && hitCol.transform.name != sourceID)
 				{
-					Debug.Log ("i have hit another player");
+					//Debug.Log ("i have hit another player");
 					CmdTakeDamage(hitCol.gameObject.name, Damage, sourceID);
 				}
 			}
@@ -78,7 +78,7 @@ public class UnitD1_UltDamaging : NetworkBehaviour {
 	[Command]
 	void CmdTakeDamage(string _playerID, float _damage, string _sourceID)
 	{
-		Debug.Log(_playerID + " has been attacked.");
+		//Debug.Log(_playerID + " has been attacked.");
 
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 

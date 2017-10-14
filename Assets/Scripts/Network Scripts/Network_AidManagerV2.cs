@@ -143,7 +143,7 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	[Command]
 	void CmdHealthRegen(string _playerID, float _heal)
 	{
-		//Debug.Log(_playerID + "is regenerating.");
+		Debug.Log("Player gained " + healAmount + " HP by Health Aid");
 
 		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
@@ -153,9 +153,9 @@ public class Network_AidManagerV2 : NetworkBehaviour {
 	[Command]
 	void CmdUltRegen(string _playerID, float _heal)
 	{
-		//Debug.Log(_playerID + "is charging.");
+        Debug.Log("Player gained " + healAmount + " ULT by Ultimate Aid");
 
-		Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
+        Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 
 		networkPlayerStats.RpcUltimateFlatCharging(_heal, transform.name);
 	}

@@ -118,5 +118,10 @@ public class Network_SceneManager : MonoBehaviour
             StartCoroutine(Soundscape_AudioFade.FadeOut(musicSource, 2f));
             isPlaying = false;        
         }
+
+        if (sceneName == "Tutorial_Arena")
+        {
+            Debug.Log("Player joined tutorial");
+        }
     }
 }

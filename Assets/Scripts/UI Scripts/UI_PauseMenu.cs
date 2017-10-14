@@ -47,7 +47,7 @@ public class UI_PauseMenu : MonoBehaviour {
             networkManager.SendMessage("DestorySelf", true);
             networkManager.StopClient();
             SceneManager.LoadScene("Main_Menu");
-            Debug.Log("Leaving");
+            //Debug.Log("Leaving");
         }
 
         else if (Network_SceneManager.instance.serverScene == "JoinLAN_Scene")
@@ -61,7 +61,7 @@ public class UI_PauseMenu : MonoBehaviour {
                 NetworkTransport.Shutdown();
                 NetworkTransport.Init();
                 SceneManager.LoadScene("Main_Menu");
-                Debug.Log("Leaving");
+                //Debug.Log("Leaving");
             }
            
             else if (!netPlayerManager.isPlayerServer)
@@ -69,7 +69,7 @@ public class UI_PauseMenu : MonoBehaviour {
                 networkManager.SendMessage("DestorySelf", true);
                 networkManager.StopClient();
                 SceneManager.LoadScene("Main_Menu");
-                Debug.Log("Leaving");
+                //Debug.Log("Leaving");
             }
         }
 
@@ -81,7 +81,7 @@ public class UI_PauseMenu : MonoBehaviour {
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
             SceneManager.LoadScene("Main_Menu");
-            Debug.Log("Leaving");
+            //Debug.Log("Leaving");
         }
     }
 }

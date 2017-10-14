@@ -116,14 +116,14 @@ public class Network_DevKeys : NetworkBehaviour {
 
     [Command] // to take damage
     void CmdTakeDamage(string _playerID, float _damage, string _sourceID) {
-        Debug.Log(_playerID + " has been attacked.");
+        //Debug.Log(_playerID + " has been attacked.");
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
         networkPlayerStats.RpcTakeDamageByBot(_damage, transform.name);
     }
 
     [Command] // to heal
     void CmdHealthRegen(string _playerID, float _heal, string _sourceID) {
-        Debug.Log(_playerID + "is regenerating.");
+        //Debug.Log(_playerID + "is regenerating.");
 
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
 

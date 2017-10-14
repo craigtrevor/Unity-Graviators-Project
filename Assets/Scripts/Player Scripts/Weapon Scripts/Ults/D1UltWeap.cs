@@ -42,7 +42,7 @@ public class D1UltWeap : NetworkBehaviour {
 
         damage *= damageMultiplier;
         stun *= stunMultiplier;
-        Debug.Log(stun);
+        //Debug.Log(stun);
     }
 
     // Use this for initialization

@@ -86,7 +86,7 @@ public class Network_PlayerSyncRot : NetworkBehaviour
                 syncPlayerRotZList.RemoveAt(0);
             }
 
-            Debug.Log(playerTransform.localEulerAngles.x);
+            //Debug.Log(playerTransform.localEulerAngles.x);
             //Debug.Log(syncPlayerRotXList.Count.ToString() + " syncPlayerRotXList Count");
         }
 

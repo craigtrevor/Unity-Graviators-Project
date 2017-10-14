@@ -62,7 +62,7 @@ public class UI_UserAccountManager : MonoBehaviour {
 
         IsLoggedIn = false;
 
-        Debug.Log("User logged out!");
+        //Debug.Log("User logged out!");
 
         SceneManager.LoadScene(loggedOutSceneName);
     }
@@ -74,7 +74,7 @@ public class UI_UserAccountManager : MonoBehaviour {
 
         IsLoggedIn = true;
 
-        Debug.Log("Logged in as " + username);
+        //Debug.Log("Logged in as " + username);
 
         SceneManager.LoadScene(loggedInSceneName);
     }

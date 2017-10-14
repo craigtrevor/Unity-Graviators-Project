@@ -113,6 +113,7 @@ public class UI_LoginMenu : MonoBehaviour {
             //loggedInParent.gameObject.SetActive(true);
             UI_UserAccountManager.instance.LogIn(playerUsername, playerPassword);
             LoggedIn_DisplayUsernameText.text = "Logged in as: " + playerUsername;
+            Debug.Log("Player created an account");
         } else
         {
             //Something went wrong logging in. Stop showing 'Loading...' and go back to RegisterUI

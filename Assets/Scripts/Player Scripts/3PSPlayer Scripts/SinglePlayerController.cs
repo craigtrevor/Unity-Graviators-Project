@@ -105,7 +105,7 @@ public class SinglePlayerController : MonoBehaviour {
 		if (GetComponentInParent<Rigidbody>()) {
 			rBody = GetComponentInParent<Rigidbody>();
 		} else {
-			Debug.LogError("The player needs a rigidbody.");
+			//Debug.LogError("The player needs a rigidbody.");
 		}
 
 		forwardInput = turnInput = jumpInput = 0;
@@ -303,8 +303,6 @@ public class SinglePlayerController : MonoBehaviour {
 	{
 		if (playerAnimator.GetBool("InAir") == false && playerAnimator.GetBool("Moving") == true && playerStep == true && playerAnimator == true && !Input.GetButton("Jump"))
 		{
-			Debug.Log("Playing");
-
 			if (cycleMovement == 0)
 			{
 				if (soundscape != null)

@@ -19,7 +19,7 @@ public class Network_GameManager : MonoBehaviour {
     {
         if (instance != null)
         {
-            Debug.LogError("More than one Network GameManager in scene.");
+            //Debug.LogError("More than one Network GameManager in scene.");
         } else
         {
             instance = this;
@@ -133,7 +133,8 @@ public class Network_GameManager : MonoBehaviour {
 
 	public static void KillBot (string _botID)
 	{
-		bots [_botID].health = 100;
+        Debug.Log("Player killed bot");
+        bots [_botID].health = 100;
 		bots[_botID].transform.root.gameObject.SetActive(false);
 		instance.StartCoroutine(instance.RespawnBot(_botID));
 	}

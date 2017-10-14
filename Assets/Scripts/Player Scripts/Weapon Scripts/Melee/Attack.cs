@@ -23,7 +23,6 @@ public class Attack : MonoBehaviour {
 		if (Input.GetButtonDown ("Fire1") && CanAttack == true) 
 		{
             Attaking = true;
-			Debug.Log ("i have started my attack");
             startAttack();
             //CmdstartAttack();
 		}

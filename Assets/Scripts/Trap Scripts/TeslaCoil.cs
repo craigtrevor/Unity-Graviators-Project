@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class TeslaCoil : NetworkBehaviour {
 
 	private string sourceID;
-
 	public GameObject StartCoil;
 	public GameObject EndCoil;
 	public LineRenderer lineRend;

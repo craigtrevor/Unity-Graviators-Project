@@ -92,6 +92,7 @@ public class Network_JoinGame : MonoBehaviour {
     {
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
         StartCoroutine(WaitForJoin());
+        Debug.Log("Player joined internet match");
     }
 
     IEnumerator WaitForJoin()
@@ -110,6 +111,7 @@ public class Network_JoinGame : MonoBehaviour {
 
         // Failed to connect
         status.text = "Failed to connect.";
+        Debug.Log("Player failed to join internet match");
         yield return new WaitForSeconds(1);
 
         MatchInfo matchInfo = networkManager.matchInfo;

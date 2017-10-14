@@ -16,7 +16,7 @@ public class Hit : MonoBehaviour {
 		if (hitcol.gameObject.tag == PLAYER_TAG) {
 			Network_CombatManager playerattacking = hitcol.gameObject.GetComponent<Network_CombatManager> ();
 			if (playerattacking.isAttacking == true) {
-				Debug.Log ("collided with player now i blow up");
+				//Debug.Log ("collided with player now i blow up");
 				DestroyIt ();
 			} 
 		} else if (hitcol.gameObject.tag == THROWINGSWORD_TAG || hitcol.gameObject.tag == UNITD1RANGEWEAPON_TAG || hitcol.gameObject.tag == SPARKUSRANGEWEAPON_TAG) 

@@ -19,7 +19,7 @@ public class UI_ButtonScripts : MonoBehaviour
         StartCoroutine(DelaySceneLoad(NameofLevel));
         NetworkManager.Shutdown();
 
-        Debug.Log("Please wait as the scene changes");
+        //Debug.Log("Please wait as the scene changes");
     }
 
 
@@ -51,13 +51,13 @@ public class UI_ButtonScripts : MonoBehaviour
     public void QuitGame() 
 	{
         Application.Quit();
-		Debug.Log ("Please, don't leave me");
+		//Debug.Log ("Please, don't leave me");
 	}
 
     IEnumerator DelaySceneLoad(string NameofLevel)
     {
         yield return new WaitForSeconds(0.2f);
-        Debug.Log("Please wait as the scene changes");
+        //Debug.Log("Please wait as the scene changes");
         SceneManager.LoadScene(NameofLevel);
     }
 }

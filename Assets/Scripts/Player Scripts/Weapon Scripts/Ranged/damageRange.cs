@@ -265,7 +265,7 @@ public class damageRange : NetworkBehaviour {
     [Command]
     void CmdTakeDamageByPlayer(string _playerID, float _damage, string _sourceID) {
         Network_PlayerManager networkPlayerStats = Network_GameManager.GetPlayer(_playerID);
-        networkPlayerStats.RpcTakeDamage(_damage, _sourceID);
+        networkPlayerStats.RpcTakeDamageByRange(_damage, _sourceID);
     }
 
     [Command]

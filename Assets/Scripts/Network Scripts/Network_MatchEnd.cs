@@ -44,7 +44,7 @@ public class Network_MatchEnd : NetworkBehaviour
 
         if (instance != null)
         {
-            Debug.LogError("More than one Network GameManager in scene.");
+           // Debug.LogError("More than one Network GameManager in scene.");
         }
         else
         {
@@ -101,7 +101,7 @@ public class Network_MatchEnd : NetworkBehaviour
     [Command]
     public void CmdEndingMatch()
     {
-        Debug.Log("Match has finished");
+        Debug.Log("Player has finished match");
 
         RpcEndMatch();
     }
@@ -162,7 +162,7 @@ public class Network_MatchEnd : NetworkBehaviour
             networkManager.SendMessage("DestorySelf", true);
             networkManager.StopClient();
             SceneManager.LoadScene("Main_Menu");
-            Debug.Log("Leaving");
+            //Debug.Log("Leaving");
         }
 
         else if (Network_SceneManager.instance.serverScene == "JoinLAN_Scene")
@@ -179,7 +179,7 @@ public class Network_MatchEnd : NetworkBehaviour
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
             SceneManager.LoadScene("Main_Menu");
-            Debug.Log("Leaving");
+            //Debug.Log("Leaving");
         }
 
         else if (Network_SceneManager.instance.serverScene == "JoinOfflineMode_Scene")
@@ -196,7 +196,7 @@ public class Network_MatchEnd : NetworkBehaviour
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
             SceneManager.LoadScene("Main_Menu");
-            Debug.Log("Leaving");
+            //Debug.Log("Leaving");
         }
     }
 }

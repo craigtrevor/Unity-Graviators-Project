@@ -21,7 +21,7 @@ public class Network_LANServer : NetworkDiscovery
 
         if (serverPort != -1)
         {
-            Debug.Log("Server created on port : " + serverPort);
+            //Debug.Log("Server created on port : " + serverPort);
             broadcastData = serverPort.ToString();
             useNetworkManager = true;
             Initialize();
@@ -31,7 +31,7 @@ public class Network_LANServer : NetworkDiscovery
 
         else
         {
-            Debug.Log("Failed to create Server");
+            Debug.Log("Player failed to create local server");
         }
 
     }
@@ -40,6 +40,7 @@ public class Network_LANServer : NetworkDiscovery
     {
         useNetworkManager = true;
         statusText.text = "Creating server...";
+        Debug.Log("Player created Player Vs. AI server");
         Initialize();
         StartAsServer();
         StopBroadcast();
@@ -64,13 +65,13 @@ public class Network_LANServer : NetworkDiscovery
 
             statusText.color = Color.green;
             statusText.text = "Creating server...";
-            Debug.Log("Server Created with default port");
-
+            Debug.Log("Player created local server");
+            //Debug.Log("Server Created with default port");
         }
 
         else
         {
-            Debug.Log("Failed to create with the default port");
+            //Debug.Log("Failed to create with the default port");
 
             // Try to create servwer with other port from min to max except the default port which we tried already
             for (int temport = minPort; temport <= maxPort; temport++)
@@ -90,7 +91,7 @@ public class Network_LANServer : NetworkDiscovery
                     // If this is the max port and server is not still created, show, failed to create server error
                     if (temport == maxPort)
                     {
-                        Debug.LogError("Failed to create server");
+                        Debug.LogError("Player failed to create server");
 
                         statusText.color = Color.red;
                         statusText.text = "Failed to create server...";
