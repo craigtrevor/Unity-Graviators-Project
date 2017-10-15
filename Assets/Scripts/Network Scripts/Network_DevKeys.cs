@@ -16,6 +16,7 @@ public class Network_DevKeys : NetworkBehaviour {
 	 * press 6 to go back to player spawn (player will keep thier current gravity set)
 	 */
 
+    bool canDev;
     public bool devmodeenabled = false;
     [SerializeField]
     Network_PlayerManager networkPlayerManager;
@@ -29,6 +30,14 @@ public class Network_DevKeys : NetworkBehaviour {
 
 
     void Start() {
+
+        //DEV MODE *********************************************************************************************************************
+        canDev = false;
+
+        if (canDev) {
+            Debug.Log("DEV MODE IS ON");
+        }
+
         networkPlayerManager = gameObject.GetComponent<Network_PlayerManager>();
         networkCombatManager = gameObject.GetComponent<Network_CombatManager>();
         spawnpostion = gameObject.transform.position;
@@ -36,6 +45,11 @@ public class Network_DevKeys : NetworkBehaviour {
     }
 
     void Update() {
+
+        if (!canDev) {
+            return;
+        }
+
         if (Input.GetKey(KeyCode.Backslash) || Input.GetKey(KeyCode.Slash)) {
             devmodeenabled = true;
         } else {

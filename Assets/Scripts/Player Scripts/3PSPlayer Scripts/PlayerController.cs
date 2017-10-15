@@ -462,7 +462,7 @@ public class PlayerController : MonoBehaviour {
             // Jumping - Alex
             StartCoroutine(JumpTime());
             jumping = true;
-            //velocity.y = moveSettings.jumpVel;
+            ActualJump();
         } else if (jumpInput == 0 && Grounded()) {
 
             //set the anim to not jumping and spawn a blast wave

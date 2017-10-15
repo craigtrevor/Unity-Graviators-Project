@@ -37,6 +37,8 @@ public class NoName_Ult : NetworkBehaviour {
     private Vector3 attackOffset;
     private float attackRadius;
     private const string PLAYER_TAG = "Player";
+
+    public GameObject playerController;
     
     //float charge = 0; // the amount of charge
 
@@ -67,8 +69,7 @@ public class NoName_Ult : NetworkBehaviour {
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
         networkCombatManager = transform.GetComponent<Network_CombatManager>();
 
-        attackRadius = 5;
-
+        attackRadius = 3f;
     }
 
     // Update is called once per frame
@@ -130,7 +131,7 @@ public class NoName_Ult : NetworkBehaviour {
 
         playerScript.isDashing = isDashing;
 
-        if (Input.GetButtonDown("Ultimate") && !isCharging && networkPlayerManager.currentUltimateGain >= DASH_COST && canDash && !networkCombatManager.isAttacking) {
+        if (Input.GetButtonDown("Ultimate") && !isCharging && networkPlayerManager.currentUltimateGain >= DASH_COST && canDash && !networkCombatManager.isAttacking && !playerController.GetComponent<PlayerController>().Grounded()) {
             startSpot = this.transform.position;
             target = cameraScript.raycastPoint;
             isCharging = true;
@@ -194,8 +195,6 @@ public class NoName_Ult : NetworkBehaviour {
             bool reachedTarget = Physics.CheckSphere(transform.position + transform.up*0.5f, 1f, colliderMask);
             //sphere.transform.position = transform.position + transform.up * 0.5f;
             //sphere.transform.localScale = Vector3.one * 2f * 1f;
-            
-
             if (distance || reachedTarget) {
                 return true;
             }
