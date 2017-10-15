@@ -124,6 +124,7 @@ public class D1Ult : NetworkBehaviour {
             playerAnimator.SetBool("UltimateLoop", false);
             CmdChargeUltimate(-STOMP_COST, transform.name);
             CmdSpawnUlt(playerController.transform.position - playerController.transform.up*0.5f, playerController.transform.rotation, playerController.velocity.y);
+            networkSoundscape.PlaySound(32, 2, 0.2f, 0f);
             //spawn the ice thingies
             /*CmdSpawnUlt(playerController.transform.position + playerController.transform.forward * 6f, playerController.transform.rotation, playerController.velocity.y);
             CmdSpawnUlt(playerController.transform.position + playerController.transform.forward * -6f, playerController.transform.rotation, playerController.velocity.y);
