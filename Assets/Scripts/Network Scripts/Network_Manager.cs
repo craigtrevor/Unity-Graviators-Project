@@ -27,18 +27,11 @@ public class Network_Manager : NetworkManager {
     public string characterID;
 
     [SerializeField]
-    GameObject[] ERNNCustomization;
-    [SerializeField]
-    GameObject[] SPKSCustomization;
-    [SerializeField]
-    GameObject[] UT_D1Customization;
+    GameObject[] characterCustomization;
 
     public string customzationName;
-	public int noNameCustomization;
-	public int sparkusCustomization;
-	public int d1Customization;
 
-	public int arrayCount;
+	int arrayCount;
     int arrayMax;
     int arrayMin;
 
@@ -53,16 +46,13 @@ public class Network_Manager : NetworkManager {
     void Start()
     {
         characterIndex = 0;
-        arrayMax = 5;
-        arrayMin = 0;
         arrayCount = 0;
+        arrayMin = 0;
+        arrayMax = 5;
+
         characterName = "Err:NoName";
         characterID = "ERNN";
         customzationName = "empty hat";
-
-		noNameCustomization = 0;
-		sparkusCustomization = 0;
-		d1Customization = 0;
     }
 
     void OnEnable()
@@ -107,8 +97,9 @@ public class Network_Manager : NetworkManager {
 				characterName = "Err:NoName";
 				characterID = "ERNN";
 			    characterIndex = 0;
-			    RemoveCustomization ();
-			    arrayCount = noNameCustomization;
+                arrayCount = 0;
+                arrayMin = 0;
+                arrayMax = 5;
 			    UpdateCustomization();
 			    
                 break;
@@ -116,20 +107,21 @@ public class Network_Manager : NetworkManager {
 		case "Sparkus_btn":
 				characterName = "Sparkus";
 				characterID = "SPKS";
-			    characterIndex = 1;
-			    RemoveCustomization();
-			    arrayCount = sparkusCustomization;
+                characterIndex = 5;
+                arrayCount = 5;
+                arrayMin = 5;
+                arrayMax = 10;
 			    UpdateCustomization();
 			   
                 break;
 
 		case "UnitD1_btn":
 				characterName = "Unit-D1";
-				characterID = "UT-D1";
-			    characterIndex = 2;
-			    RemoveCustomization();
-			    arrayCount = d1Customization;
-			    UpdateCustomization();
+                characterIndex = 10;
+                arrayCount = 10;
+                arrayMin = 10;
+                arrayMax = 15;
+                UpdateCustomization();
 			    
                 break;
 		}
@@ -157,7 +149,7 @@ public class Network_Manager : NetworkManager {
         RemoveCustomization();
 
         arrayCount--;
-
+  
         if (arrayCount <= arrayMin)
         {
 			arrayCount = arrayMax;
@@ -181,37 +173,15 @@ public class Network_Manager : NetworkManager {
 
     void RemoveCustomization()
     {
-		if (characterID == "ERNN") {
-			ERNNCustomization [arrayCount].SetActive (false);
-		} else if (characterID == "SPKS") {
-			SPKSCustomization [arrayCount].SetActive (false);
-		} else if (characterID == "UT-D1") {
-			UT_D1Customization [arrayCount].SetActive (false);
-		}
+        characterCustomization[arrayCount].SetActive(false);
     }
+
 
     void UpdateCustomization()
     {
-        if (characterID == "ERNN")
-        {
-            ERNNCustomization[arrayCount].SetActive(true);
-            customzationName = ERNNCustomization[arrayCount].transform.name;
-			noNameCustomization = arrayCount;
-        }
-
-        else if (characterID == "SPKS")
-        {
-            SPKSCustomization[arrayCount].SetActive(true);
-            customzationName = SPKSCustomization[arrayCount].transform.name;
-			sparkusCustomization = arrayCount;
-        }
-
-        else if (characterID == "UT-D1")
-        {
-            UT_D1Customization[arrayCount].SetActive(true);
-            customzationName = UT_D1Customization[arrayCount].transform.name;
-			d1Customization = arrayCount;
-        }
+        characterCustomization[arrayCount].SetActive(true);
+        customzationName = characterCustomization[arrayCount].transform.name;
+        characterIndex = arrayCount;
     }
 
     public override void OnClientConnect(NetworkConnection conn)
