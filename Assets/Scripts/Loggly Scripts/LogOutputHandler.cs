@@ -53,7 +53,7 @@ public class LogOutputHandler : MonoBehaviour
     public IEnumerator SendData(WWWForm form)
     {
         //Send WWW Form to Loggly, replace TOKEN with your unique ID from Loggly
-        WWW sendLog = new WWW("http://logs-01.loggly.com/inputs/c0f6e096-309d-453b-b1e6-cf245873aac6/tag/Unity3D", form);
+        WWW sendLog = new WWW("http://logs-01.loggly.com/inputs/71d488bb-c1b2-49cf-8610-993c003150fd/tag/Unity3D", form);
         yield return sendLog;
     }
 }

@@ -113,6 +113,7 @@
     <Compile Include="Assets\Scripts\Animation Scripts\StunParticleWobbler.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\TeslaCoilScrollUp.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
+    <Compile Include="Assets\Scripts\Loggly Scripts\LogglyTest.cs" />
     <Compile Include="Assets\Scripts\Loggly Scripts\LogOutputHandler.cs" />
     <Compile Include="Assets\Scripts\Misc Scripts\DestroyParticle.cs" />
     <Compile Include="Assets\Scripts\Misc Scripts\SpawnParticleEffect.cs" />

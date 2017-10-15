@@ -9,6 +9,9 @@ public class Network_SceneManager : MonoBehaviour
     [SerializeField]
     AudioSource musicSource;
 
+    [SerializeField]
+    AudioClip[] songs;
+
     bool isPlaying;
 
     private Scene currentScene;
@@ -18,6 +21,9 @@ public class Network_SceneManager : MonoBehaviour
     public string serverScene;
     public bool wonMatch;
     public string playerUsername;
+
+    [SerializeField]
+    int randomSong;
 
 
     void Awake()
@@ -35,6 +41,13 @@ public class Network_SceneManager : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+
+        if (instance == null)
+        {
+            randomSong = Random.Range(0, 6);
+            musicSource.clip = songs[randomSong];
+            musicSource.Play();
         }
 
         instance = this;
