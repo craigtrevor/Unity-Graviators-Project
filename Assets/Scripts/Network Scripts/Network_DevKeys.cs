@@ -31,8 +31,8 @@ public class Network_DevKeys : NetworkBehaviour {
 
     void Start() {
 
-        //DEV MODE
-        canDev = true;
+        //DEV MODE *********************************************************************************************************************
+        canDev = false;
 
         if (canDev) {
             Debug.Log("DEV MODE IS ON");

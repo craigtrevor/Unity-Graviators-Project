@@ -355,7 +355,6 @@ public class MeleeWeaponTrail : MonoBehaviour {
         if (speed < playerRigidbody.velocity.magnitude) {
             speed = playerRigidbody.velocity.magnitude;
         }
-        Debug.Log(Mathf.RoundToInt(playerRigidbody.velocity.magnitude) + " |    " + Mathf.RoundToInt(speed));
 
         if (speed < lowDamageVelocity) {
             var color = Color.green;// set the color wanted
