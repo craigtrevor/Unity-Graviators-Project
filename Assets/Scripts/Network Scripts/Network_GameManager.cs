@@ -108,7 +108,9 @@ public class Network_GameManager : MonoBehaviour {
 	public static void RegisterBot (string _netID, Network_Bot _bot)
 	{
 		//string _botID = PLAYER_ID_PREFIX + _netID;
-		bots.Add(_netID, _bot);
+		if (!bots.ContainsKey(_netID)) {
+			bots.Add(_netID, _bot);
+		}
 		//_bot.transform.name = _botID;
 	}
 
