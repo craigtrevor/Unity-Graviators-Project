@@ -71,6 +71,7 @@ public class SparkusUlt : NetworkBehaviour {
                 networkCombatManager.isUlting = true;
                 spawnTransform.gameObject.GetComponent<FaceCamera>().lerpFace = true;
                 CmdFire();
+                networkSoundscape.PlaySound(31, 2, 0.2f, 0f);
                 Debug.Log("Player used Sparkus' ultimate");
             }
         }

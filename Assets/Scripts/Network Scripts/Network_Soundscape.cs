@@ -111,5 +111,8 @@ public class Network_Soundscape : NetworkBehaviour {
 
         // Ult Audio
         playerAudioClips[30] = (AudioClip)Resources.Load("Ult Ready");
+        playerAudioClips[31] = (AudioClip)Resources.Load("Sparkus' Ult");
+        playerAudioClips[32] = (AudioClip)Resources.Load("Unit D1's Ult");
+
     }
 }
