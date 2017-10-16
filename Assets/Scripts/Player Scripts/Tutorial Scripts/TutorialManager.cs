@@ -184,7 +184,7 @@ public class TutorialManager : MonoBehaviour {
 
 		//Basic movement
 		if (tutProgression == 1 && !textNotDone) {
-			StartCoroutine (AnimateText ("Okay you old rustbucket, let’s get those circuits warmed up. Look around and change your zoom with the mouse."));
+			StartCoroutine (AnimateText ("Okay you old rustbucket, let’s get those circuits warmed up.Look around and change your zoom with the mouse."));
 			tutProgression = 2;
 
 		}
