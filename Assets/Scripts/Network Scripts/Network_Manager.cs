@@ -35,6 +35,9 @@ public class Network_Manager : NetworkManager {
     int arrayMax;
     int arrayMin;
 
+    AudioSource introAudioSource;
+    bool isPlaying;
+
     [Header("CPU Settings")]
 
     [SerializeField]
@@ -53,6 +56,8 @@ public class Network_Manager : NetworkManager {
         characterName = "Err:NoName";
         characterID = "ERNN";
         customzationName = "empty hat";
+
+        introAudioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -94,35 +99,39 @@ public class Network_Manager : NetworkManager {
 		switch (buttonName)
 		{
 		case "ErrNoName_btn":
-				characterName = "Err:NoName";
+                characterName = "Err:NoName";
 				characterID = "ERNN";
 			    characterIndex = 0;
+                RemoveCustomization();
                 arrayCount = 0;
                 arrayMin = 0;
                 arrayMax = 5;
-			    UpdateCustomization();
+                UpdateCustomization();
 			    
                 break;
 
 		case "Sparkus_btn":
-				characterName = "Sparkus";
+                characterName = "Sparkus";
 				characterID = "SPKS";
                 characterIndex = 5;
+                RemoveCustomization();
                 arrayCount = 5;
                 arrayMin = 5;
                 arrayMax = 10;
-			    UpdateCustomization();
-			   
+                UpdateCustomization();
+
                 break;
 
 		case "UnitD1_btn":
-				characterName = "Unit-D1";
+                characterName = "Unit-D1";
+                characterID = "UT-D1";
                 characterIndex = 10;
+                RemoveCustomization();
                 arrayCount = 10;
                 arrayMin = 10;
                 arrayMax = 15;
                 UpdateCustomization();
-			    
+
                 break;
 		}
 
@@ -182,6 +191,41 @@ public class Network_Manager : NetworkManager {
         characterCustomization[arrayCount].SetActive(true);
         customzationName = characterCustomization[arrayCount].transform.name;
         characterIndex = arrayCount;
+    }
+
+    public void BeginIntroduction()
+    {
+        if (!isPlaying)
+        {
+            StartCoroutine(PlayIntroduction());
+        }
+    }
+
+    IEnumerator PlayIntroduction()
+    {
+        isPlaying = true;
+
+        if (characterID == "ERNN")
+        {
+            introAudioSource.clip = (AudioClip) Resources.Load("Noname introduction");
+            introAudioSource.Play();
+        }
+
+        else if (characterID == "SPKS")
+        {
+            introAudioSource.clip = (AudioClip)Resources.Load("Sparkus introduction");
+            introAudioSource.Play();
+        }
+
+        else if (characterID == "UT-D1")
+        {
+            introAudioSource.clip = (AudioClip)Resources.Load("D1 introduction");
+            introAudioSource.Play();
+        }
+
+        yield return new WaitForSeconds(5);
+
+        isPlaying = false;
     }
 
     public override void OnClientConnect(NetworkConnection conn)

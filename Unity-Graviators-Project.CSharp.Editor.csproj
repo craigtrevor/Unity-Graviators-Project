@@ -158,6 +158,7 @@
     <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\def.shader" />
     <None Include="Assets\Shaders\CrossSection.shader" />
     <None Include="Assets\Shaders\Dissolve.shader" />
+    <None Include="Assets\Shaders\DrawSimple.shader" />
     <None Include="Assets\Shaders\Gem.shader" />
     <None Include="Assets\Shaders\Hologram.shader" />
     <None Include="Assets\Shaders\Lava_Flowing_Shader\ReadMe.txt" />
@@ -166,6 +167,7 @@
     <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort_Transparent.shader" />
     <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
     <None Include="Assets\Shaders\LightingShadowOnly.shader" />
+    <None Include="Assets\Shaders\PostOutline.shader" />
     <None Include="Assets\Shaders\Shadow.shader" />
     <None Include="Assets\Shaders\ShadowDrawer.shader" />
     <None Include="Assets\Shaders\ShieldShader.shader" />
