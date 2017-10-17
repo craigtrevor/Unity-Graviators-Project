@@ -45,9 +45,9 @@ public class damageRange : NetworkBehaviour {
     private const string UNITD1RANGEWEAPON_TAG = "UnitD1_RangedWeapon";
     private const string SPARKUSRANGEWEAPON_TAG = "Sparkus_RangedWeapon";
 
-    public float d1StunTime = 2f;
-    public float sparkusStunTime = 5f;
-    public float nonameSlowTime = 2f;
+    float d1StunTime = 2f;
+    float sparkusStunTime = 3f;
+    float nonameSlowTime = 2f;
 
     // scripts
     Network_PlayerManager networkPlayerManager;
@@ -182,6 +182,7 @@ public class damageRange : NetworkBehaviour {
                 Destroy(gameObject);
             }
             this.gameObject.GetComponent<Collider>().isTrigger = true;
+            Destroy(this.gameObject);
 
         } else if (other.transform.root != transform.root && other.gameObject.tag != PLAYER_TAG && other.transform.name != sourceID && other.gameObject.tag != THROWINGSWORD_TAG) {
             if (this.gameObject.tag == THROWINGSWORD_TAG)// if a throwing sword hit the arena
@@ -213,6 +214,7 @@ public class damageRange : NetworkBehaviour {
                 Destroy(gameObject);
             }
             this.gameObject.GetComponent<Collider>().isTrigger = true;
+            Destroy(this.gameObject);
         }
     }
 
