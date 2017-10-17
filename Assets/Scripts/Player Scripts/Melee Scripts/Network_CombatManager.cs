@@ -91,7 +91,16 @@ public class Network_CombatManager : NetworkBehaviour {
         weaponSpawn = transform.GetComponent<WeaponSpawn>();
         playerRigidbody = transform.GetComponent<Rigidbody>();
         networkPlayerManager = transform.GetComponent<Network_PlayerManager>();
-        particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+
+        if (Network_SceneManager.instance.sceneName == "Online_Scene_ArenaV2")
+        {
+            particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
+        }
+
+        else
+        {
+            particleManager = null;
+        }
 
         playerDamage = 5;
         attackRadius = 3;
