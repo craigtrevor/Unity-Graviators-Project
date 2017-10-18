@@ -222,7 +222,7 @@ public class UI_MixLevels : MonoBehaviour
 
     public void SendMessage()
     {
-        matchMixerLevels.SendMessage("UpdateValues", sliderValues);
+        matchMixerLevels.SendMessage("UpdateMixValues", sliderValues);
     }
 
     void UpdateAudioMixers()
