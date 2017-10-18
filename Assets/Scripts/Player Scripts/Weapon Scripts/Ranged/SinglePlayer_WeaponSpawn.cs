@@ -96,6 +96,7 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
         //playerAnimator.SetTrigger("Ranged Attack Reload");
 		playerAnimator.SetBool("Ranged Attack Reload" ,true);
 		playerAnimator.SetBool("RangedAttacking",false);
+		soundscape.PlayNonNetworkedSound (13, 1, 0.2f);
 		//NoNameShowWeapons (); // added since range animations are not triggering
 		reloading = false;
     }
@@ -108,6 +109,8 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
             soundscape.PlayNonNetworkedSound(8, 1, 0.2f);
         }
     }
+
+
 
     public void NoNameShowWeapons() {
 
