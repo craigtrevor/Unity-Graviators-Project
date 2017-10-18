@@ -6,7 +6,7 @@ public class Bot_Script : MonoBehaviour {
 
 	public GameObject tutorialManager;
 
-	public float health = 100;
+	public float health = 25;
 
 	private bool dead = false;
 	public bool respawnEnabled = false;
@@ -66,7 +66,7 @@ public class Bot_Script : MonoBehaviour {
 
 	public void respawn()
 	{
-		health = 100;
+		health = 25;
 		dead = false;
 		for (int i = 0; i < Renders.Length; i++) 
 		{
