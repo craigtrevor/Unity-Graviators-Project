@@ -25,6 +25,8 @@ public class Network_SceneManager : MonoBehaviour
     [SerializeField]
     int randomSong;
 
+    [HideInInspector]
+    public int narrationCount = 0;
 
     void Awake()
     {

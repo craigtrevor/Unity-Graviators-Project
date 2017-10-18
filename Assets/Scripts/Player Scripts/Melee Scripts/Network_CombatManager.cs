@@ -166,9 +166,9 @@ public class Network_CombatManager : NetworkBehaviour {
             playerController.moveSettings.jumpVel = reducedJumpSpeed;
             yield return new WaitForSeconds(slowTime);
         }
-        playerController.moveSettings.forwardVel = normalWalkSpeed;
-        playerController.moveSettings.rightVel = normalWalkSpeed;
-        playerController.moveSettings.jumpVel = normalJumpSpeed;
+
+        playerController.ResetMoveSettings();
+
 		isSlowed = false;
     }
 

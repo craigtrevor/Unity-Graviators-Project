@@ -121,7 +121,13 @@ public class Network_PlayerManager : NetworkBehaviour
         if (!firstPlay)
         {
             networkSoundscape = transform.GetComponent<Network_Soundscape>();
-            networkSoundscape.PlayNonNetworkedSound(18, 5, 0.2f);
+
+            if (Network_SceneManager.instance.narrationCount == 0)
+            {
+                networkSoundscape.PlayNonNetworkedSound(18, 5, 0.1f);
+            }
+
+            Network_SceneManager.instance.narrationCount = 1;
 
             firstPlay = true;
         }
