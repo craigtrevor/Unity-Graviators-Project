@@ -241,6 +241,7 @@
      <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
      <Compile Include="Assets\Shaders\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
      <Compile Include="Assets\Shaders\Water Flow FREE\Scripts\WaterFlowFREEDemo.cs" />
+     <Compile Include="Assets\UI_PostProcessing.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
      <None Include="Assets\Shaders\LightingShadowOnly.shader" />
