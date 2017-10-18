@@ -44,10 +44,10 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +57,51 @@
      <Compile Include="Assets\Materials\MeleeWeaponTrail\Example\Scripts\SwooshTest.cs" />
      <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\Interpolate.cs" />
      <Compile Include="Assets\Materials\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballGroupAttribute.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\AmbientOcclusionComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\BloomComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\BuiltinDebugViewsComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\ChromaticAberrationComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\ColorGradingComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\DepthOfFieldComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\DitheringComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\EyeAdaptationComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\FogComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\FxaaComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\GrainComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\MotionBlurComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\ScreenSpaceReflectionComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\TaaComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\UserLutComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Components\VignetteComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\AmbientOcclusionModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\BloomModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\BuiltinDebugViewsModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\ChromaticAberrationModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\ColorGradingModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\DepthOfFieldModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\DitheringModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\EyeAdaptationModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\FogModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\GrainModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\MotionBlurModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\ScreenSpaceReflectionModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\UserLutModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Models\VignetteModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\PostProcessingBehaviour.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\PostProcessingComponent.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\PostProcessingContext.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\PostProcessingModel.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\PostProcessingProfile.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Utils\ColorGradingCurve.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Utils\GraphicsUtils.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
+     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
+     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
      <Compile Include="Assets\Prefabs\Tutorial\Destructible Crate\Example\Scripts\Hit.cs" />
      <Compile Include="Assets\Prefabs\Tutorial\Destructible Crate\removeCrate.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" />
@@ -66,16 +111,21 @@
      <Compile Include="Assets\Scripts\Animation Scripts\BobUpAndDown.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\CharacterSelectScreen.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\CorpseDissolve.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\CreditsScroller.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\DroneMovement.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\LightningLine.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\LookAtCentre.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\NoOfCPUs.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\OrbitCam.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\ParticleManager.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\PostEffect.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\ResetVideo.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SpawnAnimator.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SplineController\MathUtils.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SplineController\SplineController.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SplineController\SplineInterpolator.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\SplineParticles.cs" />
+     <Compile Include="Assets\Scripts\Animation Scripts\StunParticleWobbler.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\TeslaCoilScrollUp.cs" />
      <Compile Include="Assets\Scripts\Animation Scripts\TutSignAnimator.cs" />
      <Compile Include="Assets\Scripts\Misc Scripts\DestroyParticle.cs" />
@@ -94,6 +144,7 @@
      <Compile Include="Assets\Scripts\Network Scripts\Network_LANClient.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_LANServer.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_Manager.cs" />
+     <Compile Include="Assets\Scripts\Network Scripts\Network_MatchEnd.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_MatchSettings.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerLatency.cs" />
      <Compile Include="Assets\Scripts\Network Scripts\Network_PlayerManager.cs" />
@@ -129,6 +180,7 @@
      <Compile Include="Assets\Scripts\Player Scripts\Gravity &amp; Movement\YRotScript.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\Network_CombatManager.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\SinglePlayer_CombatManager.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\SP_StrikeColider.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Melee Scripts\StrikeCollider.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Bot Scripts\Bot_Melee.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Tutorial Scripts\Bot Scripts\Bot_Range.cs" />
@@ -168,12 +220,15 @@
      <Compile Include="Assets\Scripts\UI Scripts\deathScreenCountdown.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\GravityCharge.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\mouseHover.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_BotNamePlate.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_ButtonScripts.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_CameraFacingBillboard.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_InputNavigator.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_Killfeed.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_KillfeedItem.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_LoginMenu.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_MatchMixerLevels.cs" />
+     <Compile Include="Assets\Scripts\UI Scripts\UI_MixLevels.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PauseMenu.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerHUD.cs" />
      <Compile Include="Assets\Scripts\UI Scripts\UI_PlayerNameplate.cs" />
@@ -186,72 +241,122 @@
      <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
      <Compile Include="Assets\Shaders\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
      <Compile Include="Assets\Shaders\Water Flow FREE\Scripts\WaterFlowFREEDemo.cs" />
+     <Compile Include="Assets\UI_PostProcessing.cs" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparentOutline.shader" />
+     <None Include="Assets\Shaders\LightingShadowOnly.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\def.shader" />
      <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonSurf.cginc" />
      <None Include="Assets\Shaders\ShieldShader.shader" />
      <None Include="Assets\Shaders\Dissolve.shader" />
+     <None Include="Assets\Shaders\Shadow.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
+     <None Include="Assets\Shaders\PostOutline.shader" />
      <None Include="Assets\Materials\particles\SurfaceShader_VC.shader" />
+     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\LutGen.shader" />
+     <None Include="Assets\Shaders\TransparentCutout.shader" />
+     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonExt.shader" />
      <None Include="Assets\Materials\MeleeWeaponTrail\README.txt" />
+     <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim_Bumped.shader" />
      <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Simple.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
      <None Include="Assets\Prefabs\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
+     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Plane.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonDefaultOutline.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\ACES.cginc" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Diffuse_UnlitRimColor.shader" />
+     <None Include="Assets\Shaders\DrawSimple.shader" />
      <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Diffuse_Lava_Distort.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\burnThrough.shader" />
+     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
      <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\Blit.shader" />
+     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
+     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
      <None Include="Assets\Shaders\Lava_Flowing_Shader\Shaders\Unlit_Lava_Distort_Transparent.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\DiffuseBumped_UnlitRimColorBumped.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Diffuse_Outline_Edges.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA3.cginc" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Box.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonInc.cginc" />
      <None Include="Assets\Shaders\Water Flow FREE\Shaders\Water Flow FREE Simple.shader" />
      <None Include="Assets\Shaders\Water Flow FREE\Readme.txt" />
+     <None Include="Assets\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Texture_Rim.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
      <None Include="Assets\Shaders\CrossSection.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\Common.cginc" />
+     <None Include="Assets\Shaders\ShadowDrawer.shader" />
+     <None Include="Assets\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Portal.shader" />
+     <None Include="Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
      <None Include="Assets\Shaders\Lava_Flowing_Shader\ReadMe.txt" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonV.cginc" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonDefault.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Radius.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
+     <None Include="Assets\Shaders\SoftHair.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonLighting.cginc" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Color.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\GrainGen.shader" />
      <None Include="Assets\Database Control Free\Resources\DCF_RuntimeData.txt" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim_Bumped.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonIN.cginc" />
      <None Include="Assets\Shaders\Hologram.shader" />
+     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Texture.shader" />
+     <None Include="Assets\Shaders\TransparentWShadow.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Intersection_Color_Rim.shader" />
+     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
      <None Include="Assets\Shaders\Gem.shader" />
+     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\MKToonTransparent.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Timeline">
- <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
- <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="DatabaseControl">
- <HintPath>E:/Users/Alex/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
+ <HintPath>C:/Users/New/Documents/Unity-Graviators-Project/Assets/Database Control Free/Scripts/DatabaseControl.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
