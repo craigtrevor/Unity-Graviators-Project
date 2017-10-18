@@ -142,7 +142,6 @@ public class Network_Bot : NetworkBehaviour {
         gravity = "-y";
         particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
         m_Rigidbody = GetComponent<Rigidbody>();
-        _sourceID = transform.root.name;
         networkBotSpawner = GameObject.FindGameObjectWithTag("NetBotSpawner").GetComponent<Network_BotSpawner>();
         anim.transform.GetComponentInChildren<Animator>();
         netanim.GetComponent<NetworkAnimator>();
@@ -200,7 +199,8 @@ public class Network_Bot : NetworkBehaviour {
 
 	void Start () {
 		usernameText.text = username;
-	}
+        _sourceID = transform.root.name;
+    }
 
 	public override void OnStartLocalPlayer() {
 		for(int i = 0; i < 4; i++) {

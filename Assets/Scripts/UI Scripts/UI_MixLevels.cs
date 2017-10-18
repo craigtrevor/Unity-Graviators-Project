@@ -46,9 +46,9 @@ public class UI_MixLevels : MonoBehaviour
     {
         if (!isMuted)
         {
-            audioMixers[0].audioMixer.SetFloat("MasterVolume", -40);
-            sliderValues[0] = -40;
-            audioSliders[0].value = -40;
+            audioMixers[0].audioMixer.SetFloat("MasterVolume", -80);
+            sliderValues[0] = -80;
+            audioSliders[0].value = -80;
             mutedImages[0].sprite = mutedSprites[1];
             isMuted = true;
             isMasterMuted = true;
@@ -75,9 +75,9 @@ public class UI_MixLevels : MonoBehaviour
     {
         if (!isMuted)
         {
-            audioMixers[1].audioMixer.SetFloat("MasterVolume", -40);
-            sliderValues[1] = -40;
-            audioSliders[1].value = -40;
+            audioMixers[1].audioMixer.SetFloat("MusicVolume", -80);
+            sliderValues[1] = -80;
+            audioSliders[1].value = -80;
             mutedImages[1].sprite = mutedSprites[1];
             isMuted = true;
         }
@@ -86,7 +86,7 @@ public class UI_MixLevels : MonoBehaviour
         {
             if (!isMasterMuted)
             {
-                audioMixers[1].audioMixer.SetFloat("MasterVolume", 0);
+                audioMixers[1].audioMixer.SetFloat("MusicVolume", 0);
             }
 
             sliderValues[1] = 0;
@@ -106,9 +106,9 @@ public class UI_MixLevels : MonoBehaviour
     {
         if (!isMuted)
         {
-            audioMixers[2].audioMixer.SetFloat("MasterVolume", -40);
-            sliderValues[2] = -40;
-            audioSliders[2].value = -40;
+            audioMixers[2].audioMixer.SetFloat("NarrationVolume", -80);
+            sliderValues[2] = -80;
+            audioSliders[2].value = -80;
             mutedImages[2].sprite = mutedSprites[1];
             isMuted = true;
         }
@@ -117,7 +117,7 @@ public class UI_MixLevels : MonoBehaviour
         {
             if (!isMasterMuted)
             {
-                audioMixers[2].audioMixer.SetFloat("MasterVolume", 0);
+                audioMixers[2].audioMixer.SetFloat("NarrationVolume", 0);
             }
 
             sliderValues[2] = 0;
@@ -137,9 +137,9 @@ public class UI_MixLevels : MonoBehaviour
     {
         if (!isMuted)
         {
-            audioMixers[3].audioMixer.SetFloat("MasterVolume", -40);
-            sliderValues[3] = -40;
-            audioSliders[3].value = -40;
+            audioMixers[3].audioMixer.SetFloat("CombatVolume", -80);
+            sliderValues[3] = -80;
+            audioSliders[3].value = -80;
             mutedImages[3].sprite = mutedSprites[1];
             isMuted = true;
         }
@@ -148,7 +148,7 @@ public class UI_MixLevels : MonoBehaviour
         {
             if (!isMasterMuted)
             {
-                audioMixers[3].audioMixer.SetFloat("MasterVolume", 0);
+                audioMixers[3].audioMixer.SetFloat("CombatVolume", 0);
             }
 
             sliderValues[3] = 0;
@@ -168,9 +168,9 @@ public class UI_MixLevels : MonoBehaviour
     {
         if (!isMuted)
         {
-            audioMixers[4].audioMixer.SetFloat("MasterVolume", -40);
-            sliderValues[4] = -40;
-            audioSliders[4].value = -40;
+            audioMixers[4].audioMixer.SetFloat("AtmosVolume", -80);
+            sliderValues[4] = -80;
+            audioSliders[4].value = -80;
             mutedImages[4].sprite = mutedSprites[1];
             isMuted = true;
         }
@@ -179,7 +179,7 @@ public class UI_MixLevels : MonoBehaviour
         {
             if (!isMasterMuted)
             {
-                audioMixers[4].audioMixer.SetFloat("MasterVolume", 0);
+                audioMixers[4].audioMixer.SetFloat("AtmosVolume", 0);
             }
 
             sliderValues[4] = 0;
@@ -199,9 +199,9 @@ public class UI_MixLevels : MonoBehaviour
     {
         if (!isMuted)
         {
-            audioMixers[5].audioMixer.SetFloat("MasterVolume", -40);
-            sliderValues[5] = -40;
-            audioSliders[5].value = -40;
+            audioMixers[5].audioMixer.SetFloat("UIVolume", -80);
+            sliderValues[5] = -80;
+            audioSliders[5].value = -80;
             mutedImages[5].sprite = mutedSprites[1];
             isMuted = true;
         }
@@ -210,7 +210,7 @@ public class UI_MixLevels : MonoBehaviour
         {
             if (!isMasterMuted)
             {
-                audioMixers[5].audioMixer.SetFloat("MasterVolume", 0);
+                audioMixers[5].audioMixer.SetFloat("UIVolume", 0);
             }
 
             sliderValues[5] = 0;

@@ -177,11 +177,7 @@ public class Network_PlayerManager : NetworkBehaviour
         combatManager.isStunned = false;
         playerControllerScript.stunned = false;
         combatManager.StopAllCoroutines();
-
-        playerControllerScript.moveSettings.forwardVel = 12;
-        playerControllerScript.moveSettings.rightVel = 12;
-        playerControllerScript.moveSettings.rotateVel = 100;
-        playerControllerScript.moveSettings.jumpVel = 25;
+        playerControllerScript.ResetMoveSettings();
 
         currentHealth = maxHealth;
 

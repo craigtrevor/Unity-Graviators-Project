@@ -118,6 +118,16 @@ public class Network_SceneManager : MonoBehaviour
             }
         }
 
+        if (sceneName == "Title_Screen")
+        {
+            if (!isPlaying)
+            {
+                StopAllCoroutines();
+                StartCoroutine(Soundscape_AudioFade.FadeIn(musicSource, 2f));
+                isPlaying = true;
+            }
+        }
+
 
         if (sceneName != "Online_Scene_ArenaV2" || sceneName != "Tutorial_Arena")
         {

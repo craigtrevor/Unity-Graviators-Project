@@ -102,6 +102,14 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void ResetMoveSettings()
+    {
+        moveSettings.forwardVel = 12; 
+        moveSettings.rightVel = 12; 
+        moveSettings.rotateVel = 100; 
+        moveSettings.jumpVel = 25;
+    }
+
     void Start() {
 
         hasLanded = true; // setup animation variable
@@ -163,7 +171,7 @@ public class PlayerController : MonoBehaviour {
         if (isDashing || stunned) {
             CancelVelocity();
         }
-
+             
         ZoomStuff();
     }
 
