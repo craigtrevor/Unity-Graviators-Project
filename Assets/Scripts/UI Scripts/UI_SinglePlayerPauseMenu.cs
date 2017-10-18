@@ -14,11 +14,15 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
     [SerializeField]
     private GameObject playerMenu;
 
+	[SerializeField]
+	private SinglePlayer_WeaponSpawn  RangeScript;
+
     [SerializeField]
     private Canvas playerHUD;
 
     void Start()
     {
+		RangeScript = gameObject.GetComponentInParent<SinglePlayer_WeaponSpawn>();
         isOn = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -43,6 +47,7 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
 
         if (pauseMenu.activeSelf)
         {
+			RangeScript.enabled = false;
 			videoplayer.SetActive (false);
 			Camera.GetComponent<PlayerCamera>().enabled = false;
             playerHUD.enabled = false;
@@ -54,6 +59,8 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
         {
 			Camera.GetComponent<PlayerCamera>().enabled = true;
 			videoplayer.SetActive (true);
+			RangeScript.enabled = true;
+			//RangeScript.SetActive (true);
             playerHUD.enabled = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -64,6 +71,8 @@ public class UI_SinglePlayerPauseMenu : MonoBehaviour {
     {
 		Camera.GetComponent<PlayerCamera>().enabled = true;
 		videoplayer.SetActive (true);
+		RangeScript.enabled = true;
+		//RangeScript.SetActive (true);
 		playerHUD.enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
