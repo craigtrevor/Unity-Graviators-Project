@@ -472,6 +472,7 @@ public class TutorialManager : MonoBehaviour {
 			ultPad.SetActive (false);
 			slowTrap.SetActive (false);
 			StartCoroutine (AnimateText ("The grey pad is a spike trap. It will kill you in a real match but not in here, so go ahead and touch it."));
+			tutProgression = 6;
 
 			//the big red one will hurt you, you can't die from it here, but in a real match it'll kill you dead, definitely touch this one though
 		}
@@ -482,20 +483,24 @@ public class TutorialManager : MonoBehaviour {
 			ultPad.SetActive (false);
 			slowTrap.SetActive (false);
 			StartCoroutine (AnimateText ("The small green one will heal you, touch it now."));
+			tutProgression = 7;
 		}
-		if (tutProgression == 7 && !textNotDone && TextSaid == false) {
+		if (tutProgression == 7 && !textNotDone && TextSaid == false && healthPadTouched == true) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = ultPad;
 			ultPad.SetActive (true);
 			slowTrap.SetActive (false);
 			StartCoroutine(flashingarrow(ultArrow));
 			StartCoroutine (AnimateText ("The blue one will charge your ultimate attack quicker so you can do some serious damage faster."));
+			tutProgression = 8;
 		}
-		if (tutProgression == 8 && !textNotDone && TextSaid == false) {
+		if (tutProgression == 8 && !textNotDone && TextSaid == false && ultPadTouched == true) {
 			indicator.GetComponent<DirectionIndicator> ().targetObject = slowTrap;
 			slowTrap.SetActive (true);
 			StartCoroutine (AnimateText ("The slime spill will slow you down, annoying, but not fatal, make sure you touch it too."));
+			tutProgression = 9;
+
 		}
-		if (tutProgression == 9 && !textNotDone && TextSaid == false) {
+		if (tutProgression == 9 && !textNotDone && TextSaid == false && slowTrapTouched == true) {
 			StartCoroutine (AnimateText ("Watch out for these pads and traps. Some will help, some will harm, and the rest is up to you to find out."));
 			StartCoroutine (WaitForTraps ());
 		}

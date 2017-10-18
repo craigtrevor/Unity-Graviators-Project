@@ -45,7 +45,7 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Mouse1) && m_Fired == false && !combatManager.isAttacking)
         {
             Fire();
-            PlayThrowSound();
+            //PlayThrowSound();
             StartCoroutine(reload());
         }
     }
@@ -77,6 +77,7 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
 			weaponInstance.GetComponent<SinglePlayer_ThrownSword> ().SetRight ();
 		}
         // Create a velocity that is the players velocity and the launch force in the fire position's forward direction.
+		PlayThrowSound();
         Vector3 velocity = rigidbodyVelocity + launchForce * forward;
 
         // Set the shell's velocity to this velocity.
@@ -95,6 +96,7 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
         //playerAnimator.SetTrigger("Ranged Attack Reload");
 		playerAnimator.SetBool("Ranged Attack Reload" ,true);
 		playerAnimator.SetBool("RangedAttacking",false);
+		soundscape.PlayNonNetworkedSound (13, 1, 0.2f);
 		//NoNameShowWeapons (); // added since range animations are not triggering
 		reloading = false;
     }
@@ -107,6 +109,8 @@ public class SinglePlayer_WeaponSpawn : MonoBehaviour {
             soundscape.PlayNonNetworkedSound(8, 1, 0.2f);
         }
     }
+
+
 
     public void NoNameShowWeapons() {
 

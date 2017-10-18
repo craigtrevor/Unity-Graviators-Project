@@ -79,12 +79,12 @@ public class GravityAxisDisplayScript : MonoBehaviour {
 
     private void ChangeWalls(bool on) {
         if (on) {
-            wallY.color = Color.Lerp(wallY.color, Color.green, Time.deltaTime * 10);
-            wallNY.color = Color.Lerp(wallNY.color, Color.magenta, Time.deltaTime * 10);
-            wallX.color = Color.Lerp(wallX.color, Color.red, Time.deltaTime * 10);
-            wallNX.color = Color.Lerp(wallNX.color, Color.cyan, Time.deltaTime * 10);
-            wallZ.color = Color.Lerp(wallZ.color, Color.blue, Time.deltaTime * 10);
-            wallNZ.color = Color.Lerp(wallNZ.color, Color.yellow, Time.deltaTime * 10);
+			wallY.color = Color.Lerp(wallY.color, Color.yellow, Time.deltaTime * 10);// was green
+			wallNY.color = Color.Lerp(wallNY.color, Color.blue, Time.deltaTime * 10);// was magenta
+			wallX.color = Color.Lerp(wallX.color, Color.cyan, Time.deltaTime * 10);// was red
+			wallNX.color = Color.Lerp(wallNX.color, Color.red, Time.deltaTime * 10);// was cyan
+			wallZ.color = Color.Lerp(wallZ.color, Color.green, Time.deltaTime * 10);// was blue
+			wallNZ.color = Color.Lerp(wallNZ.color, Color.magenta, Time.deltaTime * 10);// was yellow
         } else {
             wallY.color = Color.Lerp(wallY.color, Color.white, Time.deltaTime * 10);
             wallNY.color = Color.Lerp(wallNY.color, Color.white, Time.deltaTime * 10);
