@@ -58,13 +58,7 @@ public class Network_PlayerManager : NetworkBehaviour
 
     [SerializeField]
     GameObject[] deathCanvas;
-
-    //[SerializeField]
-    //GameObject[] ERNNCustomization;
-    //[SerializeField]
-    //GameObject[] SPKSCustomization;
-    //[SerializeField]
-    //GameObject[] UT_D1Customization;
+    int deathCanvasInt;
 
     public string playerCharacterID;
 
@@ -75,7 +69,6 @@ public class Network_PlayerManager : NetworkBehaviour
     private bool deathbyTrap;
     private bool deathbyBot;
     private bool isPlaying = false;
-
 
     // Player Animator & Model
     public Animator playerAnim;
@@ -95,7 +88,6 @@ public class Network_PlayerManager : NetworkBehaviour
 	public GameObject corpse; // the player exploding on thier death, assigned in editor
 	private ParticleSystem playDeathParticle;
 
-
     [SerializeField]
     AudioSource narrationAudio;
 
@@ -106,6 +98,7 @@ public class Network_PlayerManager : NetworkBehaviour
     Network_Soundscape networkSoundscape;
     Network_Manager networkManagerScript;
     UI_PauseMenu pauseMenu;
+    PlayerController playerControllerScript;
 
     // Network Booleans
     [HideInInspector]
@@ -117,6 +110,7 @@ public class Network_PlayerManager : NetworkBehaviour
         networkManagerScript = netManagerGameObject.GetComponent<Network_Manager>();
 		particleManager = GameObject.FindGameObjectWithTag("ParticleManager").GetComponent<ParticleManager>();
 		combatManager = this.gameObject.GetComponent<Network_CombatManager> ();
+        playerControllerScript = GetComponentInChildren<PlayerController>();
         gravityScript = GetComponentInChildren<GravityAxisScript>();
         pauseMenu = GetComponentInChildren<UI_PauseMenu>();
         playerCharacterID = networkManagerScript.characterID;
@@ -181,7 +175,13 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         isDead = false;
         combatManager.isStunned = false;
+        playerControllerScript.stunned = false;
         combatManager.StopAllCoroutines();
+
+        playerControllerScript.moveSettings.forwardVel = 12;
+        playerControllerScript.moveSettings.rightVel = 12;
+        playerControllerScript.moveSettings.rotateVel = 100;
+        playerControllerScript.moveSettings.jumpVel = 25;
 
         currentHealth = maxHealth;
 
@@ -203,6 +203,10 @@ public class Network_PlayerManager : NetworkBehaviour
         Collider _col = GetComponent<Collider>();
         if (_col != null)
             _col.enabled = true;
+
+        Collider _playerCol = playerModelTransform.parent.GetComponent<Collider>();
+        if (_playerCol != null)
+            _playerCol.enabled = true;
     }
 
     private void Update()
@@ -218,87 +222,6 @@ public class Network_PlayerManager : NetworkBehaviour
             isPlaying = false;
         }
     }
-
-   // void CheckCustomizations()
-   // {
-   //     if (playerCharacterID == "ERNN")
-   //     {
-   //         if (networkManagerScript.customzationName == "empty hat")
-   //         {
-   //             ERNNCustomization[0].SetActive(true);
-   //         }
-
-   //         else if (networkManagerScript.customzationName == "samurai hat")
-   //         {
-   //             ERNNCustomization[1].SetActive(true);
-   //         }
-
-   //         else if (networkManagerScript.customzationName == "cowboy hat")
-   //         {
-   //             ERNNCustomization[2].SetActive(true);
-   //         }
-			//else if (networkManagerScript.customzationName == "cavalierhat")
-			//{
-			//	ERNNCustomization[3].SetActive(true);
-			//}
-			//else if (networkManagerScript.customzationName == "priateHat")
-			//{
-			//	ERNNCustomization[4].SetActive(true);
-			//}
-   //     }
-
-   //     else if (playerCharacterID == "SPKS")
-   //     {
-   //         if (networkManagerScript.customzationName == "empty hat")
-   //         {
-   //             SPKSCustomization[0].SetActive(true);
-   //         }
-
-   //         else if (networkManagerScript.customzationName == "centurion")
-   //         {
-   //             SPKSCustomization[1].SetActive(true);
-   //         }
-
-   //         else if (networkManagerScript.customzationName == "fez")
-   //         {
-   //             SPKSCustomization[2].SetActive(true);
-   //         }
-			//else if (networkManagerScript.customzationName == "pumpkin")
-			//{
-			//	SPKSCustomization[3].SetActive(true);
-			//}
-			//else if (networkManagerScript.customzationName == "topHat")
-			//{
-			//	SPKSCustomization[4].SetActive(true);
-			//}
-   //     }
-
-   //     else if (playerCharacterID == "UT-D1")
-   //     {
-   //         if (networkManagerScript.customzationName == "empty hat")
-   //         {
-   //             UT_D1Customization[0].SetActive(true);
-   //         }
-
-   //         else if (networkManagerScript.customzationName == "flowercrown")
-   //         {
-   //             UT_D1Customization[1].SetActive(true);
-   //         }
-
-   //         else if (networkManagerScript.customzationName == "santa hat")
-   //         {
-   //             UT_D1Customization[2].SetActive(true);
-   //         }
-			//else if (networkManagerScript.customzationName == "witchesHat")
-			//{
-			//	UT_D1Customization[3].SetActive(true);
-			//}
-			//else if (networkManagerScript.customzationName == "bowler hat")
-			//{
-			//	UT_D1Customization[4].SetActive(true);
-			//}
-   //     }
-   // }
 
     [ClientRpc]
     public void RpcTakeDamage(float _amount, string _sourceID)
@@ -514,7 +437,7 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         playerModelTransform.parent.transform.GetComponent<PlayerController>().isShiftPressed = false;
         gravityScript.SetShiftPressed(false);
-
+        
         isDead = true;
         deathbyPlayer = false;
         deathbyTrap = true;
@@ -594,6 +517,10 @@ public class Network_PlayerManager : NetworkBehaviour
         if (_col != null)
             _col.enabled = false;
 
+        Collider _playerCol = playerModelTransform.parent.GetComponent<Collider>();
+        if (_playerCol != null)
+            _playerCol.enabled = false;
+
         onDeath();
 
         if (isLocalPlayer && soundCounter == 0)
@@ -640,38 +567,26 @@ public class Network_PlayerManager : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            StartCoroutine(ChooseDeathCanvas());
+            StartCoroutine(StartRespawning());
         }
     }
 
-    private IEnumerator ChooseDeathCanvas()
+
+    IEnumerator StartRespawning()
     {
-        if (deathbyPlayer)
+        if (deathbyPlayer || deathbyBot)
         {
-            yield return new WaitForSeconds(1f);
-            deathCanvas[0].SetActive(true);
-            yield return new WaitForSeconds(5f);
-            deathCanvas[0].SetActive(false);
-            deathCamera.SetActive(false);
+            deathCanvasInt = 0;
         }
 
         else if (deathbyTrap)
         {
-            yield return new WaitForSeconds(1f);
-            deathCanvas[1].SetActive(true);
-            yield return new WaitForSeconds(5f);
-            deathCanvas[1].SetActive(false);
-            deathCamera.SetActive(false);
+            deathCanvasInt = 1;
         }
 
-        if (deathbyBot)
-        {
-            yield return new WaitForSeconds(1f);
-            deathCanvas[0].SetActive(true);
-            yield return new WaitForSeconds(5f);
-            deathCanvas[0].SetActive(false);
-            deathCamera.SetActive(false);
-        }
+        yield return new WaitForSeconds(1f);
+        deathCanvas[deathCanvasInt].SetActive(true);
+        yield return new WaitForSeconds(4f);
 
         PlayerRespawning();
     }
@@ -682,12 +597,20 @@ public class Network_PlayerManager : NetworkBehaviour
         transform.position = _spawnPoint.position;
         transform.rotation = _spawnPoint.rotation;
 
-        SetupPlayer();
+        StartCoroutine(InitializeSpawn());
+    }
 
-        //Debug.Log(transform.name + " respawned.");
+    IEnumerator InitializeSpawn()
+    {
+        yield return new WaitForSeconds(1f);
+
+        deathCanvas[deathCanvasInt].SetActive(false);
+        deathCamera.SetActive(false);
 
         randomSound = Random.Range(21, 22);
         networkSoundscape.PlayNonNetworkedSound(randomSound, 5, 1f);
+
+        SetupPlayer();
     }
 
     [ClientRpc]

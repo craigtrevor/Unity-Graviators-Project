@@ -303,6 +303,6 @@ public class damageRange : NetworkBehaviour {
     private IEnumerator DieNow()
     {
         yield return new WaitForSeconds(5f);
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

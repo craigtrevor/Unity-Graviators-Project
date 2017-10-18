@@ -6,6 +6,7 @@ public class CorpseDissolve : MonoBehaviour {
 
 	public Renderer[] materials;
 	public Rigidbody[] rbodies;
+    public Collider[] colliders;
 	public bool dying;
 	public int health = 1;
 	public float deathCount = 0.25f;
@@ -21,6 +22,12 @@ public class CorpseDissolve : MonoBehaviour {
             foreach (Rigidbody rbody in rbodies)
             {
                 rbody.AddExplosionForce(100f, Vector3.zero, 10f);
+            }
+
+            foreach (Collider collider in colliders)
+            {
+                Physics.IgnoreLayerCollision(11, 13);
+                Physics.IgnoreLayerCollision(11, 14);
             }
         }
 	}
