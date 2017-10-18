@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour {
             GravityInput(inputSettings.GRAVITY_RELEASE);
         }
 
-        if (isDashing) {
+        if (isDashing || stunned) {
             CancelVelocity();
         }
 

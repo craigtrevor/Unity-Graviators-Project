@@ -61,6 +61,8 @@ public class WeaponSpawn : NetworkBehaviour {
 		combatManager = transform.GetComponent<Network_CombatManager> ();
         networkPlayerManagerScript = transform.GetComponent<Network_PlayerManager>();
         playerCharacterID = networkPlayerManagerScript.playerCharacterID;
+
+        force = 100f;
     }
 
     void PlayThrowSound()
