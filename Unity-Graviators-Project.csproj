@@ -135,6 +135,7 @@
     <Compile Include="Assets\Prefabs\Tutorial\Destructible Crate\Example\Scripts\Hit.cs" />
     <Compile Include="Assets\Prefabs\Tutorial\Destructible Crate\removeCrate.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\AnimationEventPassalong.cs" />
+    <Compile Include="Assets\Scripts\Animation Scripts\AnimationTestDummyAttacks.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterController.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\AnimTesterSpawner.cs" />
     <Compile Include="Assets\Scripts\Animation Scripts\BlastWaveDie.cs" />
@@ -268,6 +269,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\UI_ScoreboardItem.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_SinglePlayerPauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_SkillTreeSystem.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UI_TooltipSettings.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountLobby.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UI_UserAccountManager.cs" />
     <Compile Include="Assets\Shaders\Lava_Flowing_Shader\Scripts\ScrollingUVs_Layers.cs" />
@@ -319,6 +321,8 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\Prefabs\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
+    <None Include="Assets\Resources\Internal-Toon-DeferredShading.shader" />
+    <None Include="Assets\Resources\UnityStandardBRDFCustom.cginc" />
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
     <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
     <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Box.shader" />

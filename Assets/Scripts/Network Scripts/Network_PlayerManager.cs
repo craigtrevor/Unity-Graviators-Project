@@ -57,6 +57,9 @@ public class Network_PlayerManager : NetworkBehaviour
     public GameObject mainCamera;
 
     [SerializeField]
+    GameObject toolTip;
+
+    [SerializeField]
     GameObject[] deathCanvas;
     int deathCanvasInt;
 
@@ -99,6 +102,7 @@ public class Network_PlayerManager : NetworkBehaviour
     Network_Manager networkManagerScript;
     UI_PauseMenu pauseMenu;
     PlayerController playerControllerScript;
+    UI_MatchMixerLevels uiMatchMixerLevelsScript;
 
     // Network Booleans
     [HideInInspector]
@@ -113,6 +117,7 @@ public class Network_PlayerManager : NetworkBehaviour
         playerControllerScript = GetComponentInChildren<PlayerController>();
         gravityScript = GetComponentInChildren<GravityAxisScript>();
         pauseMenu = GetComponentInChildren<UI_PauseMenu>();
+        toolTip = GameObject.Find("ToolTips");
         playerCharacterID = networkManagerScript.characterID;
     }
 
@@ -128,6 +133,13 @@ public class Network_PlayerManager : NetworkBehaviour
             }
 
             Network_SceneManager.instance.narrationCount = 1;
+
+            uiMatchMixerLevelsScript = Network_SceneManager.instance.GetComponent<UI_MatchMixerLevels>();
+
+            if (!uiMatchMixerLevelsScript.tooltipActivated)
+            {
+                toolTip.SetActive(false);
+            }
 
             firstPlay = true;
         }

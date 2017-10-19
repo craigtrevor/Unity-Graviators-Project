@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.PostProcessing;
 
 public class Network_SceneManager : MonoBehaviour
 {
     public static Network_SceneManager instance;
+    public PostProcessingProfile ppProfile;
 
     [SerializeField]
     AudioSource musicSource;
@@ -54,6 +56,13 @@ public class Network_SceneManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this);
+
+        //copy current bloom settings from the profile into a temporary variable
+        BloomModel.Settings bloomSettings = ppProfile.bloom.settings;
+        //change the intensity in the temporary settings variable
+        bloomSettings.bloom.intensity = 0.1f;
+        //set the bloom settings in the actual profile to the temp settings with the changed value
+        ppProfile.bloom.settings = bloomSettings;
     }
 
     void OnEnable()

@@ -9,12 +9,14 @@ public class UI_MatchMixerLevels : MonoBehaviour {
 
     public float[] mixerVolume;
     public bool bloomActivated = true;
+    public bool tooltipActivated = true;
 
     // Use this for initialization
     void Start ()
     {
         if (Network_SceneManager.instance.sceneName == "Game_Settings")
         {
+            tooltipActivated = true;
             bloomActivated = true;
             uiMixLevels = GetComponent<UI_MixLevels>();
             postProccessingScript = GetComponent<UI_PostProcessing>();
@@ -33,7 +35,11 @@ public class UI_MatchMixerLevels : MonoBehaviour {
 
     void UpdatePPValue(bool bloomValue)
     {
-        Debug.Log(bloomValue);
         bloomActivated = bloomValue;
+    }
+
+    void UpdateTValue(bool tooltipValue)
+    {
+        tooltipActivated = tooltipValue;
     }
 }

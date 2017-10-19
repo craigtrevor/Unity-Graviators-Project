@@ -33,7 +33,6 @@ public class UI_PostProcessing : MonoBehaviour {
 			//set the bloom settings in the actual profile to the temp settings with the changed value
 			ppProfile.bloom.settings = bloomSettings;
 
-			Debug.Log ("pp on");
             bloomValue = true;
 
         }
@@ -47,7 +46,6 @@ public class UI_PostProcessing : MonoBehaviour {
 			//set the bloom settings in the actual profile to the temp settings with the changed value
 			ppProfile.bloom.settings = bloomSettings;
 
-			Debug.Log("pp off");
             bloomValue = false;
         }
 	}
