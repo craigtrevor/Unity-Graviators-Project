@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7062741927776cd47a1097c8f8a69b43
-timeCreated: 1508312762
+timeCreated: 1508373549
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -9,7 +9,7 @@ SubstanceImporter:
     name: Noname_Diffuse
     prototypeName: Noname_Diffuse
     shaderName: 
-    shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    shader: {fileID: 4800000, guid: a253870115348244fb727656857d130f, type: 3}
     shaderKeywords: _LIGHTMODE_LEVELS _USE_M_TEX
     renderQueue: -1
     lightmapFlags: 4
@@ -31,39 +31,11 @@ SubstanceImporter:
     materialProperties:
       serializedVersion: 3
       texEnvs:
-      - _BumpMap:
-          texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
-          offset: {x: 0, y: 0}
-      - _DetailAlbedoMap:
-          texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
-          offset: {x: 0, y: 0}
-      - _DetailMask:
-          texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
-          offset: {x: 0, y: 0}
-      - _DetailNormalMap:
-          texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
-          offset: {x: 0, y: 0}
-      - _EmissionMap:
+      - _Diffuse:
           texture: {instanceID: 0}
           scale: {x: 1, y: 1}
           offset: {x: 0, y: 0}
       - _MainTex:
-          texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
-          offset: {x: 0, y: 0}
-      - _MetallicGlossMap:
-          texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
-          offset: {x: 0, y: 0}
-      - _OcclusionMap:
-          texture: {instanceID: 0}
-          scale: {x: 1, y: 1}
-          offset: {x: 0, y: 0}
-      - _ParallaxMap:
           texture: {instanceID: 0}
           scale: {x: 1, y: 1}
           offset: {x: 0, y: 0}
@@ -72,9 +44,11 @@ SubstanceImporter:
       - _BumpScale: 1
       - _Bumpiness: 1
       - _CullMode: 2
-      - _Cutoff: 0.5
+      - _Cutoff: 0
       - _DetailNormalMapScale: 1
       - _DstBlend: 0
+      - _FPow: 2
+      - _Factor: 0.5
       - _GlossMapScale: 1
       - _Glossiness: 0.5
       - _GlossyReflections: 1
@@ -100,10 +74,13 @@ SubstanceImporter:
       - _UseNormalMap: 0
       - _UseRim: 0
       - _UseSpecular: 0
+      - _Wrapping: 0.5
       - _ZWrite: 1
       colors:
       - _Color: {r: 1, g: 1, b: 1, a: 1}
+      - _DisColor: {r: 0, g: 0, b: 0, a: 1}
       - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+      - _FColor: {r: 1, g: 1, b: 1, a: 1}
       - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
       - _RimColor: {r: 0.26, g: 0.19, b: 0.16, a: 1}
       - _ShadowColor: {r: 0, g: 0, b: 0, a: 0.37}

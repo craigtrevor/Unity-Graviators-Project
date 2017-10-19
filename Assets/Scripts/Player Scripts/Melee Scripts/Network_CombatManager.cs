@@ -144,6 +144,7 @@ public class Network_CombatManager : NetworkBehaviour {
 			stunParticle.transform.position = new Vector3 (stunParticle.transform.position.x, stunParticle.transform.position.y + 4f, stunParticle.transform.position.z);
 			stunParticle.transform.SetParent (this.gameObject.transform);
 			stunParticle.GetComponent<StunParticleWobbler>().KillSelfAfter(stunTime);
+			NetworkServer.Spawn (stunParticle);
             yield return new WaitForSeconds(stunTime);
         }
         playerController.stunned = false;
