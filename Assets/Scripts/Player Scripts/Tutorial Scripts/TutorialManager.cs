@@ -16,6 +16,7 @@ public class TutorialManager : MonoBehaviour {
 	public GameObject chatBox;
 
 	public GameObject indicator;
+	public GameObject arrow;
 	public GameObject target1;
 	public GameObject target2;
 	public GameObject target3;
@@ -65,7 +66,9 @@ public class TutorialManager : MonoBehaviour {
 	private float textWaitTime = 0.03f;
 
 	void Start() {
+		arrow = GameObject.Find ("arrow(Clone)").gameObject;
 		indicator.SetActive (false);
+		arrow.SetActive (false);
 		//tutProgression = 1;
 		//overallProgression = 1;
 	}
@@ -207,6 +210,7 @@ public class TutorialManager : MonoBehaviour {
 		//Reach the targets x 3
 		if (tutProgression == 8 && !textNotDone && TextSaid == false) {
 			indicator.SetActive (true);
+			arrow.SetActive (true);
 			target1.SetActive (true);
 			StartCoroutine (AnimateText ("Oh good, Gravita will be pleased. Grind those gears and see if you can reach the target that has appeared."));
 		}
@@ -230,6 +234,7 @@ public class TutorialManager : MonoBehaviour {
 				tutProgression = 1;
 			//tutProgression = 12;
 			indicator.SetActive (false);
+			arrow.SetActive (false);
 		}
 //		if (tutProgression == 12 && !textNotDone) {
 //			StartCoroutine (AnimateText ("Oh, just to let you know. You cant keep changing gravity forever"));
@@ -253,6 +258,7 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 1 && !textNotDone) {
 			chump1.SetActive (true);
 			indicator.SetActive (true);
+			arrow.SetActive (true);
 			indicator.GetComponent<DirectionIndicator> ().targetObject = chump1;
 			StartCoroutine (AnimateText ("Ahh! Perfect timing, this chump here is headed for the scrap heap."));
 			tutProgression = 2;
@@ -298,6 +304,7 @@ public class TutorialManager : MonoBehaviour {
 			tutProgression = 1;
 			botsMurdered = 0;
 			indicator.SetActive (false);
+			arrow.SetActive (false);
 		}
 	}
 
@@ -376,6 +383,7 @@ public class TutorialManager : MonoBehaviour {
 			camDrone4.SetActive (true);
 			camDrone5.SetActive (true);
 			indicator.SetActive(true);
+			arrow.SetActive (true);
 			indicator.GetComponent<DirectionIndicator> ().targetObject = camDrone3;
 			StartCoroutine (AnimateText ("See those little camera drones? They'd love to hear from you,"));
 			tutProgression = 3;
@@ -454,12 +462,13 @@ public class TutorialManager : MonoBehaviour {
 		if (tutProgression == 3 && !textNotDone) {
 			//turn on pads and indicate to them
 			indicator.SetActive (true);
+			arrow.SetActive (true);
 			indicator.GetComponent<DirectionIndicator> ().targetObject = spikeTrap;
 			healthPad.SetActive (true);
 			ultPad.SetActive (true);
 			spikeTrap.SetActive (true);
 			slowTrap.SetActive (true);
-			StartCoroutine (AnimateText ("Hop on over to the pad that have just appeared, and touch them when I say so."));
+			StartCoroutine (AnimateText ("Hop on over to the pads that have just appeared, and touch them when I say so."));
 			tutProgression = 4;
 		}
 		if (tutProgression == 4 && !textNotDone) {
@@ -516,6 +525,7 @@ public class TutorialManager : MonoBehaviour {
 		spikeTrap.SetActive (false);
 		slowTrap.SetActive (false);
 		indicator.SetActive (false);
+		arrow.SetActive (false);
 		compactHud.onHealthPad = false;
 		compactHud.onUltPad = false;
 		compactHud.onSpikeTrap = false;
@@ -559,6 +569,7 @@ public class TutorialManager : MonoBehaviour {
 	public void tutFinish() 
 	{
 		indicator.SetActive (false);	
+		arrow.SetActive (false);
 		if (tutProgression == 1 && !textNotDone) {
 			StartCoroutine (AnimateText ("Well, that's all we have time for today! I'll leave some guys in here for you so"));
 			tutProgression = 2;
