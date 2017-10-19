@@ -60,6 +60,7 @@
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\def.shader" />
      <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
      <None Include="Assets\Shaders\_MK\MKToon\Shader\Inc\MKToonSurf.cginc" />
+     <None Include="Assets\Resources\UnityStandardBRDFCustom.cginc" />
      <None Include="Assets\Shaders\ShieldShader.shader" />
      <None Include="Assets\Shaders\Dissolve.shader" />
      <None Include="Assets\Shaders\Shadow.shader" />
@@ -120,6 +121,7 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
+     <None Include="Assets\Resources\Internal-Toon-DeferredShading.shader" />
      <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Radius.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
      <None Include="Assets\Shaders\SoftHair.shader" />
