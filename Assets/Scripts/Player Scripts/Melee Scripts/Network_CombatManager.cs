@@ -151,6 +151,8 @@ public class Network_CombatManager : NetworkBehaviour {
         anim.SetBool("Stun", false);
 		isStunned = false;
         playerController.ResetMoveSettings();
+        isHitting = false;
+        isAttacking = false;
 }
 
     public void SlowForSeconds(float slowTime) {

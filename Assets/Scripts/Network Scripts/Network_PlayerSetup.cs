@@ -114,9 +114,8 @@ public class Network_PlayerSetup : NetworkBehaviour
     [ClientRpc]
     void RpcJoinedGame(string playerID, string username)
     {
-        if (!isLocalPlayer)
+        if (isLocalPlayer)
         {
-            joinedGameText = GameObject.FindWithTag("JoinedGame").GetComponent<Text>() as Text;
             joinedGameString = username + " has joined!";
             joinedGameText.text = joinedGameString;
 

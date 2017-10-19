@@ -196,6 +196,7 @@ public class Network_PlayerManager : NetworkBehaviour
         playerControllerScript.stunned = false;
         combatManager.StopAllCoroutines();
         playerControllerScript.ResetMoveSettings();
+        playerAnim.SetBool("Stun", false);
 
         currentHealth = maxHealth;
 
