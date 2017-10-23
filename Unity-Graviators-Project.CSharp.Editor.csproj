@@ -214,6 +214,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\Prefabs\Editor Default Resources\Database Control Free\DCF_EditorData.txt" />
+    <None Include="Assets\Resources\UnityStandardBRDFCustom.cginc" />
     <None Include="Assets\Shaders\AlphaUnlitSlice.shader" />
     <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\CelShaded_ShadowDetails.shader" />
     <None Include="Assets\Shaders\BLINDED_AM_ME package\Shaders\Clip_Box.shader" />

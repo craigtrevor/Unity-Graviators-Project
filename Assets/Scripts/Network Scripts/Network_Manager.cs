@@ -35,6 +35,8 @@ public class Network_Manager : NetworkManager {
     int arrayMax;
     int arrayMin;
 
+    bool joinedLobby = false;
+
     AudioSource introAudioSource;
     bool isPlaying;
 
@@ -85,6 +87,28 @@ public class Network_Manager : NetworkManager {
         {
             characterSelectHUD.SetActive(false);
             characterSelectRoom.SetActive(false);
+        }
+
+        if (scene.name == "Main_Menu")
+        {
+            noOfCPUs = 0;
+        }
+
+        if (scene.name == "JoinOfflineMode_Scene")
+        {
+            noOfCPUs = 1;
+            joinedLobby = true;
+        }
+
+        if (scene.name == "Lobby_Scene" || scene.name == "JoinLAN_Scene")
+        {
+            noOfCPUs = 0;
+            joinedLobby = true;
+        }
+
+        if (scene.name == "Title_Screen")
+        {
+            Destroy(this.gameObject);
         }
     }
 
